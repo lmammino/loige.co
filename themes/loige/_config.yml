@@ -3,30 +3,25 @@ menu:
   Home: /
   Archives: /archives
   Github:
-    url: https://github.com/klugjo/hexo-theme-clean-blog
+    url: https://github.com/lmammino
     icon: github
 
 # Title on top left of menu. Leave empty to use main blog title
-menu_title: Configurable Title
+menu_title: Loige.co
 
 # URL of the Home page image
-index_cover: http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg
+index_cover: /content/images/loige-co-header.jpg
 
 # Default post title
-default_post_title: Untitled
+default_post_title: New post
 
-# Comments. Choose one by filling up the information
+# Comments.
 comments:
   # Disqus comments
-  disqus_shortname:
-  # Facebook comments
-  facebook:
-    appid:
-    comment_count: 5
-    comment_colorscheme: light
+  disqus_shortname: loige
 
 # Google Analytics Tracking ID
-google_analytics:
+google_analytics: UA-47248506-1
 
 # Addthis ID
 addthis:
@@ -35,10 +30,8 @@ addthis:
 favicon:
 
 # Social Accounts
-twitter_url:
-twitter_handle:
-facebook_url:
-github_url: https://github.com/klugjo/hexo-theme-clean-blog
-gitlab_url:
-linkedin_url:
-mailto:
+twitter_url: https://twitter.com/loige
+twitter_handle: loige
+github_url: https://github.com/lmammino
+linkedin_url: https://www.linkedin.com/in/lucianomammino
+mailto: lucianomammino@gmail.com

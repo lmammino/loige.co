@@ -3,24 +3,24 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle:
-description:
-author: John Doe
-language:
-timezone:
+title: Loige.co
+subtitle: Tech blog of Luciano Mammino
+description: "Tech blog of Luciano Mammino: Web developer, entrepreneur, fighter, butterfly maker!"
+author: Luciano Mammino
+language: en
+timezone: Europe/Dublin
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: https://loige.co
 root: /
-permalink: :year/:month/:day/:title/
+permalink: :title/
 permalink_defaults:
 
 # Directory
 source_dir: source
 public_dir: public
-tag_dir: tags
+tag_dir: tag
 archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
