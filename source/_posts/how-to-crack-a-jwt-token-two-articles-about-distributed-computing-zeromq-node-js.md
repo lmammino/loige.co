@@ -13,12 +13,12 @@ language:         en_US
 meta_title:       null
 meta_description: null
 tags:
-  - Node.js
-  - ZeroMq
-  - Distributed
-  - Collaboration
-  - JWT
-  - JavaScript
+  - node-js
+  - zeromq
+  - distributed
+  - collaboration
+  - jwt
+  - javascript
 
 ---
 

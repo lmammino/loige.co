@@ -13,8 +13,8 @@ language:         en_US
 meta_title:       null
 meta_description: null
 tags:
-  - JavaScript
-  - Node.js
+  - javascript
+  - node-js
 
 ---
 

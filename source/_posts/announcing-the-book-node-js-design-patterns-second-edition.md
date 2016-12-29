@@ -13,9 +13,9 @@ language:         en_US
 meta_title:       null
 meta_description: null
 tags:
-  - Node.js
-  - Books
-  - 'Design Patterns'
+  - node-js
+  - books
+  - design-patterns
 
 ---
 

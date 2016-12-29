@@ -13,10 +13,10 @@ language:         en_US
 meta_title:       null
 meta_description: 'A talk about server performance in web applications, with some degree of focus on Php. For the Dublin Php Meetup March 2016'
 tags:
-  - Php
-  - Slides
-  - Talk
-  - Performance
+  - php
+  - slides
+  - talk
+  - performance
 
 ---
 

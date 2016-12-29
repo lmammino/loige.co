@@ -13,11 +13,11 @@ language:         en_US
 meta_title:       'flickr-set-get a command line app to download photos from Flickr'
 meta_description: ""
 tags:
-  - JavaScript
-  - Http
-  - Node.js
-  - API
-  - Flickr
+  - javascript
+  - http
+  - node-js
+  - api
+  - flickr
 
 ---
 

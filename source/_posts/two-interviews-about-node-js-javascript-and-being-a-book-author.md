@@ -13,9 +13,9 @@ language:         en_US
 meta_title:       null
 meta_description: null
 tags:
-  - Collaboration
-  - Node.js
-  - JavaScript
+  - collaboration
+  - node-js
+  - javascript
 
 ---
 

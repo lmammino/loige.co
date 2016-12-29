@@ -13,11 +13,11 @@ language:         en_US
 meta_title:       null
 meta_description: null
 tags:
-  - Slides
-  - Talk
-  - Node.js
-  - JavaScript
-  - React
+  - slides
+  - talk
+  - node-js
+  - javascript
+  - react
 
 ---
 

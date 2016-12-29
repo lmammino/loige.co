@@ -13,9 +13,9 @@ language:         en_US
 meta_title:       null
 meta_description: null
 tags:
-  - Security
-  - MySql
-  - Server
+  - security
+  - mysql
+  - server
 
 ---
 

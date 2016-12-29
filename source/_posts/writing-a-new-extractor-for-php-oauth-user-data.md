@@ -13,11 +13,11 @@ language:         en_US
 meta_title:       null
 meta_description: null
 tags:
-  - Library
-  - Php
-  - Oauth
-  - Instagram
-  - Github
+  - library
+  - php
+  - oauth
+  - instagram
+  - github
 
 ---
 

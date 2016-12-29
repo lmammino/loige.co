@@ -13,13 +13,13 @@ language:         en_US
 meta_title:       null
 meta_description: null
 tags:
-  - JavaScript
-  - Server
-  - Node.js
-  - Nginx
-  - Git
-  - Flightplan
-  - Collaboration
+  - javascript
+  - server
+  - node-js
+  - nginx
+  - git
+  - flightplan
+  - collaboration
 
 ---
 

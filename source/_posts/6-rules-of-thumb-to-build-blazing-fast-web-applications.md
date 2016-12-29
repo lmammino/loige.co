@@ -13,11 +13,11 @@ language:         en_US
 meta_title:       '6 Rules of thumb to build blazing fast web applications (server side)'
 meta_description: 'In this post are described 6 extremely important rules you should take under consideration when writing your next web application'
 tags:
-  - Php
-  - Symfony
-  - Laravel
-  - Performance
-  - Scalaibility
+  - php
+  - symfony
+  - laravel
+  - performance
+  - scalaibility
 
 ---
 

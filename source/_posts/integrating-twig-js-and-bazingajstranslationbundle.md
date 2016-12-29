@@ -13,11 +13,11 @@ language:         en_US
 meta_title:       null
 meta_description: null
 tags:
-  - Php
-  - Symfony
-  - JavaScript
-  - Translation
-  - Twig
+  - php
+  - symfony
+  - javascript
+  - translation
+  - twig
 
 ---
 

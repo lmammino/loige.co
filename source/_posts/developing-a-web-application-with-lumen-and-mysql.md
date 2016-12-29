@@ -13,10 +13,10 @@ language:         en_US
 meta_title:       ""
 meta_description: 'How to develop a simple but useful web application with the Php micro-framework Lumen and MySql in less than 30 minutes.'
 tags:
-  - Php
-  - MySql
-  - Lumen
-  - Laravel
+  - php
+  - mysql
+  - lumen
+  - laravel
 
 ---
 

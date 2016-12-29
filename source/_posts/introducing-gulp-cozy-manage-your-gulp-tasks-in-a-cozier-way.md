@@ -13,10 +13,10 @@ language:         en_US
 meta_title:       null
 meta_description: null
 tags:
-  - Gulp
-  - JavaScript
-  - Node.js
-  - Library
+  - gulp
+  - javascript
+  - node-js
+  - library
 
 ---
 

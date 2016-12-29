@@ -13,10 +13,10 @@ language:         en_US
 meta_title:       null
 meta_description: null
 tags:
-  - Php
-  - Symfony
-  - Console
-  - Pimple
+  - php
+  - symfony
+  - console
+  - pimple
 
 ---
 

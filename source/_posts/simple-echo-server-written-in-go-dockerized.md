@@ -13,9 +13,9 @@ language:         en_US
 meta_title:       'Simple server app written in Go lang and docker'
 meta_description: 'How to write a very simple server app written in Go language and use a docker container to launch it '
 tags:
-  - Server
-  - GoLang
-  - Docker
+  - server
+  - go
+  - docker
 
 ---
 
