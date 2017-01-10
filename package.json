@@ -2,6 +2,9 @@
   "name": "loige-co",
   "version": "1.0.0",
   "private": true,
+  "scripts": {
+    "build": "hexo generate"
+  },
   "hexo": {
     "version": "3.2.2"
   },

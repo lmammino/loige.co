@@ -1,0 +1,271 @@
+<!doctype html>
+<html ⚡>
+  <head>
+    <meta charset="utf-8">
+    <link rel="canonical" href="../index.html" >
+    <title><%= post.title %> - <%= config.subtitle %></title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style>
+    <noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <% if (isVimeoContain){ %>
+    <script async custom-element="amp-vimeo" src="https://cdn.ampproject.org/v0/amp-vimeo-0.1.js"></script>
+    <% } %>
+    <% if (isYoutubeContain){ %>
+    <script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>
+    <% } %>
+    <% if (isInstagramContain){ %>
+    <script async custom-element="amp-instagram" src="https://cdn.ampproject.org/v0/amp-instagram-0.1.js"></script>
+    <% } %>
+    <% if (config.generator_amp.google_analytics){ %>
+    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+    <% } %>
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script type="application/ld+json">
+		{
+			"@context": "http://schema.org",
+			"@type": "BlogPosting",
+			"headline": "<%= post.title %>",
+			<% if (post.description){ %>
+			"description": "<%= post.description %>",
+			<% } else if (post.excerpt){ %>
+			"description": "<%= post.excerpt %>",
+			<% } %>
+			"mainEntityOfPage":{
+			    "@type":"WebPage",
+			    "@id":"<%= config.url %>/<%= post.path %>"
+			},
+			"datePublished": "<%= post.date.toISOString() %>",
+			"dateModified": "<%= post.updated.toISOString() %>",
+			<% if (post.eyeCatchImage && post.eyeCatchImage != "" && post.eyeCatchImageProperty && post.eyeCatchImageProperty.width && post.eyeCatchImageProperty.height){ %>
+			"image": {
+				"@type": "ImageObject",
+				"url": "<%= post.titleImageForAmp %>",
+				"width" : "<%= post.eyeCatchImageProperty.width %>",
+				"height" : "<%= post.eyeCatchImageProperty.height %>"
+			},
+			<% } %>
+			"author": {
+			    "@type": "Person",
+			    "name": "<%= config.author %>"
+			},
+			"publisher": {
+			    "@type": "Organization",
+			    "name": "<%= config.title %>"
+			    <% if (config.generator_amp.logo.height && config.generator_amp.logo.width && config.generator_amp.logo.height){ %>
+			    ,
+			    "logo": {
+			      "@type": "ImageObject",
+			      "url": "<%= logoPathForAmp %>",
+			      "width": <%= config.generator_amp.logo.width %>,
+			      "height": <%= config.generator_amp.logo.height %>
+			    }
+			    <% } %>
+			}
+		}
+	</script>
+	<% if (cssTxt != ""){ %>
+	<style amp-custom>
+		<%- cssTxt %>
+	</style>
+	<% } %>
+  </head>
+  <body>
+  	
+  	<!-- google analytics -->
+  	<% if (config.generator_amp.google_analytics){ %>
+  	<amp-analytics type="googleanalytics" id="google-analytics">
+		<script type="application/json">
+		{
+		  "vars": {
+		    "account": "<%- config.generator_amp.google_analytics %>"
+		  },
+		  "triggers": {
+		    "trackPageview": {
+		      "on": "visible",
+		      "request": "pageview"
+		    }
+		  }
+		}
+		</script>
+	</amp-analytics>
+	<% } %>
+  	
+  	<div id="container">
+  	
+  		<!-- title -->
+	  	<header id="header">
+	
+	  		<% if (config.generator_amp.logo.height && config.generator_amp.logo.width && config.generator_amp.logo.height){ %>
+	  		<div class="blog-title">
+				<a href="<%- config.root %>">
+					<amp-img src="<%= logoPath %>" width="<%= logoPath_width %>" height="<%= logoPath_height %>" layout="responsive">
+					</amp-img>
+				</a>
+			</div>
+			<% } else { %>
+			<h1 class="blog-title blog-title-bd">
+				<a href="<%- config.root %>"><%= config.title %></a>
+			</h1>
+			<% } %>
+			
+		</header>
+	  	
+	  	
+	  	<div id="main">
+	  	
+		    <article id="<%= post.layout %>-<%= post.slug %>" class="post">
+		    	
+		    	<!-- datePublished -->
+				<footer class="entry-meta-header">
+					<span class="meta-elements date">
+						<time datetime="<%= datePublished %>" itemprop="datePublished"><%= datePublished %></time>
+					</span>
+				</footer>
+				
+				<!-- entry title -->
+				<header class="entry-header">
+					<% if (post.link){ %>
+					  <h1 itemprop="name" class="entry-title">
+					    <a class="article-title" href="<%- post.link %>" target="_blank" itemprop="url"><%= post.title %></a>
+					  </h1>
+					<% } else if (post.title){ %>
+					  <h1 class="article-title entry-title" itemprop="name">
+					    <a href="<%- config.url %>/<%- post.path %>" target="_blank" itemprop="url"><%= post.title %></a>
+					  </h1>
+					<% } %>
+				</header>
+				
+				<!-- entry content -->
+			    <div class="entry-content ecp">
+			  		<%- content %>
+			  		<!--
+			  		<div class="htmlPageLink">
+			  			<a href="<%- config.url %>/<%- post.path %>" target="_blank" itemprop="url">jump to HTML Page</a>
+			  		</div>
+			  		-->
+			  	</div>
+				
+		  	</article>
+		  	
+		  	<% if (post.tags && post.tags.length){ %>
+		  	<h6 class="categories">Category</h6>
+		  	<div class="article-categories">
+				<ul class="article-categories-list">
+					<% post.categories.data.forEach(function(item){ %>
+			    		<li class="article-categories-list-item">
+			    			<a class="article-categories-list-link" href="/<%- item.path %>" class="link-gaTrack" data-linkType="link-categories">
+			    				<%- item.name %>
+			    			</a>
+			    		</li>
+					<% }); %>
+				</ul>
+			</div>
+			<% } %>
+		  	
+		  	<% if (post.tags && post.tags.length){ %>
+		  	<h6 class="tag">Tag</h6>
+		  	<div class="article-tag">
+				<ul class="article-tag-list">
+					<% post.tags.data.forEach(function(item){ %>
+			    		<li class="article-tag-list-item">
+			    			<a class="article-tag-list-link" href="/<%- item.path %>" class="link-gaTrack" data-linkType="link-tag">
+			    				<%- item.name %>
+			    			</a>
+			    		</li>
+					<% }); %>
+				</ul>
+			</div>
+			<% } %>
+
+		  	
+		  	<hr class="article-devider">
+		  	
+		  	
+		  	
+		  	<!-- article nav -->
+		  	<% if (post.prev || post.next){ %>
+			<nav id="article-nav">
+			  <% if (post.prev){ %>
+			    <a href="<%- config.root %><%- post.prev.path %>" id="article-nav-newer" class="article-nav-link-wrap">
+			      <strong class="article-nav-caption">Newer</strong>
+			      <div class="article-nav-title">
+			        <% if (post.prev.title){ %>
+			          <%= post.prev.title %>
+			        <% } else { %>
+			          (no title)
+			        <% } %>
+			      </div>
+			    </a>
+			  <% } %>
+			  <% if (post.next){ %>
+			    <a href="<%- config.root %><%- post.next.path %>" id="article-nav-older" class="article-nav-link-wrap">
+			      <strong class="article-nav-caption">Older</strong>
+			      <div class="article-nav-title">
+			        <% if (post.next.title){ %>
+			          <%= post.next.title %>
+			        <% } else { %>
+			          (no title)
+			        <% } %>
+			      </div>
+			    </a>
+			  <% } %>
+			</nav>
+			<% } %>
+			
+		</div>
+		
+		<footer id="footer">
+		
+			<div class="site-author-info">
+		
+				<% if (config.authorDetail && config.authorDetail.avatar && config.authorDetail.avatar.path && config.authorDetail.avatar.width && config.authorDetail.avatar.height ){ %>
+				<div class="gravatar-wrapper">
+					<div class="gravatar-area">
+						<amp-img alt="gravatar" class="circle responsive-img" src="<%= avatarPath %>" width="<%= config.authorDetail.avatar.width %>" height="<%= config.authorDetail.avatar.height %>"></amp-img>
+					</div>
+				</div>
+				<% } %>
+				
+				<div>
+					<h6 class="authorCap"><%= config.author %>&nbsp;
+						<% if (config.authorDetail && config.authorDetail.authorReading){ %>
+						<span class="authorReading">(<%= config.authorDetail.authorReading %>)</span>
+						<% } %>
+					</h6>
+					<% if (config.authorDetail && config.authorDetail.description){ %>
+					<p class="site-author-desc">
+						<%= config.authorDetail.description %>
+					</p>
+					<% } %>
+				</div>
+				
+			</div>
+			
+			<div class="homeLink">
+		  		<a href="/">Home</a>
+		  	</div>
+			
+			<div id="totop"><a href="#"></a></div>
+			
+			<div class="copyright-tool">
+				<div class="copyright-title">
+					<span>
+					&copy; <%= copyrightDate %>&nbsp;<%= config.author || config.title %>
+					</span>
+				</div>
+				<% if (config.copyright_notice){ %>
+				<div class="copyright-notice">
+					<p>
+						<%= config.copyright_notice %>
+					</p>
+				</div>
+				<% } %>
+			</div>
+			
+			
+			
+		</footer>
+	</div>
+  	
+  </body>
+</html>

@@ -1,0 +1,5 @@
+test:
+  override:
+    - echo "no tests for now"
+  post:
+    - npm run build
