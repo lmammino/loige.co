@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "start": "hexo server",
     "build": "hexo generate",
     "test:lint": "remark source/_posts",
     "test": "npm run test:lint"
