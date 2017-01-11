@@ -1,5 +1,11 @@
+machine:
+  node:
+    version: 7.0.0
+
 test:
-  override:
-    - echo "no tests for now"
   post:
     - npm run build
+
+general:
+  artifacts:
+    - "public"
