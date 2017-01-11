@@ -5,7 +5,4 @@ machine:
 test:
   post:
     - npm run build
-
-general:
-  artifacts:
-    - "public"
+    - mv public/* $CIRCLE_ARTIFACTS
