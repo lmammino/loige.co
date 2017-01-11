@@ -4,7 +4,7 @@ title:            '2016 - A year in review'
 slug:             2016-a-year-in-review
 subtitle:         null
 date:             '2016-12-24T18:13:18.000Z'
-updated:          '2016-12-27T07:41:37.000Z'
+updated:          '2017-01-09T21:36:49.000Z'
 author:           'Luciano Mammino'
 author_slug:      luciano-mammino
 header_img:       /content/images/2016/12/loige-luciano-mammino-2016-a-year-in-review-blog-post.jpg
@@ -45,6 +45,13 @@ I really look forward to keep doing my best next year and see some of the things
 ## Conferences and meet-ups talks
 
 This year I did my first official conference talk at Codemotion Milan in November. If you are interested in Universal JavaScript and React you can find all the details (slides, video and notes) here: [My Universal JavaScript Web Applications talk at Codemotion Milan 2016](http://loige.co/my-universal-javascript-web-applications-talk-at-codemotion-milan-2016-2/).
+
+I was quite satisfied with the result of the talk, even if I think I still have a lot to improve.
+
+This was the official feedback from the organizers and the audience:
+
+> 220 people attended your session, among them 68% rated it as “Good”, 30% as “Neutral” and 2% as “Bad”.
+
 
 In march I also made a talk at the PHP Dublin meet-up group about web application performance. Check it out here: [6 Tips to Build Fast Web Applications (Php Dublin March 2016 Talk)](http://loige.co/6-tips-to-build-fast-web-applications-php-dublin-march-2016-talk/).
 
