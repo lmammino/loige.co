@@ -6,17 +6,4 @@ test:
   post:
     - npm run build
     - cp -R public/* $CIRCLE_ARTIFACTS
-
-deployment:
-  staging:
-    branch: master
-    codedeploy:
-      loige.co:
-        application_root: public/
-        region: eu-west-1
-        revision_location:
-          revision_type: S3
-          s3_location:
-            bucket: loige.co
-            key_pattern: appname-1234-{BRANCH}-{SHORT_COMMIT}
-        deployment_group: default-deployment-group
+    - if [ $CIRCLE_BRANCH = 'master' ]; then npm run deploy; fi

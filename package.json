@@ -5,6 +5,7 @@
   "scripts": {
     "start": "hexo server",
     "build": "hexo generate",
+    "deploy": "aws s3 sync public s3://loige.co",
     "test:lint": "remark source/_posts",
     "test": "npm run test:lint"
   },
