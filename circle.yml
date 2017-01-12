@@ -6,4 +6,6 @@ test:
   post:
     - npm run build
     - cp -R public/* $CIRCLE_ARTIFACTS
+    - if [ $CIRCLE_BRANCH = 'master' ]; then echo "Starting deploy to S3"; fi
+    - if [ $CIRCLE_BRANCH = 'master' ]; then aws iam get-user; fi
     - if [ $CIRCLE_BRANCH = 'master' ]; then npm run deploy; fi
