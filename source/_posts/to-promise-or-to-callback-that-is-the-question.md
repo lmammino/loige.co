@@ -4,7 +4,7 @@ title:            'To promise or to callback? That is the question...'
 slug:             to-promise-or-to-callback-that-is-the-question
 subtitle:         null
 date:             '2016-02-14T13:32:00.000Z'
-updated:          '2016-02-14T15:58:56.000Z'
+updated:          '2017-03-03T21:08:07.000Z'
 author:           'Luciano Mammino'
 author_slug:      luciano-mammino
 header_img:       /content/images/2016/02/to-promise-or-to-callback-this-is-the-problem-loige-amlet-arnold-schwarzenegger-javascript.png
@@ -80,7 +80,7 @@ This approach effectively combines callbacks and promises in a way that allows t
 Let’s see a simple implementation of this approach with an example. Let’s assume we want to implement a dummy module that executes divisions asynchronously:
 
 ```javascript
-module.exports = function asyncDivision (dividend, divisor, cb) {
+module.exports = function asyncDivision (dividend, divisor, cb) {  
   return new Promise((resolve, reject) => {      // [1]
 
     process.nextTick(() => {
@@ -90,13 +90,13 @@ module.exports = function asyncDivision (dividend, divisor, cb) {
         divisor === 0
       ){
         let error = new Error('Invalid operands');
-        if (cb) { cb(error); }                  // [2]
-        reject(error);
+        if (cb) { return cb(error); }                  // [2]
+        return reject(error);
       }
 
       var result = dividend/divisor;
-      if (cb) { cb(null, result); }             // [3]
-      resolve(result);
+      if (cb) { return cb(null, result); }             // [3]
+      return resolve(result);
     });
 
   });
@@ -130,11 +130,69 @@ asyncDivision(22, 11)
 It should be clear that with very little effort, the developers who are going to use our new module will be able to easily choose the style that best suits their needs without having to introduce an external “promisification” function whenever they want to leverage promises.
 
 
+### A little caveat and an alternative implementation
+
+As [Amar Zavery](https://disqus.com/by/amar_zavery) pointed out in a [comment here](//loige.co/to-promise-or-to-callback-that-is-the-question/#comment-3184972856), this approach is not perfect.
+
+If we use the function with the callback approach, we still have created and returned a promise that behaves in an inconsistent way (never *resolved*, nor *rejected*).  Let's make this clear with an example:
+
+```javascript
+asyncDivision(2,0, console.log)
+  .then(() => console.log(`Promise resolved`))
+  .catch(() => console.error(`Promise rejected`))
+;
+```
+
+In this example, we are passing a callback (`console.log`) to our function but also using the returned promise to print some extra information.
+With our implementation of `asyncDivision` either the `then` block and the `catch` block are never executed because the function is interrupted as soon as the callback is used.
+
+This is most of the time negligible because is very unlikely that somebody will be using the function with this mixed async approach (we could even argue that doing so would be a bad practice).
+
+Anyway, we can get rid of this issue by re-implementing our async function as follows:
+
+```javascript
+module.exports = function asyncDivision (dividend, divisor, cb) {
+  // internal implementation, callback based
+  function _asyncDivision (dividend, divisor, cb) {
+    process.nextTick(() => {
+      if (
+        typeof dividend !== 'number' ||
+        typeof divisor !== 'number' ||
+        divisor === 0
+      ){
+        return cb(new Error('Invalid operands'));
+      }
+
+      return cb(null, dividend/divisor);
+    });
+  }
+
+  if (cb) {
+    return _asyncDivision(dividend, divisor, cb);
+  }
+
+  // optional promisification, only if no callback
+  return new Promise((resolve, reject) =>
+    _asyncDivision(dividend, divisor,
+      (err, result) => err ? reject(err) : resolve(result)
+    )
+  );
+}
+```
+
+This code generates a promise only if no callback is used. So if we provide a callback as the last argument, and then we try to use `catch` or `then` on the returning value, we will get an explicit runtime error:
+  
+  - `TypeError: Cannot read property 'then' of undefined` or
+  - `TypeError: Cannot read property 'catch' of undefined`
+
+While this approach is probably more correct, it is also more verbose and, if it becomes a recurrent practice in your development process, you are better off using some promisification library.
+
+
 ## Conclusion
 
 As usual I hope this article has been useful and that it will ignite some interesting conversation.
 
-I think from the tone of the article it's quite clear that I prefer to opt for the "polite" approach, but I am very curious to know what are your opinions about this topic and if you are a "I don't care" or a "whatever" person when you create your asynchronous functions in your modules.
+I think from the tone of the article it's quite clear that I prefer to opt for the "polite" approach, but I am very curious to know what are your opinions about this topic and if you are an "I don't care" or a "whatever" person when you create your asynchronous functions in your modules.
 
 Let me know your thoughts in the comments.
 
