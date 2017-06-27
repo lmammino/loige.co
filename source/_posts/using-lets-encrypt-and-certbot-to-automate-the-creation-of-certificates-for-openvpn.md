@@ -4,7 +4,7 @@ title:            'Using Let’s Encrypt and Certbot to automate the creation of
 slug:             using-lets-encrypt-and-certbot-to-automate-the-creation-of-certificates-for-openvpn
 subtitle:         'This article illustrates you how to use Certbot to automate the creation of SSL certificates for OpenVPN and how to release on AWS using Terraform.'
 date:             '2017-06-19T22:00:20.000Z'
-updated:          '2017-06-22T20:39:48.000Z'
+updated:          '2017-06-27T18:09:34.000Z'
 author:           'Luciano Mammino'
 author_slug:      luciano-mammino
 header_img:       /content/images/2017/06/using-lets-encrypt-and-certbot-to-automate-the-creation-of-certificates-for-openvpn-loige-icover-image.jpg
@@ -112,6 +112,8 @@ After few seconds your OpenVPN website should be up and running, and with a shin
 ## A complete example infrastructure with Terraform
 
 I am happy to share with you a simplified version of my Terraform OpenVPN project, to give you an example of how you can use the aforementioned details in a Terraform context.
+
+All the code available in the following section is also available as a [repository on GitHub](https://github.com/lmammino/terraform-openvpn).
 
 Let's start with a list of the AWS resources we need in order to provision a fully functional OpenVPN:
 
@@ -223,7 +225,7 @@ variable "udp_cidr" {
 resource "aws_security_group" "openvpn" {
   name        = "openvpn_sg"
   description = "Allow traffic needed by openvpn"
-  vpc_id      = "${var.vpc_id}"
+  vpc_id      = "${aws_vpc.main.id}"
 
   // ssh
   ingress {
@@ -338,7 +340,7 @@ resource "aws_instance" "openvpn" {
   ami                         = "${var.ami}"
   instance_type               = "${var.instance_type}"
   key_name                    = "${aws_key_pair.openvpn.key_name}"
-  subnet_id                   = "${var.subnet_id}"
+  subnet_id                   = "${aws_subnet.vpn_subnet.id}"
   vpc_security_group_ids      = ["${aws_security_group.openvpn.id}"]
   associate_public_ip_address = true
 
@@ -394,6 +396,8 @@ Quoting the official documentation:
 Let's jump straight into the code, which I believe will make everything clear:
 
 ```hcl
+variable "certificate_email" {}
+
 resource "null_resource" "provision_openvpn" {
   triggers {
     subdomain_id = "${aws_route53_record.vpn.id}"
@@ -414,9 +418,9 @@ resource "null_resource" "provision_openvpn" {
       "sudo apt-get -y update",
       "sudo apt-get -y install python-certbot certbot",
       "sudo service openvpnas stop",
-      "sudo certbot certonly --standalone --non-interactive --agree-tos --email ${var.certificate_email} --domains ${var.domain} --pre-hook 'service openvpnas stop' --post-hook 'service openvpnas start'",
-      "sudo ln -s -f /etc/letsencrypt/live/${var.domain}/cert.pem /usr/local/openvpn_as/etc/web-ssl/server.crt",
-      "sudo ln -s -f /etc/letsencrypt/live/${var.domain}/privkey.pem /usr/local/openvpn_as/etc/web-ssl/server.key",
+      "sudo certbot certonly --standalone --non-interactive --agree-tos --email ${var.certificate_email} --domains ${var.subdomain_name} --pre-hook 'service openvpnas stop' --post-hook 'service openvpnas start'",
+      "sudo ln -s -f /etc/letsencrypt/live/${var.subdomain_name}/cert.pem /usr/local/openvpn_as/etc/web-ssl/server.crt",
+      "sudo ln -s -f /etc/letsencrypt/live/${var.subdomain_name}/privkey.pem /usr/local/openvpn_as/etc/web-ssl/server.key",
       "sudo service openvpnas start",
     ]
   }
@@ -506,9 +510,45 @@ and everything we just created will be blown away from your AWS account, leaving
 
 Just few extra tips before closing off...
 
- - Let's Encrypt allows you to generate a **limited number of certificates for a given domain on a given timespan** (I believe the throttle limit is 30 certificates per week). So, be careful not to blow your production domain while playing with Terraform (or with certbot in general). It's a good idea to create test domains like *test1.vpn.example.com* until you are happy with the current setup and ready to deploy to production. There are also options to generate *test* or *staging* certificates, although I haven't experimented much with them, so I can only suggest you to have a look at the documentation illustration all the [available command line options](https://certbot.eff.org/docs/using.html#certbot-command-line-options). 
- - Let's Encrypt **certificates expire after 3 months**, so be sure you enable the auto renewal feature. In reality, the feature is enabled by default, so what's left to do is to test the auto renewal process. With certbot you can do that using the following command: `certbot renew --dry-run`.
- - I had some problems during the installation of certbot on the image used here by default. If this is happening to you as well, you should be able to sort them out by running an `apt-get upgrade` before trying to install certbot. Since you want to do that in an automated fashion, you'll probably need a more sophisticated command that takes care of auto-responding to possible prompts: `yes | sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade`.
+### Let's Encrypt throttling
+
+Let's Encrypt allows you to generate a **limited number of certificates for a given domain on a given timespan**.
+
+Quoting directly from [the Let's Encrypt Rate Limit documentation](https://letsencrypt.org/docs/rate-limits/):
+
+> The main limit is **Certificates per Registered Domain (20 per week)**. A registered domain is, generally speaking, the part of the domain you purchased from your domain name registrar. For instance, in the name www.example.com, the registered domain is example.com. In new.blog.example.co.uk, the registered domain is example.co.uk. We use the Public Suffix List to calculate the registered domain.
+>
+> If you have a lot of subdomains, you may want to combine them into a single certificate, up to a limit of 100 Names per Certificate. Combined with the above limit, that means you can issue certificates containing up to **2,000 unique subdomains per week**. A certificate with multiple names is often called a SAN certificate, or sometimes a UCC certificate.
+>
+> We also have a **Duplicate Certificate limit of 5 certificates per week**. A certificate is considered a duplicate of an earlier certificate if they contain the exact same set of hostnames, ignoring capitalization and ordering of hostnames. For instance, if you requested a certificate for the names [www.example.com, example.com], you could request four more certificates for [www.example.com, example.com] during the week. If you changed the set of names by adding [blog.example.com], you would be able to request additional certificates.
+
+So, be careful not to blow your production domain while playing with Terraform (or with certbot in general). 
+
+There are options to generate *test* or *staging* certificates, although I haven't experimented much with them, so I can only suggest you to have a look at the documentation illustration all the [available command line options](https://certbot.eff.org/docs/using.html#certbot-command-line-options).
+
+Huge thanks to [tialaramex](https://www.reddit.com/user/tialaramex) on Reddit for [a fruitful discussion](https://www.reddit.com/r/linuxadmin/comments/6ia1wx/use_certbot_to_automate_the_creation_of_ssl/dj57zlw/) and few pieces of advice about this specific aspect.
+
+### Certificate expiry and renewal
+
+ Let's Encrypt **certificates expire after 3 months**, so be sure you enable the auto renewal feature.
+
+In reality, the feature is enabled by default, so what's left to do is to test the auto renewal process. With certbot you can do that using the following command: 
+
+```bash
+certbot renew --dry-run
+```
+
+There's another important point here to take into account here: everytime the certificate renewal procedure is triggered, your VPN service gets shutdown for few seconds and all the currently connected users are disconnected.
+
+This will happen only once every 2-3 months, but if it's a real struggle for your organisation you might want to explore different setups.
+
+One solution could be to setup a reverse proxy like Nginx and use it for the SSL termination. This way during the renewal you will only shutdown nginx and not the full VPN service.
+
+Thanks again to [tialaramex](https://www.reddit.com/user/tialaramex) on Reddit for raising this discussion and proposing the reverse proxy solution.
+
+### Intermittent failures during the provisioning
+
+I had some problems during the installation of certbot on the image used here by default. If this is happening to you as well, you should be able to sort them out by running an `apt-get upgrade` before trying to install certbot. Since you want to do that in an automated fashion, you'll probably need a more sophisticated command that takes care of auto-responding to possible prompts: `yes | sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade`.
 
 
 ## Wrapping up
