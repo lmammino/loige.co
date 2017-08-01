@@ -1,3 +1,4 @@
+---
 uuid:             7f08c58e-6898-490b-9b6f-a4680ab114a9
 layout:           post
 title:            'Symfony security: authentication made simple (well, maybe!)'

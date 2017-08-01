@@ -1,3 +1,4 @@
+---
 uuid:             225370dd-3f1f-4705-a24b-4931123739ed
 layout:           post
 title:            '8 invitations to try Keybase.io'

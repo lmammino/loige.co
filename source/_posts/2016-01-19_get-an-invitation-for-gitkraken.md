@@ -1,3 +1,4 @@
+---
 uuid:             e389e030-1376-49b4-93eb-9c6ae6d156c5
 layout:           post
 title:            'Get an invitation for GitKraken'

@@ -1,3 +1,4 @@
+---
 uuid:             1e2cce9d-4250-415d-b752-8755ca204bdf
 layout:           post
 title:            'Reset your MySql server password'

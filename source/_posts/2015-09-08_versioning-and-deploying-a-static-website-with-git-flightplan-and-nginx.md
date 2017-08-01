@@ -1,3 +1,4 @@
+---
 uuid:             96e492f6-2f10-4d11-844c-fa2b14e38b16
 layout:           post
 title:            'Versioning and deploying a static website with Git, Flightplan and Nginx'

@@ -1,3 +1,4 @@
+---
 uuid:             bc9ebab5-b899-49e6-9dca-1b9a81e8ea6b
 layout:           post
 title:            'Using Let’s Encrypt and Certbot to automate the creation of certificates for OpenVPN'

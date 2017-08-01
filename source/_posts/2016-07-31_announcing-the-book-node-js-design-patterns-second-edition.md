@@ -1,3 +1,4 @@
+---
 uuid:             8fcb1c0f-a438-4273-89c1-908b7e4fa218
 layout:           post
 title:            'Announcing the book "Node.js design patterns - second edition"'

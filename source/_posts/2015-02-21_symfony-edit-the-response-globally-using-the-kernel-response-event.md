@@ -1,3 +1,4 @@
+---
 uuid:             80c5a713-60e0-4176-a0a0-e7d063bd4f2e
 layout:           post
 title:            'Symfony, edit the Response globally using the Kernel Response event'

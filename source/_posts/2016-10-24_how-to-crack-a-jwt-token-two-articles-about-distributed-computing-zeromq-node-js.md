@@ -1,3 +1,4 @@
+---
 uuid:             0e3ae663-c6fd-4d6e-b5d6-65dc8a25a2ae
 layout:           post
 title:            'How to crack a JWT token: two articles about distributed computing, ZeroMQ & Node.js'

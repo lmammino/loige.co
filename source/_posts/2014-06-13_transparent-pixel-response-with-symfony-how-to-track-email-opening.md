@@ -1,3 +1,4 @@
+---
 uuid:             f35460e0-938b-41cc-be68-3fb5143ee211
 layout:           post
 title:            'Transparent pixel response with Symfony, how to track email opening'

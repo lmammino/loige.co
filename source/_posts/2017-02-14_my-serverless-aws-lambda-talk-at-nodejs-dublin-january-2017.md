@@ -1,3 +1,4 @@
+---
 uuid:             ada9246e-772d-4ffe-ab91-8da8bdb6030d
 layout:           post
 title:            'My Serverless & AWS Lambda talk at Node.Js Dublin January 2017'

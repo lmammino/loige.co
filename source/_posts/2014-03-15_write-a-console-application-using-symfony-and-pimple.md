@@ -1,3 +1,4 @@
+---
 uuid:             c59c1d51-e429-4617-90d0-ff1d3ca71234
 layout:           post
 title:            'Write a console application using Symfony and Pimple'

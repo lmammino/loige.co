@@ -10,7 +10,7 @@
     "test": "npm run test:lint"
   },
   "hexo": {
-    "version": "3.3.7"
+    "version": "3.2.2"
   },
   "dependencies": {
     "hexo": "^3.2.0",

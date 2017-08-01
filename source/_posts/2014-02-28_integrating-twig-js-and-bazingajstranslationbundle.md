@@ -1,3 +1,4 @@
+---
 uuid:             000b9c76-e0e2-4b7b-95c2-29a6a84a65e1
 layout:           post
 title:            'Integrating Twig.js and BazingaJsTranslationBundle'

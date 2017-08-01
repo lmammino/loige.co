@@ -1,3 +1,4 @@
+---
 uuid:             f1da9e6a-ad1d-422f-91a0-25afe4aad30b
 layout:           post
 title:            '3 invitations to try Atom.io'
