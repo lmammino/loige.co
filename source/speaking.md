@@ -28,7 +28,7 @@ Here you can find a list of my future and past involvements.
 ### Upcoming talks / workshops
 
 - ["Universal JS web applications with React"](http://2017.websummercamp.com/JS) (workshop) at Web Summer Camp Rovinj, September 2017
-- ["Getting started with Serverless and AWS Lambda Functions"](http://milan2017.codemotionworld.com/) (workshop) at Codemotion Milan, November 2017
+- ["Getting started with Serverless and AWS Lambda Functions"](http://milan2017.codemotionworld.com/workshop/getting-started-with-serverless-and-lambda-functions/) (workshop) at Codemotion Milan, November 2017
 
 ### Past talks / workshops
 
