@@ -7,7 +7,9 @@
     "build": "hexo generate",
     "deploy": "aws s3 sync public s3://loige.co",
     "test:lint": "remark source/_posts",
-    "test": "npm run test:lint"
+    "test": "npm run test:lint",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "hexo": {
     "version": "3.2.2"
@@ -25,6 +27,8 @@
     "hexo-server": "^0.2.0",
     "remark-cli": "^3.0.1",
     "remark-lint": "^6.0.0",
-    "remark-preset-lint-recommended": "^2.0.0"
-  }
+    "remark-preset-lint-recommended": "^2.0.0",
+    "snyk": "^1.85.0"
+  },
+  "snyk": true
 }
