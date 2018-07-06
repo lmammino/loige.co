@@ -1,0 +1,19 @@
+<div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        {{#foreach navigation}}
+            <li class="nav-{{slug}}{{#if current}} nav-current{{/if}}" role="presentation"><a href="{{url absolute="true"}}">{{label}}</a></li>
+        {{/foreach}}
+    </ul>
+    <div class="nav-social-profiles">
+        <a title="Follow Luciano on Twitter" class="social-profile-icon" href="https://twitter.com/loige" target="_blank" rel="me no-follow"><i class="fa fa-twitter"></i></a>
+        <a title="Follow Luciano on Github" class="social-profile-icon" href="https://github.com/lmammino" target="_blank" rel="me no-follow"><i class="fa fa-github"></i></a>
+        <a title="Follow Luciano on Google+" class="social-profile-icon" href="https://plus.google.com/+LucianoMammino" target="_blank" rel="me no-follow"><i class="fa fa-google-plus-square"></i></a>
+        <a title="Follow Luciano on Linkedin" class="social-profile-icon" href="http://linkedin.com/in/lucianomammino" target="_blank" rel="me no-follow"><i class="fa fa-linkedin"></i></a>
+    </div>
+    <a class="subscribe-button icon-feed" href="{{@blog.url}}/rss/">Subscribe</a>
+</div>
+<span class="nav-cover"></span>

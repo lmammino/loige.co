@@ -1,0 +1,58 @@
+{{!< default}}
+{{! The tag above means - insert everything in this file into the {body} of the default.hbs template }}
+
+{{! The big featured header }}
+
+{{! Everything inside the #author tags pulls data from the author }}
+{{#author}}
+    <header class="main-header author-head {{#if cover}}" style="background-image: url({{cover}}){{else}}no-cover{{/if}}">
+        <nav class="main-nav overlay clearfix">
+            {{#if @blog.logo}}<a class="blog-logo" href="{{@blog.url}}"><img src="{{@blog.logo}}" alt="Blog Logo" /></a>{{/if}}
+            {{#if @blog.navigation}}
+                <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+            {{/if}}
+        </nav>
+    </header>
+
+    <section class="author-profile inner">
+        {{#if image}}
+        <figure class="author-image">
+            <div class="img" style="background-image: url({{image}})"><span class="hidden">{{name}}'s Picture</span></div>
+        </figure>
+        {{/if}}
+        <h1 class="author-title">{{name}}</h1>
+        {{#if bio}}
+            <h2 class="author-bio">{{bio}}</h2>
+            <hr/>
+            <p>
+                I am a <strong>Software Engineer</strong> born in 1987, the same year that the Nintendo released “Super Mario Bros” in Europe, which, by chance is my favourite game!
+            </p>
+
+            <p>
+                My primary passion is code and I am extremely fascinated by the web, smart apps and everything that's creative like music, art and design.
+            </p>
+
+            <p>
+                I started coding at the age of 12 using my father's old <strong>Intel 386</strong> with provided with the DOS operative system and the <strong>qBasic</strong> interpreter. I have a Master Degree in Computer Science and during the years I developed my engineering skills mostly as Web Developer. I consider myself an expert <strong>Php developer</strong> and I commonly adopt <strong>Open Source libraries</strong> and frameworks such as <strong>Symfony2</strong> and <strong>Doctrine</strong>, but I also love <strong>Javascript</strong>, both client side (jQuery/Angular) and server side (NodeJs).
+            </p>
+            
+            <p>
+                In the last 3 years I have been very close to the entrepreneurship world, working with different startups. I ended up being a co-founder of an ambition fashion-tech startup: <a href="https://sbaam.com">Sbaam.com</a>. With Sbaam I had chance to attend several events, competitions and acceleration programs in Italy and in Ireland.
+            </p>
+            <hr/>
+        {{/if}}
+        <div class="author-meta">
+            {{#if location}}<span class="author-location icon-location">{{location}}</span>{{/if}}
+            {{#if website}}<span class="author-link icon-link"><a href="{{website}}">{{website}}</a></span>{{/if}}
+            <span class="author-stats"><i class="icon-stats"></i> {{plural ../pagination.total empty='No posts' singular='% post' plural='% posts'}}</span>
+        </div>
+    </section>
+{{/author}}
+
+{{! The main content area on the homepage }}
+<main class="content" role="main">
+
+    {{! The tag below includes the post loop - partials/loop.hbs }}
+    {{> "loop"}}
+
+</main>

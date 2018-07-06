@@ -1,0 +1,61 @@
+{{!< default}}
+
+{{! The comment above "< default" means - insert everything in this file into
+    the {body} of the default.hbs template, which contains our header/footer. }}
+
+{{! The big featured header on the homepage, with the site logo and description }}
+<header class="site-head" {{#if @blog.cover}}style="background-image: url({{@blog.cover}})"{{/if}}>
+    <div class="vertical">
+        <div class="site-head-content inner">
+            {{#if @blog.logo}}<a class="blog-logo" href="{{@blog.url}}"><img src="{{@blog.logo}}" alt="Blog Logo" /></a>{{/if}}
+            <h1 class="blog-title">{{@blog.title}}</h1>
+            <h2 class="blog-description">{{@blog.description}}</h2>
+            <p class="header-social-profiles">
+	        <a title="Twitter" class="social-profile-icon" href="https://twitter.com/loige" target="_blank" rel="me no-follow"><i class="fa fa-twitter"></i></a> 
+	        <a title="Github" class="social-profile-icon" href="https://github.com/lmammino" target="_blank" rel="me no-follow"><i class="fa fa-github"></i></a> 
+	        <a title="Google+" class="social-profile-icon" href="https://plus.google.com/+LucianoMammino" target="_blank" rel="me no-follow"><i class="fa fa-google-plus-square"></i></a> 
+	        <a title="Linkedin" class="social-profile-icon" href="http://linkedin.com/in/lucianomammino" target="_blank" rel="me no-follow"><i class="fa fa-linkedin"></i></a> 
+            </p>
+        </div>
+    </div>
+</header>
+
+{{! The main content area on the homepage }}
+<main class="content" role="main">
+
+    {{! Each post will be output using this markup }}
+    {{#foreach posts}}
+
+    <article class="{{post_class}}">
+        <header class="post-header">
+            <div class="post-meta">
+		<i title="Published on" class="fa fa-calendar"></i> <time datetime="{{date format="YYYY-MM-DD"}}">{{date format='DD MMM YYYY'}}</time> <i title="Tags" class="fa fa-tags"></i> {{tags prefix=""}}
+                <span class="pull-right"><i class="fa fa-comment"></i> <a href="{{url}}#disqus_thread">Comments</a></span>
+	    </div>
+            <h2 class="post-title"><a href="{{url}}">{{{title}}}</a></h2>
+
+        </header>
+        <section class="post-excerpt">
+            <p>{{excerpt}}&hellip;</p>
+	    <p class="read-post"><a class="pull-right" href="{{url}}">Read post →</a></p>
+        </section>
+    </article>
+
+    {{/foreach}}
+
+    {{!! After all the posts, we have the previous/next pagination links }}
+    {{pagination}}
+
+</main>
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'loige'; // required: replace example with your forum shortname
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function () {
+var s = document.createElement('script'); s.async = true;
+s.type = 'text/javascript';
+s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
