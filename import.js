@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 
-const { readdir, readFile } = require('fs').promises
-const { join, basename } = require('path')
+const { createReadStream, createWriteStream, promises } = require('fs')
+const { readdir, readFile, writeFile } = promises
+const { join, basename, dirname } = require('path')
 const frontmatter = require('front-matter')
+const mkdirp = require('mkdirp-promise')
 
 // get all md files in src
 const getPosts = async (src) => {
@@ -27,41 +29,83 @@ const expandWithContent = async (posts) => {
   return expandedPosts
 }
 
-const processPosts = async (expandedPosts, dest) => {
-  const filesToCopy = {}
-  const posts = {}
-  const findResourcesRegex = /\]\((\/content.+)\)/g
+const processPosts = async (expandedPosts, src, dest) => {
+  const filesToCopy = []
+  const posts = []
+  const findResourcesRegex = /\]\((\/content([^\])]+))/g
 
   expandedPosts.forEach((post) => {
-    const postDestDir = join(dest, post.attributes.slug)
+    const postDestDir = join(dest, `${post.attributes.date.substr(0,10)}_${post.attributes.slug}`)
+
+    post.dest = join(postDestDir, 'index.md')
 
     // mark the header image to be copied
     if (post.attributes.header_img) {
+      const oldHeaderLocation = join(src, post.attributes.header_img.replace(/^\/content\//, ''))
       const newHeaderLocation = join(postDestDir, basename(post.attributes.header_img))
-      filesToCopy[post.attributes.header_img] = newHeaderLocation
+      filesToCopy.push({ src: oldHeaderLocation, dest: newHeaderLocation })
       post.attributes.header_img = newHeaderLocation
     }
 
     // finds and replaces references to other assets in the post body
     post.body = post.body.replace(findResourcesRegex, (...args) => {
-      console.log({ args })
+      const oldImageLocation = join(src, args[2])
+      const newImageLocation = join(postDestDir, basename(args[2]))
+      filesToCopy.push({ src: oldImageLocation, dest: newImageLocation })
+
+      return `](./${basename(args[2])}`
     })
+
+    posts.push(post)
   })
 
   return ({ filesToCopy, posts })
 }
 
+const createDirIfNeeded = async (file) => {
+  const dir = dirname(file)
+  await mkdirp(dir)
+}
 
+const copyFiles = async (files) => {
+  await files.reduce((acc, { src, dest }) => {
+    acc.then(async () => {
+      console.log(`- Copying \n\t${src} -> \n\t${dest}`)
+      await createDirIfNeeded(dest)
+      await new Promise((resolve, reject) => {
+        createReadStream(src)
+          .on('error', reject)
+          .pipe(createWriteStream(dest))
+          .on('error', reject)
+          .on('finish', resolve)
+      })
+    })
+
+    return acc
+  }, Promise.resolve())
+}
+
+const copyPosts = async (posts) => {
+  await posts.reduce((acc, post) => {
+    acc.then(async () => {
+      console.log(`- Writing ${post.dest}`)
+      await createDirIfNeeded(post.dest)
+      const content = `${post.frontmatter}\n\n${post.content}`
+      return writeFile(post.dest, content, 'utf8')
+    })
+
+    return acc
+  }, Promise.resolve())
+}
 
 const main = async () => {
   const [,, src, dest] = process.argv
-  console.log(src, dest)
 
   const posts = await getPosts(src)
   const expanded = await expandWithContent(posts)
-  const processed = processPosts(expanded, dest)
-  // console.log(expanded)
-  // console.log(processed)
+  const { filesToCopy, posts: postsToCopy } = await processPosts(expanded, src, dest)
+  await copyFiles(filesToCopy)
+  await copyPosts(postsToCopy)
 }
 
 
