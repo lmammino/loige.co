@@ -5,6 +5,7 @@ const { readdir, readFile, writeFile } = promises
 const { join, basename, dirname } = require('path')
 const frontmatter = require('front-matter')
 const mkdirp = require('mkdirp-promise')
+const YAML = require('yaml').default
 
 // get all md files in src
 const getPosts = async (src) => {
@@ -39,6 +40,9 @@ const processPosts = async (expandedPosts, src, dest) => {
 
     post.dest = join(postDestDir, 'index.md')
 
+    // remap slug to path
+    post.attributes.path = `/${post.attributes.slug}`
+
     // mark the header image to be copied
     if (post.attributes.header_img) {
       const oldHeaderLocation = join(src, post.attributes.header_img.replace(/^\/content\//, ''))
@@ -55,6 +59,8 @@ const processPosts = async (expandedPosts, src, dest) => {
 
       return `](./${basename(args[2])}`
     })
+
+    post.content = `---\n${YAML.stringify(post.attributes)}---\n${post.body}`
 
     posts.push(post)
   })
@@ -90,8 +96,7 @@ const copyPosts = async (posts) => {
     acc.then(async () => {
       console.log(`- Writing ${post.dest}`)
       await createDirIfNeeded(post.dest)
-      const content = `${post.frontmatter}\n\n${post.content}`
-      return writeFile(post.dest, content, 'utf8')
+      return writeFile(post.dest, post.content, 'utf8')
     })
 
     return acc
