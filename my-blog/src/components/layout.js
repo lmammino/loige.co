@@ -1,7 +1,16 @@
 import React, { Component, Fragment } from 'react'
-import { Link } from 'gatsby'
+import Header from './Header'
 
-import { rhythm, scale } from '../utils/typography'
+import { injectGlobal } from 'emotion'
+
+injectGlobal`
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+`
+
 import headerBg from './header.jpg'
 
 class Template extends Component {
@@ -11,12 +20,7 @@ class Template extends Component {
 
     return (
       <Fragment>
-        <nav>
-          <Link>Logo</Link>
-          <Link>Blog</Link>
-          <Link>Speaking</Link>
-          <Link>About</Link>
-        </nav>
+        <Header/>
         <header
           style={{
             backgroundColor: '#5B697F',
@@ -40,14 +44,7 @@ class Template extends Component {
 
           </div>
         </header>
-        <div
-          style={{
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            maxWidth: rhythm(24),
-            padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
-          }}
-        >
+        <div>
           {children}
         </div>
       </Fragment>

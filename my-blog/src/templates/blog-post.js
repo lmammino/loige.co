@@ -4,9 +4,7 @@ import Helmet from 'react-helmet'
 import { Link } from 'gatsby'
 import get from 'lodash/get'
 
-import Bio from '../components/Bio'
 import Layout from '../components/layout'
-import { rhythm, scale } from '../utils/typography'
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -20,21 +18,15 @@ class BlogPostTemplate extends React.Component {
         <h1>{post.frontmatter.title}</h1>
         <p
           style={{
-            ...scale(-1 / 5),
-            display: 'block',
-            marginBottom: rhythm(1),
-            marginTop: rhythm(-1),
+            display: 'block'
           }}
         >
           {post.frontmatter.date}
         </p>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr
-          style={{
-            marginBottom: rhythm(1),
-          }}
+          style={{}}
         />
-        <Bio />
 
         <ul
           style={{
