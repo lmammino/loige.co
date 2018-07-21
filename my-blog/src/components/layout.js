@@ -1,69 +1,56 @@
-import React from 'react'
+import React, { Component, Fragment } from 'react'
 import { Link } from 'gatsby'
 
 import { rhythm, scale } from '../utils/typography'
+import headerBg from './header.jpg'
 
-class Template extends React.Component {
+class Template extends Component {
   render() {
     const { location, children } = this.props
     const rootPath = `${__PATH_PREFIX__}/`
-    let header
 
-    if (location.pathname === rootPath) {
-      header = (
-        <h1
-          style={{
-            ...scale(1.5),
-            marginBottom: rhythm(1.5),
-            marginTop: 0,
-          }}
-        >
-          <Link
-            style={{
-              boxShadow: 'none',
-              textDecoration: 'none',
-              color: 'inherit',
-            }}
-            to={'/'}
-          >
-            Gatsby Starter Blog
-          </Link>
-        </h1>
-      )
-    } else {
-      header = (
-        <h3
-          style={{
-            fontFamily: 'Montserrat, sans-serif',
-            marginTop: 0,
-            marginBottom: rhythm(-1),
-          }}
-        >
-          <Link
-            style={{
-              boxShadow: 'none',
-              textDecoration: 'none',
-              color: 'inherit',
-            }}
-            to={'/'}
-          >
-            Gatsby Starter Blog
-          </Link>
-        </h3>
-      )
-    }
     return (
-      <div
-        style={{
-          marginLeft: 'auto',
-          marginRight: 'auto',
-          maxWidth: rhythm(24),
-          padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
-        }}
-      >
-        {header}
-        {children}
-      </div>
+      <Fragment>
+        <nav>
+          <Link>Logo</Link>
+          <Link>Blog</Link>
+          <Link>Speaking</Link>
+          <Link>About</Link>
+        </nav>
+        <header
+          style={{
+            backgroundColor: '#5B697F',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'bottom right',
+            backgroundImage: `url(${headerBg})`,
+            backgroundSize: 'cover',
+            minHeight: '300px',
+            height: '80vh',
+            display: 'table',
+            width: '100%'
+          }}>
+          <div
+            style={{
+              display: 'table-cell',
+              verticalAlign: 'middle'
+            }}
+          >
+            <h1>Luciano Mammino</h1>
+            <h2>Web developer, entrepreneur, fighter, butterfly maker!</h2>
+
+          </div>
+        </header>
+        <div
+          style={{
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            maxWidth: rhythm(24),
+            padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
+          }}
+        >
+          {children}
+        </div>
+      </Fragment>
     )
   }
 }
