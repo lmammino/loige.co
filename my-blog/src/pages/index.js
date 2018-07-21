@@ -5,6 +5,7 @@ import get from 'lodash/get'
 import Helmet from 'react-helmet'
 
 import Layout from '../components/layout'
+import Hero from '../components/Hero'
 
 class BlogIndex extends React.Component {
   render() {
@@ -14,6 +15,18 @@ class BlogIndex extends React.Component {
     return (
       <Layout location={this.props.location}>
         <Helmet title={siteTitle} />
+        <Hero>
+          <div
+            style={{
+              display: 'table-cell',
+              verticalAlign: 'middle'
+            }}
+          >
+            <h1>Luciano Mammino</h1>
+            <h2>Web developer, entrepreneur, fighter, butterfly maker!</h2>
+
+          </div>
+        </Hero>
         {posts.map(({ node }) => {
           const title = get(node, 'frontmatter.title') || node.fields.slug
           return (

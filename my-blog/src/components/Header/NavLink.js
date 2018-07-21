@@ -21,9 +21,8 @@ const navLinkStyle = css`
 `
 
 const navLinkActiveStyle = css`
-  color: #FCBA63;
+  color: #46c9e5;
   position: relative;
-  ${'' /* border-bottom: 4px solid #FCBA63; */}
 `
 
 const LinkUnderline = styled('span')`
@@ -33,7 +32,7 @@ const LinkUnderline = styled('span')`
   left: 0px;
   right: 0px;
   z-index: 1;
-  background: #FCBA63;
+  background: #46c9e5;
 `
 
 class NavLink extends Component {
