@@ -18,7 +18,6 @@ meta_description: This article illustrates the result of a small research about 
 tags:
   - serverless
   - aws
-path: /from-bare-metal-to-serverless
 ---
 
 Lately, I tried to understand why modern cloud computing brought us to the idea (and growing adoption) of "Serverless".

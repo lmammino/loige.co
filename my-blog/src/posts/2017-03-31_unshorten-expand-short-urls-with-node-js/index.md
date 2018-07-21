@@ -17,7 +17,6 @@ tags:
   - node-js
   - library
   - javascript
-path: /unshorten-expand-short-urls-with-node-js
 ---
 
 Short URLs have been an invaluable tool for social media marketing for so many years and we are now used to seeing them everywhere. Most of the credit probably goes to *URL shorteners* services like [Bit.ly](https://bitly.com), [Goo.gl](https://goo.gl/), [YOURLS](https://yourls.org/) and [Rebrandly](https://www.rebrandly.com) that popularised the concept and made easy for everyone to start creating short URLs.

@@ -17,7 +17,6 @@ tags:
   - backup
   - dropbox
   - server
-path: /backup-your-server-with-dropbox
 ---
 
 In my early days as *CTO* at [Sbaam](http://sbaam.com) I had to setup a web server from the ground up. As it happens in many startups the work had to be done quickly and with an *almost-0-budget*, so it left no space to sophysticated solutions for recurring tasks such as **backup**. I always have been a web developer and focused on coding so, I admit I had really a poor knowledge about how  to setup a remote unix virtual machine.

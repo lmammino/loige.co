@@ -15,7 +15,6 @@ meta_title: null
 meta_description: null
 tags:
   - life
-path: /2017-a-year-in-review
 ---
 
 2017 is over and it's time to sit down and see what happened during this year. As I already did [last year](https://loige.co/2016-a-year-in-review/), I would love to write a (potentially boring) recap of all the good and bad things (mostly from a career perspective) that happened in my life during this year.

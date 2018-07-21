@@ -1,9 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Starter Blog',
-    author: 'Kyle Mathews',
+    title: 'The blog of Luciano Mammino a.k.a. Loige - Web developer, entrepreneur, fighter, butterfly maker!',
+    author: 'Luciano Mammino',
     description: 'A starter blog demonstrating what Gatsby can do.',
-    siteUrl: 'https://gatsbyjs.github.io/gatsby-starter-blog/',
+    siteUrl: 'https://loige.co/',
   },
   pathPrefix: '/gatsby-starter-blog',
   plugins: [
@@ -48,7 +48,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        //trackingId: `ADD YOUR TRACKING ID HERE`,
+        trackingId: 'UA-47248506-1',
       },
     },
     `gatsby-plugin-feed`,

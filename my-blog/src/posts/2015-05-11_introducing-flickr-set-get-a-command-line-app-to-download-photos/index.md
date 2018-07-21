@@ -19,7 +19,6 @@ tags:
   - node-js
   - api
   - flickr
-path: /introducing-flickr-set-get-a-command-line-app-to-download-photos
 ---
 
 I recently developed a small command line app that allows you to download an entire gallery from Flickr, it's called `flickr-set-get` and you can find it on [NPM](https://www.npmjs.com/package/flickr-set-get) and [GitHub](https://github.com/lmammino/flickr-set-get).

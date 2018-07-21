@@ -18,7 +18,6 @@ tags:
   - php
   - symfony
   - security
-path: /symfony-security-authentication-made-simple
 ---
 
 The [Symfony2 security component](http://symfony.com/doc/current/components/security/introduction.html) has the fame of being one of the most complex in the framework. I tend to believe that's partially true, not because the component is really that complex, but because there are (really) a lot of concepts involved and it may be difficoult to understand them all at once and have a clear vision as a whole.

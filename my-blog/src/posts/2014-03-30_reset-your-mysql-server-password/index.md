@@ -17,7 +17,6 @@ tags:
   - security
   - mysql
   - server
-path: /reset-your-mysql-server-password
 ---
 
 Few days ago I learned an interesting trick that allows you to reset the password on a MySql server. This trick is pretty useful in case you have lost (or you haven't ever had) the password of your MySql root user.

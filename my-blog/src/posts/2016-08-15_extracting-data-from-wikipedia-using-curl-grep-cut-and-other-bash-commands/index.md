@@ -16,7 +16,6 @@ meta_description: null
 tags:
   - bash
   - shell
-path: /extracting-data-from-wikipedia-using-curl-grep-cut-and-other-bash-commands
 ---
 
 In this article I am going to show you how I was able to extract and process some information from Wikipedia only using a combination of common bash utilities like `curl` and `grep`.

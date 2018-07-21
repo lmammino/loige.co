@@ -15,7 +15,6 @@ meta_title: null
 meta_description: null
 tags:
   - atom-io
-path: /3-invitations-to-try-atom-io
 ---
 
 I have finally got my invitation to try the new text editor [Atom.io](https://atom.io). Atom is built with web technologies (node.js in it's core) by the folks at GitHub and it's somewhat very similar to the famous [SublimeText](http://www.sublimetext.com/).

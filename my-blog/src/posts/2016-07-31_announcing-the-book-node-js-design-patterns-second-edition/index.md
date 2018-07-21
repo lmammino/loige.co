@@ -17,7 +17,6 @@ tags:
   - node-js
   - books
   - design-patterns
-path: /announcing-the-book-node-js-design-patterns-second-edition
 ---
 
 In this post I am going to introduce my last side-project: "Node.js design patterns — second edition", a technical book about Node.js and design patterns published by Packt.

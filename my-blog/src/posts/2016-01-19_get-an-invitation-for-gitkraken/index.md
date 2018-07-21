@@ -16,7 +16,6 @@ meta_description: null
 tags:
   - git
   - github
-path: /get-an-invitation-for-gitkraken
 ---
 
 Axosoft is currently working on [GitKraken](http://www.gitkraken.com/) an innovative multi-platform graphical client for [git](/tag/git) which is already available for Windows, Linux and Mac OSX in **private beta** version.

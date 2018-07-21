@@ -19,7 +19,6 @@ tags:
   - react
   - javascript
   - node-js
-path: /my-universal-javascript-web-applications-talk-at-codemotion-rome-2017
 ---
 
 Last month (March 25th) I had the pleasure of delivering again my Universal JavaScript talk in a Codemotion Event, [this time in Rome](http://rome2017.codemotionworld.com/).

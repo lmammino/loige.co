@@ -20,7 +20,6 @@ tags:
   - slides
   - talk
   - performance
-path: /6-tips-to-build-fast-web-applications-php-dublin-march-2016-talk
 ---
 
 Following one of my previous posts about [performance in web applications](http://loige.co/6-rules-of-thumb-to-build-blazing-fast-web-applications/), yesterday night I had the chance to give a related talk at the [Php Dublin user group](https://phpdublin.com/).

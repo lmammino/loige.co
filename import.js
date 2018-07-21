@@ -40,9 +40,6 @@ const processPosts = async (expandedPosts, src, dest) => {
 
     post.dest = join(postDestDir, 'index.md')
 
-    // remap slug to path
-    post.attributes.path = `/${post.attributes.slug}`
-
     // mark the header image to be copied
     if (post.attributes.header_img) {
       const oldHeaderLocation = join(src, post.attributes.header_img.replace(/^\/content\//, ''))

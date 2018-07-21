@@ -17,7 +17,6 @@ tags:
   - node-js
   - slack
   - collaboration
-path: /having-fun-with-nodejs-slack-and-chuck-norris
 ---
 
 I recently wrote a **Slack bot** in **NodeJs** in collaboration with one of my favourite web development websites: the amazing [Scotch.io](https://scotch.io).

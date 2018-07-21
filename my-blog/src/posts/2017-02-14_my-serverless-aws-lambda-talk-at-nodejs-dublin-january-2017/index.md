@@ -20,7 +20,6 @@ tags:
   - javascript
   - aws-lambda
   - serverless
-path: /my-serverless-aws-lambda-talk-at-nodejs-dublin-january-2017
 ---
 
 Last January I had the pleasure to share the stage with the great [Padraig O'Brien](https://twitter.com/Podgeypoos79) to talk about how we use Node.js, AWS Lambda and the Serverless framework at [Planet9 Energy](https://planet9energy.com).

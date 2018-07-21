@@ -21,7 +21,6 @@ tags:
   - git
   - flightplan
   - collaboration
-path: /versioning-and-deploying-a-static-website-with-git-flightplan-and-nginx
 ---
 
 Do you ever wondered how to manage the **versioning** and **deployment** process of a website? It seems to be a very interesting yet complex topic for which there are already thousands of different solutions.

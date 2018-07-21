@@ -15,7 +15,6 @@ meta_title: null
 meta_description: null
 tags:
   - life
-path: /finally-first
 ---
 
 Yep! **Finally** here's the **first** post on the path of this blog. *Finally/first*, indeed a curious binomial with a weird sound, but I think it's a good title to start this adventure.

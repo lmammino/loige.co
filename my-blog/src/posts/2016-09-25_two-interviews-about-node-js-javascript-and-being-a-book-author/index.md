@@ -17,7 +17,6 @@ tags:
   - collaboration
   - node-js
   - javascript
-path: /two-interviews-about-node-js-javascript-and-being-a-book-author
 ---
 
 In the last month I had the pleasure to seeing published two interviews regarding my life as developer with [Node.Js](/tag/node-js) and [JavaScript](/tag/javascript) and about being a book author with [Node.Js design patterns second edition](https://www.nodejsdesignpatterns.com).

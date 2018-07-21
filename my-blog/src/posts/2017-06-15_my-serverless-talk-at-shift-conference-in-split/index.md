@@ -20,7 +20,6 @@ tags:
   - serverless
   - javascript
   - node-js
-path: /my-serverless-talk-at-shift-conference-in-split
 ---
 
 This June, I had an amazing experience talking again about Serverless and how we use it at [Planet 9 Energy](https://planet9energy.com/) at the recent [Shift Conference](http://shift.codeanywhere.com/index2017.html) in Split, Croatia.

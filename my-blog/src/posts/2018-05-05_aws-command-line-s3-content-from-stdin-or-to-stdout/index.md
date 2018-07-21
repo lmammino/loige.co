@@ -18,7 +18,6 @@ tags:
   - aws
   - bash
   - shell
-path: /aws-command-line-s3-content-from-stdin-or-to-stdout
 ---
 
 This article presents a quick tip that will help you deal with the content of files in S3 through the AWS command line in a much faster and simpler way.

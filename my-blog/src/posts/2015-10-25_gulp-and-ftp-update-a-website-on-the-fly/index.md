@@ -19,7 +19,6 @@ tags:
   - javascript
   - ftp
   - server
-path: /gulp-and-ftp-update-a-website-on-the-fly
 ---
 
 In this post I will explain you how to use [Gulp](http://gulpjs.com/) to interact with the files on your server through FTP. You will learn how to watch the files you are editing on your local machine and automatically synchronize them with your server as they change and how to setup a task to launch an FTP deploy on demand.

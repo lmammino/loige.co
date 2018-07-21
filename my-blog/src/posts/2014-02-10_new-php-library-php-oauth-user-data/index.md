@@ -19,7 +19,6 @@ tags:
   - php
   - oauth
   - github
-path: /new-php-library-php-oauth-user-data
 ---
 
 I recently wrote a new [PHP library](https://github.com/Oryzone/PHPoAuthUserData) to simplify the extraction of user data (*name*, *email*, *id*, etc...) from various OAuth providers such as *Facebook*, *Twitter* and *Linkedin*.

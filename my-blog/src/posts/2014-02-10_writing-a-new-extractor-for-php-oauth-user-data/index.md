@@ -19,7 +19,6 @@ tags:
   - oauth
   - instagram
   - github
-path: /writing-a-new-extractor-for-php-oauth-user-data
 ---
 
 In my [previous post](http://loige.com/new-php-library-php-oauth-user-data/) I introduced my latest library [PHPoAuthUserData](https://github.com/Oryzone/PHPoAuthUserData) that allows to abstract the process of

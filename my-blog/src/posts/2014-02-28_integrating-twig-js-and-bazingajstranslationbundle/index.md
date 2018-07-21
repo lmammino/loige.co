@@ -19,7 +19,6 @@ tags:
   - javascript
   - translation
   - twig
-path: /integrating-twig-js-and-bazingajstranslationbundle
 ---
 
 Recently I had the need to run a twig template that uses the `trans` filter on my frontend using [twig.js](http://jmsyst.com/libs/twig.js), a pure JavaScript port of twig written by the good [Johannes Schmitt](http://jmsyst.com/).

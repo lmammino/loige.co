@@ -21,7 +21,6 @@ tags:
   - server
   - go
   - docker
-path: /simple-echo-server-written-in-go-dockerized
 ---
 
 In this post we will see how to write a (very) simple **Go server app** and how to put it into a **Docker container** and run it.

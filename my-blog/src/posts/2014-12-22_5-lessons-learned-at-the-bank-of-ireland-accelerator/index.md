@@ -16,7 +16,6 @@ meta_description: null
 tags:
   - startup
   - entrepreneurship
-path: /5-lessons-learned-at-the-bank-of-ireland-accelerator
 ---
 
 **What a hell of 3 months!** 

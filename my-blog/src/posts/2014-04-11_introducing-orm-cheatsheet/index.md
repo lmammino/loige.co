@@ -17,7 +17,6 @@ tags:
   - php
   - doctrine
   - orm
-path: /introducing-orm-cheatsheet
 ---
 
 This week I received an interesting email from Martin Stradej, the developer of [ORM Designer](http://www.orm-designer.com), a tool to design ORM relationships with a simple but powerful graphic user interface.

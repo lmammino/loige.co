@@ -18,7 +18,6 @@ tags:
   - node-js
   - react
   - collaboration
-path: /react-on-the-server-for-beginners-build-a-universal-react-and-node-app
 ---
 
 I recently wrote a new article in collaboration with one of my favourite web development websites: the amazing [Scotch.io](https://scotch.io/).

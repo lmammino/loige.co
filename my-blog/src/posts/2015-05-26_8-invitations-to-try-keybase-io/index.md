@@ -16,7 +16,6 @@ meta_description: null
 tags:
   - security
   - cryptography
-path: /8-invitations-to-try-keybase-io
 ---
 
 Hello dear developers,

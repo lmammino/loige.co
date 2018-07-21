@@ -15,7 +15,6 @@ meta_title: null
 meta_description: null
 tags:
   - life
-path: /2016-a-year-in-review
 ---
 
 2016 is almost over and I just realised that it has been one of my most productive and exciting years ever. With that in mind I would love to write a recap of all the good and bad things (mostly from a career perspective) that happened in my life  during this year. I want to keep track and benchmark my productivity over the coming years. This might be boring for you to read but I hope it's going to serve myself as a good motivation to keep doing better over the years, both in terms of career and quality of life.

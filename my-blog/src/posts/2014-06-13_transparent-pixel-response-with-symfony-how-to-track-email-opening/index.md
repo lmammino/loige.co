@@ -19,7 +19,6 @@ tags:
   - http
   - tracking
   - email
-path: /transparent-pixel-response-with-symfony-how-to-track-email-opening
 ---
 
 If you have ever heard about "**transparent pixel**", "**1x1 blank pixel**", "**tracking pixel**" or simply "**tracking image**" you probably know what we are going to talk about and can just [skip to the implementation](#symfonyimplementation)!

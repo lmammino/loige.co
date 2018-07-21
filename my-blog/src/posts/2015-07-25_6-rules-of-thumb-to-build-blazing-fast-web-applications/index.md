@@ -21,7 +21,6 @@ tags:
   - laravel
   - performance
   - scalaibility
-path: /6-rules-of-thumb-to-build-blazing-fast-web-applications
 ---
 
 In this post I will try to highlight some of the most common principles that you have to take under consideration when you want to achieve a great level of performance while building a web application (specifically on the backend part). I believe the concepts discussed here can be applied to any language and framework even if, due to my specific experience, I will mention some examples, design patterns, conventions and tools that are mostly used in the PHP world.

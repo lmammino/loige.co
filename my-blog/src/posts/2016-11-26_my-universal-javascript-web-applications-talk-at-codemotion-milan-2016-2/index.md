@@ -19,7 +19,6 @@ tags:
   - node-js
   - javascript
   - react
-path: /my-universal-javascript-web-applications-talk-at-codemotion-milan-2016-2
 ---
 
 Yesterday (25/11/2016) I had the pleasure of delivering a talk about Universal JavaScript at [Codemotion Milan 2016](http://milan2016.codemotionworld.com). It was a great fun and I was very happy to meet such a big pool of technology enthusiasts and professionals all in one places. I'm already looking forward for the next edition!

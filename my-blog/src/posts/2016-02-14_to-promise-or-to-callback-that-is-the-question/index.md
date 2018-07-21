@@ -16,7 +16,6 @@ meta_description: null
 tags:
   - javascript
   - node-js
-path: /to-promise-or-to-callback-that-is-the-question
 ---
 
 You are building the next cool [Javascript](/tag/javascript) or [NodeJs](/tag/node-js) module with a lot of asynchronous functions and you are very happy about it. At some point a terrible doubt assaults you:

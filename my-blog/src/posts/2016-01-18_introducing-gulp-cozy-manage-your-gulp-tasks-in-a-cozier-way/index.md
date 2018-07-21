@@ -18,7 +18,6 @@ tags:
   - javascript
   - node-js
   - library
-path: /introducing-gulp-cozy-manage-your-gulp-tasks-in-a-cozier-way
 ---
 
 [Gulp-cozy](https://www.npmjs.com/package/gulp-cozy) is an experimental NPM package that allows you to organize your Gulp tasks in a more modular way with simplicity and *"cozyness"* in mind.

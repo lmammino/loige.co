@@ -18,7 +18,6 @@ tags:
   - symfony
   - console
   - pimple
-path: /write-a-console-application-using-symfony-and-pimple
 ---
 
 In this article I will show you how to set up a stand alone command line application by using the [Symfony Console component](https://github.com/symfony/console) and [Pimple](http://pimple.sensiolabs.org/).

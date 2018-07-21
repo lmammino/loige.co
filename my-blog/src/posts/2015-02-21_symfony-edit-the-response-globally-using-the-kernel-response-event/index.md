@@ -17,7 +17,6 @@ tags:
   - php
   - symfony
   - http
-path: /symfony-edit-the-response-globally-using-the-kernel-response-event
 ---
 
 One of the things I like most of the Symfony framework is its [Http Kernel component](https://packagist.org/packages/symfony/http-kernel). Not only it does offer a very straightforward abstraction to handle requests and responses in an object-oriented way but it also allows you to interact with the whole response generation process through [events](http://symfony.com/doc/current/components/http_kernel/introduction.html#creating-an-event-listener).

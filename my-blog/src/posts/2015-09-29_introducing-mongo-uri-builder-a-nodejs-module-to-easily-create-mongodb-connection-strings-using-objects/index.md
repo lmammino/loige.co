@@ -19,7 +19,6 @@ tags:
   - library
   - mongodb
   - github
-path: /introducing-mongo-uri-builder-a-nodejs-module-to-easily-create-mongodb-connection-strings-using-objects
 ---
 
 A couple of days ago I had the need to store the MongoDB connection string for a NodeJs application I am currently building.

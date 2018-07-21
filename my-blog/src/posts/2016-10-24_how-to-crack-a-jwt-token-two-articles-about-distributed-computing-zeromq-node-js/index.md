@@ -22,7 +22,6 @@ tags:
   - collaboration
   - jwt
   - javascript
-path: /how-to-crack-a-jwt-token-two-articles-about-distributed-computing-zeromq-node-js
 ---
 
 In the last 2 weeks I add the pleasure to release an article (in two parts) in collaboration with [RisingStack](http://risingstack.com/), one of the most famous companies in the [Node.js](/tag/node-js) ecosystem.

@@ -22,7 +22,6 @@ tags:
   - terraform
   - security
   - aws
-path: /using-lets-encrypt-and-certbot-to-automate-the-creation-of-certificates-for-openvpn
 ---
 
 Recently at [Planet 9 Energy](https://planet9energy.com), I had to setup a VPN access to secure some of our internal services. One of the requirements was to make the provisioning easy to reproduce over multiple environments, so we ended up playing a bit with Terraform, while obviously adopting OpenVPN for the VPN server.
