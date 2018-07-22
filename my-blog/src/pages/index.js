@@ -29,6 +29,43 @@ const HeroContent = styled('div')`
   }
 `
 
+const ContentContainer = styled('div')`
+  min-height: 100vh;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  max-width: 1260px;
+  background: #ccc;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 780px) {
+    width: 90%;
+  }
+`
+
+const Content = styled('section')`
+  flex: 1;
+  background: #999;
+  display: flex;
+  color: #000;
+`
+
+const Columns = styled('div')`
+  display: flex;
+  flex: 1;
+`
+
+const MainColumn = styled('main')`
+  flex: 1;
+  background: #eee;
+`
+
+const Sidebar = styled('aside')`
+  width: 20%;
+  background: #ccc
+`
+
 class BlogIndex extends Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
@@ -43,20 +80,30 @@ class BlogIndex extends Component {
             <h2>Web developer, entrepreneur, fighter, butterfly maker!</h2>
           </HeroContent>
         </Hero>
-        {posts.map(({ node }) => {
-          const title = get(node, 'frontmatter.title') || node.fields.slug
-          return (
-            <div key={node.fields.slug}>
-              <h3>
-                <Link style={{ boxShadow: 'none' }} to={node.fields.slug}>
-                  {title}
-                </Link>
-              </h3>
-              <small>{node.frontmatter.date}</small>
-              <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
-            </div>
-          )
-        })}
+        <ContentContainer>
+          <Content>
+            <Columns>
+              <MainColumn>
+                <h2>Blog</h2>
+                {posts.map(({ node }) => {
+                  const title = get(node, 'frontmatter.title') || node.fields.slug
+                  return (
+                    <div key={node.fields.slug}>
+                      <h3>
+                        <Link style={{ boxShadow: 'none' }} to={node.fields.slug}>
+                          {title}
+                        </Link>
+                      </h3>
+                      <small>{node.frontmatter.date}</small>
+                      <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
+                    </div>
+                  )
+                })}
+              </MainColumn>
+              <Sidebar>Some content here</Sidebar>
+            </Columns>
+          </Content>
+        </ContentContainer>
       </Layout>
     )
   }

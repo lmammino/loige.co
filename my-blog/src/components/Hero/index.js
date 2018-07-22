@@ -10,8 +10,12 @@ const HeroContent = styled('div')`
   background-size: cover;
   width: 100%;
   min-height: 300px;
-  height: 70vh;
+  height: 50vh;
   display: table;
+
+  @media (min-width: 780px) {
+    height: 70vh;
+  }
 `
 
 class Hero extends Component {

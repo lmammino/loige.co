@@ -8,11 +8,26 @@ const FooterContainer = styled('footer')`
   color: #ffffff;
   padding-top: 30px;
   padding-bottom: 50px;
+  position: relative;
+`
+
+const FooterBorder = styled('span')`
+  position: absolute;
+  width: 100%;
+  top: 0;
+  height: 2px;
+  display: block;
+  transform-origin: left center 0px;
+  transform: scaleX(1);
+  z-index: 50;
+  transition: transform 400ms ease 100ms;
+  background: linear-gradient(90deg, #46c9e5, #d26ac2);
 `
 
 const FooterWrapper = styled('div')`
   padding-left: 20px;
   padding-right: 20px;
+  max-width: 1260px;
   margin-left: auto;
   margin-right: auto;
 
@@ -34,13 +49,24 @@ const FooterColumn = styled('div')`
   padding-right: 1em;
 `
 
+const FooterFullColumn = styled('div')`
+  flex: 1 auto;
+  margin-bottom: 1em;
+  padding-right: 1em;
+  width: 100%;
+
+  @media (min-width: 780px) {
+    width: auto;
+  }
+`
+
 const List = styled('div')`
   display: inline-flex;
   flex-direction: column;
 `
 
 const ListTitle = styled('div')`
-  color: #999;
+  color: #d26ac2;
   font-size: 14px;
   font-weight: bold;
   line-height: 3;
@@ -64,12 +90,13 @@ class Footer extends Component {
     const year = (new Date()).getFullYear()
     return (
       <FooterContainer>
+        <FooterBorder/>
         <FooterWrapper>
           <FooterColumns>
-            <FooterColumn>
+            <FooterFullColumn>
               <Logo/>
               <Copyright>Copyright © Luciano Mammino 2014-{year}</Copyright>
-            </FooterColumn>
+            </FooterFullColumn>
             <FooterColumn>
               <List>
                 <ListTitle>Explore</ListTitle>
@@ -77,6 +104,15 @@ class Footer extends Component {
                 <ListLink href="/speaking">Speaking</ListLink>
                 <ListLink href="/about">About</ListLink>
                 <ListLink href="/comment-policy">Comment Policy</ListLink>
+              </List>
+            </FooterColumn>
+            <FooterColumn>
+              <List>
+                <ListTitle>Side Projects</ListTitle>
+                <ListLink href="https://www.nodejsdesignpatterns.com">Node.js Design Patterns</ListLink>
+                <ListLink href="https://serverlesslab.com">ServerlessLab</ListLink>
+                <ListLink href="https://fullstackbulletin.com">FullStack Bulletin</ListLink>
+                <ListLink href="https://middy.js.org">Middy</ListLink>
               </List>
             </FooterColumn>
             <FooterColumn>
