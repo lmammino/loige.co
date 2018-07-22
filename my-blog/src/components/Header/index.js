@@ -23,10 +23,7 @@ const HeaderCenterContainer = styled('div')`
   padding-right: 20px;
   margin-left: auto;
   margin-right: auto;
-
-  @media (min-width: 1340px) {
-    max-width: 1260px;
-  }
+  max-width: 1260px;
 
   @media (min-width: 780px) {
     width: 90%;
@@ -54,7 +51,11 @@ const Nav = styled('nav')`
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
   height: 100%;
-  width: 60%;
+  width: 70%;
+
+  @media (min-width: 1180px) {
+    width: 60%;
+  }
 `
 
 const SocialLinksContainer = styled('div')`
@@ -68,8 +69,8 @@ const SocialLinksContainer = styled('div')`
   height: 100%;
   width: 30%;
 
-  @media (min-width: 780px) {
-    width: 30%;
+  @media (min-width: 1180px) { {
+    width: 40%;
   }
 `
 

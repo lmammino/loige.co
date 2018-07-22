@@ -13,7 +13,6 @@ const HeroContent = styled('div')`
   vertical-align: middle;
   text-align: center;
   font-weight: 700;
-  ${'' /* text-shadow: 0 1px 3px #000; */}
   color: #FFF;
   padding: 0 2em;
 
