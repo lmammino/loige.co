@@ -3,6 +3,10 @@ import styled, { css } from 'react-emotion'
 import NavLink from './NavLink'
 import Logo from '../Logo'
 
+import githubIcon from './github.svg'
+import twitterIcon from './twitter.svg'
+import linkedinIcon from './linkedin.svg'
+
 const HeaderComponent = styled('header')`
   background-color: rgba(32, 35, 42, .95);
   color: #ffffff;
@@ -34,6 +38,14 @@ const HeaderFlexContainer = styled('div')`
   height: 60px;
 `
 
+const LogoStyle = css`
+  display: none;
+
+  @media (min-width: 540px) {
+    display: flex;
+  }
+`
+
 const Nav = styled('nav')`
   display: flex;
   flex-direction: row;
@@ -54,21 +66,45 @@ const SocialLinksContainer = styled('div')`
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
   height: 100%;
-  width: 60%;
+  width: 30%;
+
+  @media (min-width: 780px) {
+    width: 30%;
+  }
 `
 
 const socialLinkStyle = css`
   color: #FFF;
   text-decoration: none;
-  padding: 5px 10px;
+  padding: 5px 4px;
   white-space: nowrap;
-  font-size: 14px;
+  font-size: 12px;
   display: flex;
   flex-direction: row;
   align-items: center;
 
   &:hover {
     text-decoration: underline;
+  }
+
+  span {
+    display: none
+  }
+
+  @media (min-width: 780px) {
+    padding: 5px 10px;
+  }
+
+  @media (min-width: 1180px) {
+    width: 60%;
+
+    span {
+      display: inline-block;
+    }
+
+    img {
+      margin-right: 1em;
+    }
   }
 `
 
@@ -88,16 +124,25 @@ class Header extends Component {
       <HeaderComponent>
         <HeaderCenterContainer>
           <HeaderFlexContainer>
-            <Logo/>
+            <Logo className={LogoStyle}/>
             <Nav>
               <NavLink active to="/">Blog</NavLink>
               <NavLink to="/speaking">Speaking</NavLink>
               <NavLink to="/about">About</NavLink>
             </Nav>
             <SocialLinksContainer>
-              <a className={socialLinkStyle} href="https://github.com/lmammino">GitHub</a>
-              <a className={socialLinkStyle} href="https://twitter.com/loige">Twitter</a>
-              <a className={socialLinkStyle} href="https://www.linkedin.com/in/lucianomammino/">LinkedIn</a>
+              <a className={socialLinkStyle} href="https://github.com/lmammino">
+                <img width="24" src={githubIcon} alt="Luciano's GitHub profile"/>
+                <span>GitHub</span>
+              </a>
+              <a className={socialLinkStyle} href="https://twitter.com/loige">
+                <img width="24" src={twitterIcon} alt="Luciano's Twitter profile"/>
+                <span>Twitter</span>
+              </a>
+              <a className={socialLinkStyle} href="https://www.linkedin.com/in/lucianomammino/">
+                <img width="24" src={linkedinIcon} alt="Luciano's LinkedIn profile"/>
+                <span>LinkedIn</span>
+              </a>
             </SocialLinksContainer>
           </HeaderFlexContainer>
         </HeaderCenterContainer>
