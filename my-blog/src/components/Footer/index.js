@@ -42,7 +42,7 @@ const List = styled('div')`
 const ListTitle = styled('div')`
   color: #999;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: bold;
   line-height: 3;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -72,16 +72,16 @@ class Footer extends Component {
             </FooterColumn>
             <FooterColumn>
               <List>
-                <ListTitle>Sections</ListTitle>
+                <ListTitle>Explore</ListTitle>
                 <ListLink href="/">Blog</ListLink>
-                <ListLink href="/">Speaking</ListLink>
-                <ListLink href="/">About</ListLink>
-                <ListLink href="/">Comments Policy</ListLink>
+                <ListLink href="/speaking">Speaking</ListLink>
+                <ListLink href="/about">About</ListLink>
+                <ListLink href="/comment-policy">Comment Policy</ListLink>
               </List>
             </FooterColumn>
             <FooterColumn>
               <List>
-                <ListTitle>Social</ListTitle>
+                <ListTitle>Follow me</ListTitle>
                 <ListLink href="https://twitter.com/loige">Twitter</ListLink>
                 <ListLink href="https://github.com/lmammino">GitHub</ListLink>
                 <ListLink href="https://www.linkedin.com/in/lucianomammino">Linkedin</ListLink>

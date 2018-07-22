@@ -25,7 +25,7 @@ const logoImageStyle = css`
 
 const logoTextStyle = css`
   margin-left: 10px;
-  font-weight: 700;
+  font-weight: bold;
   font-size: 20px;
   line-height: 20px;
 `
