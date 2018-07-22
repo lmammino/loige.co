@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import styled, { css } from 'react-emotion'
 import { graphql } from 'gatsby'
-import { Link } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
 
 import Layout from '../components/layout'
 import Hero from '../components/Hero'
+import PostsList from '../components/PostsList'
 
 const HeroContent = styled('div')`
   display: table-cell;
@@ -35,7 +35,6 @@ const ContentContainer = styled('div')`
   padding-left: 20px;
   padding-right: 20px;
   max-width: 1260px;
-  background: #ccc;
   display: flex;
   flex-direction: column;
 
@@ -46,7 +45,6 @@ const ContentContainer = styled('div')`
 
 const Content = styled('section')`
   flex: 1;
-  background: #999;
   display: flex;
   color: #000;
 `
@@ -58,7 +56,6 @@ const Columns = styled('div')`
 
 const MainColumn = styled('main')`
   flex: 1;
-  background: #eee;
 `
 
 const Sidebar = styled('aside')`
@@ -84,21 +81,7 @@ class BlogIndex extends Component {
           <Content>
             <Columns>
               <MainColumn>
-                <h2>Blog</h2>
-                {posts.map(({ node }) => {
-                  const title = get(node, 'frontmatter.title') || node.fields.slug
-                  return (
-                    <div key={node.fields.slug}>
-                      <h3>
-                        <Link style={{ boxShadow: 'none' }} to={node.fields.slug}>
-                          {title}
-                        </Link>
-                      </h3>
-                      <small>{node.frontmatter.date}</small>
-                      <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
-                    </div>
-                  )
-                })}
+                <PostsList posts={posts}/>
               </MainColumn>
               <Sidebar>Some content here</Sidebar>
             </Columns>
@@ -121,13 +104,14 @@ export const pageQuery = graphql`
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {
-          excerpt
+          excerpt(pruneLength: 512)
           fields {
             slug
           }
           frontmatter {
             date(formatString: "DD MMMM, YYYY")
             title
+            tags
           }
         }
       }

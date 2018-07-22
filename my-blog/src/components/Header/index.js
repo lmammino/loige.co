@@ -3,9 +3,9 @@ import styled, { css } from 'react-emotion'
 import NavLink from './NavLink'
 import Logo from '../Logo'
 
-import githubIcon from './github.svg'
-import twitterIcon from './twitter.svg'
-import linkedinIcon from './linkedin.svg'
+import GithubIcon from '../icons/github'
+import TwitterIcon from '../icons/twitter'
+import LinkedinIcon from '../icons/linkedin'
 
 const HeaderComponent = styled('header')`
   background-color: rgba(32, 35, 42, .95);
@@ -74,6 +74,14 @@ const SocialLinksContainer = styled('div')`
   }
 `
 
+const socialIconStyle = css`
+  width: 24px;
+  height: 24px;
+  color: #fff;
+  fill: currentColor;
+  margin: 0 .5em 0 0;
+`
+
 const socialLinkStyle = css`
   color: #FFF;
   text-decoration: none;
@@ -133,15 +141,15 @@ class Header extends Component {
             </Nav>
             <SocialLinksContainer>
               <a className={socialLinkStyle} href="https://github.com/lmammino">
-                <img width="24" src={githubIcon} alt="Luciano's GitHub profile"/>
+                <GithubIcon className={socialIconStyle} alt={`Luciano's GitHub profile`}/>
                 <span>GitHub</span>
               </a>
               <a className={socialLinkStyle} href="https://twitter.com/loige">
-                <img width="24" src={twitterIcon} alt="Luciano's Twitter profile"/>
+                <TwitterIcon className={socialIconStyle} alt={`Luciano's Twitter profile`}/>
                 <span>Twitter</span>
               </a>
               <a className={socialLinkStyle} href="https://www.linkedin.com/in/lucianomammino/">
-                <img width="24" src={linkedinIcon} alt="Luciano's LinkedIn profile"/>
+                <LinkedinIcon className={socialIconStyle} alt={`Luciano's LinkedIn profile`}/>
                 <span>LinkedIn</span>
               </a>
             </SocialLinksContainer>

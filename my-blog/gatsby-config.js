@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: 'Luciano Mammino a.k.a. Loige - Web developer, entrepreneur, fighter, butterfly maker!',
+    title: 'Luciano Mammino "Loige" - Web developer, entrepreneur, fighter, butterfly maker!',
     author: 'Luciano Mammino',
     description: 'A starter blog demonstrating what Gatsby can do.',
     siteUrl: 'https://loige.co/',

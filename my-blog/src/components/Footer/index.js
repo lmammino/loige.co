@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import styled, { css } from 'react-emotion'
 
 import Logo from '../Logo'
+import GithubIcon from '../icons/github'
+import TwitterIcon from '../icons/twitter'
+import LinkedinIcon from '../icons/linkedin'
 
 const FooterContainer = styled('footer')`
   background-color: #20232a;
@@ -78,11 +81,34 @@ const ListLink = styled('a')`
   color: inherit;
   line-height: 2;
   text-decoration: none;
+
+  &:hover {
+    color: #46c9e5;
+  }
 `
 
 const Copyright = styled('p')`
   font-size: .8em;
   padding: 4px 0 0 40px;
+
+  a {
+    color: inherit;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #46c9e5;
+    text-decoration: underline;
+  }
+`
+
+const Heart = styled('span')`
+  color: #d26ac2;
+
+  &:hover {
+    color: red;
+  }
 `
 
 class Footer extends Component {
@@ -95,7 +121,9 @@ class Footer extends Component {
           <FooterColumns>
             <FooterFullColumn>
               <Logo/>
-              <Copyright>Copyright © Luciano Mammino 2014-{year}</Copyright>
+              <Copyright>Copyright © Luciano Mammino 2014-{year}.</Copyright>
+              <Copyright>Built with <a target="_blank" href="https://www.gatsbyjs.org">Gatsby</a>, Coffee and a lot of <Heart>❤︎</Heart>.</Copyright>
+              <Copyright>Hosted on <a target="_blank" href="https://github.com/lmammino/loige.co">GitHub</a>.</Copyright>
             </FooterFullColumn>
             <FooterColumn>
               <List>
@@ -108,19 +136,19 @@ class Footer extends Component {
             </FooterColumn>
             <FooterColumn>
               <List>
-                <ListTitle>Side Projects</ListTitle>
-                <ListLink href="https://www.nodejsdesignpatterns.com">Node.js Design Patterns</ListLink>
-                <ListLink href="https://serverlesslab.com">ServerlessLab</ListLink>
-                <ListLink href="https://fullstackbulletin.com">FullStack Bulletin</ListLink>
-                <ListLink href="https://middy.js.org">Middy</ListLink>
+                <ListTitle>My Projects</ListTitle>
+                <ListLink target="_blank" href="https://www.nodejsdesignpatterns.com">Node.js Design Patterns</ListLink>
+                <ListLink target="_blank" href="https://serverlesslab.com">ServerlessLab</ListLink>
+                <ListLink target="_blank" href="https://fullstackbulletin.com">FullStack Bulletin</ListLink>
+                <ListLink target="_blank" href="https://middy.js.org">Middy</ListLink>
               </List>
             </FooterColumn>
             <FooterColumn>
               <List>
                 <ListTitle>Follow me</ListTitle>
-                <ListLink href="https://twitter.com/loige">Twitter</ListLink>
-                <ListLink href="https://github.com/lmammino">GitHub</ListLink>
-                <ListLink href="https://www.linkedin.com/in/lucianomammino">Linkedin</ListLink>
+                <ListLink href="https://twitter.com/loige"><TwitterIcon/> Twitter</ListLink>
+                <ListLink href="https://github.com/lmammino"><GithubIcon/> GitHub</ListLink>
+                <ListLink href="https://www.linkedin.com/in/lucianomammino"><LinkedinIcon/> Linkedin</ListLink>
               </List>
             </FooterColumn>
           </FooterColumns>
