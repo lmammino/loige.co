@@ -66,7 +66,7 @@ const Sidebar = styled('aside')`
 class BlogIndex extends Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
-    const posts = get(this, 'props.data.allMarkdownRemark.edges')
+    const { previous, next, posts } = this.props.pageContext
 
     return (
       <Layout location={this.props.location} section={this.props.section}>
@@ -99,21 +99,6 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
-      }
-    }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-      edges {
-        node {
-          excerpt(pruneLength: 512)
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "DD MMMM, YYYY")
-            title
-            tags
-          }
-        }
       }
     }
   }

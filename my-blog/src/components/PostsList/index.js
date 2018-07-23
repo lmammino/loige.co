@@ -15,13 +15,13 @@ class PostsList extends Component {
 
     return (
       <Fragment>
-        {posts.map(({ node }) => {
+        {posts.map((post) => {
           const props = {
-            slug : node.fields.slug,
-            title : get(node, 'frontmatter.title', node.fields.slug),
-            date : node.frontmatter.date,
-            tags : node.frontmatter.tags,
-            excerpt : node.excerpt,
+            slug : post.fields.slug,
+            title : get(post, 'frontmatter.title', post.fields.slug),
+            date : post.frontmatter.date,
+            tags : post.frontmatter.tags,
+            excerpt : post.excerpt,
           }
 
           return (
