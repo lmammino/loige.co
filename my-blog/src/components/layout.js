@@ -22,6 +22,29 @@ injectGlobal`
     font-family: "system";
     fill: currentColor;
   }
+
+  .content a {
+    position: relative;
+  }
+
+  .content a:after {
+    content: " ";
+    display: inline-block;
+    width: 0px;
+    height: 2px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: #2AFEF1;
+    -webkit-transition: all .2s ease-out;
+    transition: all .2s ease-out;
+  }
+
+  .content a:hover:after {
+    width: 100%;
+    -webkit-transition: all .2s ease-out;
+    transition: all .2s ease-out;
+  }
 `
 
 class Template extends Component {

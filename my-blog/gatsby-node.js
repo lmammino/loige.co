@@ -78,8 +78,8 @@ exports.createPages = ({ graphql, actions }) => {
         // Create paginated blog indexes
         const pagePaths = Object.keys(postsByPage)
         _.each(pagePaths, (path, index) => {
-          const previous = index === 0 ? null : postsByPage[pagePaths[index - 1]].node
-          const next = index === pagePaths.length - 1 ? null : postsByPage[pagePaths[index + 1]].node
+          const previous = index === 0 ? null : { page: index, href: pagePaths[index - 1] }
+          const next = index === pagePaths.length - 1 ? null : { page: index + 2, href: pagePaths[index + 1] }
 
           createPage({
             path,

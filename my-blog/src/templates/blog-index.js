@@ -7,6 +7,7 @@ import Helmet from 'react-helmet'
 import Layout from '../components/layout'
 import Hero from '../components/Hero'
 import PostsList from '../components/PostsList'
+import Pagination from '../components/Pagination'
 
 const HeroContent = styled('div')`
   display: table-cell;
@@ -66,7 +67,10 @@ const Sidebar = styled('aside')`
 class BlogIndex extends Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
-    const { previous, next, posts } = this.props.pageContext
+    const { previous, next, currentPage, totalPages, posts } = this.props.pageContext
+
+    const pagination = { previous, next, currentPage, totalPages }
+    console.log({ pagination })
 
     return (
       <Layout location={this.props.location} section={this.props.section}>
@@ -82,6 +86,7 @@ class BlogIndex extends Component {
             <Columns>
               <MainColumn>
                 <PostsList posts={posts}/>
+                <Pagination {...pagination} />
               </MainColumn>
               <Sidebar>Some content here</Sidebar>
             </Columns>
