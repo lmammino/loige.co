@@ -121,7 +121,7 @@ class PostPreview extends Component {
           <TagsList className={tagsListStyle} tags={tags}/>
           <DateViewer date={date}/>
           <ReadThePost>
-            <Link to={slug}>Read the post →</Link>
+            <Link to={`/${slug}`}>Read the post →</Link>
           </ReadThePost>
         </Footer>
       </Post>

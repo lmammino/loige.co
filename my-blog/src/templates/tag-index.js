@@ -6,6 +6,7 @@ import Helmet from 'react-helmet'
 
 import Layout from '../components/layout'
 import Hero from '../components/Hero'
+import PostsList from '../components/PostsList'
 
 const HeroContent = styled('div')`
   display: table-cell;
@@ -28,6 +29,19 @@ const HeroContent = styled('div')`
   }
 `
 
+const Content = styled('div')`
+  min-height: 100vh;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  max-width: 820px;
+  flex-direction: column;
+
+  @media (min-width: 780px) {
+    width: 90%;
+  }
+`
+
 class TagIndex extends Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
@@ -42,27 +56,10 @@ class TagIndex extends Component {
             <h2>{posts.length} post{posts.length > 1 ? 's' : ''} in this collection</h2>
           </HeroContent>
         </Hero>
+        <Content>
+          <PostsList posts={posts}/>
+        </Content>
       </Layout>
-      // <Layout location={this.props.location} section={this.props.section}>
-      //   <Helmet title={siteTitle} />
-      //   <Hero>
-      //     <HeroContent>
-      //       <h1>Luciano Mammino</h1>
-      //       <h2>Web developer, entrepreneur, fighter, butterfly maker!</h2>
-      //     </HeroContent>
-      //   </Hero>
-      //   <ContentContainer>
-      //     <Content>
-      //       <Columns>
-      //         <MainColumn>
-      //           <PostsList posts={posts}/>
-      //           <Pagination {...pagination} />
-      //         </MainColumn>
-      //         <Sidebar>Some content here</Sidebar>
-      //       </Columns>
-      //     </Content>
-      //   </ContentContainer>
-      // </Layout>
     )
   }
 }
