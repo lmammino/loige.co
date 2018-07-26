@@ -9,6 +9,7 @@ exports.createPages = ({ graphql, actions }) => {
   return new Promise((resolve, reject) => {
     const blogPost = path.resolve('./src/templates/blog-post.js')
     const blogIndex = path.resolve('./src/templates/blog-index.js')
+    const tagIndex = path.resolve('./src/templates/tag-index.js')
     resolve(
       graphql(
         `
@@ -95,7 +96,17 @@ exports.createPages = ({ graphql, actions }) => {
         })
 
         // Create blog indexes by tags
-        // TODO
+        const tags = Object.keys(postsByTag)
+        _.each(tags, (tag, index) => {
+          createPage({
+            path: `/tag/${tag}`,
+            component: tagIndex,
+            context: {
+              posts: postsByTag[tag].map((p) => p.node),
+              tag
+            },
+          })
+        })
       })
     )
   })

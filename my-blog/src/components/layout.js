@@ -35,7 +35,7 @@ injectGlobal`
     position: absolute;
     bottom: 0;
     left: 0;
-    background: #2AFEF1;
+    background: #d26ac2;
     -webkit-transition: all .2s ease-out;
     transition: all .2s ease-out;
   }
@@ -55,7 +55,7 @@ class Template extends Component {
     return (
       <Fragment>
         <Header/>
-        {children}
+          {children}
         <Footer/>
       </Fragment>
     )

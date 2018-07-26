@@ -104,7 +104,7 @@ class PostPreview extends Component {
   render () {
     const { title, slug, excerpt, date, tags } = this.props
     return (
-      <Post>
+      <Post className="content">
         <header>
           <Title>
             <Link style={{ boxShadow: 'none' }} to={slug}>

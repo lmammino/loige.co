@@ -70,7 +70,6 @@ class BlogIndex extends Component {
     const { previous, next, currentPage, totalPages, posts } = this.props.pageContext
 
     const pagination = { previous, next, currentPage, totalPages }
-    console.log({ pagination })
 
     return (
       <Layout location={this.props.location} section={this.props.section}>
