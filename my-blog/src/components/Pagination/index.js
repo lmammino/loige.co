@@ -32,10 +32,37 @@ const pageLink = css`
   text-decoration: none;
   border-radius: 4px;
   transition: border 0.3s ease;
+  min-width: 200px;
+  width: 100%;
 
   &:hover {
     color: rgb(136, 144, 147);
     border-color: rgb(152, 160, 164);
+  }
+
+  @media (min-width: 780px) {
+    width: auto;
+  }
+`
+
+const Spacer = styled('div')`
+  display: none;
+
+  &.previous {
+    order: 2;
+  }
+
+  &.next {
+    order: 3;
+  }
+
+  @media (min-width: 780px) {
+    min-width: 200px;
+    display: block;
+
+    &.previous {
+      order: 1;
+    }
   }
 `
 
@@ -54,11 +81,19 @@ const pageLinkNext = css`
 class Pagination extends Component {
   render () {
     const { previous, next, currentPage, totalPages } = this.props
+    const previousLabel = this.props.previousLabel || '← Newer Posts'
+    const nextLabel = this.props.nextLabel || 'Older Posts →'
     return (
       <PaginationContainer>
-        {previous && <Link className={`${pageLink} ${pageLinkPrev}`} to={previous.href}>← Newer Posts</Link>}
+        {previous ?
+          <Link className={`${pageLink} ${pageLinkPrev}`} to={previous.href}>{previousLabel}</Link> :
+          <Spacer className="previous"/>
+        }
         <PageLabel>Page {currentPage} of {totalPages}</PageLabel>
-        {next && <Link className={`${pageLink} ${pageLinkNext}`} to={next.href}>Older Posts →</Link>}
+        {next ?
+          <Link className={`${pageLink} ${pageLinkNext}`} to={next.href}>{nextLabel}</Link> :
+          <Spacer className="next"/>
+        }
       </PaginationContainer>
     )
   }
