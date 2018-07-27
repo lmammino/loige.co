@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled, { css } from 'react-emotion'
 
-import defaultBg from './defaultBg.jpg'
+import defaultBg from '../images/default-bg.jpg'
 
 const HeroContent = styled('div')`
   background-color: #5B697F;
@@ -20,13 +20,15 @@ const HeroContent = styled('div')`
 
 class Hero extends Component {
   render () {
-    const { isSmall, children } = this.props
+    const { isSmall, children, className } = this.props
     const backgroundImage = this.props.backgroundImage || defaultBg
 
     return (
-      <HeroContent style={{
-        backgroundImage: `url(${backgroundImage})`
-      }}>
+      <HeroContent
+        className={className}
+        style={{
+          backgroundImage: `url(${backgroundImage})`
+        }}>
         {children}
       </HeroContent>
     )

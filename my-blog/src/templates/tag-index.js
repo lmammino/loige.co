@@ -7,6 +7,7 @@ import Helmet from 'react-helmet'
 import Layout from '../components/layout'
 import Hero from '../components/Hero'
 import PostsList from '../components/PostsList'
+import tagsBg from '../components/images/tags-bg.png'
 
 const HeroContent = styled('div')`
   display: table-cell;
@@ -42,6 +43,12 @@ const Content = styled('div')`
   }
 `
 
+const heroStyle = css`
+  background-size: auto;
+  background-repeat: repeat;
+  max-height: 400px;
+`
+
 class TagIndex extends Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
@@ -50,7 +57,7 @@ class TagIndex extends Component {
     return (
       <Layout location={this.props.location} section="blog">
         <Helmet title={siteTitle} />
-        <Hero>
+        <Hero className={heroStyle} backgroundImage={tagsBg}>
           <HeroContent>
             <h1>#{tag}</h1>
             <h2>{posts.length} post{posts.length > 1 ? 's' : ''} in this collection</h2>
