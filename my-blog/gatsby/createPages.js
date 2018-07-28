@@ -16,6 +16,7 @@ module.exports = ({ graphql, actions }) => {
             allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
               edges {
                 node {
+                  timeToRead
                   excerpt(pruneLength: 512)
                   fields {
                     slug
@@ -44,6 +45,7 @@ module.exports = ({ graphql, actions }) => {
 
         // Create blog posts pages.
         _.each(posts, (post, index) => {
+          console.log(post)
           const previous = index === posts.length - 1 ? null : posts[index + 1].node;
           const next = index === 0 ? null : posts[index - 1].node;
 

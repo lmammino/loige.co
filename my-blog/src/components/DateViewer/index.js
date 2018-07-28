@@ -10,6 +10,8 @@ const calendarAltRegularStyle = css`
 const CalendarViewContainer = styled('span')`
   vertical-align: middle;
   font-size: inherit;
+  margin: 0 .5em;
+  display: inline-block;
 
   span {
     vertical-align: text-bottom;

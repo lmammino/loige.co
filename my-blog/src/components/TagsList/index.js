@@ -15,6 +15,8 @@ const slugify = (text) => text
 
 const TagsContainer = styled('span')`
   vertical-align: middle;
+  margin: 0 0.5em 0 1em;
+  display: inline-block;
 
   a {
     color: inherit;

@@ -21,7 +21,7 @@ class BlogPostTemplate extends React.Component {
           <h1>{post.frontmatter.title}</h1>
         </Hero>
         <pre>
-          {JSON.stringify(post.frontmatter, null, 2)}
+          {JSON.stringify(post, null, 2)}
         </pre>
         <p
           style={{
@@ -30,7 +30,7 @@ class BlogPostTemplate extends React.Component {
         >
           {post.frontmatter.date}
         </p>
-        <div dangerouslySetInnerHTML={{ __html: post.html }} />
+        <article dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr
           style={{}}
         />
@@ -77,6 +77,11 @@ export const pageQuery = graphql`
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
       id
+      timeToRead
+      headings {
+        value
+        depth
+      }
       html
       frontmatter {
         title

@@ -4,6 +4,7 @@ import { Link } from 'gatsby'
 
 import TagsList from '../TagsList'
 import DateViewer from '../DateViewer'
+import ReadingTime from '../ReadingTime'
 import profilePic from '../images/profile-pic.jpg'
 
 const Post = styled('article')`
@@ -81,10 +82,6 @@ const ProfilePic = styled('img')`
   border-radius: 100%;
 `
 
-const tagsListStyle = css`
-  margin: 0 1em;
-`
-
 const ReadThePost = styled('p')`
   text-align: right;
   max-width: 820px;
@@ -102,7 +99,7 @@ const ReadThePost = styled('p')`
 
 class PostPreview extends Component {
   render () {
-    const { title, slug, excerpt, date, tags } = this.props
+    const { title, slug, excerpt, date, timeToRead, tags } = this.props
     return (
       <Post className="content">
         <header>
@@ -118,8 +115,9 @@ class PostPreview extends Component {
         <Footer>
           <ProfilePic src={profilePic}/>
           Luciano Mammino
-          <TagsList className={tagsListStyle} tags={tags}/>
+          <TagsList tags={tags}/>
           <DateViewer date={date}/>
+          <ReadingTime time={timeToRead}/>
           <ReadThePost>
             <Link to={`/${slug}`}>Read the post →</Link>
           </ReadThePost>

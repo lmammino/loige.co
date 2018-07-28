@@ -21,6 +21,7 @@ class PostsList extends Component {
             title : get(post, 'frontmatter.title', post.fields.slug),
             date : post.frontmatter.date,
             tags : post.frontmatter.tags,
+            timeToRead: post.timeToRead,
             excerpt : post.excerpt,
           }
 
