@@ -8,7 +8,7 @@ date: 2016-01-18T23:27:40.000Z
 updated: 2016-01-18T23:27:40.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
-header_img: my-blog/src/posts/2016-01-18_introducing-gulp-cozy-manage-your-gulp-tasks-in-a-cozier-way/meerkat-459171_1920.jpg
+header_img: ./meerkat-459171_1920.jpg
 status: published
 language: en_US
 meta_title: null

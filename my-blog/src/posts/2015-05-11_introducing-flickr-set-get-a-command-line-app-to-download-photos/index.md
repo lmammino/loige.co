@@ -8,7 +8,7 @@ date: 2015-05-11T23:04:50.000Z
 updated: 2015-05-14T17:05:48.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
-header_img: my-blog/src/posts/2015-05-11_introducing-flickr-set-get-a-command-line-app-to-download-photos/flickr-set-get-download-photos-from-command-line-flickr.jpg
+header_img: ./flickr-set-get-download-photos-from-command-line-flickr.jpg
 status: published
 language: en_US
 meta_title: flickr-set-get a command line app to download photos from Flickr

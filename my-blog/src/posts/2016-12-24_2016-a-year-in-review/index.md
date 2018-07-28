@@ -8,7 +8,7 @@ date: 2016-12-24T18:13:18.000Z
 updated: 2017-01-09T21:36:49.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
-header_img: my-blog/src/posts/2016-12-24_2016-a-year-in-review/loige-luciano-mammino-2016-a-year-in-review-blog-post.jpg
+header_img: ./loige-luciano-mammino-2016-a-year-in-review-blog-post.jpg
 status: published
 language: en_US
 meta_title: null

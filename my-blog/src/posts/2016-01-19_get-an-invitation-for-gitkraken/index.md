@@ -8,7 +8,7 @@ date: 2016-01-19T21:10:23.000Z
 updated: 2016-02-03T18:52:55.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
-header_img: my-blog/src/posts/2016-01-19_get-an-invitation-for-gitkraken/get-an-invitation-for-gitkraken-loige-co-luciano-mammino.png
+header_img: ./get-an-invitation-for-gitkraken-loige-co-luciano-mammino.png
 status: published
 language: en_US
 meta_title: null

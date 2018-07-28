@@ -21,6 +21,7 @@ injectGlobal`
   body {
     font-family: "system";
     fill: currentColor;
+    margin: 60px 0 0 0;
   }
 
   .content a {

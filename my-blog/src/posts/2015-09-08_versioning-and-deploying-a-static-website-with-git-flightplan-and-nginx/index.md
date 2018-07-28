@@ -8,7 +8,7 @@ date: 2015-09-08T22:16:27.000Z
 updated: 2015-09-14T22:15:27.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
-header_img: my-blog/src/posts/2015-09-08_versioning-and-deploying-a-static-website-with-git-flightplan-and-nginx/Versioning-and-deploying-a-static-website-with-git-flightplan-and-nginx.jpg
+header_img: ./Versioning-and-deploying-a-static-website-with-git-flightplan-and-nginx.jpg
 status: published
 language: en_US
 meta_title: null

@@ -10,7 +10,7 @@ date: 2017-06-19T22:00:20.000Z
 updated: 2017-06-27T18:09:34.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
-header_img: my-blog/src/posts/2017-06-19_using-lets-encrypt-and-certbot-to-automate-the-creation-of-certificates-for-openvpn/using-lets-encrypt-and-certbot-to-automate-the-creation-of-certificates-for-openvpn-loige-icover-image.jpg
+header_img: ./using-lets-encrypt-and-certbot-to-automate-the-creation-of-certificates-for-openvpn-loige-icover-image.jpg
 status: published
 language: en_US
 meta_title: Use Certbot to automate the creation of SSL certificates for OpenVPN

@@ -9,7 +9,7 @@ date: 2015-07-25T18:57:00.000Z
 updated: 2016-01-15T19:15:54.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
-header_img: my-blog/src/posts/2015-07-25_6-rules-of-thumb-to-build-blazing-fast-web-applications/6-rules-of-thumb-to-build-blazing-fast-web-applications-flash-gordon-1.jpg
+header_img: ./6-rules-of-thumb-to-build-blazing-fast-web-applications-flash-gordon-1.jpg
 status: published
 language: en_US
 meta_title: 6 Rules of thumb to build blazing fast web applications (server side)

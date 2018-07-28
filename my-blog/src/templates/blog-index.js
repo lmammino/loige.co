@@ -68,7 +68,6 @@ class BlogIndex extends Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     const { previous, next, currentPage, totalPages, posts } = this.props.pageContext
-
     const pagination = { previous, next, currentPage, totalPages }
 
     return (

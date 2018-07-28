@@ -9,7 +9,7 @@ date: 2015-10-25T18:47:00.000Z
 updated: 2016-12-13T21:24:35.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
-header_img: my-blog/src/posts/2015-10-25_gulp-and-ftp-update-a-website-on-the-fly/gulp-and-ftp-update-a-website-on-the-fly-1.png
+header_img: ./gulp-and-ftp-update-a-website-on-the-fly-1.png
 status: published
 language: en_US
 meta_title: null

@@ -8,7 +8,7 @@ date: 2017-06-15T13:49:59.000Z
 updated: 2017-06-15T13:54:06.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
-header_img: my-blog/src/posts/2017-06-15_my-serverless-talk-at-shift-conference-in-split/my-serverless-talk-at-shift-conference-in-split-cover-picture.jpg
+header_img: ./my-serverless-talk-at-shift-conference-in-split-cover-picture.jpg
 status: published
 language: en_US
 meta_title: null

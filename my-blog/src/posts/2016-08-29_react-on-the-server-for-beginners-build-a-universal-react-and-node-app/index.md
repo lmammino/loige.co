@@ -9,7 +9,7 @@ date: 2016-08-29T21:49:47.000Z
 updated: 2016-08-29T21:49:47.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
-header_img: my-blog/src/posts/2016-08-29_react-on-the-server-for-beginners-build-a-universal-react-and-node-app/ryoko-tani-universal-javascript-nodejs-react-luciano-mammino-cover.jpg
+header_img: ./ryoko-tani-universal-javascript-nodejs-react-luciano-mammino-cover.jpg
 status: published
 language: en_US
 meta_title: null

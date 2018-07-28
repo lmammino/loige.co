@@ -45,7 +45,7 @@ const processPosts = async (expandedPosts, src, dest) => {
       const oldHeaderLocation = join(src, post.attributes.header_img.replace(/^\/content\//, ''))
       const newHeaderLocation = join(postDestDir, basename(post.attributes.header_img))
       filesToCopy.push({ src: oldHeaderLocation, dest: newHeaderLocation })
-      post.attributes.header_img = newHeaderLocation
+      post.attributes.header_img = `./${basename(post.attributes.header_img)}`
     }
 
     // finds and replaces references to other assets in the post body

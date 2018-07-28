@@ -9,7 +9,7 @@ date: 2017-12-16T19:23:20.000Z
 updated: 2018-05-23T19:53:52.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
-header_img: my-blog/src/posts/2017-12-16_from-bare-metal-to-serverless/from-bare-metal-to-serverless-luciano-mammino-loige-co.jpg
+header_img: ./from-bare-metal-to-serverless-luciano-mammino-loige-co.jpg
 status: published
 language: en_US
 meta_title: From bare metal to Serverless - an attempt at reconstruct some history

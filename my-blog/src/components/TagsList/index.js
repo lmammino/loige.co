@@ -44,7 +44,7 @@ class TagsList extends Component {
         <TagsSolidIcon className={tagsSolidIconStyle}/>
         {tags.map((tag, i) => {
           return (<Fragment key={tag}>
-            <Link to={`/tag/${slugify(tag)}`}>{tag}</Link>{ i < tags.length - 1 ? <TagsSeparator>, </TagsSeparator> : '' }
+            <Link to={`/tag/${slugify(tag)}`}>#{tag}</Link>{ i < tags.length - 1 ? <TagsSeparator>, </TagsSeparator> : '' }
           </Fragment>)
         })}
       </TagsContainer>

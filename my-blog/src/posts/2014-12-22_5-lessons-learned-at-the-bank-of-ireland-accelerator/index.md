@@ -8,7 +8,7 @@ date: 2014-12-22T21:23:58.000Z
 updated: 2014-12-24T10:43:15.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
-header_img: my-blog/src/posts/2014-12-22_5-lessons-learned-at-the-bank-of-ireland-accelerator/boi-1.png
+header_img: ./boi-1.png
 status: published
 language: en_US
 meta_title: null

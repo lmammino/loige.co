@@ -8,7 +8,7 @@ date: 2018-01-03T18:59:58.000Z
 updated: 2018-01-03T22:55:34.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
-header_img: my-blog/src/posts/2018-01-03_2017-a-year-in-review/loige-co-2017-a-year-in-review-luciano-mammino-blog.jpg
+header_img: ./loige-co-2017-a-year-in-review-luciano-mammino-blog.jpg
 status: published
 language: en_US
 meta_title: null

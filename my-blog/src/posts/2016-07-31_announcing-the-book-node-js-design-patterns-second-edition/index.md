@@ -8,7 +8,7 @@ date: 2016-07-31T18:25:00.000Z
 updated: 2016-08-01T18:45:47.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
-header_img: my-blog/src/posts/2016-07-31_announcing-the-book-node-js-design-patterns-second-edition/announcing-the-book-node-js-design-patterns-second-edition.jpg
+header_img: ./announcing-the-book-node-js-design-patterns-second-edition.jpg
 status: published
 language: en_US
 meta_title: null

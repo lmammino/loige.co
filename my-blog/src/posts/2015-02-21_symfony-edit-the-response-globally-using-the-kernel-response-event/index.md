@@ -8,7 +8,7 @@ date: 2015-02-21T01:12:00.000Z
 updated: 2015-03-02T23:19:32.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
-header_img: my-blog/src/posts/2015-02-21_symfony-edit-the-response-globally-using-the-kernel-response-event/symfony-edit-the-response-globally-using-the-kernel-response-event.jpg
+header_img: ./symfony-edit-the-response-globally-using-the-kernel-response-event.jpg
 status: published
 language: en_US
 meta_title: ""

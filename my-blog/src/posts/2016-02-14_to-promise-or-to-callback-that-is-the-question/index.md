@@ -8,7 +8,7 @@ date: 2016-02-14T13:32:00.000Z
 updated: 2017-03-03T21:08:07.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
-header_img: my-blog/src/posts/2016-02-14_to-promise-or-to-callback-that-is-the-question/to-promise-or-to-callback-this-is-the-problem-loige-amlet-arnold-schwarzenegger-javascript.png
+header_img: ./to-promise-or-to-callback-this-is-the-problem-loige-amlet-arnold-schwarzenegger-javascript.png
 status: published
 language: en_US
 meta_title: null

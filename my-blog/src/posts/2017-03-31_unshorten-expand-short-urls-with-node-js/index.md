@@ -8,7 +8,7 @@ date: 2017-03-31T23:23:09.000Z
 updated: 2017-05-21T08:17:34.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
-header_img: my-blog/src/posts/2017-03-31_unshorten-expand-short-urls-with-node-js/unshorten-expand-short-urls-with-node-js-loige-compressed.jpg
+header_img: ./unshorten-expand-short-urls-with-node-js-loige-compressed.jpg
 status: published
 language: en_US
 meta_title: null

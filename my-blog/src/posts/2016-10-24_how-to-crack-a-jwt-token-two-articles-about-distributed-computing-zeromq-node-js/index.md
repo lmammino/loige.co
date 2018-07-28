@@ -10,7 +10,7 @@ date: 2016-10-24T22:44:51.000Z
 updated: 2016-10-28T22:24:42.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
-header_img: my-blog/src/posts/2016-10-24_how-to-crack-a-jwt-token-two-articles-about-distributed-computing-zeromq-node-js/how-to-crack-a-jwt-token-two-articles-about-distributed-computing-zeromq-node-js.jpg
+header_img: ./how-to-crack-a-jwt-token-two-articles-about-distributed-computing-zeromq-node-js.jpg
 status: published
 language: en_US
 meta_title: null

@@ -9,7 +9,7 @@ date: 2015-04-18T16:10:35.000Z
 updated: 2015-05-12T14:33:37.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
-header_img: my-blog/src/posts/2015-04-18_developing-a-web-application-with-lumen-and-mysql/developing-a-web-application-with-lumen.jpg
+header_img: ./developing-a-web-application-with-lumen.jpg
 status: published
 language: en_US
 meta_title: ""

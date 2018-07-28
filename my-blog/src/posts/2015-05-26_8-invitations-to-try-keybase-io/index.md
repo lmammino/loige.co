@@ -8,7 +8,7 @@ date: 2015-05-26T22:25:45.000Z
 updated: 2015-05-27T11:22:09.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
-header_img: my-blog/src/posts/2015-05-26_8-invitations-to-try-keybase-io/8-invitations-to-try-keybase-io.jpg
+header_img: ./8-invitations-to-try-keybase-io.jpg
 status: published
 language: en_US
 meta_title: null

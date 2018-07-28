@@ -8,7 +8,7 @@ date: 2016-08-15T17:17:00.000Z
 updated: 2016-08-29T22:08:11.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
-header_img: my-blog/src/posts/2016-08-15_extracting-data-from-wikipedia-using-curl-grep-cut-and-other-bash-commands/extracting-data-from-wikipedia-using-curl-grep-and-other-bash-commands-judo-teddy-riner.jpg
+header_img: ./extracting-data-from-wikipedia-using-curl-grep-and-other-bash-commands-judo-teddy-riner.jpg
 status: published
 language: en_US
 meta_title: null

@@ -8,7 +8,7 @@ date: 2015-09-14T22:05:30.000Z
 updated: 2015-09-14T22:05:30.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
-header_img: my-blog/src/posts/2015-09-14_having-fun-with-nodejs-slack-and-chuck-norris/having-fun-with-nodejs-slack-and-chuck-norris.jpg
+header_img: ./having-fun-with-nodejs-slack-and-chuck-norris.jpg
 status: published
 language: en_US
 meta_title: null

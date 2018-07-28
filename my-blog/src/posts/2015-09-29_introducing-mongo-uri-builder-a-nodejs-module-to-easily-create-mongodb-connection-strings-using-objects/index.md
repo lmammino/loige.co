@@ -9,7 +9,7 @@ date: 2015-09-29T23:07:02.000Z
 updated: 2015-09-29T23:07:02.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
-header_img: my-blog/src/posts/2015-09-29_introducing-mongo-uri-builder-a-nodejs-module-to-easily-create-mongodb-connection-strings-using-objects/mongo-uri-builder-article-sample-image.jpg
+header_img: ./mongo-uri-builder-article-sample-image.jpg
 status: published
 language: en_US
 meta_title: null

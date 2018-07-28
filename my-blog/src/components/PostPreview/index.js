@@ -107,7 +107,7 @@ class PostPreview extends Component {
       <Post className="content">
         <header>
           <Title>
-            <Link style={{ boxShadow: 'none' }} to={slug}>
+            <Link style={{ boxShadow: 'none' }} to={`/${slug}`}>
               {title}
             </Link>
           </Title>
