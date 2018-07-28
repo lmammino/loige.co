@@ -6,6 +6,7 @@ import get from 'lodash/get'
 
 import Layout from '../components/layout'
 import Hero from '../components/Hero'
+import Article from '../components/Article'
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -27,7 +28,9 @@ class BlogPostTemplate extends React.Component {
         >
           {post.frontmatter.date}
         </p>
-        <article dangerouslySetInnerHTML={{ __html: post.html }} />
+
+        <Article html={post.html}/>
+
         <hr
           style={{}}
         />
