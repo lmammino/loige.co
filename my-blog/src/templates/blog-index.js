@@ -9,27 +9,6 @@ import Hero from '../components/Hero'
 import PostsList from '../components/PostsList'
 import Pagination from '../components/Pagination'
 
-const HeroContent = styled('div')`
-  display: table-cell;
-  vertical-align: middle;
-  text-align: center;
-  font-weight: 700;
-  color: #FFF;
-  padding: 0 2em;
-
-  color: white;
-  text-shadow:
-    1px 3px 0 #000,
-   -1px -1px 0 #000,
-    1px -1px 0 #000,
-    -1px 1px 0 #000,
-     1px 1px 0 #000;
-
-  @media (min-width: 780px) {
-    font-size: 1.2em;
-  }
-`
-
 const ContentContainer = styled('div')`
   min-height: 100vh;
   margin: 0 auto;
@@ -73,11 +52,9 @@ class BlogIndex extends Component {
     return (
       <Layout location={this.props.location} section={this.props.section}>
         <Helmet title={siteTitle} />
-        <Hero>
-          <HeroContent>
-            <h1>Luciano Mammino</h1>
-            <h2>Web developer, entrepreneur, fighter, butterfly maker!</h2>
-          </HeroContent>
+        <Hero className="bottomRightBg">
+          <h1>Luciano Mammino</h1>
+          <h2>Web developer, entrepreneur, fighter, butterfly maker!</h2>
         </Hero>
         <ContentContainer>
           <Content>

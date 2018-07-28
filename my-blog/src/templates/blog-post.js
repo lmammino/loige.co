@@ -17,12 +17,9 @@ class BlogPostTemplate extends React.Component {
     return (
       <Layout location={this.props.location}>
         <Helmet title={`${post.frontmatter.title} | ${siteTitle}`} />
-        <Hero backgroundImage={headerImage}>
-          <h1>{post.frontmatter.title}</h1>
+        <Hero className="textOverlay" backgroundImage={headerImage}>
+          <h1><span>{post.frontmatter.title}</span></h1>
         </Hero>
-        <pre>
-          {JSON.stringify(post, null, 2)}
-        </pre>
         <p
           style={{
             display: 'block'
@@ -60,6 +57,12 @@ class BlogPostTemplate extends React.Component {
             </li>
           )}
         </ul>
+        <details>
+          <summary>data</summary>
+          <pre>
+            {JSON.stringify(post, null, 2)}
+          </pre>
+        </details>
       </Layout>
     )
   }
