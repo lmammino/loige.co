@@ -56,7 +56,7 @@ class Template extends Component {
     return (
       <Fragment>
         <Header/>
-          {children}
+        {children}
         <Footer/>
       </Fragment>
     )
