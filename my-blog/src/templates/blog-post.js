@@ -1,4 +1,5 @@
 import React from 'react'
+import styled, { css } from 'react-emotion'
 import { graphql } from 'gatsby'
 import Helmet from 'react-helmet'
 import { Link } from 'gatsby'
@@ -7,6 +8,41 @@ import get from 'lodash/get'
 import Layout from '../components/layout'
 import Hero from '../components/Hero'
 import Article from '../components/Article'
+
+const ContentContainer = styled('div')`
+  min-height: 100vh;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  max-width: 1260px;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 780px) {
+    width: 90%;
+  }
+`
+
+const Content = styled('section')`
+  flex: 1;
+  display: flex;
+`
+
+const Columns = styled('div')`
+  display: flex;
+  flex: 1;
+`
+
+const MainColumn = styled('main')`
+  flex: 1;
+  width: 100%;
+  max-width: 860px;
+`
+
+const Sidebar = styled('aside')`
+  width: 20%;
+  background: #ccc
+`
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -21,21 +57,18 @@ class BlogPostTemplate extends React.Component {
         <Hero className="textOverlay" backgroundImage={headerImage}>
           <h1><span>{post.frontmatter.title}</span></h1>
         </Hero>
-        <p
-          style={{
-            display: 'block'
-          }}
-        >
-          {post.frontmatter.date}
-        </p>
+        <ContentContainer>
+          <Content>
+            <Columns>
+              <MainColumn>
+                <Article html={post.html}/>
+              </MainColumn>
+              <Sidebar>Some content here</Sidebar>
+            </Columns>
+          </Content>
+        </ContentContainer>
 
-        <Article html={post.html}/>
-
-        <hr
-          style={{}}
-        />
-
-        <ul
+        {/* <ul
           style={{
             display: 'flex',
             flexWrap: 'wrap',
@@ -59,7 +92,7 @@ class BlogPostTemplate extends React.Component {
               </Link>
             </li>
           )}
-        </ul>
+        </ul> */}
         <details>
           <summary>data</summary>
           <pre>

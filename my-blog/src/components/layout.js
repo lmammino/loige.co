@@ -11,40 +11,20 @@ injectGlobal`
     padding: 0;
   }
 
-  @font-face {
-    font-family: system;
-    font-style: normal;
-    font-weight: 300;
-    src: local(".SFNSText"), local(".HelveticaNeueDeskInterface"), local(".LucidaGrandeUI"), local("Ubuntu"), local("Segoe UI"), local("Roboto"), local("DroidSans"), local("Tahoma");
-  }
-
   body {
-    font-family: "system";
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+    font-style: normal;
+    font-weight: 400;
     fill: currentColor;
     margin: 60px 0 0 0;
   }
 
   .content a {
-    position: relative;
+    text-decoration: none;
   }
 
-  .content a:after {
-    content: " ";
-    display: inline-block;
-    width: 0px;
-    height: 2px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background: #d26ac2;
-    -webkit-transition: all .2s ease-out;
-    transition: all .2s ease-out;
-  }
-
-  .content a:hover:after {
-    width: 100%;
-    -webkit-transition: all .2s ease-out;
-    transition: all .2s ease-out;
+  .content a:hover {
+    text-decoration: underline;
   }
 `
 

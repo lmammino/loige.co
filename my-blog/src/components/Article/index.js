@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled, { css } from 'react-emotion'
+import './prismStyle'
 
 const ArticleContainer = styled('article')`
   margin: 2em 0;
@@ -58,15 +59,15 @@ const ArticleContainer = styled('article')`
   }
 
   & p > code, & li > code {
-    background: #282c34;
-    color: #fff;
+    background: rgba(255,229,100,0.2);
+    color: inherit;
     display: inline-block;
     padding: 0 .3em;
   }
 
   & p > code, & li > code, & p > a > code, & li > a > code {
     padding: 0 3px;
-    font-size: 16px;
+    font-size: inherit;
     word-break: break-word;
   }
 
@@ -158,14 +159,10 @@ const ArticleContainer = styled('article')`
     border-left-width: 9px;
     border-left-style: solid;
     padding: 20px 45px 20px 26px;
-    margin-bottom: 2em;
-    margin-top: 1em;
-    margin-left: -1em;
-    margin-right: -1em;
+    margin: 1em 0 2em -1em;
 
     @media (min-width: 780px) {
       margin-left: -2em;
-      margin-right: -2em;
     }
 
     & p {
@@ -176,7 +173,7 @@ const ArticleContainer = styled('article')`
         margin-top: 0;
       }
 
-      '&:nth-of-type(2)' {
+      &:nth-of-type(2) {
         margin-top: 0;
       }
     }
