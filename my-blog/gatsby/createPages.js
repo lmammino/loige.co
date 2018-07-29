@@ -45,7 +45,6 @@ module.exports = ({ graphql, actions }) => {
 
         // Create blog posts pages.
         _.each(posts, (post, index) => {
-          console.log(post)
           const previous = index === posts.length - 1 ? null : posts[index + 1].node;
           const next = index === 0 ? null : posts[index - 1].node;
 

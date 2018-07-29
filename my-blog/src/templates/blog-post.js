@@ -8,6 +8,8 @@ import get from 'lodash/get'
 import Layout from '../components/layout'
 import Hero from '../components/Hero'
 import Article from '../components/Article'
+import PostSummary from '../components/PostSummary'
+import SocialShareBar from '../components/SocialShareBar'
 
 const ContentContainer = styled('div')`
   min-height: 100vh;
@@ -29,19 +31,33 @@ const Content = styled('section')`
 `
 
 const Columns = styled('div')`
-  display: flex;
   flex: 1;
+
+  @media (min-width: 780px) {
+    display: flex;
+  }
 `
 
 const MainColumn = styled('main')`
-  flex: 1;
+  flex: 3;
   width: 100%;
-  max-width: 860px;
 `
 
 const Sidebar = styled('aside')`
-  width: 20%;
-  background: #ccc
+  flex: 1;
+  background: #f7f7f7;
+  padding: 1em;
+
+  @media (min-width: 780px) {
+    background: transparent;
+
+    & > div {
+      margin: 1em 0 0 0;
+      position: sticky;
+      overflow-y: auto;
+      top: 50px;
+    }
+  }
 `
 
 class BlogPostTemplate extends React.Component {
@@ -50,6 +66,14 @@ class BlogPostTemplate extends React.Component {
     const siteTitle = get(this.props, 'data.site.siteMetadata.title')
     const { previous, next } = this.props.pageContext
     const headerImage = post.frontmatter.header_img ? post.frontmatter.header_img.publicURL : undefined
+
+    const shareOptions = {
+      url: `${get(this.props, 'data.site.siteMetadata.siteUrl')}${post.frontmatter.slug}`,
+      title: post.frontmatter.title,
+      site: get(this.props, 'data.site.siteMetadata.siteUrl'),
+      imageUrl: `${get(this.props, 'data.site.siteMetadata.siteUrl')}${headerImage}`,
+      twitterProfile: get(this.props, 'data.site.siteMetadata.twitterProfile'),
+    }
 
     return (
       <Layout location={this.props.location}>
@@ -63,7 +87,13 @@ class BlogPostTemplate extends React.Component {
               <MainColumn>
                 <Article html={post.html}/>
               </MainColumn>
-              <Sidebar>Some content here</Sidebar>
+              <Sidebar>
+                <div>
+                  {post.headings.length && <PostSummary headings={post.headings}/>}
+                  <h3>Share</h3>
+                  <SocialShareBar {...shareOptions}/>
+                </div>
+              </Sidebar>
             </Columns>
           </Content>
         </ContentContainer>
@@ -112,6 +142,8 @@ export const pageQuery = graphql`
       siteMetadata {
         title
         author
+        siteUrl
+        twitterProfile
       }
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
@@ -124,6 +156,7 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
+        slug
         date(formatString: "MMMM DD, YYYY")
         header_img {
           publicURL

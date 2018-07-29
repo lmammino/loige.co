@@ -7,6 +7,11 @@ const ArticleContainer = styled('article')`
   line-height: 25px;
   padding: 0 1em;
 
+  code {
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
   @media (min-width: 780px) {
     padding: 0 2em;
   }

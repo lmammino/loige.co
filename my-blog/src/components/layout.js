@@ -19,6 +19,11 @@ injectGlobal`
     margin: 60px 0 0 0;
   }
 
+  code, pre {
+    font-family: source-code-pro,Menlo,Monaco,Consolas,Courier New,monospace;
+    font-weight: 300;
+  }
+
   .content a {
     text-decoration: none;
   }

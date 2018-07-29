@@ -4,6 +4,7 @@ module.exports = {
     author: 'Luciano Mammino',
     description: 'A starter blog demonstrating what Gatsby can do.',
     siteUrl: 'https://loige.co/',
+    twitterProfile: 'loige',
   },
   pathPrefix: '/',
   plugins: [

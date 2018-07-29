@@ -26,6 +26,7 @@
     "gatsby-source-filesystem": "next",
     "gatsby-transformer-remark": "next",
     "gatsby-transformer-sharp": "^2.1.1-beta.6",
+    "github-slugger": "^1.2.0",
     "lodash": "^4.17.5",
     "prismjs": "^1.15.0",
     "react": "^16.3.2",
