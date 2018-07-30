@@ -3,9 +3,44 @@ import styled, { css } from 'react-emotion'
 
 import TwitterIcon from '../icons/Twitter'
 import FacebookIcon from '../icons/Facebook'
-import LinkedinIcon from '../icons/Linkedin'
+import LinkedinIcon from '../icons/LinkedinAlternate'
 import PinterestIcon from '../icons/Pinterest'
 import EmailIcon from '../icons/Email'
+
+const SocialShareBarContainer = styled('ul')`
+  list-style: none;
+  font-size: 30px;
+  padding: .2em 0;
+
+  li {
+    display: inline-block;
+    margin: 0 .2em 0 0;
+
+    a {
+      color: #6d6d6d;
+    }
+
+    a.twitter:hover {
+      color: #00aced;
+    }
+
+    a.facebook:hover {
+      color: #3b5998;
+    }
+
+    a.linkedin:hover {
+      color: #007bb6;
+    }
+
+    a.pinterest:hover {
+      color: #cb2027;
+    }
+
+    a.email:hover {
+      color: black;
+    }
+  }
+`
 
 const icons = {
   twitter: <TwitterIcon/>,
@@ -44,10 +79,10 @@ class SocialShareBar extends Component {
     const { url, title, site, imageUrl, twitterProfile } = this.props
 
     return (
-      <ul>
+      <SocialShareBarContainer>
         { socials.map((social) => {
           return (<li key={social}>
-            <a
+            <a className={social}
               target="_blank"
               href={buildLink[social](url, title, site, imageUrl, twitterProfile)}
               title={`Share via ${social}`}
@@ -56,7 +91,7 @@ class SocialShareBar extends Component {
             </a>
           </li>)
         }) }
-      </ul>
+      </SocialShareBarContainer>
     )
   }
 }

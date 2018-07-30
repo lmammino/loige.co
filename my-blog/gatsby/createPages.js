@@ -44,6 +44,7 @@ module.exports = ({ graphql, actions }) => {
         const postsByPage = {}
 
         // Create blog posts pages.
+        const blogPosts = {}
         _.each(posts, (post, index) => {
           const previous = index === posts.length - 1 ? null : posts[index + 1].node;
           const next = index === 0 ? null : posts[index - 1].node;
@@ -65,16 +66,62 @@ module.exports = ({ graphql, actions }) => {
           }
           postsByPage[path].push(post)
 
-          createPage({
+          blogPosts[post.node.fields.slug] = {
             path: post.node.fields.slug,
             component: blogPost,
             context: {
+              tags: post.node.frontmatter.tags,
               slug: post.node.fields.slug,
               previous,
               next,
             },
-          })
+          }
         })
+
+        // calculates related/similar posts per matching categories
+        const getRelatedPosts = (slug, tags, postsByTag) => {
+
+          let similar = []
+          tags.forEach((tag) => {
+            similar = similar.concat(postsByTag[tag].map((p) => p.node.fields.slug))
+          })
+
+          let prev = null
+
+          return similar
+            .filter((p) => p !== slug) // removes post itself
+            .sort() // sort alphabetically
+            .reduce((acc, curr, i, slugs) => { // counts same occurrences
+              if (!prev) {
+                prev = { slug: curr, count: 1 }
+                return acc
+              }
+
+              if (prev.slug === curr) {
+                prev.count++
+                return acc
+              }
+
+              if (prev.slug !== curr || i === slugs.length -1) {
+                acc.push(prev)
+                prev = null
+              }
+
+              return acc
+            }, [])
+            .sort((a, b) => b.count - a.count) // sort by count
+            .map((p) => p.slug)
+        }
+
+        // trigger the createPage API for every post
+        _.each(Object.keys(blogPosts), (slug, index) => {
+          // calculates the related posts before creating the page
+          const postPage = blogPosts[slug]
+          postPage.context.similar = getRelatedPosts(slug, postPage.context.tags, postsByTag)
+
+          createPage(postPage)
+        })
+
 
         // Create paginated blog indexes
         const pagePaths = Object.keys(postsByPage)

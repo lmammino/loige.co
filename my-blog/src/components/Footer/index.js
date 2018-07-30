@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import styled, { css } from 'react-emotion'
 
-import Logo from '../Logo'
 import GithubIcon from '../icons/Github'
 import TwitterIcon from '../icons/Twitter'
 import LinkedinIcon from '../icons/Linkedin'
@@ -89,7 +88,8 @@ const ListLink = styled('a')`
 
 const Copyright = styled('p')`
   font-size: .8em;
-  padding: 4px 0 0 40px;
+  padding: 4px 0 0 0;
+  color: #ccc;
 
   a {
     color: inherit;
@@ -120,10 +120,12 @@ class Footer extends Component {
         <FooterWrapper>
           <FooterColumns>
             <FooterFullColumn>
-              <Logo/>
+              <ListTitle>Loige.co</ListTitle>
               <Copyright>Copyright © Luciano Mammino 2014-{year}.</Copyright>
               <Copyright>Built with <a target="_blank" href="https://www.gatsbyjs.org">Gatsby</a>, Coffee and a lot of <Heart>❤︎</Heart>.</Copyright>
               <Copyright>Hosted on <a target="_blank" href="https://github.com/lmammino/loige.co">GitHub</a>.</Copyright>
+              <Copyright>Theme inspired by React Documentation.</Copyright>
+              <Copyright>Icons by <a target="_blank" href="https://fontawesome.com/">Font Awesome</a>.</Copyright>
             </FooterFullColumn>
             <FooterColumn>
               <List>
