@@ -6,35 +6,30 @@ const getSimilarPosts = (slug, tags, postsByTag, postsBySlug, limit = 5) => {
     similar = similar.concat(postsByTag[tag].map((p) => p.node.fields.slug))
   })
 
-  let prev = null
-
   return similar
     .filter((p) => p !== slug) // removes post itself
     .sort() // sort alphabetically
-    .map((p) => ({
+    .map((p) => ({ // augment data per post
       slug: p,
       title: postsBySlug[p].node.frontmatter.title,
       publishedAt: postsBySlug[p].node.frontmatter.date,
       score: 1
     }))
-    .reduce((acc, curr, i, slugs) => { // counts same occurrences
-      if (!prev) {
-        prev = curr
-        return acc
+    .reduce((acc, curr, i, a) => { // counts same occurrences
+			const prev = a[i -1]
+      if (prev && curr.slug === prev.slug) {
+        curr.score = ++prev.score
       }
 
-      if (prev.slug === curr.slug) {
-        prev.score++
-        prev = curr
-        return acc
+      if (prev && curr.slug !== prev.slug) {
+        acc.push(prev)
       }
 
-      if (prev.slug !== curr.slug || i === slugs.length -1) {
-        prev = curr
-        acc.push(curr)
+      if (i === a.length - 1) {
+      	acc.push(curr)
       }
 
-      return acc
+			return acc
     }, [])
     .sort((a, b) => {
       if (a.score === b.score) {
