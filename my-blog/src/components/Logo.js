@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import styled, { css } from 'react-emotion'
 import { Link } from 'gatsby'
 
-import mario from './mario.svg'
+import mario from './images/mario.svg'
 
 const logoStyle = css`
   color: #46c9e5;

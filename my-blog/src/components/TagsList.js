@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import styled, { css } from 'react-emotion'
 import { Link } from 'gatsby'
 
-import TagsSolidIcon from '../icons/TagsSolid'
+import TagsSolidIcon from './icons/TagsSolid'
 
 const slugify = (text) => text
   .toString()

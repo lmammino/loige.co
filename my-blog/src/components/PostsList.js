@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import get from 'lodash/get'
 
-import PostPreview from '../PostPreview'
+import PostPreview from './PostPreview'
 
 class PostsList extends Component {
   render () {

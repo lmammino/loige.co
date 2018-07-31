@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled, { css } from 'react-emotion'
 
-import CalendarAltRegularIcon from '../icons/CalendarAltRegular'
+import CalendarAltRegularIcon from './icons/CalendarAltRegular'
 
 const calendarAltRegularStyle = css`
   margin: 0 .25em 0 0;

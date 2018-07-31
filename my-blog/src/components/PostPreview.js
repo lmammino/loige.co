@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import styled, { css } from 'react-emotion'
 import { Link } from 'gatsby'
 
-import TagsList from '../TagsList'
-import DateViewer from '../DateViewer'
-import ReadingTime from '../ReadingTime'
-import profilePic from '../images/profile-pic.jpg'
+import TagsList from './TagsList'
+import DateViewer from './DateViewer'
+import ReadingTime from './ReadingTime'
+import profilePic from './images/profile-pic.jpg'
 
 const Post = styled('article')`
   margin: 2rem 0 1rem;

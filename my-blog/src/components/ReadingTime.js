@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled, { css } from 'react-emotion'
 
-import EyeRegularIcon from '../icons/EyeRegular'
+import EyeRegularIcon from './icons/EyeRegular'
 
 const eyeRegularStyle = css`
   margin: 0 .25em 0 0;

@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import styled, { css } from 'react-emotion'
 import NavLink from './NavLink'
-import Logo from '../Logo'
+import Logo from './Logo'
 
-import GithubIcon from '../icons/Github'
-import TwitterIcon from '../icons/Twitter'
-import LinkedinIcon from '../icons/Linkedin'
+import GithubIcon from './icons/Github'
+import TwitterIcon from './icons/Twitter'
+import LinkedinIcon from './icons/Linkedin'
 
 const HeaderComponent = styled('header')`
   background-color: rgba(32, 35, 42, .95);

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled, { css } from 'react-emotion'
 
-import defaultBg from '../images/default-bg.jpg'
+import defaultBg from './images/default-bg.jpg'
 
 const HeroContainer = styled('div')`
   background-color: #46c9e5;

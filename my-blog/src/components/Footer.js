@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import styled, { css } from 'react-emotion'
 
-import GithubIcon from '../icons/Github'
-import TwitterIcon from '../icons/Twitter'
-import LinkedinIcon from '../icons/Linkedin'
+import GithubIcon from './icons/Github'
+import TwitterIcon from './icons/Twitter'
+import LinkedinIcon from './icons/Linkedin'
 
 const FooterContainer = styled('footer')`
   background-color: #20232a;

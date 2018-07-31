@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import styled, { css } from 'react-emotion'
 
-import TwitterIcon from '../icons/Twitter'
-import FacebookIcon from '../icons/Facebook'
-import LinkedinIcon from '../icons/LinkedinAlternate'
-import PinterestIcon from '../icons/Pinterest'
-import EmailIcon from '../icons/Email'
+import TwitterIcon from './icons/Twitter'
+import FacebookIcon from './icons/Facebook'
+import LinkedinIcon from './icons/LinkedinAlternate'
+import PinterestIcon from './icons/Pinterest'
+import EmailIcon from './icons/Email'
 
 const SocialShareBarContainer = styled('ul')`
   list-style: none;
