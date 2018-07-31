@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component, Fragment } from 'react'
 import styled, { css } from 'react-emotion'
 import { graphql } from 'gatsby'
 import Helmet from 'react-helmet'
@@ -10,6 +10,7 @@ import Hero from '../components/Hero'
 import Article from '../components/Article'
 import PostSummary from '../components/PostSummary'
 import SocialShareBar from '../components/SocialShareBar'
+import SimilarPosts from '../components/SimilarPosts'
 
 const ContentContainer = styled('div')`
   min-height: 100vh;
@@ -60,7 +61,7 @@ const Sidebar = styled('aside')`
   }
 `
 
-class BlogPostTemplate extends React.Component {
+class BlogPostTemplate extends Component {
   render() {
     const post = this.props.data.markdownRemark
     const siteTitle = get(this.props, 'data.site.siteMetadata.title')
@@ -89,19 +90,16 @@ class BlogPostTemplate extends React.Component {
               </MainColumn>
               <Sidebar>
                 <div>
-                  {post.headings.length && <PostSummary headings={post.headings}/>}
+                  {post.headings.length > 0 && <PostSummary headings={post.headings}/>}
                   <h3>Share</h3>
                   <SocialShareBar {...shareOptions}/>
-                  <h3>Similar posts</h3>
-                  <ul>
-                    {similar.map((p) => {
-                      return (
-                        <li key={p.slug}>
-                          <Link to={`/${p.slug}`}>{p.title}</Link>
-                        </li>
-                      )
-                    })}
-                  </ul>
+                  {
+                    similar.length > 0 &&
+                    <Fragment>
+                      <h3>Similar posts</h3>
+                      <SimilarPosts similar={similar}/>
+                    </Fragment>
+                  }
                 </div>
               </Sidebar>
             </Columns>
