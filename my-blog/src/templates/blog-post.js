@@ -64,7 +64,7 @@ class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
     const siteTitle = get(this.props, 'data.site.siteMetadata.title')
-    const { previous, next } = this.props.pageContext
+    const { previous, next, similar } = this.props.pageContext
     const headerImage = post.frontmatter.header_img ? post.frontmatter.header_img.publicURL : undefined
 
     const shareOptions = {
@@ -92,6 +92,16 @@ class BlogPostTemplate extends React.Component {
                   {post.headings.length && <PostSummary headings={post.headings}/>}
                   <h3>Share</h3>
                   <SocialShareBar {...shareOptions}/>
+                  <h3>Similar posts</h3>
+                  <ul>
+                    {similar.map((p) => {
+                      return (
+                        <li key={p.slug}>
+                          <Link to={`/${p.slug}`}>{p.title}</Link>
+                        </li>
+                      )
+                    })}
+                  </ul>
                 </div>
               </Sidebar>
             </Columns>

@@ -1,6 +1,7 @@
 const _ = require('lodash')
 const Promise = require('bluebird')
 const path = require('path')
+const getSimilarPosts = require('./getSimilarPosts')
 
 module.exports = ({ graphql, actions }) => {
   const { createPage } = actions
@@ -42,10 +43,13 @@ module.exports = ({ graphql, actions }) => {
         const perPage = 10
         const postsByTag = {}
         const postsByPage = {}
+        const postsBySlug = {}
 
         // Create blog posts pages.
         const blogPosts = {}
         _.each(posts, (post, index) => {
+          postsBySlug[post.node.fields.slug] = post
+
           const previous = index === posts.length - 1 ? null : posts[index + 1].node;
           const next = index === 0 ? null : posts[index - 1].node;
 
@@ -78,47 +82,11 @@ module.exports = ({ graphql, actions }) => {
           }
         })
 
-        // calculates related/similar posts per matching categories
-        const getRelatedPosts = (slug, tags, postsByTag) => {
-
-          let similar = []
-          tags.forEach((tag) => {
-            similar = similar.concat(postsByTag[tag].map((p) => p.node.fields.slug))
-          })
-
-          let prev = null
-
-          return similar
-            .filter((p) => p !== slug) // removes post itself
-            .sort() // sort alphabetically
-            .reduce((acc, curr, i, slugs) => { // counts same occurrences
-              if (!prev) {
-                prev = { slug: curr, count: 1 }
-                return acc
-              }
-
-              if (prev.slug === curr) {
-                prev.count++
-                return acc
-              }
-
-              if (prev.slug !== curr || i === slugs.length -1) {
-                acc.push(prev)
-                prev = null
-              }
-
-              return acc
-            }, [])
-            .sort((a, b) => b.count - a.count) // sort by count
-            .map((p) => p.slug)
-        }
-
         // trigger the createPage API for every post
         _.each(Object.keys(blogPosts), (slug, index) => {
           // calculates the related posts before creating the page
           const postPage = blogPosts[slug]
-          postPage.context.similar = getRelatedPosts(slug, postPage.context.tags, postsByTag)
-
+          postPage.context.similar = getSimilarPosts(slug, postPage.context.tags, postsByTag, postsBySlug)
           createPage(postPage)
         })
 
