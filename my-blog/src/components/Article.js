@@ -1,6 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import styled, { css } from 'react-emotion'
 import { injectGlobal } from 'emotion'
+
+import TagsList from './TagsList'
 
 const colors = {
   char: '#D8DEE9',
@@ -139,6 +141,16 @@ injectGlobal`
     display: block;
     margin: -0.125rem calc(-1rem - 15px);
     padding: 0.125rem calc(1rem + 15px);
+  }
+`
+
+const ArticleHeader = styled('div')`
+  margin: 2em 0;
+  line-height: 25px;
+  padding: 0 1em;
+
+  @media (min-width: 780px) {
+    padding: 0 2em;
   }
 `
 
@@ -327,9 +339,14 @@ const ArticleContainer = styled('article')`
 
 class Article extends Component {
   render() {
-    const { html } = this.props
+    const { post } = this.props
     return (
-      <ArticleContainer dangerouslySetInnerHTML={{ __html: html }}/>
+      <Fragment>
+        <ArticleHeader>
+          Published by <em>{post.frontmatter.author}</em> in <TagsList tags={post.frontmatter.tags}/>
+        </ArticleHeader>
+        <ArticleContainer dangerouslySetInnerHTML={{ __html: post.html }}/>
+      </Fragment>
     )
   }
 }

@@ -86,7 +86,7 @@ class BlogPostTemplate extends Component {
           <Content>
             <Columns>
               <MainColumn>
-                <Article html={post.html}/>
+                <Article post={post}/>
               </MainColumn>
               <Sidebar>
                 <div>
@@ -165,6 +165,8 @@ export const pageQuery = graphql`
       frontmatter {
         title
         slug
+        author
+        tags
         date(formatString: "MMMM DD, YYYY")
         header_img {
           publicURL
