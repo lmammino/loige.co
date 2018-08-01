@@ -11,6 +11,7 @@ import Article from '../components/Article'
 import PostSummary from '../components/PostSummary'
 import SocialShareBar from '../components/SocialShareBar'
 import SimilarPosts from '../components/SimilarPosts'
+import PrevNextPosts from '../components/PrevNextPosts'
 
 const ContentContainer = styled('div')`
   min-height: 100vh;
@@ -49,6 +50,22 @@ const Sidebar = styled('aside')`
   background: #f7f7f7;
   padding: 1em;
 
+  h3 {
+    margin: 0 0 .5em 0;
+    position: relative;
+    padding: 0 0 .5em 0;
+
+    &::after {
+      display: block;
+      content: ' ';
+      background-color: #d26ac2;
+      position: absolute;
+      bottom: 0;
+      height: 4px;
+      width: 50px;
+    }
+  }
+
   @media (min-width: 780px) {
     background: transparent;
 
@@ -57,10 +74,6 @@ const Sidebar = styled('aside')`
       position: sticky;
       overflow-y: auto;
       top: 70px;
-    }
-
-    h3 {
-      margin: 0 0 .5em 0;
     }
   }
 `
@@ -112,35 +125,12 @@ class BlogPostTemplate extends Component {
           </Content>
         </ContentContainer>
 
-        {/* <ul
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'space-between',
-            listStyle: 'none',
-            padding: 0,
-          }}
-        >
-          {previous && (
-            <li>
-              <Link to={previous.fields.slug} rel="prev">
-                ← {previous.frontmatter.title}
-              </Link>
-            </li>
-          )}
+        <PrevNextPosts previous={previous} next={next} />
 
-          {next && (
-            <li>
-              <Link to={next.fields.slug} rel="next">
-                {next.frontmatter.title} →
-              </Link>
-            </li>
-          )}
-        </ul> */}
         <details>
           <summary>data</summary>
           <pre>
-            {JSON.stringify(post, null, 2)}
+            {JSON.stringify({previous, next}, null, 2)}
           </pre>
         </details>
       </Layout>
