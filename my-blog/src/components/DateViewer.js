@@ -20,9 +20,9 @@ const CalendarViewContainer = styled('span')`
 
 class DateViewer extends Component {
   render() {
-    const { date } = this.props
+    const { date, style, className } = this.props
     return (
-      <CalendarViewContainer>
+      <CalendarViewContainer style={style} className={className}>
         <CalendarAltRegularIcon className={calendarAltRegularStyle}/>
         <span>{date}</span>
       </CalendarViewContainer>

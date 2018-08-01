@@ -1,8 +1,13 @@
 import React, { Component, Fragment } from 'react'
 import styled, { css } from 'react-emotion'
 import { injectGlobal } from 'emotion'
+import { Link } from 'gatsby'
+import { DiscussionEmbed, CommentCount } from 'disqus-react'
 
+import CommentsIcon from './icons/CommentsSolid'
+import DateViewer from './DateViewer'
 import TagsList from './TagsList'
+import ReadingTime from './ReadingTime'
 
 const colors = {
   char: '#D8DEE9',
@@ -144,10 +149,19 @@ injectGlobal`
   }
 `
 
-const ArticleHeader = styled('div')`
+const SectionContainer = styled('div')`
   margin: 2em 0;
   line-height: 25px;
   padding: 0 1em;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 
   @media (min-width: 780px) {
     padding: 0 2em;
@@ -339,13 +353,34 @@ const ArticleContainer = styled('article')`
 
 class Article extends Component {
   render() {
-    const { post } = this.props
+    const { post, site, disqusShortName } = this.props
+    const disqusConfig = {
+      url: `${site}${post.frontmatter.slug}`,
+      title: post.frontmatter.title
+    }
+
     return (
       <Fragment>
-        <ArticleHeader>
-          Published by <em>{post.frontmatter.author}</em> in <TagsList tags={post.frontmatter.tags}/>
-        </ArticleHeader>
+        <SectionContainer>
+          <DateViewer style={{marginLeft:0}} date={post.frontmatter.date}/>
+          <TagsList tags={post.frontmatter.tags}/>
+          <a href="#comments" title="Read comments">
+            <CommentsIcon style={{margin: '0 .25em 0 1em'}}/>
+            <CommentCount shortname={disqusShortName} config={disqusConfig}>comments</CommentCount>
+          </a>
+          <p>— Published by <em><Link to="/about">Luciano Mammino</Link></em></p>
+        </SectionContainer>
         <ArticleContainer dangerouslySetInnerHTML={{ __html: post.html }}/>
+        <SectionContainer
+          style={{
+            borderTop: '1px solid #ececec',
+            marginTop: '2em',
+            paddingTop: '2em',
+            lineHeight: '1.2'
+          }}>
+          <h2 id="comments"><CommentsIcon style={{margin: '0 .25em 0 0'}}/> Comments</h2>
+          <DiscussionEmbed shortname={disqusShortName} config={disqusConfig}/>
+        </SectionContainer>
       </Fragment>
     )
   }

@@ -7,6 +7,7 @@
     "url": "https://github.com/gatsbyjs/gatsby-starter-blog/issues"
   },
   "dependencies": {
+    "disqus-react": "^1.0.5",
     "emotion": "^9.2.6",
     "emotion-server": "^9.2.6",
     "gatsby": "next",

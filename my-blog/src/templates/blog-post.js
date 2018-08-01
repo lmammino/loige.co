@@ -56,7 +56,11 @@ const Sidebar = styled('aside')`
       margin: 1em 0 0 0;
       position: sticky;
       overflow-y: auto;
-      top: 50px;
+      top: 70px;
+    }
+
+    h3 {
+      margin: 0 0 .5em 0;
     }
   }
 `
@@ -67,12 +71,14 @@ class BlogPostTemplate extends Component {
     const siteTitle = get(this.props, 'data.site.siteMetadata.title')
     const { previous, next, similar } = this.props.pageContext
     const headerImage = post.frontmatter.header_img ? post.frontmatter.header_img.publicURL : undefined
+    const disqusShortName = get(this.props, 'data.site.siteMetadata.disqusShortName')
+    const site = get(this.props, 'data.site.siteMetadata.siteUrl')
 
     const shareOptions = {
-      url: `${get(this.props, 'data.site.siteMetadata.siteUrl')}${post.frontmatter.slug}`,
+      url: `${site}${post.frontmatter.slug}`,
       title: post.frontmatter.title,
-      site: get(this.props, 'data.site.siteMetadata.siteUrl'),
-      imageUrl: `${get(this.props, 'data.site.siteMetadata.siteUrl')}${headerImage}`,
+      site,
+      imageUrl: `${site}${headerImage}`,
       twitterProfile: get(this.props, 'data.site.siteMetadata.twitterProfile'),
     }
 
@@ -86,17 +92,17 @@ class BlogPostTemplate extends Component {
           <Content>
             <Columns>
               <MainColumn>
-                <Article post={post}/>
+                <Article post={post} site={site} disqusShortName={disqusShortName}/>
               </MainColumn>
               <Sidebar>
                 <div>
                   {post.headings.length > 0 && <PostSummary headings={post.headings}/>}
-                  <h3>Share</h3>
+                  <h3 style={{marginTop: '1em'}}>Share</h3>
                   <SocialShareBar {...shareOptions}/>
                   {
                     similar.length > 0 &&
                     <Fragment>
-                      <h3>Similar posts</h3>
+                      <h3 style={{marginTop: '1em'}}>Similar posts</h3>
                       <SimilarPosts similar={similar}/>
                     </Fragment>
                   }
@@ -152,6 +158,7 @@ export const pageQuery = graphql`
         author
         siteUrl
         twitterProfile
+        disqusShortName
       }
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
