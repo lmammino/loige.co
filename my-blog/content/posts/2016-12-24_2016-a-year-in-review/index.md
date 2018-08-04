@@ -28,7 +28,7 @@ Being part of this initiative served me a double value. First of all, it was an 
 
 If you are curious about Node.js and Design Patterns you can check out the official website of the book at: [https://www.nodejsdesignpatterns.com](https://www.nodejsdesignpatterns.com).
 
-[![Book Cover Node.Js design patterns second edition Mario Casciaro Luciano Mammino Packt Publishing](./book-cover-nodejs-design-patterns-second-edition-mario-casciaro-luciano-mammino-small.jpg)](https://www.nodejsdesignpatterns.com)
+[![Book Cover Node.js design patterns second edition Mario Casciaro Luciano Mammino Packt Publishing](./book-cover-nodejs-design-patterns-second-edition-mario-casciaro-luciano-mammino-small.jpg)](https://www.nodejsdesignpatterns.com)
 
 
 ## Career

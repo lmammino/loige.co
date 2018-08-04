@@ -1,7 +1,7 @@
 ---
 uuid: ada9246e-772d-4ffe-ab91-8da8bdb6030d
 layout: post
-title: My Serverless & AWS Lambda talk at Node.Js Dublin January 2017
+title: My Serverless & AWS Lambda talk at Node.js Dublin January 2017
 slug: my-serverless-aws-lambda-talk-at-nodejs-dublin-january-2017
 subtitle: null
 date: 2017-02-14T19:03:00.000Z

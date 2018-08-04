@@ -26,9 +26,9 @@ tags:
 Do you ever wondered how to manage the **versioning** and **deployment** process of a website? It seems to be a very interesting yet complex topic for which there are already thousands of different solutions.
 In a recent collaboration with [Usersnap](http://usersnap.com/) I had the pleasure to write a very detailed article for their blog that proposes a solution based on **[Flightplan.js](https://github.com/pstadler/flightplan)**, **Git** and **Nginx**.
 
-My solution is very simple, it requires very few dependencies on your system (Git and NodeJs) and it has been thought to give you the basics of how to define a minimal yet complete setup that it's easy to customize and extend for more complex requirements.
+My solution is very simple, it requires very few dependencies on your system (Git and Node.js) and it has been thought to give you the basics of how to define a minimal yet complete setup that it's easy to customize and extend for more complex requirements.
 
-Without further ado I really advice you to go and read the article on the Usersnap blog: 
+Without further ado I really advice you to go and read the article on the Usersnap blog:
 
 [A beginner’s guide to deploying static sites with versioning and rollbacks using Flightplan](http://usersnap.com/blog/deploying-static-websites-flightplan/)
 

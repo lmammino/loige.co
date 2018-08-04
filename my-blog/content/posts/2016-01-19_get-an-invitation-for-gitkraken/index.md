@@ -20,7 +20,7 @@ tags:
 
 Axosoft is currently working on [GitKraken](http://www.gitkraken.com/) an innovative multi-platform graphical client for [git](/tag/git) which is already available for Windows, Linux and Mac OSX in **private beta** version.
 
-The private beta is accessible through an invite code. 
+The private beta is accessible through an invite code.
 I was lucky to get an invite for me and **~~I have~~ some extra invites that I am willing to share with the first people who is going to leave a comment on this post**.
 
 - UPDATE **2016-01-19 22:00 GMT**: I finished all the invites in less than 1 hour! That's incredible :O Sorry for whoever remained out, I'll let you know if I manage to get more invites!
@@ -42,7 +42,7 @@ By the way, GitKraken looks promising thanks to a set of interesting features. L
 
 [![GitKraken network view branching model graph](./gitkraken-network-view-loige-co-luciano-mammino-small-1.png)](./gitkraken-network-view-loige-co-luciano-mammino-big.png)
 
-This is probably the **killer feature** at the moment, a *nice-looking* graphical view of your git network that allows you to understand what is the current status of you repository in terms of commits and branches. Every dot in the graph represents a commit and it is interactive. When you select one of them you can see all the changes applied by that commit, who pushed it, the commit description and, most importantly, if you right click on it you can immediately perform a number of actions which are notoriously not so trivial from the command line: 
+This is probably the **killer feature** at the moment, a *nice-looking* graphical view of your git network that allows you to understand what is the current status of you repository in terms of commits and branches. Every dot in the graph represents a commit and it is interactive. When you select one of them you can see all the changes applied by that commit, who pushed it, the commit description and, most importantly, if you right click on it you can immediately perform a number of actions which are notoriously not so trivial from the command line:
 
 - cherry-pick
 - create a branch from the specific commit
@@ -71,7 +71,7 @@ I am talking about **branching** and **stashing**. By just clicking a button you
 Personally I believe these features can simplify the adoption of a Git branching model as [GitFlow](http://nvie.com/posts/a-successful-git-branching-model/) within your team.
 
 
-### Built with [Electron](http://electron.atom.io/) and [NodeJs](/tag/node-js)
+### Built with [Electron](http://electron.atom.io/) and [Node.js](/tag/node-js)
 
 While this is not a big differentiator at the moment (apart from making it immediately cross platform), I am quite sure that this feature will allow GitKraken to offer a nice extensibility layer offering people a way to write their own plugins/integrations.
 Just look at recent softwares like [nylan/N1](https://github.com/nylas/N1) and [Atom](/3-invitations-to-try-atom-io/) to understand what is possible with this technology and why developers are loving these products.

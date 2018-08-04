@@ -124,7 +124,7 @@ class Footer extends Component {
               <Copyright>Copyright © Luciano Mammino 2014-{year}.</Copyright>
               <Copyright>Built with <a rel="nofollow" target="_blank" href="https://www.gatsbyjs.org">Gatsby</a>, Coffee and a lot of <Heart>❤︎</Heart>.</Copyright>
               <Copyright>Hosted on <a rel="nofollow" target="_blank" href="https://github.com/lmammino/loige.co">GitHub</a>.</Copyright>
-              <Copyright>Theme inspired by React Documentation.</Copyright>
+              <Copyright>Theme inspired by <a rel="nofollow" target="_blank" href="https://reactjs.org/docs/">React documentation.</a></Copyright>
               <Copyright>Icons by <a rel="nofollow" target="_blank" href="https://fontawesome.com/">Font Awesome</a>.</Copyright>
             </FooterFullColumn>
             <FooterColumn>

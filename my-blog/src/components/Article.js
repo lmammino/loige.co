@@ -366,7 +366,7 @@ class Article extends Component {
           <TagsList tags={post.frontmatter.tags}/>
           <a href="#comments" title="Read comments">
             <CommentsIcon style={{margin: '0 .25em 0 1em'}}/>
-            <CommentCount shortname={disqusShortName} config={disqusConfig}>comments</CommentCount>
+            <CommentCount postId={post.frontmatter.slug} shortname={disqusShortName} config={disqusConfig}>comments</CommentCount>
           </a>
           <p>— Published by <em><Link to="/about">Luciano Mammino</Link></em></p>
         </SectionContainer>
@@ -379,7 +379,7 @@ class Article extends Component {
             lineHeight: '1.2'
           }}>
           <h2 id="comments"><CommentsIcon style={{margin: '0 .25em 0 0'}}/> Comments</h2>
-          <DiscussionEmbed shortname={disqusShortName} config={disqusConfig}/>
+          <DiscussionEmbed postId={post.frontmatter.slug} shortname={disqusShortName} config={disqusConfig}/>
         </SectionContainer>
       </Fragment>
     )

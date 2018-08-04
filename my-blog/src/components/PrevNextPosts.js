@@ -74,8 +74,8 @@ const CallToAction = styled('span')`
 class PrevNextPosts extends Component {
   render() {
     const { previous, next } = this.props
-    const previousBg = previous.frontmatter.header_img ? `url(${previous.frontmatter.header_img.publicURL})` : undefined
-    const nextBg = next.frontmatter.header_img ? `url(${next.frontmatter.header_img.publicURL})` : undefined
+    const previousBg = previous && previous.frontmatter.header_img ? `url(${previous.frontmatter.header_img.publicURL})` : undefined
+    const nextBg = next && next.frontmatter.header_img ? `url(${next.frontmatter.header_img.publicURL})` : undefined
     return (
       <PrevNextPostsContainer>
         {previous && (

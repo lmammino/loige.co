@@ -37,11 +37,11 @@ If you ever had a similar situation or if you just want to have a simple and fas
 
 ## Installing Gulp
 
-In case you don't know it, Gulp is a very popular build system written in NodeJs. It uses streams, so it's quite efficient in dealing with data transformations and in managing streams of data from different sources.
+In case you don't know it, Gulp is a very popular build system written in Node.js. It uses streams, so it's quite efficient in dealing with data transformations and in managing streams of data from different sources.
 
-![Gulp is a very popular stream-based build system written in NodeJs](./gulp-is-the-streaming-web-build-system.png)
+![Gulp is a very popular stream-based build system written in Node.js](./gulp-is-the-streaming-web-build-system.png)
 
-To be able to run the script we are going to write you need to have NodeJs and Gulp installed in your machine. If you don't have Gulp already you can easily install it with NPM:
+To be able to run the script we are going to write you need to have Node.js and Gulp installed in your machine. If you don't have Gulp already you can easily install it with NPM:
 
 ```bash
 npm install -g gulp
@@ -128,7 +128,7 @@ gulp.task('ftp-deploy', function() {
     var conn = getFtpConnection();
 
     return gulp.src(localFilesGlob, { base: '.', buffer: false })
-        .pipe( conn.newer( remoteFolder ) ) // only upload newer files 
+        .pipe( conn.newer( remoteFolder ) ) // only upload newer files
         .pipe( conn.dest( remoteFolder ) )
     ;
 });
@@ -148,7 +148,7 @@ gulp.task('ftp-deploy-watch', function() {
       console.log('Changes detected! Uploading file "' + event.path + '", ' + event.type);
 
       return gulp.src( [event.path], { base: '.', buffer: false } )
-        .pipe( conn.newer( remoteFolder ) ) // only upload newer files 
+        .pipe( conn.newer( remoteFolder ) ) // only upload newer files
         .pipe( conn.dest( remoteFolder ) )
       ;
     });
@@ -183,7 +183,7 @@ To run the commands you must first specify the `FTP_USER` and `FTP_PWD` environm
 FTP_USER=someuser FTP_PWD=somepwd gulp ftp-deploy
 ```
 
-or 
+or
 
 ```bash
 FTP_USER=someuser FTP_PWD=somepwd gulp ftp-deploy-watch
@@ -196,7 +196,7 @@ Or if you prefer you can export the variables in your `.bashrc` or `.bash_profil
 
 This approach allowed me to solve the problem easily and quickly having a mechanism that is quite fast to use and easy to maintain.
 
-I am also more and more impressed about how easy is to have simple but effective solutions up and running with NodeJs and the tools in its ecosystem. I am also impressed by the versatility of Gulp and how its stream-based approach makes things very concise and uniform.
+I am also more and more impressed about how easy is to have simple but effective solutions up and running with Node.js and the tools in its ecosystem. I am also impressed by the versatility of Gulp and how its stream-based approach makes things very concise and uniform.
 
 I hope this article was useful and interesting for you.
 I'd really love to receive **your opinions in the comments box** about it and, in case you are a veteran Gulp user, I'm curious to know **what was the most interesting command you have ever written using Gulp**.

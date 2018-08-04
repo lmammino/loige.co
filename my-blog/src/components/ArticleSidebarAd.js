@@ -32,12 +32,17 @@ const Column = styled('span')`
 
   &.left {
     max-width: 125px;
+    padding: 0;
   }
 
   @media (max-width:1024px) and (min-width:780px) {
     width: 100%;
     max-width: auto !important;
     margin: 0;
+
+    &.left {
+      padding: 0 0 0 1em;
+    }
 
     h4 {
       padding: 1em 0 .5em 0 !important;

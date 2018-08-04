@@ -8,7 +8,7 @@ date: 2016-02-14T13:32:00.000Z
 updated: 2017-03-03T21:08:07.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
-header_img: ./to-promise-or-to-callback-this-is-the-problem-loige-amlet-arnold-schwarzenegger-javascript.png
+header_img: ./to-promise-or-to-callback-this-is-the-problem-loige-amlet-arnold-schwarzenegger-javascript.jpg
 status: published
 language: en_US
 meta_title: null
@@ -18,7 +18,7 @@ tags:
   - node-js
 ---
 
-You are building the next cool [Javascript](/tag/javascript) or [NodeJs](/tag/node-js) module with a lot of asynchronous functions and you are very happy about it. At some point a terrible doubt assaults you:
+You are building the next cool [JavaScript](/tag/javascript) or [Node.js](/tag/node-js) module with a lot of asynchronous functions and you are very happy about it. At some point a terrible doubt assaults you:
 
 > Should my API offer support for callbacks or should it be promise based?
 
@@ -26,7 +26,7 @@ In this article we are going to show a very simple way to add support for both p
 
 ## The problem
 
-Promises can be used as a nice replacement for callbacks, that's a well know fact in the JavaScript world today. Promises turn out to be very useful in making our code more readable and easy to reason about. 
+Promises can be used as a nice replacement for callbacks, that's a well know fact in the JavaScript world today. Promises turn out to be very useful in making our code more readable and easy to reason about.
 But while promises bring many advantages, they also require the developer to understand many non-trivial concepts in order to use them correctly and proficiently. For this and other reasons, in some cases it might be more practical to prefer callbacks over promises.
 
 Now let’s imagine for a moment that we want to build a public library that performs asynchronous operations. What do we do? Do we create a *callback oriented* API or a *promise oriented* one? Do we need to be opinionated on one side or another or there are ways to support both and make everyone happy?
@@ -40,7 +40,7 @@ There are at least 2 approaches to face this question, let's see how they work!
 
 The first approach, used for instance by libraries like [request](https://www.npmjs.com/package/request), [redis](https://www.npmjs.com/package/redis) and [mysql](https://www.npmjs.com/package/mysql) as well as all the node native async functions, consists in offering a simple API based only on callbacks and leave the developer the option to *promisify* the exposed functions if needed.
 Some of these libraries are a bit more elaborated and they provide helpers to be able to *promisify* all the asynchronous functions they offer at once, but the developer still needs to someway “convert” the exposed API to be able to use promises.
-That's why I believe this approach feels a bit rude like: 
+That's why I believe this approach feels a bit rude like:
 
 > Do you want to use Promise? I don't care, it's your problem... just promisify what you want and leave me alone!
 
@@ -75,7 +75,7 @@ This approach is more transparent and I would say more... "polite"!
 It is also based on the concept of offering a simple callback oriented API, but **it makes the callback argument optional**.
 Whenever the callback is passed as an argument the function will behave normally executing the callback on completion or on failure. Instead **when the callback is not passed to the function, it will immediately return a Promise object**.
 
-This approach effectively combines callbacks and promises in a way that allows the developer to choose at call time what interface to adopt, without any need to promisify the function in advance. Many libraries like [mongoose](https://www.npmjs.com/package/mongoose) and [sequelize](https://www.npmjs.com/package/sequelize) are supporting this approach. 
+This approach effectively combines callbacks and promises in a way that allows the developer to choose at call time what interface to adopt, without any need to promisify the function in advance. Many libraries like [mongoose](https://www.npmjs.com/package/mongoose) and [sequelize](https://www.npmjs.com/package/sequelize) are supporting this approach.
 
 Let’s see a simple implementation of this approach with an example. Let’s assume we want to implement a dummy module that executes divisions asynchronously:
 
@@ -181,7 +181,7 @@ module.exports = function asyncDivision (dividend, divisor, cb) {
 ```
 
 This code generates a promise only if no callback is used. So if we provide a callback as the last argument, and then we try to use `catch` or `then` on the returning value, we will get an explicit runtime error:
-  
+
   - `TypeError: Cannot read property 'then' of undefined` or
   - `TypeError: Cannot read property 'catch' of undefined`
 
@@ -197,4 +197,3 @@ I think from the tone of the article it's quite clear that I prefer to opt for t
 Let me know your thoughts in the comments.
 
 Until next time! :)
-
