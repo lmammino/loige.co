@@ -60,7 +60,7 @@ class ArticleSidebarAd extends Component {
       <ArticleSidebarAdContainer
         rel="nofollow"
         target="_blank"
-        href="https://www.nodejsdesignpatterns.com/?utm_source=loige.co&utm_medium=banner&utm_campaign=post-sidebar&utm_term=node.js%20design%20patterns"
+        href="https://loige.link/nodejs-book-ref-blog"
       >
         <Columns>
           <Column className="left">

@@ -140,15 +140,15 @@ class Header extends Component {
               <NavLink to="/about">About</NavLink>
             </Nav>
             <SocialLinksContainer>
-              <a className={socialLinkStyle} href="https://github.com/lmammino">
+              <a rel="nofollow" className={socialLinkStyle} href="https://github.com/lmammino">
                 <GithubIcon className={socialIconStyle} alt={`Luciano's GitHub profile`}/>
                 <span>GitHub</span>
               </a>
-              <a className={socialLinkStyle} href="https://twitter.com/loige">
+              <a rel="nofollow" className={socialLinkStyle} href="https://twitter.com/loige">
                 <TwitterIcon className={socialIconStyle} alt={`Luciano's Twitter profile`}/>
                 <span>Twitter</span>
               </a>
-              <a className={socialLinkStyle} href="https://www.linkedin.com/in/lucianomammino/">
+              <a rel="nofollow" className={socialLinkStyle} href="https://www.linkedin.com/in/lucianomammino/">
                 <LinkedinIcon className={socialIconStyle} alt={`Luciano's LinkedIn profile`}/>
                 <span>LinkedIn</span>
               </a>
