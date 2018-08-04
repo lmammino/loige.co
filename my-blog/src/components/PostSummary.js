@@ -5,21 +5,24 @@ import GitHubSlugger from 'github-slugger'
 const PostSummaryContainer = styled('div')`
 
   ol {
-    list-style: none;
+    color: #6d6d6d;
+    list-style: outside;
+    padding: 0 0 0 1.25em;
   }
 
   ol li {
     font-size: 1em;
 
     a {
-      color: #1a1a1a;
+      color: #6d6d6d;
       display: inline-block;
       border-bottom: 1px solid transparent;
       margin-top: 5px;
       text-decoration: none;
+      font-weight: bold;
 
       &:hover {
-        color: #6d6d6d;
+        color: #000;
         outline-width: 0;
       }
     }

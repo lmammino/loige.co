@@ -3,7 +3,8 @@ import styled, { css } from 'react-emotion'
 import { Link } from 'gatsby'
 
 const SimilarPostsList = styled('ul')`
-  list-style: circle;
+  color: #6d6d6d;
+  list-style:outside;
   padding: 0 0 0 1.25em;
 
   li {
@@ -15,12 +16,13 @@ const SimilarPostsList = styled('ul')`
   }
 
   a {
-    color: inherit;
+    color: #6d6d6d;
     text-decoration: none;
+    font-weight: bold;
   }
 
   a:hover {
-    color: #6d6d6d;
+    color: #000;
   }
 `
 

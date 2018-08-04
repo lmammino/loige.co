@@ -8,6 +8,7 @@ import get from 'lodash/get'
 import Layout from '../components/layout'
 import Hero from '../components/Hero'
 import Article from '../components/Article'
+import ArticleSidebarAd from '../components/ArticleSidebarAd'
 import PostSummary from '../components/PostSummary'
 import SocialShareBar from '../components/SocialShareBar'
 import SimilarPosts from '../components/SimilarPosts'
@@ -53,17 +54,7 @@ const Sidebar = styled('aside')`
   h3 {
     margin: 0 0 .5em 0;
     position: relative;
-    padding: 0 0 .5em 0;
-
-    &::after {
-      display: block;
-      content: ' ';
-      background-color: #d26ac2;
-      position: absolute;
-      bottom: 0;
-      height: 4px;
-      width: 50px;
-    }
+    color: #5cb767;
   }
 
   @media (min-width: 780px) {
@@ -108,6 +99,7 @@ class BlogPostTemplate extends Component {
                 <Article post={post} site={site} disqusShortName={disqusShortName}/>
               </MainColumn>
               <Sidebar>
+                <ArticleSidebarAd/>
                 <div>
                   {post.headings.length > 0 && <PostSummary headings={post.headings}/>}
                   <h3 style={{marginTop: '1em'}}>Share</h3>
