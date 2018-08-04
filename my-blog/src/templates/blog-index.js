@@ -26,21 +26,54 @@ const ContentContainer = styled('div')`
 const Content = styled('section')`
   flex: 1;
   display: flex;
-  color: #000;
 `
 
 const Columns = styled('div')`
-  display: flex;
   flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+
+  @media (min-width: 780px) {
+    display: flex;
+  }
 `
 
 const MainColumn = styled('main')`
-  flex: 1;
+  width: 100%;
+  order: 2;
+
+  @media (min-width: 780px) {
+    order: 1;
+    width: 75%;
+  }
 `
 
 const Sidebar = styled('aside')`
-  width: 20%;
-  background: #ccc
+  order: 1;
+  background: #f7f7f7;
+  padding: 1em;
+  margin: 0 0 2em 0;
+  width: 100%;
+
+  h3 {
+    margin: 0 0 .5em 0;
+    position: relative;
+    color: #5cb767;
+  }
+
+  @media (min-width: 780px) {
+    background: transparent;
+    margin: 0 0 1em 0;
+    order: 2;
+    width: 25%;
+
+    & > div {
+      margin: 1em 0 0 0;
+      position: sticky;
+      overflow-y: auto;
+      top: 70px;
+    }
+  }
 `
 
 class BlogIndex extends Component {
@@ -63,7 +96,12 @@ class BlogIndex extends Component {
                 <PostsList posts={posts}/>
                 <Pagination {...pagination} />
               </MainColumn>
-              <Sidebar>Some content here</Sidebar>
+              <Sidebar>
+                <div>
+                  <h3>Some content here</h3>
+                  <p>CIAO BIEDDA</p>
+                </div>
+              </Sidebar>
             </Columns>
           </Content>
         </ContentContainer>
