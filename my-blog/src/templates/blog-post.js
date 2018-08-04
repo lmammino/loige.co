@@ -50,6 +50,7 @@ const Sidebar = styled('aside')`
   flex: 1;
   background: #f7f7f7;
   padding: 1em;
+  margin: 0 0 2em 0;
 
   h3 {
     margin: 0 0 .5em 0;
@@ -59,6 +60,7 @@ const Sidebar = styled('aside')`
 
   @media (min-width: 780px) {
     background: transparent;
+    margin: 0 0 1em 0;
 
     & > div {
       margin: 1em 0 0 0;
@@ -118,13 +120,6 @@ class BlogPostTemplate extends Component {
         </ContentContainer>
 
         <PrevNextPosts previous={previous} next={next} />
-
-        <details>
-          <summary>data</summary>
-          <pre>
-            {JSON.stringify({previous, next}, null, 2)}
-          </pre>
-        </details>
       </Layout>
     )
   }

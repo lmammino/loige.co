@@ -26,6 +26,9 @@ module.exports = ({ graphql, actions }) => {
                     date(formatString: "DD MMMM, YYYY")
                     title
                     tags
+                    header_img {
+                      publicURL
+                    }
                   }
                 }
               }

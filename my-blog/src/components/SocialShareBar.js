@@ -83,7 +83,7 @@ class SocialShareBar extends Component {
         { socials.map((social) => {
           return (<li key={social}>
             <a
-              rel="nofollow" 
+              rel="nofollow"
               className={social}
               target="_blank"
               href={buildLink[social](url, title, site, imageUrl, twitterProfile)}

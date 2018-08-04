@@ -30,6 +30,7 @@ const PostSummaryContainer = styled('div')`
     &.depth-3 {
       font-size: .8em;
       padding-left: 1em;
+      list-style: none;
     }
 
   }
