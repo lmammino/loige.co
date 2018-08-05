@@ -18,7 +18,7 @@ tags:
   - entrepreneurship
 ---
 
-**What a hell of 3 months!** 
+**What a hell of 3 months!**
 
 During the last 3 months I haven't got a single minute to take care of this blog. I started a new adventure and moved to Ireland to attend the Bank of Ireland Accelerator Programme in Cork with my startup [Sbaam](http://sbaam.com). There I spent 3 incredible months with a huge amount of lessons learned about **startups** and **entrepreneurship**. I want to share with you 5 of the best quotes I heard from the mentors and explain what I learned from them.
 
@@ -27,12 +27,10 @@ During the last 3 months I haven't got a single minute to take care of this blog
 
 ##1. Being an entrepreneur is hell
 
-<img src="/content/images/2014/12/bill-liao.png" width="80px" style="border-radius:50%; float: right; width: 20%; margin: 2.8em 0; padding:0;"/>
-<blockquote style="float:left; width: 70%">
-<p>"Welcome... to hell!"</p>
-<p> – Bill Liao (<a href="https://twitter.com/liaonet" title="follow Bill on Twitter">@liaonet</a>)</p>
-</blockquote>
-<div style="clear:both"></div>
+
+> "Welcome... to hell!"
+>
+> – Bill Liao (<a href="https://twitter.com/liaonet" title="follow Bill on Twitter">@liaonet</a>)
 
 This is the very first phrase I remember from a mentor. It was the opening day and Bill was one of the first speakers. He wanted to warn us about the upcoming months, but also about our choice of being entrepreneurs.
 
@@ -45,12 +43,10 @@ And, speaking about entrepreneurs' earning, get ready to spend months, sometimes
 
 ##2. Understand who you are, what you want to accomplish but don't forget about your customers
 
-<img src="/content/images/2014/12/sean-o-sullivan.png" width="80px" style="border-radius:50%; float: right; width: 20%; margin: 2.8em 0; padding:0;"/>
-<blockquote style="float:left; width: 70%">
-<p>"Nail it and then scale it! Find your first 100 happy customers and really understand them"</p>
-<p> – Sean O'Sullivan (<a href="https://twitter.com/sosventures" title="follow Sean on Twitter">@sosventures</a>)</p>
-</blockquote>
-<div style="clear:both"></div>
+
+> "Nail it and then scale it! Find your first 100 happy customers and really understand them"
+>
+> – Sean O'Sullivan (<a href="https://twitter.com/sosventures" title="follow Sean on Twitter">@sosventures</a>)
 
 Sean explained us why most of the businesses fail: they simply are not focused in trying to solve a problem for their customers!
 It's crucial to understand what you are doing and what your customers need. You shouldn't really keep adding 10 thousand features to your product or trying to attack every possible market and regions from day one.
@@ -60,12 +56,10 @@ It's crucial to understand what you are doing and what your customers need. You 
 
 ##3. Passion breaks the point!
 
-<img src="/content/images/2014/12/daniel-ramamoorthy.png" width="80px" style="border-radius:50%; float: right; width: 20%; margin: 2.8em 0; padding:0;"/>
-<blockquote style="float:left; width: 70%">
-<p>"You need to be totally and utterly in love with your business as it keeps you alive and your business itself alive"</p>
-<p> – Daniel Ramamoorthy (<a href="https://twitter.com/mynameisdanram" title="follow Daniel on Twitter">@mynameisdanram</a>)</p>
-</blockquote>
-<div style="clear:both"></div>
+
+> "You need to be totally and utterly in love with your business as it keeps you alive and your business itself alive"
+>
+> – Daniel Ramamoorthy (<a href="https://twitter.com/mynameisdanram" title="follow Daniel on Twitter">@mynameisdanram</a>)
 
 Daniel has an incredible attitude of life and he is a surprisingly positive person. This quality is not something he is born with, but something that he developed in time and something that everyone can develop.
 
@@ -78,12 +72,9 @@ Daniel told us that he printed his favourite quote on the ceiling over his bed. 
 
 ##4. Surround yourself with great people
 
-<img src="/content/images/2014/12/sean-gallagher.png" width="80px" style="border-radius:50%; float: right; width: 20%; margin: 2.8em 0; padding:0;"/>
-<blockquote style="float:left; width: 70%">
-<p>"You are the average of the five people you spend most time with"</p>
-<p> – Seàn Gallagher (<a href="https://twitter.com/seangallagher1" title="follow Seàn on Twitter">@seangallagher1</a>)</p>
-</blockquote>
-<div style="clear:both"></div>
+> "You are the average of the five people you spend most time with"
+>
+> – Seàn Gallagher (<a href="https://twitter.com/seangallagher1" title="follow Seàn on Twitter">@seangallagher1</a>)
 
 Nobody is alone. Unless you are an hermit in the Himalayas your days will be spent with different people from work to family and friends.
 The fact is that every one can give you something, so the trick is to surround yourself with the best people you can find. People that can teach you how to be better at something, people that can make you feel positive, people that can transmit their experience to you, people that can compensate your weaknesses. If you can do this you will surely became a better person day by day and will live happier.
@@ -95,19 +86,16 @@ Just imagine what can happen to your business if your core team is not the right
 
 ##5. You should work really hard if you want to look as good as a swan!
 
-<img src="/content/images/2014/12/wayne-murphy.png" width="80px" style="border-radius:50%; float: right; width: 20%; margin: 2.8em 0; padding:0;"/>
-<blockquote style="float:left; width: 70%">
-<p>"You need to be as smooth as a graceful swan on a lake but you must keep pedalling very hard under the surface to maintain that forward momentum"</p>
-<p> – Wayne Murphy, programme manager (<a href="https://twitter.com/waynemurphy77" title="follow Wayne on Twitter">@waynemurphy77</a>)</p>
-</blockquote>
-<div style="clear:both"></div>
+> "You need to be as smooth as a graceful swan on a lake but you must keep pedalling very hard under the surface to maintain that forward momentum"
+>
+> – Wayne Murphy, programme manager (<a href="https://twitter.com/waynemurphy77" title="follow Wayne on Twitter">@waynemurphy77</a>)
 
 This is really a great metaphor. I simply loved it.
 I have two different interpretation of it.
 
 The first is that you have to look great to every external observer, almost pretending that everything is possible for you. But being able to do so requires a huge and continuous effort, you can't fake it, you have to earn it!
 
-My second interpretation is that once you start having some traction and you are floating smoothly on your way you have to start working even harder to keep the momentum and reach the next great milestone. So don't make the mistake to relax at the first goal reached, but immediately look at the next one and do what's needed to reach it, immediately! 
+My second interpretation is that once you start having some traction and you are floating smoothly on your way you have to start working even harder to keep the momentum and reach the next great milestone. So don't make the mistake to relax at the first goal reached, but immediately look at the next one and do what's needed to reach it, immediately!
 
 
 ## Conclusion

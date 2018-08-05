@@ -8,7 +8,7 @@ date: 2014-03-30T09:07:56.000Z
 updated: 2014-03-30T09:20:07.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
-header_img: null
+header_img: ./reset-your-mysql-server-password.png
 status: published
 language: en_US
 meta_title: null

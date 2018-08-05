@@ -8,7 +8,7 @@ date: 2014-06-13T10:33:04.000Z
 updated: 2014-06-17T09:00:17.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
-header_img: null
+header_img: ./transparent-pixel-response-with-symfony-how-to-track-email-opening.jpg
 status: published
 language: en_US
 meta_title: null
@@ -40,9 +40,9 @@ The following image shows the typical tracking flow applied to emails:
   1. A user receives our HTML email. Within the email content there's a "smart" tracking image: `<img src="http://example.com/track.gif?id=1234">`. Notice that it points to our server **example.com** and has a parameter `id=1234`.
 
   2. When the user opens the email, his email client will start to download all the resources linked into the HTML code (usually images) and it will trigger a request to download the tracking image.
-  
+
   3. The request is handled by the **example.com** webserver. It does not handle the request as a static image but it executes some logic. It checks the `id` parameter and uses it to determine which email has triggered the request. Then it marks that email as opened in its own database for future reports. The mail client is still waiting for an answer and it expects an image. So the webserver generates on the fly the most small image possible: a 1x1 transparent image!
-  
+
   4. Then the image is sent back to the client that will render it on the screen. Anyway the image is trasparent and so small that the user will barely notice it.
 
 
@@ -72,10 +72,10 @@ class TransparentPixelResponse extends Response
      * Base 64 encoded contents for 1px transparent gif and png
      * @var string
      */
-    const IMAGE_CONTENT = 
+    const IMAGE_CONTENT =
         'R0lGODlhAQABAJAAAP8AAAAAACH5BAUQAAAALAAAAAABAAEAAAICBAEAOw=='
     ;
-    
+
     /**
      * The response content type
      * @var string
@@ -127,7 +127,7 @@ class TrackingController extends Controller
 }
 ```
 
-Here the logic is pretty simple too. 
+Here the logic is pretty simple too.
 We created a controller with a `trackEmail` action. The action has been assigned to the route `/track.gif` using the `Route` annotation (if you prefer you can do it also by using the yaml or the xml convention).
 Within this action we just read the parameter `id` from the request and used it to execute the persistence logic to retrive the email record and mark it as opened (skipped in the example).
 Then we just have to return a new instance of our `TransparentPixelResponse` class.
@@ -159,9 +159,9 @@ class TrackingController extends Controller
     	$id = $request->query->get('id');
         if (null !== $id) {
         	$dispatcher = $this->get('event_dispatcher');
-            $dispatcher->addListener(KernelEvents::TERMINATE, 
+            $dispatcher->addListener(KernelEvents::TERMINATE,
                 function(KernelEvent $event) use ($id){
-                   //... executes some logic to retrieve 
+                   //... executes some logic to retrieve
                    // the email and mark it as opened
                 }
             );
@@ -183,6 +183,6 @@ Keep in mind that the `kernel.terminate` event is optional, and should only be c
 You can apply this method to track email opening or views on other online contents such as Html webpages (in cases where you can't or don't want to use javascript).
 Anyway, regarding tracking email opening, you should be aware that **some e-mail clients block images loading** when you open an e-mail from an unknown sender. Yes, they do it not only to save your bandwidth, but mostly to avoid triggering tracking images! So in this cases you will not able to track the email opening, unless the user authorizes its client to load all the images in that specific email.
 
-**UPDATE 2014-06-17**: [Jelte Steijaert](http://disqus.com/jeltesteijaert/) reported that using email authentication systems such as [DKIM](http://www.dkim.org/) or [SPF](http://www.openspf.org/) will increase chances for images to get autoloaded by email clients. This authentication methods are also very useful to save your emails from ending up into the spam folder, so they are very recommended! 
+**UPDATE 2014-06-17**: [Jelte Steijaert](http://disqus.com/jeltesteijaert/) reported that using email authentication systems such as [DKIM](http://www.dkim.org/) or [SPF](http://www.openspf.org/) will increase chances for images to get autoloaded by email clients. This authentication methods are also very useful to save your emails from ending up into the spam folder, so they are very recommended!
 
 If you have some other consideration you are very welcome to write a comment, as always!

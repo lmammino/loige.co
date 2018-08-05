@@ -8,7 +8,7 @@ date: 2014-04-11T08:50:53.000Z
 updated: 2014-04-11T09:24:23.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
-header_img: null
+header_img: ./introducing-orm-cheatsheet.jpg
 status: published
 language: en_US
 meta_title: null

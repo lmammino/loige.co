@@ -8,7 +8,7 @@ date: 2014-02-10T17:23:54.000Z
 updated: 2014-02-10T17:30:42.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
-header_img: null
+header_img: ./writing-a-new-extractor-for-php-oauth-user-data.png
 status: published
 language: en_US
 meta_title: null
@@ -35,7 +35,7 @@ So that's a lot of work! And yes, of course I would be glad to share it with som
 This article illustrates how to add support for a new service by writing a dedicate **extractor** class. It's really simple so stick with me and you will be able to submit your pull request in minutes!
 
 Extractors defines the logic to request information to a given service API and to normalize the received data according to a common [interface](https://github.com/Oryzone/PHPoAuthUserData/blob/master/src/OAuth/UserData/Extractor/ExtractorInterface.php).
-The most basic way to define an extractor is to write a class that implements the [ExtractorInterface](https://github.com/Oryzone/PHPoAuthUserData/blob/master/src/OAuth/UserData/Extractor/ExtractorInterface.php) (that is pretty self-explanatory). 
+The most basic way to define an extractor is to write a class that implements the [ExtractorInterface](https://github.com/Oryzone/PHPoAuthUserData/blob/master/src/OAuth/UserData/Extractor/ExtractorInterface.php) (that is pretty self-explanatory).
 
 You could extend the class [Extractor](https://github.com/Oryzone/PHPoAuthUserData/blob/master/src/OAuth/UserData/Extractor/Extractor.php) that implements most of the needed code to get you started. Anyway, extractors should **really** extend the class [LazyExtractor](https://github.com/Oryzone/PHPoAuthUserData/blob/master/src/OAuth/UserData/Extractor/LazyExtractor.php) where possible
 because this class acts as a boilerplate to define highly optimized extractors. It easily allows you to implement extractors that **lazy loads** data (perform requests only when needed to) and **caches** data (does not make the same request more than once and avoids normalizing the same data more than once). Everything is done behind the scenes, so you'll need to focus only on methods that define how to make

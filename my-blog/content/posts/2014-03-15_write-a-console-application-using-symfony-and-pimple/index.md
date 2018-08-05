@@ -8,7 +8,7 @@ date: 2014-03-15T02:16:20.000Z
 updated: 2014-03-16T16:50:57.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
-header_img: null
+header_img: ./write-a-console-application-using-symfony-and-pimple.png
 status: published
 language: en_US
 meta_title: null
@@ -37,7 +37,7 @@ So we will be able to run
 app/console greet Alice
 ```
 
-and it will print out 
+and it will print out
 
 ```bash
 Hello Alice

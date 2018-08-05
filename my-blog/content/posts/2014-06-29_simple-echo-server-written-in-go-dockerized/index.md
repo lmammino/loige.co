@@ -5,18 +5,18 @@ title: Simple echo server written in Go, dockerized!
 slug: simple-echo-server-written-in-go-dockerized
 subtitle: >-
   How to write a very simple server app written in Go language and use a docker
-  container to launch it 
+  container to launch it
 date: 2014-06-29T14:43:56.000Z
 updated: 2015-03-01T13:01:20.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
-header_img: null
+header_img: ./simple-echo-server-written-in-go-dockerized.jpg
 status: published
 language: en_US
 meta_title: Simple server app written in Go lang and docker
 meta_description: >-
   How to write a very simple server app written in Go language and use a docker
-  container to launch it 
+  container to launch it
 tags:
   - server
   - go
@@ -33,7 +33,7 @@ In this post we will see how to write a (very) simple **Go server app** and how 
 
 We are going to write a simple echo server in Go and then we will pack it into a Docker container for future execution/distribution.
 
-*"Luciano, you are a PHP developer, why bothering with Go?"* 
+*"Luciano, you are a PHP developer, why bothering with Go?"*
 
 Nice question! Well, there are at least two reasons for this choice:
 
@@ -107,12 +107,12 @@ func handleRequest(conn net.Conn) {
   }
   // Builds the message.
   message := "Hi, I received your message! It was "
-  message += strconv.Itoa(reqLen) 
-  message += " bytes long and that's what it said: \"" 
+  message += strconv.Itoa(reqLen)
+  message += " bytes long and that's what it said: \""
   n := bytes.Index(buf, []byte{0})
   message += string(buf[:n-1])
   message += "\" ! Honestly I have no clue about what to do with your messages, so Bye Bye!\n"
-  
+
   // Write the message in the connection channel.
   conn.Write([]byte(message));
   // Close the connection when you're done with it.
@@ -120,7 +120,7 @@ func handleRequest(conn net.Conn) {
 }
 ```
 
-Ok, the code is commented at it should be understandable enough. 
+Ok, the code is commented at it should be understandable enough.
 Let's try if it works.
 
 Just launch the server with the command:
@@ -137,7 +137,7 @@ Listening on :3333
 
 Let's open another terminal window to try to speak with him. We will use [netcat](http://wikipedia.org/wiki/Netcat):
 
-```bash 
+```bash
 echo "Hello server" | nc localhost 3333
 ```
 
@@ -171,7 +171,7 @@ A "*Dockerfile*" is a file called exactly `Dockerfile` that contains several rep
 If you are a noob with Docker (like me) you are probably asking yourself this question. I want to quote a [brilliant answer from stackoverflow](http://stackoverflow.com/a/21499102/495177) that should make things a bit clearer:
 
 > An image is the set of layers that are built up and can be moved around. Images are read-only.
-> 
+>
 > http://docs.docker.io/en/latest/terms/image/
 > http://docs.docker.io/en/latest/terms/layer/
 A container is an active (or inactive if exited) stateful instantiation of an image.

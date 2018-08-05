@@ -9,7 +9,7 @@ date: 2014-02-14T00:34:23.000Z
 updated: 2014-03-13T14:54:05.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
-header_img: null
+header_img: ./symfony-security-authentication-made-simple.png
 status: published
 language: en_US
 meta_title: null
@@ -25,7 +25,7 @@ The [Symfony2 security component](http://symfony.com/doc/current/components/secu
 I am in the process of writing an [OAuth bundle](https://github.com/Oryzone/OryzoneOauthBundle) and I faced the need to  deeply understand how the authentication process work in Symfony2 to being able to integrate the OAuth protocol with the Symfony authentication component.
 Notice that I know there are a lot of great and stable OAuth bundles out there (have a look at the great [HWIOAuthBundle](https://github.com/hwi/HWIOAuthBundle) to which I had chance to submit small contributions in the past). My intention is not to build a better one, but I want to build my own bundle with some peculiar features and use it as a way to experiment and learn new things. But I am getting off topic!
 
-Going back to the Symfony2 security component, the point is that I found out difficult at first glance to get a clear idea of what is going on behind the scenes and what I need to write to create a custom authentication mechanism. 
+Going back to the Symfony2 security component, the point is that I found out difficult at first glance to get a clear idea of what is going on behind the scenes and what I need to write to create a custom authentication mechanism.
 
 So in this post I will try to collect few interesting resources that helped me understanding it better and a [graph](#symfony-authentication-graph) I drawn to resume what I learned.
 

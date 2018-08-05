@@ -8,7 +8,7 @@ date: 2014-02-28T11:40:05.000Z
 updated: 2014-02-28T12:35:38.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
-header_img: null
+header_img: ./integrating-twig-js-and-bazingajstranslationbundle.png
 status: published
 language: en_US
 meta_title: null

@@ -8,7 +8,7 @@ date: 2014-04-09T10:58:22.000Z
 updated: 2016-01-19T22:37:15.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
-header_img: null
+header_img: ./3-invitations-to-try-atom-io.png
 status: published
 language: en_US
 meta_title: null
@@ -28,7 +28,7 @@ I would be glad to **share the invitations** with the first 3 readers who would 
 
 PS: You would probably need a GitHub account!
 
-**UPDATE**, April 12: 
+**UPDATE**, April 12:
 Sorry guys, my invitations have gone for now.
 Anyway it seems that GitHub distributes other invitations sometime. So if you haven't been in time you can still write a comment and if I ever manage to have other invites i will follow the order of the order to share them with you.
 
