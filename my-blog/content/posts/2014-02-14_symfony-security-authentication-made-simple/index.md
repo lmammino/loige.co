@@ -29,7 +29,7 @@ Going back to the Symfony2 security component, the point is that I found out dif
 
 So in this post I will try to collect few interesting resources that helped me understanding it better and a [graph](#symfony-authentication-graph) I drawn to resume what I learned.
 
-## Interesting links:
+## Interesting links
 
 I highly suggest you to read them in the proposed order.
 

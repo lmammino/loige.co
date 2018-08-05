@@ -28,7 +28,7 @@ Writing console commands for Symfony (full stack framework) is easy and enjoyabl
 
 Anyway I discovered that writing stand alone command line applications using only the [Symfony/Console](https://github.com/symfony/console) component is a lot more easy and enjoyable and that a lot of famous command line applications uses it ([Composer](https://getcomposer.org/) and [Laravel/Artisan](http://laravel.com/docs/commands) just to name a few). Furthermore by using Symfony I became a great fan of the *Dependency Injection* and *Inversion of Control (IoC)* [design pattern](http://martinfowler.com/articles/injection.html) and, as my dependencies started to grow, I wanted to put some sort of *container* in my command line apps. I decided to go with [Pimple](http://pimple.sensiolabs.org/): a really simple dependency injection container written by [Fabien Potencier](http://fabien.potencier.org/), the notorious head behind the Symfony framework and Sensio.
 
-###Let's start
+## Let's start
 I will demonstrate my approach by creating a simple "hello *$name*" command line application that will be able to count how many times you greet someone. You can find the whole code in a dedicated [GitHub repository](https://github.com/lmammino/SymfonyConsolePimple).
 
 So we will be able to run
@@ -74,7 +74,7 @@ Let's start by creating our *composer.json* file. We will need the Symfony conso
 
 Yes, let's run `composer update` to download all the libraries.
 
-### Folder structure
+## Folder structure
 
 Let's structure our code. We want to separate application and configuration code from the main source code. So we will end up with the following folder structure:
 
@@ -84,7 +84,7 @@ Let's structure our code. We want to separate application and configuration code
 
 The **app** folder will contain our console executable file, a bootstrap file and a config folder. We will get into the details in a while.
 
-### The Greeter service
+## The Greeter service
 
 Let's just define our core service by Writing the `Greeter` class. This class defines the business logic of our greeting application.
 
@@ -176,7 +176,7 @@ The class is really simple. The main methods are `greet` and `countGreetings` th
 
 Note that this class needs to know on costruction which file to use to read and store the greetings count. This will be something we will configure through Pimple as a container parameter.
 
-### The GreetCommand
+## The GreetCommand
 
 Now we have a service with the main business logic, let's just write a Symfony command to run it:
 
@@ -241,7 +241,7 @@ class GreetCommand extends Command
 
 The command is totally self explainatory! It just defines the *greet* command offering a *name* argument and a *yell* option (both optional). The point here is that our command has a dependency on the `Greeter` class we wrote before. So we need to pass it on construction (or we need to configure our Pimple container to do so).
 
-### Ladies and gents, the Pimple container!
+## Ladies and gents, the Pimple container!
 
 Finally it's time to write our Pimple container. Before getting to the code let's recap things a bit.
 We have a parameter (the name of the greetings count file) and two services (the `Greeter` service and the `GreetCommand`).
@@ -290,7 +290,7 @@ Let's check our definitions one by one:
 
 Ok, we are almost done. We just need to write our bootstrap file and our console executable file.
 
-### The bootstrap file
+## The bootstrap file
 
 The file `app/bootstrap.php` is used to load the composer autoloader class and our container:
 
@@ -306,7 +306,7 @@ $container = require(__DIR__ . '/config/container.php');
 
 `set_time_limit(0)` ensures that our script will not be killed after a certain amount of seconds (if your *php.ini* wants so). It's almost useless in this particular case (our command will run in a few milliseconds) but adding it in Php command line applications is a good practice (especially when you have to deal with long running tasks).
 
-### The executable console file
+## The executable console file
 
 The last step needed to make our application executable is to write the `app/console` file. This is a php file that can be executed from the command line (you need to `chmod +x` it).
 
@@ -324,7 +324,7 @@ By using a container it just need to load our "application" service and call `ru
 
 Note that the first "[shebang](http://en.wikipedia.org/wiki/Shebang_%28Unix%29)" line (`#!/usr/bin/env php`) allows us to run this file by calling `app/console` (so that you can avoid to call the php interpreter explicitly).
 
-### Conclusions
+## Conclusions
 
 This app is very simple and it will be easy to build even without adopting a container. Anyway I think this approach guarantees a good organization for your code and will became really useful when your command line application start to grow in terms of complexity.
 I recently had to build a command line app that uses Doctrine and JMS/Serializer (plus several other dependecies). I can say that adopting a container like Pimple helped me a lot to keep things organized and services decoupled.

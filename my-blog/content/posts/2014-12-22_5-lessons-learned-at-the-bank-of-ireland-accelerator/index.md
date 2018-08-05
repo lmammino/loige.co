@@ -25,7 +25,7 @@ During the last 3 months I haven't got a single minute to take care of this blog
 <small>Consider this is my first "non technical" post with a lot of english written text. You'll probalby find it plenty of mistakes, so feel free to [send me an email](mailto:loige@hotmail.com) and help me to improve it (and improve my english too :P)</small>
 
 
-##1. Being an entrepreneur is hell
+## Being an entrepreneur is hell
 
 
 > "Welcome... to hell!"
@@ -41,7 +41,7 @@ Entrepreneurs work a lot more than the usual workers (and this very often includ
 And, speaking about entrepreneurs' earning, get ready to spend months, sometimes even years, without a single cent in your pocket especially if it's your first time as an entrepreneur. Every penny you have should be invested in your business because at the end of the day **you are the "number one" investor of your company**.
 
 
-##2. Understand who you are, what you want to accomplish but don't forget about your customers
+## Understand who you are, what you want to accomplish but don't forget about your customers
 
 
 > "Nail it and then scale it! Find your first 100 happy customers and really understand them"
@@ -54,7 +54,7 @@ It's crucial to understand what you are doing and what your customers need. You 
 **Start small**. Find a niche and try to grasp what's the real pain there. Then see if your solution solves the problem for real and see if people are willing to pay for it. If that's the case you found your first customers, well done! They are your most valuable asset, so you have to be sure they are really happy with you and that your solution is the best for them before trying to move on to a broader audience.
 
 
-##3. Passion breaks the point!
+## Passion breaks the point!
 
 
 > "You need to be totally and utterly in love with your business as it keeps you alive and your business itself alive"
@@ -70,7 +70,7 @@ There will be times when everything will go wrong and it will be almost impossib
 
 Daniel told us that he printed his favourite quote on the ceiling over his bed. Everytime he wakes up in the morning this is the first thing he see and this allows him to remember who he is and what he is passionate about, this makes him ready to do his best during the day.
 
-##4. Surround yourself with great people
+## Surround yourself with great people
 
 > "You are the average of the five people you spend most time with"
 >
@@ -84,7 +84,7 @@ This obviously applies also to your business: **team, team, team**! If you are a
 Just imagine what can happen to your business if your core team is not the right one...
 
 
-##5. You should work really hard if you want to look as good as a swan!
+## You should work really hard if you want to look as good as a swan!
 
 > "You need to be as smooth as a graceful swan on a lake but you must keep pedalling very hard under the surface to maintain that forward momentum"
 >

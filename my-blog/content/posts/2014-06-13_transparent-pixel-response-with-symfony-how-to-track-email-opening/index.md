@@ -24,14 +24,14 @@ tags:
 If you have ever heard about "**transparent pixel**", "**1x1 blank pixel**", "**tracking pixel**" or simply "**tracking image**" you probably know what we are going to talk about and can just [skip to the implementation](#symfonyimplementation)!
 
 
-###Introduction
+## Introduction
 
 Transparent pixel image is a technique often used to track some user behavior (often visits or views to a certain online content) in scenarios where you can't use javascript.
 
 One of the most common scenarios is probably email opening tracking. Can you put Google Analytics into an email? Well, probably it would not work as expected... So there's something we can do? Of course there is, let's jump into a concrete example.
 
 
-###Track email opening
+## Track email opening
 
 The following image shows the typical tracking flow applied to emails:
 
@@ -46,7 +46,7 @@ The following image shows the typical tracking flow applied to emails:
   4. Then the image is sent back to the client that will render it on the screen. Anyway the image is trasparent and so small that the user will barely notice it.
 
 
-### Symfony implementation
+## Symfony implementation
 
 Now let's see how to implement this tracking flow using the Symfony framework.
 
@@ -134,7 +134,7 @@ Then we just have to return a new instance of our `TransparentPixelResponse` cla
 
 That's it! Pretty simple, isn't it?
 
-####Improve performance
+###Improve performance
 
 **UPDATE 2014-06-16**: A comment from [Lumbendil](http://disqus.com/Lumbendil) pointed out that it would be possible to do the "heavy logic" within a `kernel.terminate` event listener. So let's refactor our code to follow this good suggestion:
 
@@ -178,7 +178,7 @@ Keep in mind that the `kernel.terminate` event is optional, and should only be c
 
 [Lumbendil](http://disqus.com/Lumbendil) also pointed out that this solution is not the only one possible. You can also rely on some messaging/queue system such as [RabbitMq](http://www.rabbitmq.com), [Gearman](http://gearman.org) or [Beanstalkd](http://kr.github.io/beanstalkd). These are great tools but they add new dependencies and a whole new layer of complexity to the  web infrastructure, so I will suggest to use one of them only if your logic is very complex or heavy (or if you are designing you whole infrastructure from scratch to leverage a work queue system).
 
-### Considerations
+## Considerations
 
 You can apply this method to track email opening or views on other online contents such as Html webpages (in cases where you can't or don't want to use javascript).
 Anyway, regarding tracking email opening, you should be aware that **some e-mail clients block images loading** when you open an e-mail from an unknown sender. Yes, they do it not only to save your bandwidth, but mostly to avoid triggering tracking images! So in this cases you will not able to track the email opening, unless the user authorizes its client to load all the images in that specific email.

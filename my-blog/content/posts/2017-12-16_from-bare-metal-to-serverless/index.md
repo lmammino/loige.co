@@ -30,7 +30,7 @@ In this article, I will illustrate the result of a small research I did about th
 At the end of this article, I will also illustrate a definition of Serverless and what are its main characteristics.
 
 
-### The invention of the web
+## The invention of the web
 
 ![1989-1991 — Sir Tim Berners-Lee invented the World Wide Web](./web-www-tim-berners-lee-from-bare-metal-to-serverless.jpg)
 
@@ -41,7 +41,7 @@ At the beginning, the web was just a simple publishing platform for researchers 
 The web quickly evolved and grew up out of the research space, to become one of the most mainstream and ubiquitous products of the last decades.
 
 
-### The bare metal age
+## The bare metal age
 
 ![1991-1995 — The bare metal age](./server-racks-bare-metal-age-google-from-bare-metal-to-serverless.jpg)
 
@@ -52,7 +52,7 @@ At that time you literally had to buy your server machine, configure it, connect
 Can you imagine the effort required when you needed to scale your service and adopt many servers?
 
 
-### The invention of web hosting
+## The invention of web hosting
 
 ![1995 — The invention of web hosting](./geocities-invention-of-web-hosting-from-bare-metal-to-serverless.jpg)
 
@@ -63,7 +63,7 @@ Web hosting allowed everybody to publish web pages directly on shared servers at
 Although web hosting was cheap and easy, most of the time it was very limited and it was possible to publish only static files (HTML, images, etc.) through FTP. Later on, web hosting improved supporting dynamic languages like Perl and PHP and databases like MySQL.
 
 
-### Grid computing
+## Grid computing
 
 ![1997 Ian Foster and the idea of Grid Computing](./ian-foster-grid-computing-from-bare-metal-to-serverless.jpg)
 
@@ -78,7 +78,7 @@ Metacomputing is the foundation for Grid Computing which is generally recognized
 Grid computing was important for the history of the cloud because it shifted the perception on the power of distributed computing. It was the demonstration that the world didn't need a single supercomputer in order to solve complex problems, because a well-knitted network of ordinary computers can be orchestrated to achieve complex goals or to sustain sophisticated services.
 
 
-### Software as a Service (SaaS)
+## Software as a Service (SaaS)
 
 ![1999 — Salesforce introduces the concept of Software as a Service (SaaS)](./marc-benioff-salesforce-software-as-a-service-from-bare-metal-to-serverless.jpg)
 
@@ -89,11 +89,11 @@ Marc Benioff of Salesforce was one of the first public figures to strongly state
 This principle, lead in the following years to the definition of *Software as a Service* (SaaS) and it was probably the reason why the web started to play a bigger role, not only as a publishing platform but as a complete runtime to execute all sorts of applications and games.
 
 
-### Server virtualization
+## Server virtualization
 
 ![2001 — VMWare releases ESXi, "server virtualization" becomes a thing](./VMware-BIOS-server-virtualization-from-bare-metal-to-serverless.jpg)
 
-In 2001, VMWare releases ESXi and server virtualization becomes a thing. 
+In 2001, VMWare releases ESXi and server virtualization becomes a thing.
 
 With server virtualization, it's possible to divide one physical server into multiple isolated virtual environments.
 
@@ -104,7 +104,7 @@ This approach is way more convenient and flexible than the bare metal one.
 Interesting thing is that virtualization was a thing way back in the history of computing. For example, CP-40 was a research project back in 1964 that ran on the 360. IBM released a product from that called VM in 1972. This eventually turned into z/VM, which has a long line of products before it.
 
 
-### Infrastructure as a service (IaaS)
+## Infrastructure as a service (IaaS)
 
 ![2002-2006 — AWS is born (IaaS), people talk about "Cloud computing"](./andy-jassy-aws-reinvent-infrastructure-as-a-service-from-bare-metal-to-serverless.jpg)
 
@@ -117,7 +117,7 @@ At the time AWS offer constituted by EC2 (Virtual Machine service), S3 (Scalable
 In the years to come, AWS and the competing IaaS platforms would have been associated with the idea of *"Cloud Computing"*.
 
 
-### Platform as a Service (PaaS)
+## Platform as a Service (PaaS)
 
 ![2009 — Heroku and the invention of the "Platform as a Service"](./adam-wiggins-heroku-founder-from-bare-metal-to-serverless.jpg)
 
@@ -128,7 +128,7 @@ Heroku was originally born as an attempt to create an online editor for Ruby on 
 Heroku defined the idea of *Platform as a Service* (PaaS) and it was so successful that Salesforce acquired the company and hired Yukihiro Matsumoto, the inventor of Ruby, as Chief Architect a few years later.
 
 
-### Database as a service
+## Database as a service
 
 ![2011 — Envolve/Firebase, real-time database as a service](./firebase-founder-james-tamplin-from-bare-metal-to-serverless.jpg)
 
@@ -143,7 +143,7 @@ Firebase was so successful that a few years later it was acquired by Google and 
 Little curiosity: for some reason nobody (as far as I am aware) tried to come up with a short name such as *DBaaS* or *RTDBaaS*!
 
 
-### Backend as a service (BaaS)
+## Backend as a service (BaaS)
 
 ![2012 — Parse.com and the first Backend as a Service (BaaS)](./ilya-sukhar-parse-com-founder-from-bare-metal-to-serverless.jpg)
 
@@ -154,18 +154,18 @@ The firm produced a series of back-end tools for mobile developers to store data
 The company was later on acquired by Facebook that kept it running for a while and then it shut it down. The product was consequently [released](http://parseplatform.org) with an open source license and can be installed on-premise.
 
 
-### Containerization
+## Containerization
 
 ![2013 — Docker, "containers are better than virtual machines"](./solomon-hykes-dockercon-docker-container-from-bare-metal-to-serverless.jpg)
 
-Docker, launched in 2013 at pyCon by Solomon Hykes, provides an additional layer of abstraction and automation of operating-system-level virtualization on Windows and Linux. 
+Docker, launched in 2013 at pyCon by Solomon Hykes, provides an additional layer of abstraction and automation of operating-system-level virtualization on Windows and Linux.
 
 Docker can be used as a way to package applications so that they can be easily executed on various servers without having to worry about the underlying infrastructure.
 
 The funny story is that docker was originally created as a way to abstract the underlying infrastructure at dotCloud, a competitor of Heroku that a few years later bankrupted, while docker became a huge success and it is today adopted or supported by almost every cloud provider.
 
 
-### Containers at scale
+## Containers at scale
 
 ![2013-2015 — Kubernetes / Swarm / Nomad / CoreOs (containers at scale)](./google-cloud-kubernetes-from-bare-metal-to-serverless.jpg)
 
@@ -176,7 +176,7 @@ During the following years, a lot of companies (including Google and Hashicorp) 
 The idea was to use containers as an abstraction to run processes and applications over a cluster of virtual machines.
 
 
-### Function as a Service (FaaS)
+## Function as a Service (FaaS)
 
 ![](./aws-lambda-launch-faas-function-as-a-service-from-bare-metal-to-serverless.jpg)
 
@@ -189,7 +189,7 @@ This product popularised a new class of services called Function as a Service (F
 With the advent of FaaS we started to hear the word "Serverless" for the first time.
 
 
-### What is Serverless
+## What is Serverless
 
 Trying to define what Serverless actually means is always a bit tricky, so I prefer to give you two definitions by two acclaimed industry leaders in this field.
 
@@ -212,7 +212,7 @@ I hope you got the point. Serverless doesn't mean that there are no servers, of 
 <small>Picture from [commitstrip.com](https://commitstrip.com)</small>
 
 
-### Why Serverless?
+## Why Serverless?
 
 The history we explored so far is telling that our industry has always been looking for next higher level of abstraction. Developers need as fewer concerns as possible to be able to quickly release features and deliver value to the customers.
 
@@ -225,7 +225,7 @@ In this picture, Matt Makai from *fullstackpython*, illustrates exactly how leve
 Serverless today is the highest level of abstraction we have. It is not perfect and there are strong trade-offs that a developer has to embrace in order to adopt it, but it definitely removes tons of concerns on the infrastructure layer.
 
 
-### The 4 pillars of Serverless
+## The 4 pillars of Serverless
 
 There are other characteristics that come with Serverless and that make it a valuable option. It's definitely not only about abstraction and the absence of servers...
 
@@ -235,7 +235,7 @@ There are other characteristics that come with Serverless and that make it a val
   - **Never pay for idle**: Unused resources cost $0
 
 
-### Is it the right approach for the future?
+## Is it the right approach for the future?
 
 My personal view, **probably yes**!
 
@@ -248,7 +248,7 @@ Serverless can give you the needed agility to compete in this market for most of
 It's probably not the ultimate solution and I believe there will be other abstraction layers and new platforms in the future, but agility and focus on business logic are definitely some things that we will always want in our future as developers.
 
 
-### References
+## References
 
 This article was possible only thanks to these amazing resources:
 

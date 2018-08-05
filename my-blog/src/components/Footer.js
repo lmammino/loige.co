@@ -120,7 +120,7 @@ class Footer extends Component {
         <FooterWrapper>
           <FooterColumns>
             <FooterFullColumn>
-              <ListTitle>Loige.co</ListTitle>
+              <ListTitle style={{color: '#46c9e5'}}>Loige.co</ListTitle>
               <Copyright>Copyright © Luciano Mammino 2014-{year}.</Copyright>
               <Copyright>Built with <a rel="nofollow" target="_blank" href="https://www.gatsbyjs.org">Gatsby</a>, Coffee and a lot of <Heart>❤︎</Heart>.</Copyright>
               <Copyright>Hosted on <a rel="nofollow" target="_blank" href="https://github.com/lmammino/loige.co">GitHub</a>.</Copyright>

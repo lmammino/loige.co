@@ -9,7 +9,7 @@ date: 2014-02-10T12:13:50.000Z
 updated: 2014-02-10T23:23:21.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
-header_img: null
+header_img: ./new-php-library-php-oauth-user-data.png
 status: published
 language: en_US
 meta_title: null

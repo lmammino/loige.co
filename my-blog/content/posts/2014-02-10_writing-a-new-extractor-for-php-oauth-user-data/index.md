@@ -34,6 +34,8 @@ So that's a lot of work! And yes, of course I would be glad to share it with som
 
 This article illustrates how to add support for a new service by writing a dedicate **extractor** class. It's really simple so stick with me and you will be able to submit your pull request in minutes!
 
+## What is an extractor
+
 Extractors defines the logic to request information to a given service API and to normalize the received data according to a common [interface](https://github.com/Oryzone/PHPoAuthUserData/blob/master/src/OAuth/UserData/Extractor/ExtractorInterface.php).
 The most basic way to define an extractor is to write a class that implements the [ExtractorInterface](https://github.com/Oryzone/PHPoAuthUserData/blob/master/src/OAuth/UserData/Extractor/ExtractorInterface.php) (that is pretty self-explanatory).
 
