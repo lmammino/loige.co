@@ -1,0 +1,67 @@
+import React, { Component } from 'react'
+import styled, { css } from 'react-emotion'
+import { Link } from 'gatsby'
+
+import ProfileImage from './images/profile-pic.jpg'
+
+const HelloContainer = styled('div')`
+  background: #46c9e5;
+  background: linear-gradient(180deg,#46c9e5,#d26ac2);
+  padding: 1em;
+  border-radius: 1em;
+  margin: -2em 0 2em 0;
+
+  @media (min-width: 1024px) {
+    margin-top: 0;
+  }
+
+  p {
+    line-height: 1.7em;
+    text-rendering: geometricPrecision;
+    color: #3A4145;
+    max-width: 820px;
+    margin: 0 auto;
+
+    a {
+      color: inherit;
+      font-weight: bold;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  p.picture {
+    text-align: center;
+
+    h3 {
+      color: #000;
+    }
+
+    img {
+      border-radius: 50%;
+    }
+  }
+
+
+`
+
+class Hello extends Component {
+  render () {
+    return (
+      <HelloContainer>
+        <p className="picture">
+          <img src={ProfileImage}/>
+          <h3>Hello :)</h3>
+        </p>
+        <p>I am Luciano a.k.a. <em>loige</em>, a passionate Web Developer currently working as
+        Solution Architect at Vectra, Dublin. You can read some of my posts in this page,
+        or <Link to="/about">know more about myself and my side projects</Link> or about my <Link to="/speaking">talks and workshops</Link>.</p>
+      </HelloContainer>
+    )
+  }
+}
+
+export default Hello

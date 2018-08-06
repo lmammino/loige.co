@@ -11,6 +11,10 @@ const Post = styled('article')`
   margin: 2rem 0 1rem;
   max-width: 820px;
 
+  &:first-of-type {
+    margin-top: 0;
+  }
+
   position: relative;
   margin: 4rem 0;
   padding-bottom: 4rem;

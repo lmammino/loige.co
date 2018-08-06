@@ -6,6 +6,8 @@ import Helmet from 'react-helmet'
 
 import Layout from '../components/layout'
 import Hero from '../components/Hero'
+import ArticleSidebarAd from '../components/ArticleSidebarAd'
+import Hello from '../components/Hello'
 import PostsList from '../components/PostsList'
 import Pagination from '../components/Pagination'
 
@@ -33,7 +35,7 @@ const Columns = styled('div')`
   display: flex;
   flex-wrap: wrap;
 
-  @media (min-width: 780px) {
+  @media (min-width: 1024px) {
     display: flex;
   }
 `
@@ -42,15 +44,15 @@ const MainColumn = styled('main')`
   width: 100%;
   order: 2;
 
-  @media (min-width: 780px) {
+  @media (min-width: 1024px) {
     order: 1;
     width: 75%;
+    margin-top: 2em;
   }
 `
 
 const Sidebar = styled('aside')`
   order: 1;
-  background: #f7f7f7;
   padding: 1em;
   margin: 0 0 2em 0;
   width: 100%;
@@ -61,7 +63,7 @@ const Sidebar = styled('aside')`
     color: #5cb767;
   }
 
-  @media (min-width: 780px) {
+  @media (min-width: 1024px) {
     background: transparent;
     margin: 0 0 1em 0;
     order: 2;
@@ -98,8 +100,8 @@ class BlogIndex extends Component {
               </MainColumn>
               <Sidebar>
                 <div>
-                  <h3>Some content here</h3>
-                  <p>CIAO BIEDDA</p>
+                  <Hello/>
+                  <ArticleSidebarAd/>
                 </div>
               </Sidebar>
             </Columns>
