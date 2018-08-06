@@ -11,14 +11,18 @@ const PostSummaryContainer = styled('div')`
   }
 
   ol ol {
-    padding: 0 0 0 .25em;
+    padding: 0 0 0 .3em;
   }
 
   ol li {
-    font-size: 1em;
+    font-size: .8rem;
+    font-family: source-code-pro,Menlo,Monaco,Consolas,Courier New,monospace;
     margin-top: 5px;
+    color: #5cb767;
 
     a {
+      font-size: 1.2em;
+      font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
       color: #6d6d6d;
       border-bottom: 1px solid transparent;
 
