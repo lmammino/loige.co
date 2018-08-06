@@ -15,7 +15,7 @@ const HelloContainer = styled('div')`
     margin-top: 0;
   }
 
-  p {
+  p, span {
     line-height: 1.7em;
     text-rendering: geometricPrecision;
     color: #3A4145;
@@ -33,8 +33,9 @@ const HelloContainer = styled('div')`
     }
   }
 
-  p.picture {
+  .picture {
     text-align: center;
+    display: block;
 
     h3 {
       color: #000;
@@ -52,10 +53,10 @@ class Hello extends Component {
   render () {
     return (
       <HelloContainer>
-        <p className="picture">
+        <span className="picture">
           <img src={ProfileImage}/>
           <h3>Hello :)</h3>
-        </p>
+        </span>
         <p>I am Luciano a.k.a. <em>loige</em>, a passionate Web Developer currently working as
         Solution Architect at Vectra, Dublin. You can read some of my posts in this page,
         or <Link to="/about">know more about myself and my side projects</Link> or about my <Link to="/speaking">talks and workshops</Link>.</p>

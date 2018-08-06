@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: 'Luciano Mammino "Loige" - Web developer, entrepreneur, fighter, butterfly maker!',
     author: 'Luciano Mammino',
-    description: 'A starter blog demonstrating what Gatsby can do.',
+    description: 'The website of Luciano Mammino a.k.a. Loige, Web developer, entrepreneur, fighter, butterfly maker',
     siteUrl: 'https://loige.co/',
     twitterProfile: 'loige',
     disqusShortName: 'loige',
@@ -21,6 +21,13 @@ module.exports = {
       options: {
         path: `${__dirname}/content/posts`,
         name: 'posts',
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/speaking`,
+        name: 'speaking',
       },
     },
     `gatsby-plugin-emotion`,

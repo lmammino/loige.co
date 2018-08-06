@@ -35,12 +35,12 @@ injectGlobal`
 
 class Template extends Component {
   render() {
-    const { location, children } = this.props
+    const { location, section, children } = this.props
     const rootPath = `${__PATH_PREFIX__}/`
 
     return (
       <Fragment>
-        <Header/>
+        <Header section={section}/>
         {children}
         <Footer/>
       </Fragment>

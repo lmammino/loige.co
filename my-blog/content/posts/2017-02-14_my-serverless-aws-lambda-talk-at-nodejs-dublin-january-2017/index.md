@@ -36,7 +36,7 @@ Apart from having a great chance to show off my über cool Super Mario T-shirt f
 
 Considering the quite big audience, the number of questions and the stars received on the meetup page I'd say I am jubilant with the outcome of the talk, but of course, I am always eager to deep dive on these topics and discuss my findings with other enthusiasts.
 
-If you are curious you can check out [the slides of the talk on Google Drive](http://loige.link/serverless-node-dublin-slides) or watch the recording here below:
+If you are curious you can check out [the slides of the talk on SpeakerDeck](https://speakerdeck.com/lmammino/aws-lambda-and-serverless-framework-lessons-learned-while-building-a-serverless-company) or watch the recording here below:
 
 <div style=" position: relative; padding-bottom: 56.25%; height: 0; margin-bottom: 5em;">
 <iframe style="position: absolute; top:0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/90vV327JHho" frameborder="0" allowfullscreen></iframe>

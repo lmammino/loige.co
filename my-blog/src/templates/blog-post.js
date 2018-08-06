@@ -89,7 +89,7 @@ class BlogPostTemplate extends Component {
     }
 
     return (
-      <Layout location={this.props.location}>
+      <Layout location={this.props.location} section="blog">
         <Helmet title={`${post.frontmatter.title} | ${siteTitle}`} />
         <Hero className="textOverlay" backgroundImage={headerImage}>
           <h1><span>{post.frontmatter.title}</span></h1>

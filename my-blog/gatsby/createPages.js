@@ -10,30 +10,35 @@ module.exports = ({ graphql, actions }) => {
     const blogPost = path.resolve('./src/templates/blog-post.js')
     const blogIndex = path.resolve('./src/templates/blog-index.js')
     const tagIndex = path.resolve('./src/templates/tag-index.js')
+    const speakingIndex = path.resolve('./src/templates/speaking-index.js')
     resolve(
+      // get data for posts and tags
       graphql(
         `
-          {
-            allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-              edges {
-                node {
-                  timeToRead
-                  excerpt(pruneLength: 512)
-                  fields {
-                    slug
-                  }
-                  frontmatter {
-                    date(formatString: "DD MMMM, YYYY")
-                    title
-                    tags
-                    header_img {
-                      publicURL
-                    }
+        {
+          allMarkdownRemark(
+            sort: {fields: [frontmatter___date], order: DESC},
+            filter: {frontmatter: {status: {eq: "published"}, layout: {eq: "post"}}}
+          ) {
+            edges {
+              node {
+                timeToRead
+                excerpt(pruneLength: 512)
+                fields {
+                  slug
+                }
+                frontmatter {
+                  date(formatString: "DD MMMM, YYYY")
+                  title
+                  tags
+                  header_img {
+                    publicURL
                   }
                 }
               }
             }
           }
+        }
         `
       ).then(result => {
         if (result.errors) {
@@ -122,6 +127,54 @@ module.exports = ({ graphql, actions }) => {
             context: {
               posts: postsByTag[tag].map((p) => p.node),
               tag
+            },
+          })
+        })
+
+        return Promise.resolve()
+      })
+      .then(() => {
+        // gets data for speaking
+        return graphql(`
+          {
+            allMarkdownRemark(sort: {fields: [frontmatter___date], order: DESC}, filter: {frontmatter: {status: {eq: "published"}, layout: {eq: "speaking"}}}) {
+              edges {
+                node {
+                  fields {
+                    slug
+                  }
+                  frontmatter {
+                    date(formatString: "DD MMMM, YYYY")
+                    title
+                    slug
+                    event_name
+                    event_link
+                    event_city
+                    event_location_gps
+                    is_workshop
+                    slides_link
+                    video_link
+                    with {
+                      name
+                      link
+                    }
+                  }
+                }
+              }
+            }
+          }
+        `).then(result => {
+
+          if (result.errors) {
+            console.log(result.errors)
+            reject(result.errors)
+          }
+
+          createPage({
+            path: `/speaking`,
+            component: speakingIndex,
+            context: {
+              events: result.data.allMarkdownRemark.edges.map(e => e.node)
             },
           })
         })

@@ -2,7 +2,7 @@
 const getSimilarPosts = (slug, tags, postsByTag, postsBySlug, limit = 5) => {
 
   let similar = []
-  tags.forEach((tag) => {
+  tags && tags.forEach((tag) => {
     similar = similar.concat(postsByTag[tag].map((p) => p.node.fields.slug))
   })
 
@@ -31,7 +31,7 @@ const getSimilarPosts = (slug, tags, postsByTag, postsBySlug, limit = 5) => {
 
 			return acc
     }, [])
-    .sort((a, b) => {
+    .sort((a, b) => { // sort by count DESC, date DESC
       if (a.score === b.score) {
         const dateA = new Date(a.publishedAt)
         const dateB = new Date(b.publishedAt)
@@ -40,8 +40,8 @@ const getSimilarPosts = (slug, tags, postsByTag, postsBySlug, limit = 5) => {
       }
 
       return b.score - a.score
-    }) // sort by count DESC, date DESC
-    .slice(0, limit)
+    })
+    .slice(0, limit) // take top n
 }
 
 module.exports = getSimilarPosts

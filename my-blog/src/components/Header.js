@@ -129,15 +129,16 @@ const HeaderBorder = styled('span')`
 
 class Header extends Component {
   render() {
+    const { section } = this.props
     return (
       <HeaderComponent>
         <HeaderCenterContainer>
           <HeaderFlexContainer>
             <Logo className={LogoStyle}/>
             <Nav>
-              <NavLink active to="/">Blog</NavLink>
-              <NavLink to="/speaking">Speaking</NavLink>
-              <NavLink to="/about">About</NavLink>
+              <NavLink active={section === 'blog'} to="/">Blog</NavLink>
+              <NavLink active={section === 'speaking'} to="/speaking">Speaking</NavLink>
+              <NavLink active={section === 'about'} to="/about">About</NavLink>
             </Nav>
             <SocialLinksContainer>
               <a rel="nofollow" className={socialLinkStyle} href="https://github.com/lmammino">

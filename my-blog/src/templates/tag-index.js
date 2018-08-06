@@ -11,7 +11,7 @@ import tagsBg from '../components/images/tags-bg.png'
 
 const Content = styled('div')`
   min-height: 100vh;
-  margin: 0 auto;
+  margin: 2em auto;
   padding-left: 20px;
   padding-right: 20px;
   max-width: 820px;

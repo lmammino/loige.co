@@ -85,7 +85,7 @@ class BlogIndex extends Component {
     const pagination = { previous, next, currentPage, totalPages }
 
     return (
-      <Layout location={this.props.location} section={this.props.section}>
+      <Layout location={this.props.location} section="blog">
         <Helmet title={siteTitle} />
         <Hero className="bottomRightBg">
           <h1>Luciano Mammino</h1>
