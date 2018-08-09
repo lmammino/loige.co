@@ -1,9 +1,9 @@
 ---
-uuid: b8efb671-939a-4698-a549-778f3a8770bd
+uuid: 107a15cd-c010-4a83-85f1-e3b7d3be7cd9
 layout: speaking
 title: "Cracking JWT tokens: a tale of magic, Node.JS and parallel computing"
-slug: "cracking-jwt-tokens-codeeurope-wroclaw"
-date: 2017-12-13T12:00:00.000Z
+slug: "cracking-jwt-tokens-buzzjs-new-york"
+date: 2018-06-15T00:00:00.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: null
@@ -11,15 +11,15 @@ status: published
 language: en_US
 meta_title: null
 meta_description: null
-event_name: Code Europe Wroclaw
-event_link: "https://2017autumn.codeeurope.pl/en/speakers/luciano-mammino"
-event_location: "Wystawowa 1, 51-618 Wrocław, Poland"
-event_location_gps: "51.107689,17.077912"
-event_city: "Wrocław"
-event_days: "December 13 2017"
+event_name: Buzz JS
+event_link: "https://buzzjs.com/"
+event_location: "Microsoft Technology Center - 11 Times Square  New York, NY 10036"
+event_location_gps: "40.7562416,-73.9899775"
+event_city: "New York"
+event_days: "June 14-15 2018"
 is_workshop: false
-slides_link: "https://slides.com/lucianomammino/cracking-jwt-tokens-a-tale-of-magic-nodejs-and-parallel-computing-wroclaw#/"
-video_link: null
+slides_link: "https://loige.link/jwt-crack-ny"
+video_link: "https://www.youtube.com/watch?v=uBYdxOQ57nQ"
 with: []
 ---
 

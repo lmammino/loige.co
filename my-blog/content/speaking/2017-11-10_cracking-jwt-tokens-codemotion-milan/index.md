@@ -1,5 +1,5 @@
 ---
-uuid: a3862874-cdda-4f42-b9a3-3bd79c5cb3a8
+uuid: 2598c80e-f914-483c-98b4-9c8b6d6df6d3
 layout: speaking
 title: "Cracking JWT tokens: a tale of magic, Node.js and parallel computing"
 slug: "cracking-jwt-tokens-codemotion-milan"
