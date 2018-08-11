@@ -145,6 +145,7 @@ module.exports = ({ graphql, actions }) => {
                   }
                   frontmatter {
                     date(formatString: "DD MMMM, YYYY")
+                    originalDate: date
                     title
                     slug
                     event_name

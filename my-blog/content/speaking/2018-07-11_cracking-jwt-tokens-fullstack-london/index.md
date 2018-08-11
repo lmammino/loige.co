@@ -2,7 +2,7 @@
 uuid: cc56b42a-f450-4f17-8ae4-4176d5a28e05
 layout: speaking
 title: "Cracking JWT tokens: a tale of magic, Node.JS and parallel computing"
-slug: "cracking-jwt-tokens-buzzjs-new-york"
+slug: "cracking-jwt-tokens-fullstack-london"
 date: 2018-07-11T00:00:00.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
