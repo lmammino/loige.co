@@ -30,24 +30,34 @@ const Content = styled('div')`
 
   h2 {
     margin: 2em 0 1em 0;
+    color: #46c9e5;
   }
 
   p {
     line-height: 1.7;
     margin: 1em 0 0 0;
     max-width: 42em;
+
+    a {
+      text-decoration: none;
+      border-bottom: 1px solid #ccc;
+
+      &:hover {
+        border-bottom: 1px solid black;
+      }
+    }
   }
 
   p.slides-video {
     a {
-      color: #6d6d6d;
+      color: #d26ac2;
       display: inline-block;
       margin: 0 0 0 1em;
       text-decoration: none;
       border-bottom: 1px solid transparent;
 
       &:hover {
-        border-bottom: 1px solid #6d6d6d;
+        border-bottom: 1px solid #d26ac2;
       }
 
       &:first-of-type {
@@ -120,13 +130,12 @@ class SpeakingEntry extends Component {
 
     return (
       <div className="event-wrapper" itemScope itemType="http://schema.org/Event">
+        <h3 className="event-title" itemProp="name">{f.title}{f.is_workshop ? ' (workshop)' : ''}</h3>
         <p>
-          <strong className="event-title" itemProp="name">"{f.title}"</strong>
-          <span>{f.is_workshop ? ` (workshop)` : ''}</span><br/>
           <span><a href={f.event_link} target="_blank">{f.event_name}</a></span>
           &nbsp; - <span>{f.date}</span>
           {withPeople.length > 0 && <span>
-            &nbsp;with {withPeople.comaSeparated.map((person, index) => {
+            &nbsp; - with {withPeople.comaSeparated.map((person, index) => {
               return (
                 <Fragment key={person.name}>
                   <a href={person.link} target="_blank">
