@@ -12,7 +12,7 @@ const HeaderComponent = styled('header')`
   color: #ffffff;
   display: block;
   position: fixed;
-  z-index: 1;
+  z-index: 2000;
   width: 100%;
   top: 0;
   left: 0;

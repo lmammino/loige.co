@@ -9,9 +9,9 @@ import PostsList from '../components/PostsList'
 import speakingBg from '../components/images/speaking-bg.jpg'
 import ImagesSolidIcon from '../components/icons/ImagesSolid'
 import VideoSolidIcon from '../components/icons/VideoSolid'
+import SpeakingMap from '../components/SpeakingMap'
 
 const Content = styled('div')`
-  min-height: 100vh;
   margin: 2em auto;
   padding-left: 20px;
   padding-right: 20px;
@@ -126,7 +126,6 @@ class SpeakingEntry extends Component {
     const { event } = this.props
     const { frontmatter: f } = event
     const withPeople = conjunctions(f.with)
-    console.log(f)
 
     return (
       <div className="event-wrapper" itemScope itemType="http://schema.org/Event">
@@ -172,36 +171,36 @@ class SpeakingIndex extends Component {
 
     return (
       <Layout location={this.props.location} section="speaking">
-        <Helmet title={siteTitle} />
+        <Helmet title={`Speaking events: conference talks and workshops - ${siteTitle}`} />
         <Hero className='small gradientOverlay' backgroundImage={speakingBg}>
           <h1>Speaking</h1>
         </Hero>
         <Content>
-          <div>
-            <p>I am quite involved with conferences and I love delivering technical talks and workshops.</p>
-            <p>If you think I can be a good suit to talk or host a workshop, you can use this form to <strong><a href="http://loige.link/invite-me-to-a-conference" target="_blank">📩 invite me to your next cool conference</a></strong>.</p>
+          <p>I am quite involved with conferences and I love delivering technical talks and workshops.</p>
+          <p>If you think I can be a good suit to talk or host a workshop, you can use this form to <strong><a href="http://loige.link/invite-me-to-a-conference" target="_blank">📩 invite me to your next cool conference</a></strong>.</p>
 
-            <p>Here you can find a list of my future and past involvements.</p>
+          <p>Here you can find a list of my future and past involvements.</p>
+        </Content>
+        <SpeakingMap events={events}/>
+        <Content>
+          <h2>Upcoming events</h2>
+          { future.length > 0 && <ul>
+            { future.map(e => (
+              <li key={e.frontmatter.slug}>
+                <SpeakingEntry event={e}/>
+              </li>)) }
+          </ul> }
+          { future.length === 0 && <p>
+            No future events planned at this time :(
+          </p> }
 
-            <h2>Upcoming events</h2>
-            { future.length > 0 && <ul>
-              { future.map(e => (
-                <li key={e.frontmatter.slug}>
-                  <SpeakingEntry event={e}/>
-                </li>)) }
-            </ul> }
-            { future.length === 0 && <p>
-              No future events planned at this time :(
-            </p> }
-
-            <h2>Past events ({past.length})</h2>
-            <ul>
-              { past.map(e => (
-                <li key={e.frontmatter.slug}>
-                  <SpeakingEntry event={e}/>
-                </li>)) }
-            </ul>
-          </div>
+          <h2>Past events ({past.length})</h2>
+          <ul>
+            { past.map(e => (
+              <li key={e.frontmatter.slug}>
+                <SpeakingEntry event={e}/>
+              </li>)) }
+          </ul>
         </Content>
       </Layout>
     )
@@ -209,3 +208,17 @@ class SpeakingIndex extends Component {
 }
 
 export default SpeakingIndex
+
+export const pageQuery = graphql`
+  query SiteMetadata {
+    site {
+      siteMetadata {
+        title
+        author
+        siteUrl
+        twitterProfile
+        disqusShortName
+      }
+    }
+  }
+`
