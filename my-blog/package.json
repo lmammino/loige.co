@@ -1,24 +1,22 @@
 {
-  "name": "gatsby-starter-blog",
-  "description": "Starter Gatsby Blog",
+  "name": "loige-co-blog",
+  "private": true,
+  "description": "Luciano Mammino's blog hosted on loige.co",
   "version": "1.0.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby-starter-blog/issues"
-  },
+  "author": "Luciano Mammino",
   "dependencies": {
     "disqus-react": "^1.0.5",
     "emotion": "^9.2.6",
     "emotion-server": "^9.2.6",
-    "gatsby": "next",
-    "gatsby-plugin-catch-links": "^1.0.24",
-    "gatsby-plugin-emotion": "^1.1.17",
+    "gatsby": "^2.0.0-beta.98",
+    "gatsby-plugin-catch-links": "^2.0.2-beta.7",
+    "gatsby-plugin-emotion": "^2.0.0-beta.3",
     "gatsby-plugin-feed": "next",
     "gatsby-plugin-google-analytics": "next",
     "gatsby-plugin-offline": "next",
     "gatsby-plugin-react-helmet": "next",
     "gatsby-plugin-sharp": "next",
-    "gatsby-remark-autolink-headers": "^1.4.19",
+    "gatsby-remark-autolink-headers": "^2.0.0-beta.5",
     "gatsby-remark-copy-linked-files": "next",
     "gatsby-remark-images": "next",
     "gatsby-remark-prismjs": "next",
@@ -27,6 +25,7 @@
     "gatsby-source-filesystem": "next",
     "gatsby-transformer-remark": "next",
     "gatsby-transformer-sharp": "^2.1.1-beta.6",
+    "gatsby-transformer-yaml": "^2.1.1-beta.3",
     "github-slugger": "^1.2.0",
     "lodash": "^4.17.5",
     "prismjs": "^1.15.0",
@@ -41,15 +40,16 @@
     "gh-pages": "^1.2.0",
     "prettier": "^1.12.0"
   },
-  "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
+  "homepage": "https://loige.co",
   "keywords": [
-    "gatsby"
+    "gatsby",
+    "blog"
   ],
   "license": "MIT",
   "main": "n/a",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
+    "url": "git+https://github.com/lmammino/loige.co.git"
   },
   "scripts": {
     "dev": "gatsby develop",

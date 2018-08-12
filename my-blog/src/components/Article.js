@@ -153,7 +153,7 @@ injectGlobal`
       font-style: italic;
     }
 
-    .token.entity' {
+    .token.entity {
       cursor: help;
     }
   }

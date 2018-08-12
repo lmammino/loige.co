@@ -30,7 +30,13 @@ module.exports = {
         name: 'speaking',
       },
     },
-    `gatsby-plugin-emotion`,
+    `gatsby-transformer-yaml`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `./content/data`,
+      },
+    },
     {
       resolve: `gatsby-transformer-remark`,
       options: {
@@ -66,5 +72,9 @@ module.exports = {
     `gatsby-plugin-feed`,
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-plugin-emotion`,
+      options: {}
+    },
   ],
 }

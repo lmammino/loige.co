@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import styled, { css } from 'react-emotion'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import { get } from 'lodash'
 import Helmet from 'react-helmet'
 
@@ -41,7 +41,7 @@ const Content = styled('div')`
 
     a {
       text-decoration: none;
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid #46c9e5;
 
       &:hover {
         border-bottom: 1px solid black;
@@ -71,7 +71,15 @@ const Content = styled('div')`
     }
   }
 
-  ul {
+  ul.topics {
+    padding: 0 0 0 2em;
+
+    a {
+      font-weight: bold;
+    }
+  }
+
+  ul.events {
     list-style: none;
     li {
       border-top: 1px solid #ececec;
@@ -178,14 +186,21 @@ class SpeakingIndex extends Component {
         </Hero>
         <Content>
           <p>I am quite involved with conferences and I love delivering technical talks and workshops.</p>
-          <p>If you think I can be a good suit to talk or host a workshop, you can use this form to <strong><a href="http://loige.link/invite-me-to-a-conference" target="_blank">📩 invite me to your next cool conference</a></strong>.</p>
+          <p>Lately I have been focusing on the following topics:
+            <ul className="topics">
+              <li><Link to="/tag/node-js">Node.js</Link>, <Link to="/tag/javascript">JavaScript</Link> and <Link to="/tag/design-patterns">Design Patterns</Link></li>
+              <li><Link to="/tag/serverless">Serverless</Link> and <Link to="/tag/aws">AWS</Link></li>
+              <li><strong>Systems architecture</strong> and <Link to="/tag/scalability">Scalability</Link></li>
+            </ul>
+          </p>
+          <p>If you think I can be a good suit to talk or host a workshop, you can <strong><a href="http://loige.link/invite-me-to-a-conference" target="_blank">📩 invite me to your next cool conference</a></strong>.</p>
 
-          <p>Here you can find a list of my future and past involvements.</p>
+          <p>Here you can find a list of my future and past engagements.</p>
         </Content>
         <SpeakingMap events={events}/>
         <Content>
           <h2>Upcoming events</h2>
-          { future.length > 0 && <ul>
+          { future.length > 0 && <ul className="events">
             { future.map(e => (
               <li key={e.frontmatter.slug}>
                 <SpeakingEntry event={e}/>
@@ -196,7 +211,7 @@ class SpeakingIndex extends Component {
           </p> }
 
           <h2>Past events ({past.length})</h2>
-          <ul>
+          <ul className="events">
             { past.map(e => (
               <li key={e.frontmatter.slug}>
                 <SpeakingEntry event={e}/>

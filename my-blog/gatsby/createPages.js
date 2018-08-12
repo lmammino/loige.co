@@ -72,14 +72,14 @@ module.exports = ({ graphql, actions }) => {
 
           // fill postsByPage
           const currentPage = Math.floor(index / perPage) + 1
-          const path = currentPage === 1 ? '/' : `/page/${currentPage}`
+          const path = currentPage === 1 ? '/' : `/page/${currentPage}/`
           if (!postsByPage[path]) {
             postsByPage[path] = []
           }
           postsByPage[path].push(post)
 
           blogPosts[post.node.fields.slug] = {
-            path: post.node.fields.slug,
+            path: `/${post.node.fields.slug}/`,
             component: blogPost,
             context: {
               tags: post.node.frontmatter.tags,
@@ -122,7 +122,7 @@ module.exports = ({ graphql, actions }) => {
         const tags = Object.keys(postsByTag)
         _.each(tags, (tag, index) => {
           createPage({
-            path: `/tag/${tag}`,
+            path: `/tag/${tag}/`,
             component: tagIndex,
             context: {
               posts: postsByTag[tag].map((p) => p.node),
@@ -172,7 +172,7 @@ module.exports = ({ graphql, actions }) => {
           }
 
           createPage({
-            path: `/speaking`,
+            path: `/speaking/`,
             component: speakingIndex,
             context: {
               events: result.data.allMarkdownRemark.edges.map(e => e.node)
