@@ -1,8 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import styled, { css } from 'react-emotion'
-import { graphql } from 'gatsby'
 import Helmet from 'react-helmet'
-import { Link } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import get from 'lodash/get'
 
 import Layout from '../components/layout'

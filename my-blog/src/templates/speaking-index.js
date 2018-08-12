@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import styled, { css } from 'react-emotion'
+import { graphql } from 'gatsby'
 import { get } from 'lodash'
 import Helmet from 'react-helmet'
 

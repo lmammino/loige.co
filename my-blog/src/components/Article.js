@@ -2,12 +2,40 @@ import React, { Component, Fragment } from 'react'
 import styled, { css } from 'react-emotion'
 import { injectGlobal } from 'emotion'
 import { Link } from 'gatsby'
-import { DiscussionEmbed, CommentCount } from 'disqus-react'
+import { DiscussionEmbed as DiscussionEmbedOriginal, CommentCount as CommentCountOriginal } from 'disqus-react'
 
 import CommentsIcon from './icons/CommentsSolid'
 import DateViewer from './DateViewer'
 import TagsList from './TagsList'
 import ReadingTime from './ReadingTime'
+
+// fixes issue with shouldComponentUpdate when not using discussion ids
+// see https://github.com/disqus/disqus-react/pull/15/
+class DiscussionEmbed extends DiscussionEmbedOriginal {
+  shouldComponentUpdate(nextProps) {
+    if (this.props.shortname !== nextProps.shortname)
+      return true;
+
+    const nextConfig = nextProps.config;
+    const config = this.props.config;
+    if (nextConfig.url === config.url && nextConfig.identifier === config.identifier)
+      return false;
+    return true;
+  }
+}
+
+class CommentCount extends CommentCountOriginal {
+  shouldComponentUpdate(nextProps) {
+    if (this.props.shortname !== nextProps.shortname)
+      return true;
+
+    const nextConfig = nextProps.config;
+    const config = this.props.config;
+    if (nextConfig.url === config.url && nextConfig.identifier === config.identifier)
+      return false;
+    return true;
+  }
+}
 
 const colors = {
   char: '#D8DEE9',
