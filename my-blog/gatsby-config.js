@@ -34,7 +34,7 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `./content/data`,
+        path: `${__dirname}/content/data`,
       },
     },
     {
@@ -45,7 +45,16 @@ module.exports = {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 1024,
+              linkImagesToOriginal: false,
+              withWebp: true,
+              quality: 80,
             },
+          },
+          {
+            resolve: 'gatsby-remark-copy-linked-files',
+            options: {
+              destinationDir: './public/content',
+            }
           },
           {
             resolve: `gatsby-remark-responsive-iframe`,
@@ -54,7 +63,6 @@ module.exports = {
             },
           },
           'gatsby-remark-prismjs',
-          'gatsby-remark-copy-linked-files',
           'gatsby-remark-smartypants',
           'gatsby-remark-autolink-headers',
         ],
@@ -70,6 +78,18 @@ module.exports = {
       },
     },
     `gatsby-plugin-feed`,
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Luciano Mammino "Loige" - Web developer, entrepreneur, fighter, butterfly maker!`,
+        short_name: `Loige.co`,
+        start_url: `/`,
+        background_color: `#ffffff`,
+        theme_color: `#46c9e5`,
+        display: `minimal-ui`,
+        icon: `src/components/images/profile-pic.jpg`,
+      },
+    },
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
     {
