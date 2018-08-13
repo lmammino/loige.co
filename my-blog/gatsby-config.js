@@ -9,6 +9,7 @@ module.exports = {
   },
   pathPrefix: '/',
   plugins: [
+    'static-pages',
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -47,13 +48,13 @@ module.exports = {
               maxWidth: 1024,
               linkImagesToOriginal: false,
               withWebp: true,
-              quality: 80,
+              quality: 90,
             },
           },
           {
             resolve: 'gatsby-remark-copy-linked-files',
             options: {
-              destinationDir: './public/content',
+              destinationDir: 'content',
             }
           },
           {
