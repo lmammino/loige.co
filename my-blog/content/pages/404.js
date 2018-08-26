@@ -4,6 +4,7 @@ import Helmet from 'react-helmet'
 import { get } from 'lodash'
 
 import Layout from '../../src/components/layout'
+import ResponsiveWrapper from '../../src/components/ResponsiveWrapper'
 import ArticleContainer from '../../src/components/ArticleContainer'
 
 const NotFoundPage = props => {
@@ -12,21 +13,23 @@ const NotFoundPage = props => {
   return (
     <Layout>
       <Helmet title={`PAGE NOT FOUND - ${siteTitle}`} />
-      <ArticleContainer style={{ minHeight: '80vh' }}>
-        <h1 style={{ marginTop: '4em' }}>PAGE NOT FOUND!</h1>
-        <p>You just hit a route that doesn&#39;t exist... the sadness.😢</p>
-        <h2>Since you are here...</h2>
-        <p>Why don&#39;t you have a look at one of my latest articles?</p>
-        <ul>
-          {lastPosts.map(p => (
-            <li key={p.node.fields.slug}>
-              <Link to={`/${p.node.fields.slug}`}>
-                {p.node.frontmatter.title}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </ArticleContainer>
+      <ResponsiveWrapper>
+        <ArticleContainer style={{ minHeight: '80vh' }}>
+          <h1 style={{ marginTop: '4em' }}>PAGE NOT FOUND!</h1>
+          <p>You just hit a route that doesn&#39;t exist... the sadness.😢</p>
+          <h2>Since you are here...</h2>
+          <p>Why don&#39;t you have a look at one of my latest articles?</p>
+          <ul>
+            {lastPosts.map(p => (
+              <li key={p.node.fields.slug}>
+                <Link to={`/${p.node.fields.slug}`}>
+                  {p.node.frontmatter.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </ArticleContainer>
+      </ResponsiveWrapper>
     </Layout>
   )
 }
