@@ -9,6 +9,7 @@ module.exports = {
   },
   pathPrefix: '/',
   plugins: [
+    `mario-banner`,
     'static-pages',
     {
       resolve: `gatsby-source-filesystem`,
