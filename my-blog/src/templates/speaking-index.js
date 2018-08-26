@@ -33,7 +33,8 @@ const Content = styled('div')`
     color: #46c9e5;
   }
 
-  p {
+  p,
+  ul {
     line-height: 1.7;
     margin: 1em 0 0 0;
     max-width: 42em;
@@ -234,24 +235,22 @@ class SpeakingIndex extends Component {
             I am quite involved with conferences and I love delivering technical
             talks and workshops.
           </p>
-          <p>
-            Lately I have been focusing on the following topics:
-            <ul className="topics">
-              <li>
-                <Link to="/tag/node-js">Node.js</Link>,{' '}
-                <Link to="/tag/javascript">JavaScript</Link> and{' '}
-                <Link to="/tag/design-patterns">Design Patterns</Link>
-              </li>
-              <li>
-                <Link to="/tag/serverless">Serverless</Link> and{' '}
-                <Link to="/tag/aws">AWS</Link>
-              </li>
-              <li>
-                <strong>Systems architecture</strong> and{' '}
-                <Link to="/tag/scalability">Scalability</Link>
-              </li>
-            </ul>
-          </p>
+          <p>Lately I have been focusing on the following topics:</p>
+          <ul className="topics">
+            <li>
+              <Link to="/tag/node-js">Node.js</Link>,{' '}
+              <Link to="/tag/javascript">JavaScript</Link> and{' '}
+              <Link to="/tag/design-patterns">Design Patterns</Link>
+            </li>
+            <li>
+              <Link to="/tag/serverless">Serverless</Link> and{' '}
+              <Link to="/tag/aws">AWS</Link>
+            </li>
+            <li>
+              <strong>Systems architecture</strong> and{' '}
+              <Link to="/tag/scalability">Scalability</Link>
+            </li>
+          </ul>
           <p>
             If you think I can be a good suit to talk or host a workshop, you
             can{' '}

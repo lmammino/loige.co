@@ -3,23 +3,27 @@ const path = require('path')
 
 const speakingGraphql = `
 {
-  allMarkdownRemark(
-    sort: {fields: [frontmatter___date], order: DESC},
-    filter: {frontmatter: {status: {eq: "published"}, layout: {eq: "post"}}}
-  ) {
+  allMarkdownRemark(sort: {fields: [frontmatter___date], order: DESC}, filter: {frontmatter: {status: {eq: "published"}, layout: {eq: "speaking"}}}) {
     edges {
       node {
-        timeToRead
-        excerpt(pruneLength: 512)
         fields {
           slug
         }
         frontmatter {
           date(formatString: "DD MMMM, YYYY")
+          originalDate: date
           title
-          tags
-          header_img {
-            publicURL
+          slug
+          event_name
+          event_link
+          event_city
+          event_location_gps
+          is_workshop
+          slides_link
+          video_link
+          with {
+            name
+            link
           }
         }
       }
