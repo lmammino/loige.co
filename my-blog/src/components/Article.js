@@ -1,39 +1,47 @@
 import React, { Component, Fragment } from 'react'
-import styled, { css } from 'react-emotion'
+import styled from 'react-emotion'
 import { injectGlobal } from 'emotion'
 import { Link } from 'gatsby'
-import { DiscussionEmbed as DiscussionEmbedOriginal, CommentCount as CommentCountOriginal } from 'disqus-react'
+import {
+  DiscussionEmbed as DiscussionEmbedOriginal,
+  CommentCount as CommentCountOriginal
+} from 'disqus-react'
 
 import CommentsIcon from './icons/CommentsSolid'
 import DateViewer from './DateViewer'
 import TagsList from './TagsList'
-import ReadingTime from './ReadingTime'
 
 // fixes issue with shouldComponentUpdate when not using discussion ids
 // see https://github.com/disqus/disqus-react/pull/15/
 class DiscussionEmbed extends DiscussionEmbedOriginal {
-  shouldComponentUpdate(nextProps) {
-    if (this.props.shortname !== nextProps.shortname)
-      return true;
+  shouldComponentUpdate (nextProps) {
+    if (this.props.shortname !== nextProps.shortname) return true
 
-    const nextConfig = nextProps.config;
-    const config = this.props.config;
-    if (nextConfig.url === config.url && nextConfig.identifier === config.identifier)
-      return false;
-    return true;
+    const nextConfig = nextProps.config
+    const config = this.props.config
+    if (
+      nextConfig.url === config.url &&
+      nextConfig.identifier === config.identifier
+    ) {
+      return false
+    }
+    return true
   }
 }
 
 class CommentCount extends CommentCountOriginal {
-  shouldComponentUpdate(nextProps) {
-    if (this.props.shortname !== nextProps.shortname)
-      return true;
+  shouldComponentUpdate (nextProps) {
+    if (this.props.shortname !== nextProps.shortname) return true
 
-    const nextConfig = nextProps.config;
-    const config = this.props.config;
-    if (nextConfig.url === config.url && nextConfig.identifier === config.identifier)
-      return false;
-    return true;
+    const nextConfig = nextProps.config
+    const config = this.props.config
+    if (
+      nextConfig.url === config.url &&
+      nextConfig.identifier === config.identifier
+    ) {
+      return false
+    }
+    return true
   }
 }
 
@@ -51,7 +59,7 @@ const colors = {
   function: '#79b6f2',
   className: '#FAC863',
   method: '#6699CC',
-  operator: '#fc929e',
+  operator: '#fc929e'
 }
 
 injectGlobal`
@@ -211,8 +219,8 @@ const ArticleContainer = styled('article')`
   }
 
   & a {
-    background-color: rgba(187,239,253,0.3);
-    border-bottom: 1px solid rgba(0,0,0,0.2);
+    background-color: rgba(187, 239, 253, 0.3);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     text-decoration: none;
     color: inherit;
 
@@ -221,7 +229,8 @@ const ArticleContainer = styled('article')`
       border-bottom-color: #1a1a1a;
     }
 
-    &.anchor, &.gatsby-resp-image-link {
+    &.anchor,
+    &.gatsby-resp-image-link {
       background-color: transparent;
       border: none;
     }
@@ -232,7 +241,8 @@ const ArticleContainer = styled('article')`
     font-weight: 300;
     color: #6d6d6d;
 
-    & a, & strong {
+    & a,
+    & strong {
       font-weight: 400;
     }
 
@@ -253,18 +263,23 @@ const ArticleContainer = styled('article')`
     }
   }
 
-  & h2, & h3 {
+  & h2,
+  & h3 {
     margin: 2em 0 0 0;
   }
 
-  & p > code, & li > code {
-    background: rgba(255,229,100,0.2);
+  & p > code,
+  & li > code {
+    background: rgba(255, 229, 100, 0.2);
     color: inherit;
     display: inline-block;
-    padding: 0 .3em;
+    padding: 0 0.3em;
   }
 
-  & p > code, & li > code, & p > a > code, & li > a > code {
+  & p > code,
+  & li > code,
+  & p > a > code,
+  & li > a > code {
     padding: 0 3px;
     font-size: inherit;
     word-break: break-word;
@@ -303,7 +318,8 @@ const ArticleContainer = styled('article')`
     }
   }
 
-  & h2 + h3, & h2 + h3:first-of-type {
+  & h2 + h3,
+  & h2 + h3:first-of-type {
     padding-top: 30px;
   }
 
@@ -319,12 +335,14 @@ const ArticleContainer = styled('article')`
     margin-top: 20px;
   }
 
-  & ol, & ul {
+  & ol,
+  & ul {
     margin-top: 20px;
     font-size: 16px;
     padding-left: 2em;
 
-    & p, & p:first-of-type {
+    & p,
+    & p:first-of-type {
       font-size: 16px;
       margin-top: 0;
       line-height: 1.2;
@@ -334,7 +352,8 @@ const ArticleContainer = styled('article')`
       margin-top: 10px;
     }
 
-    & ol, & ul {
+    & ol,
+    & ul {
       margin-left: 20px;
       margin-top: 10px;
     }
@@ -353,7 +372,7 @@ const ArticleContainer = styled('article')`
   }
 
   & blockquote {
-    background-color: rgba(255,229,100,0.3);
+    background-color: rgba(255, 229, 100, 0.3);
     border-left-color: #ffe564;
     border-left-width: 9px;
     border-left-style: solid;
@@ -380,7 +399,7 @@ const ArticleContainer = styled('article')`
 `
 
 class Article extends Component {
-  render() {
+  render () {
     const { post, site, disqusShortName } = this.props
     const disqusConfig = {
       url: `${site}${post.frontmatter.slug}`,
@@ -390,24 +409,42 @@ class Article extends Component {
     return (
       <Fragment>
         <SectionContainer>
-          <DateViewer style={{marginLeft:0}} date={post.frontmatter.date}/>
-          <TagsList tags={post.frontmatter.tags}/>
+          <DateViewer style={{ marginLeft: 0 }} date={post.frontmatter.date} />
+          <TagsList tags={post.frontmatter.tags} />
           <a href="#comments" title="Read comments">
-            <CommentsIcon style={{margin: '0 .25em 0 1em'}}/>
-            <CommentCount postId={post.frontmatter.slug} shortname={disqusShortName} config={disqusConfig}>comments</CommentCount>
+            <CommentsIcon style={{ margin: '0 .25em 0 1em' }} />
+            <CommentCount
+              postId={post.frontmatter.slug}
+              shortname={disqusShortName}
+              config={disqusConfig}
+            >
+              comments
+            </CommentCount>
           </a>
-          <p>— Published by <em><Link to="/about">Luciano Mammino</Link></em></p>
+          <p>
+            — Published by{' '}
+            <em>
+              <Link to="/about">Luciano Mammino</Link>
+            </em>
+          </p>
         </SectionContainer>
-        <ArticleContainer dangerouslySetInnerHTML={{ __html: post.html }}/>
+        <ArticleContainer dangerouslySetInnerHTML={{ __html: post.html }} />
         <SectionContainer
           style={{
             borderTop: '1px solid #ececec',
             marginTop: '2em',
             paddingTop: '2em',
             lineHeight: '1.2'
-          }}>
-          <h2 id="comments"><CommentsIcon style={{margin: '0 .25em 0 0'}}/> Comments</h2>
-          <DiscussionEmbed postId={post.frontmatter.slug} shortname={disqusShortName} config={disqusConfig}/>
+          }}
+        >
+          <h2 id="comments">
+            <CommentsIcon style={{ margin: '0 .25em 0 0' }} /> Comments
+          </h2>
+          <DiscussionEmbed
+            postId={post.frontmatter.slug}
+            shortname={disqusShortName}
+            config={disqusConfig}
+          />
         </SectionContainer>
       </Fragment>
     )

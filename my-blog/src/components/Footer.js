@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styled, { css } from 'react-emotion'
+import styled from 'react-emotion'
 
 import GithubIcon from './icons/Github'
 import TwitterIcon from './icons/Twitter'
@@ -87,7 +87,7 @@ const ListLink = styled('a')`
 `
 
 const Copyright = styled('p')`
-  font-size: .8em;
+  font-size: 0.8em;
   padding: 4px 0 0 0;
   color: #ccc;
 
@@ -113,19 +113,61 @@ const Heart = styled('span')`
 
 class Footer extends Component {
   render () {
-    const year = (new Date()).getFullYear()
+    const year = new Date().getFullYear()
     return (
       <FooterContainer>
-        <FooterBorder/>
+        <FooterBorder />
         <FooterWrapper>
           <FooterColumns>
             <FooterFullColumn>
-              <ListTitle style={{color: '#46c9e5'}}>Loige.co</ListTitle>
-              <Copyright>Copyright © Luciano Mammino 2014-{year}.</Copyright>
-              <Copyright>Built with <a rel="nofollow" target="_blank" href="https://www.gatsbyjs.org">Gatsby</a>, Coffee and a lot of <Heart>❤︎</Heart>.</Copyright>
-              <Copyright>Hosted on <a rel="nofollow" target="_blank" href="https://github.com/lmammino/loige.co">GitHub</a>.</Copyright>
-              <Copyright>Theme inspired by <a rel="nofollow" target="_blank" href="https://reactjs.org/docs/">React documentation.</a></Copyright>
-              <Copyright>Icons by <a rel="nofollow" target="_blank" href="https://fontawesome.com/">Font Awesome</a>.</Copyright>
+              <ListTitle style={{ color: '#46c9e5' }}>Loige.co</ListTitle>
+              <Copyright>
+                Copyright © Luciano Mammino 2014-
+                {year}.
+              </Copyright>
+              <Copyright>
+                Built with{' '}
+                <a
+                  rel="nofollow noopener noreferrer"
+                  target="_blank"
+                  href="https://www.gatsbyjs.org"
+                >
+                  Gatsby
+                </a>
+                , Coffee and a lot of <Heart>❤︎</Heart>.
+              </Copyright>
+              <Copyright>
+                Hosted on{' '}
+                <a
+                  rel="nofollow noopener noreferrer"
+                  target="_blank"
+                  href="https://github.com/lmammino/loige.co"
+                >
+                  GitHub
+                </a>
+                .
+              </Copyright>
+              <Copyright>
+                Theme inspired by{' '}
+                <a
+                  rel="nofollow noopener noreferrer"
+                  target="_blank"
+                  href="https://reactjs.org/docs/"
+                >
+                  React documentation.
+                </a>
+              </Copyright>
+              <Copyright>
+                Icons by{' '}
+                <a
+                  rel="nofollow noopener noreferrer"
+                  target="_blank"
+                  href="https://fontawesome.com/"
+                >
+                  Font Awesome
+                </a>
+                .
+              </Copyright>
             </FooterFullColumn>
             <FooterColumn>
               <List>
@@ -139,18 +181,57 @@ class Footer extends Component {
             <FooterColumn>
               <List>
                 <ListTitle>My Projects</ListTitle>
-                <ListLink target="_blank" rel="nofollow" href="https://www.nodejsdesignpatterns.com">Node.js Design Patterns</ListLink>
-                <ListLink target="_blank" rel="nofollow" href="https://serverlesslab.com">ServerlessLab</ListLink>
-                <ListLink target="_blank" rel="nofollow" href="https://fullstackbulletin.com">FullStack Bulletin</ListLink>
-                <ListLink target="_blank" rel="nofollow" href="https://middy.js.org">Middy</ListLink>
+                <ListLink
+                  target="_blank"
+                  rel="nofollow noopener noreferrer"
+                  href="https://www.nodejsdesignpatterns.com"
+                >
+                  Node.js Design Patterns
+                </ListLink>
+                <ListLink
+                  target="_blank"
+                  rel="nofollow noopener noreferrer"
+                  href="https://serverlesslab.com"
+                >
+                  ServerlessLab
+                </ListLink>
+                <ListLink
+                  target="_blank"
+                  rel="nofollow noopener noreferrer"
+                  href="https://fullstackbulletin.com"
+                >
+                  FullStack Bulletin
+                </ListLink>
+                <ListLink
+                  target="_blank"
+                  rel="nofollow noopener noreferrer"
+                  href="https://middy.js.org"
+                >
+                  Middy
+                </ListLink>
               </List>
             </FooterColumn>
             <FooterColumn>
               <List>
                 <ListTitle>Follow me</ListTitle>
-                <ListLink rel="nofollow" href="https://twitter.com/loige"><TwitterIcon/> Twitter</ListLink>
-                <ListLink rel="nofollow" href="https://github.com/lmammino"><GithubIcon/> GitHub</ListLink>
-                <ListLink rel="nofollow" href="https://www.linkedin.com/in/lucianomammino"><LinkedinIcon/> Linkedin</ListLink>
+                <ListLink
+                  rel="nofollow noopener noreferrer"
+                  href="https://twitter.com/loige"
+                >
+                  <TwitterIcon /> Twitter
+                </ListLink>
+                <ListLink
+                  rel="nofollow noopener noreferrer"
+                  href="https://github.com/lmammino"
+                >
+                  <GithubIcon /> GitHub
+                </ListLink>
+                <ListLink
+                  rel="nofollow noopener noreferrer"
+                  href="https://www.linkedin.com/in/lucianomammino"
+                >
+                  <LinkedinIcon /> Linkedin
+                </ListLink>
               </List>
             </FooterColumn>
           </FooterColumns>

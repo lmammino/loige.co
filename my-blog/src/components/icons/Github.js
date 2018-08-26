@@ -16,4 +16,3 @@ const Github = props => (
 )
 
 export default Github
-

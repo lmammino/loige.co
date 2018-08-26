@@ -19,4 +19,3 @@ const ClockRegular = props => (
 )
 
 export default ClockRegular
-

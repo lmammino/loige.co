@@ -10,7 +10,7 @@ const PaginationContainer = styled('nav')`
   margin: 2rem 0;
   padding: 16px 0;
   max-width: 820px;
-  color: #9EABB3;
+  color: #9eabb3;
   text-align: center;
 `
 
@@ -85,15 +85,23 @@ class Pagination extends Component {
     const nextLabel = this.props.nextLabel || 'Older Posts →'
     return (
       <PaginationContainer>
-        {previous ?
-          <Link className={`${pageLink} ${pageLinkPrev}`} to={previous.href}>{previousLabel}</Link> :
-          <Spacer className="previous"/>
-        }
-        <PageLabel>Page {currentPage} of {totalPages}</PageLabel>
-        {next ?
-          <Link className={`${pageLink} ${pageLinkNext}`} to={next.href}>{nextLabel}</Link> :
-          <Spacer className="next"/>
-        }
+        {previous ? (
+          <Link className={`${pageLink} ${pageLinkPrev}`} to={previous.href}>
+            {previousLabel}
+          </Link>
+        ) : (
+          <Spacer className="previous" />
+        )}
+        <PageLabel>
+          Page {currentPage} of {totalPages}
+        </PageLabel>
+        {next ? (
+          <Link className={`${pageLink} ${pageLinkNext}`} to={next.href}>
+            {nextLabel}
+          </Link>
+        ) : (
+          <Spacer className="next" />
+        )}
       </PaginationContainer>
     )
   }

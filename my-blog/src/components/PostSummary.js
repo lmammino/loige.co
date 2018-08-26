@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import styled, { css } from 'react-emotion'
+import styled from 'react-emotion'
 import GitHubSlugger from 'github-slugger'
 
 const PostSummaryContainer = styled('div')`
-
   ol {
     color: #6d6d6d;
     padding: 0 0 0 2em;
@@ -11,18 +10,20 @@ const PostSummaryContainer = styled('div')`
   }
 
   ol ol {
-    padding: 0 0 0 .3em;
+    padding: 0 0 0 0.3em;
   }
 
   ol li {
-    font-size: .8rem;
-    font-family: source-code-pro,Menlo,Monaco,Consolas,Courier New,monospace;
+    font-size: 0.8rem;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, Courier New,
+      monospace;
     margin-top: 5px;
     color: #5cb767;
 
     a {
       font-size: 1.2em;
-      font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+        Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
       color: #6d6d6d;
       border-bottom: 1px solid transparent;
 
@@ -36,19 +37,18 @@ const PostSummaryContainer = styled('div')`
     }
 
     &.depth-3 {
-      font-size: .8em;
+      font-size: 0.8em;
       list-style: none;
     }
-
   }
 `
 
 class PostSummary extends Component {
-  render() {
+  render () {
     const { headings } = this.props
     const nestedHeadings = headings
       .filter(({ depth }) => depth <= 3)
-      .map((i) => {
+      .map(i => {
         i.children = []
         return i
       })
@@ -56,7 +56,7 @@ class PostSummary extends Component {
         const prev = acc[acc.length - 1]
         if (prev && curr.depth > prev.depth) {
           prev.children.push(curr)
-          return acc;
+          return acc
         }
 
         acc.push(curr)
@@ -68,20 +68,24 @@ class PostSummary extends Component {
       <PostSummaryContainer>
         <h3>Sections</h3>
         <ol>
-          {nestedHeadings.map(({value, depth, children}) => {
-            return (<li className={`depth-${depth}`} key={value}>
-              <a href={`#${slugger.slug(value)}`}>{value}</a>
-              {children.length > 0 && <ol>
-                {children.map(({value, depth}) => {
-                  return (
-                    <li className={`depth-${depth}`} key={value}>
-                      <a href={`#${slugger.slug(value)}`}>{value}</a>
-                    </li>
-                  )
-                })}
-              </ol>}
-            </li>)
-          } )}
+          {nestedHeadings.map(({ value, depth, children }) => {
+            return (
+              <li className={`depth-${depth}`} key={value}>
+                <a href={`#${slugger.slug(value)}`}>{value}</a>
+                {children.length > 0 && (
+                  <ol>
+                    {children.map(({ value, depth }) => {
+                      return (
+                        <li className={`depth-${depth}`} key={value}>
+                          <a href={`#${slugger.slug(value)}`}>{value}</a>
+                        </li>
+                      )
+                    })}
+                  </ol>
+                )}
+              </li>
+            )
+          })}
         </ol>
       </PostSummaryContainer>
     )

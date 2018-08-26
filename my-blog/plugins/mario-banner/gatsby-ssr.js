@@ -29,11 +29,12 @@ const mario = `/**
 ──████
 **/`
 
-const Mario = React.createElement("script", {
+const Mario = React.createElement('script', {
+  key: 'mario',
   dangerouslySetInnerHTML: {
     __html: mario
   }
-});
+})
 
 exports.onRenderBody = ({ setHeadComponents }) => {
   setHeadComponents(Mario)

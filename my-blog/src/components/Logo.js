@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styled, { css } from 'react-emotion'
+import { css } from 'react-emotion'
 import { Link } from 'gatsby'
 
 import mario from './images/mario.svg'
@@ -33,8 +33,13 @@ const logoTextStyle = css`
 class Logo extends Component {
   render () {
     return (
-      <Link to="/" className={`${logoStyle}${ this.props.className ? ` ${this.props.className}` : ''}`}>
-        <img className={logoImageStyle} height="30px" src={mario} alt="Loige"/>
+      <Link
+        to="/"
+        className={`${logoStyle}${
+          this.props.className ? ` ${this.props.className}` : ''
+        }`}
+      >
+        <img className={logoImageStyle} height="30px" src={mario} alt="Loige" />
         <span className={logoTextStyle}>Loige</span>
       </Link>
     )

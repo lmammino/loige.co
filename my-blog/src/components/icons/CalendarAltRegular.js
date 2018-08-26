@@ -19,4 +19,3 @@ const CalendarAltRegular = props => (
 )
 
 export default CalendarAltRegular
-

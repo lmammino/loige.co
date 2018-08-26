@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styled, { css } from 'react-emotion'
+import styled from 'react-emotion'
 import { graphql } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
@@ -23,19 +23,25 @@ const Content = styled('div')`
 `
 
 class TagIndex extends Component {
-  render() {
+  render () {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     const { tag, posts } = this.props.pageContext
 
     return (
       <Layout location={this.props.location} section="blog">
         <Helmet title={siteTitle} />
-        <Hero className='small tiledBg gradientOverlay' backgroundImage={tagsBg}>
+        <Hero
+          className="small tiledBg gradientOverlay"
+          backgroundImage={tagsBg}
+        >
           <h1>#{tag}</h1>
-          <h2>{posts.length} post{posts.length > 1 ? 's' : ''} in this collection</h2>
+          <h2>
+            {posts.length} post
+            {posts.length > 1 ? 's' : ''} in this collection
+          </h2>
         </Hero>
         <Content>
-          <PostsList posts={posts}/>
+          <PostsList posts={posts} />
         </Content>
       </Layout>
     )

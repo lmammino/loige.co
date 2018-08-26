@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styled, { css } from 'react-emotion'
+import styled from 'react-emotion'
 import { graphql } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
@@ -58,7 +58,7 @@ const Sidebar = styled('aside')`
   width: 100%;
 
   h3 {
-    margin: 0 0 .5em 0;
+    margin: 0 0 0.5em 0;
     position: relative;
     color: #5cb767;
   }
@@ -79,9 +79,15 @@ const Sidebar = styled('aside')`
 `
 
 class BlogIndex extends Component {
-  render() {
+  render () {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
-    const { previous, next, currentPage, totalPages, posts } = this.props.pageContext
+    const {
+      previous,
+      next,
+      currentPage,
+      totalPages,
+      posts
+    } = this.props.pageContext
     const pagination = { previous, next, currentPage, totalPages }
 
     return (
@@ -95,13 +101,13 @@ class BlogIndex extends Component {
           <Content>
             <Columns>
               <MainColumn>
-                <PostsList posts={posts}/>
+                <PostsList posts={posts} />
                 <Pagination {...pagination} />
               </MainColumn>
               <Sidebar>
                 <div>
-                  <Hello/>
-                  <ArticleSidebarAd/>
+                  <Hello />
+                  <ArticleSidebarAd />
                 </div>
               </Sidebar>
             </Columns>

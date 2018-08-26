@@ -16,4 +16,3 @@ const Twitter = props => (
 )
 
 export default Twitter
-

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
-import styled, { css } from 'react-emotion'
+import styled from 'react-emotion'
 import Helmet from 'react-helmet'
-import { graphql, Link } from 'gatsby'
+import { graphql } from 'gatsby'
 import get from 'lodash/get'
 
 import Layout from '../components/layout'
@@ -52,7 +52,7 @@ const Sidebar = styled('aside')`
   margin: 0 0 2em 0;
 
   h3 {
-    margin: 0 0 .5em 0;
+    margin: 0 0 0.5em 0;
     position: relative;
     color: #5cb767;
   }
@@ -71,12 +71,17 @@ const Sidebar = styled('aside')`
 `
 
 class BlogPostTemplate extends Component {
-  render() {
+  render () {
     const post = this.props.data.markdownRemark
     const siteTitle = get(this.props, 'data.site.siteMetadata.title')
     const { previous, next, similar } = this.props.pageContext
-    const headerImage = post.frontmatter.header_img ? post.frontmatter.header_img.publicURL : undefined
-    const disqusShortName = get(this.props, 'data.site.siteMetadata.disqusShortName')
+    const headerImage = post.frontmatter.header_img
+      ? post.frontmatter.header_img.publicURL
+      : undefined
+    const disqusShortName = get(
+      this.props,
+      'data.site.siteMetadata.disqusShortName'
+    )
     const site = get(this.props, 'data.site.siteMetadata.siteUrl')
 
     const shareOptions = {
@@ -84,34 +89,41 @@ class BlogPostTemplate extends Component {
       title: post.frontmatter.title,
       site,
       imageUrl: `${site}${headerImage}`,
-      twitterProfile: get(this.props, 'data.site.siteMetadata.twitterProfile'),
+      twitterProfile: get(this.props, 'data.site.siteMetadata.twitterProfile')
     }
 
     return (
       <Layout location={this.props.location} section="blog">
         <Helmet title={`${post.frontmatter.title} | ${siteTitle}`} />
         <Hero className="textOverlay" backgroundImage={headerImage}>
-          <h1><span>{post.frontmatter.title}</span></h1>
+          <h1>
+            <span>{post.frontmatter.title}</span>
+          </h1>
         </Hero>
         <ContentContainer>
           <Content>
             <Columns>
               <MainColumn>
-                <Article post={post} site={site} disqusShortName={disqusShortName}/>
+                <Article
+                  post={post}
+                  site={site}
+                  disqusShortName={disqusShortName}
+                />
               </MainColumn>
               <Sidebar>
-                <ArticleSidebarAd/>
+                <ArticleSidebarAd />
                 <div>
-                  {post.headings.length > 0 && <PostSummary headings={post.headings}/>}
-                  <h3 style={{marginTop: '1em'}}>Share</h3>
-                  <SocialShareBar {...shareOptions}/>
-                  {
-                    similar.length > 0 &&
+                  {post.headings.length > 0 && (
+                    <PostSummary headings={post.headings} />
+                  )}
+                  <h3 style={{ marginTop: '1em' }}>Share</h3>
+                  <SocialShareBar {...shareOptions} />
+                  {similar.length > 0 && (
                     <Fragment>
-                      <h3 style={{marginTop: '1em'}}>Similar posts</h3>
-                      <SimilarPosts similar={similar}/>
+                      <h3 style={{ marginTop: '1em' }}>Similar posts</h3>
+                      <SimilarPosts similar={similar} />
                     </Fragment>
-                  }
+                  )}
                 </div>
               </Sidebar>
             </Columns>

@@ -36,11 +36,14 @@ const LinkUnderline = styled('span')`
 `
 
 class NavLink extends Component {
-  render() {
+  render () {
     const { to, active, children } = this.props
     return (
-      <Link className={`${navLinkStyle}${ active ? ` ${navLinkActiveStyle}` : '' }`} to={to}>
-        { active && <LinkUnderline/> }
+      <Link
+        className={`${navLinkStyle}${active ? ` ${navLinkActiveStyle}` : ''}`}
+        to={to}
+      >
+        {active && <LinkUnderline />}
         {children}
       </Link>
     )

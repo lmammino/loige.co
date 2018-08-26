@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styled, { css } from 'react-emotion'
+import styled from 'react-emotion'
 import { Link } from 'gatsby'
 
 import TagsList from './TagsList'
@@ -18,7 +18,7 @@ const Post = styled('article')`
   position: relative;
   margin: 4rem 0;
   padding-bottom: 4rem;
-  border-bottom: #EBF2F6 1px solid;
+  border-bottom: #ebf2f6 1px solid;
   word-wrap: break-word;
   -moz-hyphens: auto;
   -ms-hyphens: auto;
@@ -27,17 +27,17 @@ const Post = styled('article')`
 
   &::after {
     display: block;
-    content: "";
+    content: '';
     width: 7px;
     height: 7px;
-    border: #E7EEF2 1px solid;
+    border: #e7eef2 1px solid;
     position: absolute;
     bottom: -5px;
     left: 50%;
     margin-left: -5px;
-    background: #FFF;
+    background: #fff;
     border-radius: 100%;
-    box-shadow: #FFF 0 0 0 5px;
+    box-shadow: #fff 0 0 0 5px;
   }
 `
 
@@ -52,7 +52,7 @@ const Title = styled('h3')`
 
   a {
     text-decoration: none;
-    color: #2E2E2E;
+    color: #2e2e2e;
   }
 
   a:hover {
@@ -65,7 +65,7 @@ const Excerpt = styled('p')`
   font-size: 1em;
   line-height: 1.7em;
   text-rendering: geometricPrecision;
-  color: #3A4145;
+  color: #3a4145;
   padding: 0 1em 0 0;
   max-width: 820px;
 `
@@ -74,7 +74,7 @@ const Footer = styled('footer')`
   margin: 0.75rem 0 0 0;
   font-size: 1rem;
   line-height: 1.5rem;
-  color: #9EABB3;
+  color: #9eabb3;
   vertical-align: middle;
 `
 
@@ -117,11 +117,11 @@ class PostPreview extends Component {
           <Excerpt dangerouslySetInnerHTML={{ __html: excerpt }} />
         </section>
         <Footer>
-          <ProfilePic src={profilePic}/>
+          <ProfilePic src={profilePic} />
           Luciano Mammino
-          <TagsList tags={tags}/>
-          <DateViewer date={date}/>
-          <ReadingTime time={timeToRead}/>
+          <TagsList tags={tags} />
+          <DateViewer date={date} />
+          <ReadingTime time={timeToRead} />
           <ReadThePost>
             <Link to={`/${slug}`}>Read the post →</Link>
           </ReadThePost>

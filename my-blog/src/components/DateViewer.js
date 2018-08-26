@@ -4,13 +4,13 @@ import styled, { css } from 'react-emotion'
 import CalendarAltRegularIcon from './icons/CalendarAltRegular'
 
 const calendarAltRegularStyle = css`
-  margin: 0 .25em 0 0;
+  margin: 0 0.25em 0 0;
 `
 
 const CalendarViewContainer = styled('span')`
   vertical-align: middle;
   font-size: inherit;
-  margin: 0 .5em;
+  margin: 0 0.5em;
   display: inline-block;
 
   span {
@@ -19,11 +19,11 @@ const CalendarViewContainer = styled('span')`
 `
 
 class DateViewer extends Component {
-  render() {
+  render () {
     const { date, style, className } = this.props
     return (
       <CalendarViewContainer style={style} className={className}>
-        <CalendarAltRegularIcon className={calendarAltRegularStyle}/>
+        <CalendarAltRegularIcon className={calendarAltRegularStyle} />
         <span>{date}</span>
       </CalendarViewContainer>
     )

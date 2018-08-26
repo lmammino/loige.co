@@ -1,12 +1,11 @@
 import React, { Component, Fragment } from 'react'
-import styled, { css } from 'react-emotion'
+import styled from 'react-emotion'
 import { graphql, Link } from 'gatsby'
 import { get } from 'lodash'
 import Helmet from 'react-helmet'
 
 import Layout from '../components/layout'
 import Hero from '../components/Hero'
-import PostsList from '../components/PostsList'
 import speakingBg from '../components/images/speaking-bg.jpg'
 import ImagesSolidIcon from '../components/icons/ImagesSolid'
 import VideoSolidIcon from '../components/icons/VideoSolid'
@@ -96,8 +95,8 @@ const Content = styled('div')`
   }
 `
 
-const splitEventsByFutureAndPast = (events) => {
-  const now = (new Date()).toISOString()
+const splitEventsByFutureAndPast = events => {
+  const now = new Date().toISOString()
   const future = []
   const past = []
 
@@ -112,14 +111,14 @@ const splitEventsByFutureAndPast = (events) => {
   return { future, past }
 }
 
-const conjunctions = (arr) => {
+const conjunctions = arr => {
   const conjunctions = {
     comaSeparated: null,
     and: null,
     length: arr.length
   }
 
-  if (arr.length == 1) {
+  if (arr.length === 1) {
     conjunctions.comaSeparated = arr
   } else {
     const last = arr[arr.length - 1]
@@ -137,85 +136,162 @@ class SpeakingEntry extends Component {
     const withPeople = conjunctions(f.with)
 
     return (
-      <div className="event-wrapper" itemScope itemType="http://schema.org/Event">
-        <h3 className="event-title" itemProp="name">{f.title}{f.is_workshop ? ' (workshop)' : ''}</h3>
+      <div
+        className="event-wrapper"
+        itemScope
+        itemType="http://schema.org/Event"
+      >
+        <h3 className="event-title" itemProp="name">
+          {f.title}
+          {f.is_workshop ? ' (workshop)' : ''}
+        </h3>
         <p>
-          <span><a href={f.event_link} target="_blank">{f.event_name}</a></span>
+          <span>
+            <a
+              href={f.event_link}
+              rel="nofollow noopener noreferrer"
+              target="_blank"
+            >
+              {f.event_name}
+            </a>
+          </span>
           &nbsp; - <span>{f.date}</span>
-          {withPeople.length > 0 && <span>
-            &nbsp; - with {withPeople.comaSeparated.map((person, index) => {
-              return (
-                <Fragment key={person.name}>
-                  <a href={person.link} target="_blank">
-                    {person.name}
+          {withPeople.length > 0 && (
+            <span>
+              &nbsp; - with{' '}
+              {withPeople.comaSeparated.map((person, index) => {
+                return (
+                  <Fragment key={person.name}>
+                    <a
+                      href={person.link}
+                      rel="nofollow noopener noreferrer"
+                      target="_blank"
+                    >
+                      {person.name}
+                    </a>
+                    {index < withPeople.comaSeparated.length - 1 && ', '}
+                  </Fragment>
+                )
+              })}
+              {withPeople.and && (
+                <Fragment>
+                  &nbsp;and{' '}
+                  <a
+                    href={withPeople.and.link}
+                    rel="nofollow noopener noreferrer"
+                    target="_blank"
+                  >
+                    {withPeople.and.name}
                   </a>
-                  {index < withPeople.comaSeparated.length - 1 && ', '}
                 </Fragment>
-              )
-            })}
-            { withPeople.and && <Fragment>
-              &nbsp;and <a href={withPeople.and.link} target="_blank">
-                {withPeople.and.name}
-              </a>
-            </Fragment> }
-          </span>}
+              )}
+            </span>
+          )}
         </p>
-        { (f.slides_link || f.video_link) && <p className="slides-video">
-          {f.slides_link && <a href={f.slides_link} target="_blank">
-            <ImagesSolidIcon/> Slides
-          </a>} {f.video_link && <a href={f.video_link} target="_blank">
-            <VideoSolidIcon/> Video
-          </a>}
-        </p> }
+        {(f.slides_link || f.video_link) && (
+          <p className="slides-video">
+            {f.slides_link && (
+              <a
+                href={f.slides_link}
+                rel="nofollow noopener noreferrer"
+                target="_blank"
+              >
+                <ImagesSolidIcon /> Slides
+              </a>
+            )}{' '}
+            {f.video_link && (
+              <a
+                href={f.video_link}
+                rel="nofollow noopener noreferrer"
+                target="_blank"
+              >
+                <VideoSolidIcon /> Video
+              </a>
+            )}
+          </p>
+        )}
       </div>
     )
   }
 }
 
 class SpeakingIndex extends Component {
-  render() {
+  render () {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     const { events } = this.props.pageContext
     const { future, past } = splitEventsByFutureAndPast(events)
 
     return (
       <Layout location={this.props.location} section="speaking">
-        <Helmet title={`Speaking events: conference talks and workshops - ${siteTitle}`} />
-        <Hero className='small gradientOverlay' backgroundImage={speakingBg}>
+        <Helmet
+          title={`Speaking events: conference talks and workshops - ${siteTitle}`}
+        />
+        <Hero className="small gradientOverlay" backgroundImage={speakingBg}>
           <h1>Speaking</h1>
         </Hero>
         <Content>
-          <p>I am quite involved with conferences and I love delivering technical talks and workshops.</p>
-          <p>Lately I have been focusing on the following topics:
+          <p>
+            I am quite involved with conferences and I love delivering technical
+            talks and workshops.
+          </p>
+          <p>
+            Lately I have been focusing on the following topics:
             <ul className="topics">
-              <li><Link to="/tag/node-js">Node.js</Link>, <Link to="/tag/javascript">JavaScript</Link> and <Link to="/tag/design-patterns">Design Patterns</Link></li>
-              <li><Link to="/tag/serverless">Serverless</Link> and <Link to="/tag/aws">AWS</Link></li>
-              <li><strong>Systems architecture</strong> and <Link to="/tag/scalability">Scalability</Link></li>
+              <li>
+                <Link to="/tag/node-js">Node.js</Link>,{' '}
+                <Link to="/tag/javascript">JavaScript</Link> and{' '}
+                <Link to="/tag/design-patterns">Design Patterns</Link>
+              </li>
+              <li>
+                <Link to="/tag/serverless">Serverless</Link> and{' '}
+                <Link to="/tag/aws">AWS</Link>
+              </li>
+              <li>
+                <strong>Systems architecture</strong> and{' '}
+                <Link to="/tag/scalability">Scalability</Link>
+              </li>
             </ul>
           </p>
-          <p>If you think I can be a good suit to talk or host a workshop, you can <strong><a href="http://loige.link/invite-me-to-a-conference" target="_blank">📩 invite me to your next cool conference</a></strong>.</p>
+          <p>
+            If you think I can be a good suit to talk or host a workshop, you
+            can{' '}
+            <strong>
+              <a
+                href="http://loige.link/invite-me-to-a-conference"
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+              >
+                📩 invite me to your next cool conference
+              </a>
+            </strong>
+            .
+          </p>
 
           <p>Here you can find a list of my future and past engagements.</p>
         </Content>
-        <SpeakingMap events={events}/>
+        <SpeakingMap events={events} />
         <Content>
           <h2>Upcoming events</h2>
-          { future.length > 0 && <ul className="events">
-            { future.map(e => (
-              <li key={e.frontmatter.slug}>
-                <SpeakingEntry event={e}/>
-              </li>)) }
-          </ul> }
-          { future.length === 0 && <p>
-            No future events planned at this time :(
-          </p> }
+          {future.length > 0 && (
+            <ul className="events">
+              {future.map(e => (
+                <li key={e.frontmatter.slug}>
+                  <SpeakingEntry event={e} />
+                </li>
+              ))}
+            </ul>
+          )}
+          {future.length === 0 && (
+            <p>No future events planned at this time :(</p>
+          )}
 
           <h2>Past events ({past.length})</h2>
           <ul className="events">
-            { past.map(e => (
+            {past.map(e => (
               <li key={e.frontmatter.slug}>
-                <SpeakingEntry event={e}/>
-              </li>)) }
+                <SpeakingEntry event={e} />
+              </li>
+            ))}
           </ul>
         </Content>
       </Layout>

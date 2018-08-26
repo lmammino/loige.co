@@ -16,4 +16,3 @@ const Linkedin = props => (
 )
 
 export default Linkedin
-

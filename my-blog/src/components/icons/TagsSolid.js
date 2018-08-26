@@ -19,4 +19,3 @@ const TagsSolid = props => (
 )
 
 export default TagsSolid
-

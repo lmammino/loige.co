@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import styled, { css } from 'react-emotion'
+import styled from 'react-emotion'
 import { Link } from 'gatsby'
 
 import ProfileImage from './images/profile-pic.jpg'
 
 const HelloContainer = styled('div')`
   background: #46c9e5;
-  background: linear-gradient(180deg,#46c9e5,#d26ac2);
+  background: linear-gradient(180deg, #46c9e5, #d26ac2);
   padding: 1em;
   border-radius: 1em;
   margin: -2em 0 2em 0;
@@ -15,10 +15,11 @@ const HelloContainer = styled('div')`
     margin-top: 0;
   }
 
-  p, span {
+  p,
+  span {
     line-height: 1.7em;
     text-rendering: geometricPrecision;
-    color: #3A4145;
+    color: #3a4145;
     max-width: 820px;
     margin: 0 auto;
 
@@ -45,8 +46,6 @@ const HelloContainer = styled('div')`
       border-radius: 50%;
     }
   }
-
-
 `
 
 class Hello extends Component {
@@ -54,12 +53,16 @@ class Hello extends Component {
     return (
       <HelloContainer>
         <span className="picture">
-          <img src={ProfileImage}/>
+          <img src={ProfileImage} />
           <h3>Hello :)</h3>
         </span>
-        <p>I am Luciano a.k.a. <em>loige</em>, a passionate Web Developer currently working as
-        Solution Architect at Vectra, Dublin. You can read some of my posts in this page,
-        or <Link to="/about">know more about myself and my side projects</Link> or about my <Link to="/speaking">talks and workshops</Link>.</p>
+        <p>
+          I am Luciano a.k.a. <em>loige</em>, a passionate Web Developer
+          currently working as Solution Architect at Vectra, Dublin. You can
+          read some of my posts in this page, or{' '}
+          <Link to="/about">know more about myself and my side projects</Link>{' '}
+          or about my <Link to="/speaking">talks and workshops</Link>.
+        </p>
       </HelloContainer>
     )
   }
