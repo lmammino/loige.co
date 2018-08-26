@@ -301,7 +301,7 @@ class SpeakingIndex extends Component {
 export default SpeakingIndex
 
 export const pageQuery = graphql`
-  query SiteMetadata {
+  query SpeakingQuery {
     site {
       siteMetadata {
         title

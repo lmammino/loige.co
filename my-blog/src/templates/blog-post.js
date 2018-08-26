@@ -139,7 +139,7 @@ class BlogPostTemplate extends Component {
 export default BlogPostTemplate
 
 export const pageQuery = graphql`
-  query BlogPostBySlug($slug: String!) {
+  query BlogPostQuery($slug: String!) {
     site {
       siteMetadata {
         title

@@ -1,8 +1,12 @@
 - name: Node.js Design Patterns
-  link: "https://www.nodejsdesignpatterns.com"
+  link: 'https://www.nodejsdesignpatterns.com'
+  role: 'co-author'
 - name: ServerlessLab
-  link: "https://serverlesslab.com"
+  link: 'https://serverlesslab.com'
+  role: 'co-founder'
 - name: Fullstack Bulletin
-  link: "https://fullstackbulletin.com"
+  link: 'https://fullstackbulletin.com'
+  role: 'co-creator and maintainer'
 - name: Middy
-  link: "https://middy.js.org"
+  link: 'https://middy.js.org'
+  role: 'co-creator and maintainer'
