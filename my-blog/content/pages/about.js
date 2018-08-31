@@ -24,7 +24,9 @@ const AboutPage = props => {
   const lastPosts = get(props, 'data.lastPosts.edges')
   const blogPostCount = get(props, 'data.lastPosts.totalCount')
   const speakingCount = get(props, 'data.speaking.totalCount')
-  console.log(props)
+  const externalArticles = get(props, 'data.externalPosts.edges')
+  const externalPostsCount = get(props, 'data.externalPosts.totalCount')
+  const sideProjects = get(props, 'data.sideProjects.edges')
   return (
     <Layout section="about">
       <Helmet title={`About loige - ${siteTitle}`} />
@@ -124,7 +126,7 @@ const AboutPage = props => {
             <a href="https://sbaam.com">Sbaam.com</a>, that aimed to disrupt the
             emerging fashion brands industry. I can&apos;t say any of these
             businesses was seriously successful, but I definitely learned a lot
-            and I believe I still preserve that entrepreneurial mindset.
+            and I believe I still preserve some of that entrepreneurial mindset.
           </p>
           <p>
             I am a <strong>fighter</strong>, I enjoy practicing martial arts as
@@ -166,7 +168,7 @@ const AboutPage = props => {
           <p>
             In the last few years, I have published{' '}
             <strong>{blogPostCount}</strong> articles in this blog and
-            contributed to <strong>Y</strong> articles for other publishers.
+            contributed to <strong>{ externalPostsCount }</strong> articles for other publishers.
           </p>
           <h4>Latest article on this blog</h4>
           <ul>
@@ -182,9 +184,26 @@ const AboutPage = props => {
             See all the articles in the <Link to="/">blog section</Link>.
           </p>
           <h4>Articles on other websites</h4>
-          <p>Todo</p>
+          <ul>
+            {externalArticles.map(p => (
+              <li key={p.node.link}>
+                <a rel="noopener noreferrer" target="_blank" href={p.node.link}>
+                  {p.node.title}
+                </a>
+              </li>
+            ))}
+          </ul>
           <h3>Side projects</h3>
-          <p>Todo</p>
+          <p>Here are some of the side projects I am involved with:</p>
+          <ul>
+            {sideProjects.map(p => (
+              <li key={p.node.link}>
+                <a rel="noopener noreferrer" target="_blank" href={p.node.link}>
+                  {p.node.name}
+                </a> ({ p.node.role })
+              </li>
+            ))}
+          </ul>
         </ArticleContainer>
       </ResponsiveWrapper>
     </Layout>
@@ -231,6 +250,29 @@ export const pageQuery = graphql`
       }
     ) {
       totalCount
+    }
+
+    externalPosts: allExternalArticlesYaml(sort: {fields: [date], order: DESC} ) {
+      totalCount
+      edges {
+        node {
+          id
+          title
+          link
+        }
+      }
+    }
+
+    sideProjects: allSideProjectsYaml(sort: {fields: [name], order: ASC} ) {
+      totalCount
+      edges {
+        node {
+          id
+          name
+          link
+          role
+        }
+      }
     }
   }
 `

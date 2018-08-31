@@ -10,3 +10,6 @@
 - name: Middy
   link: 'https://middy.js.org'
   role: 'co-creator and maintainer'
+- name: Fastify
+  link: 'https://www.fastify.io'
+  role: 'Website developer and contributor'
