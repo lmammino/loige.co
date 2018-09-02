@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { css } from 'react-emotion'
 import { Link } from 'gatsby'
 
-import mario from './images/mario.svg'
+import logo from './images/luciano8bit-block.svg'
 
 const logoStyle = css`
   color: #46c9e5;
@@ -39,7 +39,7 @@ class Logo extends Component {
           this.props.className ? ` ${this.props.className}` : ''
         }`}
       >
-        <img className={logoImageStyle} height="30px" src={mario} alt="Loige" />
+        <img className={logoImageStyle} height="60px" src={logo} alt="Loige" />
         <span className={logoTextStyle}>Loige</span>
       </Link>
     )

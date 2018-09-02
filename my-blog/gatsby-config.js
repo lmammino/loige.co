@@ -91,9 +91,9 @@ module.exports = {
         short_name: `Loige.co`,
         start_url: `/`,
         background_color: `#ffffff`,
-        theme_color: `#46c9e5`,
+        theme_color: `#20232a`,
         display: `minimal-ui`,
-        icon: `src/components/images/profile-pic.jpg`
+        icon: `src/components/images/apple-icon-precomposed.png`
       }
     },
     `gatsby-plugin-offline`,
