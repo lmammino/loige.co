@@ -6,6 +6,7 @@ import { get } from 'lodash'
 import Layout from '../../src/components/layout'
 import ResponsiveWrapper from '../../src/components/ResponsiveWrapper'
 import ArticleContainer from '../../src/components/ArticleContainer'
+import ToadPicture from '../../src/components/images/toad.png'
 
 const NotFoundPage = props => {
   const siteTitle = get(props, 'data.site.siteMetadata.title')
@@ -15,8 +16,19 @@ const NotFoundPage = props => {
       <Helmet title={`PAGE NOT FOUND - ${siteTitle}`} />
       <ResponsiveWrapper>
         <ArticleContainer style={{ minHeight: '80vh' }}>
-          <h1 style={{ marginTop: '4em' }}>PAGE NOT FOUND!</h1>
-          <p>You just hit a route that doesn&#39;t exist... the sadness.😢</p>
+          <img
+            src={ToadPicture}
+            style={{ width: '60px', float: 'left', margin: '0 1em 1em 0' }}
+          />
+          <h1 style={{ marginTop: '4em' }}>
+            PAGE NOT FOUND
+            <br />
+            a.k.a. <span style={{ color: '#ce1318' }}>404 Error</span>!
+          </h1>
+          <p>
+            You’re either misspelling the URL or requesting a page that&apos;s
+            no longer here.
+          </p>
           <h2>Since you are here...</h2>
           <p>Why don&#39;t you have a look at one of my latest articles?</p>
           <ul>
