@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { css } from 'react-emotion'
 import { Link } from 'gatsby'
 
-import logo from './images/luciano8bit-block.svg'
+import logo from './images/luciano8bit.svg'
 
 const logoStyle = css`
   color: #46c9e5;
