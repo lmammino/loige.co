@@ -32,7 +32,7 @@ const Column = styled('span')`
 
   &.left {
     max-width: 125px;
-    padding: 0;
+    padding: 0 0 0 1em !important;
   }
 
   @media (max-width: 1024px) and (min-width: 780px) {
