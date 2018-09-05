@@ -10,6 +10,7 @@ import ArticleSidebarAd from '../components/ArticleSidebarAd'
 import Hello from '../components/Hello'
 import PostsList from '../components/PostsList'
 import Pagination from '../components/Pagination'
+import ArticleContainer from '../components/ArticleContainer'
 
 const ContentContainer = styled('div')`
   min-height: 100vh;
@@ -43,6 +44,16 @@ const Columns = styled('div')`
 const MainColumn = styled('main')`
   width: 100%;
   order: 2;
+
+  h3:first-of-type {
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  article {
+    margin-top: 0;
+    padding-top: 0;
+  }
 
   @media (min-width: 1024px) {
     order: 1;
@@ -101,8 +112,10 @@ class BlogIndex extends Component {
           <Content>
             <Columns>
               <MainColumn>
-                <PostsList posts={posts} />
-                <Pagination {...pagination} />
+                <ArticleContainer>
+                  <PostsList posts={posts} />
+                  <Pagination {...pagination} />
+                </ArticleContainer>
               </MainColumn>
               <Sidebar>
                 <div>

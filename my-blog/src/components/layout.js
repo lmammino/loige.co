@@ -27,10 +27,6 @@ injectGlobal`
   .content a {
     text-decoration: none;
   }
-
-  .content a:hover {
-    text-decoration: underline;
-  }
 `
 
 class Template extends Component {

@@ -50,11 +50,6 @@ const Title = styled('h3')`
   max-width: 820px;
   text-rendering: geometricPrecision;
 
-  a {
-    text-decoration: none;
-    color: #2e2e2e;
-  }
-
   a:hover {
     color: #111;
   }
