@@ -49,10 +49,6 @@ const Title = styled('h3')`
   margin: 0 0 0.4em 0;
   max-width: 820px;
   text-rendering: geometricPrecision;
-
-  a:hover {
-    color: #111;
-  }
 `
 
 const Excerpt = styled('p')`
@@ -82,17 +78,29 @@ const ProfilePic = styled('img')`
 `
 
 const ReadThePost = styled('p')`
-  text-align: right;
-  max-width: 820px;
+  text-align: center;
+  margin-top: 2rem !important;
+  width: auto;
 
   a {
-    text-decoration: none;
     color: inherit;
-    font-weight: bold;
+    padding: 16px;
+    border: #bfc8cd 1px solid;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: border 0.3s ease;
+    min-width: 200px;
+    width: 100%;
+
+    &:hover {
+      color: rgb(136, 144, 147);
+      border-color: rgb(152, 160, 164);
+    }
   }
 
-  a:hover {
-    text-decoration: underline;
+  @media (min-width: 1024px) {
+    text-align: left;
+    max-width: 100% !important;
   }
 `
 
@@ -113,7 +121,7 @@ class PostPreview extends Component {
         </section>
         <Footer>
           <ProfilePic src={profilePic} />
-          Luciano Mammino
+          <Link to="/about">Luciano Mammino</Link>
           <TagsList tags={tags} />
           <DateViewer date={date} />
           <ReadingTime time={timeToRead} />

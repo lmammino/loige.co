@@ -10,6 +10,7 @@ import speakingBg from '../components/images/speaking-bg.jpg'
 import ImagesSolidIcon from '../components/icons/ImagesSolid'
 import VideoSolidIcon from '../components/icons/VideoSolid'
 import SpeakingMap from '../components/SpeakingMap'
+import ArticleContainer from '../components/ArticleContainer'
 
 const Content = styled('div')`
   margin: 2em auto;
@@ -24,10 +25,6 @@ const Content = styled('div')`
     font-size: 17px;
   }
 
-  a {
-    color: inherit;
-  }
-
   h2 {
     margin: 2em 0 1em 0;
     color: #46c9e5;
@@ -38,28 +35,14 @@ const Content = styled('div')`
     line-height: 1.7;
     margin: 1em 0 0 0;
     max-width: 42em;
-
-    a {
-      text-decoration: none;
-      border-bottom: 1px solid #46c9e5;
-
-      &:hover {
-        border-bottom: 1px solid black;
-      }
-    }
   }
 
   p.slides-video {
+    margin: 1em 0 0 0;
+
     a {
-      color: #d26ac2;
       display: inline-block;
       margin: 0 0 0 1em;
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-
-      &:hover {
-        border-bottom: 1px solid #d26ac2;
-      }
 
       &:first-of-type {
         margin: 0;
@@ -146,7 +129,7 @@ class SpeakingEntry extends Component {
           {f.title}
           {f.is_workshop ? ' (workshop)' : ''}
         </h3>
-        <p>
+        <p style={{ marginTop: '1em' }}>
           <span>
             <a
               href={f.event_link}
@@ -231,67 +214,71 @@ class SpeakingIndex extends Component {
           <h1>Speaking</h1>
         </Hero>
         <Content>
-          <p>
-            I am quite involved with conferences and I love delivering technical
-            talks and workshops.
-          </p>
-          <p>Lately I have been focusing on the following topics:</p>
-          <ul className="topics">
-            <li>
-              <Link to="/tag/node-js">Node.js</Link>,{' '}
-              <Link to="/tag/javascript">JavaScript</Link> and{' '}
-              <Link to="/tag/design-patterns">Design Patterns</Link>
-            </li>
-            <li>
-              <Link to="/tag/serverless">Serverless</Link> and{' '}
-              <Link to="/tag/aws">AWS</Link>
-            </li>
-            <li>
-              <strong>Systems architecture</strong> and{' '}
-              <Link to="/tag/scalability">Scalability</Link>
-            </li>
-          </ul>
-          <p>
-            If you think I can be a good suit to talk or host a workshop, you
-            can{' '}
-            <strong>
-              <a
-                href="http://loige.link/invite-me-to-a-conference"
-                target="_blank"
-                rel="nofollow noopener noreferrer"
-              >
-                📩 invite me to your next cool conference
-              </a>
-            </strong>
-            .
-          </p>
+          <ArticleContainer>
+            <p>
+              I am quite involved with conferences and I love delivering
+              technical talks and workshops.
+            </p>
+            <p>Lately I have been focusing on the following topics:</p>
+            <ul className="topics">
+              <li>
+                <Link to="/tag/node-js">Node.js</Link>,{' '}
+                <Link to="/tag/javascript">JavaScript</Link> and{' '}
+                <Link to="/tag/design-patterns">Design Patterns</Link>
+              </li>
+              <li>
+                <Link to="/tag/serverless">Serverless</Link> and{' '}
+                <Link to="/tag/aws">AWS</Link>
+              </li>
+              <li>
+                <strong>Systems architecture</strong> and{' '}
+                <Link to="/tag/scalability">Scalability</Link>
+              </li>
+            </ul>
+            <p>
+              If you think I can be a good suit to talk or host a workshop, you
+              can{' '}
+              <strong>
+                <a
+                  href="http://loige.link/invite-me-to-a-conference"
+                  target="_blank"
+                  rel="nofollow noopener noreferrer"
+                >
+                  📩 invite me to your next cool conference
+                </a>
+              </strong>
+              .
+            </p>
 
-          <p>Here you can find a list of my future and past engagements.</p>
+            <p>Here you can find a list of my future and past engagements.</p>
+          </ArticleContainer>
         </Content>
         <SpeakingMap events={events} />
         <Content>
-          <h2>Upcoming events</h2>
-          {future.length > 0 && (
+          <ArticleContainer>
+            <h2>Upcoming events</h2>
+            {future.length > 0 && (
+              <ul className="events">
+                {future.map(e => (
+                  <li key={e.frontmatter.slug}>
+                    <SpeakingEntry event={e} />
+                  </li>
+                ))}
+              </ul>
+            )}
+            {future.length === 0 && (
+              <p>No future events planned at this time :(</p>
+            )}
+
+            <h2>Past events ({past.length})</h2>
             <ul className="events">
-              {future.map(e => (
+              {past.map(e => (
                 <li key={e.frontmatter.slug}>
                   <SpeakingEntry event={e} />
                 </li>
               ))}
             </ul>
-          )}
-          {future.length === 0 && (
-            <p>No future events planned at this time :(</p>
-          )}
-
-          <h2>Past events ({past.length})</h2>
-          <ul className="events">
-            {past.map(e => (
-              <li key={e.frontmatter.slug}>
-                <SpeakingEntry event={e} />
-              </li>
-            ))}
-          </ul>
+          </ArticleContainer>
         </Content>
       </Layout>
     )

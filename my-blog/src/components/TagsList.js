@@ -25,10 +25,6 @@ const TagsContainer = styled('span')`
     text-decoration: none;
     vertical-align: text-bottom;
   }
-
-  a:hover {
-    text-decoration: underline;
-  }
 `
 
 const tagsSolidIconStyle = css`
