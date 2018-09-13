@@ -1,0 +1,54 @@
+version: 2
+jobs:
+  build:
+    branches:
+      ignore:
+        - gh-pages
+
+    docker:
+      - image: circleci/node:10.10
+
+    working_directory: ~/loige.co
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+
+      - run:
+          name: Install dependencies
+          command: yarn
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      - run:
+          name: Test
+          command: yarn test
+
+      - run:
+          name: Build
+          command: yarn build
+
+      - deploy:
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              echo "$DOMAIN" > build/CNAME
+              cp -r .circleci build/.circleci
+              git config --global user.email "$GH_EMAIL"
+              git config --global user.name "$GH_NAME"
+              NODE_DEBUG=gh-pages yarn deploy -- -m 'automated build from circleci'
+
+              curl -X DELETE "https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_ZONE/purge_cache" \
+                 -H "X-Auth-Email: $CLOUDFLARE_EMAIL" \
+                 -H "X-Auth-Key: $CLOUDFLARE_AUTH_KEY" \
+                 -H "Content-Type: application/json" \
+                 --data '{"purge_everything":true}'
+            else
+              echo "Not in master branch, not deploying"
+            fi
