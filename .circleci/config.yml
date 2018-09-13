@@ -38,8 +38,8 @@ jobs:
       - deploy:
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              echo "$DOMAIN" > build/CNAME
-              cp -r .circleci build/.circleci
+              echo "$DOMAIN" > public/CNAME
+              cp -r .circleci public/.circleci
               git config --global user.email "$GH_EMAIL"
               git config --global user.name "$GH_NAME"
               NODE_DEBUG=gh-pages yarn deploy -- -m 'automated build from circleci'
