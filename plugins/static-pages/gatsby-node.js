@@ -26,7 +26,7 @@ exports.createPages = ({ graphql, actions }) => {
       const { name, relativePath } = edge.node
       const component = path.resolve(`./content/pages/${relativePath}`)
       createPage({
-        path: name === '404' ? '404.html' : `/${name}`,
+        path: `/${name}`,
         component,
         context: {}
       })

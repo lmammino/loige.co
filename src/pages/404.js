@@ -3,10 +3,10 @@ import { graphql, Link } from 'gatsby'
 import Helmet from 'react-helmet'
 import { get } from 'lodash'
 
-import Layout from '../../src/components/layout'
-import ResponsiveWrapper from '../../src/components/ResponsiveWrapper'
-import ArticleContainer from '../../src/components/ArticleContainer'
-import ToadPicture from '../../src/components/images/toad.png'
+import Layout from '../components/layout'
+import ResponsiveWrapper from '../components/ResponsiveWrapper'
+import ArticleContainer from '../components/ArticleContainer'
+import ToadPicture from '../components/images/toad.png'
 
 const NotFoundPage = props => {
   const siteTitle = get(props, 'data.site.siteMetadata.title')
@@ -17,22 +17,22 @@ const NotFoundPage = props => {
       <ResponsiveWrapper>
         <ArticleContainer style={{ minHeight: '80vh' }}>
           <h1 style={{ marginTop: '4em', textAlign: 'center' }}>
-            <span style={{ color: '#ce1318', fontWeight: 'bolder' }}>404 Error</span>
+            <span style={{ color: '#ce1318', fontWeight: 'bolder' }}>
+              404 Error
+            </span>
           </h1>
           <h1 style={{ textAlign: 'center' }}>
             Thank you for your visit
             <br />
-            But the page you were looking for is in Another Castle<sup>1</sup>
+            But the page you were looking for is in Another Castle
+            <sup>1</sup>
           </h1>
           <p style={{ textAlign: 'center' }}>
             You’re either misspelling the URL or requesting a page that&apos;s
             no longer here.
           </p>
           <p style={{ textAlign: 'center' }}>
-            <img
-              src={ToadPicture}
-              style={{ width: '60px', margin: '1em' }}
-            />
+            <img src={ToadPicture} style={{ width: '60px', margin: '1em' }} />
           </p>
           <p style={{ textAlign: 'center' }}>
             <small>
@@ -41,9 +41,11 @@ const NotFoundPage = props => {
               <a
                 target="_blank"
                 rel="noreferrer noopener"
-                href="https://knowyourmeme.com/memes/but-our-princess-is-in-another-castle">
-                  Super Mario&trade; reference
-              </a>...
+                href="https://knowyourmeme.com/memes/but-our-princess-is-in-another-castle"
+              >
+                Super Mario&trade; reference
+              </a>
+              ...
             </small>
           </p>
 
