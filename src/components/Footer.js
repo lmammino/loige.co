@@ -137,6 +137,17 @@ class Footer extends Component {
                 , Coffee and a lot of <Heart>❤︎</Heart>.
               </Copyright>
               <Copyright>
+                Loige logo designed by{' '}
+                <a
+                  rel="nofollow noopener noreferrer"
+                  target="_blank"
+                  href="http://andreamangano.com"
+                >
+                  Andrea Mangano
+                </a>
+                .
+              </Copyright>
+              <Copyright>
                 Hosted on{' '}
                 <a
                   rel="nofollow noopener noreferrer"
@@ -144,6 +155,14 @@ class Footer extends Component {
                   href="https://github.com/lmammino/loige.co"
                 >
                   GitHub
+                </a>
+                , accelerated by{' '}
+                <a
+                  rel="nofollow noopener noreferrer"
+                  target="_blank"
+                  href="https://www.cloudflare.com"
+                >
+                  Clouflare
                 </a>
                 .
               </Copyright>
