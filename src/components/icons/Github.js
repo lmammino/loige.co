@@ -2,7 +2,7 @@ import React from 'react'
 
 const Github = props => (
   <svg
-    aria-labelledby="simpleicons-github-icon"
+    aria-label="GitHub"
     viewBox="0 0 24 24"
     width="1em"
     height="1em"

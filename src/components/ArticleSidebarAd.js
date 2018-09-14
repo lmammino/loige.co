@@ -63,13 +63,17 @@ class ArticleSidebarAd extends Component {
   render () {
     return (
       <ArticleSidebarAdContainer
-        rel="nofollow"
+        rel="nofollow noopener noreferrer"
         target="_blank"
         href="https://loige.link/nodejs-book-ref-blog"
       >
         <Columns>
           <Column className="left">
-            <img src={bookCover} style={{ width: '100%' }} />
+            <img
+              src={bookCover}
+              style={{ width: '100%' }}
+              alt="Node.js Design Patterns Second Edition"
+            />
           </Column>
           <Column>
             <h4>Node.js Design Patterns</h4>

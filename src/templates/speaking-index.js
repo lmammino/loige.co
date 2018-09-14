@@ -209,7 +209,9 @@ class SpeakingIndex extends Component {
       <Layout location={this.props.location} section="speaking">
         <Helmet
           title={`Speaking events: conference talks and workshops - ${siteTitle}`}
-        />
+        >
+          <html lang="en" />
+        </Helmet>
         <Hero className="small gradientOverlay" backgroundImage={speakingBg}>
           <h1>Speaking</h1>
         </Hero>

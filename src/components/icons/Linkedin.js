@@ -2,7 +2,7 @@ import React from 'react'
 
 const Linkedin = props => (
   <svg
-    aria-labelledby="simpleicons-linkedin-icon"
+    aria-label="LinkedIn"
     viewBox="0 0 24 24"
     width="1em"
     height="1em"

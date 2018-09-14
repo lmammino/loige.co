@@ -32,7 +32,11 @@ const NotFoundPage = props => {
             no longer here.
           </p>
           <p style={{ textAlign: 'center' }}>
-            <img src={ToadPicture} style={{ width: '60px', margin: '1em' }} />
+            <img
+              src={ToadPicture}
+              style={{ width: '60px', margin: '1em' }}
+              alt="Super Mario's Toad"
+            />
           </p>
           <p style={{ textAlign: 'center' }}>
             <small>

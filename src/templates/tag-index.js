@@ -29,7 +29,9 @@ class TagIndex extends Component {
 
     return (
       <Layout location={this.props.location} section="blog">
-        <Helmet title={siteTitle} />
+        <Helmet title={siteTitle}>
+          <html lang="en" />
+        </Helmet>
         <Hero
           className="small tiledBg gradientOverlay"
           backgroundImage={tagsBg}

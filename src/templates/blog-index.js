@@ -103,7 +103,9 @@ class BlogIndex extends Component {
 
     return (
       <Layout location={this.props.location} section="blog">
-        <Helmet title={siteTitle} />
+        <Helmet title={siteTitle}>
+          <html lang="en" />
+        </Helmet>
         <Hero className="bottomRightBg">
           <h1>Luciano Mammino</h1>
           <h2>Web developer, entrepreneur, fighter, butterfly maker!</h2>

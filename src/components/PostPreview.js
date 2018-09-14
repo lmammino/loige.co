@@ -65,7 +65,7 @@ const Footer = styled('footer')`
   margin: 0.75rem 0 0 0;
   font-size: 1rem;
   line-height: 1.5rem;
-  color: #9eabb3;
+  color: #6d6d6d;
   vertical-align: middle;
 `
 
@@ -120,7 +120,10 @@ class PostPreview extends Component {
           <Excerpt dangerouslySetInnerHTML={{ __html: excerpt }} />
         </section>
         <Footer>
-          <ProfilePic src={profilePic} />
+          <ProfilePic
+            src={profilePic}
+            alt="Luciano Mammino's Profile picture"
+          />
           <Link to="/about">Luciano Mammino</Link>
           <TagsList tags={tags} />
           <DateViewer date={date} />
