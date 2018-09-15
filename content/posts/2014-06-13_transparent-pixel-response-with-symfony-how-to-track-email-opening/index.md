@@ -9,6 +9,8 @@ updated: 2014-06-17T09:00:17.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: ./transparent-pixel-response-with-symfony-how-to-track-email-opening.jpg
+fb_img: ./transparent-pixel-response-with-symfony-how-to-track-email-opening-fb.png
+tw_img: ./transparent-pixel-response-with-symfony-how-to-track-email-opening-tw.png
 status: published
 language: en_US
 meta_title: null
@@ -23,13 +25,11 @@ tags:
 
 If you have ever heard about "**transparent pixel**", "**1x1 blank pixel**", "**tracking pixel**" or simply "**tracking image**" you probably know what we are going to talk about and can just [skip to the implementation](#symfonyimplementation)!
 
-
 ## Introduction
 
 Transparent pixel image is a technique often used to track some user behavior (often visits or views to a certain online content) in scenarios where you can't use javascript.
 
 One of the most common scenarios is probably email opening tracking. Can you put Google Analytics into an email? Well, probably it would not work as expected... So there's something we can do? Of course there is, let's jump into a concrete example.
-
 
 ## Track email opening
 
@@ -37,14 +37,13 @@ The following image shows the typical tracking flow applied to emails:
 
 ![Tracking email opening](./email-tracking.png)
 
-  1. A user receives our HTML email. Within the email content there's a "smart" tracking image: `<img src="http://example.com/track.gif?id=1234">`. Notice that it points to our server **example.com** and has a parameter `id=1234`.
+1. A user receives our HTML email. Within the email content there's a "smart" tracking image: `<img src="http://example.com/track.gif?id=1234">`. Notice that it points to our server **example.com** and has a parameter `id=1234`.
 
-  2. When the user opens the email, his email client will start to download all the resources linked into the HTML code (usually images) and it will trigger a request to download the tracking image.
+2. When the user opens the email, his email client will start to download all the resources linked into the HTML code (usually images) and it will trigger a request to download the tracking image.
 
-  3. The request is handled by the **example.com** webserver. It does not handle the request as a static image but it executes some logic. It checks the `id` parameter and uses it to determine which email has triggered the request. Then it marks that email as opened in its own database for future reports. The mail client is still waiting for an answer and it expects an image. So the webserver generates on the fly the most small image possible: a 1x1 transparent image!
+3. The request is handled by the **example.com** webserver. It does not handle the request as a static image but it executes some logic. It checks the `id` parameter and uses it to determine which email has triggered the request. Then it marks that email as opened in its own database for future reports. The mail client is still waiting for an answer and it expects an image. So the webserver generates on the fly the most small image possible: a 1x1 transparent image!
 
-  4. Then the image is sent back to the client that will render it on the screen. Anyway the image is trasparent and so small that the user will barely notice it.
-
+4. Then the image is sent back to the client that will render it on the screen. Anyway the image is trasparent and so small that the user will barely notice it.
 
 ## Symfony implementation
 
@@ -170,13 +169,14 @@ class TrackingController extends Controller
     }
 }
 ```
+
 Notice that we have "wrapped" our potentially heavy logic within a callable function that gets executed when the [`kernel.terminate`](http://symfony.com/doc/current/components/http_kernel/introduction.html#component-http-kernel-kernel-terminate) event is fired. This way the response is returned immediatly (before executing all the heavy logic) and the requesting client will not have to wait for processing.
 
 Obviously, from the point of view of the server, we are not "really" improving performance. The code is not executed faster, but only in a different order. There's only an apparent performance improvement for the web client who receives the response quicker and doesn't care about the processing logic that will keep running on the server side.
 
-Keep in mind that the `kernel.terminate` event is optional, and should only be called if your kernel implements `TerminableInterface` (it should work if you are using the  Symfony Standard Edition).
+Keep in mind that the `kernel.terminate` event is optional, and should only be called if your kernel implements `TerminableInterface` (it should work if you are using the Symfony Standard Edition).
 
-[Lumbendil](http://disqus.com/Lumbendil) also pointed out that this solution is not the only one possible. You can also rely on some messaging/queue system such as [RabbitMq](http://www.rabbitmq.com), [Gearman](http://gearman.org) or [Beanstalkd](http://kr.github.io/beanstalkd). These are great tools but they add new dependencies and a whole new layer of complexity to the  web infrastructure, so I will suggest to use one of them only if your logic is very complex or heavy (or if you are designing you whole infrastructure from scratch to leverage a work queue system).
+[Lumbendil](http://disqus.com/Lumbendil) also pointed out that this solution is not the only one possible. You can also rely on some messaging/queue system such as [RabbitMq](http://www.rabbitmq.com), [Gearman](http://gearman.org) or [Beanstalkd](http://kr.github.io/beanstalkd). These are great tools but they add new dependencies and a whole new layer of complexity to the web infrastructure, so I will suggest to use one of them only if your logic is very complex or heavy (or if you are designing you whole infrastructure from scratch to leverage a work queue system).
 
 ## Considerations
 

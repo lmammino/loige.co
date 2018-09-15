@@ -9,6 +9,8 @@ updated: 2014-03-30T09:20:07.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: ./reset-your-mysql-server-password.png
+fb_img: ./reset-your-mysql-server-password-fb.png
+tw_img: ./reset-your-mysql-server-password-tw.png
 status: published
 language: en_US
 meta_title: null

@@ -9,6 +9,8 @@ updated: 2015-05-27T11:22:09.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: ./8-invitations-to-try-keybase-io.jpg
+fb_img: ./8-invitations-to-try-keybase-io-fb.png
+tw_img: ./8-invitations-to-try-keybase-io-tw.png
 status: published
 language: en_US
 meta_title: null
@@ -20,7 +22,7 @@ tags:
 
 Hello dear developers,
 today I finally got my invitation to access the private beta of [Keybase.io](https://keybase.io)! 😎 🎉
-For those who are not aware of this new service, Keybase.io is a website and a command line application that makes easier to adopt asymmetric cryptography to encrypt and authenticate messages. But it's not just this, it's also a *"directory of people"*, as they like to say. It's like a social network, where everyone can easily share its public key and attach it to its social profiles (like Twitter, Github or Reddit). You can also pair your bitcoin address with it...
+For those who are not aware of this new service, Keybase.io is a website and a command line application that makes easier to adopt asymmetric cryptography to encrypt and authenticate messages. But it's not just this, it's also a _"directory of people"_, as they like to say. It's like a social network, where everyone can easily share its public key and attach it to its social profiles (like Twitter, Github or Reddit). You can also pair your bitcoin address with it...
 
 ![Keybase.io illustration](./keybase-io-robot.jpg)
 ...and furthermore the website is full of wonderful illustrations a-la-Dropbox :D
@@ -64,7 +66,8 @@ It's still a little bit boring that I have to transfer my message manually, but 
 The command line application has a lot of other handy features like messages certification and verification (signature) and in case you dislike the command line (which is unlikely if you are reading this blog), you can do pretty much everything directly on the website.
 
 ## Do you want to give it a try?
-As you probably have guessed from the title of this post and the first paragraph Keybase is still in private beta and you need an invite to use it. If you haven't already received your **I have 8 invite code that I am willing to share**. They go to the **first 8 persons who will leave a comment*** here 😉
+
+As you probably have guessed from the title of this post and the first paragraph Keybase is still in private beta and you need an invite to use it. If you haven't already received your **I have 8 invite code that I am willing to share**. They go to the **first 8 persons who will leave a comment\*** here 😉
 
 <div style="background:rgb(226, 114, 114); color: #fff; padding: 1em; margin: 1em">
     <strong>Update (27 may 2015 12:20 GMT)</strong>: Invites are over :( <br/>I will try to request new ones. If you want you can keep commenting and I will give new eventual invites in the order of entry.

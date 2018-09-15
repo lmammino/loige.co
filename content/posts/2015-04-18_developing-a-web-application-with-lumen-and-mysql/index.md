@@ -10,10 +10,13 @@ updated: 2015-05-12T14:33:37.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: ./developing-a-web-application-with-lumen.jpg
+fb_img: ./developing-a-web-application-with-lumen-and-mysql-fb.png
+tw_img: ./developing-a-web-application-with-lumen-and-mysql-tw.png
 status: published
 language: en_US
-meta_title: ""
-meta_description: How to develop a simple but useful web application with the Php
+meta_title: ''
+meta_description:
+  How to develop a simple but useful web application with the Php
   micro-framework Lumen and MySql in less than 30 minutes.
 tags:
   - php
@@ -60,17 +63,15 @@ php artisan serve
 
 Our project will be immediately up and running on `http://localhost:8000`.
 
-
 ## Define the data model
 
 We said we want to showcase quotes and in our case a quote is made up by:
 
-  - a **text** (The quoted text itself)
-  - an **author** (The name of the author of the quote)
-  - a **background** image (Yes, to make everything fancier)
+- a **text** (The quoted text itself)
+- an **author** (The name of the author of the quote)
+- a **background** image (Yes, to make everything fancier)
 
 In order to manage data from the database, we need to enable [Eloquent](http://laravel.com/docs/5.0/eloquent) (the Lumen/Laravel ORM library), configure our database connection, create a migration and a model and finally seed our database. Let's do it step by step.
-
 
 ## Enable Eloquent
 
@@ -82,7 +83,6 @@ $app->withEloquent();
 ```
 
 Notice that the first line enables the support for [Facades](http://laravel.com/docs/5.0/facades) (a very common feature used in Laravel and inherited by Lumen) that simplifies the usage of some of the core classes of the framework.
-
 
 ## Configure the database connection
 
@@ -108,7 +108,6 @@ To make Lumen load this configuration file we need, again, to edit the `bootstra
 Dotenv::load(__DIR__.'/../');
 ```
 
-
 ## Create a migration
 
 [Migrations](http://laravel.com/docs/5.0/migrations) allows the framework to keep the database schema under control. They define all the database tables and fields programmatically and keep track of the various changes on them (so that we can easily update and rollback the whole schema when needed). We need to initialise the migration system with the command:
@@ -133,7 +132,7 @@ public function up()
     Schema::create('quotes', function(Blueprint $table)
     {
          $table->increments('id');
-    			     $table->timestamps();			
+    			     $table->timestamps();
 
          // our new fields
     			     $table->string('text');
@@ -148,7 +147,6 @@ To execute the migration (and effectively create the table on the database) we h
 ```bash
 php artisan migrate
 ```
-
 
 ## Create the Quote model
 
@@ -172,7 +170,6 @@ final class Quote extends Model
 ```
 
 Yes, that's it... we don't really need to write anything else! We are extending the Eloquent `Model` class that does all the hard work for us, proving a standard model configuration that is good enough most of the times. In this case it automatically maps the class `Quote` to the `quotes` table that we created before.
-
 
 ## Seed the database
 
@@ -238,15 +235,14 @@ composer dump-autoload
 Now let's run again `php artisan db:seed` and this time everything should be fine.
 If you explore your database you will see some records within the `quotes` table.
 
-
 ## The routing
 
 Until now we just defined the data model of our application and populated our database. Now we will add some business logic and we will map it to some routes.
 
 We will have two routes:
 
-  - GET `/` - the main route, providing a new quote everyday
-  - GET `/{id}` - the route of a specific quote, mapped by id
+- GET `/` - the main route, providing a new quote everyday
+- GET `/{id}` - the route of a specific quote, mapped by id
 
 To define the business logic associate to a route we have to edit the `app/Http/routes.php` file:
 
@@ -263,12 +259,12 @@ use App\Models\Quote;
 $app->get('/', function() use ($app) {
 
     /*
-     * Picks a different quote every day 
+     * Picks a different quote every day
      * (for a maximum of 366 quotes)
      *
      *   - $count: the total number of available quotes
      *   - $day: the current day of the year (from 0 to 365)
-     *   - $page: the page to look for to retrieve the 
+     *   - $page: the page to look for to retrieve the
      *            correct record
      */
     $count = Quote::query()->get()->count();
@@ -295,10 +291,9 @@ $app->get('/{id}', function($id) use ($app) {
 
 The two `$app->get` defines the two routes we need for our app. For every route we define the business logic within a closure function. The code is very straightforward and, thanks to the comments, it should be quite easy to understand.
 
-The `view()` function allow to render a template. In this case we are rendering the  `quote` template passing the model as `quote` variable. In the next paragraph we will see how to define our template.
+The `view()` function allow to render a template. In this case we are rendering the `quote` template passing the model as `quote` variable. In the next paragraph we will see how to define our template.
 
 **Note**: if you don't want to use closures in your routing and you want to have a greater control on the structure of your code and your business logic you can leverage Laravel's controllers. I will not go into the detail of this, but you can check the [Documentation](http://lumen.laravel.com/docs/controllers) that shows how to do it. It's quite simple anyway.
-
 
 ## The template
 
@@ -329,47 +324,47 @@ As you can see we can use the double curly braces syntax to reference variable v
 To finish we just need to create our `public/css/style.css` stylesheet file:
 
 ```css
-html, body {
-    height: 100%;
-    padding: 0;
-    margin: 0;
+html,
+body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
 }
 
 body {
-    background-size: cover;
+  background-size: cover;
 }
 
 .container {
-    height: 100%;
-    background: rgba(0,0,0,.3);
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .quote-container {
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-    padding: 2em 4em;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 2em 4em;
 }
 
 .quote-container p {
-    text-align: center;
-    color: #fff;
-    text-shadow: 1px 1px 1px rgba(150, 150, 150, 0.8);
+  text-align: center;
+  color: #fff;
+  text-shadow: 1px 1px 1px rgba(150, 150, 150, 0.8);
 }
 
 .quote-container p.text {
-    font-family: 'Alegreya', serif;
-    font-size: 4em;
+  font-family: 'Alegreya', serif;
+  font-size: 4em;
 }
 
 .quote-container p.author {
-    font-family: 'Roboto Condensed', sans-serif;
-    font-size: 1.2em;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 1.2em;
 }
 ```
 
 That's it, now your app is up and running. Isn't it beautiful? Hey, let me know if you decide to publish it and motivate the whole world! ;)
-
 
 ## Conclusions
 

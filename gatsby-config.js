@@ -6,8 +6,10 @@ module.exports = {
     description:
       'The website of Luciano Mammino a.k.a. Loige, Web developer, entrepreneur, fighter, butterfly maker',
     siteUrl: 'https://loige.co/',
+    defaultImage: 'https://loige.co/page-image-fb.jpg',
     twitterProfile: 'loige',
-    disqusShortName: 'loige'
+    disqusShortName: 'loige',
+    fbAppId: '231187154413670'
   },
   pathPrefix: '/',
   plugins: [

@@ -9,6 +9,8 @@ updated: 2014-03-16T16:50:57.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: ./write-a-console-application-using-symfony-and-pimple.png
+fb_img: ./write-a-console-application-using-symfony-and-pimple-fb.png
+tw_img: ./write-a-console-application-using-symfony-and-pimple-tw.png
 status: published
 language: en_US
 meta_title: null
@@ -26,10 +28,11 @@ In this article I will show you how to set up a stand alone command line applica
 
 Writing console commands for Symfony (full stack framework) is easy and enjoyable. It helps a lot when you need to handle particular collateral tasks that are needed, in a way or another, to make your website running (processing and crunching data, make async requests, create reports, etc.).
 
-Anyway I discovered that writing stand alone command line applications using only the [Symfony/Console](https://github.com/symfony/console) component is a lot more easy and enjoyable and that a lot of famous command line applications uses it ([Composer](https://getcomposer.org/) and [Laravel/Artisan](http://laravel.com/docs/commands) just to name a few). Furthermore by using Symfony I became a great fan of the *Dependency Injection* and *Inversion of Control (IoC)* [design pattern](http://martinfowler.com/articles/injection.html) and, as my dependencies started to grow, I wanted to put some sort of *container* in my command line apps. I decided to go with [Pimple](http://pimple.sensiolabs.org/): a really simple dependency injection container written by [Fabien Potencier](http://fabien.potencier.org/), the notorious head behind the Symfony framework and Sensio.
+Anyway I discovered that writing stand alone command line applications using only the [Symfony/Console](https://github.com/symfony/console) component is a lot more easy and enjoyable and that a lot of famous command line applications uses it ([Composer](https://getcomposer.org/) and [Laravel/Artisan](http://laravel.com/docs/commands) just to name a few). Furthermore by using Symfony I became a great fan of the _Dependency Injection_ and _Inversion of Control (IoC)_ [design pattern](http://martinfowler.com/articles/injection.html) and, as my dependencies started to grow, I wanted to put some sort of _container_ in my command line apps. I decided to go with [Pimple](http://pimple.sensiolabs.org/): a really simple dependency injection container written by [Fabien Potencier](http://fabien.potencier.org/), the notorious head behind the Symfony framework and Sensio.
 
 ## Let's start
-I will demonstrate my approach by creating a simple "hello *$name*" command line application that will be able to count how many times you greet someone. You can find the whole code in a dedicated [GitHub repository](https://github.com/lmammino/SymfonyConsolePimple).
+
+I will demonstrate my approach by creating a simple "hello _$name_" command line application that will be able to count how many times you greet someone. You can find the whole code in a dedicated [GitHub repository](https://github.com/lmammino/SymfonyConsolePimple).
 
 So we will be able to run
 
@@ -46,29 +49,29 @@ Hello Alice
 
 Yes, intentionally simple! ;)
 
-Let's start by creating our *composer.json* file. We will need the Symfony console and the Pimple packages. We also include the Symfony Yaml component as we will store data in a yaml file (obviously we could have been using json but I believe yaml is cooler :P).
+Let's start by creating our _composer.json_ file. We will need the Symfony console and the Pimple packages. We also include the Symfony Yaml component as we will store data in a yaml file (obviously we could have been using json but I believe yaml is cooler :P).
 
 ```json
 {
-    "name": "lmammino/symfony-console-pimple",
-    "description": "A sample Symfony Console app using Pimple",
-    "require": {
-        "symfony/console": "dev-master",
-        "pimple/pimple": "dev-master",
-        "symfony/yaml": "dev-master"
-    },
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Luciano Mammino",
-            "email": "lmammino@oryzone.com"
-        }
-    ],
-    "autoload": {
-        "psr-4": {
-            "LMammino\\ConsoleApp\\": "src/"
-        }
+  "name": "lmammino/symfony-console-pimple",
+  "description": "A sample Symfony Console app using Pimple",
+  "require": {
+    "symfony/console": "dev-master",
+    "pimple/pimple": "dev-master",
+    "symfony/yaml": "dev-master"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Luciano Mammino",
+      "email": "lmammino@oryzone.com"
     }
+  ],
+  "autoload": {
+    "psr-4": {
+      "LMammino\\ConsoleApp\\": "src/"
+    }
+  }
 }
 ```
 
@@ -239,7 +242,7 @@ class GreetCommand extends Command
 }
 ```
 
-The command is totally self explainatory! It just defines the *greet* command offering a *name* argument and a *yell* option (both optional). The point here is that our command has a dependency on the `Greeter` class we wrote before. So we need to pass it on construction (or we need to configure our Pimple container to do so).
+The command is totally self explainatory! It just defines the _greet_ command offering a _name_ argument and a _yell_ option (both optional). The point here is that our command has a dependency on the `Greeter` class we wrote before. So we need to pass it on construction (or we need to configure our Pimple container to do so).
 
 ## Ladies and gents, the Pimple container!
 
@@ -284,7 +287,7 @@ Let's check our definitions one by one:
 
 - `$c['parameters']` contains the applications parameters (in a more complex application with a lot of parameters you can load the values from an external configuration file)
 - `$c['greeter']` defines the construction of our `Greeter` service
-- `$c['command.greet']` defines the construction of our *greet* command
+- `$c['command.greet']` defines the construction of our _greet_ command
 - `$c['commands']` is an helper definition that returns an array with all the commands that we want to add in our application
 - `$c['application']` defines the creation of our command line application
 
@@ -304,7 +307,7 @@ require __DIR__ . '/../vendor/autoload.php';
 $container = require(__DIR__ . '/config/container.php');
 ```
 
-`set_time_limit(0)` ensures that our script will not be killed after a certain amount of seconds (if your *php.ini* wants so). It's almost useless in this particular case (our command will run in a few milliseconds) but adding it in Php command line applications is a good practice (especially when you have to deal with long running tasks).
+`set_time_limit(0)` ensures that our script will not be killed after a certain amount of seconds (if your _php.ini_ wants so). It's almost useless in this particular case (our command will run in a few milliseconds) but adding it in Php command line applications is a good practice (especially when you have to deal with long running tasks).
 
 ## The executable console file
 

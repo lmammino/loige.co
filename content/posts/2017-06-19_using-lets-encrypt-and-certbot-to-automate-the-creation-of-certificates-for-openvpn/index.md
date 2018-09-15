@@ -1,20 +1,25 @@
 ---
 uuid: bc9ebab5-b899-49e6-9dca-1b9a81e8ea6b
 layout: post
-title: Using Let’s Encrypt and Certbot to automate the creation of certificates for
+title:
+  Using Let’s Encrypt and Certbot to automate the creation of certificates for
   OpenVPN
 slug: using-lets-encrypt-and-certbot-to-automate-the-creation-of-certificates-for-openvpn
-subtitle: This article illustrates you how to use Certbot to automate the creation of
+subtitle:
+  This article illustrates you how to use Certbot to automate the creation of
   SSL certificates for OpenVPN and how to release on AWS using Terraform.
 date: 2017-06-19T22:00:20.000Z
 updated: 2017-06-27T18:09:34.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: ./using-lets-encrypt-and-certbot-to-automate-the-creation-of-certificates-for-openvpn-loige-icover-image.jpg
+fb_img: ./using-lets-encrypt-and-certbot-to-automate-the-creation-of-certificates-for-openvpn-fb.png
+tw_img: ./using-lets-encrypt-and-certbot-to-automate-the-creation-of-certificates-for-openvpn-tw.png
 status: published
 language: en_US
 meta_title: Use Certbot to automate the creation of SSL certificates for OpenVPN
-meta_description: This article illustrates you how to use Certbot to automate the creation of
+meta_description:
+  This article illustrates you how to use Certbot to automate the creation of
   SSL certificates for OpenVPN and how to release on AWS using Terraform.
 tags:
   - ssl
@@ -29,7 +34,6 @@ Recently at [Planet 9 Energy](https://planet9energy.com), I had to setup a VPN a
 Another important requirement was to expose the OpenVPN web interface (also called Access Server) using an SSL, which I was expecting to be one of the most challenging things to automate, instead, it turned out to be very easy using [Let’s Encrypt](https://letsencrypt.org) and [Certbot](https://certbot.eff.org).
 
 In this article, I will illustrate you how to use Certbot to automate the creation of SSL certificates (for OpenVPN as a practical example) and how to integrate this process in AWS-land using Terraform.
-
 
 ## Installing Certbot
 
@@ -58,7 +62,6 @@ The outcome will be something like this:
 
 ![Certbot help output](./certbot-help-output-ubuntu.png)
 
-
 ## Generating a certificate with Certbot
 
 Certbot uses Let's Encrypt to generate a certificate. Let's encrypt issues a certificate for your domain only if able to verify that you really own that domain and that it is associated with the public IP of the machine from which you are running certbot.
@@ -74,25 +77,25 @@ sudo service openvpnas stop
 Then you can run certbot command line with the following options:
 
 ```bash
-sudo certbot certonly \ 
-  --standalone \ 
-  --non-interactive \ 
-  --agree-tos \ 
-  --email YOUR_CERTIFICATE_EMAIL \ 
-  --domains YOUR_DOMAIN \ 
-  --pre-hook 'sudo service openvpnas stop' \ 
+sudo certbot certonly \
+  --standalone \
+  --non-interactive \
+  --agree-tos \
+  --email YOUR_CERTIFICATE_EMAIL \
+  --domains YOUR_DOMAIN \
+  --pre-hook 'sudo service openvpnas stop' \
   --post-hook 'sudo service openvpnas start'
 ```
 
 Let's see briefly what every option is doing:
 
-  - `--standalone`: runs the standalone web server for the verification process.
-  - `--non-interactive`: runs in totally automated mode, never asks for input.
-  - `--agree-tos`: needed to make the above work, with this parameter you are confirming you agree to the terms of service.
-  - `--email`: the certificate email.
-  - `--domains`: the certificate domain.
-  - `--pre-hook`: this is needed for the auto-renewal of the certificate and describes what is the command to run before the renewal process can be executed. We are using it to stop the OpenVPN web interface.
-  - `--post-hook`: similar to the previous one, allows us to specify a command to be executed after a certificate is renewed, we use it to restart the OpenVPN web interface.
+- `--standalone`: runs the standalone web server for the verification process.
+- `--non-interactive`: runs in totally automated mode, never asks for input.
+- `--agree-tos`: needed to make the above work, with this parameter you are confirming you agree to the terms of service.
+- `--email`: the certificate email.
+- `--domains`: the certificate domain.
+- `--pre-hook`: this is needed for the auto-renewal of the certificate and describes what is the command to run before the renewal process can be executed. We are using it to stop the OpenVPN web interface.
+- `--post-hook`: similar to the previous one, allows us to specify a command to be executed after a certificate is renewed, we use it to restart the OpenVPN web interface.
 
 This command generates numerous files including `server.crt` and `server.key`, the two files we need to use in OpenVPN. So let's link them into the proper OpenVPN folder:
 
@@ -110,7 +113,6 @@ sudo service openvpnas start
 ```
 
 After few seconds your OpenVPN website should be up and running, and with a shiny green icon indicating that the website is properly encrypted through a signed certificate, woohoo, well done!
-
 
 ## A complete example infrastructure with Terraform
 
@@ -130,7 +132,6 @@ Let's start with a list of the AWS resources we need in order to provision a ful
 Quite a few things to be honest, but the declarative nature of Terraform will make things easy.
 
 Let's create a file called `openvpn.tf` and let's start to add things there:
-
 
 ### VPC & Subnet
 
@@ -159,7 +160,6 @@ Here we are using two variables `vpc_cidr_block` and `subnet_cidr_block` that ca
 
 The rest of the code describing the VPC and the Subnet resources should be pretty self-explanatory.
 
-
 ### The key pair
 
 Let's create now the SSH key that we can use later in case we want to SSH into the OpenVPN machine.
@@ -186,7 +186,6 @@ ssh-keygen -f openvpn.key
 this will create `openvpn.key` (private key) and `openvpn.key.pub` (public key). The first one is the one we would reference here.
 
 If we want to reference the content of a file we can use `"${file("openvpn.key.pub")}"` to assign a terraform variable.
-
 
 ### Security group
 
@@ -275,7 +274,6 @@ resource "aws_security_group" "openvpn" {
 By default, this Security group allows access from every IP address using the ports 22 (SSH), 433 (HTTPS) and all outside traffic. It also enables the traffic needed for the OpenVPN protocol both on TCP (port 943) and UDP (port 1194).
 In case you want a custom setup, you can redefine all the relevant variables here (but in that case you might need to customise also the OpenVPN settings, a step which is not covered in this article).
 
-
 ### Subdomain
 
 Let's now create the subdomain from where our VPN will be accessible.
@@ -312,7 +310,6 @@ Then, we create a reference to the Route53 zone using the `data` syntax.
 Finally, we create the record in the zone using an `aws_route53_record` resource.
 
 Notice that we are referencing here the EC2 instance public IP, which we haven't defined yet.
-
 
 ### EC2 instance
 
@@ -358,14 +355,13 @@ USERDATA
 
 In this piece of code we are defining some variables:
 
- - `ami`: the id of the AMI (Amazon Machine Image) to use to run the EC2 instance. The default one is a Ubuntu Xenial OpenVPN machine that runs on the eu-west-1 region (Ireland). Feel free to [select another image](https://cloud-images.ubuntu.com/locator/ec2/) that might suit your needs best.
- - `instance_type`: the type of instance. You can check the [list of all the type of EC2 instances](https://aws.amazon.com/ec2/instance-types/) to understand which one might be the best for you. The default here is ok for most of the use cases.
- - `admin_user`, `admin_password`: The username and password of the admin user for your VPN.
+- `ami`: the id of the AMI (Amazon Machine Image) to use to run the EC2 instance. The default one is a Ubuntu Xenial OpenVPN machine that runs on the eu-west-1 region (Ireland). Feel free to [select another image](https://cloud-images.ubuntu.com/locator/ec2/) that might suit your needs best.
+- `instance_type`: the type of instance. You can check the [list of all the type of EC2 instances](https://aws.amazon.com/ec2/instance-types/) to understand which one might be the best for you. The default here is ok for most of the use cases.
+- `admin_user`, `admin_password`: The username and password of the admin user for your VPN.
 
 Whit all those variable in place, we can describe a `aws_instance` resource. Notice that we are defining it so that it will be bootstrapped in our VPC and in the subnet we specified before. Also notice that we are setting `associate_public_ip_address` to `true`, this way the machine will get a public IP (the one we will associate to the subdomain defined earlier).
 
 Finally we define a `user_data` property. [EC2 User Data](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html#instancedata-add-user-data) allows to provide extra configuration code that is executed as soon as the machine is bootstrapped. It is generally used to install extra software, start some service or edit configuration values. In our case, since our image already contains OpenVPN, we use it only to provide the credentials for the default OpenVPN admin user.
-
 
 ### Trigger-based provisioning with `null_resource`
 
@@ -379,12 +375,12 @@ If you got the basics of Terraform and AWS here you might think that we can do t
 
 So in our current situation, we have to respect the following order of creating resources:
 
- 1. Create a VPC
- 2. Create a Subnet in the VPC
- 3. Create a key pair and a security group
- 4. Create an EC2 instance
- 5. Create a subdomain record pointing to the public address of the EC2 instance
- 6. (TODO) Create the certificate and install into the current OpenVPN instance
+1.  Create a VPC
+2.  Create a Subnet in the VPC
+3.  Create a key pair and a security group
+4.  Create an EC2 instance
+5.  Create a subdomain record pointing to the public address of the EC2 instance
+6.  (TODO) Create the certificate and install into the current OpenVPN instance
 
 So, the subdomain record can be created only after the EC2 instance is running and it has got a public IP address, only then we have a valid domain that we can use for the certificate. This means we cannot use the EC2 provisioning step, but we need to have a "trigger" that tells us when the subdomain is available and do some extra stuff.
 
@@ -432,13 +428,12 @@ resource "null_resource" "provision_openvpn" {
 
 As you can see at the very top of this snippet of code, we are declaring a `null_resource` that is triggered when the value `aws_route53_record.vpn.id` changes, which happens when the subdomain is created. When this happens, Terraform will execute the provisioning logic defined in the rest of the code here, which essentially describes to Terraform how to connect to the OpenVPN machine and what code needs to be run and which we already discussed in the first part of this article.
 
-
 ### The provider configuration and the variable file
 
 Ok, our setup is almost ready... The only two things we have left to do are:
 
- - define the needed configuration to connect to our AWS account;
- - define some values for our configuration before we can run Terraform.
+- define the needed configuration to connect to our AWS account;
+- define some values for our configuration before we can run Terraform.
 
 To define the AWS config we need to specify the following terraform code (I generally do that into a dedicated file called `provider.tf`, but you can write this in any terraform file in your project):
 
@@ -508,7 +503,6 @@ terraform destroy
 
 and everything we just created will be blown away from your AWS account, leaving no trace behind!
 
-
 ## Some extra tips
 
 Just few extra tips before closing off...
@@ -525,17 +519,17 @@ Quoting directly from [the Let's Encrypt Rate Limit documentation](https://letse
 >
 > We also have a **Duplicate Certificate limit of 5 certificates per week**. A certificate is considered a duplicate of an earlier certificate if they contain the exact same set of hostnames, ignoring capitalization and ordering of hostnames. For instance, if you requested a certificate for the names [www.example.com, example.com], you could request four more certificates for [www.example.com, example.com] during the week. If you changed the set of names by adding [blog.example.com], you would be able to request additional certificates.
 
-So, be careful not to blow your production domain while playing with Terraform (or with certbot in general). 
+So, be careful not to blow your production domain while playing with Terraform (or with certbot in general).
 
-There are options to generate *test* or *staging* certificates, although I haven't experimented much with them, so I can only suggest you to have a look at the documentation illustration all the [available command line options](https://certbot.eff.org/docs/using.html#certbot-command-line-options).
+There are options to generate _test_ or _staging_ certificates, although I haven't experimented much with them, so I can only suggest you to have a look at the documentation illustration all the [available command line options](https://certbot.eff.org/docs/using.html#certbot-command-line-options).
 
 Huge thanks to [tialaramex](https://www.reddit.com/user/tialaramex) on Reddit for [a fruitful discussion](https://www.reddit.com/r/linuxadmin/comments/6ia1wx/use_certbot_to_automate_the_creation_of_ssl/dj57zlw/) and few pieces of advice about this specific aspect.
 
 ### Certificate expiry and renewal
 
- Let's Encrypt **certificates expire after 3 months**, so be sure you enable the auto renewal feature.
+Let's Encrypt **certificates expire after 3 months**, so be sure you enable the auto renewal feature.
 
-In reality, the feature is enabled by default, so what's left to do is to test the auto renewal process. With certbot you can do that using the following command: 
+In reality, the feature is enabled by default, so what's left to do is to test the auto renewal process. With certbot you can do that using the following command:
 
 ```bash
 certbot renew --dry-run
@@ -553,14 +547,13 @@ Thanks again to [tialaramex](https://www.reddit.com/user/tialaramex) on Reddit f
 
 I had some problems during the installation of certbot on the image used here by default. If this is happening to you as well, you should be able to sort them out by running an `apt-get upgrade` before trying to install certbot. Since you want to do that in an automated fashion, you'll probably need a more sophisticated command that takes care of auto-responding to possible prompts: `yes | sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade`.
 
-
 ## Wrapping up
 
 This is just a quick example focused on OpenVPN, but you can use the same approach to generate certificates for other web applications. Consult the [Certbot documentation ](https://certbot.eff.org/docs/) to see all the supported web servers and how to use Certbot with them.
 
 Also, I hope this tutorial gave you a good idea on how to use Terraform to automate your infrastructure provisioning. I am still a bit of noob with it, so if you see I have done something terribly wrong (or something that can be improved), please let me know in the comments.
 
-Thanks to [@Podgeypoos79](https://twitter.com/Podgeypoos79), [@techfort](https://twitter.com/tech_fort), *Alan* and the rest of Planet 9 tech team for working with me on this cool 💩 (chocolate ice cream!). Also a huge thanks to my friend [@gianarb](https://twitter.com/gianarb) for some precious *devopsy* bits of advice.
+Thanks to [@Podgeypoos79](https://twitter.com/Podgeypoos79), [@techfort](https://twitter.com/tech_fort), _Alan_ and the rest of Planet 9 tech team for working with me on this cool 💩 (chocolate ice cream!). Also a huge thanks to my friend [@gianarb](https://twitter.com/gianarb) for some precious _devopsy_ bits of advice.
 
 Let me know in the comments if this article was useful for you and if you integrated something similar in one of your projects!
 

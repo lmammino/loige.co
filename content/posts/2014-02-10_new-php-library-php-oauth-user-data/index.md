@@ -10,6 +10,8 @@ updated: 2014-02-10T23:23:21.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: ./new-php-library-php-oauth-user-data.png
+fb_img: ./new-php-library-php-oauth-user-data-fb.png
+tw_img: ./new-php-library-php-oauth-user-data-tw.png
 status: published
 language: en_US
 meta_title: null
@@ -21,9 +23,9 @@ tags:
   - github
 ---
 
-I recently wrote a new [PHP library](https://github.com/Oryzone/PHPoAuthUserData) to simplify the extraction of user data (*name*, *email*, *id*, etc...) from various OAuth providers such as *Facebook*, *Twitter* and *Linkedin*.
+I recently wrote a new [PHP library](https://github.com/Oryzone/PHPoAuthUserData) to simplify the extraction of user data (_name_, _email_, _id_, etc...) from various OAuth providers such as _Facebook_, _Twitter_ and _Linkedin_.
 
-Is well know that OAuth 1 and 2 are great *standard* protocols to authenticate users in our apps. Anyway we often need to go further the authentication process and extract various information about the authenticated users. Unfortunately this is something that is not standardized and obviously each OAuth provider manages user data in very specific manner according to its specific purposes.
+Is well know that OAuth 1 and 2 are great _standard_ protocols to authenticate users in our apps. Anyway we often need to go further the authentication process and extract various information about the authenticated users. Unfortunately this is something that is not standardized and obviously each OAuth provider manages user data in very specific manner according to its specific purposes.
 
 So each OAuth provider offer a set of APIs with specific data schemes to allow developers to extract data about the authenticated users.
 
@@ -33,9 +35,9 @@ Just to make things clearer suppose you want to allow users in your app to sign 
 
 The library I wrote is called [PHPoAuthUserData](https://github.com/Oryzone/PHPoAuthUserData). It sits on top of the excellent OAuth library [Lusitanian/PHPoAuthLib](https://github.com/Lusitanian/PHPoAuthLib) and aims to resolve the user extraction data problem in the most simple and effective way.
 
-It offers a *uniform* and (really) simple interface to extract the most interesting and common user data such as *Name*, *Username*, *Id* and so on.
+It offers a _uniform_ and (really) simple interface to extract the most interesting and common user data such as _Name_, _Username_, _Id_ and so on.
 
-Just to give you a *quick* idea of what is possible with the library have a look at the following snippet:
+Just to give you a _quick_ idea of what is possible with the library have a look at the following snippet:
 
 ```php
 // $service is an istance of \OAuth\Common\Service\ServiceInterface (eg. the "Facebook" service) with a valid access token

@@ -10,6 +10,8 @@ updated: 2016-08-29T21:49:47.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: ./ryoko-tani-universal-javascript-nodejs-react-luciano-mammino-cover.jpg
+fb_img: ./react-on-the-server-for-beginners-build-a-universal-react-and-node-app-fb.png
+tw_img: ./react-on-the-server-for-beginners-build-a-universal-react-and-node-app-tw.png
 status: published
 language: en_US
 meta_title: null
@@ -40,5 +42,3 @@ In this article we are going to learn how to build a simple "Universal JavaScrip
 Enjoy it and feel free to leave your comments here or on the original article.
 
 Cheers!
-
-

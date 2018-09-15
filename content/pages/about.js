@@ -1,9 +1,9 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
 import styled from 'react-emotion'
-import Helmet from 'react-helmet'
 import { get } from 'lodash'
 
+import SEO from '../../src/components/SEO'
 import Layout from '../../src/components/layout'
 import ResponsiveWrapper from '../../src/components/ResponsiveWrapper'
 import ArticleContainer from '../../src/components/ArticleContainer'
@@ -29,7 +29,14 @@ const AboutPage = props => {
   const sideProjects = get(props, 'data.sideProjects.edges')
   return (
     <Layout section="about">
-      <Helmet title={`About loige - ${siteTitle}`} />
+      <SEO
+        path={`about`}
+        pageData={{
+          frontmatter: {
+            title: `About Loige - ${siteTitle}`
+          }
+        }}
+      />
       <ResponsiveWrapper>
         <ArticleContainer style={{ minHeight: '80vh' }}>
           <h2 style={{ marginTop: '4em' }}>Hello, this is Luciano :)</h2>
@@ -168,7 +175,8 @@ const AboutPage = props => {
           <p>
             In the last few years, I have published{' '}
             <strong>{blogPostCount}</strong> articles in this blog and
-            contributed to <strong>{ externalPostsCount }</strong> articles for other publishers.
+            contributed to <strong>{externalPostsCount}</strong> articles for
+            other publishers.
           </p>
           <h4>Latest article on this blog</h4>
           <ul>
@@ -200,7 +208,8 @@ const AboutPage = props => {
               <li key={p.node.link}>
                 <a rel="noopener noreferrer" target="_blank" href={p.node.link}>
                   {p.node.name}
-                </a> ({ p.node.role })
+                </a>{' '}
+                ({p.node.role})
               </li>
             ))}
           </ul>
@@ -252,7 +261,9 @@ export const pageQuery = graphql`
       totalCount
     }
 
-    externalPosts: allExternalArticlesYaml(sort: {fields: [date], order: DESC} ) {
+    externalPosts: allExternalArticlesYaml(
+      sort: { fields: [date], order: DESC }
+    ) {
       totalCount
       edges {
         node {
@@ -263,7 +274,7 @@ export const pageQuery = graphql`
       }
     }
 
-    sideProjects: allSideProjectsYaml(sort: {fields: [name], order: ASC} ) {
+    sideProjects: allSideProjectsYaml(sort: { fields: [name], order: ASC }) {
       totalCount
       edges {
         node {

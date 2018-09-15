@@ -9,6 +9,8 @@ updated: 2016-12-12T23:44:38.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: ./my-universal-javascript-web-applications-talk-at-codemotion-milan-2016-2.jpg
+fb_img: ./my-universal-javascript-web-applications-talk-at-codemotion-milan-2016-2-fb.png
+tw_img: ./my-universal-javascript-web-applications-talk-at-codemotion-milan-2016-2-fb.png
 status: published
 language: en_US
 meta_title: null
@@ -38,7 +40,6 @@ If you are interested in my talk you can find the slides on [Slides.com](http://
 <div style=" position: relative; padding-bottom: 56.25%; height: 0; margin-bottom: 5em;">
 <iframe style="position: absolute; top:0; left: 0; width: 100%; height: 100%;" src="//slides.com/lucianomammino/universal-js-web-applications-with-react-codemotion-milan-2016/embed" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 </div>
-
 
 ## Commentary
 
@@ -95,7 +96,6 @@ Let's see why many people think so...
 
 Well, there are some specific pain point to address when it comes to build a Universal application. First of all you will need to have a nice way to write your code (generally in the form of modules) once and make it available between the backend and the frontend. The two environments, even if similar, are not the same. For example they load files and resources in different ways so we need standards and tools in order to "transform" the code in a way that is loadable and functional in both environments.
 The current open source solutions are [UMD](https://github.com/umdjs/umd), which stands for Universal Module Definition, [SystemJS](https://github.com/systemjs/systemjs) that allows to load modules asynchronously and [Browserify](http://browserify.org) and [Webpack](https://webpack.github.io) as module builder for bringing CommonJs/Node.js modules to the browser.
-
 
 #### [9.](http://slides.com/lucianomammino/universal-js-web-applications-with-react-codemotion-milan-2016#/9)
 
@@ -167,11 +167,11 @@ The first component that we are going to see is the `Layout` component, which ha
 
 #### [25.](http://slides.com/lucianomammino/universal-js-web-applications-with-react-codemotion-milan-2016#/25)
 
-This is more or less how a component looks like in React. We basically needs to define a render function that receives some parameters (called props) and returns the markup needed to render the component view. This markup looks like a mix of HTML and JavaScript and it's called *JSX*. In this case we expect to see:
+This is more or less how a component looks like in React. We basically needs to define a render function that receives some parameters (called props) and returns the markup needed to render the component view. This markup looks like a mix of HTML and JavaScript and it's called _JSX_. In this case we expect to see:
 
-  a. An header section
-  b. A variable content (notice the variable `props.children`)
-  c. And the footer section
+a. An header section
+b. A variable content (notice the variable `props.children`)
+c. And the footer section
 
 #### [26.](http://slides.com/lucianomammino/universal-js-web-applications-with-react-codemotion-milan-2016#/26)
 
@@ -189,11 +189,11 @@ So the `AthletePreview` component represents a card in the navigation bar of the
 
 Let's use this component to understand better how React and its JSX syntax work.
 
-  a. As I told you we have a function that has the goal of providing the JSX markup needed by React to render the component.
-  b. The main *tag* that we use is `Link` which represents a React Router component. This will make all the component *clickable* and will link it to a specific React route. We will see later in greater detail how the routing functionality works. The only important thing you need to notice for now is that the attribute `to` uses an interpolated variable to build the link reference. We reference here the `props` object which will contain all the attributes passed to this component by the parent component.
-  c. Then we display the headshot of the athlete, again we access the object `props` to fetch the picture for the current athlete.
-  d. We do the same to display the name of the athlete.
-  e. Finally we also define the markup to render a little medal icon and the count of the medals won by the athlete.
+a. As I told you we have a function that has the goal of providing the JSX markup needed by React to render the component.
+b. The main _tag_ that we use is `Link` which represents a React Router component. This will make all the component _clickable_ and will link it to a specific React route. We will see later in greater detail how the routing functionality works. The only important thing you need to notice for now is that the attribute `to` uses an interpolated variable to build the link reference. We reference here the `props` object which will contain all the attributes passed to this component by the parent component.
+c. Then we display the headshot of the athlete, again we access the object `props` to fetch the picture for the current athlete.
+d. We do the same to display the name of the athlete.
+e. Finally we also define the markup to render a little medal icon and the count of the medals won by the athlete.
 
 #### [30.](http://slides.com/lucianomammino/universal-js-web-applications-with-react-codemotion-milan-2016#/30)
 
@@ -207,17 +207,17 @@ A lot of code here. But don't worry this is the biggest component we will see to
 
 This component as well has access to all our data. It receives the id of the current athlete to display in `props.params.id`, data that will be populate by the routing layer given the current url.
 
-  a. We use this information to verify if the current id really exists in our little static database object. If not we simply render a `NotFoundPage` component that we will see later. If the athlete exists we will have all its data in the `athlete` variable.
-  b. If we have found the athlete we first render a custom component called `AthletesMenu`.
-  c. Then we have the markup that define the header of the page (the one with the big background image and the picture of the current athlete).
+a. We use this information to verify if the current id really exists in our little static database object. If not we simply render a `NotFoundPage` component that we will see later. If the athlete exists we will have all its data in the `athlete` variable.
+b. If we have found the athlete we first render a custom component called `AthletesMenu`.
+c. Then we have the markup that define the header of the page (the one with the big background image and the picture of the current athlete).
 
 #### [33.](http://slides.com/lucianomammino/universal-js-web-applications-with-react-codemotion-milan-2016#/33)
 
-  d. Then we have a the markup needed to render the athlete description.
-  e. Notice that inside this markup we reference another custom component called `Flag` which is the one responsible for rendering the flag icon inside the description.
-  f. In the next section we iterate over all the athlete medals and display them...
-  g. Using a custom component called `Medal`
-  h. The last bit is a link that redirects to the index page.
+d. Then we have a the markup needed to render the athlete description.
+e. Notice that inside this markup we reference another custom component called `Flag` which is the one responsible for rendering the flag icon inside the description.
+f. In the next section we iterate over all the athlete medals and display them...
+g. Using a custom component called `Medal`
+h. The last bit is a link that redirects to the index page.
 
 #### [34.](http://slides.com/lucianomammino/universal-js-web-applications-with-react-codemotion-milan-2016#/34)
 
@@ -227,7 +227,7 @@ This is the `AthletesMenu` component that we referenced in the previous componen
 
 In its code we access again to our data module and we iterate over it.
 
-  a. For every athlete we reference a `Link` component pointing to the athlete page. It's worth noticing that we use the attribute `activeClassName`. This is a very handy utility of the ReactRouter module that allows us to apply to the link a specific class to the link tag when the linked route matches the current URL. With this utility get very easy to create some CSS code to style active links differently from the other ones.
+a. For every athlete we reference a `Link` component pointing to the athlete page. It's worth noticing that we use the attribute `activeClassName`. This is a very handy utility of the ReactRouter module that allows us to apply to the link a specific class to the link tag when the linked route matches the current URL. With this utility get very easy to create some CSS code to style active links differently from the other ones.
 
 #### [36.](http://slides.com/lucianomammino/universal-js-web-applications-with-react-codemotion-milan-2016#/36)
 
@@ -235,7 +235,7 @@ This is the `Flag` component we mentioned some slides before.
 
 #### [37.](http://slides.com/lucianomammino/universal-js-web-applications-with-react-codemotion-milan-2016#/37)
 
-The code is very simple. We just need to use the `props.icon` to render the image tag properly. We also have an optional prop called `showName` that, if set to a *truthy* value, tells the component to also display the name of the country along the flag icon.
+The code is very simple. We just need to use the `props.icon` to render the image tag properly. We also have an optional prop called `showName` that, if set to a _truthy_ value, tells the component to also display the name of the country along the flag icon.
 
 #### [38.](http://slides.com/lucianomammino/universal-js-web-applications-with-react-codemotion-milan-2016#/38)
 
@@ -244,7 +244,6 @@ Finally let's see our `Medal` component.
 #### [39.](http://slides.com/lucianomammino/universal-js-web-applications-with-react-codemotion-milan-2016#/39)
 
 In this component, before the render function we have a little dictionary object that we use to map medal types ids to it's literal description ('G' for 'Gold', 'S' for 'Silver', etc.). Then we reference all the properties we receive from the parent component to display the medal year, the city, the name of the competition and the category.
-
 
 #### [40.](http://slides.com/lucianomammino/universal-js-web-applications-with-react-codemotion-milan-2016#/40)
 
@@ -259,26 +258,26 @@ Let's move to the routing functionality.
 
 In our application we will have two different routes:
 
-  a. The index page, mapped to the main route
-  b. and the athlete page which uses the athlete `id` as parameter.
+a. The index page, mapped to the main route
+b. and the athlete page which uses the athlete `id` as parameter.
 
 #### [43.](http://slides.com/lucianomammino/universal-js-web-applications-with-react-codemotion-milan-2016#/43)
 
 in our `Routes` components we define these two routes. Using ReactRouter we can define the routes hierarchy using JSX.
 
-  - We have a main route that links the `Layout` component. This will make sure that every component will use our default layout.
-  - Then the common index route is associated to our `IndexPage` component.
-  - We than map the `AthletePage` component to the path `athlete/:id`
-  - And finally we provide a fallback path that matches all the other routers and renders our `NotFoundPage` component.
+- We have a main route that links the `Layout` component. This will make sure that every component will use our default layout.
+- Then the common index route is associated to our `IndexPage` component.
+- We than map the `AthletePage` component to the path `athlete/:id`
+- And finally we provide a fallback path that matches all the other routers and renders our `NotFoundPage` component.
 
 #### [44.](http://slides.com/lucianomammino/universal-js-web-applications-with-react-codemotion-milan-2016#/44)
 
 Let's create the real router component now.
 
-  a. This component imports our previously defined hierarchy of routes.
-  b. It uses the hashHistory mechanism to detect the current router. We will see later what this really means.
-  c. We reference our routing hierarchy through the `routes` attribute.
-  d. Finally we use a little function to scroll the page back up every time we move dynamically to a new route. This will make sure that the transition between one page an another looks natural.
+a. This component imports our previously defined hierarchy of routes.
+b. It uses the hashHistory mechanism to detect the current router. We will see later what this really means.
+c. We reference our routing hierarchy through the `routes` attribute.
+d. Finally we use a little function to scroll the page back up every time we move dynamically to a new route. This will make sure that the transition between one page an another looks natural.
 
 #### [45.](http://slides.com/lucianomammino/universal-js-web-applications-with-react-codemotion-milan-2016#/45)
 
@@ -288,8 +287,8 @@ So now we have React components and routing. Let's combine them together and fin
 
 The app-client represent our browser application.
 
-  a. It loads our router
-  b. and renders it inside the tag with id `main`.
+a. It loads our router
+b. and renders it inside the tag with id `main`.
 
 #### [47.](http://slides.com/lucianomammino/universal-js-web-applications-with-react-codemotion-milan-2016#/47)
 
@@ -299,8 +298,8 @@ Let's see how the main html of our application looks like
 
 We basically have some regular meta headers and a link to a stylesheet. Then in the body:
 
-  a. We have our `main` tag which will contain all our react app
-  b. The bundled script that contains all the code needed to run our app in the frontend.
+a. We have our `main` tag which will contain all our react app
+b. The bundled script that contains all the code needed to run our app in the frontend.
 
 #### [49.](http://slides.com/lucianomammino/universal-js-web-applications-with-react-codemotion-milan-2016#/49)
 
@@ -310,13 +309,13 @@ Let's how we can build this bundle using Babel and Webpack.
 
 Our Babel config looks extremely simple:
 
-  a. We just need to specify that we want to transpile react code and EcmaScript 2015 to regular ES5 code.
+a. We just need to specify that we want to transpile react code and EcmaScript 2015 to regular ES5 code.
 
 Our webpack config is a bit more elaborate:
 
-  b. First thing we need to specify is the entry point of our app. Webpack will start to crawl through all the used dependencies starting from this file.
-  c. Then we specify where we want to output the resulting bundled file.
-  d. And finally we specify that we want to process every file in our source directory using babel.
+b. First thing we need to specify is the entry point of our app. Webpack will start to crawl through all the used dependencies starting from this file.
+c. Then we specify where we want to output the resulting bundled file.
+d. And finally we specify that we want to process every file in our source directory using babel.
 
 #### [51.](http://slides.com/lucianomammino/universal-js-web-applications-with-react-codemotion-milan-2016#/51)
 
@@ -336,10 +335,10 @@ Let's finally test our app!
 
 So What we have done so far?
 
-  1. We defined our views combining a bunch of different React components
-  2. We added routing using React Router
-  3. We compiled our application for the browser using Babel and Webpack
-  4. Then we executed the application served through a static Express server
+1. We defined our views combining a bunch of different React components
+2. We added routing using React Router
+3. We compiled our application for the browser using Babel and Webpack
+4. Then we executed the application served through a static Express server
 
 #### [55.](http://slides.com/lucianomammino/universal-js-web-applications-with-react-codemotion-milan-2016#/55)
 
@@ -353,13 +352,13 @@ We need now to switch to full routes (without hashtags) and to do so we can simp
 
 #### [57.](http://slides.com/lucianomammino/universal-js-web-applications-with-react-codemotion-milan-2016#/57)
 
-Now we also want to convert our old `index.html` to a generic *ejs* template. Our new file looks almost identical, with the only exception that inside our `main` block we have now an *ejs* template variable called `markup` that allows us to inject arbitrary html code into it. We are going to use this to inject the React generated markup when rendering from the server.
+Now we also want to convert our old `index.html` to a generic _ejs_ template. Our new file looks almost identical, with the only exception that inside our `main` block we have now an _ejs_ template variable called `markup` that allows us to inject arbitrary html code into it. We are going to use this to inject the React generated markup when rendering from the server.
 
 #### [58.](http://slides.com/lucianomammino/universal-js-web-applications-with-react-codemotion-milan-2016#/58)
 
 Now the last step is to update our server application to support universal routing and rendering. To do so we need to import some libraries from React, ReactDom e ReactRouter. We also import our routes from our frontend-only app and the `NotFoundPage` component.
 
-Finally we also enable the support for *ejs* templates.
+Finally we also enable the support for _ejs_ templates.
 
 #### [59.](http://slides.com/lucianomammino/universal-js-web-applications-with-react-codemotion-milan-2016#/59)
 
@@ -367,21 +366,21 @@ Now let's get to the most interesting part, let's see how the universal routing 
 
 The important part of the code here is the Express route defined with `app.get('*', (req, res) => {...})`.
 
-This is an Express *catch-all* route that will intercept all the *GET* requests to every URL in the server (not previously matched to a static file). Inside this route, we take care of delegating the routing logic to the React Router `match` function.
+This is an Express _catch-all_ route that will intercept all the _GET_ requests to every URL in the server (not previously matched to a static file). Inside this route, we take care of delegating the routing logic to the React Router `match` function.
 
 `match` accepts two parameters: the first one is a configuration object and the second is a callback function. The configuration object must have two keys:
 
-  - `routes`: used to pass the React Router routes configuration. Here, we are passing the exact same configuration that we used for the client-side rendering.
-  - `location`: This is used to specify the currently requested URL.
+- `routes`: used to pass the React Router routes configuration. Here, we are passing the exact same configuration that we used for the client-side rendering.
+- `location`: This is used to specify the currently requested URL.
 
 The callback function is called at the end of the matching. It will receive three arguments: `error`, `redirectLocation` and `renderProps`. We can use them to determine what exactly the result of the match operation was.
 
 We can have four different cases that we need to handle:
 
-  1. The first case is when we have an error during the routing resolution. To handle this case, we simply return a 500 internal server error response to the browser.
-  2. The second case is when we match a route that is a redirect route. In this case, we need to create a server redirect message (302 redirect) to tell the browser to go to the new destination (this is not really happening in our application because we are not using redirect routes in our React Router configuration, but it's good to have it ready in case we decide to keep evolving our application).
-  3. The third case is when we match a route and we have to render the associated component. In this case, the argument renderProps is an object that contains the data we need to use to render the component. The component we are rendering is RouterContext (contained in the React Router module), which is responsible for rendering the full component tree using the values in renderProps.
-  4. The last case is when the route is not matched, and here we can simply return a 404 not found error to the browser.
+1. The first case is when we have an error during the routing resolution. To handle this case, we simply return a 500 internal server error response to the browser.
+2. The second case is when we match a route that is a redirect route. In this case, we need to create a server redirect message (302 redirect) to tell the browser to go to the new destination (this is not really happening in our application because we are not using redirect routes in our React Router configuration, but it's good to have it ready in case we decide to keep evolving our application).
+3. The third case is when we match a route and we have to render the associated component. In this case, the argument renderProps is an object that contains the data we need to use to render the component. The component we are rendering is RouterContext (contained in the React Router module), which is responsible for rendering the full component tree using the values in renderProps.
+4. The last case is when the route is not matched, and here we can simply return a 404 not found error to the browser.
 
 This is the core of our server- side routing mechanism and we use the ReactDOM `renderToString` function to be able to render the HTML code that represents the component associated to the currently matched route.
 
@@ -397,15 +396,15 @@ Let's test the app again.
 
 Quick recap about what was done in this presentation:
 
-  - Create a Single Page Application with React and React Router
-  - Add server side routing and rendering using React and React Router libraries in out Express app
+- Create a Single Page Application with React and React Router
+- Add server side routing and rendering using React and React Router libraries in out Express app
 
 #### [62.](http://slides.com/lucianomammino/universal-js-web-applications-with-react-codemotion-milan-2016#/62)
 
 What can we do next to have a fully-fledged Universal app.
 
-  - Add Universal Data Retrieval
-  - Add Universal State Management
+- Add Universal Data Retrieval
+- Add Universal State Management
 
 #### [63.](http://slides.com/lucianomammino/universal-js-web-applications-with-react-codemotion-milan-2016#/63)
 
@@ -422,10 +421,8 @@ Gigantic thanks also to whoever took pictures and shared them on Twitter, some h
 <blockquote class="twitter-tweet" data-lang="it"><p lang="en" dir="ltr"><a href="https://twitter.com/loige">@loige</a> on stage <a href="https://twitter.com/hashtag/codemotion?src=hash">#codemotion</a> Milan! Rock on! <a href="https://t.co/9Y97YENhIG">pic.twitter.com/9Y97YENhIG</a></p>&mdash; cirpo (@cirpo) <a href="https://twitter.com/cirpo/status/802170435425234948">25 novembre 2016</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-
 <blockquote class="twitter-tweet" data-lang="it"><p lang="en" dir="ltr">It&#39;s time of <a href="https://twitter.com/hashtag/universaljs?src=hash">#universaljs</a> <a href="https://twitter.com/hashtag/reactjs?src=hash">#reactjs</a> with <a href="https://twitter.com/loige">@loige</a> <a href="https://t.co/2XrAZFOBRe">pic.twitter.com/2XrAZFOBRe</a></p>&mdash; Andrea Mangano (@andreaman87) <a href="https://twitter.com/andreaman87/status/802170179379752960">25 novembre 2016</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
 
 <blockquote class="twitter-tweet" data-lang="it"><p lang="it" dir="ltr">Ottimo talk, su <a href="https://twitter.com/hashtag/reactjs?src=hash">#reactjs</a>. Forse le più belle slide mai viste. Chiare ed essenziali <a href="https://twitter.com/hashtag/Codemotion?src=hash">#Codemotion</a> <a href="https://twitter.com/loige">@loige</a> <a href="https://t.co/DhCRV8NPMX">pic.twitter.com/DhCRV8NPMX</a></p>&mdash; Daniele Montagni (@dmontagni) <a href="https://twitter.com/dmontagni/status/802182660189724672">25 novembre 2016</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>

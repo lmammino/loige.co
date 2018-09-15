@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from 'react'
 import styled from 'react-emotion'
-import Helmet from 'react-helmet'
 import { graphql } from 'gatsby'
 import get from 'lodash/get'
 
+import SEO from '../components/SEO'
 import Layout from '../components/layout'
 import Hero from '../components/Hero'
 import Article from '../components/Article'
@@ -73,7 +73,6 @@ const Sidebar = styled('aside')`
 class BlogPostTemplate extends Component {
   render () {
     const post = this.props.data.markdownRemark
-    const siteTitle = get(this.props, 'data.site.siteMetadata.title')
     const { previous, next, similar } = this.props.pageContext
     const headerImage = post.frontmatter.header_img
       ? post.frontmatter.header_img.publicURL
@@ -94,9 +93,7 @@ class BlogPostTemplate extends Component {
 
     return (
       <Layout location={this.props.location} section="blog">
-        <Helmet title={`${post.frontmatter.title} | ${siteTitle}`}>
-          <html lang="en" />
-        </Helmet>
+        <SEO path={`${post.frontmatter.slug}`} pageData={post} isBlogPost />
         <Hero className="textOverlay" backgroundImage={headerImage}>
           <h1>
             <span>{post.frontmatter.title}</span>
@@ -153,6 +150,7 @@ export const pageQuery = graphql`
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
       id
+      excerpt
       timeToRead
       headings {
         value
@@ -161,11 +159,19 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
+        meta_description
         slug
         author
         tags
         date(formatString: "MMMM DD, YYYY")
+        dateISO: date
         header_img {
+          publicURL
+        }
+        fb_img {
+          publicURL
+        }
+        tw_img {
           publicURL
         }
       }

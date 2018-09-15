@@ -11,6 +11,8 @@ updated: 2015-03-01T13:01:20.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: ./simple-echo-server-written-in-go-dockerized.jpg
+fb_img: ./simple-echo-server-written-in-go-dockerized-fb.png
+tw_img: ./simple-echo-server-written-in-go-dockerized-tw.png
 status: published
 language: en_US
 meta_title: Simple server app written in Go lang and docker
@@ -33,7 +35,7 @@ In this post we will see how to write a (very) simple **Go server app** and how 
 
 We are going to write a simple echo server in Go and then we will pack it into a Docker container for future execution/distribution.
 
-*"Luciano, you are a PHP developer, why bothering with Go?"*
+_"Luciano, you are a PHP developer, why bothering with Go?"_
 
 Nice question! Well, there are at least two reasons for this choice:
 
@@ -47,7 +49,7 @@ Beware that Go on your local machine is needed only if you want to test the appl
 
 ##The Go echo server
 
-Ok, first of all let's write and test our server app. The app should open a socket and listen for TCP requests on a given port. Then when it receives some data it should reply by saying something like that *"Hi, I received your message! It was X bytes long and that's what it said: XXX ! Honestly I have no clue about what to do with your messages, so Bye Bye!"*.
+Ok, first of all let's write and test our server app. The app should open a socket and listen for TCP requests on a given port. Then when it receives some data it should reply by saying something like that _"Hi, I received your message! It was X bytes long and that's what it said: XXX ! Honestly I have no clue about what to do with your messages, so Bye Bye!"_.
 
 So let's just write some code. The following script has been widely inspired by [this one](https://coderwall.com/p/wohavg).
 
@@ -145,15 +147,13 @@ That's what we should see in the two terminal windows:
 
 ![Go echo server terminal windows execution](./go-server-output.png)
 
-The terminal window on the top is running our server and it logs all the received requests (by printing the incoming TCP address and the local one), while the second terminal is our client that sent out a simple "Hello server" message and received a *very useful* response from the server.
+The terminal window on the top is running our server and it logs all the received requests (by printing the incoming TCP address and the local one), while the second terminal is our client that sent out a simple "Hello server" message and received a _very useful_ response from the server.
 
 That's all from the Go side. In the next part of the post we will see how to "dockerize" this simple Go app. For now, you can obviously quit the server with a `CTRL+C`.
 
-
 ##Dockerizing the application
 
-Ok, now we want to *"dockerize"* this simple application. Wait, what does *"dockerize"* mean? Well, by *"dockerizing"* an application we will be able to put the application itself and all its dependencies within a Docker container that can be easily shipped and executed elsewhere.
-
+Ok, now we want to _"dockerize"_ this simple application. Wait, what does _"dockerize"_ mean? Well, by _"dockerizing"_ an application we will be able to put the application itself and all its dependencies within a Docker container that can be easily shipped and executed elsewhere.
 
 ### Images, Containers and Dockerfile(s)
 
@@ -161,20 +161,18 @@ An extract from the Docker documentation should make things a bit clearer:
 
 > Docker enables apps to be quickly assembled from components and eliminates the friction between development, QA, and production environments. As a result, IT can ship faster and run the same app, unchanged, on laptops, data center VMs, and any cloud.
 
+There are several ways to dockerize an application and create a dedicated Docker container. The one I prefer at the moment is by adopting a "_Dockerfile_".
 
-There are several ways to dockerize an application and create a dedicated Docker container. The one I prefer at the moment is by adopting a "*Dockerfile*".
+A "_Dockerfile_" is a file called exactly `Dockerfile` that contains several reproducible instructions to create a Docker _image_ from scratch.
 
-A "*Dockerfile*" is a file called exactly `Dockerfile` that contains several reproducible instructions to create a Docker *image* from scratch.
-
-*What the hell is an image and how it is different from a container?*
+_What the hell is an image and how it is different from a container?_
 
 If you are a noob with Docker (like me) you are probably asking yourself this question. I want to quote a [brilliant answer from stackoverflow](http://stackoverflow.com/a/21499102/495177) that should make things a bit clearer:
 
 > An image is the set of layers that are built up and can be moved around. Images are read-only.
 >
-> http://docs.docker.io/en/latest/terms/image/
-> http://docs.docker.io/en/latest/terms/layer/
-A container is an active (or inactive if exited) stateful instantiation of an image.
+> http://docs.docker.io/en/latest/terms/image/ > http://docs.docker.io/en/latest/terms/layer/
+> A container is an active (or inactive if exited) stateful instantiation of an image.
 >
 > http://docs.docker.io/en/latest/terms/container/
 
@@ -214,7 +212,7 @@ Let's analyze all the instructions one by one:
 
 - `RUN apt-get install -y python-software-properties` installs the `python-software-properties` package to be able to execute `add-apt-repository` next.
 
-- `RUN add-apt-repository ppa:duh/golang`, `RUN apt-get update`, `RUN apt-get install -y golang` and  `RUN apt-get install -y golang`: adds a custom repository for Go and installs it.
+- `RUN add-apt-repository ppa:duh/golang`, `RUN apt-get update`, `RUN apt-get install -y golang` and `RUN apt-get install -y golang`: adds a custom repository for Go and installs it.
 
 - `ADD server.go /var/server/server.go`: copies the file `server.go` into the image (storing it into the `/var/server/` folder)
 

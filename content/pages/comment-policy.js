@@ -1,8 +1,8 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import Helmet from 'react-helmet'
 import { get } from 'lodash'
 
+import SEO from '../../src/components/SEO'
 import Layout from '../../src/components/layout'
 import ResponsiveWrapper from '../../src/components/ResponsiveWrapper'
 import ArticleContainer from '../../src/components/ArticleContainer'
@@ -11,7 +11,14 @@ const CommentPolicy = props => {
   const siteTitle = get(props, 'data.site.siteMetadata.title')
   return (
     <Layout section="blog">
-      <Helmet title={`Blog comment policy - ${siteTitle}`} />
+      <SEO
+        path={`comment-policy`}
+        pageData={{
+          frontmatter: {
+            title: `Blog comment policy - ${siteTitle}`
+          }
+        }}
+      />
       <ResponsiveWrapper>
         <ArticleContainer>
           <h1 style={{ marginTop: '4em' }}>Comment Policy</h1>

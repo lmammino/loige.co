@@ -2,11 +2,12 @@ import React, { Component } from 'react'
 import styled from 'react-emotion'
 import { graphql } from 'gatsby'
 import get from 'lodash/get'
-import Helmet from 'react-helmet'
 
+import SEO from '../components/SEO'
 import Layout from '../components/layout'
 import Hero from '../components/Hero'
 import PostsList from '../components/PostsList'
+import ArticleContainer from '../components/ArticleContainer'
 import tagsBg from '../components/images/tags-bg.png'
 
 const Content = styled('div')`
@@ -24,14 +25,19 @@ const Content = styled('div')`
 
 class TagIndex extends Component {
   render () {
-    const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     const { tag, posts } = this.props.pageContext
+    const siteTitle = get(this, 'props.data.site.siteMetadata.title')
 
     return (
       <Layout location={this.props.location} section="blog">
-        <Helmet title={siteTitle}>
-          <html lang="en" />
-        </Helmet>
+        <SEO
+          path={`tag/${tag}`}
+          pageData={{
+            frontmatter: {
+              title: `Posts published under #${tag} - ${siteTitle}`
+            }
+          }}
+        />
         <Hero
           className="small tiledBg gradientOverlay"
           backgroundImage={tagsBg}
@@ -43,7 +49,9 @@ class TagIndex extends Component {
           </h2>
         </Hero>
         <Content>
-          <PostsList posts={posts} />
+          <ArticleContainer>
+            <PostsList posts={posts} />
+          </ArticleContainer>
         </Content>
       </Layout>
     )

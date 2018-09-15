@@ -2,8 +2,8 @@ import React, { Component, Fragment } from 'react'
 import styled from 'react-emotion'
 import { graphql, Link } from 'gatsby'
 import { get } from 'lodash'
-import Helmet from 'react-helmet'
 
+import SEO from '../components/SEO'
 import Layout from '../components/layout'
 import Hero from '../components/Hero'
 import speakingBg from '../components/images/speaking-bg.jpg'
@@ -207,11 +207,14 @@ class SpeakingIndex extends Component {
 
     return (
       <Layout location={this.props.location} section="speaking">
-        <Helmet
-          title={`Speaking events: conference talks and workshops - ${siteTitle}`}
-        >
-          <html lang="en" />
-        </Helmet>
+        <SEO
+          path={`speaking`}
+          pageData={{
+            frontmatter: {
+              title: `Speaking events: conference talks and workshops - ${siteTitle}`
+            }
+          }}
+        />
         <Hero className="small gradientOverlay" backgroundImage={speakingBg}>
           <h1>Speaking</h1>
         </Hero>

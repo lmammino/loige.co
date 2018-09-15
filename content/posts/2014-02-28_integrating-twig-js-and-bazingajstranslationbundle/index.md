@@ -9,6 +9,8 @@ updated: 2014-02-28T12:35:38.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: ./integrating-twig-js-and-bazingajstranslationbundle.png
+fb_img: ./integrating-twig-js-and-bazingajstranslationbundle-fb.png
+tw_img: ./integrating-twig-js-and-bazingajstranslationbundle-tw.png
 status: published
 language: en_US
 meta_title: null
@@ -34,9 +36,9 @@ In my specific case I had a Symfony application where I was already using [Bazin
 In my first attempt I wrote something like this:
 
 ```javascript
-Twig.setFilter("trans", function(id, params, domain, locale) {
-    return Translator.trans(id, params, domain, locale);
-});
+Twig.setFilter('trans', function(id, params, domain, locale) {
+  return Translator.trans(id, params, domain, locale)
+})
 ```
 
 That seemed to work pretty good until I started to use translation strings with parameters. Parameters were not replaced with their respective values!
@@ -55,6 +57,7 @@ The `Translator.trans` method expects an hash map without parameter delimiters i
 ```javascript
 Translator.trans("hello %name%", { 'name' ; 'Alice' });
 ```
+
 Note that there's no `%` delimiter this time.
 The `Translator.trans` method manages the detection of parameters by itself and you can also decide to customize the delimiters by setting the values: `Translator.placeHolderPrefix` and `Translator.placeHolderSuffix`.
 Obviously I suggest you to be consistent and use the same placeholders you use with PHP (especially if you need to share templates and translations from the backend to the frontend).
@@ -62,22 +65,23 @@ Obviously I suggest you to be consistent and use the same placeholders you use w
 So my final solution was the following:
 
 ```javascript
-Twig.setFilter("trans", function(id, params, domain, locale) {
+Twig.setFilter('trans', function(id, params, domain, locale) {
+  params = params || {}
 
-    params = params || {};
-
-    // normalizes params (removes placeholder prefixes and suffixes)
-    for (var key in params) {
-        if (params.hasOwnProperty(key) &&
-            key[0] == Translator.placeHolderPrefix &&
-            key[key.length - 1] == Translator.placeHolderSuffix) {
-            params[key.substr(1,key.length-2)] = params[key];
-            delete params[key];
-        }
+  // normalizes params (removes placeholder prefixes and suffixes)
+  for (var key in params) {
+    if (
+      params.hasOwnProperty(key) &&
+      key[0] == Translator.placeHolderPrefix &&
+      key[key.length - 1] == Translator.placeHolderSuffix
+    ) {
+      params[key.substr(1, key.length - 2)] = params[key]
+      delete params[key]
     }
+  }
 
-    return Translator.trans(id, params, domain, locale);
-});
+  return Translator.trans(id, params, domain, locale)
+})
 ```
 
 This way it automatically normalizes parameters for the `Translator` object (by removing any delimiter from parameter keys) and I have a consistent behavior between twig and twig.js.

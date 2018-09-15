@@ -9,6 +9,8 @@ updated: 2017-06-15T13:22:04.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: ./my-universal-javascript-web-applications-talk-at-codemotion-rome-2017.jpg
+fb_img: ./my-universal-javascript-web-applications-talk-at-codemotion-rome-2017-fb.png
+tw_img: ./my-universal-javascript-web-applications-talk-at-codemotion-rome-2017-tw.png
 status: published
 language: en_US
 meta_title: null
@@ -30,19 +32,18 @@ For this occasion, I updated my common Universal JavaScript [Judo Heroes](https:
 
 I believe this new version looks a bit more polished and easy to understand, plus it features a number of other relevant changes and improvements:
 
-  - Updated to `Webpack 2`, `React 15.4`, `React Router 4` and `Express 5`
-  - Using pure components where possible
-  - Better structure of components
-  - Top-down data propagation
+- Updated to `Webpack 2`, `React 15.4`, `React Router 4` and `Express 5`
+- Using pure components where possible
+- Better structure of components
+- Top-down data propagation
 
 ## Video
 
-If you missed the event (or if you are simply curious to hear my "*sicilian-english*" accent 👌) you can check out the [video recording](https://www.youtube.com/watch?v=0VEwRFP8WtI) of the talk, just published by the lovely folks at Codemotion:
+If you missed the event (or if you are simply curious to hear my "_sicilian-english_" accent 👌) you can check out the [video recording](https://www.youtube.com/watch?v=0VEwRFP8WtI) of the talk, just published by the lovely folks at Codemotion:
 
 <div style=" position: relative; padding-bottom: 56.25%; height: 0; margin-bottom: 5em;">
 <iframe style="position: absolute; top:0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/0VEwRFP8WtI" frameborder="0" allowfullscreen></iframe>
 </div>
-
 
 ## Slides deck
 
@@ -51,7 +52,6 @@ If you are interested in checking out the slides (and explore all the links in i
 <div style=" position: relative; padding-bottom: 56.25%; height: 0; margin-bottom: 5em;">
 <iframe style="position: absolute; top:0; left: 0; width: 100%; height: 100%;" src="//slides.com/lucianomammino/universal-js-web-applications-with-react-codemotion-rome-2017/embed" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 </div>
-
 
 ## Audience opinion
 
@@ -65,11 +65,9 @@ I was very happy to know that the feedback from the audience was pretty awesome,
 
 Such a shame I couldn't make that 1 or 2 people happy, but that only means that there is still room for improvement, I'll try harder next time :)
 
-
 ## Thanks
 
-As usual, the biggest *thank you* goes to the organisers of the event for giving me another precious chance to be there on the stage. Then, huge thanks to my great friends Alessandro Cinelli ([@cirpo](https://twitter.com/cirpo)), Andrea Mangano ([@andreaman87](https://twitter.com/andreaman87)), Aleksandar Čambas and Peter Caulfield ([@quasi_modal](https://twitter.com/quasi_modal)) for reviewing my slide deck and for giving me invaluable advice!
-
+As usual, the biggest _thank you_ goes to the organisers of the event for giving me another precious chance to be there on the stage. Then, huge thanks to my great friends Alessandro Cinelli ([@cirpo](https://twitter.com/cirpo)), Andrea Mangano ([@andreaman87](https://twitter.com/andreaman87)), Aleksandar Čambas and Peter Caulfield ([@quasi_modal](https://twitter.com/quasi_modal)) for reviewing my slide deck and for giving me invaluable advice!
 
 ## Next events
 
@@ -78,10 +76,8 @@ The Universal JavaScript fun is not over for me this year. I will be attending t
 - [Frontend United Athens](http://frontendunited.org/) (26-27 May, talk)
 - [Web Summer Camp Rovinj](http://2017.websummercamp.com/) (30 Aug – 2 Sept, workshop)
 
-
 Either if you were among the audience or if you just found out about my talk or my slides, I hope you enjoied the content and the examples and that you are now somehow confident that building universal JavaScript application is not that hard... you just need to start somewhere!
 
 Feel free to leave any question or comment below in the comments section.
 
 See you soon! 🤘
-

@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import styled from 'react-emotion'
 import { graphql } from 'gatsby'
 import get from 'lodash/get'
-import Helmet from 'react-helmet'
 
+import SEO from '../components/SEO'
 import Layout from '../components/layout'
 import Hero from '../components/Hero'
 import ArticleSidebarAd from '../components/ArticleSidebarAd'
@@ -103,9 +103,7 @@ class BlogIndex extends Component {
 
     return (
       <Layout location={this.props.location} section="blog">
-        <Helmet title={siteTitle}>
-          <html lang="en" />
-        </Helmet>
+        <SEO />
         <Hero className="bottomRightBg">
           <h1>Luciano Mammino</h1>
           <h2>Web developer, entrepreneur, fighter, butterfly maker!</h2>

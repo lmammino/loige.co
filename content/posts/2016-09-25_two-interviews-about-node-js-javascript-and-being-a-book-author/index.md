@@ -9,6 +9,8 @@ updated: 2016-10-02T08:24:23.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: ./two-interviews-about-node-js-javascript-and-being-a-book-author.jpg
+fb_img: ./two-interviews-about-node-js-javascript-and-being-a-book-author-fb.png
+tw_img: ./two-interviews-about-node-js-javascript-and-being-a-book-author-tw.png
 status: published
 language: en_US
 meta_title: null
@@ -26,7 +28,6 @@ The first interview was made with the **Packt Publishing team** and it was publi
 **[With Node.js, it’s easy to get things done](https://www.packtpub.com/books/content/nodejs-its-easy-get-things-done)**
 
 [![With Node.js, it’s easy to get things done interview image](./nodejs-its-easy-get-things-done-packt-interview-luciano-mammino.png)](https://www.packtpub.com/books/content/nodejs-its-easy-get-things-done)
-
 
 The second interview was made by [Thomas Peham](https://twitter.com/tompeham), marketing manager at [UserSnap](http://usersnap.com/blog/):
 

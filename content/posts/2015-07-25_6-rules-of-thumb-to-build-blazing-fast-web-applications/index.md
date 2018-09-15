@@ -3,32 +3,36 @@ uuid: b7e233ac-3bda-4529-88c5-1fff08b629a1
 layout: post
 title: 6 Rules of thumb to build blazing fast web server applications
 slug: 6-rules-of-thumb-to-build-blazing-fast-web-applications
-subtitle: In this post are described 6 extremely important rules you should take under
+subtitle:
+  In this post are described 6 extremely important rules you should take under
   consideration when writing your next web application
 date: 2015-07-25T18:57:00.000Z
 updated: 2016-01-15T19:15:54.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: ./6-rules-of-thumb-to-build-blazing-fast-web-applications-flash-gordon-1.jpg
+fb_img: ./6-rules-of-thumb-to-build-blazing-fast-web-applications-fb.png
+tw_img: ./6-rules-of-thumb-to-build-blazing-fast-web-applications-tw.png
 status: published
 language: en_US
 meta_title: 6 Rules of thumb to build blazing fast web applications (server side)
-meta_description: In this post are described 6 extremely important rules you should take under
+meta_description:
+  In this post are described 6 extremely important rules you should take under
   consideration when writing your next web application
 tags:
   - php
   - symfony
   - laravel
   - performance
-  - scalaibility
+  - scalability
 ---
 
 In this post I will try to highlight some of the most common principles that you have to take under consideration when you want to achieve a great level of performance while building a web application (specifically on the backend part). I believe the concepts discussed here can be applied to any language and framework even if, due to my specific experience, I will mention some examples, design patterns, conventions and tools that are mostly used in the PHP world.
 
 You can read this article in other languages:
 
-  - **Japanese** on **POSTD**: [高速なWebサーバアプリケーションを構築するための6つの経験則](http://postd.cc/6-rules-of-thumb-to-build-blazing-fast-web-server-applications/)
-  - **Italian** on **HTML5 Today**: [Performance: 6 regole per sviluppare applicazioni web](http://html5today.it/tutorial/performance-6-regole-sviluppare-applicazioni-web/)
+- **Japanese** on **POSTD**: [高速な Web サーバアプリケーションを構築するための 6 つの経験則](http://postd.cc/6-rules-of-thumb-to-build-blazing-fast-web-server-applications/)
+- **Italian** on **HTML5 Today**: [Performance: 6 regole per sviluppare applicazioni web](http://html5today.it/tutorial/performance-6-regole-sviluppare-applicazioni-web/)
 
 **TLDR;** the basic rules are:
 
@@ -45,10 +49,10 @@ You can read this article in other languages:
 
 ## Rule 1: Avoid premature optimization
 
-One of the most famous [Donald Knuth](http://www-cs-faculty.stanford.edu/~uno/)'s quotes says: 
+One of the most famous [Donald Knuth](http://www-cs-faculty.stanford.edu/~uno/)'s quotes says:
 
-> "premature optimization is the root of all evil" 
-<br/><br/><a href="https://twitter.com/home?status=%22Premature%20optimization%20is%20the%20root%20of%20all%20evil%22%20%E2%80%94D.Knuth%20%0A%0AWeb%20apps%20performance%20tips%20by%20%40loige%3A%20http%3A//bit.ly/1SaHIJY" target="_blank"><i class="fa fa-twitter"></i> Tweet this</a>
+> "premature optimization is the root of all evil"
+> <br/><br/><a href="https://twitter.com/home?status=%22Premature%20optimization%20is%20the%20root%20of%20all%20evil%22%20%E2%80%94D.Knuth%20%0A%0AWeb%20apps%20performance%20tips%20by%20%40loige%3A%20http%3A//bit.ly/1SaHIJY" target="_blank"><i class="fa fa-twitter"></i> Tweet this</a>
 
 Knuth's noticed that a lot of software developers generally waste a huge amount of time thinking about performance of non-critical parts of the code they are writing. This very often happens because such developers don't really know what are the critical parts of their code or the ones that need to be optimized more, so they start to worry about futile things like "_are double quoted strings slower than single quoted ones?_"
 
@@ -71,9 +75,7 @@ If you want to know more on this specific topic you can have a read at the follo
 - [The fallacy of premature optimization](http://ubiquity.acm.org/article.cfm?id=1513451) by Randall Hyde
 - [Premature optimization](http://www.c2.com/cgi/wiki?PrematureOptimization) by Cunningham & Cunningham, Inc
 
-
 <a id="rule-2"></a>
-
 
 ## Rule 2: Do just what you need to
 
@@ -87,7 +89,6 @@ There are a number of design patterns and techniques that can help you to avoid 
 - **Dependency Injection**: it's a very common [design pattern](https://en.wikipedia.org/wiki/Dependency_injection) in the Java world that in the last years has got a lot of traction even in the PHP world thanks also to the effort of frameworks like Symfony, Zend and Laravel that use and advocate it widely. Basically it allows to inject components through the constructor or a setter method. This has the effect of forcing the developer to think in terms of dependencies and to create small isolated components focused on doing just one thing and do it well.
 - **Lazy Loading**: another important [design pattern](https://en.wikipedia.org/wiki/Lazy_loading) used to defer initialization of an object until the point at which it is needed. It's mostly used with objects that deals with heavy resources like database connections or file based data sources.
 
-
 <a id="rule-3"></a>
 
 ## Rule 3: Mama, I'll do it tomorrow!
@@ -99,14 +100,12 @@ The most common way to do that is to use [job queues](https://en.wikipedia.org/w
 
 A simple queue system can be easily done with any kind of data store (very often Redis or MongoDB are used) or a message broker like RabbitMQ or ActiveMQ. There are also a lot of implementation already done for the PHP world:
 
-  - [Resque](https://github.com/chrisboulton/php-resque): A PHP queue library that uses Redis as data store. 
-  - [Laravel Queues](http://laravel.com/docs/5.1/queues): the Laravel/Lumen out-of-the-box solution to defer jobs using queues and workers. It can be configured to use different data stores.
-  - [Gearman](http://gearman.org/): A generic job server that supports the wide majority of languages (PHP among the others).
-  - [Beanstalkd](http://kr.github.io/beanstalkd/): Another fast work queue with client libraries for the most common languages (Ruby, PHP, etc.)
-
+- [Resque](https://github.com/chrisboulton/php-resque): A PHP queue library that uses Redis as data store.
+- [Laravel Queues](http://laravel.com/docs/5.1/queues): the Laravel/Lumen out-of-the-box solution to defer jobs using queues and workers. It can be configured to use different data stores.
+- [Gearman](http://gearman.org/): A generic job server that supports the wide majority of languages (PHP among the others).
+- [Beanstalkd](http://kr.github.io/beanstalkd/): Another fast work queue with client libraries for the most common languages (Ruby, PHP, etc.)
 
 <a id="rule-4"></a>
-
 
 ## Rule 4: Gotta cache 'em all!
 
@@ -119,22 +118,22 @@ But there's a smarter (and faster) way to do repetitive tasks, avoiding to calcu
 
 > Cache, which is pronounced "cash" (not "catch" or "cashay"), stores recently used information so that it can be quickly accessed at a later time.
 
-Cache is used widely in computer science and you can find it pretty much everywhere. For example the RAM itself can be considered as a way to cache the code of running programs to avoid the CPU to read the (slow) hard disk sparsely millions  and millions of times.
+Cache is used widely in computer science and you can find it pretty much everywhere. For example the RAM itself can be considered as a way to cache the code of running programs to avoid the CPU to read the (slow) hard disk sparsely millions and millions of times.
 
 In general with web programming we can focus on several different **levels of cache**:
 
 - **Byte Code Cache**: it's a common feature of many interpreted languages (PHP, Python, Ruby, etc.) and it allows to avoid to interpretate source code files again and again if they are not changed since the last time. Some languages have this feature integrated in the core (Python), others like PHP needs to have it as an extension and several extensions exists for this sake: [APC](http://php.net/manual/en/book.apc.php), [eAccelerator](http://eaccelerator.net/), [Xcache](http://xcache.lighttpd.net/). Since PHP 5.5 we can use the [Opcache extension](http://php.net/manual/en/book.opcache.php) which has been integrated in the core.
 - **Application Cache**: to not be confused with HTML5 Application cache, is the cache logic that regards your specific application and it's probably the most important in terms of performance. Are you computing the 1264575th number in the Fibonacci sequence over and over again in your app? Well put the result in a cache and avoid to recompute it every time. Or, to give a more realistic example, are you always making the same expensive queries to the database over and over again to render the front page of you app? Well cache the results of the queries (or even the output of the whole page when possible) and avoid to hit the database for every user request. In these cases it's a good idea to use cache servers like [Memcached](http://memcached.org/), [Redis](http://redis.io/) or [Gibson](http://gibson-db.in/).
 - **HTTP Cache**: Fetching data over the network is slow: a lot of round trips between the client and server are required and a lot of time is wasted before the browser is able to display the content. Wouldn't it be useful to have ways to tell the browser to reuse content that he already downloaded?
-Well, you can do that by using **HTTP Cache headers** like `Etag` and `Cache-control`. This turns to be the cheapest way in terms of server resources to leverage cache (because everything is already in the browser and the server doesn't get requests at all), you should only be sure to use it properly to avoid returning visitors to see stale content.
+  Well, you can do that by using **HTTP Cache headers** like `Etag` and `Cache-control`. This turns to be the cheapest way in terms of server resources to leverage cache (because everything is already in the browser and the server doesn't get requests at all), you should only be sure to use it properly to avoid returning visitors to see stale content.
 - **Proxy Cache**: this technique refers to the usage of a dedicated server that receives all the HTTP traffic and it may have copies of the web pages requested by the users (often called **Reverse proxy**). In these cases it returns the copy of the page directly without requiring the app server to re-elaborate the request. It generally keeps the copy of the data in memory and avoids many network round trips so it's generally an out-of-the-box approach to speed up very trafficked web sites where the content doesn't change too frequently. Famous proxy servers are [Varnish](https://www.varnish-cache.org/), [Nginx](http://nginx.org/) and [Squid](http://www.squid-cache.org/). Also [Apache](http://httpd.apache.org/) can be configured to act as a reverse proxy.
- 
+
 Anyway, once you got the concept of caching, it is really easy to adopt it. The issues arise when you need to understand whether something changed and the cached version of your data might not be relevant anymore. In such cases you need to delete the data on the cache to be sure it gets correctly recomputed the next it's requested. This process is called "_cache invalidation_" and it generally makes developers insane to the point that a very famous quote exists:
 
 > There are only two hard things in Computer Science: **cache invalidation** and naming things.
 >
 > — Phil Karlton
-<br/><br/><a href="https://twitter.com/home?status=There%20are%20only%202%20hard%20things%20in%20CS%3A%20cache%20invalidation%20and%20naming%20things%0A%E2%80%94Karlton%0AWeb%20apps%20performance%20tips%20by%20%40loige%20http%3A//bit.ly/1SaHIJY" target="_blank"><i class="fa fa-twitter"></i> Tweet this</a>
+> <br/><br/><a href="https://twitter.com/home?status=There%20are%20only%202%20hard%20things%20in%20CS%3A%20cache%20invalidation%20and%20naming%20things%0A%E2%80%94Karlton%0AWeb%20apps%20performance%20tips%20by%20%40loige%20http%3A//bit.ly/1SaHIJY" target="_blank"><i class="fa fa-twitter"></i> Tweet this</a>
 
 If you have been into software development for a while I'm quite sure that you already had chance to read it!
 
@@ -149,7 +148,6 @@ Here follows some articles that might be interesting to know more about caching 
 - [Using Http headers with Symfony](http://symfony.com/it/doc/current/book/http_cache.html) by Symfony
 - [What is a reverse proxy server](https://www.nginx.com/resources/glossary/reverse-proxy-server/) by Nginx
 - [Laravel cache](http://laravel.com/docs/5.1/cache) by Laravel
-
 
 <a id="rule-5"></a>
 
@@ -213,7 +211,6 @@ Don't expect this to be exhaustive. This problem is very broad and it has a lot 
 - [Laravel's Eloquent ORM Eager Loading](http://laravel.com/docs/5.0/eloquent#eager-loading) by Laravel
 - Book [Solving The N+1 Problem In PHP](https://leanpub.com/sn1php) by Paul M. Jones
 
-
 <a id="rule-6"></a>
 
 ## Rule 6: Scale... horizontally!
@@ -239,7 +236,6 @@ Here's a list of other interesting resources to know more about scalable web app
 - [Intuitively Showing How To Scale A Web Application Using A Coffee Shop As An Example](http://highscalability.com/blog/2014/3/17/intuitively-showing-how-to-scale-a-web-application-using-a-c.html) by HighScalability
 - Book [The art of scalability](http://theartofscalability.com/) by Martin Abbot and Michael Fisher
 - Slides [7 Stages of scaling web applications](http://www.slideshare.net/davemitz/7-stages-of-scaling-web-applications) by Rackspace
-
 
 ## Conclusions
 

@@ -9,6 +9,8 @@ updated: 2014-04-05T16:21:17.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: ./backup-your-server-with-dropbox.png
+fb_img: ./backup-your-server-with-dropbox-fb.png
+tw_img: ./backup-your-server-with-dropbox-tw.png
 status: published
 language: en_US
 meta_title: null
@@ -19,15 +21,16 @@ tags:
   - server
 ---
 
-In my early days as *CTO* at [Sbaam](http://sbaam.com) I had to setup a web server from the ground up. As it happens in many startups the work had to be done quickly and with an *almost-0-budget*, so it left no space to sophysticated solutions for recurring tasks such as **backup**. I always have been a web developer and focused on coding so, I admit I had really a poor knowledge about how  to setup a remote unix virtual machine.
+In my early days as _CTO_ at [Sbaam](http://sbaam.com) I had to setup a web server from the ground up. As it happens in many startups the work had to be done quickly and with an _almost-0-budget_, so it left no space to sophisticated solutions for recurring tasks such as **backup**. I always have been a web developer and focused on coding so, I admit I had really a poor knowledge about how to setup a remote unix virtual machine.
 
-So, speaking about backups, I needed a solution that would be cost-effective, easy to install and easy to mantain at the same time. I would have loved it if it can be as simple as sharing a [Dropbox](https://db.tt/ref37L7) folder. As this thought crossed my mind I wondered if there was some way to interact with dropbox from a script to create files and folders and started googling about it. Luckily Dropbox offers a good command line client that allows to bring your synced files and folders also on graphic-less machines.
+So, speaking about backups, I needed a solution that would be cost-effective, easy to install and easy to maintain at the same time. I would have loved it if it can be as simple as sharing a [Dropbox](https://db.tt/ref37L7) folder. As this thought crossed my mind I wondered if there was some way to interact with dropbox from a script to create files and folders and started googling about it. Luckily Dropbox offers a good command line client that allows to bring your synced files and folders also on graphic-less machines.
 
 Ultimately my solution was to install the Dropbox command line on the server using a dedicated Dropbox account and backup files by simply copying/linking them on the Dropbox folder. This way I prepared and scheduled a script that simply had to copy the files I wanted to backup on the dropbox folder. Then I have the files backupped in the cloud and automatically synced on my local machine. Furthermore i had chance to share the backup folder with all my collaborators.
 
-This solution works very well for small projects so I will resume  all the steps I followed to install and use dropbox this way. I used an *ubuntu* machine so I suppose the following steps should work on debian machines.
+This solution works very well for small projects so I will resume all the steps I followed to install and use dropbox this way. I used an _ubuntu_ machine so I suppose the following steps should work on debian machines.
 
 ## Prepare the dropbox user
+
 I preferred to have a dedicated user to handle the whole Dropbox daemon and folder so just create it now:
 
     sudo useradd -d /dropbox -m dropbox
@@ -50,7 +53,7 @@ First of all you need to switch to the user created in the previous step, so the
 
 (enter the password for the user dropbox)
 
-Now you're the *dropbox* user. Be sure to switch to your user folder with `cd ~` and let's download and install the daemon.
+Now you're the _dropbox_ user. Be sure to switch to your user folder with `cd ~` and let's download and install the daemon.
 
     wget -O dropbox.tar.gz "http://www.dropbox.com/download/?plat=lnx.x86"
 
@@ -77,7 +80,7 @@ Copy and paste the provided URL in the browser bar of your local machine and it 
 
 ## Dropbox as a service
 
-At this point we need to define dropbox as a service. So let's create an *etc init script*. Download [my gist](https://gist.github.com/lmammino/8467336)
+At this point we need to define dropbox as a service. So let's create an _etc init script_. Download [my gist](https://gist.github.com/lmammino/8467336)
 
     wget -O dropbox_init_script "https://gist.github.com/lmammino/8467336/raw/dropbox"
 
@@ -107,7 +110,7 @@ At this point you have all your dropbox data in the `/dropbox/Dropbox` folder. F
 
 ## Bonus
 
-Dropbox released the [Dropbox CLI](https://www.dropbox.com/download?dl=packages/dropbox.py), a python command line application that you can use to perform some useful task such as *Selective Sync*, disable the *LAN sync* or retrive public links of your files. I suggest to download it by using the dropbox user and place it under `/dropbox/bin`. So you can simply switch to the dropbox user (again with `su dropbox`), download it and make it executable:
+Dropbox released the [Dropbox CLI](https://www.dropbox.com/download?dl=packages/dropbox.py), a python command line application that you can use to perform some useful task such as _Selective Sync_, disable the _LAN sync_ or retrive public links of your files. I suggest to download it by using the dropbox user and place it under `/dropbox/bin`. So you can simply switch to the dropbox user (again with `su dropbox`), download it and make it executable:
 
     mkdir ~/bin
     wget -O ~/bin/dropbox.py "https://www.dropbox.com/download?dl=packages/dropbox.py"

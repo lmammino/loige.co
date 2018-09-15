@@ -9,6 +9,8 @@ updated: 2016-08-01T18:45:47.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: ./announcing-the-book-node-js-design-patterns-second-edition.jpg
+fb_img: ./announcing-the-book-node-js-design-patterns-second-edition-fb.png
+tw_img: ./announcing-the-book-node-js-design-patterns-second-edition-tw.png
 status: published
 language: en_US
 meta_title: null
@@ -31,7 +33,7 @@ You can keep reading this post to find out more or have a look at the [official 
 
 ## The making of
 
-As you might have noticed, this book is the second edition of an [existing book on the topic](http://amzn.to/2a9FgDP) — I dare to say *one of the best* books on the topic — that [Mario Casciaro](http://www.mariocasciaro.me) put together a couple of years ago.
+As you might have noticed, this book is the second edition of an [existing book on the topic](http://amzn.to/2a9FgDP) — I dare to say _one of the best_ books on the topic — that [Mario Casciaro](http://www.mariocasciaro.me) put together a couple of years ago.
 
 I was contacted by Mario in November last year because he was looking for somebody willing to help him in creating a new edition of the book. I don't know yet why he thought I might have been the right person (and I am still flattered about this) but, being his book one of my favourites, I almost immediately decided to accept the challenge and work with him and Packt on this new edition.
 

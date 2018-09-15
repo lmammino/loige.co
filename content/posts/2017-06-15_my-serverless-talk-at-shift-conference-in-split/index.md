@@ -9,6 +9,8 @@ updated: 2017-06-15T13:54:06.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: ./my-serverless-talk-at-shift-conference-in-split-cover-picture.jpg
+fb_img: ./my-serverless-talk-at-shift-conference-in-split-fb.png
+tw_img: ./my-serverless-talk-at-shift-conference-in-split-tw.png
 status: published
 language: en_US
 meta_title: null
@@ -35,12 +37,11 @@ Also, I have to give a big "THANK YOU" to [Ivan Burazin](https://twitter.com/iva
 
 ## Video
 
-If you missed my talk (or if you really want to hear my curious "*sicilian-english*" accent again! 😅) you can check out the [video recording](https://www.youtube.com/watch?v=WunJFMfN2p8) of the talk, just published by the lovely folks at Shift. I have to say they made an amazing editing, I can almost feel like a professional:
+If you missed my talk (or if you really want to hear my curious "_sicilian-english_" accent again! 😅) you can check out the [video recording](https://www.youtube.com/watch?v=WunJFMfN2p8) of the talk, just published by the lovely folks at Shift. I have to say they made an amazing editing, I can almost feel like a professional:
 
 <div style=" position: relative; padding-bottom: 56.25%; height: 0; margin-bottom: 5em;">
 <iframe style="position: absolute; top:0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/WunJFMfN2p8" frameborder="0" allowfullscreen></iframe>
 </div>
-
 
 ## Slides deck
 
@@ -50,7 +51,6 @@ As usual, my slides are available on [Slides.com](http://slides.com/lucianomammi
 <iframe style="position: absolute; top:0; left: 0; width: 100%; height: 100%;" src="//slides.com/lucianomammino/serverless-the-pros-and-cons-of-building-a-company-without-infrastructure-shift-2017/embed" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 </div>
 
-
 ## Twitter moment
 
 I also created a [Twitter moment](https://twitter.com/i/moments/870877103423709184) to collect all my tweets related to this amazing conference.
@@ -58,7 +58,6 @@ I also created a [Twitter moment](https://twitter.com/i/moments/8708771034237091
 I hope you will enjoy it:
 
 <a class="twitter-moment" href="https://twitter.com/i/moments/870877103423709184">My experience at @shiftsplit 2017</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
 
 ## Closing notes
 

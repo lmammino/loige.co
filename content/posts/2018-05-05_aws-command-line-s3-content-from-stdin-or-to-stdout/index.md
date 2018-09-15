@@ -10,6 +10,8 @@ updated: 2018-05-06T09:55:40.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: ./aws-command-line-s3-content-from-stdin-or-to-stdout-loige-co-luciano-mammino.jpg
+fb_img: ./aws-command-line-s3-content-from-stdin-or-to-stdout-fb.png
+tw_img: ./aws-command-line-s3-content-from-stdin-or-to-stdout-tw.png
 status: published
 language: en_US
 meta_title: null
@@ -23,7 +25,6 @@ tags:
 This article presents a quick tip that will help you deal with the content of files in S3 through the AWS command line in a much faster and simpler way.
 
 Did you ever want to simply print the content of a file in S3 from your command line and maybe pipe the output to another command? Or maybe, did you ever needed to pipe the standard output of a sequence of commands directly into a file in S3? I had this need multiple times and, before my amazing colleague Paul made me discover the tip I am about to describe here, I was always using intermediary files to keep track of the input and output of S3 files.
-
 
 ## Some examples
 
@@ -49,7 +50,7 @@ aws s3 cp s3://my-amazing-bucket/geoip_v4_data.csv.gz .
 gunzip -c geoip_v4_data.csv.gz | grep "1.0.8.0/21"
 ```
 
-In both cases, I am creating intermediary files and, as you probably already know,  this is not ideal for many reasons. Just to name few, this is a slower operation (not fully stream-able), it takes extra space on disk (imagine you have to deal with very big files), finally, it also needs an extra command. Wouldn't it be great if we could solve both problems by writing a single pipeline of commands?
+In both cases, I am creating intermediary files and, as you probably already know, this is not ideal for many reasons. Just to name few, this is a slower operation (not fully stream-able), it takes extra space on disk (imagine you have to deal with very big files), finally, it also needs an extra command. Wouldn't it be great if we could solve both problems by writing a single pipeline of commands?
 
 ## The "magic" `-` option in `aws cp`
 
@@ -80,7 +81,6 @@ Downloading an S3 object as a local file stream
 
 To make it simple, when running `aws s3 cp` you can use the special argument `-` to indicate the content of the standard input or the content of the standard output (depending on where you put the special argument).
 
-
 ## Writing to S3 from the standard output
 
 Using this newly acquired piece of knowledge, we now know we can do something like this to write content from the standard output directly to a file in S3:
@@ -96,7 +96,6 @@ psql -U user -d db_name -c "Copy (Select * From geoip_v4) To STDOUT With CSV HEA
 ```
 
 This time no intermediary file is created and the data from the gzipped file is immediately streamed to S3 as soon as the first bytes start to be available.
-
 
 ## Using data from S3 as input for other commands
 
@@ -120,7 +119,6 @@ aws s3 cp s3://my-amazing-bucket/geoip_v4_data.csv.gz - | gunzip -c geoip_v4_dat
 
 This approach looks much similar to what you would do with a local file and makes integrating other commands seamless with the content of files available in your S3 storage.
 
-
 ## Pipeline processing of S3 files
 
 We can combine the learnings from the previous two sections to build processing pipelines for S3 files.
@@ -137,13 +135,12 @@ aws s3 cp s3://my-images/image.png - | imagemin | aws s3 cp - s3://my-images-opt
 
 What will happen behind the scene with this pipeline of commands is the following:
 
-  1. S3 will start to stream the binary content of `s3://my-images/image.png` to the standard output
-  2. The standard output is then piped to `imagemin` and used as input stream
-  3. `imagemin` will start immediately to process the stream and produce an output stream representing the optimized image
-  4. This output stream is then piped to the AWS CLI again and the `s3 cp` command will start to write it to the destination bucket.
+1. S3 will start to stream the binary content of `s3://my-images/image.png` to the standard output
+2. The standard output is then piped to `imagemin` and used as input stream
+3. `imagemin` will start immediately to process the stream and produce an output stream representing the optimized image
+4. This output stream is then piped to the AWS CLI again and the `s3 cp` command will start to write it to the destination bucket.
 
 No intermediary file is created in the executing machine and the content is just kept in memory in a streaming fashion during the different phases of the pipeline.
-
 
 ## The 5GB caveat
 
@@ -156,7 +153,6 @@ From the [AWS CLI Documentation](https://docs.aws.amazon.com/cli/latest/referenc
 `--expected-size` should be equal or greater than the size of the upload and it doesn't have to be perfect. Just close enough.
 
 (Thanks to mahinka for this suggestion)
-
 
 ## That's all folks
 

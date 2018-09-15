@@ -9,6 +9,8 @@ updated: 2016-01-18T23:27:40.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: ./meerkat-459171_1920.jpg
+fb_img: ./introducing-gulp-cozy-manage-your-gulp-tasks-in-a-cozier-way-fb.png
+tw_img: ./introducing-gulp-cozy-manage-your-gulp-tasks-in-a-cozier-way-tw.png
 status: published
 language: en_US
 meta_title: null
@@ -20,18 +22,19 @@ tags:
   - library
 ---
 
-[Gulp-cozy](https://www.npmjs.com/package/gulp-cozy) is an experimental NPM package that allows you to organize your Gulp tasks in a more modular way with simplicity and *"cozyness"* in mind.
+[Gulp-cozy](https://www.npmjs.com/package/gulp-cozy) is an experimental NPM package that allows you to organize your Gulp tasks in a more modular way with simplicity and _"cozyness"_ in mind.
 
 ![I don't always modularize my gulp tasks, but when I do it must be cozy!](./gulp-cozy-i-dont-always-loige-luciano-mammino.jpg)
 
 ## Rationale
+
 Ever found yourself digging into a gigantic monstrous `Gulpfile` with hundreds
 of functions and tasks scattered all around? If it happened to you I am sure you can tell that it's not a great feeling...
 
 That's the reason why I created this small module as an attempt to help with keeping yourself cozier (and happier!) when working with Gulp.
-In a way it tries to bring a bit of the *Node philosophy* (also known as "[The Node way](http://thenodeway.io/)") into your Gulpfile.
+In a way it tries to bring a bit of the _Node philosophy_ (also known as "[The Node way](http://thenodeway.io/)") into your Gulpfile.
 
-*Gulp-cozy* in fact offers a very easy way (read: *very-very-very-easy!*) to separate all your Gulp tasks into small modules organized inside a dedicated folder. Gulp-cozy will take care to load all the modules and to register them as Gulp tasks. With this approach you will end up with several small modules that serve one specific purpose (a task), which in turn result easier to maintain and to reason about.
+_Gulp-cozy_ in fact offers a very easy way (read: _very-very-very-easy!_) to separate all your Gulp tasks into small modules organized inside a dedicated folder. Gulp-cozy will take care to load all the modules and to register them as Gulp tasks. With this approach you will end up with several small modules that serve one specific purpose (a task), which in turn result easier to maintain and to reason about.
 
 ## Installation and usage
 
@@ -54,7 +57,7 @@ cozy(gulp);
 ```
 
 YES! This will be the only content of your Gulpfile...
-So you might ask *"where do all the tasks logic go?"*
+So you might ask _"where do all the tasks logic go?"_
 
 The idea is to keep all the tasks inside a `gulp` folder in your main project folder (doesn't it make you think to the `node_modules` folder approach?!). Every task is a file which name will represent the name of the gulp task.
 
@@ -115,7 +118,6 @@ Would be great to have a way to define generic task templates, like for example 
 At the moment you could do this by creating a generic configurable module outside your `gulp` folder and than require it and use it inside one or more tasks in the new folder. This approach should work without big efforts but doesn't feel very right to me at the moment.
 
 Probably the module should expose more functions to deal with more complex case, but it boils down to the eternal struggle between "keeping things simple" and "making the new jack-of-all-trades module"...
-
 
 ## Contributing
 

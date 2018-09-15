@@ -43,6 +43,10 @@ exports.createPages = ({ graphql, actions }) => {
     path.join(__dirname, '../../src/templates/tag-index.js')
   )
 
+  const BlogPostShareImage = path.resolve(
+    path.join(__dirname, '../../src/templates/blog-post-share-image.js')
+  )
+
   // get data for posts and tags
   return graphql(postsGraphql).then(result => {
     if (result.errors) {
@@ -105,6 +109,30 @@ exports.createPages = ({ graphql, actions }) => {
         postsBySlug
       )
       createPage(postPage)
+
+      // creates the pages for the post preview image
+      const facebookSharePage = {
+        path: `/${slug}/image_fb`,
+        component: BlogPostShareImage,
+        context: {
+          slug,
+          width: 1200,
+          height: 630,
+          type: 'facebook'
+        }
+      }
+      const twitterSharePage = {
+        path: `/${slug}/image_tw`,
+        component: BlogPostShareImage,
+        context: {
+          slug,
+          width: 440,
+          height: 220,
+          type: 'twitter'
+        }
+      }
+      createPage(facebookSharePage)
+      createPage(twitterSharePage)
     })
 
     // Create paginated blog indexes
