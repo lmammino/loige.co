@@ -5,25 +5,20 @@ import { graphql } from 'gatsby'
 import Logo from '../components/Logo'
 import ReadingTime from '../components/ReadingTime'
 
-injectGlobal`
-  html, body {
-    margin: 0;
-    padding: 0;
-  }
+const Preview = styled('div')`
+  box-sizing: border-box;
+  background-size: cover;
+  background-position: center;
+  padding: 2em;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  justify-content: space-between;
+  margin-top: -60px;
 
-  div.preview {
-    box-sizing: border-box;
-    background-size: cover;
-    background-position: center;
-    padding: 2em;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    justify-content: space-between;
-  }
-
-  h1, h2 {
+  h1,
+  h2 {
     color: white;
   }
 
@@ -37,20 +32,13 @@ injectGlobal`
 
   h1 > span,
   h2 > span {
-    background: rgba(0,0,0,.75);
+    background: rgba(0, 0, 0, 0.75);
     display: inline-block;
-    padding: .2em;
+    padding: 0.2em;
   }
 
   h2 > span > svg {
     vertical-align: text-bottom;
-  }
-
-  body {
-    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    fill: currentColor;
   }
 `
 
@@ -59,8 +47,7 @@ class BlogPostShareImage extends Component {
     const post = this.props.data.markdownRemark
     const { width, height, type } = this.props.pageContext
     return (
-      <div
-        className="preview"
+      <Preview
         style={{
           fontSize: type === 'facebook' ? '24px' : '12px',
           backgroundImage: `url(${post.frontmatter.header_img.publicURL})`,
@@ -77,7 +64,7 @@ class BlogPostShareImage extends Component {
         <h2>
           <ReadingTime time={post.timeToRead} />
         </h2>
-      </div>
+      </Preview>
     )
   }
 }

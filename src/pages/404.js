@@ -1,8 +1,8 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
-import Helmet from 'react-helmet'
 import { get } from 'lodash'
 
+import SEO from '../components/SEO'
 import Layout from '../components/layout'
 import ResponsiveWrapper from '../components/ResponsiveWrapper'
 import ArticleContainer from '../components/ArticleContainer'
@@ -13,7 +13,14 @@ const NotFoundPage = props => {
   const lastPosts = get(props, 'data.lastPosts.edges')
   return (
     <Layout>
-      <Helmet title={`PAGE NOT FOUND - ${siteTitle}`} />
+      <SEO
+        path={`404.html`}
+        pageData={{
+          frontmatter: {
+            title: `PAGE NOT FOUND - ${siteTitle}`
+          }
+        }}
+      />
       <ResponsiveWrapper>
         <ArticleContainer style={{ minHeight: '80vh' }}>
           <h1 style={{ marginTop: '4em', textAlign: 'center' }}>
