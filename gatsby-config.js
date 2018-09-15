@@ -85,7 +85,7 @@ module.exports = {
         trackingId: 'UA-47248506-1'
       }
     },
-    `gatsby-plugin-feed`,
+    require('./gatsby-rss'),
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
