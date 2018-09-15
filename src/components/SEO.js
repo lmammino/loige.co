@@ -112,11 +112,11 @@ const SEO = ({ path, pageData, isBlogPost, children }) => {
 
       {/* OpenGraph tags */}
       <meta property="og:url" content={url} />
-      {isBlogPost ? <meta property="og:type" content="article" /> : null}
+      <meta property="og:type" content={isBlogPost ? 'article' : 'website'} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={pageImageFb || image} />
-      <meta property="fb:app_id" content={siteMetadata.fbAppID} />
+      <meta property="fb:app_id" content={siteMetadata.fbAppId} />
 
       {/* Twitter Card tags */}
       <meta name="twitter:card" content="summary_large_image" />
