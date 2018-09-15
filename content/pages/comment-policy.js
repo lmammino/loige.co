@@ -12,7 +12,7 @@ const CommentPolicy = props => {
   return (
     <Layout section="blog">
       <SEO
-        path={`comment-policy`}
+        path={`comment-policy/`}
         pageData={{
           frontmatter: {
             title: `Blog comment policy - ${siteTitle}`

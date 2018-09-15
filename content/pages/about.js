@@ -30,7 +30,7 @@ const AboutPage = props => {
   return (
     <Layout section="about">
       <SEO
-        path={`about`}
+        path={`about/`}
         pageData={{
           frontmatter: {
             title: `About Loige - ${siteTitle}`

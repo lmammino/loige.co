@@ -31,7 +31,7 @@ class TagIndex extends Component {
     return (
       <Layout location={this.props.location} section="blog">
         <SEO
-          path={`tag/${tag}`}
+          path={`tag/${tag}/`}
           pageData={{
             frontmatter: {
               title: `Posts published under #${tag} - ${siteTitle}`

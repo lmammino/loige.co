@@ -80,8 +80,18 @@ const SEO = ({ path, pageData, isBlogPost, children }) => {
     pageMetadata.meta_description ||
     pageData.excerpt ||
     siteMetadata.description
-  const pageImageFb = pageMetadata.fb_img && pageMetadata.fb_img.publicURL
-  const pageImageTw = pageMetadata.tw_img && pageMetadata.tw_img.publicURL
+  const pageImageFb =
+    pageMetadata.fb_img &&
+    `${siteMetadata.siteUrl}${pageMetadata.fb_img.publicURL.replace(
+      /^\/+/g,
+      ''
+    )}`
+  const pageImageTw =
+    pageMetadata.tw_img &&
+    `${siteMetadata.siteUrl}${pageMetadata.tw_img.publicURL.replace(
+      /^\/+/g,
+      ''
+    )}`
   const image = pageImageFb || pageImageTw || siteMetadata.defaultImage
   const url = `${siteMetadata.siteUrl}${path}`
   const datePublished = isBlogPost ? pageMetadata.dateISO : false

@@ -84,7 +84,7 @@ class BlogPostTemplate extends Component {
     const site = get(this.props, 'data.site.siteMetadata.siteUrl')
 
     const shareOptions = {
-      url: `${site}${post.frontmatter.slug}`,
+      url: `${site}${post.frontmatter.slug}/`,
       title: post.frontmatter.title,
       site,
       imageUrl: `${site}${headerImage}`,
@@ -93,7 +93,7 @@ class BlogPostTemplate extends Component {
 
     return (
       <Layout location={this.props.location} section="blog">
-        <SEO path={`${post.frontmatter.slug}`} pageData={post} isBlogPost />
+        <SEO path={`${post.frontmatter.slug}/`} pageData={post} isBlogPost />
         <Hero className="textOverlay" backgroundImage={headerImage}>
           <h1>
             <span>{post.frontmatter.title}</span>

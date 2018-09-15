@@ -208,7 +208,7 @@ class SpeakingIndex extends Component {
     return (
       <Layout location={this.props.location} section="speaking">
         <SEO
-          path={`speaking`}
+          path={`speaking/`}
           pageData={{
             frontmatter: {
               title: `Speaking events: conference talks and workshops - ${siteTitle}`
