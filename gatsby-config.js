@@ -85,6 +85,7 @@ module.exports = {
         trackingId: 'UA-47248506-1'
       }
     },
+    require('./gatsby-sitemap'),
     require('./gatsby-rss'),
     {
       resolve: `gatsby-plugin-manifest`,
