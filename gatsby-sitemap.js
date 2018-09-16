@@ -27,8 +27,8 @@ module.exports = {
       '/404',
       '/404.html',
       '/offline-plugin-app-shell-fallback',
-      '*/image_fb',
-      '*/image_tw'
+      '**/image_fb',
+      '**/image_tw'
     ],
     serialize: ({ site, allSitePage }) =>
       allSitePage.edges.map(edge => {
