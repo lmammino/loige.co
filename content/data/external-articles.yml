@@ -16,7 +16,7 @@
 - title: 'Meet the community: Luciano Mammino, software developer from Sicily'
   link: 'https://usersnap.com/blog/developer-community-luciano-mammino'
   date: '2016-09-22T00:00:00.000Z'
-- title: 'ZeroMQ & Node.js Tutorial - Cracking JWT Tokens (Part 1.)'
+- title: 'Building a JWT Token Cracker with ZeroMQ & Node.js (Part 1.)'
   link: 'https://community.risingstack.com/zeromq-node-js-cracking-jwt-tokens-1'
   date: '2016-10-12T00:00:00.000Z'
 - title: 'Building a JWT Token Cracker with ZeroMQ & Node.js (Part 2.)'
