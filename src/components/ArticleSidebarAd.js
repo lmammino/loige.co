@@ -78,9 +78,10 @@ class ArticleSidebarAd extends Component {
           <Column>
             <h4>Node.js Design Patterns</h4>
             <p>
-              Get the best out of Node.js by mastering its most powerful
-              components and patterns to create modular and scalable
-              applications with ease
+              Master best practices to build modular and scalable server-side
+              web applications guided by{' '}
+              <em>Node.js Design Patterns Second Edition</em>. Available as{' '}
+              <strong>Digital</strong> and <strong>Print</strong>.
             </p>
           </Column>
         </Columns>
