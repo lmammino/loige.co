@@ -23,14 +23,16 @@ const HeaderComponent = styled('header')`
 `
 
 const HeaderCenterContainer = styled('div')`
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 4px;
+  padding-right: 4px;
   margin-left: auto;
   margin-right: auto;
   max-width: 1260px;
 
   @media (min-width: 780px) {
     width: 90%;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 `
 
@@ -79,11 +81,16 @@ const SocialLinksContainer = styled('div')`
 `
 
 const socialIconStyle = css`
-  width: 24px;
-  height: 24px;
+  width: 16px;
+  height: 16px;
   color: #fff;
   fill: currentColor;
   margin: 0 0.5em 0 0;
+
+  @media (min-width: 540px) {
+    width: 24px;
+    height: 24px;
+  }
 `
 
 const socialLinkStyle = css`
