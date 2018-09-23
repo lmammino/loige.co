@@ -11,11 +11,15 @@ const HeaderComponent = styled('header')`
   background-color: rgba(32, 35, 42, 0.95);
   color: #ffffff;
   display: block;
-  position: fixed;
+  position: auto;
   z-index: 2000;
   width: 100%;
   top: 0;
   left: 0;
+
+  @media (min-width: 780px) {
+    position: fixed;
+  }
 `
 
 const HeaderCenterContainer = styled('div')`

@@ -16,7 +16,10 @@ injectGlobal`
     font-style: normal;
     font-weight: 400;
     fill: currentColor;
-    margin: 60px 0 0 0;
+
+    @media (min-width: 780px) {
+      margin: 60px 0 0 0;
+    }
   }
 
   code, pre {
