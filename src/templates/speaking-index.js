@@ -28,6 +28,12 @@ const Content = styled('div')`
   h2 {
     margin: 2em 0 1em 0;
     color: #46c9e5;
+    border: none;
+  }
+
+  h3 {
+    margin: 0;
+    padding: 1em 0 0 0;
   }
 
   p,
@@ -132,14 +138,16 @@ class SpeakingEntry extends Component {
         <p style={{ marginTop: '1em' }}>
           <span>
             <a
+              itemProp="url"
               href={f.event_link}
               rel="nofollow noopener noreferrer"
               target="_blank"
             >
               {f.event_name}
-            </a>
+            </a>{' '}
+            (<span itemProp="location">{f.event_city}</span>)
           </span>
-          &nbsp; - <span>{f.date}</span>
+          &nbsp; - <span itemProp="startDate">{f.date}</span>
           {withPeople.length > 0 && (
             <span>
               &nbsp; - with{' '}
