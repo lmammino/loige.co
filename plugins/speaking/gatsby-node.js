@@ -17,6 +17,7 @@ const speakingGraphql = `
           event_name
           event_link
           event_city
+          event_location
           event_location_gps
           is_workshop
           slides_link

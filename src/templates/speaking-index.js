@@ -149,9 +149,16 @@ class SpeakingEntry extends Component {
             <span
               itemProp="location"
               itemScope
-              itemType="http://schema.org/Text"
+              itemType="http://schema.org/Place"
             >
-              {f.event_city}
+              <span itemProp="name">{f.event_city}</span>
+              <span
+                aria-hidden="true"
+                style={{ display: 'none' }}
+                itemProp="address"
+              >
+                {f.event_location}
+              </span>
             </span>
             )
           </span>
