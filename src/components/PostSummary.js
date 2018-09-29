@@ -18,7 +18,7 @@ const PostSummaryContainer = styled('div')`
     font-family: source-code-pro, Menlo, Monaco, Consolas, Courier New,
       monospace;
     margin-top: 5px;
-    color: #5cb767;
+    color: #111;
 
     a {
       font-size: 1.2em;

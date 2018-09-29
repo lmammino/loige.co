@@ -85,26 +85,31 @@ const socialIconStyle = css`
   height: 16px;
   color: #fff;
   fill: currentColor;
-  margin: 0 0.5em 0 0;
 
   @media (min-width: 540px) {
     width: 24px;
     height: 24px;
+  }
+
+  @media (min-width: 1180px) {
+    margin: 0 0.5em 0 0;
   }
 `
 
 const socialLinkStyle = css`
   color: #fff;
   text-decoration: none;
+  text-align: center;
   padding: 5px 4px;
   white-space: nowrap;
   font-size: 12px;
   display: flex;
   flex-direction: row;
   align-items: center;
+  transition: background 150ms;
 
   &:hover {
-    text-decoration: underline;
+    background: rgba(255, 255, 255, 0.2);
   }
 
   span {

@@ -5,8 +5,8 @@ import { Link } from 'gatsby'
 import ProfileImage from './images/profile-pic.jpg'
 
 const HelloContainer = styled('div')`
-  background: #46c9e5;
-  background: linear-gradient(180deg, #46c9e5, #d26ac2);
+  background: #fff;
+  border: 1px solid #ccc;
   padding: 1em;
   border-radius: 1em;
   margin: -2em 0 2em 0;

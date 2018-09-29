@@ -54,7 +54,7 @@ const Sidebar = styled('aside')`
   h3 {
     margin: 0 0 0.5em 0;
     position: relative;
-    color: #5cb767;
+    color: #111;
   }
 
   @media (min-width: 780px) {
