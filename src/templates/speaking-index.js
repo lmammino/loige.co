@@ -145,7 +145,15 @@ class SpeakingEntry extends Component {
             >
               {f.event_name}
             </a>{' '}
-            (<span itemProp="location">{f.event_city}</span>)
+            (
+            <span
+              itemProp="location"
+              itemScope
+              itemType="http://schema.org/Text"
+            >
+              {f.event_city}
+            </span>
+            )
           </span>
           &nbsp; - <span itemProp="startDate">{f.date}</span>
           {withPeople.length > 0 && (
