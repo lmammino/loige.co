@@ -60,7 +60,12 @@ const getSchemaOrgJSONLD = ({
         publisher: {
           '@type': 'Organization',
           url: siteMetadata.siteUrl,
-          name: 'Luciano Mammino'
+          name: 'Luciano Mammino',
+          logo: {
+            '@context': 'http://schema.org',
+            itemtype: 'https://schema.org/ImageObject',
+            url: 'https://loige.co/favicon.ico'
+          }
         },
         mainEntityOfPage: {
           '@type': 'WebSite',
