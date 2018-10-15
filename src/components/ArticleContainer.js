@@ -60,7 +60,9 @@ const ArticleContainer = styled('article')`
   }
 
   & h2,
-  & h3 {
+  & h3,
+  & h4,
+  & h5 {
     margin: 2em 0 0 0;
   }
 
@@ -190,6 +192,36 @@ const ArticleContainer = styled('article')`
       &:nth-of-type(2) {
         margin-top: 0;
       }
+    }
+  }
+
+  table {
+    margin: 1em auto;
+    border-spacing: 0;
+    border-collapse: collapse;
+    width: 100%;
+
+    @media (min-width: 780px) {
+      width: 80%;
+    }
+
+    td,
+    th {
+      border: 1px solid #ccc;
+      margin: 0;
+      padding: 0.4em;
+    }
+  }
+
+  table + legend {
+    border-left: 3px solid #ccc;
+    font-size: small;
+    font-style: italic;
+    width: 100%;
+    margin: 1em auto;
+    padding: 0 0 0 1em;
+    @media (min-width: 780px) {
+      width: 80%;
     }
   }
 `
