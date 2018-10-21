@@ -5,14 +5,14 @@ title: >-
   AWS Solution Architect Associate exam, my notes and tips
 slug: aws-solution-architect-associate-exam-notes-tips
 subtitle: null
-date: 2018-10-14T22:00:00.000Z
-updated: 2018-10-14T22:00:00.000Z
+date: 2018-10-21T11:57:00.000Z
+updated: 2018-10-21T11:57:00.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: ./aws-solution-architect-associate-exam-notes-tips.jpg
 fb_img: ./aws-solution-architect-associate-exam-notes-tips-fb.png
 tw_img: ./aws-solution-architect-associate-exam-notes-tips-tw.png
-status: draft
+status: published
 language: en_US
 meta_title: null
 meta_description: null
@@ -20,25 +20,25 @@ tags:
   - aws
 ---
 
-In this article I will share some of my notes and tips that might be useful if you are studying to get the AWS Solution Architect Associate Certification.
+In this article, I will share some of my notes and tips that might be useful if you are studying to get the AWS Solution Architect Associate Certification.
 
 I recently took this certification and I have to admit it was a little bit more challenging than I originally expected. I have been using a variety of AWS services professionally in the last 3 years, so I was optimistically expecting this practical experience to be enough. In reality, I had to spend some time to study and fill some gaps about important topics or details that I never had to deal with during my professional experience.
 
-In this article I will try to recap some of the topics I believe are important to know for this specific certification with particular focus on things that I struggled a bit to remember or that I generally tripped over during the quiz simulations.
+In this article, I will try to recap some of the topics I believe are important to know for this specific certification with a particular focus on things that I struggled a bit to remember or that I generally tripped over during the quiz simulations.
 
-Hopefully, if you are preparing for the same certification, this article will be helpful to you 😊.
+Hopefully, if you are preparing for the same certification, this article will be helpful to you! 😊
 
 ## Mindset
 
 The exam is a classic quiz where you have to pick one or more answers. It's very easy to find simulations online, so you might be tempted to spend your time just doing that and use the quiz experience as a way to learn what's necessary to pass the exam.
 
-While this might be good to understand the style of the questions and the depth of the topics covered, you shouldn't try learn specific questions and answers by hearth. In fact, studying quiz questions and memorizing answer is NOT a good study technique and it will be likely reduce your chances of passing the exam, rather than increasing it!
+While this might be good to understand the style of the questions and the depth of the topics covered, you shouldn't try to learn specific questions and answers by heart. In fact, studying quiz questions and memorizing answer is NOT a good study technique and it will be likely reducing your chances of passing the exam, rather than increasing it!
 
-All the questions are quite reasonable, if you understood the theory behind all the different AWS services and you know the most important details (in terms of costs, configuration, availability, durability, etc.), you should be able to spot the right answers.
+All the questions are quite reasonable, if you understood the theory behind all the different AWS services and you know the most important details (in terms of costs, configuration, availability, durability, etc.), you should be able to figure out the right answers.
 
-I admit some questions might be tricky. For instance you might get questions where more than one answer seem to be correct. In those cases, it might be helpful to try to reason by exclusion and look for all the answers that seem wrong. If this is still not helping you to come up to a definitive answer, you can still "flag" the question (yeah, that's an option in the examination platform) and come back to it later with a fresher mind.
+I admit some questions might be tricky. For instance, you might get questions where more than one answer seems to be correct. In those cases, it might be helpful to try to reason by exclusion and look for all the answers that are definitely wrong. If this is still not helping you to come up to a definitive answer, you can still "flag" the question (yeah, that's an option in the examination platform) and come back to it later with a fresher mind.
 
-Managing your time will be important too. Try not to spend more than 2 or 3 minutes per question. If you feel you are spending too much time on a question, again, you can flag it and come back to it later when you addressed all the others. In short, make sure you addressed all the questions you feel sure about and save some time to address and review the ones you are struggling with. Some times, a little bit more reasoning will help you identify some key detail you were initially missing to unlock the right answer.
+Managing your time will be important too. Try not to spend more than 2 or 3 minutes per question. If you feel you are spending too much time on a question, again, you can flag it and come back to it later when you addressed all the others. In short, make sure you addressed all the questions you feel sure about and save some time to address and review the ones you are struggling with. Sometimes, a bit more reasoning will help you identify some key detail you were initially missing to unlock the right answer.
 
 ## Study and exercise material
 
@@ -122,19 +122,19 @@ AWS Object Storage Solution.
 - `PUT` (updates)
 - `DELETE`
 
-Updates are atomic: requesting a file immediately after an update will give you either the old data or the new data (no partially updated or corrupted data).
+**Updates are atomic**: requesting a file immediately after an update will give you either the old data or the new data (no partially updated or corrupted data).
 
 #### Storage classes
 
 ##### Frequent Access:
 
 - `STANDARD`
-- `REDUCED_REDUNDANCY (RRS)`: for non-critical and reproducible data, might lose up to 0.01% objects per year
+- `REDUCED_REDUNDANCY (RRS)`: for non-critical and reproducible data, you might be losing up to 0.01% of all your objects per year
 
 ##### Infrequent Access (pay per read):
 
-- `STANDARD_IA`
-- `ONEZONE_IA`: stored only in one availability zone, less availability
+- `STANDARD_IA`: grant quick reads (small latency), but you pay per read.
+- `ONEZONE_IA`: like `STANDARD_IA`, but stored only in one availability zone, less availability (if that specific zone is down you won't be able to access the files until the zone is back)
 
 ##### Archive
 
@@ -152,7 +152,7 @@ Updates are atomic: requesting a file immediately after an update will give you 
 
 <legend><sup>*</sup> After restore</legend>
 
-- Durability is always 11 nines (99,999999999%) except for `REDUCED_REDUNDANCY`, suitable for cases where you might afford to lose files (e.g. you can regenerate them).
+- Durability is always _11 nines_ (99,999999999%) except for `REDUCED_REDUNDANCY`, suitable for cases where you might afford to lose files (e.g. you can regenerate them).
 - Availability is almost always 99,99% except for `STANDARD_IA` (99,9%) and `ONEZONE_IA` (99,5%), these are suitable for cases where you rarely have to access the data, but when you need to it has to be as fast as STANDARD (can’t wait hours like with GLACIER).
 
 #### Encryption features
@@ -188,21 +188,21 @@ Cross-region replication requires the following:
 
 - Max object size: 5TB
 - Min object size: 0bytes, except for S3 IA that has a min size of 128kb.
-- Default maximum number of buckets / region: 100
+- Default maximum number of buckets per region: 100
 - Bucket/Object url format: `http://${BUCKET_NAME}.s3.amazonaws.com/${OBJECT_KEY}`
 
 #### Other
 
-- S3 can be used to host (static) websites (URL schemas: `<bucket-name>.s3-website-<AWS-region>.amazonaws.com` and `<bucket-name>.s3-website.<AWS-region>.amazonaws.com`)
-- S3 website can be configured to do redirects
-- Glacier files can be restored through the web console or the S3 API (RestoreRequest action)
+- S3 can be used to host (static) websites (URL schemas: `<bucket-name>.s3-website-<AWS-region>.amazonaws.com` and `<bucket-name>.s3-website.<AWS-region>.amazonaws.com`). You can use Cloudfront as a CDN to make the website fast globally.
+- S3 website can be configured to do redirects.
+- Glacier files can be restored through the web console or the S3 API (RestoreRequest action).
 - Only the owner of an Amazon S3 bucket can permanently delete a version.
 - S3 can achieve at least 3,500 PUT/POST/DELETE and 5,500 GET requests per second per prefix in a bucket (you can use random prefixes to increase the throughput in data-intensive applications).
-- You can write objects directly to an edge location
+- You can write objects directly to an edge location (for instance, this is useful if you are letting users of an app upload files directly to S3 and you want to reduce latency world wide).
 
 ### SQS
 
-AWS queuing system.
+AWS distributed queue service.
 
 #### Types of queue
 
@@ -227,7 +227,7 @@ Long polling helps reduce the cost of using Amazon SQS by eliminating the number
 
 #### Defaults
 
-Messages Max retention (14 days)
+Messages Max retention (14 days).
 
 ### EC2 / EBS / ELB / ECS
 
@@ -291,6 +291,8 @@ AWS Containers Service.
 
 ### Dynamo DB
 
+AWS NoSQL database.
+
 #### Provisioned Throughput
 
 When you create a table or index in Amazon DynamoDB, you must specify your capacity requirements for read and write activity. By defining your throughput capacity in advance, DynamoDB can reserve the necessary resources to meet the read and write activity your application requires, while ensuring consistent, low-latency performance.
@@ -320,12 +322,16 @@ The cumulative size of attributes per item must fit within the maximum DynamoDB 
 
 ### Redshift
 
+AWS analytics database (columnar data storage).
+
 To be able to export data into an S3 bucket from a Redshift instance in a private VPC and make sure data doesn’t leave VPC:
 
 - Enable Amazon Redshift Enhanced VPC routing
 - Create and configure an Amazon S3 VPC endpoint
 
 ### RDS
+
+AWS Relational Database System. Allows to easily deploy single-machine or distributed instances of the most common databases (Oracle, SQL Server, MySQL, MariaDB, PostgreSQL) and Amazon's own distributed relational database "Aurora".
 
 #### Replication
 
@@ -360,15 +366,17 @@ Events that would cause Amazon RDS to initiate a failover to the standby replica
 
 ### VPC
 
-#### availability zones names
+Amazon Virtual Private Cloud. Allows you to create complex private networks in the cloud.
+
+#### Availability zones names
 
 Availability Zones consist of one or more discrete data centers. Every account has references to availability zones per regions shuffled. As such, 'eu-west-1b’ for instance, is not necessarily the same physical location for 'eu-west-1b’ in another account (important in some latency related questions).
 
-#### how to enable site to site VPN:
+#### How to enable site to site VPN:
 
-- hardware VPN enabled on VPC
-- on premise customer gateway
-- virtual private gateway
+- Hardware VPN enabled on VPC
+- On premise customer gateway
+- Virtual private gateway
   - Peering connections do not support Edge to Edge
   - Default of 5 elastic IPs per region
   - To enable network access logging you can:
@@ -381,18 +389,28 @@ You can use a network address translation (NAT) gateway to enable instances in a
 
 ### Cloudwatch
 
+Service that allows you to collect metrics, logs and monitor all the other provisioned services (EC2, Load Balancers, etc). It also allows you to create dashboards and manage alerts.
+
+#### Defaults
+
 Metrics retention for a deleted EC2 (15 months)
 
 ### Cloudfront
+
+AWS content delivery network.
 
 - Can support multi-language resources or other variation of resources using query string parameters by setting cache based on all (or some) queries bring parameters (e.g. `http://d111111abcdef8.cloudfront.net/main.html?language=fr`)
 - There is a cost when clearing cache (path invalidation): first 1,000 paths requested for invalidation each month are FREE. Thereafter, $0.005 per path requested for invalidation
 
 ### SWF
 
-- preferred to SQS with cases like order management where there might be manual steps (eg. packing and shipping) or message delivery needs to be more reliable (only once).
-- workflow not making progress (missing manual interaction)
+Simple Workflow Service, allows to define and run background workflow composed by parallel or sequential steps. Also described as a _fully-managed state tracker and task coordinator_.
+
+- Preferred to SQS with cases like order management where there might be manual steps (eg. packing and shipping a parcel) or message delivery needs to be more reliable (only once & in order).
+- When a workflow is not making progress is probably because of a missing manual interaction.
 
 ## Closing off
 
-Good luck and let me know how it goes.
+This is all I have for you. Again this is not comprehensive (E.g. I didn't have notes for services like Lambda or SNS), so please don't rely exclusively on this (and if you do don't hold me responsible 😜).
+
+At this point let me just wish you "Good luck" and let me know how it goes.
