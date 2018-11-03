@@ -414,3 +414,5 @@ Simple Workflow Service, allows to define and run background workflow composed b
 This is all I have for you. Again this is not comprehensive (E.g. I didn't have notes for services like Lambda or SNS), so please don't rely exclusively on this (and if you do don't hold me responsible 😜).
 
 At this point let me just wish you "Good luck" and let me know how it goes.
+
+A huge thanks goes to [Padraig O'Brien](https://twitter.com/Podgeypoos79) and [Vectra.ai](https://vectra.ai) for supporting this achievement! 🙏
