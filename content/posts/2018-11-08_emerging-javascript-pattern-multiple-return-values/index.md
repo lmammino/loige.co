@@ -75,7 +75,7 @@ As you can see in these 2 code snippets, functions can return more than 1 value 
 
 ## Simulating multiple return values in JavaScript
 
-So, as we said early on, JavaScript does not natively support a syntax to return more than one value from a function, so we need to workaround this limitation by using _composite values_ like arrays or objects.
+So, as we said early on, JavaScript does not natively support a syntax to return more than one value from a function. We can workaround this limitation by using _composite values_ like arrays or objects.
 
 ### Multiple return values with arrays
 
@@ -127,7 +127,7 @@ intDiv = (dividend, divisor) => {
 }
 ```
 
-Note that here we are using another syntactic sugar from ES2015 (Enhanced object literal syntax) that allows us to define objects very concisely. Prior to ES2015 we would have needed to change the return statement to `{quotient: quotient, remainder: remainder}`.
+Note that here we are using another syntactic sugar from ES2015 (Enhanced object literal syntax) that allows us to define objects very concisely. Prior to ES2015, we would have defined the return statement as `{quotient: quotient, remainder: remainder}`.
 
 With this approach we will be able to use our `intDiv` function as follows:
 
@@ -203,7 +203,7 @@ function CssColorViewer() {
 
 You can see this component in action and play with the code on [CodeSandbox](https://codesandbox.io/s/9lzyov54lr).
 
-For the sake of this article, we are going to focus only on the `useState` call, but if you are curious to understand better how the hook itself works internally I really recommend you read the [official State Hook documentation](https://reactjs.org/docs/hooks-state.html). I was personally curious to understand how multiple `useState` calls could maintain the relationship with the specific state variable (since there's no explicit labelling or reference). If you are curious about that too, well you should read the [Hooks FAQ](https://reactjs.org/docs/hooks-faq.html#how-does-react-associate-hook-calls-with-components) and [Dan Abramov's recent article about Hooks](https://medium.com/@dan_abramov/making-sense-of-react-hooks-fdbde8803889).
+For the sake of this article, we are going to focus only on the `useState` call, but if you are curious to understand better how the hook itself works internally I really recommend you read the [official State Hook documentation](https://reactjs.org/docs/hooks-state.html). I was personally curious to understand how multiple `useState` calls could maintain the relationship with the specific state attribute (since there's no explicit labelling or reference). If you are curious about that too, well you should read the [Hooks FAQ](https://reactjs.org/docs/hooks-faq.html#how-does-react-associate-hook-calls-with-components) and [Dan Abramov's recent article about Hooks](https://medium.com/@dan_abramov/making-sense-of-react-hooks-fdbde8803889).
 
 Back to the `useState` call in our example, now!
 
@@ -216,15 +216,151 @@ React developers decided to handle this requirement by simulating multiple retur
 
 Combining this with array destructuring and proper variable naming, the result is an API that is very nice to read and to use.
 
-This React feature is still very experimental and subject to change at the time of writing, but it already sounds like a big deal for the React community to make the code more expressive and enjoyable.
+This React feature is still very experimental and subject to change at the time of writing, but it already sounds like a big deal for the React community to make the code more expressive and reduce the barrier to entry to start adopting React.
 
-The point I want to make is that the multiple return values pattern here plays a big role for this goal.
+The point I want to make is that, in this specific case, the multiple return values pattern plays a big role towards this goal.
 
 ### Converting callbacks API to Async/Await
 
-...
+Recently I found another great use case for the multiple return values pattern while trying to convert a callback oriented API into an equivalent Async/Await API.
 
-### Async/Await alternative error handling
+To make this part clear, I am going to explain very quickly an approach I use to convert callback based APIs into functions that I can use with Async/Await.
+
+Let's take this generic example:
+
+```javascript
+function doSomething(input, callback) {
+  // ... do something asynchronously and
+  //     compute response or error
+  // When finished, invoke the callback:
+  callback(error, response)
+}
+```
+
+To convert this function into something that can be used with Async/Await we have to essentially [_promisify_](https://loige.co/to-promise-or-to-callback-that-is-the-question/) it. There are libraries to do it and, if you are using Node.js you can even use the builtin [`util.promisify`](https://nodejs.org/api/util.html#util_util_promisify_original), but that's something we can do ourselves by just creating a _wrapper_ function like the following one:
+
+```javascript
+const doSomethingPromise = (input) => new Promise((resolve, reject) => {
+  doSomething(input, (error response) => {
+    if (error) {
+      return reject(error)
+    }
+
+    return resolve(response)
+  })
+})
+```
+
+In short, our wrapper function `doSomethingPromise` is immediately returning a `Promise`. Inside the body of the promise we are invoking the original `doSomething` function with a callback that will be resolving or rejecting the promise based on whether there's an `error` or not.
+
+Now we can finally take advantage of Async/Await:
+
+```javascript
+// inside an async function
+const response = await doSomethingPromise(input)
+```
+
+**Note**: this will throw in case of error, so make sure you have it in a `try/catch` block to handle the error correctly.
+
+> If you are curious about _promisifying_ callback-based functions, I have [an entire article](https://loige.co/to-promise-or-to-callback-that-is-the-question/) dedicated to this topic.
+
+In my specific use case, I was using a [twitter client](https://www.npmjs.com/package/twitter) library that follows this conventions:
+
+```javascript
+// client is an instance of the twitter client
+client.get('statuses/user_timeline', params, function callback(
+  error,
+  tweets,
+  response
+) {
+  if (!error) {
+    console.log(tweets)
+  }
+})
+```
+
+The important detail here is that the `callback` function is a bit unconventional because it receives 3 parameters: a possible `error`, a list of `tweets` and a `response` (which represents the raw HTTP response object). Conventional callback-style APIs will send only two parameters to the callback function: a potential error and some sort of result object.
+
+The question here is: how to _promisify_ this unconventional API?
+
+Multiple return values to the rescue!
+
+```javascript
+const getUserTimeline = (client, params) =>
+  new Promise((resolve, reject) => {
+    client.get('statuses/user_timeline', params, (error, tweets, response) => {
+      if (error) {
+        return reject(error)
+      }
+
+      return resolve([tweets, response]) // multiple return values
+    })
+  })
+```
+
+We can use this function with Async/Await as follows:
+
+```javascript
+// inside an async function
+
+// ... set `client` and `params`
+const [tweets, response] = await getUserTimeline(client, params)
+```
+
+**Note**: don't forget to have a `try/catch` to handle errors!
+
+To recap, we can use the multiple return values pattern also with promises to allow them to be resolved to multiple values. This technique gives us a very nice interface especially when used in combination with Async/Await.
+
+### Async/Await with alternative error handling
+
+Another closely related pattern I am seeing more and more in JavaScript is error propagation and handling _à la Go_.
+
+In Go, when a function can generate an error, this error is not thrown but simply returned by the function. If the function has to return some output and can also generate errors, then the function will have multiple return values (output and error).
+
+The caller code, should ideally verify if the returned error value is an actual error before proceeding, as in the following Go code example:
+
+```go
+file, err := os.Open("file.go")
+if err != nil {
+	log.Fatal(err)
+}
+
+// ... do something with `file`
+```
+
+Some JavaScript libraries are starting to promote the same conventions as in Go to report errors, especially when it comes to Async/Await.
+
+You can find some examples by just [searching `"error = await"` on GitHub](https://github.com/search?l=JavaScript&q=%22error+%3D+await%22&type=Code.).
+
+Let's rewrite our `getUserTimeline` function from our previous example to follow this approach:
+
+```javascript
+const getUserTimeline = (client, params) =>
+  new Promise((resolve, reject) => {
+    client.get('statuses/user_timeline', params, (error, tweets, response) => {
+      return resolve([error, tweets, response]) // multiple return values
+    })
+  })
+```
+
+Notice that we are never telling the promise to _reject_, so when we will be using this function with Async/Await we cannot use try/catch to handle errors. This is what we should do instead:
+
+```javascript
+// inside an async function
+
+// ... set `client` and `params`
+const [error, tweets, response] = await getUserTimeline(client, params)
+
+if (error) {
+  // handle error here
+}
+
+// ... do stuff with `tweets` and `response`
+```
+
+I am not sure if I would recommend this pattern or not in JavaScript land. I have a bit of mixed feelings about it. On one side I quite like it, because as happens in Go, it forces you to handle every single error individually, which makes you think a bit more carefully about the best way to handle the specifics of the error. On the other error it still feels a bit forced into JavaScript and people that never saw this pattern in other languages might find it annoying or even hard to understand. I'll let you draw your own conclusions on this one 😇
+
+## Skipping return values
 
 ...
 
