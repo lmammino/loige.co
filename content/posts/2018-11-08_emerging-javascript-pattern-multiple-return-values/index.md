@@ -20,6 +20,7 @@ tags:
   - javascript
   - node-js
   - design-patterns
+  - react
   - lua
   - go
 ---
@@ -141,7 +142,7 @@ console.log(`Remainder = ${remainder}`) // Remainder = 1
 Again, this is a bit too verbose and ES2015 has another fantastic syntactic sugar to make this nicer:
 
 ```javascript
-const {quotient, remainder} = intDiv(10, 3)
+const { quotient, remainder } = intDiv(10, 3)
 console.log(`Quotient = ${quotient}`) // Quotient = 3
 console.log(`Remainder = ${remainder}`) // Remainder = 1
 ```
@@ -149,7 +150,7 @@ console.log(`Remainder = ${remainder}`) // Remainder = 1
 This syntactic sugar is called [Object Destructuring Assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Object_destructuring). With this approach we are now independent from the position of return values (we can swap the position of `quotient` and `remainder` without side effects). This syntax also lets you rename the destructured variables, which can very useful to avoid name collisions with other local variables, or just to make variable names shorter or more descriptive as we please. Let's see how this works:
 
 ```javascript
-const {remainder: r, quotient: q} = intDiv(10, 3)
+const { remainder: r, quotient: q } = intDiv(10, 3)
 console.log(`Quotient = ${q}`) // Quotient = 3
 console.log(`Remainder = ${r}`) // Remainder = 1
 ```
@@ -158,13 +159,74 @@ Ok, now you should have a good idea on how to simulate multiple return values in
 
 ## Some more realistic use cases
 
+As mentioned early on, this technique has been recently popularized by React hooks, so we are gonna explore this use case first. Later we will see other two cases related to Async/Await.
+
+### React Hooks
+
+React hooks are a [new feature proposal](https://reactjs.org/docs/hooks-overview.html) available from _React v16.7.0-alpha_ that lets you use state and other React features without having to write a class.
+
+The first and most famous React hook present is called **State Hook**.
+
+Let's see how it works with an example, let's build a CSS color viewer component.
+
+Here's how our component is going to look like:
+
+![CssColorViewer React component demo](./css-color-viewer-demo.gif)
+
+And here's the code used to implement this:
+
+```javascript
+import { useState } from 'react'
+
+function CssColorViewer() {
+  const [cssColor, setCssColor] = useState('Blue')
+  //                          <-- multiple return values
+
+  const onCssColorChange = e => {
+    setCssColor(e.target.value)
+  }
+
+  return (
+    <div>
+      <input value={cssColor} onChange={onCssColorChange} />
+      <div
+        style={{
+          width: 100,
+          height: 100,
+          background: cssColor,
+        }}
+      />
+    </div>
+  )
+}
+```
+
+You can see this component in action and play with the code on [CodeSandbox](https://codesandbox.io/s/9lzyov54lr).
+
+For the sake of this article, we are going to focus only on the `useState` call, but if you are curious to understand better how the hook itself works internally I really recommend you read the [official State Hook documentation](https://reactjs.org/docs/hooks-state.html). I was personally curious to understand how multiple `useState` calls could maintain the relationship with the specific state variable (since there's no explicit labelling or reference). If you are curious about that too, well you should read the [Hooks FAQ](https://reactjs.org/docs/hooks-faq.html#how-does-react-associate-hook-calls-with-components) and [Dan Abramov's recent article about Hooks](https://medium.com/@dan_abramov/making-sense-of-react-hooks-fdbde8803889).
+
+Back to the `useState` call in our example, now!
+
+The `useState` hook acts like a factory: given a default value for the state property (`'Blue'` in our case), it will need to instantiate for you 2 things:
+
+- the current value for the specific state property (`cssColor` in our case)
+- a function that allows you to alter the specific property (`setCssColor` in our case)
+
+React developers decided to handle this requirement by simulating multiple return values with an array.
+
+Combining this with array destructuring and proper variable naming, the result is an API that is very nice to read and to use.
+
+This React feature is still very experimental and subject to change at the time of writing, but it already sounds like a big deal for the React community to make the code more expressive and enjoyable.
+
+The point I want to make is that the multiple return values pattern here plays a big role for this goal.
+
+### Converting callbacks API to Async/Await
+
 ...
 
-- React hooks
+### Async/Await alternative error handling
 
-- Converting some callbacks based APIs to Async/Await
-
-- manage errors like go `const err = await stuff()`
+...
 
 ## Performance implications
 
@@ -175,3 +237,5 @@ https://docs.google.com/document/d/1hWb-lQW4NSG9yRpyyiAA_9Ktytd5lypLnVLhPX9vamE/
 ## Recap
 
 ...
+
+https://rosettacode.org/wiki/Return_multiple_values
