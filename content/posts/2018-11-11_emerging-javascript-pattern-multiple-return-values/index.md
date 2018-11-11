@@ -5,8 +5,8 @@ title: >-
   Emerging JavaScript pattern: multiple return values
 slug: emerging-javascript-pattern-multiple-return-values
 subtitle: null
-date: 2018-11-08T23:57:00.000Z
-updated: 2018-11-08T23:57:00.000Z
+date: 2018-11-11T17:00:00.000Z
+updated: 2018-11-11T17:00:00.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: ./emerging-javascript-pattern-multiple-return-values.jpg
@@ -71,7 +71,7 @@ func main() {
 
 As you can see in these 2 code snippets, functions can return more than 1 value and this can be very convenient in cases where you logically have produce multiple outputs in a computation.
 
-**Note**: a more realistic implementation in Go, would take into account errors (e.g. division by 0) and add an extra return value to propagate potential errors. We shouldn't worry too much about this for the sake of this article, but is definitely worth mentioning that multiple return values in Go shine when it comes to error propagation and error handling. We will touch a bit more on this later in this article, to see how this idea can be applied to JavaScript as well, especially in the context of Async/Await.
+**Note**: a more realistic implementation in Go, would take into account errors (e.g. division by 0) and add an extra return value to propagate potential errors. We shouldn't worry too much about this for the sake of this article, but it is definitely worth mentioning that multiple return values in Go shine when it comes to error propagation and error handling. We will touch a bit more on this later in this article to see how this idea can be applied to JavaScript as well, especially in the context of Async/Await.
 
 ## Simulating multiple return values in JavaScript
 
@@ -154,6 +154,8 @@ const { remainder: r, quotient: q } = intDiv(10, 3)
 console.log(`Quotient = ${q}`) // Quotient = 3
 console.log(`Remainder = ${r}`) // Remainder = 1
 ```
+
+Here we are not dependent by values position, but by their names in the returned object. If you are designing an API with multiple return values, it's up to you to figure out which trade off will be the best to guarantee a proper developer experience.
 
 Ok, now you should have a good idea on how to simulate multiple return values in JavaScript. In the next section we will see some more realistic examples that take advantage of this pattern.
 
@@ -358,20 +360,77 @@ if (error) {
 // ... do stuff with `tweets` and `response`
 ```
 
-I am not sure if I would recommend this pattern or not in JavaScript land. I have a bit of mixed feelings about it. On one side I quite like it, because as happens in Go, it forces you to handle every single error individually, which makes you think a bit more carefully about the best way to handle the specifics of the error. On the other error it still feels a bit forced into JavaScript and people that never saw this pattern in other languages might find it annoying or even hard to understand. I'll let you draw your own conclusions on this one 😇
+I am not sure if I would recommend this pattern or not in JavaScript land. I have a bit of mixed feelings about it. On one side I quite like it, because as happens in Go, it forces you to handle every single error individually, which makes you think a bit more carefully about the best way to handle the specifics of the error. On the other hand, this pattern it still feels a bit forced into JavaScript and people that never saw this pattern in other languages might find it annoying or even hard to understand. Moreover, if you don't capture and handle an error this will not automatically escalate (as it happens with `throw` or rejected promises), so the error will totally be swallowed by the runtime, leading to potential inconsistencies in your app state.
+I'll let you draw your own conclusions on this one! 😇
 
-## Skipping return values
+## Array destructuring tricks
 
-...
+At this point, I would like to show you few _"little tricks"_ that you can use with array destructuring that might come in handy when dealing with multiple return values.
+
+### Skipping elements
+
+Let's say, for instance, that you have a function `doStuff` that returns multiple values using an array and the values are in the array are an `error`, a `rawResponse` and `result`. Let's say only for the sake of this example that you are not interested in using the `rawResponse`, you could easily skip that element while destructuring with the following syntax:
+
+```javascript
+const [error, , result] = doStuff()
+```
+
+Notice the double coma there. That basically means that we are leaving an array index unassigned. You can bend this technique as you please, for example you might decide to destructure only the `result`:
+
+```javascript
+const [, , result] = doStuff()
+```
+
+Well, you shouldn't really skip errors though...
+
+### Aggregate remaining return values
+
+Another interesting trick is that you can use the special `...` syntax to accumulate the _remaining return values_ under a single variable. Let's make a dummy example to explore this idea.
+
+Let's say we have a function called `listDogs` which is implemented as follows:
+
+```javascript
+function listDogs() {
+  return [3, 'Bella', 'Lucy', 'Daisy']
+}
+```
+
+The first element of the array is the number of dogs, while every other elements are actual dog names.
+
+Since the number of returned elements here is variable it might be tricky to use destructuring directly. In these cases we can use this special syntax:
+
+```javascript
+const [numDogs, ...dogNames] = listDogs()
+console.log(numDogs) // 3
+console.log(dogNames) // [ 'Bella', 'Lucy', 'Daisy' ]
+```
+
+The `...` syntax basically allows you to destructure any remaining element of the array into another array. Of course you can only have a `...` element in the left hand side of the destructuring expression and this has to be the last element in the list.
+
+My example here is very dummy, but this pattern really shines in some real life use cases, for example when you want to [unpack values from a regular expression match](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Unpacking_values_from_a_regular_expression_match).
 
 ## Performance implications
 
-https://docs.google.com/document/d/1hWb-lQW4NSG9yRpyyiAA_9Ktytd5lypLnVLhPX9vamE/edit
+When React hooks were presented the community was super excited about this new feature, but some performance experts in the Google chromium team ([@bmeurer](https://twitter.com/bmeurer), [@\_developit](https://twitter.com/_developit) and [@rossmcilroy](https://twitter.com/rossmcilroy)) raised their eyebrows and wanted to dig deeper to see if this new approach could lead to serious performance issues in the web.
 
-...
+What came out from their research is an amazing paper that goes by the title ["Array destructuring for multi-value returns (in light of React hooks)"](https://docs.google.com/document/d/1hWb-lQW4NSG9yRpyyiAA_9Ktytd5lypLnVLhPX9vamE/edit).
+
+I really encourage you to read it to get all the details, but here's my attempt at giving you some sort of TLDR;
+
+- In React components the `render()` method is called often, so the code there should be optimized enough not to slow things down. That's where you use React hooks.
+- Array destructuring is a very generic API, it doesn't work only with arrays but with every type of _iterable_ object, so the VM has a lot work to do to figure out how to traverse and destructure the specific object.
+- Object destructuring might be a more performant alternative, but it would probably offer a less pleasant developer experience.
+- If you use Babel in loose mode, array destructuring will be highly simplified (to direct element access) and it will result in highly optimized code.
+- There's work going on to see if the different phases of the optimizing compiler in the Google's V8 engine might be able to optimize destructuring even if you are not using Babel.
 
 ## Recap
 
-...
+In this article we discussed this new emerging JavaScript pattern that is getting more and more traction, mostly because of its adoption within React.
 
-https://rosettacode.org/wiki/Return_multiple_values
+Use cases are not limited to React though and I hope you will find this useful in your daily development life also outside the React land.
+
+I am really curious to see what you will come up with, so please keep me in the loop using [twitter](https://twitter.com/loige) or the comments in this article.
+
+For the very curious ones I want to give you one last link, so that you can compare [how multiple return values are implemented in many many other languages](https://rosettacode.org/wiki/Return_multiple_values).
+
+Until next time!
