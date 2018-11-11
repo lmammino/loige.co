@@ -25,7 +25,7 @@ tags:
   - go
 ---
 
-In this article I want to explore an interesting pattern that I am seeing more and more in JavaScript code which allows you to return multiple values from a function.
+In this article, I want to explore an interesting pattern that I am seeing more and more in JavaScript code which allows you to return multiple values from a function.
 
 You probably know already that JavaScript does not support multiple return values natively, so this article will actually explore some ways to "simulate" this behavior.
 
@@ -332,7 +332,7 @@ if err != nil {
 
 Some JavaScript libraries are starting to promote the same conventions as in Go to report errors, especially when it comes to Async/Await.
 
-You can find some examples by just [searching `"error = await"` on GitHub](https://github.com/search?l=JavaScript&q=%22error+%3D+await%22&type=Code.).
+You can find some examples by just [searching `"error = await"` on GitHub](https://github.com/search?l=JavaScript&q=%22error+%3D+await%22&type=Code).
 
 Let's rewrite our `getUserTimeline` function from our previous example to follow this approach:
 
