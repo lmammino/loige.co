@@ -18,7 +18,7 @@ event_location_gps: '45.4517668,9.1611362'
 event_city: 'Milan'
 event_days: 'November 29-30 2018'
 is_workshop: false
-slides_link: null
+slides_link: 'https://loige.link/terabytes'
 video_link: null
 with:
   - name: Domagoj Katavic
