@@ -375,7 +375,7 @@ Let's say, for instance, that you have a function `doStuff` that returns multipl
 const [error, , result] = doStuff()
 ```
 
-Notice the double coma there. That basically means that we are leaving an array index unassigned. You can bend this technique as you please, for example you might decide to destructure only the `result`:
+Notice the double comma there. That basically means that we are leaving an array index unassigned. You can bend this technique as you please, for example you might decide to destructure only the `result`:
 
 ```javascript
 const [, , result] = doStuff()
