@@ -6,7 +6,7 @@ title: >-
 slug: random-emoji-in-your-prompt-how-and-why
 subtitle: null
 date: 2018-12-17T18:50:00.000Z
-updated: 2018-12-18T09:01:00.000Z
+updated: 2018-12-18T12:01:00.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: ./random-emoji-in-your-prompt-how-and-why.png
@@ -128,7 +128,7 @@ I just ran this command 5 times and this is the list of outputs I got:
 - `10374`
 - `29063`
 
-To be more accurate, when using `$RANDOM`, we are not referencing a constant value or a variable, but an internal Bash function that returns a _pseudorandom_ integer in the range `[0-32767)` (`0` included, `32767` excluded).
+To be more accurate, when using `$RANDOM`, we are not referencing a constant value or a variable, but an internal Bash function that returns a _pseudorandom_ integer in the range `[0-32767]` (both values included).
 
 This primitive is generally good enough when you need to do something random, like extracting an arbitrary element from an array.
 
@@ -141,7 +141,7 @@ SMALLER_RANDOM=expr $RANDOM % 22
 echo $SMALLER_RANDOM
 ```
 
-This will print a number between `0` and `22` (excluded).
+This will print a number between `0` (included) and `22` (excluded).
 
 For other more advanced use cases check out the dedicated [$RANDOM section in the **Advanced Bash-Scripting Guide**](http://tldp.org/LDP/abs/html/randomvar.html).
 
@@ -397,4 +397,4 @@ Whether you believe me or not on this, I hope I'll see you soon in the next arti
 
 Byez!
 
-PS: A special thanks to all the people who contributed to this [Lobste.rs thread](https://lobste.rs/s/8oozfh/random_emoji_your_terminal_prompt_how_why). A lot of great insights! 🙏
+PS: A special thanks to all the people who contributed to this [Lobste.rs thread](https://lobste.rs/s/8oozfh/random_emoji_your_terminal_prompt_how_why). A lot of great insights! Also, thanks to [@gschizas](https://www.reddit.com/user/gschizas) on Reddit for spotting some errors! 🙏
