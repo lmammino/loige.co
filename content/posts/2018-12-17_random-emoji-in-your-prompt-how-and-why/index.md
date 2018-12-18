@@ -6,7 +6,7 @@ title: >-
 slug: random-emoji-in-your-prompt-how-and-why
 subtitle: null
 date: 2018-12-17T18:50:00.000Z
-updated: 2018-12-17T18:50:00.000Z
+updated: 2018-12-18T09:01:00.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: ./random-emoji-in-your-prompt-how-and-why.png
@@ -33,7 +33,11 @@ In this article I'll explain how I _emojified_ my terminal and, since it is very
 
 ## Bash config
 
-Bash customizations are generally made in a file saved in the user home directory. This file is generally called `.bashrc` (more common on Linux systems) or `.bash_profile` (more common on MacOS). This file is essentially a Bash script file that gets loaded every single time you open a terminal session.
+Bash customizations are generally made in a file saved in the user home directory. This file is generally called `.bashrc` ~~(more common on Linux systems)~~ or `.bash_profile` ~~(more common on MacOS)~~.
+
+**UPDATE**: `.bash_profile` is executed for login shells, and `.bashrc` is executed for non-login shells. (Thanks to [@colonelpanic](https://lobste.rs/u/colonelpanic) for the correction here).
+
+This file is essentially a Bash script file that gets loaded every single time you open a terminal session.
 
 Here's an example of a possible `.bashrc` file:
 
@@ -227,10 +231,40 @@ EMOJIS=(😺 😸 😹 😻 😼 😽 🙀 😿 😾)
 SELECTED_EMOJI=${EMOJIS[$RANDOM % ${#EMOJIS[@]}]};
 
 # declare the terminal prompt format
-export PS1='$(RANDOM_EMOJI)  [\u@\h \W]$ '
+export PS1='${SELECTED_EMOJI}  [\u@\h \W]$ '
 ```
 
 This will look as follows in my machine:
+
+![A terminal with the same emoji](./random-emoji-in-terminal-wrong-implementation.png)
+
+Well... as you can see there is something wrong with this... The emoji is always the same!
+
+The problem here is that `SELECTED_EMOJI` gets computed only once when we open a new terminal window. At that point it behaves like a constant values, so our prompt will always look the same after that.
+
+With this approach we essentially end up with a random emoji per session, not per command!
+
+We can fix this by introducing a Bash function:
+
+```bash
+# .bashrc (or .bash_profile)
+
+# declares an array with the emojis we want to support
+EMOJIS=(😺 😸 😹 😻 😼 😽 🙀 😿 😾)
+
+# function that selects and return a random element from the EMOJIS set
+RANDOM_EMOJI() {
+  SELECTED_EMOJI=${EMOJIS[$RANDOM % ${#EMOJIS[@]}]};
+  echo $SELECTED_EMOJI;
+}
+
+# declare the terminal prompt format
+export PS1='$(RANDOM_EMOJI)  [\u@\h \W]$ '
+```
+
+Notice that we replaced `${SELECTED_EMOJI}` with `$(RANDOM_EMOJI)` in our terminal prompt template. Previously we were just interpolating a variable in our terminal prompt, now we are actually invoking a function that extracts a random emoji every single time the prompt is rendered.
+
+This is the new result:
 
 ![A terminal full of random emoji cats](./some-random-cat-emojis-in-my-terminal-prompt.png)
 
@@ -240,13 +274,11 @@ But wait, not so quick! Let's go over all the code once again to make sure we un
 
 `EMOJIS` is just a simple array of strings, where every string is made up by just an emoji.
 
-`SELECTED_EMOJI` is a dynamic value that gets initialized to a random emoji from the set of supported emojis (`EMOJIS`). This is the complicated part as it's a _one-liner_ made up by different expressions on the right-hand side of the assignment. Let's break it down:
+`SELECTED_EMOJI` inside our function `RANDOM_EMOJI`, is a dynamic value that gets initialized to a random emoji from the set of supported emojis (`EMOJIS`). This is the complicated part as it's a _one-liner_ made up by different expressions on the right-hand side of the assignment. Let's break it down:
 
 - `${#EMOJIS[@]}` will be evaluated to the length of the `EMOJIS` array
 - `$RANDOM % ${#EMOJIS[@]}` will calculate a random integer and normalize it to the number of elements in the `EMOJIS` array using the _modulo operator_, so this is essentially extracting a random index for the `EMOJIS` array.
 - Finally we use the result of this expression to dereference a random element from the array and we assign it to `SELECTED_EMOJI`.
-
-One last thing to notice is that in our `PS1` prompt formatting string we are referencing the `RANDOM_EMOJI` variable with the following syntax: `$(RANDOM_EMOJI)`.
 
 Pretty neat, right?
 
@@ -333,6 +365,24 @@ If you want to build your fancy Bash prompt in a _drag-and-dropppy_ or _clicky-c
 
 At this point, you should know enough to be able to build your own PS1 generator website! Maybe that's an idea for you next _hack-weekend_!
 
+## Bonus 4: Use the return code
+
+This is an amazing snippet from [@bdesham](https://lobste.rs/u/bdesham) on _Lobste.rs_.
+
+```bash
+function success_indicator() {
+    if [ $? -eq 0 ] ; then
+        echo "😎"
+    else
+        echo "💩"
+    fi
+}
+
+export PS1='$(success_indicator) $ '
+```
+
+With this approach you won't have a random emoji anymore but instead a very deterministic emoji given by the return code of the previous command. If the command exited successfully you will see a _cool dude_ emoji, otherwise a _surprised poop_ will show up on your prompt!
+
 ## Why all of this?!
 
 In the title of this article I said "how and why", but if you have been careful you probably noticed I never really explained why you might want to go through all of this stuff!
@@ -346,3 +396,5 @@ Anyway, if this answer is not convincing you, I can actually prove that emojis i
 Whether you believe me or not on this, I hope I'll see you soon in the next article 😜
 
 Byez!
+
+PS: A special thanks to all the people who contributed to this [Lobste.rs thread](https://lobste.rs/s/8oozfh/random_emoji_your_terminal_prompt_how_why). A lot of great insights! 🙏
