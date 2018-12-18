@@ -224,7 +224,9 @@ Let's try to write a simple `.bashrc` file that can do that:
 EMOJIS=(😺 😸 😹 😻 😼 😽 🙀 😿 😾)
 
 # selects a random element from the EMOJIS set
-SELECTED_EMOJI=${EMOJIS[$RANDOM % ${#EMOJIS[@]}]};
+RANDOM_EMOJI () { 
+  echo ${EMOJIS[$RANDOM % ${#EMOJIS[@]}]};
+}
 
 # declare the terminal prompt format
 export PS1='$(RANDOM_EMOJI)  [\u@\h \W]$ '
