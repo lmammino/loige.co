@@ -4,8 +4,8 @@ layout: post
 title: 2018 - A year in review
 slug: 2018-a-year-in-review
 subtitle: null
-date: 2019-01-19T18:59:58.000Z
-updated: 2019-01-19T22:55:34.000Z
+date: 2019-01-20T02:18:58.000Z
+updated: 2019-01-20T02:18:58.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: ./loige-co-2018-a-year-in-review-luciano-mammino-blog.jpg
