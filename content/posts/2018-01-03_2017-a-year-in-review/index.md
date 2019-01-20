@@ -162,7 +162,7 @@ I guess I have to write more and find more interesting topics if I want to keep 
 
 ## External posts
 
-Aside from the articles published on my blog I had the pleasure to collaborate again with [Scotch.io](https://scotch.io/) and to establish a new collaboration with [Twilio]() to publish 2 posts as a guest author:
+Aside from the articles published on my blog I had the pleasure to collaborate again with [Scotch.io](https://scotch.io/) and to establish a new collaboration with [Twilio](https://www.twilio.com) to publish 2 posts as a guest author:
 
 - [Create a custom Slack slash command with Node.js and Express](https://scotch.io/tutorials/create-a-custom-slack-slash-command-with-nodejs-and-express)
 - [Automated SMS Notifications with AWS Lambda, JavaScript and Twilio SMS](https://www.twilio.com/blog/2017/12/automated-sms-notifications-aws-lambda-javascript-twilio-sms-apis.html)
