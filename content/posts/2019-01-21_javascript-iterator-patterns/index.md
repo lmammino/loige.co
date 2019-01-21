@@ -172,7 +172,7 @@ method with the following semantic:
 
   - `next()` does not accept any argument.
   - `next()` has to return an object with 2 properties: `done` and `value`.
-  - `done` is a boolean and it will be set to `true` only and only if there are no
+  - `done` is a boolean and it will be set to `true` if and only if there are no
     more elements in the sequence.
   - `value` will contain the actual value as computed in the last iteration
     (could be `undefined` when `done` is `true`).
