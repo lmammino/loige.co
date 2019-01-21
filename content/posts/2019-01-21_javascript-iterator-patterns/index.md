@@ -531,11 +531,11 @@ loaded asynchronously).
 
 When you have to iterate over values that become available asynchronously you
 have to rely on different patterns such as
-[event emitters](https://nodejs.org/api/events.html),
-[streams](https://nodejs.org/api/stream.html), or
-[async iterators](https://github.com/tc39/proposal-async-iteration).
+[**event emitters**](https://nodejs.org/api/events.html),
+[**streams**](https://nodejs.org/api/stream.html), or
+[**async iterators**](https://github.com/tc39/proposal-async-iteration).
 
-Also notice that generators have some interesting advanced features not covered
+Also, notice that generators have some interesting advanced features not covered
 in this article, like the opportunity to pass new values in the context every
 time `.next()` is called or to throw exceptions, so make sure you checkout
 [the generators documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator).
