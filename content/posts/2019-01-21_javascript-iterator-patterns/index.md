@@ -5,7 +5,7 @@ title: JavaScript iterator patterns
 slug: javascript-iterator-patterns
 subtitle: null
 date: 2019-01-21T03:25:58.000Z
-updated: 2019-01-21T03:25:58.000Z
+updated: 2019-01-27T17:15:58.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: ./javascript-iterator-patterns-rubber-ducks.jpg
@@ -424,7 +424,7 @@ So, the way a generator works is the following:
  - If a `return` statement is found (or the function completes), the object
    returned will look like: `{ value: <returnedValue>, done: true }`
    (notice the `done` now set to `true`).
- - Consecutive calls to `next()` will always produce `{ done: true }`.
+ - Once the generator has completed, consecutive calls to `next()` will always produce `{ done: true }`.
 
 Of course, the reason why we are exploring this topic is because we can implement
 our Fibonacci sequence as a generator:
