@@ -91,6 +91,13 @@ class BlogPostTemplate extends Component {
       twitterProfile: get(this.props, 'data.site.siteMetadata.twitterProfile')
     }
 
+    const filename = get(this.props, 'data.markdownRemark.fileAbsolutePath')
+    const githubLink = filename
+      ? `https://github.com/lmammino/loige.co/blob/master/${filename.substr(
+        filename.indexOf('content/')
+      )}`
+      : null
+
     return (
       <Layout location={this.props.location} section="blog">
         <SEO path={`${post.frontmatter.slug}/`} pageData={post} isBlogPost />
@@ -105,6 +112,7 @@ class BlogPostTemplate extends Component {
               <MainColumn>
                 <Article
                   post={post}
+                  githubLink={githubLink}
                   site={site}
                   disqusShortName={disqusShortName}
                 />
@@ -150,6 +158,7 @@ export const pageQuery = graphql`
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
       id
+      fileAbsolutePath
       excerpt
       timeToRead
       headings {

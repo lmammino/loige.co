@@ -33,7 +33,9 @@ const AboutPage = props => {
         path={`about/`}
         pageData={{
           frontmatter: {
-            title: `About Loige - ${siteTitle}`
+            title: `About Loige - ${siteTitle}`,
+            meta_description:
+              'I am a passionate software engineer born in 1987, the same year that "Super Mario Bros" was released in Europe, which, by chance is my favourite game!'
           }
         }}
       />
@@ -59,7 +61,7 @@ const AboutPage = props => {
             more than 10 years.
           </p>
           <p>
-            I am currently a <strong>Solution Architect</strong> at{' '}
+            I am currently a <strong>Cloud Architect</strong> at{' '}
             <a
               href="https://vectra.ai"
               target="_blank"
@@ -124,7 +126,8 @@ const AboutPage = props => {
           </blockquote>
           <p>
             Yep, I am a <strong>FullStack web developer</strong>, even though I
-            am transitioning more and more to a Solution Architect role.
+            am transitioning more and more to Solution Architect / Cloud
+            Architect roles.
           </p>
           <p>
             I <strong>was</strong> an entrepreneur: during the first part of my

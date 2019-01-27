@@ -124,99 +124,112 @@ class SpeakingEntry extends Component {
     const { event } = this.props
     const { frontmatter: f } = event
     const withPeople = conjunctions(f.with)
+    const siteTitle = get(this, 'props.data.site.siteMetadata.title')
 
     return (
-      <div
-        className="event-wrapper"
-        itemScope
-        itemType="http://schema.org/Event"
-      >
-        <h3 className="event-title" itemProp="name">
-          {f.title}
-          {f.is_workshop ? ' (workshop)' : ''}
-        </h3>
-        <p style={{ marginTop: '1em' }}>
-          <span>
-            <a
-              itemProp="url"
-              href={f.event_link}
-              rel="nofollow noopener noreferrer"
-              target="_blank"
-            >
-              {f.event_name}
-            </a>{' '}
-            (
-            <span
-              itemProp="location"
-              itemScope
-              itemType="http://schema.org/Place"
-            >
-              <span itemProp="name">{f.event_city}</span>
-              <span
-                aria-hidden="true"
-                style={{ display: 'none' }}
-                itemProp="address"
-              >
-                {f.event_location}
-              </span>
-            </span>
-            )
-          </span>
-          &nbsp; - <span itemProp="startDate">{f.date}</span>
-          {withPeople.length > 0 && (
+      <div>
+        <SEO
+          path={`speaking/`}
+          pageData={{
+            frontmatter: {
+              title: `Speaking (conferences and workshops) - ${siteTitle}`,
+              meta_description:
+                "Luciano Mammino's speaking engagements, conferences and workshops"
+            }
+          }}
+        />
+        <div
+          className="event-wrapper"
+          itemScope
+          itemType="http://schema.org/Event"
+        >
+          <h3 className="event-title" itemProp="name">
+            {f.title}
+            {f.is_workshop ? ' (workshop)' : ''}
+          </h3>
+          <p style={{ marginTop: '1em' }}>
             <span>
-              &nbsp; - with{' '}
-              {withPeople.comaSeparated.map((person, index) => {
-                return (
-                  <Fragment key={person.name}>
+              <a
+                itemProp="url"
+                href={f.event_link}
+                rel="nofollow noopener noreferrer"
+                target="_blank"
+              >
+                {f.event_name}
+              </a>{' '}
+              (
+              <span
+                itemProp="location"
+                itemScope
+                itemType="http://schema.org/Place"
+              >
+                <span itemProp="name">{f.event_city}</span>
+                <span
+                  aria-hidden="true"
+                  style={{ display: 'none' }}
+                  itemProp="address"
+                >
+                  {f.event_location}
+                </span>
+              </span>
+              )
+            </span>
+            &nbsp; - <span itemProp="startDate">{f.date}</span>
+            {withPeople.length > 0 && (
+              <span>
+                &nbsp; - with{' '}
+                {withPeople.comaSeparated.map((person, index) => {
+                  return (
+                    <Fragment key={person.name}>
+                      <a
+                        href={person.link}
+                        rel="nofollow noopener noreferrer"
+                        target="_blank"
+                      >
+                        {person.name}
+                      </a>
+                      {index < withPeople.comaSeparated.length - 1 && ', '}
+                    </Fragment>
+                  )
+                })}
+                {withPeople.and && (
+                  <Fragment>
+                    &nbsp;and{' '}
                     <a
-                      href={person.link}
+                      href={withPeople.and.link}
                       rel="nofollow noopener noreferrer"
                       target="_blank"
                     >
-                      {person.name}
+                      {withPeople.and.name}
                     </a>
-                    {index < withPeople.comaSeparated.length - 1 && ', '}
                   </Fragment>
-                )
-              })}
-              {withPeople.and && (
-                <Fragment>
-                  &nbsp;and{' '}
-                  <a
-                    href={withPeople.and.link}
-                    rel="nofollow noopener noreferrer"
-                    target="_blank"
-                  >
-                    {withPeople.and.name}
-                  </a>
-                </Fragment>
-              )}
-            </span>
-          )}
-        </p>
-        {(f.slides_link || f.video_link) && (
-          <p className="slides-video">
-            {f.slides_link && (
-              <a
-                href={f.slides_link}
-                rel="nofollow noopener noreferrer"
-                target="_blank"
-              >
-                <ImagesSolidIcon /> Slides
-              </a>
-            )}{' '}
-            {f.video_link && (
-              <a
-                href={f.video_link}
-                rel="nofollow noopener noreferrer"
-                target="_blank"
-              >
-                <VideoSolidIcon /> Video
-              </a>
+                )}
+              </span>
             )}
           </p>
-        )}
+          {(f.slides_link || f.video_link) && (
+            <p className="slides-video">
+              {f.slides_link && (
+                <a
+                  href={f.slides_link}
+                  rel="nofollow noopener noreferrer"
+                  target="_blank"
+                >
+                  <ImagesSolidIcon /> Slides
+                </a>
+              )}{' '}
+              {f.video_link && (
+                <a
+                  href={f.video_link}
+                  rel="nofollow noopener noreferrer"
+                  target="_blank"
+                >
+                  <VideoSolidIcon /> Video
+                </a>
+              )}
+            </p>
+          )}
+        </div>
       </div>
     )
   }
