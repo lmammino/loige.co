@@ -116,6 +116,7 @@ const SEO = ({ path, pageData, isBlogPost, children }) => {
       <html lang="en" />
 
       {/* General tags */}
+      <link type="text/plain" rel="author" href="https://loige.co/humans.txt" />
       <link rel="canonical" content={url} />
       <meta name="description" content={description} />
       <meta name="image" content={image} />

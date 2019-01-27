@@ -92,6 +92,10 @@ const Sidebar = styled('aside')`
 class BlogIndex extends Component {
   render () {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
+    const siteDescription = get(
+      this,
+      'props.data.site.siteMetadata.description'
+    )
     const {
       previous,
       next,
@@ -103,7 +107,18 @@ class BlogIndex extends Component {
 
     return (
       <Layout location={this.props.location} section="blog">
-        <SEO />
+        <SEO
+          pageData={{
+            frontmatter: {
+              title: `${siteTitle}${
+                currentPage === 1
+                  ? ''
+                  : ` - Page ${currentPage} of ${totalPages}`
+              }`,
+              meta_description: `${siteDescription} - Blog, page ${currentPage} of ${totalPages}`
+            }
+          }}
+        />
         <Hero className="bottomRightBg">
           <h1>Luciano Mammino</h1>
           <h2>Web developer, entrepreneur, fighter, butterfly maker!</h2>
@@ -138,6 +153,7 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        description
       }
     }
   }

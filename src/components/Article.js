@@ -9,6 +9,7 @@ import {
 
 import ArticleContainer from './ArticleContainer'
 import CommentsIcon from './icons/CommentsSolid'
+import GitHubIcon from './icons/Github'
 import DateViewer from './DateViewer'
 import TagsList from './TagsList'
 
@@ -205,9 +206,32 @@ const SectionContainer = styled('div')`
   }
 `
 
+const GitHubSectionContainer = styled('div')`
+  margin: 2em 0;
+  line-height: 25px;
+  padding: 1em;
+  font-size: small;
+  border-radius: 8px;
+  background: rgba(255, 229, 100, 0.3);
+
+  a {
+    text-decoration: none;
+    border-bottom: 2px solid #ffe564;
+    color: inherit;
+
+    &:hover {
+      border-bottom: 2px solid #ff9b51;
+    }
+  }
+
+  @media (min-width: 780px) {
+    padding: 2em 2em;
+  }
+`
+
 class Article extends Component {
   render () {
-    const { post, site, disqusShortName } = this.props
+    const { post, site, disqusShortName, githubLink } = this.props
     const disqusConfig = {
       url: `${site}${post.frontmatter.slug}`,
       title: post.frontmatter.title
@@ -236,6 +260,16 @@ class Article extends Component {
           </p>
         </SectionContainer>
         <ArticleContainer dangerouslySetInnerHTML={{ __html: post.html }} />
+        {githubLink && (
+          <GitHubSectionContainer>
+            <strong>Found a typo or something that can be improved?</strong>
+            <br />
+            In the spirit of Open Source, you can contribute to this article by{' '}
+            <a href={githubLink} target="_blank" rel="noopener noreferrer">
+              submitting a PR on <GitHubIcon /> GitHub
+            </a>
+          </GitHubSectionContainer>
+        )}
         <SectionContainer
           style={{
             borderTop: '1px solid #ececec',

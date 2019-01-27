@@ -34,7 +34,8 @@ class TagIndex extends Component {
           path={`tag/${tag}/`}
           pageData={{
             frontmatter: {
-              title: `Posts published under #${tag} - ${siteTitle}`
+              title: `Posts published under #${tag} - ${siteTitle}`,
+              meta_description: `Posts published under #${tag}`
             }
           }}
         />

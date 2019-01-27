@@ -15,7 +15,9 @@ const CommentPolicy = props => {
         path={`comment-policy/`}
         pageData={{
           frontmatter: {
-            title: `Blog comment policy - ${siteTitle}`
+            title: `Blog comment policy - ${siteTitle}`,
+            meta_description:
+              "Luciano Mammino's Blog comment policy. TLDR: be polite and do your best to deliver great stuff and share your passion"
           }
         }}
       />
