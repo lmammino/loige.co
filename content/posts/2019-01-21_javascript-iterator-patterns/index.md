@@ -249,7 +249,7 @@ such object is iterable or not.
 
 For this reason, ECMAScript 2015 defines also the **Iterable protocol**.
 
-An object is said to be _iterable_ if it exposes a property called `Symbol.iterable`,
+An object is said to be _iterable_ if it exposes a property called `Symbol.iterator`,
 which is a function that returns an _iterator_ object.
 
 You can introspectively check if an object is _iterable_ with some code like this:
