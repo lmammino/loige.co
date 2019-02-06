@@ -3,7 +3,7 @@ uuid: 59ae8a59-f363-494b-b7d7-c9bd6f3fb491
 layout: speaking
 title: 'Processing TeraBytes of data every day and sleeping at night'
 slug: 'processing-terabytes-of-data-every-day-and-sleeping-at-night-aws-usergroup-belfast'
-date: 2019-02-06T00:00:00.000Z
+date: 2019-02-06T20:30:00.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: null
