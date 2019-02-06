@@ -3,7 +3,7 @@ uuid: 59ae8a59-f363-494b-b7d7-c9bd6f3fb491
 layout: speaking
 title: 'Processing TeraBytes of data every day and sleeping at night'
 slug: 'processing-terabytes-of-data-every-day-and-sleeping-at-night-aws-usergroup-dublin'
-date: 2019-02-05T00:00:00.000Z
+date: 2019-02-05T18:30:00.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: null
@@ -18,7 +18,7 @@ event_location_gps: "53.3449334,-6.264522800000009"
 event_city: "Dublin"
 event_days: 'February 05 2019'
 is_workshop: false
-slides_link: null
+slides_link: "https://loige.link/tera-dub"
 video_link: null
 with:
   - name: Domagoj Katavic
