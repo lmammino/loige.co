@@ -18,7 +18,7 @@ event_location_gps: "54.59222,-5.925799"
 event_city: "Belfast"
 event_days: 'February 06 2019'
 is_workshop: false
-slides_link: null
+slides_link: "https://loige.link/tera-bel"
 video_link: null
 with:
   - name: Domagoj Katavic
