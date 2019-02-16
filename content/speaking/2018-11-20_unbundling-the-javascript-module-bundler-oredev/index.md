@@ -19,7 +19,7 @@ event_city: 'Malmo'
 event_days: 'November 19-22 2018'
 is_workshop: false
 slides_link: 'https://slides.com/lucianomammino/unbundling-the-javascript-module-bundler-oredev-2018/fullscreen'
-video_link: null
+video_link: 'https://vimeo.com/311519217'
 with: []
 ---
 
