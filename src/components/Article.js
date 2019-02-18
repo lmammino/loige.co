@@ -65,6 +65,11 @@ const colors = {
 }
 
 injectGlobal`
+  blockquote .gatsby-highlight {
+    margin: 1.5em 0 1.5em 0;
+    padding: 0.5em;
+  }
+
   .gatsby-highlight {
     font-size: 15px;
     line-height: 1.7;
