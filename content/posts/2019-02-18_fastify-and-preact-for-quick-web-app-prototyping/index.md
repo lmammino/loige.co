@@ -4,8 +4,8 @@ layout: post
 title: Fastify and Preact for quick web app prototyping
 slug: fastify-and-preact-for-quick-web-app-prototyping
 subtitle: null
-date: 2019-02-16T03:25:58.000Z
-updated: 2019-02-16T17:15:58.000Z
+date: 2019-02-18T20:22:58.000Z
+updated: 2019-02-18T20:22:58.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: ./fastify-and-preact-for-quick-web-app-prototyping.jpg
@@ -77,7 +77,7 @@ _Full disclosure_: I am a member of the core team and I mostly contribute with b
 
 If you never heard about **Preact**, it is a UI library for the web, initially created as a lighter and faster drop-in alternative to React by [Jason Miller](https://github.com/developit).
 
-The project has been quite successful and it's now co-maintained by [Marvin Hagemeister](https://github.com/marvinhagemeister) with more than 20.000 GitHub stars and 160 contributors.
+The project has been quite successful. It is now maintained by a [team of contributors](https://github.com/developit/preact/graphs/contributors) and has gained more than 20.000 GitHub stars.
 
 One of the reasons why I like Preact, is that it has a pluggable view definition layer. Normally you would use it with **JSX** in combination with **Babel** for transpilation, but if you don't want to setup Babel and have a build process, you can use Preact in combination with [**htm**](https://github.com/developit/htm), which uses template literals and doesn't require any transpilation on modern browsers.
 
@@ -116,6 +116,14 @@ npm i --save fastify@next fastify-static@next fastify-cli
 ```
 
 Notice that I am using `@next` for some dependencies to get Fastify v2, currently in release candidate stage, but that should become the main stable version very soon!
+
+> **Note**: you can also create a new Fastify project using the Fastify CLI:
+>
+> ```bash
+> npx fastify-cli generate server-time
+> ```
+>
+> At the time of writing this will generate a new project for Fastify 1.x, but it will be update soon, once v2 will be released as stable.
 
 Let's analyze the installed packages one by one:
 
@@ -181,9 +189,11 @@ You should now see a response like this:
 { "time": "2019-02-17T19:32:03.354Z" }
 ```
 
+At this point you are probably noticing another amazing feature of Fastify: JSON serialization is handled out of the box if a route returns an object.
+
 Hooray, our server API is now implemented. 🥳
 
-Let's move on and work on the frontend!
+Let's move on and let's start to work on the frontend!
 
 ## Frontend setup
 
@@ -327,7 +337,7 @@ FROM node:11-alpine
 
 WORKDIR /app
 COPY . /app
-RUN npm install
+RUN npm install --production
 
 EXPOSE 3000
 
@@ -336,11 +346,11 @@ CMD ["npm", "start"]
 
 With this setup we are essentially doing the following:
 
-- Creating an image starting from the the latest version of Node.js 11, linux alpine
-- Everything from our current folder is copied inside `/app` inside the container
-- At this point we run `npm install` to make sure that all the dependencies are downloaded and installed
-- We also expose port 3000, which is where our web server will run by default
-- Finally, we define our runtime command as `npm start` to start the application
+- Creating an image starting from the the latest version of Node.js 11, linux alpine.
+- Everything from our current folder is copied inside `/app` inside the container.
+- At this point we run `npm install` to make sure that all the dependencies are downloaded and installed. The `--production` flag will make so that only production dependencies are installed, speeding up the image creation in case you have many dev dependencies.
+- We also expose port 3000, which is where our web server will run by default.
+- Finally, we define our runtime command as `npm start` to start the application.
 
 In order to build the image for this container, you can run the following command:
 
@@ -360,7 +370,7 @@ Now you are ready to share this application. Whoever is receiving it has to have
 
 ## Conclusion
 
-In this article, I showed you how to easily bootstrap a quick web app development environment using Fastify and Preact. We also saw how to share the resulting app with Docker.
+In this article, I showed you how easy it is to bootstrap a quick web app development environment using Fastify and Preact. We also saw how to share the resulting app with Docker.
 
 I said that this setup is ideal for building quick prototypes, so you are maybe wondering what's missing in case you want to take the app to production.
 
@@ -375,6 +385,13 @@ I didn't cover all these aspects with my setup yet, so I don't want to consider 
 
 I hope this article was informative and that this stack will be useful to you for your next prototype application.
 
-I really look forward to hearing your feedback, so if you have something to say, please leave a comment below!
+This article was possible only to the support and the kind reviews of some developers I really admire, so **thank you to them all** (in alphabetical order) 😻:
+
+- [Jason Miller](https://github.com/developit)
+- [Marvin Hagemeister](https://github.com/marvinhagemeister)
+- [Matteo Collina](https://github.com/mcollina)
+- [Tomas Della Vedova](https://github.com/delvedor)
+
+I really look forward to hearing your feedback, so please don't hesitate leaving a comment below!
 
 Until next time, ciao 👋
