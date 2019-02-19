@@ -27,7 +27,7 @@ In this article I will show my setup to build and share web apps prototypes usin
 
 I will also use **htm**, a library that can be easily integrated with Preact to define DOM elements in a very expressive and react-like way (like _JSX_), without having to use _transpilers_ like Babel. Finally we will see how to _dockerize_ a sample app built with this setup. This will make the app easy to share with co-workers and friends.
 
-I came up with this stack, few weeks ago when I had to build a very simple prototype web applications to test some product assumptions with some co-workers.
+I came up with this stack, few weeks ago when I had to build a very simple prototype web application to test some product assumptions with some co-workers.
 
 My experiment was quite successful. I was able to build my prototype quickly and it was super easy for my colleagues to play with it and give me feedback, even if they didn't have Node.js and NPM installed on their machines.
 
@@ -123,7 +123,7 @@ Notice that I am using `@next` for some dependencies to get Fastify v2, currentl
 > npx fastify-cli generate server-time
 > ```
 >
-> At the time of writing this will generate a new project for Fastify 1.x, but it will be update soon, once v2 will be released as stable.
+> At the time of writing this will generate a new project for Fastify 1.x, but it will be updated soon, once v2 will be released as stable.
 
 Let's analyze the installed packages one by one:
 
@@ -385,7 +385,7 @@ I didn't cover all these aspects with my setup yet, so I don't want to consider 
 
 I hope this article was informative and that this stack will be useful to you for your next prototype application.
 
-This article was possible only to the support and the kind reviews of some developers I really admire, so **thank you to them all** (in alphabetical order) 😻:
+This article was possible only because of the support and the kind reviews of some developers I really admire, so **thank you to them all** (in alphabetical order) 😻:
 
 - [Jason Miller](https://github.com/developit)
 - [Marvin Hagemeister](https://github.com/marvinhagemeister)
