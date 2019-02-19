@@ -387,6 +387,7 @@ I hope this article was informative and that this stack will be useful to you fo
 
 This article was possible only because of the support and the kind reviews of some developers I really admire, so **thank you to them all** (in alphabetical order) 😻:
 
+- [Angelo Gulina](https://github.com/AngeloGulina)
 - [Jason Miller](https://github.com/developit)
 - [Marvin Hagemeister](https://github.com/marvinhagemeister)
 - [Matteo Collina](https://github.com/mcollina)
