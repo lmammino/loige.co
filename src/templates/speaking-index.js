@@ -124,20 +124,9 @@ class SpeakingEntry extends Component {
     const { event } = this.props
     const { frontmatter: f } = event
     const withPeople = conjunctions(f.with)
-    const siteTitle = get(this, 'props.data.site.siteMetadata.title')
 
     return (
       <div>
-        <SEO
-          path={`speaking/`}
-          pageData={{
-            frontmatter: {
-              title: `Speaking (conferences and workshops) - ${siteTitle}`,
-              meta_description:
-                "Luciano Mammino's speaking engagements, conferences and workshops"
-            }
-          }}
-        />
         <div
           className="event-wrapper"
           itemScope
@@ -247,7 +236,9 @@ class SpeakingIndex extends Component {
           path={`speaking/`}
           pageData={{
             frontmatter: {
-              title: `Speaking events: conference talks and workshops - ${siteTitle}`
+              title: `Speaking (conferences and workshops) - ${siteTitle}`,
+              meta_description:
+              "Luciano Mammino's speaking engagements, conferences and workshops"
             }
           }}
         />
