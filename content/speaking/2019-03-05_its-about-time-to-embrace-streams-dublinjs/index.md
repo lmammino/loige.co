@@ -18,7 +18,7 @@ event_location_gps: '53.3478343,-6.2776726'
 event_city: 'Dublin'
 event_days: 'March 05 2019'
 is_workshop: false
-slides_link: null
+slides_link: https://loige.link/streams-dub
 video_link: null
 with: []
 ---
