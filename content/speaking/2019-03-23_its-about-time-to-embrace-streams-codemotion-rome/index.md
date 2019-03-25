@@ -18,7 +18,7 @@ event_location_gps: '41.8547021,12.470359300000041'
 event_city: 'Rome'
 event_days: 'March 23 2019'
 is_workshop: false
-slides_link: null
+slides_link: 'https://loige.link/streams-rome'
 video_link: null
 with: []
 ---
