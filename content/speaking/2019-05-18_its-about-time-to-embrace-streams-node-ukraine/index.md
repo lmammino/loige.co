@@ -2,7 +2,7 @@
 uuid: 9b500775-4921-444f-9bc5-947598ec1e65
 layout: speaking
 title: 'It’s about time to embrace Streams'
-slug: 'its-about-time-to-embrace-streams-cityjs'
+slug: 'its-about-time-to-embrace-streams-node-ukraine'
 date: 2019-05-18T20:30:00.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
