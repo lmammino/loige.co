@@ -18,7 +18,7 @@ event_location_gps: '51.512793,-0.130486'
 event_city: 'London'
 event_days: 'May 03 2019'
 is_workshop: false
-slides_link: null
+slides_link: 'https://loige.link/streams-cityjs'
 video_link: null
 with: []
 ---
