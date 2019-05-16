@@ -19,7 +19,7 @@ event_city: 'London'
 event_days: 'May 03 2019'
 is_workshop: false
 slides_link: 'https://loige.link/streams-cityjs'
-video_link: null
+video_link: 'https://www.youtube.com/watch?v=NMqO0JwEEQU'
 with: []
 ---
 
