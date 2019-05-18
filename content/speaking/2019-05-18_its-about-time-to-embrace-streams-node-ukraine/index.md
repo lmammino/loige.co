@@ -18,7 +18,7 @@ event_location_gps: '50.3840765,30.4573224'
 event_city: 'Kyiv'
 event_days: 'May 18 2019'
 is_workshop: false
-slides_link: null
+slides_link: 'https://loige.link/streams-kyiv'
 video_link: null
 with: []
 ---
