@@ -13,8 +13,8 @@ meta_title: null
 meta_description: null
 event_name: 'DevIT'
 event_link: 'https://devitconf.org'
-event_location: 'Thessaloniki, Greece'
-event_location_gps: '40.64361,22.93086'
+event_location: 'CITY College, International Faculty of the University of Sheffield, Thessaloniki, Greece'
+event_location_gps: '40.63743995,22.93683177161686'
 event_city: 'Thessaloniki'
 event_days: 'June 09-10 2019'
 is_workshop: true
