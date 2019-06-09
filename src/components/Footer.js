@@ -162,7 +162,7 @@ class Footer extends Component {
                   target="_blank"
                   href="https://www.cloudflare.com"
                 >
-                  Clouflare
+                  Cloudflare
                 </a>
                 .
               </Copyright>
