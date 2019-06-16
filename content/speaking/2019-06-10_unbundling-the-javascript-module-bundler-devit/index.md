@@ -18,7 +18,7 @@ event_location_gps: '40.62511625,22.9494063309175'
 event_city: 'Thessaloniki'
 event_days: 'June 09-10 2019'
 is_workshop: false
-slides_link: null
+slides_link: "https://loige.link/bundle-devit"
 video_link: null
 with: []
 ---
