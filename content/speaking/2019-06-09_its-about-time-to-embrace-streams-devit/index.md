@@ -18,7 +18,7 @@ event_location_gps: '40.63743995,22.93683177161686'
 event_city: 'Thessaloniki'
 event_days: 'June 09-10 2019'
 is_workshop: true
-slides_link: null
+slides_link: "https://slides.com/lucianomammino/its-about-time-to-embrace-nodejs-streams-workshop-thessaloniki"
 video_link: null
 with: []
 ---
