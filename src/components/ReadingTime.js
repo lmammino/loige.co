@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import styled, { css } from 'react-emotion'
+import styled from '@emotion/styled'
+import { css } from '@emotion/core'
 
 import EyeRegularIcon from './icons/EyeRegular'
 
@@ -7,7 +8,7 @@ const eyeRegularStyle = css`
   margin: 0 0.25em 0 0;
 `
 
-const ReadingTimeContainer = styled('span')`
+const ReadingTimeContainer = styled.span`
   vertical-align: middle;
   font-size: inherit;
   margin: 0 0.5em;

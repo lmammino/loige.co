@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 import { get } from 'lodash'
 
 import SEO from '../../src/components/SEO'

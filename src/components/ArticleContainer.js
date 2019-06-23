@@ -1,6 +1,6 @@
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 
-const ArticleContainer = styled('article')`
+const ArticleContainer = styled.article`
   margin: 2em 0;
   line-height: 25px;
   padding: 0 1em;

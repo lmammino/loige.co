@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import styled, { css } from 'react-emotion'
+import styled from '@emotion/styled'
+import { css, ClassNames } from '@emotion/core'
 import NavLink from './NavLink'
 import Logo from './Logo'
 
@@ -7,7 +8,7 @@ import GithubIcon from './icons/Github'
 import TwitterIcon from './icons/Twitter'
 import LinkedinIcon from './icons/Linkedin'
 
-const HeaderComponent = styled('header')`
+const HeaderComponent = styled.header`
   background-color: rgba(32, 35, 42, 0.95);
   color: #ffffff;
   display: block;
@@ -22,7 +23,7 @@ const HeaderComponent = styled('header')`
   }
 `
 
-const HeaderCenterContainer = styled('div')`
+const HeaderCenterContainer = styled.div`
   padding-left: 4px;
   padding-right: 4px;
   margin-left: auto;
@@ -36,7 +37,7 @@ const HeaderCenterContainer = styled('div')`
   }
 `
 
-const HeaderFlexContainer = styled('div')`
+const HeaderFlexContainer = styled.div`
   display: flex;
   height: 60px;
 `
@@ -49,7 +50,7 @@ const LogoStyle = css`
   }
 `
 
-const Nav = styled('nav')`
+const Nav = styled.nav`
   display: flex;
   flex-direction: row;
   align-items: stretch;
@@ -64,7 +65,7 @@ const Nav = styled('nav')`
   }
 `
 
-const SocialLinksContainer = styled('div')`
+const SocialLinksContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -133,7 +134,7 @@ const socialLinkStyle = css`
   }
 `
 
-const HeaderBorder = styled('span')`
+const HeaderBorder = styled.span`
   height: 2px;
   display: block;
   transform-origin: left center 0px;
@@ -147,60 +148,64 @@ class Header extends Component {
   render () {
     const { section } = this.props
     return (
-      <HeaderComponent>
-        <HeaderCenterContainer>
-          <HeaderFlexContainer>
-            <Logo className={LogoStyle} />
-            <Nav>
-              <NavLink active={section === 'blog'} to="/">
-                Blog
-              </NavLink>
-              <NavLink active={section === 'speaking'} to="/speaking">
-                Speaking
-              </NavLink>
-              <NavLink active={section === 'about'} to="/about">
-                About
-              </NavLink>
-            </Nav>
-            <SocialLinksContainer>
-              <a
-                rel="nofollow"
-                className={socialLinkStyle}
-                href="https://github.com/lmammino"
-              >
-                <GithubIcon
-                  className={socialIconStyle}
-                  alt={`Luciano's GitHub profile`}
-                />
-                <span>GitHub</span>
-              </a>
-              <a
-                rel="nofollow"
-                className={socialLinkStyle}
-                href="https://twitter.com/loige"
-              >
-                <TwitterIcon
-                  className={socialIconStyle}
-                  alt={`Luciano's Twitter profile`}
-                />
-                <span>Twitter</span>
-              </a>
-              <a
-                rel="nofollow"
-                className={socialLinkStyle}
-                href="https://www.linkedin.com/in/lucianomammino/"
-              >
-                <LinkedinIcon
-                  className={socialIconStyle}
-                  alt={`Luciano's LinkedIn profile`}
-                />
-                <span>LinkedIn</span>
-              </a>
-            </SocialLinksContainer>
-          </HeaderFlexContainer>
-        </HeaderCenterContainer>
-        <HeaderBorder />
-      </HeaderComponent>
+      <ClassNames>
+        { ({ css, cx }) => (
+          <HeaderComponent>
+            <HeaderCenterContainer>
+              <HeaderFlexContainer>
+                <Logo className={css(LogoStyle)} />
+                <Nav>
+                  <NavLink active={section === 'blog'} to="/">
+                  Blog
+                  </NavLink>
+                  <NavLink active={section === 'speaking'} to="/speaking">
+                  Speaking
+                  </NavLink>
+                  <NavLink active={section === 'about'} to="/about">
+                  About
+                  </NavLink>
+                </Nav>
+                <SocialLinksContainer>
+                  <a
+                    rel="nofollow"
+                    className={css(socialLinkStyle)}
+                    href="https://github.com/lmammino"
+                  >
+                    <GithubIcon
+                      className={css(socialIconStyle)}
+                      alt={`Luciano's GitHub profile`}
+                    />
+                    <span>GitHub</span>
+                  </a>
+                  <a
+                    rel="nofollow"
+                    className={css(socialLinkStyle)}
+                    href="https://twitter.com/loige"
+                  >
+                    <TwitterIcon
+                      className={css(socialIconStyle)}
+                      alt={`Luciano's Twitter profile`}
+                    />
+                    <span>Twitter</span>
+                  </a>
+                  <a
+                    rel="nofollow"
+                    className={css(socialLinkStyle)}
+                    href="https://www.linkedin.com/in/lucianomammino/"
+                  >
+                    <LinkedinIcon
+                      className={css(socialIconStyle)}
+                      alt={`Luciano's LinkedIn profile`}
+                    />
+                    <span>LinkedIn</span>
+                  </a>
+                </SocialLinksContainer>
+              </HeaderFlexContainer>
+            </HeaderCenterContainer>
+            <HeaderBorder />
+          </HeaderComponent>
+        )}
+      </ClassNames>
     )
   }
 }

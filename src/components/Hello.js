@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 import { Link } from 'gatsby'
 
 import ProfileImage from './images/profile-pic.jpg'
 
-const HelloContainer = styled('div')`
+const HelloContainer = styled.div`
   background: #fff;
   border: 1px solid #ccc;
   padding: 1em;

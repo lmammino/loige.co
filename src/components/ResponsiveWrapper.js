@@ -1,6 +1,6 @@
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 
-const ResponsiveWrapper = styled('div')`
+const ResponsiveWrapper = styled.div`
   margin: 2em auto;
   padding-left: 20px;
   padding-right: 20px;

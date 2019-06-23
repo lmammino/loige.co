@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 
 import defaultBg from './images/default-bg.jpg'
 
-const HeroContainer = styled('div')`
+const HeroContainer = styled.div`
   background-color: #46c9e5;
   background-repeat: no-repeat;
   background-position: center;
@@ -48,7 +48,7 @@ const HeroContainer = styled('div')`
   }
 `
 
-const HeroContent = styled('div')`
+const HeroContent = styled.div`
   display: table-cell;
   vertical-align: middle;
   text-align: center;

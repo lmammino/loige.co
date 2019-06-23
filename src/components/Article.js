@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 import { injectGlobal } from 'emotion'
 import { Link } from 'gatsby'
 import {
@@ -192,7 +192,7 @@ injectGlobal`
   }
 `
 
-const SectionContainer = styled('div')`
+const SectionContainer = styled.div`
   margin: 2em 0;
   line-height: 25px;
   padding: 0 1em;
@@ -211,7 +211,7 @@ const SectionContainer = styled('div')`
   }
 `
 
-const GitHubSectionContainer = styled('div')`
+const GitHubSectionContainer = styled.div`
   margin: 2em 0;
   line-height: 25px;
   padding: 1em;

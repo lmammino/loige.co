@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 import { graphql } from 'gatsby'
 import get from 'lodash/get'
 
@@ -10,7 +10,7 @@ import PostsList from '../components/PostsList'
 import ArticleContainer from '../components/ArticleContainer'
 import tagsBg from '../components/images/tags-bg.png'
 
-const Content = styled('div')`
+const Content = styled.div`
   min-height: 100vh;
   margin: 2em auto;
   padding-left: 20px;
