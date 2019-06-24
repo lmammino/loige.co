@@ -92,7 +92,6 @@ const ArticleContainer = styled.article`
 
     &:first-of-type {
       border-top: 0;
-      margin-top: 0;
       padding-top: 0;
     }
 
