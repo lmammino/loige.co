@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 import { graphql } from 'gatsby'
 import get from 'lodash/get'
 
@@ -12,7 +12,7 @@ import PostsList from '../components/PostsList'
 import Pagination from '../components/Pagination'
 import ArticleContainer from '../components/ArticleContainer'
 
-const ContentContainer = styled('div')`
+const ContentContainer = styled.div`
   min-height: 100vh;
   margin: 0 auto;
   padding-left: 20px;
@@ -26,12 +26,12 @@ const ContentContainer = styled('div')`
   }
 `
 
-const Content = styled('section')`
+const Content = styled.section`
   flex: 1;
   display: flex;
 `
 
-const Columns = styled('div')`
+const Columns = styled.div`
   flex: 1;
   display: flex;
   flex-wrap: wrap;
@@ -41,7 +41,7 @@ const Columns = styled('div')`
   }
 `
 
-const MainColumn = styled('main')`
+const MainColumn = styled.main`
   width: 100%;
   order: 2;
 
@@ -62,7 +62,7 @@ const MainColumn = styled('main')`
   }
 `
 
-const Sidebar = styled('aside')`
+const Sidebar = styled.aside`
   order: 1;
   padding: 1em;
   margin: 0 0 2em 0;

@@ -6,7 +6,7 @@ jobs:
         - gh-pages
 
     docker:
-      - image: circleci/node:10.10
+      - image: circleci/node:12.4
 
     working_directory: ~/loige.co
 

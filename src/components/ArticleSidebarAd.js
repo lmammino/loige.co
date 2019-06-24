@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 
 import bookCover from './images/book-cover-nodejs-design-patterns/200.jpg'
 
-const ArticleSidebarAdContainer = styled('a')`
+const ArticleSidebarAdContainer = styled.a`
   background: #ffffcd;
   padding: 0.5em;
   font-size: 12px;
@@ -19,13 +19,13 @@ const ArticleSidebarAdContainer = styled('a')`
   }
 `
 
-const Columns = styled('span')`
+const Columns = styled.span`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 `
 
-const Column = styled('span')`
+const Column = styled.span`
   width: 50%;
   padding: 0 0 0 1em;
   display: block;

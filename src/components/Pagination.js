@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import styled, { css } from 'react-emotion'
+import styled from '@emotion/styled'
+import { css, ClassNames } from '@emotion/core'
 import { Link } from 'gatsby'
 
-const PaginationContainer = styled('nav')`
+const PaginationContainer = styled.nav`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -14,7 +15,7 @@ const PaginationContainer = styled('nav')`
   text-align: center;
 `
 
-const PageLabel = styled('span')`
+const PageLabel = styled.span`
   order: 1;
   width: 100%;
   padding: 16px 0;
@@ -45,7 +46,7 @@ const pageLink = css`
   }
 `
 
-const Spacer = styled('div')`
+const Spacer = styled.div`
   display: none;
 
   &.previous {
@@ -84,25 +85,29 @@ class Pagination extends Component {
     const previousLabel = this.props.previousLabel || '← Newer Posts'
     const nextLabel = this.props.nextLabel || 'Older Posts →'
     return (
-      <PaginationContainer>
-        {previous ? (
-          <Link className={`${pageLink} ${pageLinkPrev}`} to={previous.href}>
-            {previousLabel}
-          </Link>
-        ) : (
-          <Spacer className="previous" />
-        )}
-        <PageLabel>
-          Page {currentPage} of {totalPages}
-        </PageLabel>
-        {next ? (
-          <Link className={`${pageLink} ${pageLinkNext}`} to={next.href}>
-            {nextLabel}
-          </Link>
-        ) : (
-          <Spacer className="next" />
-        )}
-      </PaginationContainer>
+      <ClassNames>
+        { ({ css, cx }) => (
+          <PaginationContainer>
+            {previous ? (
+              <Link className={`${css(pageLink)} ${css(pageLinkPrev)}`} to={previous.href}>
+                {previousLabel}
+              </Link>
+            ) : (
+              <Spacer className="previous" />
+            )}
+            <PageLabel>
+              Page {currentPage} of {totalPages}
+            </PageLabel>
+            {next ? (
+              <Link className={`${css(pageLink)} ${css(pageLinkNext)}`} to={next.href}>
+                {nextLabel}
+              </Link>
+            ) : (
+              <Spacer className="next" />
+            )}
+          </PaginationContainer>
+        ) }
+      </ClassNames>
     )
   }
 }

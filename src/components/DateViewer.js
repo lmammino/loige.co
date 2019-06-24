@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import styled, { css } from 'react-emotion'
+import styled from '@emotion/styled'
+import { css, ClassNames } from '@emotion/core'
 
 import CalendarAltRegularIcon from './icons/CalendarAltRegular'
 
@@ -7,7 +8,7 @@ const calendarAltRegularStyle = css`
   margin: 0 0.25em 0 0;
 `
 
-const CalendarViewContainer = styled('span')`
+const CalendarViewContainer = styled.span`
   vertical-align: middle;
   font-size: inherit;
   margin: 0 0.5em;
@@ -22,10 +23,14 @@ class DateViewer extends Component {
   render () {
     const { date, style, className } = this.props
     return (
-      <CalendarViewContainer style={style} className={className}>
-        <CalendarAltRegularIcon className={calendarAltRegularStyle} />
-        <span>{date}</span>
-      </CalendarViewContainer>
+      <ClassNames>
+        { ({ css, cx }) => (
+          <CalendarViewContainer style={style} className={css(className)}>
+            <CalendarAltRegularIcon className={css(calendarAltRegularStyle)} />
+            <span>{date}</span>
+          </CalendarViewContainer>
+        ) }
+      </ClassNames>
     )
   }
 }

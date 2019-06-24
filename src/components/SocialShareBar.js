@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 
 import TwitterIcon from './icons/Twitter'
 import FacebookIcon from './icons/Facebook'
@@ -7,7 +7,7 @@ import LinkedinIcon from './icons/LinkedinAlternate'
 import PinterestIcon from './icons/Pinterest'
 import EmailIcon from './icons/Email'
 
-const SocialShareBarContainer = styled('ul')`
+const SocialShareBarContainer = styled.ul`
   list-style: none;
   font-size: 30px;
   padding: 0.2em 0;

@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 import { Link } from 'gatsby'
 
 import EyeRegularIcon from './icons/EyeRegular'
 
-const PrevNextPostsContainer = styled('ul')`
+const PrevNextPostsContainer = styled.ul`
   display: flex;
   flex-wrap: wrap;
   list-style: none;
@@ -23,7 +23,7 @@ const PrevNextPostsContainer = styled('ul')`
   }
 `
 
-const Item = styled('li')`
+const Item = styled.li`
   width: 100%;
   text-align: center;
   min-height: 100%;
@@ -62,7 +62,7 @@ const Item = styled('li')`
   }
 `
 
-const CallToAction = styled('span')`
+const CallToAction = styled.span`
   display: inline-block;
   padding: 4px 10px 5px;
   text-transform: uppercase;

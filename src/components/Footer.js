@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 
 import GithubIcon from './icons/Github'
 import TwitterIcon from './icons/Twitter'
 import LinkedinIcon from './icons/Linkedin'
 
-const FooterContainer = styled('footer')`
+const FooterContainer = styled.footer`
   background-color: #20232a;
   color: #ffffff;
   padding-top: 30px;
@@ -13,7 +13,7 @@ const FooterContainer = styled('footer')`
   position: relative;
 `
 
-const FooterBorder = styled('span')`
+const FooterBorder = styled.span`
   position: absolute;
   width: 100%;
   top: 0;
@@ -26,7 +26,7 @@ const FooterBorder = styled('span')`
   background: linear-gradient(90deg, #46c9e5, #d26ac2);
 `
 
-const FooterWrapper = styled('div')`
+const FooterWrapper = styled.div`
   padding-left: 20px;
   padding-right: 20px;
   max-width: 1260px;
@@ -38,20 +38,20 @@ const FooterWrapper = styled('div')`
   }
 `
 
-const FooterColumns = styled('div')`
+const FooterColumns = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: flex-start;
 `
 
-const FooterColumn = styled('div')`
+const FooterColumn = styled.div`
   flex: 1 auto;
   margin-bottom: 1em;
   padding-right: 1em;
 `
 
-const FooterFullColumn = styled('div')`
+const FooterFullColumn = styled.div`
   flex: 1 auto;
   margin-bottom: 1em;
   padding-right: 1em;
@@ -62,12 +62,12 @@ const FooterFullColumn = styled('div')`
   }
 `
 
-const List = styled('div')`
+const List = styled.div`
   display: inline-flex;
   flex-direction: column;
 `
 
-const ListTitle = styled('div')`
+const ListTitle = styled.div`
   color: #d26ac2;
   font-size: 14px;
   font-weight: bold;
@@ -76,7 +76,7 @@ const ListTitle = styled('div')`
   letter-spacing: 0.08em;
 `
 
-const ListLink = styled('a')`
+const ListLink = styled.a`
   color: inherit;
   line-height: 2;
   text-decoration: none;
@@ -86,7 +86,7 @@ const ListLink = styled('a')`
   }
 `
 
-const Copyright = styled('p')`
+const Copyright = styled.p`
   font-size: 0.8em;
   padding: 4px 0 0 0;
   color: #ccc;
@@ -103,7 +103,7 @@ const Copyright = styled('p')`
   }
 `
 
-const Heart = styled('span')`
+const Heart = styled.span`
   color: #d26ac2;
 
   &:hover {
