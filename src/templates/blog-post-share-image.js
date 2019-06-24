@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import styled, { injectGlobal } from '@emotion/styled'
+import styled from '@emotion/styled'
 import { graphql } from 'gatsby'
 
 import Logo from '../components/Logo'
