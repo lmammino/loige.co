@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 import { graphql, Link } from 'gatsby'
 import { get } from 'lodash'
 
@@ -12,7 +12,7 @@ import VideoSolidIcon from '../components/icons/VideoSolid'
 import SpeakingMap from '../components/SpeakingMap'
 import ArticleContainer from '../components/ArticleContainer'
 
-const Content = styled('div')`
+const Content = styled.div`
   margin: 2em auto;
   padding-left: 20px;
   padding-right: 20px;

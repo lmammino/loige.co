@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { css } from 'react-emotion'
+import { css, ClassNames } from '@emotion/core'
 import { Link } from 'gatsby'
 
 import logo from './images/luciano8bit.svg'
@@ -32,16 +32,22 @@ const logoTextStyle = css`
 
 class Logo extends Component {
   render () {
+    const logoClassNames = [logoStyle]
+    if (this.props.className) {
+      logoClassNames.push(this.props.className)
+    }
     return (
-      <Link
-        to="/"
-        className={`${logoStyle}${
-          this.props.className ? ` ${this.props.className}` : ''
-        }`}
-      >
-        <img className={logoImageStyle} height="60px" src={logo} alt="Loige" />
-        <span className={logoTextStyle}>Loige</span>
-      </Link>
+      <ClassNames>
+        { ({ css, cx }) => (
+          <Link
+            to="/"
+            className={css(logoClassNames)}
+          >
+            <img className={css(logoImageStyle)} height="60px" src={logo} alt="Loige" />
+            <span className={css(logoTextStyle)}>Loige</span>
+          </Link>
+        )}
+      </ClassNames>
     )
   }
 }

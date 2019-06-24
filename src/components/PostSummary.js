@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 import GitHubSlugger from 'github-slugger'
 
-const PostSummaryContainer = styled('div')`
+const PostSummaryContainer = styled.div`
   ol {
     color: #6d6d6d;
     padding: 0 0 0 2em;
@@ -71,13 +71,13 @@ class PostSummary extends Component {
           {nestedHeadings.map(({ value, depth, children }) => {
             return (
               <li className={`depth-${depth}`} key={value}>
-                <a href={`#${slugger.slug(value)}`}>{value}</a>
+                <a href={`#${slugger.slug(value)}`} dangerouslySetInnerHTML={{ __html: value }}></a>
                 {children.length > 0 && (
                   <ol>
                     {children.map(({ value, depth }) => {
                       return (
                         <li className={`depth-${depth}`} key={value}>
-                          <a href={`#${slugger.slug(value)}`}>{value}</a>
+                          <a href={`#${slugger.slug(value)}`} dangerouslySetInnerHTML={{ __html: value }}></a>
                         </li>
                       )
                     })}

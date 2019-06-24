@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import styled, { css } from 'react-emotion'
+import styled from '@emotion/styled'
+import { css, ClassNames } from '@emotion/core'
 import { Link } from 'gatsby'
 
 const navLinkStyle = css`
@@ -25,7 +26,7 @@ const navLinkActiveStyle = css`
   position: relative;
 `
 
-const LinkUnderline = styled('span')`
+const LinkUnderline = styled.span`
   position: absolute;
   bottom: -1px;
   height: 4px;
@@ -39,13 +40,17 @@ class NavLink extends Component {
   render () {
     const { to, active, children } = this.props
     return (
-      <Link
-        className={`${navLinkStyle}${active ? ` ${navLinkActiveStyle}` : ''}`}
-        to={to}
-      >
-        {active && <LinkUnderline />}
-        {children}
-      </Link>
+      <ClassNames>
+        {({ css, cx }) => (
+          <Link
+            className={`${css(navLinkStyle)}${active ? ` ${css(navLinkActiveStyle)}` : ''}`}
+            to={to}
+          >
+            {active && <LinkUnderline />}
+            {children}
+          </Link>
+        )}
+      </ClassNames>
     )
   }
 }

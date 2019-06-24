@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 import { Link } from 'gatsby'
 
 import TagsList from './TagsList'
@@ -7,7 +7,7 @@ import DateViewer from './DateViewer'
 import ReadingTime from './ReadingTime'
 import profilePic from './images/profile-pic.jpg'
 
-const Post = styled('article')`
+const Post = styled.article`
   margin: 2rem 0 1rem;
   max-width: 820px;
 
@@ -41,7 +41,7 @@ const Post = styled('article')`
   }
 `
 
-const Title = styled('h3')`
+const Title = styled.h3`
   font-size: 1.6rem;
   font-weight: bolder;
   letter-spacing: -1px;
@@ -51,7 +51,7 @@ const Title = styled('h3')`
   text-rendering: geometricPrecision;
 `
 
-const Excerpt = styled('p')`
+const Excerpt = styled.p`
   margin: 0;
   font-size: 1em;
   line-height: 1.7em;
@@ -61,7 +61,7 @@ const Excerpt = styled('p')`
   max-width: 820px;
 `
 
-const Footer = styled('footer')`
+const Footer = styled.footer`
   margin: 0.75rem 0 0 0;
   font-size: 1rem;
   line-height: 1.5rem;
@@ -69,7 +69,7 @@ const Footer = styled('footer')`
   vertical-align: middle;
 `
 
-const ProfilePic = styled('img')`
+const ProfilePic = styled.img`
   width: 24px;
   height: 24px;
   float: left;
@@ -77,7 +77,7 @@ const ProfilePic = styled('img')`
   border-radius: 100%;
 `
 
-const ReadThePost = styled('p')`
+const ReadThePost = styled.p`
   text-align: center;
   margin-top: 2rem !important;
   width: auto;

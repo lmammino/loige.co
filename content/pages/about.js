@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 import { get } from 'lodash'
 
 import SEO from '../../src/components/SEO'
@@ -122,17 +122,18 @@ const AboutPage = props => {
           </p>
           <p>This has been my personal tag-line for a while:</p>
           <blockquote>
-            Web developer, entrepreneur, fighter, butterfly maker!
+            Cloud developer, entrepreneur, fighter, butterfly maker!
           </blockquote>
           <p>
-            Yep, I am a <strong>FullStack web developer</strong>, even though I
-            am transitioning more and more to Solution Architect / Cloud
-            Architect roles.
+            Yep, I am a <strong>FullStack web developer</strong> working on cloud
+            products. I enjoy coding (a lot) even though, lately,
+            I am spending more and more time working on systems and cloud
+            architectures.
           </p>
           <p>
-            I <strong>was</strong> an entrepreneur: during the first part of my
-            career, I co-founded several companies, a couple of web and software
-            agencies and even a startup,{' '}
+            I <del>am</del> <strong>was</strong> an entrepreneur: during
+            the first part of my career, I co-founded several companies,
+            a couple of web and software agencies and even a startup,{' '}
             <a href="https://sbaam.com">Sbaam.com</a>, that aimed to disrupt the
             emerging fashion brands industry. I can&apos;t say any of these
             businesses was seriously successful, but I definitely learned a lot

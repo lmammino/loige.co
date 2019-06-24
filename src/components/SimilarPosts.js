@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 import { Link } from 'gatsby'
 
-const SimilarPostsList = styled('ul')`
+const SimilarPostsList = styled.ul`
   color: #6d6d6d;
   list-style: outside;
   padding: 0 0 0 1.25em;

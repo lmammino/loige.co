@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from 'react'
-import styled, { injectGlobal } from 'react-emotion'
+import styled from '@emotion/styled'
 import { graphql } from 'gatsby'
 
 import Logo from '../components/Logo'
 import ReadingTime from '../components/ReadingTime'
 
-const Preview = styled('div')`
+const Preview = styled.div`
   box-sizing: border-box;
   background-size: cover;
   background-position: center;

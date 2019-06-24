@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 import { graphql } from 'gatsby'
 import get from 'lodash/get'
 
@@ -13,7 +13,7 @@ import SocialShareBar from '../components/SocialShareBar'
 import SimilarPosts from '../components/SimilarPosts'
 import PrevNextPosts from '../components/PrevNextPosts'
 
-const ContentContainer = styled('div')`
+const ContentContainer = styled.div`
   min-height: 100vh;
   margin: 0 auto;
   padding-left: 20px;
@@ -27,12 +27,12 @@ const ContentContainer = styled('div')`
   }
 `
 
-const Content = styled('section')`
+const Content = styled.section`
   flex: 1;
   display: flex;
 `
 
-const Columns = styled('div')`
+const Columns = styled.div`
   flex: 1;
 
   @media (min-width: 780px) {
@@ -40,12 +40,12 @@ const Columns = styled('div')`
   }
 `
 
-const MainColumn = styled('main')`
+const MainColumn = styled.main`
   flex: 3;
   width: 100%;
 `
 
-const Sidebar = styled('aside')`
+const Sidebar = styled.aside`
   flex: 1;
   background: #f7f7f7;
   padding: 1em;

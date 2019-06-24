@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
-import styled, { css } from 'react-emotion'
+import styled from '@emotion/styled'
+import { css, ClassNames } from '@emotion/core'
 import { Link } from 'gatsby'
 
 import TagsSolidIcon from './icons/TagsSolid'
@@ -14,7 +15,7 @@ const slugify = text =>
     .replace(/^-+/, '') // Trim - from start of text
     .replace(/-+$/, '') // Trim - from end of text
 
-const TagsContainer = styled('span')`
+const TagsContainer = styled.span`
   vertical-align: middle;
   margin: 0 0.5em 0 1em;
   display: inline-block;
@@ -31,7 +32,7 @@ const tagsSolidIconStyle = css`
   margin: 0 0.25em 0 0;
 `
 
-const TagsSeparator = styled('span')`
+const TagsSeparator = styled.span`
   vertical-align: text-bottom;
 `
 
@@ -39,17 +40,21 @@ class TagsList extends Component {
   render () {
     const { tags } = this.props
     return (
-      <TagsContainer {...this.props}>
-        <TagsSolidIcon className={tagsSolidIconStyle} />
-        {tags.map((tag, i) => {
-          return (
-            <Fragment key={tag}>
-              <Link to={`/tag/${slugify(tag)}`}>#{tag}</Link>
-              {i < tags.length - 1 ? <TagsSeparator>, </TagsSeparator> : ''}
-            </Fragment>
-          )
-        })}
-      </TagsContainer>
+      <ClassNames>
+        { ({ css, cx }) => (
+          <TagsContainer {...this.props}>
+            <TagsSolidIcon className={css(tagsSolidIconStyle)} />
+            {tags.map((tag, i) => {
+              return (
+                <Fragment key={tag}>
+                  <Link to={`/tag/${slugify(tag)}`}>#{tag}</Link>
+                  {i < tags.length - 1 ? <TagsSeparator>, </TagsSeparator> : ''}
+                </Fragment>
+              )
+            })}
+          </TagsContainer>
+        )}
+      </ClassNames>
     )
   }
 }

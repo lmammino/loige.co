@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 
 const leafletJSSrc = '/resources/leaflet/leaflet.js'
 const leafletCSSSrc = '/resources/leaflet/leaflet.css'
 
-const MapContainer = styled('div')`
+const MapContainer = styled.div`
   width: 100%;
   height: 30vh;
   min-height: 300px;
