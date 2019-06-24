@@ -62,7 +62,6 @@ class PostSummary extends Component {
         acc.push(curr)
         return acc
       }, [])
-    console.log(nestedHeadings)
     const slugger = GitHubSlugger()
 
     return (

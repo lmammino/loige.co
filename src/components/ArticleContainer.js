@@ -32,7 +32,7 @@ const ArticleContainer = styled.article`
     }
   }
 
-  & > p:first-child {
+  & > p:first-of-type {
     font-size: 18px;
     font-weight: 300;
     color: #6d6d6d;
@@ -90,7 +90,7 @@ const ArticleContainer = styled.article`
     line-height: 1.2;
     font-size: 20px;
 
-    &:first-child {
+    &:first-of-type {
       border-top: 0;
       margin-top: 0;
       padding-top: 0;

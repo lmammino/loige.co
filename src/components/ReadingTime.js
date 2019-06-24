@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import styled from '@emotion/styled'
-import { css } from '@emotion/core'
+import { css, ClassNames } from '@emotion/core'
 
 import EyeRegularIcon from './icons/EyeRegular'
 
@@ -24,8 +24,14 @@ class ReadingTime extends Component {
     const { time } = this.props
     return (
       <ReadingTimeContainer title={`${time} minute${time > 1 ? 's' : ''} read`}>
-        <EyeRegularIcon className={eyeRegularStyle} />
-        <span>{time} min</span>
+        <ClassNames>
+          { ({ css, cx }) => (
+            <Fragment>
+              <EyeRegularIcon className={css(eyeRegularStyle)} />
+              <span>{time} min</span>
+            </Fragment>
+          )}
+        </ClassNames>
       </ReadingTimeContainer>
     )
   }

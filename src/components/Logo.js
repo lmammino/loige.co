@@ -32,14 +32,16 @@ const logoTextStyle = css`
 
 class Logo extends Component {
   render () {
+    const logoClassNames = [logoStyle]
+    if (this.props.className) {
+      logoClassNames.push(this.props.className)
+    }
     return (
       <ClassNames>
         { ({ css, cx }) => (
           <Link
             to="/"
-            className={`${css(logoStyle)}${
-              this.props.className ? ` ${this.props.className}` : ''
-            }`}
+            className={css(logoClassNames)}
           >
             <img className={css(logoImageStyle)} height="60px" src={logo} alt="Loige" />
             <span className={css(logoTextStyle)}>Loige</span>
