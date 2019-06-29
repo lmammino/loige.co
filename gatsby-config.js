@@ -1,10 +1,10 @@
 module.exports = {
   siteMetadata: {
     title:
-      'Luciano Mammino "Loige" - Web developer, entrepreneur, fighter, butterfly maker!',
+      'Luciano Mammino "Loige" - Cloud developer, entrepreneur, fighter, butterfly maker!',
     author: 'Luciano Mammino',
     description:
-      'The website of Luciano Mammino a.k.a. Loige, Web developer, entrepreneur, fighter, butterfly maker',
+      'The website of Luciano Mammino a.k.a. Loige: Cloud developer, entrepreneur, fighter, butterfly maker',
     siteUrl: 'https://loige.co/',
     defaultImage: 'https://loige.co/page-image-fb.jpg',
     twitterProfile: 'loige',
@@ -90,7 +90,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Luciano Mammino "Loige" - Web developer, entrepreneur, fighter, butterfly maker!`,
+        name: `Luciano Mammino "Loige" - Cloud developer, entrepreneur, fighter, butterfly maker!`,
         short_name: `Loige.co`,
         start_url: `/`,
         background_color: `#ffffff`,

@@ -121,7 +121,7 @@ class BlogIndex extends Component {
         />
         <Hero className="bottomRightBg">
           <h1>Luciano Mammino</h1>
-          <h2>Web developer, entrepreneur, fighter, butterfly maker!</h2>
+          <h2>Cloud developer, entrepreneur, fighter, butterfly maker!</h2>
         </Hero>
         <ContentContainer>
           <Content>
