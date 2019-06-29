@@ -125,7 +125,7 @@ const AboutPage = props => {
             Cloud developer, entrepreneur, fighter, butterfly maker!
           </blockquote>
           <p>
-            Yep, I am a <strong>FullStack web developer</strong> working on cloud
+            Yep, I am a <strong>Full stack web developer</strong> working on cloud
             products. I enjoy coding (a lot) even though, lately,
             I am spending more and more time working on systems and cloud
             architectures.

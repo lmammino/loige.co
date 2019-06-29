@@ -57,8 +57,8 @@ class Hello extends Component {
           <h3>Hello :)</h3>
         </span>
         <p>
-          I am Luciano a.k.a. <em>loige</em>, a passionate Web Developer
-          currently working as Solution Architect at Vectra, Dublin. You can
+          I am Luciano a.k.a. <em>loige</em>, a passionate Cloud Developer
+          currently working as Cloud Architect at Vectra, Dublin. You can
           read some of my posts in this page, or{' '}
           <Link to="/about">know more about myself and my side projects</Link>{' '}
           or about my <Link to="/speaking">talks and workshops</Link>.
