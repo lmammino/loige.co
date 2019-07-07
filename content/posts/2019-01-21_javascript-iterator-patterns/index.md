@@ -56,7 +56,7 @@ of recursion 😆), but the idea of generating a sequence of values on demand
 In case you have never seen the Fibonacci sequence before (or you don't remember
 the exact definition), here is how it looks like:
 
-```plain
+```
 1 1 2 3 5 8 13 21 ...
 ```
 

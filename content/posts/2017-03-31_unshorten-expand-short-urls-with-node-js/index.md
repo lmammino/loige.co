@@ -31,7 +31,7 @@ In this article, we are going to see how short URLs work and how we can "expand"
 
 A short URLs is a regular URL that most of the time results very short by following a very simple format:
 
-```plain
+```
 http://<domain>/<id>
 ```
 
@@ -41,7 +41,7 @@ What happens behind the scene of an URL shortener service is that there is a big
 
 A URL shortener service lookup table might look like the following:
 
-```plain
+```
 +------------+------------+---------------------------------------+
 | domain     | id         | url                                   |
 +------------+------------+---------------------------------------+

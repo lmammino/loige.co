@@ -18,8 +18,8 @@ event_location_gps: "51.518551,-0.08611399999995228"
 event_city: "London"
 event_days: 'July 04-05 2019'
 is_workshop: false
-slides_link: null
-video_link: null
+slides_link: "https://loige.link/tera-inf"
+video_link: "https://skillsmatter.com/skillscasts/13705-processing-terabytes-of-data-every-day-and-sleeping-at-night"
 with:
   - name: Domagoj Katavic
     link: 'https://twitter.com/katavic_d'

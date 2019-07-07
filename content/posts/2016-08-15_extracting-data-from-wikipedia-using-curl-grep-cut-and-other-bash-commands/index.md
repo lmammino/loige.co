@@ -90,7 +90,7 @@ As you can see every athlete is referenced in the code using the _template_ `fla
 
 So we can easily extract all the athletes names with a regex like the following:
 
-```regexp
+```
 flagIOCmedalist\|\[\[(.+)\]\]
 ```
 
@@ -114,7 +114,7 @@ With the `grep` we are using the options `-Eoi` which allow us to:
 
 The previous command is going to output something like this:
 
-```nohighlight
+```
 flagIOCmedalist|[[Thierry Rey]]
 flagIOCmedalist|[[José Rodríguez (judoka)|José Rodríguez]]
 flagIOCmedalist|[[Tibor Kincses (judoka)|Tibor Kincses]]
@@ -401,7 +401,7 @@ XPath (XML Path Language) is a query language for selecting nodes from an XML do
 
 By downloading the HTML of the Wikipedia page and applying an XPath selector like `//table//tr/td[2]/a[1]/text()` we should be able to extract all the gold medalist in the tables. In the same fashion we can build a slightly more complex solution by combining more selectors:
 
-```xpath
+```
 //table//tr/td[2]/a[1]/text()|//table//tr/td[3]/a[1]/text()|//table//tr/td[4]/a[1]/text()
 ```
 
