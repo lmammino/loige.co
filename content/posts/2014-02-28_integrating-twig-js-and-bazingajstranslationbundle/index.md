@@ -46,7 +46,7 @@ The problem laid in a subtle differece on how the BazingaJsTranslationBundle and
 
 Suppose we have the string `hello %name%`. With twig we expect to do something like:
 
-```jinja+html
+```html
 {{ 'hello %name%'|trans({ '%name%' : 'Alice' }) }}
 ```
 

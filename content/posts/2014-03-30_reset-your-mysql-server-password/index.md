@@ -57,7 +57,7 @@ The last argument (`mysql`) specifies you want to access the MySql internal data
 
 You're using the MySql shell now. Just run:
 
-```mysql
+```sql
 update user set password=PASSWORD("NEW-ROOT-PASSWORD") where User="root";
 exit;
 ```
