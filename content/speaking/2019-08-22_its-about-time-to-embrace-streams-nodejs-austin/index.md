@@ -3,7 +3,7 @@ uuid: f9f920c5-04ce-463f-83e0-3839b5d77b2c
 layout: speaking
 title: 'It’s about time to embrace Streams'
 slug: 'its-about-time-to-embrace-streams-nodejs-austin'
-date: 2019-09-22T20:30:00.000Z
+date: 2019-08-22T20:30:00.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: null
@@ -14,7 +14,7 @@ meta_description: null
 event_name: 'Austin Node.js Meetup'
 event_link: 'https://www.meetup.com/austinnodejs/events/hvklzqyzlbcc/'
 event_location: 'Proof Technologies, 200 E 6th St #310 · Austin, TX'
-event_location_gps: '30.267874,-97.741120'
+event_location_gps: '30.267907,-97.741207'
 event_city: 'Austin, TX'
 event_days: 'August 22 2019'
 is_workshop: false
