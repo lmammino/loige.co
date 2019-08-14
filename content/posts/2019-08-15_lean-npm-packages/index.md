@@ -23,7 +23,7 @@ tags:
 
 many tricks to keep npm packages small
 
-npmignore
+.npmignore vs `files`
 
 remove images and docs
 
