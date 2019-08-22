@@ -18,7 +18,7 @@ event_location_gps: '30.267907,-97.741207'
 event_city: 'Austin, TX'
 event_days: 'August 22 2019'
 is_workshop: false
-slides_link: null
+slides_link: "https://loige.link/streams-austin"
 video_link: null
 with: []
 ---
