@@ -21,35 +21,53 @@ tags:
   - npm
 ---
 
-Every developer in this planet knows how modular Node.js and the JavaScript ecosystem in general have become in the last few years.
-This is possibly due to the great job that package management systems and registries like [bower](https://bower.io/) (discontinued) and [npm](https://npm.com) carried over. In general, this is also due to the "many small modules" philosophy that has been popularized within the ecosystem.
+Every developer in this planet knows how modular Node.js and the JavaScript ecosystem have become.
+This is probably due to the great job that package management systems and registries like [bower](https://bower.io/) (discontinued) and [npm](https://npm.com) carried over in the last few years. I personally believe that this is also a consequence of the "many small modules" philosophy that has been popularized within the ecosystem.
 
 This is great, but all that glitters is not gold... Look, for instance, at this picture for a second:
 
 ![node_modules heaviest objects in the universe](./node_modules_heaviest_objects_in_the_universe.jpg)
 
-Yeah you have probably seen this picture already and it's probably not funny anymore... well, in any case, that's a good summary right there on how this "many small modules" idea got a little bit out of hand within the JavaScript ecosystem.
+Yeah you have probably seen this picture before and it's probably not funny anymore... Anyway, this is a good summary right there on how this "many small modules" idea got a little bit out of hand within the JavaScript ecosystem.
 
-Some people like to make fun of this issue or they just complain about it. In this article, I don't want to do any of those things. I'd rather prefer to be a little bit more constructive and try to share some simple techniques to keep your NPM modules as lean as possible, so that other developers will save bandwidth and time when pulling your modules!
+Every time you run `npm install` you basically start to get so many files that you might feel like you are downloading the entire internet!
+
+There are even tools that try to scout for `node_modules` folders in your system and get rid of them (E.g. [`wipe-modules`](https://www.npmjs.com/package/wipe-modules)) and people getting their backups polluted by the ([ref]())
+
+Some people like to make fun of this issue or they just complain about it. In this article, I don't want to do any of those things. I'd rather prefer to be a little bit more constructive and try to share some simple techniques to keep your NPM modules as lean as possible, so that other developers will save bandwidth and time when pulling your modules from NPM!
 
 
-## Git vs NPM
+## Repository vs Registry
 
-In some languages like Go or PHP, what you have in a module git repository is exactly what you get through the package manager when trying to install the module. This is because the code you download through the package manager is actually coming straight from git (or a proxy). In this cases the structure of your repository is fundamentally tied to the file structure of your module.
+In some languages like Go or PHP, what you have in a module repository is exactly what you get through the package manager when trying to install the module. This is because the code you download through the package manager is actually coming straight from the repository (or from a proxy that keeps a copy of the repository). In this cases the structure of your repository is fundamentally tied to the file structure of your module: what you get by installing a module is pretty much what you would get by cloning the repository.
 
 NPM doesn't work this way. In fact, NPM allows you to selectively push files into the registry, so you might end up with a very different file structure compared to what you have in your git repository.
 
 While this interesting property of the system have caused some security issues in the past (see the [event-stream module incident](https://snyk.io/blog/a-post-mortem-of-the-malicious-event-stream-backdoor/) if you are curious), it also offers us an opportunity to be very selective with what we publish and keep the module lean.
 
-This is especially important if you are using Typescript or Babel, so that your "final" version of your module code is actually the result of a compilation/transpilation process. In such cases, you don't need to publish the entire codebase on NPM as your users will be using only the production version of your code.
+This is especially important if you "build" your JavaScript code (e.g. using Typescript, Babel or a module bundler), so that the "distribution" (*dist*) version of your module is the result of a compilation/transpilation/bundling process. In such cases, you don't need to publish the entire codebase on NPM as your users will be using only the *dist* version of your code. The same goes for tests, documentation, images and other files that won't be used by the users of your module in their codebase, you should keep them only in your repository and avoid to publish them in the registry.
 
-The same goes for tests, documentation, images and other files that won't be used by the users of your module in their codebase.
+Conversely, you probably don't want to keep *dist* code in your repository. This code can easily be regenerated by the build toolchain when necessary and there's no point in tracking changes on the *dist* files when what you are really changing over time is the source code. In git you can use `.gitignore` to make sure *dist* files are kept out of the repository.
+
+In short, registries are for production-ready code (*dist*) while repositories are for development code (*src*).
 
 In the rest of this article we will see some ways to configure an NPM package so that all the unnecessary files will be excluded from the registry.
 
-...
+## NPM publish
 
-many tricks to keep npm packages small
+With the NPM command line, [`npm publish`](https://docs.npmjs.com/cli/publish) is the de facto way of publishing new modules (or new versions of a module) into the NPM registry.
+
+A NPM module is nothing else than a folder with a valid `package.json` file in it. It doesn't have to be a git repository.
+
+By default `npm publish` will publish all the files in the package directory (including subfolders recursively).
+
+So the first thing to be careful is to make sure that you don't have sensible files like passwords, tokens or other sensible information in your project folder. It's generally a good idea to keep those away from the module folder, just in case...
+
+## .gitignore and .npmignore files
+
+included if no local .gitignore or .npmignore file exists
+
+## the files property
 
 .npmignore vs `files`
 
@@ -61,7 +79,21 @@ npm pack for testing
 
 have an example of library
 
+## .npmignore vs the files property
+
+...
+
+## an example
+
+...
+
 
 ## Conclusion
 
+in summary ...
+
 We are not going to solve the `node_modules` drama, but at least we can do our part to make it a little bit more bearable.
+
+I'll see you in the next article. Until then, keep your NPM modules lean! :)
+
+CIAO 👋
