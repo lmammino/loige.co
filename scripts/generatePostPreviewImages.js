@@ -1,7 +1,7 @@
 const { readFile, existsSync } = require('fs')
 const { join, dirname } = require('path')
 const glob = require('glob')
-const yaml = require('yaml').default
+const yaml = require('yaml')
 const puppeteer = require('puppeteer')
 
 const baseUrl = process.argv[2] || 'http://localhost:8000/'
