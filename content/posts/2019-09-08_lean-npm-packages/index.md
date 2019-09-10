@@ -108,7 +108,7 @@ In those cases you can create a more specific file called `.npmignore` (which su
 
 This means that there's no inheritance, the two files are totally independent. If you want a pattern to exclude files for both your repository and your registry, you will have to put the pattern in both configuration files.
 
-One interesting lesser know (and rarely used) tip is that you can put `.npmignore` files also in subdirectories. The patterns specified in these files will apply only to the subtree of directories where the `.npmignore` is found.
+One interesting lesser known (and rarely used) tip is that you can put `.npmignore` files also in subdirectories. The patterns specified in these files will apply only to the subtree of directories where the `.npmignore` is found.
 
 
 ## The `files` field
