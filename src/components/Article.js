@@ -1,50 +1,13 @@
 import React, { Component, Fragment } from 'react'
 import styled from '@emotion/styled'
 import { Link } from 'gatsby'
-import {
-  DiscussionEmbed as DiscussionEmbedOriginal,
-  CommentCount as CommentCountOriginal
-} from 'disqus-react'
+import { DiscussionEmbed, CommentCount } from 'disqus-react'
 
 import ArticleContainer from './ArticleContainer'
 import CommentsIcon from './icons/CommentsSolid'
 import GitHubIcon from './icons/Github'
 import DateViewer from './DateViewer'
 import TagsList from './TagsList'
-
-// fixes issue with shouldComponentUpdate when not using discussion ids
-// see https://github.com/disqus/disqus-react/pull/15/
-class DiscussionEmbed extends DiscussionEmbedOriginal {
-  shouldComponentUpdate (nextProps) {
-    if (this.props.shortname !== nextProps.shortname) return true
-
-    const nextConfig = nextProps.config
-    const config = this.props.config
-    if (
-      nextConfig.url === config.url &&
-      nextConfig.identifier === config.identifier
-    ) {
-      return false
-    }
-    return true
-  }
-}
-
-class CommentCount extends CommentCountOriginal {
-  shouldComponentUpdate (nextProps) {
-    if (this.props.shortname !== nextProps.shortname) return true
-
-    const nextConfig = nextProps.config
-    const config = this.props.config
-    if (
-      nextConfig.url === config.url &&
-      nextConfig.identifier === config.identifier
-    ) {
-      return false
-    }
-    return true
-  }
-}
 
 const SectionContainer = styled.div`
   margin: 2em 0;
@@ -92,7 +55,8 @@ class Article extends Component {
   render () {
     const { post, site, disqusShortName, githubLink } = this.props
     const disqusConfig = {
-      url: `${site}${post.frontmatter.slug}`,
+      url: `${site}/${post.frontmatter.slug}`,
+      identifier: post.frontmatter.slug,
       title: post.frontmatter.title
     }
 
@@ -104,7 +68,6 @@ class Article extends Component {
           <a href="#comments" title="Read comments">
             <CommentsIcon style={{ margin: '0 .25em 0 1em' }} />
             <CommentCount
-              postId={post.frontmatter.slug}
               shortname={disqusShortName}
               config={disqusConfig}
             >
@@ -141,7 +104,6 @@ class Article extends Component {
             <CommentsIcon style={{ margin: '0 .25em 0 0' }} /> Comments
           </h2>
           <DiscussionEmbed
-            postId={post.frontmatter.slug}
             shortname={disqusShortName}
             config={disqusConfig}
           />
