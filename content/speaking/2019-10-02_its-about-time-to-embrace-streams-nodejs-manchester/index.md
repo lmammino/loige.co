@@ -18,7 +18,7 @@ event_location_gps: '53.4860609,-2.2402689'
 event_city: 'Machester, UK'
 event_days: 'October 2 2019'
 is_workshop: false
-slides_link: null
+slides_link: 'https://loige.link/streams-manc'
 video_link: null
 with: []
 ---
