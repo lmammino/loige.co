@@ -18,7 +18,7 @@ event_location_gps: '53.3429,-6.267600000000016'
 event_city: 'Dublin, Ireland'
 event_days: 'October 1 2019'
 is_workshop: true
-slides_link: null
+slides_link: 'https://loige.link/middy-way'
 video_link: null
 with: []
 ---
