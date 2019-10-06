@@ -25,6 +25,7 @@ const speakingGraphql = `
           with {
             name
             link
+            image
           }
         }
       }

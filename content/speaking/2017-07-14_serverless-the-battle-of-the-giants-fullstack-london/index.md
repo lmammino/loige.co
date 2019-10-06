@@ -22,7 +22,8 @@ slides_link: "https://loige.link/giants"
 video_link: null
 with:
   - name: Christos Matskas
-    link: "https://cmatskas.com/"
+    link: 'https://twitter.com/ChristosMatskas'
+    image: 'http://avatars.io/twitter/ChristosMatskas/small'
 ---
 
 Serverless is becoming the cool new kid on the block taking software development by storm. Enterprises and developers alike are embracing the new paradigm in order to drive innovation, time to marked and solve complex architectural challenges.

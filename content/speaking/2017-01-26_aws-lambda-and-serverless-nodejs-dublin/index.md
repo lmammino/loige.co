@@ -23,6 +23,7 @@ video_link: "https://www.youtube.com/watch?v=90vV327JHho"
 with:
   - name: Padraig O'Brien
     link: "https://twitter.com/Podgeypoos79"
+    image: 'http://avatars.io/twitter/Podgeypoos79/small'
 ---
 
 Planet9energy.com is a new electricity company that is building a sophisticated analytics and energy trading platform for the UK market.
