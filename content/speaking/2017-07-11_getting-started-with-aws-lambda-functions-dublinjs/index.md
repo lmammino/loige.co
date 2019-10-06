@@ -23,6 +23,7 @@ video_link: null
 with:
   - name: Padraig O'Brien
     link: "https://twitter.com/Podgeypoos79"
+    image: 'http://avatars.io/twitter/Podgeypoos79/small'
 ---
 
 Serverless is becoming the cool new kid on the block taking software development by storm. Enterprises and developers alike are embracing the new paradigm in order to drive innovation, time to marked and solve complex architectural challenges.

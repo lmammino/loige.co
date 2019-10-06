@@ -22,7 +22,8 @@ slides_link: "https://speakerdeck.com/lmammino/building-a-serverless-company-on-
 video_link: null
 with:
   - name: Padraig O'Brien
-    link: "https://twitter.com/Podgeypoos79"
+    link: 'https://twitter.com/Podgeypoos79'
+    image: 'http://avatars.io/twitter/Podgeypoos79/small'
 ---
 
 Planet9energy.com is a new electricity company building a sophisticated analytics and energy trading platform for the UK market.
