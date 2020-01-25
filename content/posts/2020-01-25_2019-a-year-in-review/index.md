@@ -4,8 +4,8 @@ layout: post
 title: 2019 - A year in review
 slug: 2019-a-year-in-review
 subtitle: null
-date: 2020-01-20T02:18:58.000Z
-updated: 2019-01-20T02:18:58.000Z
+date: 2020-01-25T14:18:58.000Z
+updated: 2019-01-25T14:18:58.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: "./loige-co-2019-a-year-in-review-luciano-mammino-blog.jpg"
@@ -146,46 +146,49 @@ In 2019, I did not stop doing my small part to contribute to open source. Here's
 - [nodejs/node](https://github.com/nodejs/node): yes, that's the Node.js repository! I did a small contribution, but still cool to have one there.
 
 
-👍 Comparing last year (19) to this year (22) I had a +15.79% repo contributions increase. Another pretty good vanity metric!
+👍 Comparing last year (22) to this year (24) I had a +9% repo contributions increase. Quite stable I'd say!
 
 
 ## Previous years goals
 
-Now it's time to check whether I met [the goals I set last year](https://loige.co/2017-a-year-in-review#expectations-for-next-year):
+Now it's time to check against my [previous year goals](https://loige.co/2018-a-year-in-review#expectations-for-next-year):
 
-- ✅ **MOAR conference talks/workshops (at least 8)**.
-- 😭 **Write at least 8 quality blog posts (excluding this one!)**: did only 5!
-- 😐 **Learn a lot about Security, Machine Learning and networking**: I guess I learned a bit, but probably not as much as I was expecting last year.
-- 😐 **Keep contributing to Fastify**: didn't do a lot.
-- 😐 **Keep working on Middy**: Initially well, lately not so much...
-- ✅ **Move my blog to a static publishing engine and (possibly) use a serverless hosting approach**.
-- 😐 **Learn enough about Rust and build something with it**: studied for a while, but didn't really build anything. I feel I kind of dropped it in favor of GoLang.
-- ✅ **Learn enough about Elastic Search and build something with it**.
-- 😐 **Learn enough about Kubernetes and build something with it**: Again, studied a bit but didn't really do much with it.
-- ✅ **Do stuff with CSS Grids and Flexbox**.
-- ✅ **Keep learning AWS and serverless**.
-- 😐 **More serious and constant BJJ training**: kept training, but I should probably be more serious about it!
+- ✅ **Keep doing conference talks/workshops (at least 8)**.
+- 😭 **Write at least 8 quality blog posts (excluding this one!)**: did only 3...
+- 😐 **Keep learning about Security, Machine Learning and networking**: I guess I did learn something more, but nothing worth a mention...
+- 😐 **Release Middy v1.0**: only the beta for now!
+- 😐 **Publish a new book (or a new edition ✌️)**: ...
+- 😐 **Get proficient in GoLang**: I didn't have many chances at work to keep developing this skill and I ended up investing a bit of my free time on Rust instead...
+- 😐 **Learn a bit about Social Media and digital marketing**: read only few blog posts...
+- 😐 **Keep learning AWS and serverless**: didn't do much serverless, or at least not as much as I expected; I barely kept up with the various Serverless news.
+- 😭 **Get an advanced AWS certification**. Nope...
+- 😭 **Play with new database technologies (e.g. CockroachDB & Clickhouse)**: this was drive by expected work needs that did not go as expected. Totally dropped it.
+- 😐 **Improve FullStack bulletin**: I did some improvements under the hood, but nothing visible outside (as I wanted).
+- 😐 **More serious and constant BJJ training!**: not too bad, but could have been better!
+
+Yep I did underdeliver or fail most o my goals, maybe I should set more realistic and coherent goals for this new year!
 
 
 ## Expectations for next year
 
-Ok, it's finally time to move to the good intentions for the next year! I have been very long already so I'll just sort this part out with a simple unordered checklist, I am already looking forward to seeing, in one year time, how many items will be crossed:
+Ok, let's try to do that then:
 
-- Keep doing conference talks/workshops (at least 8)
-- Write at least 8 quality blog posts (excluding this one!)
-- Keep learning about Security, Machine Learning and networking
-- Release Middy v1.0
+- Get a new job 😛
+- Do only few (invitation based) conferences (3 or 4)
+- Write some good quality blog posts (at least 4)
+- Release Middy v1.0 stable and have a plan for the future of the framework together with the community around it.
 - Publish a new book (or a new edition ✌️)
-- Get proficient in GoLang
-- Learn a bit about Social Media and digital marketing
+- Learn more about Rust
+- Learn more about Kubernetes
 - Keep learning AWS and serverless
 - Get an advanced AWS certification
-- Play with new database technologies (e.g. CockroachDB & Clickhouse)
 - Improve FullStack bulletin
 - More serious and constant BJJ training!
 
-That's all... If you are still reading, either you are a bot 🤖 or you are my new hero 💪!
+That's it for this year review!
 
-In the latter case, I'd really love you to leave a comment here and let me know something about your 2018 and what you envision for your 2019.
+I am not sure what to think if you are still reading... Either you are a stalker or a bot! Or maybe a recruiter, or, hopefully a fellow developer who is trying to make similar career plans.
 
-See you in the next post, CIAO!
+If you classify yourself in the latter category, I would really love to know what was your biggest achievement in 2019 and what do you plan to achieve in 2020. If you want to mention some failure as well, that would be super interesting to hear too, especially if you can turn it into a littre retrospective 🙃
+
+All the best, CIAO!
