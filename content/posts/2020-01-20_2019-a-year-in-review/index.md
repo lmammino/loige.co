@@ -8,7 +8,7 @@ date: 2020-01-20T02:18:58.000Z
 updated: 2019-01-20T02:18:58.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
-header_img: ./loige-co-2019-a-year-in-review-luciano-mammino-blog.jpg
+header_img: "./loige-co-2019-a-year-in-review-luciano-mammino-blog.jpg"
 fb_img: ./2019-a-year-in-review-fb.png
 tw_img: ./2019-a-year-in-review-tw.png
 status: published
@@ -19,221 +19,131 @@ tags:
   - life
 ---
 
-picture https://unsplash.com/photos/imBSxksI7DA
+A little bit later than I expected over the new year, but here we are again, with my usual introspective post to figure out how the hell did the last year went and how to make the best out of the new year.
 
-It is that time of the year when I have to look back at the previous year and see what were my achievements, my failures and set my expectations for my 2019.
-
-**Full disclosure**: I write this type of posts mostly for myself, so I expect this to be
-boring to death and most likely useless for everyone else.
-
-You have been warned, read at your own risk!
+This is going to be boring (again I do this kind of posts selfishly only for myself), so brace yourself if you really want to keep going on this!
 
 
-## Static blog migration
+## Tech Leadership Training
 
-Interesting achievement of the last year is that I finally migrated this blog from Ghost to a static setup using totally free and Open Source tools, which costs me **0.00 $ per month**.
+Possibly the biggest achievement of last year was my contribution as a teacher to the [Tech Leadership Training - Taking you from Developer to CTO](https://www.codemotion.com/learning/tp/tech-leadership-training-program-26) organised by Codemotion and Facebook Developer Circles.
 
-I am using [GatsbyJS](https://www.gatsbyjs.org) as the engine for the static website.
+![Luciano Mammino Tech Leadership Training with Codemation and Facebook Developer Circles](./loige-co-luciano-mammino-tech-leadership-training-codemotion-facebook.jpg)
 
-![GatsbyJS logo](./gatsbyjs-logo.jpg)
+The course is designed to help developers in their journey to become CTO of startups, combining strong interpersonal and influential skills along with an empathic ear.
 
-If you are curious to see my setup (and maybe even correct typos in my articles), I have everything open sourced at
-[lmammino/loige.co](https://github.com/lmammino/loige.co).
+The course was made of 3 modules:
 
-I don't think my GatsbyJS config is particularly interesting, but the entire publishing pipeline might be worth some words.
+  - Module 1: Defining the CTO Role
+  - Module 2: AI/Machine Learning
+  - Module 3: Software Architecture/DevOps
 
-As per January 2019, this blog is published on [GitHub pages](https://pages.github.com/) using the [gh-pages branch](https://github.com/lmammino/loige.co/tree/gh-pages) which I publish using the very handy [`gh-pages` package](http://npm.im/gh-pages).
-
-The static website is served through [Cloudflare CDN](https://www.cloudflare.com/cdn), which takes care of speeding up the delivery across the globe and other handy things like making sure the website runs on `https` correctly.
-
-Every time I push on master, a [CirlceCI](https://circleci.com) build is triggered, and, if the build succeeds, a new version of the website is published automatically.
-
-Checkout my [CircleCI config](https://github.com/lmammino/loige.co/blob/master/.circleci/config.yml) if you want to do something similar.
-
-I wanted to do something like this for a while, so being able to achieve this was a big win for me!
+I presented Module 3, where I essentially covered what happens when a startup scales from 1000 users to, 1000 10 million users, highlighting that only a correct and solid software architecture can keep the business safe.
 
 
 ## Conference talks
 
-Pretty much like in the last 2 years, I tried to invest some of my time in engaging with the community through conference talks.
+I invested a decent amout of time delivering conference talks and I accrued a total of 13 talks and workshops in 6 different countries.
 
-This year wasn't my best, but I still managed to deliver 8 talks and a workshop around the world. For the first time I delivered one outside Europe in the amazing New York.
+![Luciano Mammino talks at AustinJS meetup](./luciano-mammino-talk-austin-js-meetup.jpg)
 
-![Luciano Mammino at FullStack London](./luciano-mammino-fullstack-london.jpg)
+Here's the full list of talks for 2019, you can find more details in the usual [speaking section](https://loige.co/speaking/) with links to slides and videos when available:
 
-Here's the full list of talks for 2018, you can find more details in the usual [speaking section](https://loige.co/speaking/) with links to slides and videos when available:
+- "_Processing TeraBytes of data every day and sleeping at night_", AWS Usergroup Dublin (February)
+- "_Processing TeraBytes of data every day and sleeping at night_", AWS Usergroup Belfast (February)
+- "_It’s about time to embrace Streams_", DublinJS (March)
+- "_It’s about time to embrace Streams_", Codemotion Rome (March)
+- "_It’s about time to embrace Streams_", CityJS Conf London (May)
+- "_It’s about time to embrace Streams_", Node Ukraine (May)
+- "_It’s about time to embrace Streams (workshop)_", DevIT Thessaloniki (June)
+- "_Unbundling the JavaScript module bundler_", DevIT Thessaloniki (June)
+- "_Processing TeraBytes of data every day and sleeping at night_", InfiniteConf London (July)
+- "_It’s about time to embrace Streams_", Austin Node.js Meetup (August)
+- "_Serverless, the Middy way (workshop)_", AWS Community Day Dublin (October)
+- "_SERVERLESS Panel – Serverless Insights – Taking Serverless to the next level_", AWS Community Day Dublin (October)
+- "_It’s about time to embrace Streams_", MachJS Meetup Manchester (October)
 
-- "_Getting started with Serverless and Lambda Functions_" (workshop), Codemotion Rome (April)
-- "_Unbundling the JavaScript module bundler_", Codemotion Rome (April)
-- "_The future will be Serverless_", JS Day Verona (May)
-- "_Cracking JWT tokens: a tale of magic, Node.JS and parallel computing_", Web Rebels Oslo (June)
-- "_Cracking JWT tokens: a tale of magic, Node.JS and parallel computing_", Buzz JS New York (June)
-- "_Unbundling the JavaScript module bundler_", Dublin JS (July)
-- "_Cracking JWT tokens: a tale of magic, Node.JS and parallel computing_", FullStack London (July)
-- "_Unbundling the JavaScript module bundler_", Øredev Malmo (November)
-- "_Processing TeraBytes of data every day and sleeping at night_", Codemotion Milan (November)
+Compared to 2018, when I presented 8 talks/workshops, this is a 62.5% "growth" rate. 👍
 
-Compared to 2017, when I presented 17 talks/workshops, this is a -52.94% "growth" rate. Ouch! 😵
-
-In reality, I don't mind at all this level of commitment for conferences and workshops and I'll try to keep
-2019 to a similar rate to 2018 and not overcommit.
+Not sure how much do I want to commit for this year. I am not actively applying for conference, so probably I will limit my participation to events where I get a direct invitation. Also I will have to start developing some new talks!
 
 
 ## Career
 
-From a career perspective I spent my 2018 at Vectra, where I worked "_automating the hunt for cyberattackers and speeding-up incident response_", which essentially means building software that help companies to identify cyber attacks and resolve them as quick as possible and with the least amount of effort.
+From a career perspective I spent another year at Vectra. As usual it was an intense and engaging year, full of learnings. Probably most learnings were not as technical as I hoped, but still, I am sure that developing soft skills and business skills is always a precious addition to any technical career.
 
-![Vectra Cognito Platform against Cyber Attackers](./vectra-cognito-stop-cyber-attackers.jpg)
+Surprise now! Next week is going to be my last week at Vectra. I decided to move on and search for new opportunities starting from February 2020.
 
-One year at Vectra has been a blast and I had the pleasure (and luck 🍀) to be able to contribute to some important success stories:
-
- - I was involved in bootstrapping and scaling up a new European site that started from 3 and now counts 20+ people (engineering and sales). All world-class professionals with whom I love to work and from whom I can learn a lot every day.
- - Built a new product line from scratch. The product is already making revenue! This is a quite complicated product that is able to ingest and make searchable [Terabytes of data every day](https://loige.link/terabytes)!
- - Witnessed an astounding [104% growth in annual recurring revenue](https://www.vectra.ai/news/vectra-announces-104-growth-in-annual-recurring-revenue-during-2018).
-
- One year in the making, there was no shortage of personal skills development:
-
- - Improved my knowledge of **AWS**, including [getting certificated as Solution Architect](https://loige.co/aws-solution-architect-associate-exam-notes-tips).
- - Improved my knowledge of several technologies I love: **Terraform**, **Ansible**, **Packer**, **ElasticSearch**, **Node.js**, **JavaScript**, **Python**.
- - Got some new interesting use cases for **Serverless architectures**.
- - Started to acquire totally new skills like **GoLang**.
- - Deep dived into binary protocols like **Capnp** and got much better understanding of some low level mechanics like **serialization** and **memory management** (thank you [@gbinside](https://twitter.com/gbinside) for your forbearing mentorship on this).
- - Worked a lot on **Node.js performance optimizations**.
- - Learned a bit about **network security**.
- - Been exposed to some high level **AI/ML** concepts.
- - I have been a team leader and an architect, which meant that I had to engage a lot with peers and customers which probably improved some soft skills: **empathy**, **communication**, **teamwork**, **patience**, **accountability**, etc (I hope I also improved my english in the process 😅).
-
-With this premise, I expect my 2019 at Vectra to be even more exciting than 2018. I am sure I'll learn and grow a ton.
-
-There is a lot of work to do to keep the current growth rate, and I'll do my best to do my part!
+[Hit me up on Twitter](https://twitter.com/loige) if you think I could be a good fit in your company/project and let's have a chat!
 
 
 ## Side projects
 
-In 2017, I launched and contributed to a number of interesting side projects.
-In 2018, I didn't launch any new one, but I tried to take care at best of the
-projects launched in the previous year, so I am going to recap here what happened with each one of them.
+Nothing new in terms of side projects, but I am still running and contributing to my usual side projects: [FullStack Bulletin](https://fullstackbulletin.com), [Serverless Lab](https://serverlesslab.com) and [Middy](https://middy.js.org).
 
+The work on middy has been a little bit stagnating over the year. Not being able to work on a lot of serverless projects on my day to day made me lost a bit of focus and perspective.
 
-### Fullstack bulletin
+Thankfully the community around middy has been particularly active and involved and a lot of people helped me driving the project towards the long awaited 1.0.0 beta. This year we will make 1.0.0 stable and start to make plans for the future of the framework for the next big release.
 
-[FullStack Bulletin](https://fullstackbulletin.com), a newsletter for ambitious FullStack developers, has been ongoing in 2018 with the same format of 2017 except some minor improvement. It recently surpassed 1000 subscribers, all through organic growth.
+A great shout out to [Will Farrell](https://github.com/willfarrell) and [Sebastian Domagała](https://github.com/sdomagala) for their great contributions and the constant support.
 
-This projejcts takes me 30-60 minutes of work every week, but I am happy to keep investing the time as it works for me as well to stay up to date with the latest FullStack trends.
-
-I still plan to invest on it during 2019 and maybe try to improve the format (new layout, new books, new quotes, etc.).
-
-
-### Serverless lab
-
-[Serverless Lab](https://serverlesslab.com) is a side-project started by [Padraig "Podge" O'Brien](https://twitter.com/podgeypoos79) and myself to help companies to get started quickly with serverless technologies on AWS.
-
-During 2018, we took a chance to improve and update our material, but we used it for only one workshop.
-
-It really takes a lot of time to find interested crowds. So far, all the engagement was mostly organic.
-
-I am not sure yet how much I will commit on this project in 2019. I'll try to see if there's interest in the market.
-
-
-### Middy
-
-[Middy](https://middy.js.org) is a _Node.js middleware engine for AWS Lambda_. It basically allows you to take care of tedious and repetitive tasks such as validation, input deserialization and output serialization by encapsulating this external logic into reusable and testable middlewares.
-
-In 2018 middy had a decent success. Here some numbers:
-
- - almost 500 stars on Github
- - an average of 6.000 downloads a week
- - 31 contributors over 124 releases.
-
-I am quite proud of this project, even though in the latest months I felt like I didn't have the time, neither the energies to properly take care of it. My response time has become unacceptable and open PRs and Issues have been accumulating. I am a bit worried that the project will start to drift away.
-
-I recently [asked more support to the other contributors](https://github.com/middyjs/middy/issues/263), basically stepping away from being the main maintainer.
-
-I have to thank you some people for being there and trying their best to support the project:
-
- - [Yan Cui](https://github.com/theburningmonk) (who also wrote [an amazing article that mentions middy](https://epsagon.com/blog/enforce-consistent-error-handling-in-aws-lambda-with-wrappers/))
- - [Vlad Holubiev](https://twitter.com/vladholubiev)
- - [David Wells](https://github.com/DavidWells)
-
- And all the other contributors.
-
-A stable version for the 1.0.0 branch has not been released yet. I'll try to focus on getting it done in 2019 and to try to be a little bit more responsive in replying to PRs and issues.
-
-Meanwhile I hope new people will be able to jump on board and support the project.
-
-### Fastify
-
-[Fastify](https://www.fastify.io), started by [
-Tomas Della Vedova](https://twitter.com/delvedor) and [Matteo Collina](https://twitter.com/matteocollina) is a **fast and low overhead web framework for Node.js**.
-
-I have been marginally contributing to this fantastic project, taking care of setting up the official website (including the docs) and its automated pipeline.
-
-In 2018, I did some minor improvements, but nothing major.
-
-I admire all the contributors to the project as they managed to invest an incredible amount of energies in the project and attracted a pool of very talented people creating a strong community of users.
-
-I am glad and grateful that I am being considered one of the core team members, even though I am very far away from putting the same amount of energy that the other contributors do.
-
-I want to narrow my focus in 2019 so I don't have any special plan to contribute more to Fastify in 2019, but I'll try to be available to give my support on improving the website where needed.
+One interesting thing is that, towards the end of the year I started working on a (currently secret) side project, that should be released this year around May or June. Stay tuned 😇
 
 
 ## Blog posts
 
-In 2018 I wasn't a very active author... So I'll go straight to the list of new posts published in this blog during the year:
+In 2019 I wasn't a very active author... It was actually pretty bad with only 3 blog posts published:
 
-- [AWS Command line: S3 content from stdin or to stdout](https://loige.co/aws-command-line-s3-content-from-stdin-or-to-stdout) (~7.800 views)
-- [AWS Solution Architect Associate exam, my notes and tips](https://loige.co/aws-solution-architect-associate-exam-notes-tips) (~5.800 views)
-- [Emerging JavaScript pattern: multiple return values](https://loige.co/emerging-javascript-pattern-multiple-return-values) (~3.200 views)
-- [A random emoji in your terminal prompt. How and Why!](https://loige.co/random-emoji-in-your-prompt-how-and-why) (~1.500 views)
+- [JavaScript iterator patterns](https://loige.co/javascript-iterator-patterns) (~14.600 views)
+- [Fastify and Preact for quick web app prototyping](https://loige.co/fastify-and-preact-for-quick-web-app-prototyping) (~4.300 views)
+- [Lean NPM packages](https://loige.co/lean-npm-packages) (~4.300 views)
 
-It's interesting to see that there's still a lot of the traffic driven by old (and maybe outdated) articles from the previous years like:
+It's interesting to see that my 2 top posts of last year where articles written during the previous year:
 
-- [Extracting data from Wikipedia using curl, grep, cut and other shell commands](https://loige.co/extracting-data-from-wikipedia-using-curl-grep-cut-and-other-bash-commands) (~7.300 views)
-- [Using Let’s Encrypt and Certbot to automate the creation of certificates for OpenVPN
-](https://loige.co/using-lets-encrypt-and-certbot-to-automate-the-creation-of-certificates-for-openvpn) (~7.200 views)
-- [Developing a web application with Lumen and MySql](https://loige.co/developing-a-web-application-with-lumen-and-mysql) (~7.000 views)
-- [Gulp and FTP: update a website "on the fly"](https://loige.co/gulp-and-ftp-update-a-website-on-the-fly) (~4.000 views).
+- [Emerging JavaScript pattern: multiple return values](https://loige.co/emerging-javascript-pattern-multiple-return-values) (~26.100 views)
+- [AWS Solution Architect Associate exam, my notes and tips
+](https://loige.co/aws-solution-architect-associate-exam-notes-tips) (~16.900 views)
 
-The total number of page views amounts to about 65.000 views, which compared to the previous year total of 57.000 is a slight increase of 14.04%!
+The total number of page views amounted to about 120.000 views, which compared to the previous year total of 65.000 views is a great 85% increase.
 
-I guess I have to write more and find more interesting topics if I want to keep this blog relevant in 2019! Also I should probably focus more on one or two topics, rather then writing about random fun stuff that comes into my mind!
+I should dig in to find out the reason for the increase. I don't feel like I did anything speacial (or planned) to drive such improvement.
+
+For this year, I am not sure I am ready to make any commitment. I want to try and find one or two topics that I am really passionate about and that I can be able to write interesting posts about. Let's see how it goes.
 
 
 ## External posts
 
-Aside from the articles published on my blog I had the pleasure to collaborate with Avanscoperta and [Gojko Adzic](https://twitter.com/gojkoadzic) writing an interview from the title "[Is Serverless the future of Cloud Computing?](https://blog.avanscoperta.it/it/2018/08/31/is-serverless-the-future-of-cloud-computing)".
-
-It's always fun and rewarding to write guest posts and it's a nice way to get my name out from my common channels.
-
-I guess in 2019 I should keep doing that and maybe build some new relationship with other publishers :)
+In 2019, I have been writing 3 posts for a new website that is yet to be published. I will disclose the links in the [about section](https://loige.co/about) when they are available!
 
 
 ## Open Sourcing
 
-In 2018, I kept spending some time working out some small open source contributions. Here's a quick list of my main GitHub contributions:
+In 2019, I did not stop doing my small part to contribute to open source. Here's a quick list of my main GitHub contributions:
 
- - [lmammino/fib-it](https://github.com/lmammino/fib-it): 6 ways to generate a fibonacci sequence in JavaScript.
- - [lmammino/twaffle](https://github.com/lmammino/twaffle): A TWitter rAFFLE script.
- - [lmammino/get-poop-done](https://github.com/lmammino/get-poop-done): A crappy-but-lovely™ todo list app.
- - [lmammino/invok](https://github.com/lmammino/invok): Command line tool to Invoke Go lambda functions locally.
- - [salesforce/ja3](https://github.com/salesforce/ja3) (contribution): JA3 is a standard for creating SSL client fingerprints in an easy to produce and shareable way.
- - [felixhageloh/uebersicht](https://github.com/felixhageloh/uebersicht) (contribution): Keep an eye on what's happening on your machine and in the world.
- - [gatsbyjs/gatsby](https://github.com/gatsbyjs/gatsby) (contribution): Build blazing fast, modern apps and websites with React.
- - [tj/node-blocked](https://github.com/tj/node-blocked) (contribution): Check if the Node.js event loop is blocked.
- - [lmammino/capnp-stream](https://github.com/lmammino/capnp-stream): A Node.js readable stream for Cap’n Proto encoded binary input.
- - [fastify/fastify-http-proxy](https://github.com/fastify/fastify-http-proxy) (contribution): Proxy your http requests to another server, with hooks.
- - [lmammino/benchmark-distributed-jwt-cracker](https://github.com/lmammino/benchmark-distributed-jwt-cracker): A benchmark suite using AWS for distributed-jwt-cracker.
- - [lmammino/metrica](https://github.com/lmammino/metrica): Event Emitter based node library that emits process metrics (uptime, memory, cpu) at given intervals.
- - [zeek/zeek](https://github.com/zeek/zeek) (contribution): Zeek (formerly known as Bro) is a powerful network analysis framework that is much different from the typical IDS you may know.
- - [lmammino/lambda-runtime-node8-capnp](https://github.com/lmammino/lambda-runtime-node8-capnp): Docker container image that resembles AWS lambda runtime for Node.js 8.10 and CapnProto 0.6.1
- - [lmammino/lambda-runtime-node8](https://github.com/lmammino/lambda-runtime-node8): Docker container image that resembles AWS lambda runtime for Node.js 8.10.0
- - [lmammino/openssl-rfc-mapping](https://github.com/lmammino/openssl-rfc-mapping): A quick'n'dirty script to map OpenSSL RFC to machine parseable data.
- - [lmammino/stream-accumulator](https://github.com/lmammino/stream-accumulator): Accumulate all the data flowing through a stream and emit it as a single chunk or as a promise.
- - [maxogden/mississippi](https://github.com/maxogden/mississippi) (contribution): A collection of useful stream utility modules for writing better code using streams.
- - [lmammino/lumpy](https://github.com/lmammino/lumpy): A lumpy and dummy JavaScript module bundler for those who are stuck in the past.
- - [lmammino/tick-stream](https://github.com/lmammino/tick-stream): A simple transform stream that can log a tick every time data is pushed through a pipe.
- - [nickjj/ansible-docker](https://github.com/nickjj/ansible-docker) (contribution): Install / Configure Docker and Docker Compose using Ansible.
- - [jsdoc2md/dmd](https://github.com/jsdoc2md/dmd) (contribution): The default output template for jsdoc2md.
+ - [callstack/linaria](https://github.com/callstack/linaria): Zero-runtime CSS in JS library (contribution).
+ - [lmammino/fastify-preact-htm-boilerplate](https://github.com/lmammino/fastify-preact-htm-boilerplate): Quickly bootstrap your next web app with Fastify, Preact and htm.
+ - [lmammino/s3-list-bucket-stream](https://github.com/lmammino/s3-list-bucket-stream): Node.js stream library that allows you to stream a list of objects from an S3 bucket.
+ - [lmammino/s3-object-content-stream](https://github.com/lmammino/s3-object-content-stream): A Node.js transform stream that gets S3 object keys and emits their actual content.
+ - [lorenzofox3/for-await](https://github.com/lorenzofox3/for-await): operators and stream semantic for asyncIterators (contribution).
+ - [lmammino/streams-examples](https://github.com/lmammino/streams-examples): A bunch of examples on how to use Node.js streams.
+ - [olivere/elastic](https://github.com/olivere/elastic): Elasticsearch client for Go (contribution).
+ - [lmammino/lambda-image-colors](https://github.com/lmammino/lambda-image-colors): An example AWS Lambda written in GoLang to tag a picture with its prominent colors.
+ - [lmammino/s3st](https://github.com/lmammino/s3st): A command line utility that allows you to stream data from multiple S3 objects directly into your terminal.
+ - [lmammino/rustlings](https://github.com/lmammino/rustlings): random exercises to learn rust (mostly to entertain myself on long plane flights ✈️).
+- [lmammino/streams-workshop](https://github.com/lmammino/streams-workshop): A workshop on Node.js Streams.
+- [svgdotjs/svgdotjs.github.io](https://github.com/svgdotjs/svgdotjs.github.io): Documentation and website for SVG.js (contribution).
+- [theKashey/rewiremock](https://github.com/theKashey/rewiremock): The right way to mock dependencies in Node.js or webpack environment (contribution).
+- [goldbergyoni/nodebestpractices](https://github.com/goldbergyoni/nodebestpractices): The largest Node.js best practices list (contribution).
+- [Jason3S/xxhash](https://github.com/Jason3S/xxhash): Pure JS Implementation of xxhash (contribution).
+- [fastify/fastify-etag](https://github.com/fastify/fastify-etag): Automatically generate etags for HTTP responses, for Fastify (contribution).
+- [fastify/releasify](https://github.com/fastify/releasify): A tool to release in a simpler way your module (contribution).
+- [fastify/fastify-oauth2](https://github.com/fastify/fastify-oauth2): Enable to perform login using oauth2 protocol (contribution).
+- [lmammino/public-transport-ireland](https://github.com/lmammino/public-transport-ireland): Node.js module with utility functions to get real time data for Irish public transport (Irish Rail, Luas, Dublin Bus).
+- [lmammino/md-article-template](https://github.com/lmammino/md-article-template): A ready-made setup to write articles in Markdown and be able to see live preview and export the article in HTML.
+- [lmammino/realtime-transport-dashboards](https://github.com/lmammino/realtime-transport-dashboards): Serverless APIs for AWS to build and display public transports real time data (Serverless application example).
+- [fourTheorem/slic-starter](https://github.com/fourTheorem/slic-starter): A complete, serverless starter project (contribution).
+- [lmammino/netcore-node-azure-func-container](https://github.com/lmammino/netcore-node-azure-func-container): a repository for Debian 9 containers including net core sdk, node.js and azure functions CLI.
+- [nodejs/node](https://github.com/nodejs/node): yes, that's the Node.js repository! I did a small contribution, but still cool to have one there.
 
 
 👍 Comparing last year (19) to this year (22) I had a +15.79% repo contributions increase. Another pretty good vanity metric!
