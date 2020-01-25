@@ -38,12 +38,12 @@ The course was made of 3 modules:
   - Module 2: AI/Machine Learning
   - Module 3: Software Architecture/DevOps
 
-I presented Module 3, where I essentially covered what happens when a startup scales from 1000 users to, 1000 10 million users, highlighting that only a correct and solid software architecture can keep the business safe.
+I presented Module 3, where I essentially covered what happens when a startup scales from thousands of users to millions of users. My track highlights that only a correct and solid software architecture can keep the business safe, but also that lean and agile techniques can allow your product to keep growing over time.
 
 
 ## Conference talks
 
-I invested a decent amout of time delivering conference talks and I accrued a total of 13 talks and workshops in 6 different countries.
+I invested a decent amount of time delivering conference talks and I accrued a total of 13 talks and workshops in 6 different countries.
 
 ![Luciano Mammino talks at AustinJS meetup](./luciano-mammino-talk-austin-js-meetup.jpg)
 
@@ -65,12 +65,12 @@ Here's the full list of talks for 2019, you can find more details in the usual [
 
 Compared to 2018, when I presented 8 talks/workshops, this is a 62.5% "growth" rate. 👍
 
-Not sure how much do I want to commit for this year. I am not actively applying for conference, so probably I will limit my participation to events where I get a direct invitation. Also I will have to start developing some new talks!
+Not sure how much do I want to commit for this year. I am not actively applying for conferences, so probably I will limit my participation to events where I get a direct invitation. Also, I will have to start developing some new talks!
 
 
 ## Career
 
-From a career perspective I spent another year at Vectra. As usual it was an intense and engaging year, full of learnings. Probably most learnings were not as technical as I hoped, but still, I am sure that developing soft skills and business skills is always a precious addition to any technical career.
+From a career perspective, I spent another year at Vectra. As usual, it was an intense and engaging year, full of learnings. Probably most learnings were not as technical as I hoped, but still, I am sure that developing soft skills and business skills is always a precious addition to any technical career.
 
 Surprise now! Next week is going to be my last week at Vectra. I decided to move on and search for new opportunities starting from February 2020.
 
@@ -83,11 +83,11 @@ Nothing new in terms of side projects, but I am still running and contributing t
 
 The work on middy has been a little bit stagnating over the year. Not being able to work on a lot of serverless projects on my day to day made me lost a bit of focus and perspective.
 
-Thankfully the community around middy has been particularly active and involved and a lot of people helped me driving the project towards the long awaited 1.0.0 beta. This year we will make 1.0.0 stable and start to make plans for the future of the framework for the next big release.
+Thankfully the community around middy has been particularly active and involved and a lot of people helped me driving the project towards the long-awaited 1.0.0 beta. This year we will make 1.0.0 stable and start to make plans for the future of the framework for the next big release.
 
 A great shout out to [Will Farrell](https://github.com/willfarrell) and [Sebastian Domagała](https://github.com/sdomagala) for their great contributions and the constant support.
 
-One interesting thing is that, towards the end of the year I started working on a (currently secret) side project, that should be released this year around May or June. Stay tuned 😇
+One interesting thing is that towards the end of the year I started working on a (currently secret) side project, that should be released this year around May or June. Stay tuned 😇
 
 
 ## Blog posts
@@ -98,7 +98,7 @@ In 2019 I wasn't a very active author... It was actually pretty bad with only 3 
 - [Fastify and Preact for quick web app prototyping](https://loige.co/fastify-and-preact-for-quick-web-app-prototyping) (~4.300 views)
 - [Lean NPM packages](https://loige.co/lean-npm-packages) (~4.300 views)
 
-It's interesting to see that my 2 top posts of last year where articles written during the previous year:
+It's interesting to see that my 2 top posts of last year were articles written during the previous year:
 
 - [Emerging JavaScript pattern: multiple return values](https://loige.co/emerging-javascript-pattern-multiple-return-values) (~26.100 views)
 - [AWS Solution Architect Associate exam, my notes and tips
@@ -106,7 +106,7 @@ It's interesting to see that my 2 top posts of last year where articles written 
 
 The total number of page views amounted to about 120.000 views, which compared to the previous year total of 65.000 views is a great 85% increase.
 
-I should dig in to find out the reason for the increase. I don't feel like I did anything speacial (or planned) to drive such improvement.
+I should dig in to find out the reason for the increase. I don't feel like I did anything special (or planned) to drive such improvement.
 
 For this year, I am not sure I am ready to make any commitment. I want to try and find one or two topics that I am really passionate about and that I can be able to write interesting posts about. Let's see how it goes.
 
