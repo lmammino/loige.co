@@ -84,7 +84,7 @@ class BlogPostTemplate extends Component {
     const site = get(this.props, 'data.site.siteMetadata.siteUrl')
 
     const shareOptions = {
-      url: `${site}${post.frontmatter.slug}/`,
+      url: `${site.replace(/\/+$/, '')}/${post.frontmatter.slug}/`,
       title: post.frontmatter.title,
       site,
       imageUrl: `${site}${headerImage}`,
