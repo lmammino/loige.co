@@ -13,74 +13,83 @@ module.exports = {
   },
   pathPrefix: '/',
   plugins: [
-    `mario-banner`,
-    `blog`,
-    `speaking`,
-    `static-pages`,
+    'mario-banner',
+    'blog',
+    'speaking',
+    'static-pages',
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/content/pages`,
         name: 'pages'
       }
     },
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/content/posts`,
         name: 'posts'
       }
     },
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/content/speaking`,
         name: 'speaking'
       }
     },
-    `gatsby-transformer-yaml`,
+    'gatsby-transformer-yaml',
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/content/data`
       }
     },
-    `gatsby-plugin-sharp`,
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: 'gatsby-plugin-sharp',
       options: {
+        useMozJpeg: false,
+        stripMetadata: true,
+        defaultQuality: 75,
         plugins: [
           {
-            resolve: `gatsby-remark-images`,
+            resolve: 'gatsby-transformer-remark',
             options: {
-              maxWidth: 1024,
-              linkImagesToOriginal: false,
-              withWebp: true,
-              quality: 90
+              plugins: [
+                {
+                  resolve: 'gatsby-remark-images',
+                  options: {
+                    maxWidth: 1024,
+                    linkImagesToOriginal: false,
+                    withWebp: true,
+                    quality: 90
+                  }
+                },
+                {
+                  resolve: 'gatsby-remark-copy-linked-files',
+                  options: {
+                    destinationDir: 'content'
+                  }
+                },
+                {
+                  resolve: 'gatsby-remark-responsive-iframe',
+                  options: {
+                    wrapperStyle: 'margin-bottom: 1.0725rem'
+                  }
+                },
+                'gatsby-remark-prismjs',
+                'gatsby-remark-smartypants',
+                'gatsby-remark-autolink-headers'
+              ]
             }
-          },
-          {
-            resolve: 'gatsby-remark-copy-linked-files',
-            options: {
-              destinationDir: 'content'
-            }
-          },
-          {
-            resolve: `gatsby-remark-responsive-iframe`,
-            options: {
-              wrapperStyle: `margin-bottom: 1.0725rem`
-            }
-          },
-          'gatsby-remark-prismjs',
-          'gatsby-remark-smartypants',
-          'gatsby-remark-autolink-headers'
+          }
         ]
       }
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-catch-links`,
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-catch-links',
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: 'gatsby-plugin-google-analytics',
       options: {
         trackingId: 'UA-47248506-1'
       }
@@ -88,21 +97,21 @@ module.exports = {
     require('./gatsby-sitemap'),
     require('./gatsby-rss'),
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: 'gatsby-plugin-manifest',
       options: {
-        name: `Luciano Mammino "Loige" - Cloud developer, entrepreneur, fighter, butterfly maker!`,
-        short_name: `Loige.co`,
-        start_url: `/`,
-        background_color: `#ffffff`,
-        theme_color: `#20232a`,
-        display: `minimal-ui`,
-        icon: `src/components/images/apple-icon-precomposed.png`
+        name: 'Luciano Mammino "Loige" - Cloud developer, entrepreneur, fighter, butterfly maker!',
+        short_name: 'Loige.co',
+        start_url: '/',
+        background_color: '#ffffff',
+        theme_color: '#20232a',
+        display: 'minimal-ui',
+        icon: 'src/components/images/apple-icon-precomposed.png'
       }
     },
-    `gatsby-plugin-offline`,
-    `gatsby-plugin-react-helmet`,
+    'gatsby-plugin-offline',
+    'gatsby-plugin-react-helmet',
     {
-      resolve: `gatsby-plugin-emotion`,
+      resolve: 'gatsby-plugin-emotion',
       options: {}
     }
   ]
