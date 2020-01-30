@@ -18,7 +18,7 @@ event_location_gps: '53.3325997,-6.2631082'
 event_city: 'Dublin, Ireland'
 event_days: 'January 29 2020'
 is_workshop: false
-slides_link: null
+slides_link: https://loige.link/middy-gcs
 video_link: null
 with: []
 ---
