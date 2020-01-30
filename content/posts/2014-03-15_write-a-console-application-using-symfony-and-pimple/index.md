@@ -42,7 +42,7 @@ app/console greet Alice
 
 and it will print out
 
-```bash
+```none
 Hello Alice
 (First time!)
 ```
