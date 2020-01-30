@@ -182,7 +182,7 @@ The output is actually pretty nice and it will list all the included files.
 
 If we run `npm pack` on the package folder from the example above we should see something like this:
 
-```
+```none
 npm notice
 npm notice 📦  some-test-package@1.0.0
 npm notice === Tarball Contents ===

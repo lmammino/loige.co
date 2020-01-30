@@ -38,7 +38,7 @@ $ keybase encrypt twitter://d4nyll -m "Hey pal, I finally crafted the perfect pl
 
 and it will print out a weird message that only Daniel, with his private key will be able to decrypt:
 
-```
+```none
 -----BEGIN PGP MESSAGE-----
 Comment: GPGTools - https://gpgtools.org
 

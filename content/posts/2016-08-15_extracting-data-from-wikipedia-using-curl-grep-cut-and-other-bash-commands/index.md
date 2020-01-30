@@ -37,7 +37,7 @@ At this stage I wondered if there was a way to get only the wikitext of a specif
 
 So hitting [https://en.wikipedia.org/wiki/List_of_Olympic_medalists_in_judo?action=raw](https://en.wikipedia.org/wiki/List_of_Olympic_medalists_in_judo?action=raw) will give us our starting dataset which will look like this:
 
-```
+```wiki
 ==Men==
 ===Extra Lightweight===
 *60&nbsp;kg
@@ -84,13 +84,13 @@ The dataset shown before is just the wikitext code needed to render the tables o
 
 As you can see every athlete is referenced in the code using the _template_ `flagIOCmedalist` and every entry looks like:
 
-```
+```wiki
 {{flagIOCmedalist|[[NAME]]|COUNTRY|OLYMPIC GAME}}
 ```
 
 So we can easily extract all the athletes names with a regex like the following:
 
-```
+```none
 flagIOCmedalist\|\[\[(.+)\]\]
 ```
 
@@ -114,7 +114,7 @@ With the `grep` we are using the options `-Eoi` which allow us to:
 
 The previous command is going to output something like this:
 
-```
+```none
 flagIOCmedalist|[[Thierry Rey]]
 flagIOCmedalist|[[José Rodríguez (judoka)|José Rodríguez]]
 flagIOCmedalist|[[Tibor Kincses (judoka)|Tibor Kincses]]
@@ -149,7 +149,7 @@ You can use the `-c` option to extract any generic substring. For example `-c"4-
 
 This filter will be applied to every line and it will modify our stream of data as follows:
 
-```
+```none
 Thierry Rey]]
 José Rodríguez (judoka)|José Rodríguez]]
 Tibor Kincses (judoka)|Tibor Kincses]]
@@ -171,7 +171,7 @@ When we use `d` we can specify a character to be used as delimiter (`]` in this 
 The option `-f` can be combined with `-d` to select one or more chunks, in this case we want to select the first chunk.
 As we can expect, this will be the status of our data after this command is executed in the pipeline:
 
-```
+```none
 Thierry Rey
 José Rodríguez (judoka)|José Rodríguez
 Tibor Kincses (judoka)|Tibor Kincses
@@ -191,7 +191,7 @@ Luckily in these cases `cut` is smart enough to assume the string is not matchin
 
 The final result after this command is:
 
-```
+```none
 Thierry Rey
 José Rodríguez
 Tibor Kincses
@@ -210,7 +210,7 @@ This can be achieved with the command `sort`, which, as you might easily guess, 
 
 Just to give you a practical example, after using the command `sort` our data will look like:
 
-```
+```none
 ...
 Paweł Nastula
 Peter Seisenbacher
@@ -228,7 +228,7 @@ Ramaz Kharshiladze
 Now we can pipe the `uniq -c` command to our data processing flow in order to remove duplicates. The option `-c` prints in front of every line the number of consecutive occurrences originally found for that line.
 After this command we will have something like this:
 
-```
+```none
 ...
 1 Paweł Nastula
 2 Peter Seisenbacher
@@ -401,7 +401,7 @@ XPath (XML Path Language) is a query language for selecting nodes from an XML do
 
 By downloading the HTML of the Wikipedia page and applying an XPath selector like `//table//tr/td[2]/a[1]/text()` we should be able to extract all the gold medalist in the tables. In the same fashion we can build a slightly more complex solution by combining more selectors:
 
-```
+```none
 //table//tr/td[2]/a[1]/text()|//table//tr/td[3]/a[1]/text()|//table//tr/td[4]/a[1]/text()
 ```
 
