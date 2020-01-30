@@ -133,7 +133,7 @@ go run server.go
 
 We will have our server running and it will print out something like:
 
-```
+```none
 Listening on :3333
 ```
 
@@ -184,7 +184,7 @@ Now let's get back to our `Dockerfile`. Every Dockerfile contains some metadata 
 
 Enough talking, let's jump to the code:
 
-```
+```Dockerfile
 FROM ubuntu:12.04
 
 MAINTAINER Luciano Mammino
@@ -230,7 +230,7 @@ boot2docker start
 
 In case it prints out something like this:
 
-```
+```none
 2014/06/29 16:09:32 Started.
 2014/06/29 16:09:32 To connect the Docker client to the Docker daemon, please set:
 2014/06/29 16:09:32     export DOCKER_HOST=tcp://192.168.59.103:2375
@@ -250,7 +250,7 @@ The `-t goecho` option is not mandatory and is used to "give a convenience name"
 
 You will see a series of commands being executed (yes the ones we wrote within our Dockerfile) and, if everything goes well, you should see something like this at the end:
 
-```
+```none
 Successfully built 713c09526bc1
 ```
 

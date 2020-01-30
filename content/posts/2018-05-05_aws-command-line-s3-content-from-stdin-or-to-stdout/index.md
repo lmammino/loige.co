@@ -56,7 +56,7 @@ In both cases, I am creating intermediary files and, as you probably already kno
 
 Buried at the very bottom of the `aws s3 cp` command help you might (by accident) find this:
 
-```
+```none
 Uploading a local file stream to S3
 
   WARNING:: PowerShell may alter the encoding of or add a CRLF  to  piped
@@ -107,7 +107,7 @@ aws s3 cp s3://some-bucket/hello.txt -
 
 This will output:
 
-```
+```none
 hello world
 ```
 

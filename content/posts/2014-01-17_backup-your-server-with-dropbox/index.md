@@ -33,13 +33,17 @@ This solution works very well for small projects so I will resume all the steps 
 
 I preferred to have a dedicated user to handle the whole Dropbox daemon and folder so just create it now:
 
-    sudo useradd -d /dropbox -m dropbox
+```bash
+sudo useradd -d /dropbox -m dropbox
+```
 
 It will have the directory `/dropbox` as home and the name `dropbox`. You can change these values if you like.
 
 Then you have to set the password for the new user:
 
-    sudo passwd dropbox
+```bash
+sudo passwd dropbox
+```
 
 Choose whatever password you like.
 
@@ -49,27 +53,37 @@ Choose whatever password you like.
 
 First of all you need to switch to the user created in the previous step, so the Dropbox installer will create the Dropbox folder under its home. At the end you will have `/dropbox/Dropbox` as the synced folder:
 
-    su dropbox
+```bash
+su dropbox
+```
 
 (enter the password for the user dropbox)
 
 Now you're the _dropbox_ user. Be sure to switch to your user folder with `cd ~` and let's download and install the daemon.
 
-    wget -O dropbox.tar.gz "http://www.dropbox.com/download/?plat=lnx.x86"
+```bash
+wget -O dropbox.tar.gz "http://www.dropbox.com/download/?plat=lnx.x86"
+```
 
 for 32bit or
 
-    wget -O dropbox.tar.gz "http://www.dropbox.com/download/?plat=lnx.x86_64"
+```bash
+wget -O dropbox.tar.gz "http://www.dropbox.com/download/?plat=lnx.x86_64"
+```
 
 for 64bit.
 
 Extract it:
 
-    tar -xvzf dropbox.tar.gz
+```bash
+tar -xvzf dropbox.tar.gz
+```
 
 It will extract to the `~/.dropbox-dist.` folder. Now run the client:
 
-    ~/.dropbox-dist/dropbox
+```bash
+~/.dropbox-dist/dropbox
+```
 
 You will see an output like the following:
 
@@ -82,23 +96,33 @@ Copy and paste the provided URL in the browser bar of your local machine and it 
 
 At this point we need to define dropbox as a service. So let's create an _etc init script_. Download [my gist](https://gist.github.com/lmammino/8467336)
 
-    wget -O dropbox_init_script "https://gist.github.com/lmammino/8467336/raw/dropbox"
+```bash
+wget -O dropbox_init_script "https://gist.github.com/lmammino/8467336/raw/dropbox"
+```
 
 and move it in the init folder:
 
-    sudo mv dropbox_init_script /etc/init.d/dropbox
+```bash
+sudo mv dropbox_init_script /etc/init.d/dropbox
+```
 
 Make it executable:
 
-    sudo chmod +x /etc/init.d/dropbox
+```bash
+sudo chmod +x /etc/init.d/dropbox
+```
 
 And set it to load at startup:
 
-    sudo update-rc.d dropbox defaults
+```bash
+sudo update-rc.d dropbox defaults
+```
 
 Now it's a service! Run:
 
-    sudo /etc/init.d/dropbox start
+```bash
+sudo /etc/init.d/dropbox start
+```
 
 to start it and feel free to use common service command such as `stop`, `restart` and `status`.
 
@@ -112,13 +136,17 @@ At this point you have all your dropbox data in the `/dropbox/Dropbox` folder. F
 
 Dropbox released the [Dropbox CLI](https://www.dropbox.com/download?dl=packages/dropbox.py), a python command line application that you can use to perform some useful task such as _Selective Sync_, disable the _LAN sync_ or retrive public links of your files. I suggest to download it by using the dropbox user and place it under `/dropbox/bin`. So you can simply switch to the dropbox user (again with `su dropbox`), download it and make it executable:
 
-    mkdir ~/bin
-    wget -O ~/bin/dropbox.py "https://www.dropbox.com/download?dl=packages/dropbox.py"
-    chmod +x ~/bin/dropbox.py
+```bash
+mkdir ~/bin
+wget -O ~/bin/dropbox.py "https://www.dropbox.com/download?dl=packages/dropbox.py"
+chmod +x ~/bin/dropbox.py
+```
 
 At this point you can run the Dropbox CLI. For example if you want to disable the LAN sync (heavily suggested in this case) you can simply do:
 
-    /dropbox/bin/dropbox.py lansync n
+```bash
+/dropbox/bin/dropbox.py lansync n
+```
 
 ---
 
