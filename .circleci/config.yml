@@ -13,10 +13,10 @@ jobs:
     steps:
       - checkout
 
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            - v1-dependencies-
+      # - restore_cache:
+      #     keys:
+      #       - v1-dependencies-{{ checksum "package.json" }}
+      #       - v1-dependencies-
 
       - run:
           name: Install dependencies
@@ -30,11 +30,11 @@ jobs:
           name: Build
           command: yarn build
 
-      - save_cache:
-          paths:
-            - node_modules
-            - .cache
-          key: v1-dependencies-{{ checksum "package.json" }}
+      # - save_cache:
+      #     paths:
+      #       - node_modules
+      #       - .cache
+      #     key: v1-dependencies-{{ checksum "package.json" }}
 
       - deploy:
           command: |
