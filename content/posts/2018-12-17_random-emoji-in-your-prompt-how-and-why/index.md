@@ -70,7 +70,7 @@ As you can see, this script has the only goal of setting up your bash environmen
 
 We briefly touched on `PATH` and `EDITOR`. There are many other _special_ variables in Bash that can be used to customize the look and feel and the behavior of your terminal.
 
-One of those variables (the most important in this article) is called `PS1`. If I were a betting man, I would bet that the name stands for `Prompt Style 1`, as it allows you to define the look and feel of the primary bash prompt format, but I am not actually sure what it stands for (if you know it, please let me know in the comments).
+One of those variables (the most important in this article) is called `PS1`. If I were a betting man, I would bet that the name stands for ~~`Prompt Style 1`~~ (**Update 2020-04-18**: Rohit Chakraborty actually clarifies in the comments that **PS1 stands for `Prompt String 1`**!). `PS1` allows you to define the look and feel of the primary bash prompt format.
 
 In the configuration example above we are defining the `PS1` variable as follows:
 
