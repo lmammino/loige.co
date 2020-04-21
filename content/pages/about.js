@@ -30,7 +30,7 @@ const AboutPage = props => {
   return (
     <Layout section="about">
       <SEO
-        path={`about/`}
+        path={'about/'}
         pageData={{
           frontmatter: {
             title: `About Loige - ${siteTitle}`,
@@ -61,16 +61,15 @@ const AboutPage = props => {
             more than 10 years.
           </p>
           <p>
-            I am currently a <strong>Cloud Architect</strong> at{' '}
+            I am currently a <strong>Principal Software Engineer</strong> at{' '}
             <a
-              href="https://vectra.ai"
+              href="https://fabfitfun.com/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Vectra AI
+              FabFitFun
             </a>{' '}
-            in Dublin where I am working on automating the hunt for
-            cyberattackers and speeding-up incident response.
+            in Dublin where I am working on improving the various Cloud deployments of the company serving more than 2 million customers daily.
           </p>
           <p>
             I love the fullstack web, <Link to="/tag/node-js">Node.js</Link> and{' '}
