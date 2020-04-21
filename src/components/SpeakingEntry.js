@@ -48,6 +48,7 @@ class SpeakingEntry extends Component {
           <Title className="event-title" itemProp="name">
             {f.title}
             {f.is_workshop ? ' (workshop)' : ''}
+            {f.presentation_language === 'it_IT' && <span>{' '}<span aria-label="In Italian" title="In Italian">🇮🇹</span></span>}
           </Title>
           <EntryDetails>
             <p>
