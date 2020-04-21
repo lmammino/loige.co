@@ -46,7 +46,7 @@ class SpeakingMap extends Component {
       maxClusterRadius: 20
     })
 
-    this.state.events.forEach(e => {
+    this.state.events.filter(e => e.frontmatter.event_location_gps).forEach(e => {
       const coords = e.frontmatter.event_location_gps.split(',').map(parseFloat)
       L.marker(coords)
         .bindPopup(
