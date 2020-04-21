@@ -19,6 +19,8 @@ const speakingGraphql = `
           event_city
           event_location
           event_location_gps
+          language
+          presentation_language
           is_workshop
           slides_link
           video_link
@@ -47,7 +49,7 @@ exports.createPages = ({ graphql, actions }) => {
     }
 
     createPage({
-      path: `/speaking/`,
+      path: '/speaking/',
       component: speakingIndex,
       context: {
         events: result.data.allMarkdownRemark.edges.map(e => e.node)
