@@ -20,7 +20,7 @@ event_city: "remote"
 event_days: 'April 23 2020'
 is_workshop: false
 slides_link: null
-video_link: null
+video_link: 'https://www.youtube.com/watch?v=VkFBZCippOk'
 with:
   - name: Francesco Sciuti
     link: 'https://twitter.com/FrancescoSciuti'
