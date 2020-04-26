@@ -32,7 +32,7 @@ If you are hearing about [middy](https://middy.js.org) for the first time, middy
 
 Middy has the goal to simplify the way you write Lambda code, essentially by providing a convenient middleware abstraction (similar to the ones you find in frameworks such as Express or Fastify). A middleware framework can simplify code re-use, testing and avoid code duplication. Middy also provides a collection of middlewares that can be installed and configured to fullfil very common use cases (authentication, authorization, caching, data validation, deserialization and serialization, etc.).
 
-Just to give you a feeling of how using middy looks like, here's a snippet of code:
+Just to give you a feeling of what using middy looks like, here's a snippet of code:
 
 ```javascript
 // import core
@@ -146,9 +146,9 @@ Thank you!
 
 This is the hard question for me. The community is definitely asking for a number of interesting things like:
 
-  - Better integration with TypeScript
-  - Better (and more clear) support for Async/Await
-  - Better documentation
+  - Better integration with TypeScript ([#203](https://github.com/middyjs/middy/issues/203), [#300](https://github.com/middyjs/middy/issues/300), [#316](https://github.com/middyjs/middy/issues/316), [#373](https://github.com/middyjs/middy/issues/373), [#506](https://github.com/middyjs/middy/issues/506))
+  - Better (and more clear) support for promises and Async/Await ([#392](https://github.com/middyjs/middy/issues/392), [#414](https://github.com/middyjs/middy/issues/414))
+  - Better documentation ([#173](https://github.com/middyjs/middy/issues/173))
 
 All in all, my feeling is that the framework can still be improved a hell of a lot in terms of usability.
 
@@ -159,9 +159,9 @@ Follow the [list of issues on GitHub](https://github.com/middyjs/middy/issues) t
 
 Here's the moment where I am to be honest with myself...
 
-As a maintaner of the project I don't feel like I did a great job to make this project progress. I limited myself to doing code reviews and merge feature requests quite passively. I have been lacking vision and initiative to be able to steer the project forward and bring it to the next stage.
+As a maintainer of the project I don't feel like I did a great job to make this project progress. I limited myself to doing code reviews and merge feature requests quite passively. I have been lacking vision and initiative to be able to steer the project forward and bring it to the next stage.
 
-The thruth is that I haven't been as involved with serverless as I used to be in the last 2 years. I have probably been lacking perspective and I lost pace with the evolution of serverless and Lambda, so it's hard for me to be proactive and have a solid vision for the project.
+The truth is that I haven't been as involved with serverless as I used to be in the last 2 years. I have probably been lacking perspective and I lost pace with the evolution of serverless and Lambda, so it's hard for me to be proactive and have a solid vision for the project.
 
 I want to shed some light on some people that helped carry the project forward and I want to give them a special thank you (in no particular order):
 
@@ -173,7 +173,7 @@ I want to shed some light on some people that helped carry the project forward a
 
 If you use middy, don't be shy and please show yourself on GitHub. I created a new repository just to foster conversations at [github.com/middyjs/discuss](https://github.com/middyjs/discuss). Open an issue just to say hello and tell us how and why you are using middy and what you would like to see happening next.
 
-I'd love to be able to create a more cohese community and possibly to pass the torch to a group of people that is actively involved in serverless and that can drive the project forward better than I am currently doing.
+I'd love to be able to create a more cohesive community and possibly to pass the torch to a group of people that is actively involved in serverless and that can drive the project forward better than I am currently doing.
 
 
 ## Alternatives to middy
@@ -182,6 +182,7 @@ In case you don't like middy or you just want to explore possible alternatives, 
 
  - [curveball](https://github.com/curveball) by [@evert](https://github.com/evert)
  - [lambcycle](https://github.com/juliantellez/lambcycle) by [@juliantellez](https://github.com/juliantellez)
+ - [lambda-middleware](https://github.com/dbartholomae/lambda-middleware) by [@dbartholomae](https://github.com/dbartholomae)
  - [aws-serverless-express](https://github.com/awslabs/aws-serverless-express) by AWS itself
  - [aws-lambda-fastify](https://github.com/fastify/aws-lambda-fastify) by the [fastify community](https://github.com/fastify)
  - [aws-lambda-middleware](https://github.com/blaxk/aws-lambda-middleware)
@@ -201,3 +202,5 @@ That's it. I feel quite happy and relieved to know that we finally reached this 
 All the best and please let me know in the comments what do you think.
 
 Regards
+
+PS: thanks to [@theburningmonk](https://twitter.com/theburningmonk), [@StefanoAbalsamo](https://twitter.com/StefanoAbalsamo), [@PadraigOBrien](https://twitter.com/PadraigOBrien) and [@quasi_modal](https://twitter.com/quasi_modal) for feedback and reviews.
