@@ -22,8 +22,8 @@ slides_link: "http://www.loige.link/lambda-workshop"
 video_link: null
 with:
   - name: Padraig O'Brien
-    link: "https://twitter.com/Podgeypoos79"
-    image: 'http://avatars.io/twitter/Podgeypoos79/small'
+    link: "https://twitter.com/PadraigOBrien"
+    image: 'https://pbs.twimg.com/profile_images/1257689843611697152/c05SV9HI_x96.jpg'
 ---
 
 Serverless is becoming the cool new kid on the block taking software development by storm. Enterprises and developers alike are embracing the new paradigm in order to drive innovation, time to marked and solve complex architectural challenges.
