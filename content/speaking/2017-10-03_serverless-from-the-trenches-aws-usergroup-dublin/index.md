@@ -22,8 +22,8 @@ slides_link: "http://loige.link/serverless-trenches"
 video_link: null
 with:
   - name: Padraig O'Brien
-    link: "https://twitter.com/Podgeypoos79"
-    image: 'http://avatars.io/twitter/Podgeypoos79/small'
+    link: "https://twitter.com/PadraigOBrien"
+    image: 'https://pbs.twimg.com/profile_images/1257689843611697152/c05SV9HI_x96.jpg'
 ---
 
 99% of our daily work is in lambdas. We have been working with them for almost 2 years. In that time we learned a lot and in this presentation we will share some of those learnings with you.We are going to focus on unexpected failures and how we recovered from them.
