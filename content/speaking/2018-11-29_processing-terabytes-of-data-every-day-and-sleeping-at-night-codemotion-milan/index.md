@@ -19,7 +19,7 @@ event_city: 'Milan'
 event_days: 'November 29-30 2018'
 is_workshop: false
 slides_link: 'https://loige.link/terabytes'
-video_link: null
+video_link: https://www.youtube.com/watch?v=-Tmbr7u3aFA
 with:
   - name: Domagoj Katavic
     link: 'https://twitter.com/katavic_d'
