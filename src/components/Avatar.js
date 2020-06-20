@@ -14,10 +14,11 @@ const Container = styled.a`
 const ImgAvatar = styled.img`
   border-radius: 50%;
   width: 2em;
-  hright: 2em;
+  height: 2em;
   vertical-align: middle;
   display: inline-block;
   margin: 0 .5em 0 0;
+  overflow: hidden;
 `
 
 const TextAvatar = styled.div`
