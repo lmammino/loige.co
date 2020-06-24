@@ -19,9 +19,9 @@ event_location_gps: null
 event_city: "remote"
 event_days: 'June 24 2020'
 is_workshop: false
-slides_link: null
+slides_link: https://loige.link/js-overview
 video_link: null
 with: []
 ---
 
-In this talk, we will discuss JavaScript. Why does JavaScript exist in the first place? What is it useful for? How is it different from other mainstream languages like Java, C# or C? When you should consider using JavaScript (and when you shouldn't). We will also explore JavaScript server-side: Node.js and finally we will see how easy it is to build simple applications like an HTTP server, a CLI script or a TCP server!
+In this talk, we will discuss JavaScript. Why does JavaScript exist in the first place? What is it useful for? How is it different from other mainstream languages like Java, C# or C? When you should consider using JavaScript (and when you shouldn't). We will also explore JavaScript server-side: Node.js and finally we will discuss when to use JavaScript + Node.js and when not to!
