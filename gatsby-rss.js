@@ -36,8 +36,8 @@ module.exports = {
               pageImageFb || pageImageTw || siteMetadata.defaultImage
             return Object.assign({}, edge.node.frontmatter, {
               description: edge.node.excerpt,
-              url: site.siteMetadata.siteUrl + edge.node.fields.slug,
-              guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
+              url: site.siteMetadata.siteUrl + '/' + edge.node.fields.slug,
+              guid: site.siteMetadata.siteUrl + '/' + edge.node.fields.slug,
               custom_elements: [
                 {
                   'content:encoded': `<p><img src="${image}"/></p>${

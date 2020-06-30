@@ -22,6 +22,7 @@ const getChangeFreq = edge => {
 module.exports = {
   resolve: 'gatsby-plugin-sitemap',
   options: {
+    createLinkInHead: true,
     exclude: [
       '/dev-404-page',
       '/404',
@@ -33,7 +34,7 @@ module.exports = {
     serialize: ({ site, allSitePage }) =>
       allSitePage.edges.map(edge => {
         return {
-          url: site.siteMetadata.siteUrl + edge.node.path.replace(/^\/+/g, ''),
+          url: site.siteMetadata.siteUrl + edge.node.path,
           changefreq: getChangeFreq(edge),
           priority: getPriority(edge)
         }
