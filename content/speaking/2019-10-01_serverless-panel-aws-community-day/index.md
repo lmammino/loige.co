@@ -23,19 +23,19 @@ video_link: null
 with:
   - name: Abby Fuller
     link: 'https://twitter.com/abbyfuller'
-    image: 'https://pbs.twimg.com/profile_images/1248377368919457792/3yvu-uEL_x96.jpg'
+    image: 'https://unavatar.now.sh/twitter/abbyfuller'
   - name: Fabio Douek
     link: 'https://twitter.com/FDouek'
-    image: 'https://pbs.twimg.com/profile_images/964227237972234245/AdNo5Pqg_x96.jpg'
+    image: 'https://unavatar.now.sh/twitter/FDouek'
   - name: Chris Paton
     link: 'https://twitter.com/PatonCrispy'
-    image: 'https://pbs.twimg.com/profile_images/882566487378153479/9Lfzaws4_x96.jpg'
+    image: 'https://unavatar.now.sh/twitter/PatonCrispy'
   - name: Gillian McCann
     link: 'https://twitter.com/othergill'
-    image: 'https://pbs.twimg.com/profile_images/934790373578194946/eq-41C4F_x96.jpg'
+    image: 'https://unavatar.now.sh/twitter/othergill'
   - name: Eoin Shanaghy
     link: 'https://twitter.com/eoins'
-    image: 'https://pbs.twimg.com/profile_images/783319823728177152/bh-Au8WQ_x96.jpg'
+    image: 'https://unavatar.now.sh/twitter/eoins'
 ---
 
 Panel about "serverless", Moderated by Abby Fuller (AWS)

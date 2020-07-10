@@ -24,7 +24,7 @@ video_link: 'https://www.youtube.com/watch?v=VkFBZCippOk'
 with:
   - name: Francesco Sciuti
     link: 'https://twitter.com/FrancescoSciuti'
-    image: 'https://pbs.twimg.com/profile_images/1292440610/img_x96.jpg'
+    image: 'https://unavatar.now.sh/twitter/FrancescoSciuti'
 ---
 
 An interview (in Italian) directed by the fantastic Francesco Sciuti of [Acadevmy](https://www.acadevmy.it/introduction-en/) about my experience as a technical book author.
