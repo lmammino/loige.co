@@ -24,13 +24,13 @@ video_link: 'https://www.youtube.com/watch?v=yK2Jh-QZQkQ'
 with:
   - name: Francesco Sciuti
     link: 'https://twitter.com/FrancescoSciuti'
-    image: 'https://pbs.twimg.com/profile_images/1292440610/img_x96.jpg'
+    image: 'https://unavatar.now.sh/twitter/FrancescoSciuti'
   - name: Roberto Gambuzzi
     link: 'https://twitter.com/gbinside'
-    image: 'https://pbs.twimg.com/profile_images/1331766528/Ga.Ro_x96.JPG'
+    image: 'https://unavatar.now.sh/twitter/gbinside'
   - name: Alexiei Bottino
     link: 'https://www.linkedin.com/in/alexiei/'
-    image: 'https://media-exp1.licdn.com/dms/image/C5603AQERRSGeZqivPg/profile-displayphoto-shrink_100_100/0?e=1594252800&v=beta&t=EgbeGP-ch3bTP5Q_WaOjQJJopyHD0Ln6KJQ__ty4hgI'
+    image: 'https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-4.jpg'
 ---
 
 An interview (in Italian) directed by the fantastic Francesco Sciuti of [Acadevmy](https://www.acadevmy.it/introduction-en/) about moving to Ireland to work in the IT sector.
