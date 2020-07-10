@@ -19,8 +19,8 @@ event_location_gps: null
 event_city: "remote"
 event_days: 'July 09 2020'
 is_workshop: false
-slides_link: ~
-video_link: ~
+slides_link: https://loige.link/node-scale
+video_link: https://www.youtube.com/watch?v=4GuxWlQPhLs
 with: []
 ---
 
