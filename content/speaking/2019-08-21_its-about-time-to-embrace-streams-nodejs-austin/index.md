@@ -19,7 +19,7 @@ event_city: 'Austin, TX'
 event_days: 'August 21 2019'
 is_workshop: false
 slides_link: "https://loige.link/streams-austin"
-video_link: null
+video_link: https://www.youtube.com/watch?v=FgRMr2pezks
 with: []
 ---
 
