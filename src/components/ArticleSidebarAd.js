@@ -65,22 +65,22 @@ class ArticleSidebarAd extends Component {
       <ArticleSidebarAdContainer
         rel="nofollow noopener noreferrer"
         target="_blank"
-        href="https://loige.link/nodejs-book-ref-blog"
+        href="https://nodejsdp.link/buy"
       >
         <Columns>
           <Column className="left">
             <img
               src={bookCover}
               style={{ width: '100%' }}
-              alt="Node.js Design Patterns Second Edition"
+              alt="Node.js Design Patterns Third Edition"
             />
           </Column>
           <Column>
             <h4>Node.js Design Patterns</h4>
             <p>
-              Master best practices to build modular and scalable server-side
-              web applications guided by{' '}
-              <em>Node.js Design Patterns Second Edition</em>. Available as{' '}
+              Design and implement production-grade <strong>Node.js</strong>{' '}
+              applications using proven patterns and techniques with{' '}
+              <em>Node.js Design Patterns Third Edition</em>. Available as{' '}
               <strong>Digital</strong> and <strong>Print</strong>.
             </p>
           </Column>

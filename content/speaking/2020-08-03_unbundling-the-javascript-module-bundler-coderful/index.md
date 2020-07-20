@@ -3,7 +3,7 @@ uuid: d5706e52-c2a0-4235-95a7-2da899feb2b8
 layout: speaking
 title: 'Unbundling the JavaScript module bundler'
 slug: 'unbundling-the-javascript-module-bundler-coderful'
-date: 2020-07-28T16:30:00.000Z
+date: 2020-08-03T16:30:00.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: null
@@ -17,7 +17,7 @@ event_link: 'https://www.coderful.io/'
 event_location: "Remote"
 event_location_gps: null
 event_city: "remote"
-event_days: 'July 28 2020'
+event_days: 'August 03 2020'
 is_workshop: false
 slides_link: null
 video_link: null
