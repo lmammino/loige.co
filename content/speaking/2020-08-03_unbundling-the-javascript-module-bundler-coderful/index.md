@@ -19,8 +19,8 @@ event_location_gps: null
 event_city: "remote"
 event_days: 'August 03 2020'
 is_workshop: false
-slides_link: null
-video_link: null
+slides_link: https://loige.link/bundle-coderful
+video_link: https://youtu.be/cEwuHjMW-Qk
 with: []
 ---
 
