@@ -58,7 +58,7 @@ class Hello extends Component {
         </span>
         <p>
           I am Luciano a.k.a. <em>loige</em>, a passionate Cloud Developer
-          currently working as Cloud Architect at Vectra, Dublin. You can
+          currently working as Principal Software Engineer at FabFitFun in Dublin, Ireland. You can
           read some of my posts in this page, or{' '}
           <Link to="/about">know more about myself and my side projects</Link>{' '}
           or about my <Link to="/speaking">talks and workshops</Link>.
