@@ -32,7 +32,7 @@
     "gatsby-transformer-sharp": "^2.2.20",
     "gatsby-transformer-yaml": "^2.2.12",
     "github-slugger": "^1.2.0",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.20",
     "prismjs": "^1.21.0",
     "prop-types": "^15.6.2",
     "react": "^16.13.1",
