@@ -53,7 +53,7 @@ class Hello extends Component {
     return (
       <HelloContainer>
         <span className="picture">
-          <img src={ProfileImage} alt="Luciano Mammino's profile picture" />
+          <img width="128" src={ProfileImage} alt="Luciano Mammino's profile picture" />
           <h3>Hello :)</h3>
         </span>
         <p>
