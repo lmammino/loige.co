@@ -42,7 +42,7 @@ const AboutPage = props => {
       <ResponsiveWrapper>
         <ArticleContainer style={{ minHeight: '80vh' }}>
           <h2 style={{ marginTop: '4em' }}>Hello, this is Luciano :)</h2>
-          <ProfilePic src={ProfilePicImage} alt="Luciano's portrait" />
+          <ProfilePic width="128" src={ProfilePicImage} alt="Luciano's portrait" />
           <p>
             Since I started navigating the great Internet, my nickname has been
             <em>&quot;loige&quot;</em>, that&apos;s why this website is called{' '}
