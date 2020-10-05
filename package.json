@@ -54,7 +54,7 @@
     "glob": "^7.1.4",
     "prettier": "^1.18.2",
     "prettier-standard": "^15.0.1",
-    "puppeteer": "^1.18.0",
+    "puppeteer": "^5.3.1",
     "yaml": "^1.7.0"
   },
   "homepage": "https://loige.co",
@@ -69,6 +69,7 @@
     "url": "git+https://github.com/lmammino/loige.co.git"
   },
   "scripts": {
+    "clean": "gatsby clean",
     "dev": "gatsby develop",
     "lint": "./node_modules/.bin/eslint --ext .js,.jsx --ignore-pattern public .",
     "test": "echo \"No test provided so far -.-\" && exit 0",
