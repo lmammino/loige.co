@@ -8,9 +8,11 @@ const baseUrl = process.argv[2] || 'http://localhost:8000/'
 
 const takeScreenshot = async (url, width, height, destination) => {
   const browser = await puppeteer.launch({
-    args: ['--no-sandbox', '--disable-setuid-sandbox']
+    headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox', '--window-size=1400,900']
   })
   const page = await browser.newPage()
+  await page._client.send('Emulation.clearDeviceMetricsOverride')
   await page.goto(url)
   await page.screenshot({
     path: destination,

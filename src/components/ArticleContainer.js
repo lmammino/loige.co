@@ -30,6 +30,12 @@ const ArticleContainer = styled.article`
       background-color: transparent;
       border: none;
     }
+
+    &.anchor.before {
+      position: absolute;
+      top: 64px;
+      left: -1em;
+    }
   }
 
   & > p:first-of-type {
