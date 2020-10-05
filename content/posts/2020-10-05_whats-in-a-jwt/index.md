@@ -9,8 +9,8 @@ updated: "2020-10-05T09:00:00.000Z"
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: "./whats-in-a-jwt.png"
-fb_img: "./whats-in-a-jwt.png-fb.png"
-tw_img: "./whats-in-a-jwt.png-tw.png"
+fb_img: ./whats-in-a-jwt-fb.png
+tw_img: ./whats-in-a-jwt-tw.png
 status: published
 language: en_US
 meta_title: null
