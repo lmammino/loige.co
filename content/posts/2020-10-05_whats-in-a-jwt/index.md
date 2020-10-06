@@ -28,17 +28,21 @@ In this article we will be trying to address this topic in a short but (hopefull
 
 JWT stands for *JSON Web Token* and such a token is just a string composed by 3 parts:
 
+![The three parts of a JSON Web Token](./jwt-parts.png)
+
   - a **header**
   - a **body** (sometimes also referred to as **payload**)
   - a cryptographic **signature**.
 
 Let's have a look at a more concrete example, a JWT looks like this:
 
-```
+```text
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJoZWxsbyI6ImZyb20gSldUIn0.XoByFQCJvii_iOTO4xlz23zXmb4yuzC3gqrWNt3EHrg
 ```
 
 The three parts are separated by a `.` (dot) character:
+
+![The three parts of a sample JSON Web Token](./jwt-parts-example.png)
 
   - header: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9`
   - body: `eyJoZWxsbyI6ImZyb20gSldUIn0`
