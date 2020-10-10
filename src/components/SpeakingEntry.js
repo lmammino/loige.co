@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import styled from '@emotion/styled'
 
 import Avatar from './Avatar'
+import WithPeople from './WithPeople'
 import ImagesSolidIcon from './icons/ImagesSolid'
 import VideoSolidIcon from './icons/VideoSolid'
 
@@ -10,7 +11,7 @@ const Title = styled.h3`
   padding-top: 0 !important;
 `
 
-const WithPeople = styled.section`
+const WithPeopleBlock = styled.section`
   margin: 2em 0 0 0;
   color: #666;
 
@@ -36,7 +37,6 @@ class SpeakingEntry extends Component {
   render () {
     const { event } = this.props
     const { frontmatter: f } = event
-    const withPeople = conjunctions(f.with)
 
     return (
       <div>
@@ -80,24 +80,10 @@ class SpeakingEntry extends Component {
               </span>
               &nbsp; - <span itemProp="startDate">{f.date}</span>
             </p>
-            {withPeople.length > 0 && (
-              <WithPeople>
-                With{' '}
-                {withPeople.comaSeparated.map((person, index) => {
-                  return (
-                    <Fragment key={person.name}>
-                      <Avatar link={person.link} name={person.name} image={person.image}/>
-                      {index < withPeople.comaSeparated.length - 1 && ', '}
-                    </Fragment>
-                  )
-                })}
-                {withPeople.and && (
-                  <Fragment key={withPeople.and.name}>
-                    &nbsp;and{' '}
-                    <Avatar link={withPeople.and.link} name={withPeople.and.name} image={withPeople.and.image}/>
-                  </Fragment>
-                )}
-              </WithPeople>
+            {f.with && f.with.length > 0 && (
+              <WithPeopleBlock>
+                <WithPeople people={f.with} prefix="With"/>
+              </WithPeopleBlock>
             )}
 
             {(f.slides_link || f.video_link) && (
@@ -128,24 +114,6 @@ class SpeakingEntry extends Component {
       </div>
     )
   }
-}
-
-function conjunctions (arr) {
-  const c = {
-    comaSeparated: null,
-    and: null,
-    length: arr.length
-  }
-
-  if (arr.length === 1) {
-    c.comaSeparated = arr
-  } else {
-    const last = arr[arr.length - 1]
-    c.comaSeparated = arr.slice(0, arr.length - 1)
-    c.and = last
-  }
-
-  return c
 }
 
 export default SpeakingEntry
