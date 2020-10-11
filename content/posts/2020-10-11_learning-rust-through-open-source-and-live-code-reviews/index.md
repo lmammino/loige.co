@@ -4,8 +4,8 @@ layout: post
 title: Learning Rust through open source and live code reviews
 slug: learning-rust-through-open-source-and-live-code-reviews
 subtitle: null
-date: "2020-10-09T09:00:00.000Z"
-updated: "2020-10-11T09:00:00.000Z"
+date: "2020-10-11T19:50:00.000Z"
+updated: "2020-10-11T19:50:00.000Z"
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: "./learning-rust-through-open-source-and-live-code-reviews.jpg"
