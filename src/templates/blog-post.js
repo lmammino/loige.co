@@ -183,6 +183,11 @@ export const pageQuery = graphql`
         tw_img {
           publicURL
         }
+        written_with {
+          name
+          link
+          image
+        }
       }
     }
   }

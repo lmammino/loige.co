@@ -8,6 +8,8 @@ import CommentsIcon from './icons/CommentsSolid'
 import GitHubIcon from './icons/Github'
 import DateViewer from './DateViewer'
 import TagsList from './TagsList'
+import Avatar from './Avatar'
+import WithPeople from './WithPeople'
 
 const SectionContainer = styled.div`
   margin: 2em 0;
@@ -76,9 +78,8 @@ class Article extends Component {
           </a>
           <p>
             — Published by{' '}
-            <em>
-              <Link to="/about">Luciano Mammino</Link>
-            </em>
+            <Avatar link="https://twitter.com/loige" name="Luciano Mammino" image="https://unavatar.now.sh/twitter/loige" />
+            <WithPeople people={post.frontmatter.written_with} prefix=", written with" />
           </p>
         </SectionContainer>
         <ArticleContainer dangerouslySetInnerHTML={{ __html: post.html }} />
