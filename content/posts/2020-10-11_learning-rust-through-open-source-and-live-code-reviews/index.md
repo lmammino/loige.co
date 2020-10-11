@@ -14,7 +14,7 @@ tw_img: ./learning-rust-through-open-source-and-live-code-reviews-tw.png
 status: published
 language: en_US
 meta_title: null
-meta_description: null
+meta_description: A collection of Rust tips and tricks that we learned after publishing our first open source project and receiving a live review on Twitch
 written_with:
   - name: Stefano Abalsamo
     image: https://unavatar.now.sh/twitter/stefanoabalsamo
