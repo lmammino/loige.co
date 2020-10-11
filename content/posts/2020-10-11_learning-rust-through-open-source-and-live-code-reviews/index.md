@@ -438,7 +438,7 @@ Applying the same principle as before we refactored the code above to this:
 impl fmt::Display for JWTParseError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         let message = match self {
-            JWTParseError::MissingSection() => Missing token section".to_string(),
+            JWTParseError::MissingSection() => "Missing token section".to_string(),
             JWTParseError::InvalidUtf8(e) => format!("UTF8 error, {}", e),
             JWTParseError::InvalidBase64(e) => format!("Base64 error, {}", e),
             JWTParseError::InvalidJSON(e) => format!("JSON error, {}", e),
