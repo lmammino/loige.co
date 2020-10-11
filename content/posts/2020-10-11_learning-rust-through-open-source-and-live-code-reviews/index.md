@@ -29,13 +29,19 @@ In the last few years we set ourselves onto the Rust learning path. We don't wor
 
 We recently had the pleasure to have our crate reviewed by [Tim McNamara](https://twitter.com/timClicks) of [Rust in Action](https://www.manning.com/books/rust-in-action)'s fame (one the best Rust books out there in our honest opinion!). The review was carried out live on [Tim's twitch channel](https://www.twitch.tv/timclicks) and it gave us a lot of cues on things to improve.
 This article serves as a summary for our experience and memorandum of all the interesting things we learned. If you are learning Rust as well, we hope you will find some of these notes useful!
+
+
 ## Our motivation
+
 Before getting into the weeds of what we learned, it probably makes sense for us to give you a little intro on who we are and why we are interested in Rust. If you couldn't care less about who is writing this, just skip to the next section! 😜
 
 [Luciano](https://twitter.com/loige), considers himself a fullstack cloud developer. His career has been gravitating mostly around building web and cloud-focused products. He has been using mainly high level languages throughout his career (qBasic/VB, Php, JavaScript, Python, Go, Node.js). Node.js is his tool of choice and he is one of the co-authors of the book [Node.js Design Patterns (Packt)](https://www.nodejsdesignpatterns.com/). He is fascinated by Rust because it unveils fundamental topics like memory management and safety which he doesn't know much about, but he is also interested in using Rust on the web building Rust web servers and frontends with WebAssembly. If you are curious to know more about Luciano, check out the [about section of this blog](/about).
 
 [Stefano](https://twitter.com/StefanoAbalsamo) is a long time low-level C/C++ developer who got close to the world of web development in the last few years. Based on his previous experience, Stefano saw in Rust a great potential to write safe and performant code across all the stack.
+
+
 ## The project and a quick JWT primer
+
 Just to give you a little bit of context on the project, `jwtinfo` is a simple command line application (and a library) that allows you to validate and decode a JWTs (JSON Web Tokens) and visualize the content of the "body" (or "payload") section of the token. If you are not familiar with what JWT is, you can read this 5-minutes article called [what's in a JWT](https://loige.co/whats-in-a-jwt).
 
 `jwtinfo` is a command line utility that allows you to see what's inside a JWT. For instance you can run it like this:
@@ -53,10 +59,13 @@ And it will print:
 Which is essentially the *body* (or *payload*) of the token we pass as input to `jwtinfo`.
 
 Of course, `jwtinfo` will also tell you if you try to pass a token that is not valid and can't be parsed correctly, so, in a way, you could also call it a JWT validator, even though, at this time, it does not offer any functionality to validate the token signature against a secret or a public key.
+
+
 ## The review
+
 The idea of the code review came up when Tim [asked on Twitter what people would be interested to see in a Rust live stream](https://twitter.com/timClicks/status/1306105789245841409). Luciano took this opportunity to suggest to do some live code review of Rust beginners' crates. Tim seemed to like the idea and of course at that point we had to volunteer our project 😇
 
-After a couple of weeks Tim proceeded with the [live review that you can still watch on twitch](https://www.twitch.tv/timclicks/clip/EnthusiasticPiercingNuggetsOSfrog).
+After a couple of weeks Tim proceeded with the live review [that you can now watch on YouTube](https://www.youtube.com/watch?v=1JZ1oWp3PuA).
 
 ![Tim McNamara (timclicks) reviewing the jwtinfo Rust crate on Twitch](./timclicks-reviewing-jwtinfo-rust-crate-on-twitch.jpg)
 
@@ -72,7 +81,10 @@ After a couple of weeks Tim proceeded with the [live review that you can still w
 In hindsight, we reckon that this list might look a bit random and unclear, but nonetheless Tim managed to address most of these points and provided great insights around the concerns we had around these topics.
 
 We are going now to showcase our notes, in no special order and try to provide as much context as possible based on what we learned during the review process and even after it when we decided to go in greater depth on some of the suggested improvements.
+
+
 ## Simplified project structure and exposing a CLI and a library
+
 When we started working on this project we just wanted to create a simple command line tool. As we were writing the code, we realized that all the JWT parsing and validation logic could be externalized to its own external module. We didn't really want to split the project in two, mostly for simplicity, but also because there are [many cool JWT crates](https://crates.io/search?q=jwt) out there and don't want to compete or even try to provide feature parity with them. This is a learning project, and as such, we thought it might be nice to expose our JWT parsing layer as a library too.
 Tim provided 2 interesting pieces of advice. The first one is to simplify the folder structure. It turns out we were following a pattern that was required in Rust 2015 edition, which looks like the following:
 
@@ -159,7 +171,10 @@ src/
 ```
 
 And that annoying warning disappeared. Plus, we are probably getting slightly faster compile times now! ⚡️
+
+
 ## Document all the things
+
 One thing that we completely neglected so far was documentation. Rust has an amazing built-in utility to be able to document the API of crates and even to publish them online.
 There is even an official piece of documentation that gives guidance on how to write [useful documentation comments](https://doc.rust-lang.org/book/ch14-02-publishing-to-crates-io.html#making-useful-documentation-comments).
 
@@ -218,7 +233,10 @@ fn parse_base64_string(s: &str) -> Result<String, JWTParseError> {
 ```
 
 This is convenient because we don't want any user of our crate to bother with this function which is just an implementation detail that we might decide to change in the future.
+
+
 ## Convert a string to anything
+
 Another great suggestion from Tim to improve the ergonomics of the JWT parsing library was to implement the [`str::FromStr` trait](https://doc.rust-lang.org/std/str/trait.FromStr.html) for the `Token` type.
 
 The `FromStr` trait is a special Rust trait that allows to convert a string into any type that implements the trait.
@@ -322,7 +340,10 @@ or, if you still hate the poor turbofish:
 ```rust
 let token: jwt::Token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c".parse().unwrap();
 ```
+
+
 ## Accept any type that can be converted to string
+
 For better or for worse, Rust is famous for having a number of different types to represent strings. The most famous are [`String` and `&str`](https://doc.rust-lang.org/stable/rust-by-example/std/str.html) but from time to time we have seen even other types like [`CStr`](https://doc.rust-lang.org/std/ffi/struct.CStr.html) or [`OsStr`](https://doc.rust-lang.org/std/ffi/struct.OsStr.html).
 
 During the review process, Tim recommended making our public API more flexible by supporting "every type that can be converted to a string".
@@ -359,7 +380,10 @@ pub fn parse<T: AsRef<str>>(token: T) -> Result<Token, JWTParsePartError> {
     // ...
 }
 ```
+
+
 ## Remove code duplication
+
 One of the things that amazed us when we started playing with Rust was to discover that Rust [*is primarily an expression language*](https://doc.rust-lang.org/reference/statements-and-expressions.html).
 
 In practice, this means that most syntax elements, including `if-else` and `match`, once evaluated will produce a value that can be carried over to other expressions or assigned to a variable.
@@ -450,7 +474,10 @@ let part = if matches.is_present("header") {
 Which is indeed more readable. Another lesson learned: trust linters!
 
 In short, these types of change helped us to reduce the amount of inline composition and to make the code more sequential and easy to follow.
+
+
 ## Improve tests for invalid strings
+
 Another thing that Tim recommended us to do was to improve our coverage on testing different types of input. He tried to run our JWT parser against strings with non-utf8 characters and strings containing null bytes to see whether our code would handle that correctly (returning an error) or whether it would just panic.
 
 The idea is to try to avoid panics at all costs and make sure all possible errors are handled and propagated correctly.
@@ -458,17 +485,25 @@ The idea is to try to avoid panics at all costs and make sure all possible error
 This pushed us to increase our test coverage adding a few more tests as you can see in [this PR](https://github.com/lmammino/jwtinfo/pull/28/files).
 
 Another interesting recommendation was to use something like [quickcheck](https://github.com/BurntSushi/quickcheck) to do fuzzy testing on our input. Although this seems like an extremely interesting thing to do, we haven't got time yet to play with this idea.
+
+
 ## Shell scripts deserve some love too
+
 As a last point, Tim had a look at our [cross-system installation script](https://github.com/lmammino/jwtinfo/blob/master/install.sh) and immediately noticed our poor use of Bash scripting.
 
 The main advice here was to use some shell linter like [Shellcheck](https://www.shellcheck.net). Tim himself, ran the script against the linter by copy pasting the code on the web page and submitted a PR with some improvements.
 
 Shellcheck can be used as a command line tool too, so it would be nice in feature release to integrate in our automated tests.
+
+
 ## Conclusion
+
 This concludes our recap article. We don't have any special rule of thumb except that the Rust ride was quite fun for us so far. It has been a bumpy road but thanks to the amazing open source community and people like Tim, the road to learn Rust can become much smoother.
 
 Our final word of advice is that, if you are learning Rust, or any other technology for what matters, don't be afraid to starti public open source projects and ask for help and reviews. Even better if you share this journey with some friends.
 
 At the end of the day, all that matters is learning new things and having fun!
+
+We take one more opportunity to thank Tim for the great support here and, if you like Rust, we do recommend you to follow him on [Twitter](https://twitter.com/timClicks), [Twitch](https://www.twitch.tv/timclicks) and [Youtube](https://www.youtube.com/channel/UClny6qj9Mv7uFo9XGUGYQBA).
 
 Take care! 🙌
