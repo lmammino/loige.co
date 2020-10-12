@@ -184,7 +184,7 @@ As you start adding documentation comments to your crate, you can simply run `ca
 
 Few days after the review we rolled up our sleeves and started to document our library. If you are curious to see what it took to go from 0 to 100, this is our PR that added documentation to the crate: [lmammino/jwtinfo/pull/22](https://github.com/lmammino/jwtinfo/pull/22).
 
-One of the most amazing thing was that, once we published a new version of the crate on crates.io, after few minutes we had could navigate our crate doc online at [docs.rs/jwtinfo](https://docs.rs/jwtinfo):
+One of the most amazing thing was that, once we published a new version of the crate on crates.io, after few minutes we could navigate our crate doc online at [docs.rs/jwtinfo](https://docs.rs/jwtinfo):
 
 ![jwtinfo Rust docs page screenshot from the rendered docs in the browser](./jwtinfo-rust-docs-page.png)
 
