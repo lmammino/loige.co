@@ -500,7 +500,7 @@ Shellcheck can be used as a command line tool too, so it would be nice in featur
 
 This concludes our recap article. We don't have any special rule of thumb except that the Rust ride was quite fun for us so far. It has been a bumpy road but thanks to the amazing open source community and people like Tim, the road to learn Rust can become much smoother.
 
-Our final word of advice is that, if you are learning Rust, or any other technology for what matters, don't be afraid to starti public open source projects and ask for help and reviews. Even better if you share this journey with some friends.
+Our final word of advice is that, if you are learning Rust, or any other technology for what matters, don't be afraid to start public open source projects and ask for help and reviews. Even better if you share this journey with some friends.
 
 At the end of the day, all that matters is learning new things and having fun!
 
