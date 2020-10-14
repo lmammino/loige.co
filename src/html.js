@@ -195,6 +195,7 @@ export default class HTML extends React.Component {
             dangerouslySetInnerHTML={{ __html: this.props.body }}
           />
           {this.props.postBodyComponents}
+          <script type="text/javascript" src="https://s.skimresources.com/js/173252X1641492.skimlinks.js"></script>
         </body>
       </html>
     )
