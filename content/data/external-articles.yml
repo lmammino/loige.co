@@ -40,3 +40,6 @@
 - title: "What is a JWT token"
   link: "https://dev.to/loige/what-is-a-jwt-token-302k"
   date: "2020-10-01T13:00:00.000Z"
+- title: "Determine prominent colors in a picture, your first AWS Lambda in Go"
+  link: "https://buddy.works/tutorials/determine-prominent-colors-in-a-picture-your-first-aws-lambda-in-go"
+  date: "2020-10-10T13:00:00.000Z"
