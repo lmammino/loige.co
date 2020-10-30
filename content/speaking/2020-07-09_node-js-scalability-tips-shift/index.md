@@ -12,7 +12,7 @@ language: en_US
 presentation_language: en_US
 meta_title: null
 meta_description: null
-event_name: 'Node.js scalability tips'
+event_name: 'Shift remote'
 event_link: 'https://remote.shiftconf.co/'
 event_location: "Remote"
 event_location_gps: null
