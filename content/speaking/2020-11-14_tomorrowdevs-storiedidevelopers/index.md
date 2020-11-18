@@ -13,14 +13,14 @@ presentation_language: it_IT
 meta_title: null
 meta_description: null
 event_name: 'Tomorrowdevs'
-event_link: 'https://www.youtube.com/watch?v=wwixnqG5K68&ab_channel=TomorrowDevs'
+event_link: 'https://www.youtube.com/watch?v=wwixnqG5K68'
 event_location: "Remote"
 event_location_gps: null
 event_city: "remote"
 event_days: 'November 14 2020'
 is_workshop: false
 slides_link: ~
-video_link: ~
+video_link: 'https://www.youtube.com/watch?v=wwixnqG5K68'
 with:
   - name: Simone Torrisi
     link: 'https://twitter.com/storrisi'
