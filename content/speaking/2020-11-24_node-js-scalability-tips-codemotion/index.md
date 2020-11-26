@@ -17,9 +17,9 @@ event_link: 'https://events.codemotion.com/conferences/online/2020/online-tech-c
 event_location: "Remote"
 event_location_gps: null
 event_city: "remote"
-event_days: 'November 24 2020'
+event_days: "November 24 2020"
 is_workshop: false
-slides_link: ~
+slides_link: "https://loige.link/nodescale"
 video_link: ~
 with: []
 ---
