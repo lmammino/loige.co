@@ -190,12 +190,11 @@ export default class HTML extends React.Component {
           <Global styles={globalStyle}/>
           {this.props.preBodyComponents}
           <div
-            key={`body`}
+            key={'body'}
             id="___gatsby"
             dangerouslySetInnerHTML={{ __html: this.props.body }}
           />
           {this.props.postBodyComponents}
-          <script type="text/javascript" src="https://s.skimresources.com/js/173252X1641492.skimlinks.js"></script>
         </body>
       </html>
     )
