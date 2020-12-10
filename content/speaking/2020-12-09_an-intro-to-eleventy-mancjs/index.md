@@ -19,7 +19,7 @@ event_location_gps: null
 event_city: "remote"
 event_days: 'December 9 2020'
 is_workshop: false
-slides_link: ~
+slides_link: "https://loige.link/11ty-mancjs"
 video_link: ~
 with: []
 ---
