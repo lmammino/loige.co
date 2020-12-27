@@ -12,7 +12,7 @@ language: en_US
 presentation_language: en_US
 meta_title: null
 meta_description: null
-event_name: 'Francesco Ciulla\'s Channel'
+event_name: "Francesco Ciulla's Channel"
 event_link: 'https://www.youtube.com/channel/UCBRxDSTfr2aJVODDh4WG_7g'
 event_location: "Remote"
 event_location_gps: null
