@@ -49,3 +49,6 @@
 - title: "Integration testing for AWS Lambda in Go with Docker-compose"
   link: "https://buddy.works/tutorials/integration-testing-for-aws-lambda-in-go-with-docker-compose"
   date: "2020-12-01T15:00:00.000Z"
+- title: "5 Ways to install Node.js"
+  link: "https://www.nodejsdesignpatterns.com/blog/5-ways-to-install-node-js/"
+  date: "2020-12-24T18:30:00.000Z"
