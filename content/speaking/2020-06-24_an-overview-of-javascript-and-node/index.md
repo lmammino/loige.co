@@ -12,7 +12,7 @@ language: en_US
 presentation_language: en_US
 meta_title: null
 meta_description: null
-event_name: 'An overview of JavaScript and Node.js'
+event_name: 'Liferay Universities Series'
 event_link: 'https://www.eventbrite.com/e/liferay-universities-series-introduction-to-javascript-and-liferay-tickets-108873122440'
 event_location: "Remote"
 event_location_gps: null
