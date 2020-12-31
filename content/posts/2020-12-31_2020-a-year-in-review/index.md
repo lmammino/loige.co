@@ -95,7 +95,7 @@ What made me particularly happy is that some of these talks are not regular tech
 
 Thanks to [Francesco Sciuti](https://www.youtube.com/channel/UCMudbsRDgdkDe3hXD2qsTUg), [Simone Torrisi](https://www.youtube.com/channel/UCckCYs-msiC4Vs_nyg218Hw), [Rafael Del Nero](https://www.youtube.com/c/JavaChallengers/), [Francesco Ciulla](https://www.youtube.com/channel/UCBRxDSTfr2aJVODDh4WG_7g) for interviewing me and everyone else that invited me to speak at their own meetups and conferences! THANK YOU!
 
-This is the full list of talks for my 2019. You can find more details and links in the [speaking section of this blog](/speaking):
+This is the full list of talks for my 2020. You can find more details and links in the [speaking section of this blog](/speaking):
 
   - _"Middy.js: a powerful middleware framework for your Node.js lambdas"_, Dublin GCS Connect Serverless (Dublin, Ireland)
   - _"Writing a tech book: it's doable! (Interview — in Italian)"_, Acadevmy - Uno di frontend (remote)
