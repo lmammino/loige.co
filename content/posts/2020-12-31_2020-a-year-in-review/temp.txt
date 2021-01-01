@@ -1,0 +1,5 @@
+Unfortunately, I don't have an official list, but here I have some proof that the LEGO Group does use Middy!
+
+![Hannah from Lego mentioning that they use Middy as a middleware layer for their Lambdas](./lego-using-middy.jpg)
+
+This is from [Hannah Tucker McLellan (@hannahintech)](https://twitter.com/hannahintech) on the [ServerlessDays Virtual October 2020](https://virtual.serverlessdays.io/) Discord channel. (Thanks to [@eoins](https://twitter.com/eoins) for sending me this amazing screenshot!)
