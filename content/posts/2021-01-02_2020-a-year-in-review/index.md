@@ -194,6 +194,8 @@ One final observation about Middy is that the project has kept growing steadily 
 
 These are not crazy big numbers in open source, but they are not small either. Especially if we consider that serverless is still new and there is a lot of potential for growth. If nothing else, these numbers make me proud to have started a project that is giving value to development teams.
 
+**UPDATE**: If you want to learn more about what happened for Middy in 2020, Will has done [a great recap on GitHub](https://github.com/middyjs/middy/issues/590).
+
 
 ### FullStack Bulletin
 
