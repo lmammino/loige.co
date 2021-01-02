@@ -13,7 +13,7 @@ presentation_language: it_IT
 meta_title: null
 meta_description: null
 event_name: 'Tomorrowdevs'
-event_link: 'https://www.youtube.com/watch?v=wwixnqG5K68'
+event_link: 'https://www.youtube.com/channel/UCckCYs-msiC4Vs_nyg218Hw'
 event_location: "Remote"
 event_location_gps: null
 event_city: "remote"
