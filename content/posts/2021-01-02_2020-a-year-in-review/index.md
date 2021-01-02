@@ -182,7 +182,7 @@ Interesting enough, I think I reached this milestone a bit burned out regarding 
 
 Because of this, my release post on this blog turned out to be a little bit of a cry for help to keep the project alive.
 
-Thankfully the community around the project has been very patient and supporting. In particular, [Will Farrel](https://github.com/willfarrell) stepped up and offered to become the lead maintainer of the project. Since then, he has been doing an incredible amount of work releasing other 5 minor versions of the framework and [he is already working on a new major release](https://github.com/middyjs/middy/pull/587)!
+Thankfully the community around the project has been very patient and supporting. In particular, [Will Farrell](https://github.com/willfarrell) stepped up and offered to become the lead maintainer of the project. Since then, he has been doing an incredible amount of work releasing other 5 minor versions of the framework and [he is already working on a new major release](https://github.com/middyjs/middy/issues/585)!
 
 If you have been using Middy, please consider joining the community and giving back to the project! You can also [sponsor Will](https://github.com/sponsors/willfarrell) to support the time he is investing in the project!
 
