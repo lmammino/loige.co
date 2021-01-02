@@ -4,8 +4,8 @@ layout: post
 title: "2020 - A year in review"
 slug: "2020-a-year-in-review"
 subtitle: null
-date: "2021-01-02T13:00:00.000Z"
-updated: "2021-01-02T13:00:00.000Z"
+date: "2021-01-02T12:50:00.000Z"
+updated: "2021-01-02T12:50:00.000Z"
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: "./2020-a-year-in-review.jpg"
