@@ -3,7 +3,7 @@ uuid: ec688aff-7c8d-431b-8e6b-debbfc47e477
 layout: speaking
 title: "Let's play with Node.js streams"
 slug: 'lets-play-with-nodejs-streams-cityjs'
-date: 2021-03-26T20:30:00.000Z
+date: 2021-03-22T20:30:00.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: null
@@ -16,7 +16,7 @@ event_link: 'https://cityjsconf.org/workshops'
 event_location: 'Remote'
 event_location_gps: null
 event_city: 'remote'
-event_days: 'March 24-26 2021'
+event_days: 'March 22-26 2021'
 is_workshop: true
 slides_link: null
 video_link: null
