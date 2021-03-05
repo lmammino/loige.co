@@ -19,7 +19,7 @@ event_location_gps: null
 event_city: 'remote'
 event_days: 'March 04 2021'
 is_workshop: false
-slides_link: null
+slides_link: "https://loige.link/devcast"
 video_link: null
 with: []
 ---
