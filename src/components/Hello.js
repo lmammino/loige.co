@@ -57,8 +57,12 @@ class Hello extends Component {
           <h3>Hello :)</h3>
         </span>
         <p>
-          I am Luciano a.k.a. <em>loige</em>, a passionate Cloud Developer
-          currently working as Principal Software Engineer at FabFitFun in Dublin, Ireland. You can
+          I am Luciano a.k.a. <em>loige</em>, a passionate FullStack &amp; Cloud developer
+          currently working as Senior Architect for <a
+            href="https://fourtheorem.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >fourTheorem</a> in Dublin, Ireland. You can
           read some of my posts in this page, or{' '}
           <Link to="/about">know more about myself and my side projects</Link>{' '}
           or about my <Link to="/speaking">talks and workshops</Link>.

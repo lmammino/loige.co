@@ -15,7 +15,7 @@ module.exports = {
       `,
     feeds: [
       {
-        title: 'Luciano Mammino "Loige" - Cloud developer, entrepreneur, fighter, butterfly maker!',
+        title: 'Luciano Mammino "Loige" - FullStack & Cloud developer, fighter, butterfly maker!',
         serialize: ({ query: { site, allMarkdownRemark } }) => {
           return allMarkdownRemark.edges.map(edge => {
             const siteMetadata = site.siteMetadata
