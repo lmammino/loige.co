@@ -61,21 +61,21 @@ const AboutPage = props => {
             more than 10 years.
           </p>
           <p>
-            I am currently a <strong>Principal Software Engineer</strong> at{' '}
+            I am currently a <strong>Senior Architect</strong> at{' '}
             <a
-              href="https://fabfitfun.com/"
+              href="https://fourtheorem.com/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              FabFitFun
+              fourTheorem
             </a>{' '}
-            in Dublin where I am working on improving the various Cloud deployments of the company serving more than 2 million customers daily.
+            in Dublin where we help companies to transtition to <Link to="/tag/aws">AWS</Link> and adopt the <Link to="/tag/serverless">Serverless</Link> paradigm.
           </p>
           <p>
             I love the fullstack web, <Link to="/tag/node-js">Node.js</Link> and{' '}
-            <Link to="/tag/node-js">Serverless</Link> so I co-authored the book{' '}
+            <Link to="/tag/serverless">Serverless</Link> so I co-authored the book{' '}
             <a
-              href="http://amzn.to/1ZF279B"
+              href="http://nodejsdesignpatterns.com/"
               target="_blank"
               rel="noopener noreferrer"
             >
