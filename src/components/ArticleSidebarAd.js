@@ -62,7 +62,7 @@ const Column = styled.span`
 class ArticleSidebarAd extends Component {
   render () {
     return (
-      <ArticleSidebarAdContainer href="https://nodejsdp.link">
+      <ArticleSidebarAdContainer href="https://www.nodejsdesignpatterns.com/">
         <Columns>
           <Column className="left">
             <img
