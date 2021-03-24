@@ -18,7 +18,7 @@ event_location_gps: null
 event_city: 'remote'
 event_days: 'March 22-26 2021'
 is_workshop: true
-slides_link: null
+slides_link: 'https://loige.link/streams-city'
 video_link: null
 with: []
 ---
