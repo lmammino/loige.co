@@ -78,7 +78,7 @@ class Article extends Component {
           </a>
           <p>
             — Published by{' '}
-            <Avatar link="https://twitter.com/loige" name="Luciano Mammino" image="https://unavatar.now.sh/twitter/loige" />
+            <Avatar link="https://twitter.com/loige" name="Luciano Mammino" image="https://unavatar.now.sh/github/lmammino" />
             <WithPeople people={post.frontmatter.written_with} prefix=", written with" />
           </p>
         </SectionContainer>

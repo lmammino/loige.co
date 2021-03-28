@@ -24,7 +24,7 @@ video_link: "https://youtu.be/F2fH59pkr4g"
 with:
   - name: Rafael Del Nero
     link: 'https://twitter.com/RafaDelNero'
-    image: 'https://unavatar.now.sh/twitter/RafaDelNero'
+    image: 'https://unavatar.now.sh/github/RafaDelNero'
 ---
 
 An interview with my friend and colleague Rafael Del Nero about my career and my advice on how to become a Principal Software Engineer.

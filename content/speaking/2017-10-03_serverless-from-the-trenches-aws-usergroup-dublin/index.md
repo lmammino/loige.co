@@ -23,7 +23,7 @@ video_link: null
 with:
   - name: Padraig O'Brien
     link: "https://twitter.com/PadraigOBrien"
-    image: 'https://unavatar.now.sh/twitter/PadraigOBrien'
+    image: 'https://unavatar.now.sh/github/PadraigOBrien'
 ---
 
 99% of our daily work is in lambdas. We have been working with them for almost 2 years. In that time we learned a lot and in this presentation we will share some of those learnings with you.We are going to focus on unexpected failures and how we recovered from them.

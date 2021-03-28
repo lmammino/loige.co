@@ -23,7 +23,7 @@ video_link: null
 with:
   - name: Christos Matskas
     link: 'https://twitter.com/ChristosMatskas'
-    image: 'https://unavatar.now.sh/twitter/ChristosMatskas'
+    image: 'https://unavatar.now.sh/github/cmatskas'
 ---
 
 Serverless is becoming the cool new kid on the block taking software development by storm. Enterprises and developers alike are embracing the new paradigm in order to drive innovation, time to marked and solve complex architectural challenges.
