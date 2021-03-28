@@ -4,8 +4,8 @@ layout: post
 title: "Where to go to learn Rust in 2021"
 slug: "where-to-go-to-learn-rust-in-2021"
 subtitle: null
-date: "2021-03-27T08:00:00.000Z"
-updated: "2021-03-27T08:00:00.000Z"
+date: "2021-03-28T19:55:00.000Z"
+updated: "2021-03-28T19:55:00.000Z"
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: "./where-to-go-to-learn-rust-in-2021.jpg"
@@ -237,38 +237,81 @@ If you like learning by reading books, this list should have you covered.
 
 #### Rust in Action (Tim McNamara)
 
-[Rust in Action by Tim McNamara (Manning)](https://www.manning.com/books/rust-in-action) is probably one of our favourite books. It has been in the works for a good number of years but it's very very close to hit the press. The book can be already purchased throught the Manning MEAP program (you get the digital version and all the updates, then when there's a print version available, you'll receive it).
+[Rust in Action by Tim McNamara (Manning)](https://www.manning.com/books/rust-in-action) is probably one of our favourite books. It has been in the works for a good number of years but it's very very close to hit the press. The book can be already purchased throught the Manning MEAP program (you get the digital version and all the updates, then when the print edition is finally available, you'll receive it by post).
 
 The reason why we enjoyed this book so much is because it takes a very practical stance. Rust concepts are taught by building interesting projects such as a floating point number abstraction, a CPU emulator, a custom file format, a key-value store database, etc.
 
-[![Rust in Action book cover](./rust-in-action-meap.png)](https://www.manning.com/books/rust-in-action)
+[![Tim McNamara - Rust in Action book cover](./rust-in-action-meap.png)](https://www.manning.com/books/rust-in-action)
 
 
 ### Zero to Production in Rust (Luca Palmieri)
 
-Luca Palmieri - Zero to Production in Rust: https://www.zero2prod.com/ 
+[Zero to Production in Rust by Luca Palmieri (self published)](https://www.zero2prod.com/) is a really good book about backend web development in Rust.
+We particularly like this book for various reasons.
+
+First of all, it's clearly a work of dedication and love. We had more than one opportunity to speak with Luca and it's clear how much time and dedication he is putting into this project.
+
+Since the book is a work in progress, you can read the new chapters as soon as they are available. It's great to see how the community has been engaging around the project helping the author to make the best out of this book.
+
+Luca is putting together a book that revolves around one main example: building an e-mail subscription platform. At first glance, one might think this is a very simple example, but in reality there's enough complexity around this domain to fill an entire book and, most importantly, learn Rust in the process!
+
+In addition to this, we love the particular style that the author uses throughout the book. In every chapter, before any piece of code is written, there is an entire section about what the requirements are and why we really need to build a certain feature. Then, every piece of code has it's own test and changes are actually introduced with a strict test-driven approach. This is quite unusual for a technical book, but that's actually why we like this book. While reading it, it seems like you are having a conversation with your product manager or your team lead and you realise you could actually use Rust at work, no big deal!
+
+We think there is a lot to learn from this book, not just about Rust but even about product development and good software engineering practices. Highly recommended!
+
+![Luca Palmieri - Zero to Production in Rust book cover](./zero-to-production-in-rust-luca-palmieri-book-cover.png)
 
 
-### Programming Rust ()
+### Programming Rust
 
-https://www.oreilly.com/library/view/programming-rust-2nd/9781492052586/
+[Programming Rust by Jim Blandy, Jason Orendorff and Leonora F.S. Tindall (O'Reilly)](https://www.oreilly.com/library/view/programming-rust-2nd/9781492052586/) is one of the most popular Rust books out there. We had an opportunity to read the first edition and it's a very solid book. The second edition should be coming this summer.
+
+In the first edition there were a few sections (especially in the first chapters) that were a bit hard to get, but we heard that the authors have been putting a lot of effort in listening to readers feedback and making sure the second edition will come out much more polished and approchable.
+
+Given the success of the first edition, we are simply looking forward to get our hands on the second edition!
+
+[![Programming Rust second edition](./programming-rust-second-edition-book-cover.png)](https://www.oreilly.com/library/view/programming-rust-2nd/9781492052586/)
 
 
 ### The Rust Programming Language (Steve Klabnik, Carol Nichols)
 
-https://www.amazon.co.uk/Rust-Programming-Language-Steve-Klabnik-dp-1718500440/dp/1718500440
+The Rust Programming Language is the print edition of the actual "offical" Rust book that we discussed at the beginning of this post. There isn't much else to add, except maybe that if you enjoy reading printed books (and want to support the authors), this is a great book to have!
+
+[![The Rust Programming Language book cover](./rust-programming-language-book-cover.png)](https://www.amazon.com/Rust-Programming-Language-Steve-Klabnik-dp-1718500440/dp/1718500440)
 
 
-...
 ### Video Courses
-Web development with rust
-Intro to Rust
-Rust Projects
-Rust in Motion
+
+To conclude this article, in this last section, we will explore some paid video courses that you can check if you prefer videos as learning material.
+
+#### Rust in Motion
+
+[Rust in Motion by Carol Nichols and Jake Goulding (Manning)](https://www.manning.com/livevideo/rust-in-motion) is a great video introduction to Rust. The materials is geared towards beginners so it's a great way to start learning Rust.
+
+One of the things that we have been enjoying the most from this video course is the explanation of Rust lifetimes. We particularly liked how lifetimes are visualised and all the examples presented in the chapter make it easy to understand this fundamental concept of Rust.
+
+[![A screenshot from Rust in motion showing an example of lifetimes visualized](./rust-in-motion-manning-video-screenshot.png)](https://www.manning.com/livevideo/rust-in-motion)
+
+
+#### Building web APIs with Rust
+
+[Building web APIs with Rust by Paris Liakos (Udemy)](https://www.udemy.com/course/web-dev-with-rust-rocket-diesel/) is a quite good beginners-level introduction to building web applications with Rust using **Rocket** as web framework and **Diesel** ORM.
+
+In about 2 hours and a half you could have a feeling for what it means to do web development with Rust.
+
 
 ## Conclusion
 
-TODO
+This concludes our list of resources for learning Rust.
+
+We really hope you found all the material here useful and we look forward to hearing how your journey to becoming a "rustacean" is going!
+
+Let us know in the comment which material you are enjoying the most and if you come across some other interesting material that we didn't mention in this post.
+
+Until then... enjoy writing Rust code!
+
+CIAO 👋
+
 
 ## About the authors
 
