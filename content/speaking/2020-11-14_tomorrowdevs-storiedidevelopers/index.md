@@ -24,7 +24,7 @@ video_link: 'https://www.youtube.com/watch?v=wwixnqG5K68'
 with:
   - name: Simone Torrisi
     link: 'https://twitter.com/storrisi'
-    image: 'https://unavatar.now.sh/twitter/storrisi'
+    image: 'https://unavatar.now.sh/github/storrisi'
 ---
 
 An interview with Simone Torrisi of Tomorrowdevs about my career as software engineer.

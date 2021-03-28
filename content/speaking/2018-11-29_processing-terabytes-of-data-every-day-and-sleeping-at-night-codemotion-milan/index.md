@@ -23,7 +23,7 @@ video_link: https://www.youtube.com/watch?v=-Tmbr7u3aFA
 with:
   - name: Domagoj Katavic
     link: 'https://twitter.com/katavic_d'
-    image: 'https://unavatar.now.sh/twitter/katavic_d'
+    image: 'https://unavatar.now.sh/github/dkatavic'
 ---
 
 This is the story of how we built a highly available data pipeline that processes terabytes of network data every day, making it available to security researchers for assessment and threat hunting.

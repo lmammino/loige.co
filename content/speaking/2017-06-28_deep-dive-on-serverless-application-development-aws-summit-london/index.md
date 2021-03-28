@@ -23,10 +23,10 @@ video_link: null
 with:
   - name: Danilo Poccia
     link: "https://twitter.com/danilop"
-    image: 'https://unavatar.now.sh/twitter/danilop'
+    image: 'https://unavatar.now.sh/github/danilop'
   - name: Padraig O'Brien
     link: "https://twitter.com/PadraigOBrien"
-    image: 'https://unavatar.now.sh/twitter/PadraigOBrien'
+    image: 'https://unavatar.now.sh/github/PadraigOBrien'
 ---
 
 AWS Lambda and Amazon API Gateway have changed how developers build and run their applications or services. But what are the best practices for tasks such as deployment, monitoring, and debugging in a serverless world?

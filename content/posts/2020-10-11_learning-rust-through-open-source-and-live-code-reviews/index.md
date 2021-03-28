@@ -17,7 +17,7 @@ meta_title: null
 meta_description: A collection of Rust tips and tricks that we learned after publishing our first open source project and receiving a live review on Twitch
 written_with:
   - name: Stefano Abalsamo
-    image: https://unavatar.now.sh/twitter/stefanoabalsamo
+    image: https://unavatar.now.sh/github/stefanoabalsamo79
     link: https://twitter.com/stefanoabalsamo
 tags:
   - rust
