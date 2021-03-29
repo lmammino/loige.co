@@ -48,7 +48,7 @@ The obvious place to start is the official [Rust book](https://doc.rust-lang.org
 
 #### The Rustonomicon
 
-[The Rustonomicon](https://doc.rust-lang.org/nomicon/) is a free book for those who are already pretty confident with Rust and want to learn _the dark arts of unsafe Rust_! Rust can have portions of code that are _unsafe_. What that means is that the compiler will let you do things that might be unsafe and it's up to you to use this power responsibly. Unsafe code is not necessarily bad but needs to be used with caution and this book will guide you through all the nitty-gritty details that you need to be aware of before starting to write unsafe Rust. Read it if you want to avoid to _unleashing indescribable horrors_!
+[The Rustonomicon](https://doc.rust-lang.org/nomicon/) is a free book for those who are already pretty confident with Rust and want to learn _the dark arts of unsafe Rust_! Rust can have portions of code that are _unsafe_. What that means is that the compiler will let you do things that might be unsafe and it's up to you to use this power responsibly. Unsafe code is not necessarily bad but needs to be used with caution and this book will guide you through all the nitty-gritty details that you need to be aware of before starting to write unsafe Rust. Read it if you want to avoid _unleashing indescribable horrors_!
 
 [![The disclaimer at the beginning of the Rustonomicon](./the-rustonomicon-disclaimer.png)](https://doc.rust-lang.org/nomicon/)
 
