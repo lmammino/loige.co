@@ -19,7 +19,7 @@ event_location_gps: null
 event_city: 'remote'
 event_days: 'April 6 2021'
 is_workshop: false
-slides_link: ~
+slides_link: "https://loige.link/rust-jwt"
 video_link: ~
 with: ~
 ---
