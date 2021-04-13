@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url> <loc>https://loige.co/rust-shenanigans-return-type-polymorphism/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://loige.co/where-to-go-to-learn-rust-in-2021/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://loige.co/2020-a-year-in-review/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://loige.co/learning-rust-through-open-source-and-live-code-reviews/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -126,6 +127,6 @@
 <url> <loc>https://loige.co/tag/backup/</loc> <changefreq>daily</changefreq> <priority>0.5</priority> </url>
 <url> <loc>https://loige.co/tag/dropbox/</loc> <changefreq>daily</changefreq> <priority>0.5</priority> </url>
 <url> <loc>https://loige.co/speaking/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://loige.co/about</loc> <changefreq>monthly</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://loige.co/comment-policy</loc> <changefreq>monthly</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://loige.co/about</loc> <changefreq>monthly</changefreq> <priority>0.7</priority> </url>
 </urlset>
