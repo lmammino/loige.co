@@ -20,9 +20,11 @@ tags:
   - rust
 ---
 
-In this article, I will try to describe Rust return type polymorphism, a feature that I recently discovered (_understood_ is probably a better word here) and that I have been pretty intrigued about. This is probably because I am seeing this feature for the first time in a programming language and at first glance it did seem like some sort of built-in compiler magic, available only in the standard library. In reality, it is a generalised feature that you can use in your own code every day.
+In this article, I will describe Rust _return type polymorphism_ (a.k.a. _generic returns_), a feature that I recently discovered and that I have been pretty intrigued about.
 
-Keep in mind that I am still quite a beginner with Rust, so my description might not be the most accurate but i'll try to make a point on why I like this feature and how it works by using some examples. Hopefully, you fill find this topic as interesting ad I did!
+I am seeing this feature for the first time in a programming language and at first glance, it did seem like some sort of built-in compiler magic, available only in the standard library. In reality, it is a generalised feature that you can use in your own code every day.
+
+Keep in mind that I am still quite a beginner with Rust, so my description might not be the most accurate but I will try to make a point on why I like this feature and how it works by using some examples. Hopefully, you will find this topic as interesting as I did!
 
 Ok, enough chit chat, let's get into it! 🧐
 
@@ -41,9 +43,9 @@ fn main() {
 }
 ```
 
-Ok, did you see it? I mean, how in the world is that `collect()` figuring out that I want to "collect" values from an iterator into an `HashSet` of integers? Indeed, it is giving me exactly an `HashSet` of integers!
+Ok, did you see it? I mean, how in the world is that `collect()` figuring out that I want to "collect" values from an iterator into a `HashSet` of integers? Indeed, it is giving me exactly a `HashSet` of integers!
 
-Not convinced yet? We can also change this example slightly and see what happes... Let's try with `Vec`:
+Not convinced yet? We can also change this example slightly and see what happens... Let's try with `Vec`:
 
 ```rust
 fn main() {
@@ -55,7 +57,30 @@ fn main() {
 
 Ok that's not removing duplicates anymore and it's preserving the order of elements, but that's not the point! The point is that `collect()` is still giving us what we want. This time we are asking for a `Vec` and indeed we get a `Vec` rather than a `HashMap`.
 
-Note that this code is almost the same as the previous one, we didn't change anything other than the type declaration (and a variable name, but that's irrelevant)!
+Note that this code is almost the same as the previous one. We didn't change anything other than the type declaration (and a variable name, but that's irrelevant)!
+
+Also, keep in mind that, while Rust can ofter infer your types and, most often, you don't have to provide explicit type definitions, when using `collect()` the type definition is necessary.
+
+Let's see what happens if we try to remove `Vec<i32>`:
+
+```rust
+fn main() {
+    let nums = [2, 17, 22, 48, 1997, 2, 22];
+    let nums_square = nums.iter().map(|x| x * x).collect();
+}
+```
+
+This example won't to compile because collect doesn't know what is the return type, so we get this nice-looking error:
+
+```plain
+error[E0282]: type annotations needed
+ --> src/main.rs:3:9
+  |
+  |     let nums_square = nums.iter().map(|x| x * x).collect();
+  |         ^^^^^^^^^^^ consider giving `nums_square` a type
+```
+
+I hope you starting to get the point. Some functions like `collect()` can _behave_ differently, based on the expected return type! The return type needs to be explicit, so the Rust compiler can pick the right behaviour for you.
 
 Ok, this is one of the first things I learned in Rust when doing coding challenges and I have been thinking for a while _"this is just some iterator magic and it probably works only for a few standard types"_...
 
@@ -79,7 +104,7 @@ Ok, types have default values, so what?
 
 Yeah, nothing impressive, I know... But yet again, we are always calling the same function, this time `Default::default()`, and it's giving us the default value for the specific type we need!
 
-In all honesty, I am almost glanced over this one thinking it was some other nice Rust compile-time magic for built-in types. Until I noticed a small note saying _"by the way, you can have a default value for you custom types if you want to"_.
+In all honesty, I am almost glanced over this one thinking it was some other nice Rust compile-time magic for built-in types. Until I noticed a small note saying _"by the way, you can have a default value for your custom types if you want to"_.
 
 That got my attention, and the example I saw was something like this:
 
@@ -134,7 +159,7 @@ I read this as:
 
 And this is where the _magic_ is coming from. The implementation is actually generic over the return type. Also, by using the `Default` trait constraint, we can have an extensible definition: anyone can implement new types that will work with `Default::default()`. More on this later...
 
-For now this is enough theory to digest, let's try to do something with it!
+For now, this is enough theory to digest, let's try to do something with it!
 
 
 ## Let's build something
@@ -143,14 +168,13 @@ Over the years, I learned that my brain can appreciate new programming concepts 
 
 I suppose, a good question here is _"When do I want to do different things based on different expected return type?"_
 
-A silly idea I came up with was related to board games. Something like D&D where you have different kind of dice (different number of faces). 
+I came up with a simple idea related to board games. Something like D&D where you have different kind of dice (different number of faces). 
 
-
-Can we use return type polymorphism to model different type of dice?
+Can we use return type polymorphism to be able to _roll_ different type of dice?
 
 ![A dice set from Dungeon and Dragons (D&D)](./dungeon-and-dragong-dice-set-rust-return-type-polymorphism.png)
 
-I think we can and this is more or less what I did with my first attempt:
+I think we can! This is more or less what I did with my first attempt:
 
 ```rust
 use rand::{thread_rng, Rng};
@@ -216,7 +240,7 @@ Well, that's pretty much what `Default::default()` does, so it should be possibl
 
 Ok, here's an idea:
 
- - We can define a public `Rollable` trait which makes dice, well ... _rollable_
+ - We can define a public `Rollable` trait that makes dice, well ... _rollable_
  - Our standard `D6` and `D8` will implement the `Rollable` trait to be rollable themselves
  - We provide one single implementation for our `roll()` function
  - We make that one implementation generic over a `T` where `T` must implement `Rollable`
@@ -319,7 +343,9 @@ I actually did end up publishing this silly example [as a library](https://crate
 
 There is still one interesting detail to discuss before we can wrap this up.
 
-What if you want to call a function implementing return type polimorphism but you don't want to assign it? Let's say we want to use the returned value immediately, maybe as an argument for another function call.
+We already saw that, when a function is using return type polymorphism, we need to explicitly declare the expected type. 
+
+What if you want to call a function implementing return type polymorphism but you don't want to assign it? Let's say we want to use the returned value immediately, maybe as an argument for another function call.
 
 I mean, if we just do the following:
 
@@ -331,7 +357,7 @@ fn main() {
 
 How can Rust understand what we want?
 
-In fact it doesn't! If you try to compile that code you will get a beautiful error message:
+In fact, it doesn't! If you try to compile that code you will get a beautiful error message:
 
 ```plain
 error[E0282]: type annotations needed
@@ -341,9 +367,9 @@ error[E0282]: type annotations needed
    |                       ^^^^ cannot infer type for type parameter `T` declared on the function `roll`
 ```
 
-The compiler also suggests to run `rustc --explain E0282` to get a detailed guide on how to solve this problem. You gotta give it to the Rust team, they have done such a tremendous job in terms of providing a great documentation!
+The compiler also suggests running `rustc --explain E0282` to get a detailed guide on how to solve this problem. You gotta give it to the Rust team, they have done such a tremendous job in terms of providing great documentation!
 
-Now, if you are patient enough to run that command and read the guide, you will find that we can solve this issue with the so called **turbo-fish** syntax!
+Now, if you are patient enough to run that command and read the guide, you will find that we can solve this issue with the so-called **turbo-fish** syntax!
 
 The turbo-fish syntax looks like... a fish: `::<>`  ... yeah, with some degree of imagination!
 
@@ -355,19 +381,21 @@ fn main() {
 }
 ```
 
-OK maybe `::<D6>()` looks a bit more like a fish...
+OK... Maybe `::<D6>()` looks a bit more like a fish...
 
-Anyhow, with this syntax, the type for the parameter `T` is not ambiguous anymore: we are explicitely saying we want a `D6`!
+Anyhow, with this syntax, the type for the parameter `T` is not ambiguous anymore: we are explicitly saying we want a `D6`!
 
 In reality, the turbo fish is the extended syntax for functions with generic types, except that, when we are doing an assignment with an well defined type, the Rust compiler is smart enough to infer the type of generic parameters and make our life easier.
 
 
 ## Conclusion
 
-This concludes our explorarion of Rust return type polymorphism.
+This concludes our exploration of Rust return type polymorphism.
 
 I do hope you found this topic (and this article!) as interesting as I did and feel more than welcome to let me know in the comments if you did know about this capability already. Are you already using it in production somewhere? I'd be really curious to know your use case, so please share it with me 😇
 
 If you want a much more polished and detailed explanation of this idea check out this brilliant blog post by [James Coglan](https://twitter.com/jcoglan) called [Generic returns in Rust](https://blog.jcoglan.com/2019/04/22/generic-returns-in-rust/).
 
 That's all from me now, see you in the next post! 👋
+
+<small>Thanks to [@AlleviTommaso](https://twitter.com/AlleviTommaso) for reviewing this article!</small>
