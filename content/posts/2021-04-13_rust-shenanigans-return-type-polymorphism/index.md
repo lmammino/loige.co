@@ -4,8 +4,8 @@ layout: post
 title: "Rust shenanigans: return type polymorphism"
 slug: "rust-shenanigans-return-type-polymorphism"
 subtitle: null
-date: "2021-03-28T19:55:00.000Z"
-updated: "2021-03-28T19:55:00.000Z"
+date: "2021-04-13T09:15:00.000Z"
+updated: "2021-04-13T09:15:00.000Z"
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: "./rust-shenanigans-return-type-polymorphism.jpg"
