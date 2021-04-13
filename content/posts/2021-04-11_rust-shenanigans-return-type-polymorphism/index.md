@@ -20,7 +20,7 @@ tags:
   - rust
 ---
 
-In this article, I will try to describe Rust return type polymorphism, a feature that I recently discovered (_understood_ is probably a better word here) and that I have been pretty intrigued about. This is probably because I am seeing this feature for the first time in a programming language and at first glance it did seem like some sort of built-in compiler magic, available only in the standard library.  In reality it is a generalised feature that you can use in your own code every day.
+In this article, I will try to describe Rust return type polymorphism, a feature that I recently discovered (_understood_ is probably a better word here) and that I have been pretty intrigued about. This is probably because I am seeing this feature for the first time in a programming language and at first glance it did seem like some sort of built-in compiler magic, available only in the standard library. In reality, it is a generalised feature that you can use in your own code every day.
 
 Keep in mind that I am still quite a beginner with Rust, so my description might not be the most accurate but i'll try to make a point on why I like this feature and how it works by using some examples. Hopefully, you fill find this topic as interesting ad I did!
 
@@ -29,7 +29,7 @@ Ok, enough chit chat, let's get into it! 🧐
 
 ## Return type polymorphism, what?!
 
-Before trying to explain what return type polymorphism actually is let me show you a couple of interesting examples that might look familiar to you if you have been playing with Rust already:
+Before trying to explain what return type polymorphism actually is, let me show you a couple of interesting examples that might look familiar to you if you have been playing with Rust already:
 
 ```rust
 use std::collections::HashSet;
@@ -43,7 +43,7 @@ fn main() {
 
 Ok, did you see it? I mean, how in the world is that `collect()` figuring out that I want to "collect" values from an iterator into an `HashSet` of integers? Indeed, it is giving me exactly an `HashSet` of integers!
 
-Not convinced yet? We can also change this example slightly and see what happes... Let's try with a `Vec`:
+Not convinced yet? We can also change this example slightly and see what happes... Let's try with `Vec`:
 
 ```rust
 fn main() {
@@ -139,7 +139,7 @@ For now this is enough theory to digest, let's try to do something with it!
 
 ## Let's build something
 
-Over the years I learned that my brain can appreciate new programming concepts when I can build something using them. So I rolled up my sleeves and started to think _"OK, what can I possibly build with this?"_
+Over the years, I learned that my brain can appreciate new programming concepts when I can build something using them. So, I rolled up my sleeves and started to think _"OK, what can I possibly build with this?"_
 
 I suppose, a good question here is _"When do I want to do different things based on different expected return type?"_
 
@@ -193,7 +193,7 @@ fn main() {
 }
 ```
 
-For simplicity I am showing only how I implemented `D6` and `D8`. If you want the full version, check out my [D&D dice Rust playground](https://play.rust-lang.org/?version=stable&mode=debug&edition=2018&gist=4191ce04d3db0f102cd73a31e0864cb9).
+For simplicity, I am showing only how I implemented `D6` and `D8`. If you want the full version, check out my [D&D dice Rust playground](https://play.rust-lang.org/?version=stable&mode=debug&edition=2018&gist=4191ce04d3db0f102cd73a31e0864cb9).
 
 The interesting part of this implementation is that I have 2 different implementations for the function `Die::roll()`, one returns a `D6` (6-faces die) roll and the other returns a `D8` (8-faces die) roll.
 
