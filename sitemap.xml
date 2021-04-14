@@ -127,6 +127,6 @@
 <url> <loc>https://loige.co/tag/backup/</loc> <changefreq>daily</changefreq> <priority>0.5</priority> </url>
 <url> <loc>https://loige.co/tag/dropbox/</loc> <changefreq>daily</changefreq> <priority>0.5</priority> </url>
 <url> <loc>https://loige.co/speaking/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://loige.co/comment-policy</loc> <changefreq>monthly</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://loige.co/about</loc> <changefreq>monthly</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://loige.co/comment-policy</loc> <changefreq>monthly</changefreq> <priority>0.2</priority> </url>
 </urlset>
