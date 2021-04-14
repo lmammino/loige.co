@@ -51,43 +51,42 @@ module.exports = {
         useMozJpeg: false,
         stripMetadata: true,
         defaultQuality: 75,
+        plugins: []
+      }
+    },
+    {
+      resolve: 'gatsby-transformer-remark',
+      options: {
         plugins: [
           {
-            resolve: 'gatsby-transformer-remark',
+            resolve: 'gatsby-remark-images',
             options: {
-              plugins: [
-                {
-                  resolve: 'gatsby-remark-images',
-                  options: {
-                    maxWidth: 1024,
-                    linkImagesToOriginal: false,
-                    withWebp: true,
-                    quality: 90
-                  }
-                },
-                {
-                  resolve: 'gatsby-remark-copy-linked-files',
-                  options: {
-                    destinationDir: 'content'
-                  }
-                },
-                {
-                  resolve: 'gatsby-remark-responsive-iframe',
-                  options: {
-                    wrapperStyle: 'margin-bottom: 1.0725rem'
-                  }
-                },
-                {
-                  resolve: 'gatsby-remark-prismjs',
-                  options: {
-                    noInlineHighlight: true
-                  }
-                },
-                'gatsby-remark-smartypants',
-                'gatsby-remark-autolink-headers'
-              ]
+              maxWidth: 1024,
+              linkImagesToOriginal: false,
+              withWebp: true,
+              quality: 90
             }
-          }
+          },
+          {
+            resolve: 'gatsby-remark-copy-linked-files',
+            options: {
+              destinationDir: 'content'
+            }
+          },
+          {
+            resolve: 'gatsby-remark-responsive-iframe',
+            options: {
+              wrapperStyle: 'margin-bottom: 1.0725rem'
+            }
+          },
+          {
+            resolve: 'gatsby-remark-prismjs',
+            options: {
+              noInlineHighlight: true
+            }
+          },
+          'gatsby-remark-smartypants',
+          'gatsby-remark-autolink-headers'
         ]
       }
     },
