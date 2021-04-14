@@ -345,9 +345,7 @@ There is still one interesting detail to discuss before we can wrap this up.
 
 We already saw that, when a function is using return type polymorphism, we need to explicitly declare the expected type. 
 
-What if you want to call a function implementing return type polymorphism but you don't want to assign it? Let's say we want to use the returned value immediately, maybe as an argument for another function call.
-
-I mean, if we just do the following:
+What if you want to call a function implementing return type polymorphism but you don't want to assign it? Let's say we want to use the returned value immediately, maybe in a `println!()`:
 
 ```rust
 fn main() {
@@ -386,6 +384,27 @@ OK... Maybe `::<D6>()` looks a bit more like a fish...
 Anyhow, with this syntax, the type for the parameter `T` is not ambiguous anymore: we are explicitly saying we want a `D6`!
 
 In reality, the turbo fish is the extended syntax for functions with generic types, except that, when we are doing an assignment with an well defined type, the Rust compiler is smart enough to infer the type of generic parameters and make our life easier.
+
+**Update 2021-04-14:** Note though that Rust can infer types from function arguments, so in most cases you can still rely on type inference. Let's see a quick example:
+
+```rust
+fn try_dodge_attack(d6: D6, d8: D8) -> bool {
+    d6.val() + d8.val() > 10
+}
+
+fn main() {
+    let escaped = try_dodge_attack(roll(), roll());
+    println!(
+        "{}",
+        match escaped {
+            true => "You dogded!",
+            false => "Ouch! The attack hit you!",
+        }
+    );
+}
+```
+
+In this example, we are calling `try_dodge_attack(roll(), roll())` and we don't have to use the turbo-fish syntax. The Rust compiler looks at the type declaration of the function arguments and figures out that we want to roll a `D6` and a `D8`.
 
 
 ## Conclusion
