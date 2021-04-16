@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from '@emotion/styled'
-import { css, ClassNames } from '@emotion/core'
+import { css, ClassNames } from '@emotion/react'
 
 import CalendarAltRegularIcon from './icons/CalendarAltRegular'
 
