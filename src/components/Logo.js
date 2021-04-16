@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { css, ClassNames, jsx } from '@emotion/react'
+import { css, ClassNames } from '@emotion/react'
 import { Link } from 'gatsby'
 
 import logo from './images/luciano8bit.svg'
