@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import styled from '@emotion/styled'
-import { css, ClassNames } from '@emotion/core'
+import { css, ClassNames, jsx } from '@emotion/react'
 
 import EyeRegularIcon from './icons/EyeRegular'
 

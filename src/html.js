@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Global, css } from '@emotion/core'
+import { Global, css, jsx } from '@emotion/react'
 
 const colors = {
   char: '#D8DEE9',
