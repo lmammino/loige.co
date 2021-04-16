@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import styled from '@emotion/styled'
-import { css, ClassNames } from '@emotion/core'
-import NavLink from './NavLink'
+import { css, ClassNames, jsx } from '@emotion/react'
 import Logo from './Logo'
 
 import GithubIcon from './icons/Github'
@@ -173,7 +172,7 @@ class Header extends Component {
                   >
                     <GithubIcon
                       className={css(socialIconStyle)}
-                      alt={`Luciano's GitHub profile`}
+                      alt={'Luciano\'s GitHub profile'}
                     />
                     <span>GitHub</span>
                   </a>
@@ -184,7 +183,7 @@ class Header extends Component {
                   >
                     <TwitterIcon
                       className={css(socialIconStyle)}
-                      alt={`Luciano's Twitter profile`}
+                      alt={'Luciano\'s Twitter profile'}
                     />
                     <span>Twitter</span>
                   </a>
@@ -195,7 +194,7 @@ class Header extends Component {
                   >
                     <LinkedinIcon
                       className={css(socialIconStyle)}
-                      alt={`Luciano's LinkedIn profile`}
+                      alt={'Luciano\'s LinkedIn profile'}
                     />
                     <span>LinkedIn</span>
                   </a>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from '@emotion/styled'
-import { css, ClassNames } from '@emotion/core'
+import { css, ClassNames, jsx } from '@emotion/react'
 import { Link } from 'gatsby'
 
 const navLinkStyle = css`
