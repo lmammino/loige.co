@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styled from '@emotion/styled'
-import { css, ClassNames, jsx } from '@emotion/react'
+import { css, ClassNames } from '@emotion/react'
+import NavLink from './NavLink'
 import Logo from './Logo'
 
 import GithubIcon from './icons/Github'
