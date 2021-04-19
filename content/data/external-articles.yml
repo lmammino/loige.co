@@ -61,3 +61,6 @@
 - title: "Node.js race conditions"
   link: "https://www.nodejsdesignpatterns.com/blog/node-js-race-conditions/"
   date: "2021-01-24T18:35:00.000Z"
+- title: "A Chat with Will Farrell & Luciano Mammino of Middy"
+  link: "https://superhighway.dev/middy-node-interview"
+  date: "2021-04-14T18:00:00.000Z"
