@@ -21,7 +21,10 @@ event_days: 'April 12 2021'
 is_workshop: false
 slides_link: ~
 video_link: ~
-with: ~
+with:
+  - name: Roberto Gambuzzi
+    link: 'https://twitter.com/gbinside'
+    image: 'https://unavatar.now.sh/github/gbinside'
 ---
 
 Chatting with Superheroes Valley, initiative from the University of Pisa and Scuola Superiore Sant'Anna (Pisa) to help students understand how to get into their first job and start to grow their career.
