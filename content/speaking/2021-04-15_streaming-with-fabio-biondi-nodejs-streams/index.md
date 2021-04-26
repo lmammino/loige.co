@@ -20,7 +20,7 @@ event_city: 'remote'
 event_days: 'April 15, 2021'
 is_workshop: false
 slides_link: ~
-video_link: ~
+video_link: 'https://www.youtube.com/watch?v=hOHTQgOtg3w'
 with:
   - name: Fabio Biondi
     link: 'https://twitter.com/biondifabio'
