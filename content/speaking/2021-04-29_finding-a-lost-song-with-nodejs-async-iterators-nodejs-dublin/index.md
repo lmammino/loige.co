@@ -1,7 +1,7 @@
 ---
 uuid: e43129d9-eeb9-4a84-8f9f-702ddba63e7a
 layout: speaking
-title: "Finding a lost song with Node.js async iterators"
+title: "Finding a lost song with Node.js & async iterators"
 slug: 'finding-a-lost-song-with-nodejs-async-iterators-nodejs-dublin'
 date: 2021-04-29T19:00:00.000Z
 author: Luciano Mammino
