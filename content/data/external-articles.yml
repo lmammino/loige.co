@@ -64,3 +64,6 @@
 - title: "A Chat with Will Farrell & Luciano Mammino of Middy"
   link: "https://superhighway.dev/middy-node-interview"
   date: "2021-04-14T18:00:00.000Z"
+- title: "JavaScript async iterators"
+  link: "https://www.nodejsdesignpatterns.com/blog/javascript-async-iterators/"
+  date: "2021-05-04T13:10:00.000Z"
