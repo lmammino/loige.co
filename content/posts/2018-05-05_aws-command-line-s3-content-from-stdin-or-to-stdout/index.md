@@ -86,7 +86,7 @@ To make it simple, when running `aws s3 cp` you can use the special argument `-`
 Using this newly acquired piece of knowledge, we now know we can do something like this to write content from the standard output directly to a file in S3:
 
 ```bash
-cat "hello world" | aws s3 cp - s3://some-bucket/hello.txt
+echo "hello world" | aws s3 cp - s3://some-bucket/hello.txt
 ```
 
 This way we can rewrite the solution to our first problem as follows:
