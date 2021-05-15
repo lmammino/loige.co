@@ -31,6 +31,9 @@ with:
   - name: Mattia Tommasone
     link: 'https://twitter.com/raibaz'
     image: 'https://unavatar.now.sh/github/Raibaz'
+  - name: Carmine di Monaco
+    link: 'https://twitter.com/cdimonaco'
+    image: 'https://unavatar.now.sh/github/CDimonaco'
 ---
 
 Il mondo javascript è immenso, e sapersi districare tra le buone pratiche non è una cosa semplice, questa settimana ne abbiamo parlato con Luciano Mammino, senior architect per fourTheorem e coautore di Node.js Design Patterns, libro indispensabile per che approccia al mondo di node in modo professionale.
