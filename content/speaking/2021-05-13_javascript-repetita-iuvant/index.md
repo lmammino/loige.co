@@ -21,7 +21,16 @@ event_days: 'May 13, 2021'
 is_workshop: false
 slides_link: ~
 video_link: ~
-with: ~
+with:
+  - name: Mauro Murru
+    link: 'https://twitter.com/brainrepo'
+    image: 'https://unavatar.now.sh/github/brainrepo'
+  - name: Luca Rainone
+    link: 'https://twitter.com/chumkiu81'
+    image: 'https://unavatar.now.sh/github/LucaRainone'
+  - name: Mattia Tommasone
+    link: 'https://twitter.com/raibaz'
+    image: 'https://unavatar.now.sh/github/Raibaz'
 ---
 
 Il mondo javascript è immenso, e sapersi districare tra le buone pratiche non è una cosa semplice, questa settimana ne abbiamo parlato con Luciano Mammino, senior architect per fourTheorem e coautore di Node.js Design Patterns, libro indispensabile per che approccia al mondo di node in modo professionale.
