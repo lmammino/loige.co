@@ -19,7 +19,7 @@ event_location_gps: null
 event_city: 'remote'
 event_days: 'May 20, 2021'
 is_workshop: false
-slides_link: ~
+slides_link: "https://loige.link/11ty-jam"
 video_link: ~
 with: ~
 ---
