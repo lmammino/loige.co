@@ -1,8 +1,11 @@
+const { promisify } = require('util')
 const { readFile, existsSync } = require('fs')
 const { join, dirname } = require('path')
 const glob = require('glob')
 const yaml = require('yaml')
 const puppeteer = require('puppeteer')
+
+const sleep = promisify(setTimeout)
 
 const baseUrl = process.argv[2] || 'http://localhost:8000/'
 
@@ -14,6 +17,7 @@ const takeScreenshot = async (url, width, height, destination) => {
   const page = await browser.newPage()
   await page._client.send('Emulation.clearDeviceMetricsOverride')
   await page.goto(url)
+  await sleep(200) // give it some time to load images
   await page.screenshot({
     path: destination,
     clip: {
