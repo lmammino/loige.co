@@ -5,7 +5,7 @@ title: "How to to_string in Rust"
 slug: "how-to-to-string-in-rust"
 subtitle: null
 date: "2021-05-26T18:50:00.000Z"
-updated: "2021-05-26T18:50:00.000Z"
+updated: "2021-05-27T19:10:00.000Z"
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: "./how-to-to-string-in-rust.jpg"
@@ -301,6 +301,11 @@ This is basically telling the Rust compiler how to provide a _default_ implement
 
 Implementing `ToString` for a type will force that type to have a `to_string()` method. But the more idiomatic way to tell Rust that a type can have a user-facing string representation is to implement the more generic `Display` trait.
 
+**UPDATE**: It's is interesting to know that the `Display` trait is implemented in the `core` module and does not use any memory allocator. `String` is heap-allocated, so it couldn't have been used in `Display`'s definition. Rust designs traits carefully to keep _heap allocating_ functions separated from the ones that don't need a memory allocator (`core`).
+
+<small>Thanks to [kornel](https://lobste.rs/s/7hrgbb/how_string_rust#c_cxqzse) from lobste.rs for this tip</small>.
+
+
 At this point, we can practically ignore the `ToString` trait and focus only on the `Display` trait!
 
 
@@ -355,6 +360,28 @@ write!(f, "{}", self.api_key)
 ```
 
 Nicer and more flexible, isn't it?
+
+**UPDATE**: the `Formatter` type is more flexible because it allows us to write data into an arbitrary buffer (rather than always allocating new `String`s). For instance we could pre-allocate a buffer once (as a `String`) and write onto it multiple times as in the following example:
+
+```rust
+use std::fmt::Write;
+
+fn main() -> fmt::Result {
+    let foo = Credentials::new(String::from("foo"), String::from("foosecret"));
+    let bar = Credentials::new(String::from("bar"), String::from("barsecret"));
+    
+    // pre-allocated buffer
+    let mut output = String::with_capacity(200);
+
+    write!(&mut output, "{}", foo)?;
+    write!(&mut output, "{}", bar)?;
+    println!("{}", output); // foobar
+    
+    Ok(())
+}
+```
+
+<small>Thanks to [nicoburns](https://www.reddit.com/r/rust/comments/nlor05/how_to_to_string_in_rust_extended_blog_post_from/gzmc14l) from Reddit for this tip.</small>
 
 Also, remember that the placeholder to use the `Display` trait is just `{}` (as opposed to `{:?}` or `{:#?}` for the `Debug` trait).
 
