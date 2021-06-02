@@ -7,6 +7,8 @@ import Logo from './Logo'
 import GithubIcon from './icons/Github'
 import TwitterIcon from './icons/Twitter'
 import LinkedinIcon from './icons/Linkedin'
+import YoutubeIcon from './icons/Youtube'
+import TwitchIcon from './icons/Twitch'
 
 const HeaderComponent = styled.header`
   background-color: rgba(32, 35, 42, 0.95);
@@ -58,7 +60,7 @@ const Nav = styled.nav`
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
   height: 100%;
-  width: 70%;
+  width: 60%;
 
   @media (min-width: 1180px) {
     width: 60%;
@@ -74,7 +76,7 @@ const SocialLinksContainer = styled.div`
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
   height: 100%;
-  width: 30%;
+  width: 40%;
 
   @media (min-width: 1180px) { {
     width: 40%;
@@ -93,7 +95,7 @@ const socialIconStyle = css`
   }
 
   @media (min-width: 1180px) {
-    margin: 0 0.5em 0 0;
+    margin: 0 0 0 0;
   }
 `
 
@@ -108,29 +110,14 @@ const socialLinkStyle = css`
   flex-direction: row;
   align-items: center;
   transition: background 150ms;
+  border-radius: 0.5em;
 
   &:hover {
     background: rgba(255, 255, 255, 0.2);
   }
 
-  span {
-    display: none;
-  }
-
   @media (min-width: 780px) {
     padding: 5px 10px;
-  }
-
-  @media (min-width: 1180px) {
-    width: 60%;
-
-    span {
-      display: inline-block;
-    }
-
-    img {
-      margin-right: 1em;
-    }
   }
 `
 
@@ -166,17 +153,7 @@ class Header extends Component {
                   </NavLink>
                 </Nav>
                 <SocialLinksContainer>
-                  <a
-                    rel="nofollow"
-                    className={css(socialLinkStyle)}
-                    href="https://github.com/lmammino"
-                  >
-                    <GithubIcon
-                      className={css(socialIconStyle)}
-                      alt={'Luciano\'s GitHub profile'}
-                    />
-                    <span>GitHub</span>
-                  </a>
+
                   <a
                     rel="nofollow"
                     className={css(socialLinkStyle)}
@@ -186,8 +163,30 @@ class Header extends Component {
                       className={css(socialIconStyle)}
                       alt={'Luciano\'s Twitter profile'}
                     />
-                    <span>Twitter</span>
                   </a>
+
+                  <a
+                    rel="nofollow"
+                    className={css(socialLinkStyle)}
+                    href="https://twitch.tv/loige"
+                  >
+                    <TwitchIcon
+                      className={css(socialIconStyle)}
+                      alt={'Luciano\'s Twitch profile'}
+                    />
+                  </a>
+
+                  <a
+                    rel="nofollow"
+                    className={css(socialLinkStyle)}
+                    href="https://www.youtube.com/channel/UCL0w2IAjTBx3NNka-l7InPw"
+                  >
+                    <YoutubeIcon
+                      className={css(socialIconStyle)}
+                      alt={'Luciano\'s YouTube profile'}
+                    />
+                  </a>
+
                   <a
                     rel="nofollow"
                     className={css(socialLinkStyle)}
@@ -197,7 +196,17 @@ class Header extends Component {
                       className={css(socialIconStyle)}
                       alt={'Luciano\'s LinkedIn profile'}
                     />
-                    <span>LinkedIn</span>
+                  </a>
+
+                  <a
+                    rel="nofollow"
+                    className={css(socialLinkStyle)}
+                    href="https://github.com/lmammino"
+                  >
+                    <GithubIcon
+                      className={css(socialIconStyle)}
+                      alt={'Luciano\'s GitHub profile'}
+                    />
                   </a>
                 </SocialLinksContainer>
               </HeaderFlexContainer>
