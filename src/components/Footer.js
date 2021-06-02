@@ -4,6 +4,8 @@ import styled from '@emotion/styled'
 import GithubIcon from './icons/Github'
 import TwitterIcon from './icons/Twitter'
 import LinkedinIcon from './icons/Linkedin'
+import YoutubeIcon from './icons/Youtube'
+import TwitchIcon from './icons/Twitch'
 
 const FooterContainer = styled.footer`
   background-color: #20232a;
@@ -239,17 +241,33 @@ class Footer extends Component {
                 >
                   <TwitterIcon /> Twitter
                 </ListLink>
+
                 <ListLink
                   rel="nofollow noopener noreferrer"
-                  href="https://github.com/lmammino"
+                  href="https://twitch.tv/loige"
                 >
-                  <GithubIcon /> GitHub
+                  <TwitchIcon /> Twitch
                 </ListLink>
+
+                <ListLink
+                  rel="nofollow noopener noreferrer"
+                  href="https://www.youtube.com/channel/UCL0w2IAjTBx3NNka-l7InPw"
+                >
+                  <YoutubeIcon /> Youtube
+                </ListLink>
+
                 <ListLink
                   rel="nofollow noopener noreferrer"
                   href="https://www.linkedin.com/in/lucianomammino"
                 >
                   <LinkedinIcon /> Linkedin
+                </ListLink>
+
+                <ListLink
+                  rel="nofollow noopener noreferrer"
+                  href="https://github.com/lmammino"
+                >
+                  <GithubIcon /> GitHub
                 </ListLink>
               </List>
             </FooterColumn>
