@@ -72,7 +72,7 @@ fn main() {
 
 This example won't to compile because collect doesn't know what is the return type, so we get this nice-looking error:
 
-```plain
+```text
 error[E0282]: type annotations needed
  --> src/main.rs:3:9
   |
@@ -357,7 +357,7 @@ How can Rust understand what we want?
 
 In fact, it doesn't! If you try to compile that code you will get a beautiful error message:
 
-```plain
+```text
 error[E0282]: type annotations needed
   --> src/main.rs:47:23
    |
