@@ -104,7 +104,7 @@
     <span class="token keyword">let</span> nums_square <span class="token operator">=</span> nums<span class="token punctuation">.</span><span class="token function">iter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token closure-params"><span class="token closure-punctuation punctuation">|</span>x<span class="token closure-punctuation punctuation">|</span></span> x <span class="token operator">*</span> x<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre></div>
 <p>This example won’t to compile because collect doesn’t know what is the return type, so we get this nice-looking error:</p>
-<div class="gatsby-highlight" data-language="plain"><pre class="language-plain"><code class="language-plain">error[E0282]: type annotations needed
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">error[E0282]: type annotations needed
  --&gt; src/main.rs:3:9
   |
   |     let nums_square = nums.iter().map(|x| x * x).collect();
@@ -377,7 +377,7 @@
 <span class="token punctuation">}</span></code></pre></div>
 <p>How can Rust understand what we want?</p>
 <p>In fact, it doesn’t! If you try to compile that code you will get a beautiful error message:</p>
-<div class="gatsby-highlight" data-language="plain"><pre class="language-plain"><code class="language-plain">error[E0282]: type annotations needed
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">error[E0282]: type annotations needed
   --&gt; src/main.rs:47:23
    |
    |     println!(&quot;{:?}&quot;,  roll());
