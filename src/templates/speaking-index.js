@@ -109,7 +109,7 @@ class SpeakingIndex extends Component {
     return (
       <Layout location={this.props.location} section="speaking">
         <SEO
-          path={`speaking/`}
+          path={'speaking/'}
           pageData={{
             frontmatter: {
               title: `Speaking (conferences and workshops) - ${siteTitle}`,
@@ -141,6 +141,10 @@ class SpeakingIndex extends Component {
               <li>
                 <strong>Systems architecture</strong> and{' '}
                 <Link to="/tag/scalability">Scalability</Link>
+              </li>
+              <li>
+                I am also learning{' '}
+                <strong><Link to="/tag/rust">Rust</Link></strong>
               </li>
             </ul>
             <p>
