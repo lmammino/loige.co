@@ -20,7 +20,7 @@ event_city: 'remote'
 event_days: 'June 16, 2021'
 is_workshop: false
 slides_link: "https://loige.link/iter"
-video_link: ~
+video_link: "https://www.youtube.com/watch?v=2jzN7Ns5jeQ"
 with: ~
 ---
 
