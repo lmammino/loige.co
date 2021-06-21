@@ -13,7 +13,7 @@ presentation_language: en_US
 meta_title: null
 meta_description: null
 event_name: "AWS Summer camp"
-event_link: 'https://www.meetup.com/AWS-Ireland-Usergroup/'
+event_link: 'https://www.meetup.com/AWS-Ireland-Usergroup/events/278972118/'
 event_location: 'Remote'
 event_location_gps: null
 event_city: 'remote'
