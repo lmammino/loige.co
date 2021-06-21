@@ -21,16 +21,26 @@ tags:
   - aws
 ---
 
-I recently needed to send a big payload to CloudWatch and I managed to increase my chances of staying within the AWS payload size limits by using gzip encoding on the request body with `boto3`.
+I recently needed to send a big payload to CloudWatch and I managed to increase my chances of staying within the AWS payload size limit by using gzip encoding on the request body with `boto3`.
 
-Unfortunately, with `boto3`, gzip encoding is not enbled by default nor can be turned on with some configuration. What's worse is that, as of today, there isn't a great body of documentation or examples available on how to achieve this.
+Unfortunately, with `boto3`, gzip encoding is not enbled by default and it can't be turned on with some simple boolean flag. To make things worse, as of today, there isn't a great body of documentation or examples available on how to achieve this. Or maybe I am just terrible at _googling_...
 
 I had to go down the rabbit hole to figure out how to support this use case and, in this article, I want to share what I learned with you.
 
 
 ## Send gzipped metrics to CloudWatch using boto3 
 
-Ok, this is the TLDR; for the ones that just need a quick solution that they can copy and paste:
+Ok, this is the TLDR; a little gift for the ones in a rush that are looking for a quick _copy-pastable_ solution.
+
+Be aware that the various AWS SDKs are just a convenience layer in front of the AWS HTTP API. Python and `boto3` are no exception. Every time you are calling a method on a `boto3` client, you are just sending HTTP requests to AWS behind the scenes...
+
+This is how you can intercept and modify such HTTP requests, before they are sent to AWS:
+
+  1. `boto3` has a built-in event system that, among other things, it allows you to intercept (and even modify) HTTP requests that are ready to be forwarded to AWS.
+  2. By using this event system, you can implement an event handler that takes the payload of an outgoing requests and gzips it. The same handler can also alter the set of outgoing HTTP headers so that it can indicate the request is gzipped by adding the header `Content-Encoding: gzip`.
+
+Here is a code example that uses a CloudWatch client, intercepts calls to the `PutMetricData` API and gzips the request payload:
+
 
 ```python
 import boto3
@@ -79,14 +89,27 @@ You are welcome! 😜
 
 Now, if you are curious to know more about my use case and how the `boto3` events system works you are more than welcome to keep reading the rest of the article.
 
+
 ## The use case: sending custom metrics to CloudWatch
 
-...
+Last week, during my work at [fourTheorem](https://www.fourtheorem.com/), we started to get intermittent alarms for a Lambda in our stack that was failing because of requests to CloudWatch being occasionally throttled.
+
+Once we looked at the error, the problem was actually quite obvious, but let me give you a simplified overview of what we are doing with this Lambda.
+
+This Lambda is triggered by a Kinesis stream in which we publish custom metric data from all the other components of our application. The Lambda reads these metrics and publish them to CloudWatch using the [`PutMetricData` API](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutMetricData.html).
+
+![Schematic of a Kinesis stream being processed by a Lambda to collect metrics and send them to CloudWatch](./boto3-custom-metrics-kinesis-lambda-cloudwatch.jpg)
+
+The issue is that, in our original implementation we took the naive approach of submitting 1 data point at the time. Therefore, under load, we would be sending a large number of HTTP requests per second to AWS and we might end up being throttled.
+
+The solution to the problem is actually quite simple: we can reduce the total number of HTTP requests by sending batche containing multiple data points, rather then sending them one by one.
+
+This is actually possible by using the same `PutMetricData` API from CloudWatch.
 
 
 ## CloudWatch `PutMetricData` limits
 
-...
+So apparently the solution is very simple ...
 
 
 ## Testing `boto3` default behaviour
