@@ -109,7 +109,51 @@ This is actually possible by using the same `PutMetricData` API from CloudWatch.
 
 ## CloudWatch `PutMetricData` limits
 
-So apparently the solution is very simple ...
+So apparently the solution is simple: we just need to send multiple data points for every single `PutMetricData` call. But how many?
+
+A call to this API accepts an array of metrics that looks like this:
+
+```python
+[
+    {
+        'MetricName': 'SomeMetric1',
+        'Dimensions': [
+            {
+                'Name': 'Dimension1Name',
+                'Value': 'Dimension1Value'
+            },
+            # Up to other 9 dimensions here ...
+        ],
+        'Unit': 'Count',
+        'Values': [217, 220, 221], # Up to 150 items here ...
+        'Timestamp': 1624290910000
+    },
+    # Up to other 19 metric items here ...
+]
+```
+
+More details can be found in the documentation for the [`MetricDatum` type](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html).
+
+As you can tell from the comments in the snippet above, the API has some interesting limits to be considered:
+
+  - Up to **20** different metrics
+  - Up to **10** dimensions per metric
+  - Up to **150 values** per metric
+  - Up to **40 KB** in size for HTTP POST requests
+
+So, the best case scenario to reduce the number of `PutMetricData` requests is to have batches of 20 metrics, but we need to make sure that all this data, once encoded, fits in 40 KB.
+
+The `PutMetricData` documentation also mentions:
+
+> Each PutMetricData request is limited to 40 KB in size for HTTP POST requests. You can send a payload compressed by gzip
+
+Splitting the metrics in chunks of 20 is not a big deal, but how do we make sure all the other constrainsts are respected. Especially the payload size one.
+
+It would be convenient to use gzip compression to increase our chances to stay within boundaries.
+
+At this point I thought _"Ok, probably `boto3` is automatically doing the compression for us, because why not?"_
+
+But if you have used AWS for long enough, you learn not to give too many things for granted, so... Let's test this assumption!
 
 
 ## Testing `boto3` default behaviour
@@ -129,10 +173,6 @@ Try except and if it fails split the data in 2 requests
 
 ...
 
-
-## Sketching and testing a solution
-
-...
 
 ## Conclusion
 
