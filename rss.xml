@@ -1,4 +1,382 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Luciano Mammino "Loige" - FullStack & Cloud developer, fighter, butterfly maker!]]></title><description><![CDATA[The website of Luciano Mammino a.k.a. Loige: FullStack & Cloud developer, fighter, butterfly maker]]></description><link>https://loige.co</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 21 Jun 2021 11:15:03 GMT</lastBuildDate><item><title><![CDATA[How to to_string in Rust]]></title><description><![CDATA[In Rust, there are several ways to turn a value into a string. In this article, we will explore a few different ways and discuss what are…]]></description><link>https://loige.co/how-to-to-string-in-rust</link><guid isPermaLink="false">https://loige.co/how-to-to-string-in-rust</guid><pubDate>Wed, 26 May 2021 18:50:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;img src=&quot;https://loige.costatic/edddfb8b54b3d87bda93f1abb3559dc9/how-to-to-string-in-rust-fb.png&quot;/&gt;&lt;/p&gt;&lt;p&gt;In Rust, there are several ways to turn a value into a string. In this article, we will explore a few different ways and discuss what are the most idiomatic approaches depending on the context you are currently working on.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Luciano Mammino "Loige" - FullStack & Cloud developer, fighter, butterfly maker!]]></title><description><![CDATA[The website of Luciano Mammino a.k.a. Loige: FullStack & Cloud developer, fighter, butterfly maker]]></description><link>https://loige.co</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 22 Jun 2021 18:18:58 GMT</lastBuildDate><item><title><![CDATA[How to send gzipped requests with boto3]]></title><description><![CDATA[I recently needed to send a big payload to CloudWatch and I managed to increase my chances of staying within the AWS payload size limit by…]]></description><link>https://loige.co/how-to-send-gzipped-requests-with-boto3</link><guid isPermaLink="false">https://loige.co/how-to-send-gzipped-requests-with-boto3</guid><pubDate>Tue, 22 Jun 2021 18:20:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;img src=&quot;https://loige.costatic/4ee16a0214bacf5a20f503010e492555/how-to-send-gzipped-requests-with-boto3-fb.png&quot;/&gt;&lt;/p&gt;&lt;p&gt;I recently needed to send a big payload to CloudWatch and I managed to increase my chances of staying within the AWS payload size limit by using gzip encoding on the request body with &lt;code&gt;boto3&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Unfortunately, with &lt;code&gt;boto3&lt;/code&gt;, gzip encoding is not enabled by default and it can’t be turned on with some simple boolean flag. To make things worse, as of today, there isn’t a great body of documentation or examples available on how to achieve this. Or maybe I am just terrible at &lt;em&gt;googling&lt;/em&gt;…&lt;/p&gt;
+&lt;p&gt;I had to go down the rabbit hole to figure out how to support this use case and, in this article, I want to share what I learned with you.&lt;/p&gt;
+&lt;h2 id=&quot;send-gzipped-metrics-to-cloudwatch-using-boto3&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#send-gzipped-metrics-to-cloudwatch-using-boto3&quot; aria-label=&quot;send gzipped metrics to cloudwatch using boto3 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Send gzipped metrics to CloudWatch using boto3&lt;/h2&gt;
+&lt;p&gt;Ok, this is the TLDR; a little gift for the ones in a rush that are looking for a quick &lt;em&gt;copy-pastable&lt;/em&gt; solution.&lt;/p&gt;
+&lt;p&gt;Be aware that the various AWS SDKs are just a convenience layer in front of the AWS HTTP API. Python and &lt;code&gt;boto3&lt;/code&gt; are no exception. Every time you are calling a method on a &lt;code&gt;boto3&lt;/code&gt; client, you are just sending HTTP requests to AWS behind the scenes…&lt;/p&gt;
+&lt;p&gt;This is how you can intercept and modify such HTTP requests before they are sent to AWS:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;boto3&lt;/code&gt; has a built-in event system that, among other things, allows you to intercept (and even modify) HTTP requests that are ready to be forwarded to AWS.&lt;/li&gt;
+&lt;li&gt;By using this event system, you can implement an event handler that takes the payload of an outgoing request and gzips it. The same handler can also alter the set of outgoing HTTP headers so that it can indicate the request is gzipped by adding the header &lt;code&gt;Content-Encoding: gzip&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Here is a code example that uses a CloudWatch client, intercepts calls to the &lt;code&gt;PutMetricData&lt;/code&gt; API, and gzips the request payload:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; boto3
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; gzip
+
+&lt;span class=&quot;token comment&quot;&gt;# Create a CloudWatch client&lt;/span&gt;
+cw_client &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; boto3&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;client&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;cloudwatch&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;# Get a reference to the event system for that client&lt;/span&gt;
+event_system &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; cw_client&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;meta&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;events
+
+&lt;span class=&quot;token comment&quot;&gt;# Event handler that takes an arbitrary request and gzips its body&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;gzip_request_body&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;request&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;**&lt;/span&gt;kwargs&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    gzipped_body &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; gzip&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;compress&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;request&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;body&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    request&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;headers&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;add_header&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Content-Encoding&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;gzip&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    request&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;data &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; gzipped_body
+
+&lt;span class=&quot;token comment&quot;&gt;# Register the event handler (only for CloudWatch PutMetricData!)&lt;/span&gt;
+event_system&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;register&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;before-sign.cloudwatch.PutMetricData&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; gzip_request_body&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;# Sends a request&lt;/span&gt;
+cw_client&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;put_metric_data&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+    MetricData &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token string&quot;&gt;&apos;MetricName&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;KPIs&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token string&quot;&gt;&apos;Dimensions&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+                &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                    &lt;span class=&quot;token string&quot;&gt;&apos;Name&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;PURCHASES_SERVICE&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                    &lt;span class=&quot;token string&quot;&gt;&apos;Value&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;CoolService&apos;&lt;/span&gt;
+                &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                    &lt;span class=&quot;token string&quot;&gt;&apos;Name&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;APP_VERSION&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                    &lt;span class=&quot;token string&quot;&gt;&apos;Value&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;1.0&apos;&lt;/span&gt;
+                &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token string&quot;&gt;&apos;Unit&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;None&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token string&quot;&gt;&apos;Value&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;217&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    Namespace&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;CoolApp&apos;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;You are welcome! 😜&lt;/p&gt;
+&lt;p&gt;Now, if you are curious to know more about my use case and how the &lt;code&gt;boto3&lt;/code&gt; events system works you are more than welcome to keep reading the rest of the article.&lt;/p&gt;
+&lt;h2 id=&quot;the-use-case-sending-custom-metrics-to-cloudwatch&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#the-use-case-sending-custom-metrics-to-cloudwatch&quot; aria-label=&quot;the use case sending custom metrics to cloudwatch permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;The use case: sending custom metrics to CloudWatch&lt;/h2&gt;
+&lt;p&gt;Last week, during my work at &lt;a href=&quot;https://www.fourtheorem.com/&quot;&gt;fourTheorem&lt;/a&gt;, we started to get intermittent alarms for a Lambda in our stack that was failing because of requests to CloudWatch being occasionally throttled.&lt;/p&gt;
+&lt;p&gt;Once we looked at the error, the problem was actually quite obvious, but let me give you a simplified overview of what we are doing with this Lambda.&lt;/p&gt;
+&lt;p&gt;This Lambda is triggered by a Kinesis stream in which we publish custom metric data from all the other components of our application. The Lambda reads these metrics and publishes them to CloudWatch using the &lt;a href=&quot;https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutMetricData.html&quot;&gt;&lt;code&gt;PutMetricData&lt;/code&gt; API&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 1024px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 39.453125%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wgARCAAIABQDASIAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAAAAIDBf/EABYBAQEBAAAAAAAAAAAAAAAAAAQCA//aAAwDAQACEAMQAAAB04GhKxCP/8QAFRABAQAAAAAAAAAAAAAAAAAAACP/2gAIAQEAAQUCqqq//8QAGBEAAgMAAAAAAAAAAAAAAAAAAAIBAxH/2gAIAQMBAT8BpYl9P//EABgRAAIDAAAAAAAAAAAAAAAAAAECEBEh/9oACAECAQE/AX03H//EABQQAQAAAAAAAAAAAAAAAAAAABD/2gAIAQEABj8Cf//EABsQAAICAwEAAAAAAAAAAAAAAAABEUEhMVGh/9oACAEBAAE/IXvPcDdPRO8yf//aAAwDAQACAAMAAAAQC+//xAAaEQACAgMAAAAAAAAAAAAAAAAAAREhMWGR/9oACAEDAQE/EMlK9DGmFw//xAAWEQEBAQAAAAAAAAAAAAAAAAAAARH/2gAIAQIBAT8QkMf/xAAaEAEAAgMBAAAAAAAAAAAAAAABACERQYGR/9oACAEBAAE/EHjUW45Epihu3pEFRH//2Q==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/af62cb430fc6cab61dc6a1d2eded0eaf/8d3d1/boto3-custom-metrics-kinesis-lambda-cloudwatch.webp 256w,
+/static/af62cb430fc6cab61dc6a1d2eded0eaf/354cf/boto3-custom-metrics-kinesis-lambda-cloudwatch.webp 512w,
+/static/af62cb430fc6cab61dc6a1d2eded0eaf/44907/boto3-custom-metrics-kinesis-lambda-cloudwatch.webp 1024w&quot;
+              sizes=&quot;(max-width: 1024px) 100vw, 1024px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/af62cb430fc6cab61dc6a1d2eded0eaf/b95e4/boto3-custom-metrics-kinesis-lambda-cloudwatch.jpg 256w,
+/static/af62cb430fc6cab61dc6a1d2eded0eaf/1779b/boto3-custom-metrics-kinesis-lambda-cloudwatch.jpg 512w,
+/static/af62cb430fc6cab61dc6a1d2eded0eaf/87945/boto3-custom-metrics-kinesis-lambda-cloudwatch.jpg 1024w&quot;
+            sizes=&quot;(max-width: 1024px) 100vw, 1024px&quot;
+            type=&quot;image/jpeg&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/af62cb430fc6cab61dc6a1d2eded0eaf/87945/boto3-custom-metrics-kinesis-lambda-cloudwatch.jpg&quot;
+            alt=&quot;Schematic of a Kinesis stream being processed by a Lambda to collect metrics and send them to CloudWatch&quot;
+            title=&quot;Schematic of a Kinesis stream being processed by a Lambda to collect metrics and send them to CloudWatch&quot;
+            loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Note that this idea is coming from &lt;a href=&quot;https://github.com/lumigo-io/SAR-async-lambda-metrics&quot;&gt;Lumigo’s SAR async Lmabda metrics&lt;/a&gt;.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;The issue is that in our original implementation we took the naive approach of submitting 1 data point at a time. Therefore, under load, we would be sending a large number of HTTP requests per second to AWS and we might end up being throttled.&lt;/p&gt;
+&lt;p&gt;The solution to the problem is actually quite simple: we can reduce the total number of HTTP requests by sending the data in batches containing multiple data points, rather than sending data points one by one.&lt;/p&gt;
+&lt;p&gt;This is actually possible by using the same &lt;code&gt;PutMetricData&lt;/code&gt; API from CloudWatch.&lt;/p&gt;
+&lt;h2 id=&quot;cloudwatch-putmetricdata-limits&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#cloudwatch-putmetricdata-limits&quot; aria-label=&quot;cloudwatch putmetricdata limits permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;CloudWatch &lt;code&gt;PutMetricData&lt;/code&gt; limits&lt;/h2&gt;
+&lt;p&gt;So apparently the solution is simple: we just need to send multiple data points for every single &lt;code&gt;PutMetricData&lt;/code&gt; call. But how many?&lt;/p&gt;
+&lt;p&gt;A call to this API accepts an array of metrics that looks like this:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token string&quot;&gt;&apos;MetricName&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;SomeMetric1&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;token string&quot;&gt;&apos;Dimensions&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;token string&quot;&gt;&apos;Name&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;Dimension1Name&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;token string&quot;&gt;&apos;Value&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;Dimension1Value&apos;&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token comment&quot;&gt;# Up to other 9 dimensions here ...&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;token string&quot;&gt;&apos;Unit&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;Count&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;token string&quot;&gt;&apos;Values&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;217&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;220&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;221&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;# Up to 150 items here ...&lt;/span&gt;
+        &lt;span class=&quot;token string&quot;&gt;&apos;Timestamp&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1624290910000&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;# Up to other 19 metric items here ...&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;More details can be found in the documentation for the &lt;a href=&quot;https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html&quot;&gt;&lt;code&gt;MetricDatum&lt;/code&gt; type&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;As you can tell from the comments in the snippet above, the API has some interesting limits to be considered:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Up to &lt;strong&gt;20&lt;/strong&gt; different metrics&lt;/li&gt;
+&lt;li&gt;Up to &lt;strong&gt;10&lt;/strong&gt; dimensions per metric&lt;/li&gt;
+&lt;li&gt;Up to &lt;strong&gt;150 values&lt;/strong&gt; per metric&lt;/li&gt;
+&lt;li&gt;Up to &lt;strong&gt;40 KB&lt;/strong&gt; in size for HTTP POST requests&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So, the best case scenario to reduce the number of &lt;code&gt;PutMetricData&lt;/code&gt; requests is to have batches of 20 metrics, but we need to make sure that all this data, once encoded, fits in 40 KB.&lt;/p&gt;
+&lt;p&gt;Splitting the metrics in chunks of 20 entries per request is not a big deal. But how do we make sure all the other constraints are respected. Especially the payload size one.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;PutMetricData&lt;/code&gt; documentation page adds an interesting bit of information:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You can send a payload compressed by gzip.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;It would be convenient to use gzip compression to increase our chances to stay within boundaries.&lt;/p&gt;
+&lt;p&gt;At this point, I thought &lt;em&gt;“Ok, probably &lt;code&gt;boto3&lt;/code&gt; is automatically doing the compression for us, because why shouldn’t it?”&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;But if you have used AWS for long enough, you learn not to give too many things for granted, so… Let’s test this assumption, first!&lt;/p&gt;
+&lt;h2 id=&quot;testing-boto3-default-behavior&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#testing-boto3-default-behavior&quot; aria-label=&quot;testing boto3 default behavior permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Testing &lt;code&gt;boto3&lt;/code&gt; default behavior&lt;/h2&gt;
+&lt;p&gt;So, how can we see if the by default &lt;code&gt;boto3&lt;/code&gt; is already gzipping our requests?
+Requests are going to AWS and I could think of 3 different ways to inspect how the final HTTP request actually looks when sent to AWS:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Use a debugger and step through the execution in the deep corners of the &lt;code&gt;boto3&lt;/code&gt; code.&lt;/li&gt;
+&lt;li&gt;Use an HTTP proxy like &lt;a href=&quot;https://portswigger.net/burp/communitydownload&quot;&gt;Burp Suite&lt;/a&gt; to intercept all the outgoing traffic and have a chance to inspect what’s being sent to AWS.&lt;/li&gt;
+&lt;li&gt;Use the &lt;a href=&quot;https://boto3.amazonaws.com/v1/documentation/api/latest/reference/core/session.html#boto3.session.Session.client&quot;&gt;&lt;code&gt;endpoint_url&lt;/code&gt; parameter&lt;/a&gt; to configure the &lt;code&gt;boto3&lt;/code&gt; client to send requests somewhere else.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I opted for option 3, just because I thought it would be the quickest and easiest for me. I quickly wrote a very simple &lt;a href=&quot;https://gist.github.com/lmammino/34373d61ff28ba34c9c26eb1edad5684&quot;&gt;HTTP debugging server in Node.js&lt;/a&gt; and let it listen for requests at &lt;code&gt;locahost:8000&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;At this point I could simply run the following Python code to see how &lt;code&gt;boto3&lt;/code&gt; would send a &lt;code&gt;PutMetricData&lt;/code&gt; request to AWS:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; boto3
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; gzip
+
+endpoint_url &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;http://localhost:8000/&quot;&lt;/span&gt;
+
+cw_client &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; boto3&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;client&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;cloudwatch&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; endpoint_url&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;endpoint_url&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; use_ssl&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+cw_client&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;put_metric_data&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+    MetricData &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token string&quot;&gt;&apos;MetricName&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;TEST_BOTO&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token string&quot;&gt;&apos;Dimensions&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+                &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                    &lt;span class=&quot;token string&quot;&gt;&apos;Name&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;APP_VERSION&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                    &lt;span class=&quot;token string&quot;&gt;&apos;Value&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;1.0&apos;&lt;/span&gt;
+                &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token string&quot;&gt;&apos;Unit&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;None&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token string&quot;&gt;&apos;Value&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;17&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    Namespace&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;BotoTest&apos;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Note that I am also using &lt;code&gt;use_ssl=False&lt;/code&gt; because my local endpoint supports only plain HTTP.&lt;/p&gt;
+&lt;p&gt;Ok at this point I used all my confidence in AWS and run this script… This is what I got in my debug web server:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 1024px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 58.59375%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsTAAALEwEAmpwYAAACj0lEQVQoz33Oy1LaUBgH8LyCyC3khEAuQMiNW8BAuCUIOrU+RF+oFbStLqwWtMuuuuxeZnyI7pqpM+10L+ffycHpuHLxm+925vsOd375/mF1tYyWV9fR8vOKuVneRucfL6LF/Cw6XXyI5vOz6ORkEb17u4guzi+j1fJLtFreRKvVLYs3q9ufV5+u/yzmp185wfHA223wZgtE0ZFRVKQVBYJcRl5WIckiCooMrVpDSVehVUQQSUQiTbCTIthhUWD1bobcc4LeQlZ3Nym9RdNSmaYEiSYFiaaFIs1JMuVFifKkQHlRobl8gQqSRHNigaZzEk3x/z2meAnJjHjHVao2FK1KK7oNs+aiYtRhOi6yRGZXE2kRuxmR/SL+UVxvEdaPJbP5DVuYFdec0/TQ6Y2o6w1Qa3lodXx4/hjNjs8WG3YLJd2BVW8zpaoDw2mxXNMdEEkDLyqb7WGy5uxGB/3RhMZLnEYH4fQV/GGIYTBDbxDAsJuoWg1YNZfl8bL4aK25x9RdD7pZ34jFEnhSjBd6aHfHdM8PEed110e93YfhdOI+E89cbwSn2WUa7T5qrR7KZhOiXEVRszZxniXamuu0TXQ9h3p7Ntqugbhu1MowjSJsS2EcW4VtKrBMGTVbg1EtoO6U4FgqLEOObeI3RoWsuWAyw3A8ouMgwHA0wnQ2wygIEO5PMA63vSAMmYPDQ2YwHGIchtifTtHt9TAKxpveIMTxRF1zfb8Nv9fY+L0mPZgNqGOXqGmoTxRGrxRYtC1t2zNVapnq06xI67byePzax1Eg3XECyUEQBYbE8oQRn5O2MZ4/7+clgjSfw7ir4sf3Kd4cCfdcIpP/nUjnH16y89IsRR6Sgvqr3yn9lYTMt38lL3nBP9bkDgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/e859e1b0f48c3bd857582dcfff957736/8d3d1/boto3-no-gzip-by-default.webp 256w,
+/static/e859e1b0f48c3bd857582dcfff957736/354cf/boto3-no-gzip-by-default.webp 512w,
+/static/e859e1b0f48c3bd857582dcfff957736/44907/boto3-no-gzip-by-default.webp 1024w&quot;
+              sizes=&quot;(max-width: 1024px) 100vw, 1024px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/e859e1b0f48c3bd857582dcfff957736/85b06/boto3-no-gzip-by-default.png 256w,
+/static/e859e1b0f48c3bd857582dcfff957736/bc282/boto3-no-gzip-by-default.png 512w,
+/static/e859e1b0f48c3bd857582dcfff957736/f1720/boto3-no-gzip-by-default.png 1024w&quot;
+            sizes=&quot;(max-width: 1024px) 100vw, 1024px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/e859e1b0f48c3bd857582dcfff957736/f1720/boto3-no-gzip-by-default.png&quot;
+            alt=&quot;Boto3 does not use gzip compression by default&quot;
+            title=&quot;Boto3 does not use gzip compression by default&quot;
+            loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;As you can see from the picture above, &lt;code&gt;boto3&lt;/code&gt; does not use gzip compression by default.&lt;/p&gt;
+&lt;p&gt;Sad me… 😢 Time to roll up the sleeves and figure out how to gzip the request body manually!&lt;/p&gt;
+&lt;h2 id=&quot;the-boto3-events-system&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#the-boto3-events-system&quot; aria-label=&quot;the boto3 events system permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;The &lt;code&gt;boto3&lt;/code&gt; events system&lt;/h2&gt;
+&lt;p&gt;After some research, I discovered that &lt;code&gt;boto3&lt;/code&gt; has a &lt;a href=&quot;https://boto3.amazonaws.com/v1/documentation/api/latest/guide/events.html&quot;&gt;built-in event system&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This event system allows you to intercept requests being sent to AWS and alter them before they are sent. You can also intercept responses coming from AWS.&lt;/p&gt;
+&lt;p&gt;This is not a very well known feature of &lt;code&gt;boto3&lt;/code&gt;, but I can see it being useful in a couple of circumstances:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Log all outgoing requests and incoming responses (for debugging)&lt;/li&gt;
+&lt;li&gt;Alter HTTP requests or HTTP responses to and from AWS to implement custom behaviors (gzipping the payload of outgoing requests is a great example).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If you want to look at a quick example of how to use this feature, here is one: we want to add an &lt;code&gt;x-trace-id&lt;/code&gt; header when we invoke a lambda using &lt;code&gt;boto3&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; boto3
+
+lambda_client &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; boto3&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;client&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;lambda&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;# our event handler&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;add_xtrace_header&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;request&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;**&lt;/span&gt;kwargs&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    request&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;headers&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;add_header&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;x-trace-id&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;trace-trace&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;# get the event system for the lambda_client&lt;/span&gt;
+event_system &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; lambda_client&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;meta&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;events
+
+&lt;span class=&quot;token comment&quot;&gt;# attach an event handler to the client for &lt;/span&gt;
+event_system&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;register&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;before-sign.Invoke.lambda&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; add_xtrace_header&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;# invoke a lambda function&lt;/span&gt;
+lambda_client&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;invoke&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;FunctionName&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;my-function&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The example should be pretty straightforward, but let’s zoom on some interesting details.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;An event handler is just a function that receives a number of arguments that depend on the type of event.&lt;/li&gt;
+&lt;li&gt;Every &lt;code&gt;boto3&lt;/code&gt; client exposes the event system as &lt;code&gt;client.meta.events&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;We can register an event handler by using the &lt;code&gt;register&lt;/code&gt; function on the event system of a given client and pass the event name and the handler to it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The event name is interesting because it follows this specification:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;&amp;lt;event-type&amp;gt;.&amp;lt;service-name&amp;gt;.&amp;lt;operation-name&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;event-type&lt;/code&gt; is used to indicate the type of event. This is generally representing a phase of the lifecycle of a request. Some examples are &lt;code&gt;provide-client-params&lt;/code&gt;, &lt;code&gt;request-created&lt;/code&gt;, &lt;code&gt;before-sign&lt;/code&gt;, &lt;code&gt;before-send&lt;/code&gt;, and &lt;code&gt;response-received&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;service-name&lt;/code&gt; is the name of the service used. For instance: &lt;code&gt;s3&lt;/code&gt; or &lt;code&gt;cloudwatch&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;operation-name&lt;/code&gt; indicates the type of operation the client is trying to perform (the method). For instance: &lt;code&gt;PutMetricData&lt;/code&gt; or &lt;code&gt;Invoke&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Not all these parts are mandatory and you can create event listeners for multiple events. Let’s look at some examples:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;*&lt;/code&gt; will listen to every event&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;after-call.lambda.*&lt;/code&gt; (or &lt;code&gt;after-call.lambda&lt;/code&gt;) will listen to all &lt;code&gt;after-call&lt;/code&gt; type events for lambda and intercept all methods.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The &lt;code&gt;botocore&lt;/code&gt; documentation isn’t very clear on how these events work, but after some digging, I managed to find the slides of a very interesting talk by &lt;a href=&quot;https://twitter.com/thekyleknapp&quot;&gt;Kyle Knapp&lt;/a&gt; called &lt;a href=&quot;https://pages.awscloud.com/rs/112-TZM-766/images/B-4.pdf&quot;&gt;Deep Dive on AWS SDK for Python (Boto3)&lt;/a&gt;. This one was a real lifesaver for me to understand how all of this works! Thank you, Kyle!&lt;/p&gt;
+&lt;h2 id=&quot;a-boto3-event-handler-for-gzipping-requests&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#a-boto3-event-handler-for-gzipping-requests&quot; aria-label=&quot;a boto3 event handler for gzipping requests permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;A &lt;code&gt;boto3&lt;/code&gt; event handler for gzipping requests&lt;/h2&gt;
+&lt;p&gt;At this point, we know enough to understand how we can add the gzip behavior to our CloudWatch &lt;code&gt;PutMetricData&lt;/code&gt; requests.&lt;/p&gt;
+&lt;p&gt;Let’s update our test example and add a custom event listener:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; boto3
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; gzip
+
+endpoint_url &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;http://localhost:8000/&quot;&lt;/span&gt;
+
+cw_client &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; boto3&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;client&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;cloudwatch&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;  endpoint_url&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;endpoint_url&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; use_ssl&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+event_system &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; cw_client&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;meta&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;events
+
+&lt;span class=&quot;token comment&quot;&gt;# Gzip handler&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;gzip_request_body&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;request&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;**&lt;/span&gt;kwargs&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    gzipped_body &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; gzip&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;compress&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;request&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;body&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    request&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;headers&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;add_header&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Content-Encoding&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;gzip&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    request&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;data &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; gzipped_body
+
+&lt;span class=&quot;token comment&quot;&gt;# registers the custom handler&lt;/span&gt;
+event_system&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;register&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;before-sign.cloudwatch.PutMetricData&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; gzip_request_body&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+response &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; cw_client&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;put_metric_data&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+    MetricData &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token string&quot;&gt;&apos;MetricName&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;TEST_BOTO&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token string&quot;&gt;&apos;Dimensions&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+                &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                    &lt;span class=&quot;token string&quot;&gt;&apos;Name&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;APP_VERSION&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                    &lt;span class=&quot;token string&quot;&gt;&apos;Value&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;1.0&apos;&lt;/span&gt;
+                &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token string&quot;&gt;&apos;Unit&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;None&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token string&quot;&gt;&apos;Value&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;17&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    Namespace&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;BotoTest&apos;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;response&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Note that we are using the &lt;code&gt;before-sign&lt;/code&gt; event type because we want to alter the request before the signature is applied to the request.&lt;/p&gt;
+&lt;p&gt;If we run this code and check our debug web server we will see something like this:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 1024px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 58.59375%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsTAAALEwEAmpwYAAACtUlEQVQoz42P227TWBSG/QjT0jixt7e3T4njxIlj144d181RnIS45gXgIXgHpJk2nNoLKCQt4oqreQciMc8x1kQaxD3ZP/Ju4ZqLX+vba23961/S2ZuX2/XFqlxdvCtX79dCl6ur8uz1ebk8fVE+X74qT09flCcny/KvP5fl+dmbcr36UK5Xl+V6fSXq5frq34u3774uT59/kkgwgtIfQvFjaLaHuu1Atm0Qy4VuOWAWhWFbaHYGaHkOmm0KjVHsyxr2ahr2RCXifauufZGIF6PRiXeyF3OZubxGGD8gjNeJyVVmcoUyrmgGV6jNVd3ghDGuUoPLKuM15Ze+1xSGgzr9LLleANPp8FY7QDdI4HYjdPsJ6sT6lWJfpiKFSFSjN70qEf2pnTBs0I2UZkNMZmM+nh6j4izPMJtPMDoq0AuH6IdDeH6E4DBDEKVo+6HoBVEGtzsANV2ourM7aOjXhrfnA9y/m/L5JMDDB3nFuLsIEIYuqOmBmi0o1IZutYUIawoTw/ZAjdaNob2rrrhV1zZSP0wwXdzhxXiOUTHBnXsPcDxdIM3HCOMRHNcXSZx2D7brw/NDkdbrRfAHCXqDBG4n2FmtLghzNlJWLDCIj3iYVCeO0AszDPMZktEE1Sw9miPOJqjm1zyu/gtORlPRD5Ni148ymM3ORprNjpAMIx5GPYRRH8HAR6frghkaDFOHaekwKplUMNVVNFQZDaUGjarQGQHVlV3FtYa2kZI0Q5qlu2J8zA+TmA+zlE/nM1HzouCzxZwfj8d8lOei5/f7PIoPeZbn3LQdrmoaJ3rzu9W0YdvqZ4kyDbpBQJkqUl1vvN78k+kNV7IdA36vjUHow3VN7MkNPH1c4J+P99Fpki8S0en/hNLt70rVtG1dUbayomwJ1bZ/yHT7aEH+e/ak+a3esP/+AQqwdfWBoQeqAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/e8171d352cb387a1948ebedd12bd2e4c/8d3d1/boto3-with-gzip-compression.webp 256w,
+/static/e8171d352cb387a1948ebedd12bd2e4c/354cf/boto3-with-gzip-compression.webp 512w,
+/static/e8171d352cb387a1948ebedd12bd2e4c/44907/boto3-with-gzip-compression.webp 1024w&quot;
+              sizes=&quot;(max-width: 1024px) 100vw, 1024px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/e8171d352cb387a1948ebedd12bd2e4c/85b06/boto3-with-gzip-compression.png 256w,
+/static/e8171d352cb387a1948ebedd12bd2e4c/bc282/boto3-with-gzip-compression.png 512w,
+/static/e8171d352cb387a1948ebedd12bd2e4c/f1720/boto3-with-gzip-compression.png 1024w&quot;
+            sizes=&quot;(max-width: 1024px) 100vw, 1024px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/e8171d352cb387a1948ebedd12bd2e4c/f1720/boto3-with-gzip-compression.png&quot;
+            alt=&quot;Boto3 sending gzipped requests using a custom event handler&quot;
+            title=&quot;Boto3 sending gzipped requests using a custom event handler&quot;
+            loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Now the requests are compressed! We are sending exactly the same request as before and now it’s sending only &lt;strong&gt;151 bytes&lt;/strong&gt; as opposed to &lt;strong&gt;265 bytes&lt;/strong&gt; from the original request!&lt;/p&gt;
+&lt;p&gt;That’s some pretty good compression!&lt;/p&gt;
+&lt;p&gt;Of course, your mileage might vary depending on the shape of your custom metrics. Figuring out how much data can you actually pack in 40 KB might take a little bit of research. Keep in mind you are still limited to 20 metrics per request and 10 dimensions per metric. Gzipping is only increasing your chances to stay within boundaries if you really have to use a lot of dimensions (maybe with long names) or if you have a lot of values per metric.&lt;/p&gt;
+&lt;p&gt;Now, if we remove the configuration for &lt;code&gt;endpoint_url&lt;/code&gt; and send the request to AWS, we can see that everything still works and that the compressed request is processed correctly:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 1024px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 48.828125%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wgARCAAKABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAEDAgb/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIQAxAAAAHu1hlCIf/EABgQAQEBAQEAAAAAAAAAAAAAAAEAERIx/9oACAEBAAEFAui2GwsI8//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EABcQAQEBAQAAAAAAAAAAAAAAAAAxARD/2gAIAQEABj8CXsY//8QAHBAAAgICAwAAAAAAAAAAAAAAAAERITFxQVFh/9oACAEBAAE/IfZFU3DUkiuJ2UKkLoCLFwj/2gAMAwEAAgADAAAAEMAP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPxA//8QAHhABAQACAAcAAAAAAAAAAAAAAREAITFBUWFxodH/2gAIAQEAAT8QZfbDYHsh9uHdiuhyS7o8scVR1uecJAFZhx1n/9k=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/c6d5fa6d3b4b6a938c3951a76b659185/8d3d1/cloudwatch-metrics-dashboard-from-boto3.webp 256w,
+/static/c6d5fa6d3b4b6a938c3951a76b659185/354cf/cloudwatch-metrics-dashboard-from-boto3.webp 512w,
+/static/c6d5fa6d3b4b6a938c3951a76b659185/44907/cloudwatch-metrics-dashboard-from-boto3.webp 1024w&quot;
+              sizes=&quot;(max-width: 1024px) 100vw, 1024px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/c6d5fa6d3b4b6a938c3951a76b659185/b95e4/cloudwatch-metrics-dashboard-from-boto3.jpg 256w,
+/static/c6d5fa6d3b4b6a938c3951a76b659185/1779b/cloudwatch-metrics-dashboard-from-boto3.jpg 512w,
+/static/c6d5fa6d3b4b6a938c3951a76b659185/87945/cloudwatch-metrics-dashboard-from-boto3.jpg 1024w&quot;
+            sizes=&quot;(max-width: 1024px) 100vw, 1024px&quot;
+            type=&quot;image/jpeg&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/c6d5fa6d3b4b6a938c3951a76b659185/87945/cloudwatch-metrics-dashboard-from-boto3.jpg&quot;
+            alt=&quot;Cloudwatch custom metrics dashboard with data sent from boto3&quot;
+            title=&quot;Cloudwatch custom metrics dashboard with data sent from boto3&quot;
+            loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Success!&lt;/p&gt;
+&lt;h2 id=&quot;a-few-ideas-for-more-defensive-solutions&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#a-few-ideas-for-more-defensive-solutions&quot; aria-label=&quot;a few ideas for more defensive solutions permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;A few ideas for more defensive solutions&lt;/h2&gt;
+&lt;p&gt;Compressing the payload for &lt;code&gt;PutMetricData&lt;/code&gt; requests is not an absolute guarantee that we won’t be exceeding the 40 KB payload limit. Gzip certainly helps, but you might still bump into the limit and have failures in your application.&lt;/p&gt;
+&lt;p&gt;If you want to be &lt;em&gt;failure-proof&lt;/em&gt; ™️, here are some ideas that we explored with our colleagues:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Optimistic solution: Try the request and catch potential exceptions. If you see the &lt;code&gt;PutMetricData&lt;/code&gt; failed because the payload is too large, just split all the data into 2 requests.&lt;/li&gt;
+&lt;li&gt;Pessimistic solution: pre-compute the gzipped payload before sending the request and if that’s bigger than 40 KB, then split the request into 2 parts.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The pessimistic solution has the disadvantage that you will be gzipping the payload twice (before you create the request to make sure it’s within boundaries and then in your event handler), but it will avoid sending invalid requests upfront.&lt;/p&gt;
+&lt;p&gt;Right now, we haven’t implemented any of these strategies. In our case, these metrics are not business-critical and we can afford some sparse failure, so we preferred to keep the code as simple as possible.&lt;/p&gt;
+&lt;p&gt;If, later on, we will observe production errors, then it might be worth applying one of these strategies. I am more in favor of the optimistic approach because I expect it will be pretty rare to bump into this limit.&lt;/p&gt;
+&lt;p&gt;What do you think, which strategy would you apply? Do you have other ideas? let me know that in the comments box below! 😁&lt;/p&gt;
+&lt;h2 id=&quot;conclusion&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#conclusion&quot; aria-label=&quot;conclusion permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;The event system in &lt;code&gt;boto3&lt;/code&gt; is pretty powerful and it allows you to customize the default behavior of how clients will send HTTP requests to AWS.&lt;/p&gt;
+&lt;p&gt;In this article, we saw how that can be useful for inspecting how AWS APIs are actually used or to add additional functionality that isn’t supported out of the box (e.g. gzipping the HTTP payload of outgoing requests).&lt;/p&gt;
+&lt;p&gt;If you found this article useful &lt;a href=&quot;https://twitter.com/loige&quot;&gt;consider following me on Twitter&lt;/a&gt; and feel more than welcome to leave a comment below. I’d be really curious to find out what was your use case and if this article helped you out.&lt;/p&gt;
+&lt;p&gt;A huge “thank you” goes to my colleague Martin for involving me in this piece of work (and indirectly for dragging me into this rabbit hole 🐇)! Also thanks to &lt;a href=&quot;https://twitter.com/eoins&quot;&gt;Eoin Shanaghy&lt;/a&gt; for kindly reviewing this article!&lt;/p&gt;
+&lt;p&gt;See you soon! 👋&lt;/p&gt;
+&lt;h3 id=&quot;about-fourtheorem&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#about-fourtheorem&quot; aria-label=&quot;about fourtheorem permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;About fourTheorem&lt;/h3&gt;
+&lt;p&gt;If you want to know more about &lt;a href=&quot;https://www.fourtheorem.com/&quot;&gt;fourTheorem&lt;/a&gt;, we are a team of business-focused technologists that deliver. We have been helping a dozen companies to get the best out of AWS and we had a lot of fun while doing that. If you are curious to know more about what we do you can check out some of our &lt;a href=&quot;https://www.fourtheorem.com/case-studies&quot;&gt;case studies&lt;/a&gt; and our &lt;a href=&quot;https://www.fourtheorem.com/customers&quot;&gt;customer success stories&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you would like to work with us, don’t be shy, &lt;a href=&quot;https://www.fourtheorem.com/contact&quot;&gt;we’d love to get in touch with you&lt;/a&gt;! 🙂&lt;/p&gt;</content:encoded></item><item><title><![CDATA[How to to_string in Rust]]></title><description><![CDATA[In Rust, there are several ways to turn a value into a string. In this article, we will explore a few different ways and discuss what are…]]></description><link>https://loige.co/how-to-to-string-in-rust</link><guid isPermaLink="false">https://loige.co/how-to-to-string-in-rust</guid><pubDate>Wed, 26 May 2021 18:50:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;img src=&quot;https://loige.costatic/edddfb8b54b3d87bda93f1abb3559dc9/how-to-to-string-in-rust-fb.png&quot;/&gt;&lt;/p&gt;&lt;p&gt;In Rust, there are several ways to turn a value into a string. In this article, we will explore a few different ways and discuss what are the most idiomatic approaches depending on the context you are currently working on.&lt;/p&gt;
 &lt;p&gt;Personally, I have been quite confused for a while on what’s the best way to implement a “to string” functionality for a given Rust struct. The reason why this has been confusing to me is that there are indeed many ways to do that and they all have different purposes.&lt;/p&gt;
 &lt;p&gt;I finally decided to do a bit of research to try and demystify this topic a bit and, in this post, I want to share what I learned!&lt;/p&gt;
 &lt;p&gt;Are you ready? 🙂&lt;/p&gt;
@@ -375,6 +753,7 @@ For more information about this error, try `rustc --explain E0277`.&lt;/code&gt;
             alt=&quot;A dice set from Dungeon and Dragons (D&amp;amp;D)&quot;
             title=&quot;A dice set from Dungeon and Dragons (D&amp;amp;D)&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -452,6 +831,7 @@ For more information about this error, try `rustc --explain E0277`.&lt;/code&gt;
             alt=&quot;A Dungeon and Dragons D100, a die with 100 faces&quot;
             title=&quot;A Dungeon and Dragons D100, a die with 100 faces&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -634,6 +1014,7 @@ For more information about this error, try `rustc --explain E0277`.&lt;/code&gt;
             alt=&quot;The disclaimer at the beginning of the Rustonomicon&quot;
             title=&quot;The disclaimer at the beginning of the Rustonomicon&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -674,6 +1055,7 @@ For more information about this error, try `rustc --explain E0277`.&lt;/code&gt;
             alt=&quot;Easy Rust on YouTube&quot;
             title=&quot;Easy Rust on YouTube&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -724,6 +1106,7 @@ For more information about this error, try `rustc --explain E0277`.&lt;/code&gt;
             alt=&quot;A random Cool Bear appears&quot;
             title=&quot;A random Cool Bear appears&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -774,6 +1157,7 @@ For more information about this error, try `rustc --explain E0277`.&lt;/code&gt;
             alt=&quot;Streaming Rust with Ryan Levick&quot;
             title=&quot;Streaming Rust with Ryan Levick&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -814,6 +1198,7 @@ For more information about this error, try `rustc --explain E0277`.&lt;/code&gt;
             alt=&quot;Jon Gjengset tweeting about his commitment to stream more Rust content&quot;
             title=&quot;Jon Gjengset tweeting about his commitment to stream more Rust content&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -867,6 +1252,7 @@ For more information about this error, try `rustc --explain E0277`.&lt;/code&gt;
             alt=&quot;Rust Dublin logo&quot;
             title=&quot;Rust Dublin logo&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -925,6 +1311,7 @@ For more information about this error, try `rustc --explain E0277`.&lt;/code&gt;
             alt=&quot;Tim McNamara - Rust in Action book cover&quot;
             title=&quot;Tim McNamara - Rust in Action book cover&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -964,6 +1351,7 @@ We particularly like this book for various reasons.&lt;/p&gt;
             alt=&quot;Luca Palmieri - Zero to Production in Rust book cover&quot;
             title=&quot;Luca Palmieri - Zero to Production in Rust book cover&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -999,6 +1387,7 @@ We particularly like this book for various reasons.&lt;/p&gt;
             alt=&quot;Programming Rust second edition&quot;
             title=&quot;Programming Rust second edition&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -1032,6 +1421,7 @@ We particularly like this book for various reasons.&lt;/p&gt;
             alt=&quot;The Rust Programming Language book cover&quot;
             title=&quot;The Rust Programming Language book cover&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -1070,6 +1460,7 @@ We particularly like this book for various reasons.&lt;/p&gt;
             alt=&quot;A screenshot from Rust in motion showing an example of lifetimes visualized&quot;
             title=&quot;A screenshot from Rust in motion showing an example of lifetimes visualized&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -1138,6 +1529,7 @@ We particularly like this book for various reasons.&lt;/p&gt;
             alt=&quot;Node.js Design Patterns book on a table next to a plant&quot;
             title=&quot;Node.js Design Patterns book on a table next to a plant&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -1182,6 +1574,7 @@ We particularly like this book for various reasons.&lt;/p&gt;
             alt=&quot;Node.js Design Patterns third edition second position on Amazon for the JavaScript category&quot;
             title=&quot;Node.js Design Patterns third edition second position on Amazon for the JavaScript category&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -1224,6 +1617,7 @@ We particularly like this book for various reasons.&lt;/p&gt;
             alt=&quot;Luciano Mammino speaking at GCS Connect Serverless Dublin Meetup&quot;
             title=&quot;Luciano Mammino speaking at GCS Connect Serverless Dublin Meetup&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -1283,6 +1677,7 @@ We particularly like this book for various reasons.&lt;/p&gt;
             alt=&quot;Fabfitfun is delivering happiness and well being to everyione everywhere&quot;
             title=&quot;Fabfitfun is delivering happiness and well being to everyione everywhere&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -1323,6 +1718,7 @@ We particularly like this book for various reasons.&lt;/p&gt;
             alt=&quot;Luciano Mammino at the Hollywood sign&quot;
             title=&quot;Luciano Mammino at the Hollywood sign&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -1357,6 +1753,7 @@ We particularly like this book for various reasons.&lt;/p&gt;
             alt=&quot;Padraig O&amp;#39;Brien, Luciano Mammino and Roberto Gambuzzi at the Griffith Observatory&quot;
             title=&quot;Padraig O&amp;#39;Brien, Luciano Mammino and Roberto Gambuzzi at the Griffith Observatory&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -1404,6 +1801,7 @@ We particularly like this book for various reasons.&lt;/p&gt;
             alt=&quot;Hannah from the LEGO Group mentioning that they use Middy as a middleware layer for their Lambdas&quot;
             title=&quot;Hannah from the LEGO Group mentioning that they use Middy as a middleware layer for their Lambdas&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -1444,6 +1842,7 @@ We particularly like this book for various reasons.&lt;/p&gt;
             alt=&quot;Downloads for @middy/core throughouth 2020&quot;
             title=&quot;Downloads for @middy/core throughouth 2020&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -1483,6 +1882,7 @@ We particularly like this book for various reasons.&lt;/p&gt;
             alt=&quot;FullStack Bulletin website preview&quot;
             title=&quot;FullStack Bulletin website preview&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -1517,6 +1917,7 @@ We particularly like this book for various reasons.&lt;/p&gt;
             alt=&quot;The growth of FullStack bulletin in terms of subscribers throughout 2020&quot;
             title=&quot;The growth of FullStack bulletin in terms of subscribers throughout 2020&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -1553,6 +1954,7 @@ We particularly like this book for various reasons.&lt;/p&gt;
             alt=&quot;Linkerflix logo&quot;
             title=&quot;Linkerflix logo&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -1617,6 +2019,7 @@ We particularly like this book for various reasons.&lt;/p&gt;
             alt=&quot;Pageviews and other stats for loige.co in 2020&quot;
             title=&quot;Pageviews and other stats for loige.co in 2020&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -1654,6 +2057,7 @@ We particularly like this book for various reasons.&lt;/p&gt;
             alt=&quot;Top articles 2020 for loige.co&quot;
             title=&quot;Top articles 2020 for loige.co&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -1688,6 +2092,7 @@ We particularly like this book for various reasons.&lt;/p&gt;
             alt=&quot;Traffic sources for loige.co in 2020&quot;
             title=&quot;Traffic sources for loige.co in 2020&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -1758,6 +2163,7 @@ We particularly like this book for various reasons.&lt;/p&gt;
             alt=&quot;Loige&amp;#39;s Twitter followers growth over 2020&quot;
             title=&quot;Loige&amp;#39;s Twitter followers growth over 2020&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -1919,6 +2325,7 @@ This article serves as a summary for our experience and memorandum of all the in
             alt=&quot;Tim McNamara (timclicks) reviewing the jwtinfo Rust crate on Twitch&quot;
             title=&quot;Tim McNamara (timclicks) reviewing the jwtinfo Rust crate on Twitch&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -1997,6 +2404,7 @@ Tim provided 2 interesting pieces of advice. The first one is to simplify the fo
             alt=&quot;File found to be present in multiple build targets - screenshot from GitHub Actions&quot;
             title=&quot;File found to be present in multiple build targets - screenshot from GitHub Actions&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -2063,6 +2471,7 @@ There is even an official piece of documentation that gives guidance on how to w
             alt=&quot;jwtinfo Rust docs page screenshot from the rendered docs in the browser&quot;
             title=&quot;jwtinfo Rust docs page screenshot from the rendered docs in the browser&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -2117,6 +2526,7 @@ Just to show a real example, this is a piece of documentation in our crate:&lt;/
             alt=&quot;Running docs tests with rust test --doc&quot;
             title=&quot;Running docs tests with rust test --doc&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -2333,6 +2743,7 @@ Just to show a real example, this is a piece of documentation in our crate:&lt;/
             alt=&quot;The three parts of a JSON Web Token&quot;
             title=&quot;The three parts of a JSON Web Token&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -2376,6 +2787,7 @@ Just to show a real example, this is a piece of documentation in our crate:&lt;/
             alt=&quot;The three parts of a sample JSON Web Token&quot;
             title=&quot;The three parts of a sample JSON Web Token&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -2423,6 +2835,7 @@ Just to show a real example, this is a piece of documentation in our crate:&lt;/
             alt=&quot;An attempt to try to decode a JWT signature to a UTF-8 string&quot;
             title=&quot;An attempt to try to decode a JWT signature to a UTF-8 string&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -2462,6 +2875,7 @@ Just to show a real example, this is a piece of documentation in our crate:&lt;/
             alt=&quot;John authenticating against an Auth server and getting back a JWT&quot;
             title=&quot;John authenticating against an Auth server and getting back a JWT&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -2497,6 +2911,7 @@ Just to show a real example, this is a piece of documentation in our crate:&lt;/
             alt=&quot;John using his JWT to communicate with the pizza service&quot;
             title=&quot;John using his JWT to communicate with the pizza service&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -2696,6 +3111,7 @@ module&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;exports &lt;
             alt=&quot;Luciano Mammino Tech Leadership Training with Codemation and Facebook Developer Circles&quot;
             title=&quot;Luciano Mammino Tech Leadership Training with Codemation and Facebook Developer Circles&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -2743,6 +3159,7 @@ module&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;exports &lt;
             alt=&quot;Luciano Mammino talks at AustinJS meetup&quot;
             title=&quot;Luciano Mammino talks at AustinJS meetup&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -2890,6 +3307,7 @@ This is probably due to the great job that package management systems and regist
             alt=&quot;node_modules heaviest objects in the universe&quot;
             title=&quot;node_modules heaviest objects in the universe&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -3089,6 +3507,7 @@ some-test-package-1.0.0.tgz&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
             alt=&quot;Sample server time web application&quot;
             title=&quot;Sample server time web application&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -3120,6 +3539,7 @@ some-test-package-1.0.0.tgz&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
             alt=&quot;Cheeta grimage&quot;
             title=&quot;Cheeta grimage&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -3770,6 +4190,7 @@ to checkout my book &lt;strong&gt;&lt;a href=&quot;https://www.nodejsdesignpatte
             alt=&quot;Node.js Design Patterns Second Edition by Mario Casciaro and Luciano Mammino&quot;
             title=&quot;Node.js Design Patterns Second Edition by Mario Casciaro and Luciano Mammino&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -3812,6 +4233,7 @@ boring to death and most likely useless for everyone else.&lt;/p&gt;
             alt=&quot;GatsbyJS logo&quot;
             title=&quot;GatsbyJS logo&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -3856,6 +4278,7 @@ boring to death and most likely useless for everyone else.&lt;/p&gt;
             alt=&quot;Luciano Mammino at FullStack London&quot;
             title=&quot;Luciano Mammino at FullStack London&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -3906,6 +4329,7 @@ boring to death and most likely useless for everyone else.&lt;/p&gt;
             alt=&quot;Vectra Cognito Platform against Cyber Attackers&quot;
             title=&quot;Vectra Cognito Platform against Cyber Attackers&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -4086,6 +4510,7 @@ Tomas Della Vedova&lt;/a&gt; and &lt;a href=&quot;https://twitter.com/matteocoll
             alt=&quot;My terminal prompt with random emojis&quot;
             title=&quot;My terminal prompt with random emojis&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -4159,6 +4584,7 @@ Tomas Della Vedova&lt;/a&gt; and &lt;a href=&quot;https://twitter.com/matteocoll
             alt=&quot;Sample terminal bash prompt&quot;
             title=&quot;Sample terminal bash prompt&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -4291,6 +4717,7 @@ A&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&q
             alt=&quot;A terminal with the same emoji&quot;
             title=&quot;A terminal with the same emoji&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -4347,6 +4774,7 @@ A&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&q
             alt=&quot;A terminal full of random emoji cats&quot;
             title=&quot;A terminal full of random emoji cats&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -4403,6 +4831,7 @@ A&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&q
             alt=&quot;Formatted text in a Bash terminal&quot;
             title=&quot;Formatted text in a Bash terminal&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -5318,6 +5747,7 @@ Downloading an S3 object as a local file stream
             alt=&quot;Luciano Mammino at CodeEurope Wroclaw&quot;
             title=&quot;Luciano Mammino at CodeEurope Wroclaw&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -5382,6 +5812,7 @@ Downloading an S3 object as a local file stream
             alt=&quot;Vectra logo&quot;
             title=&quot;Vectra logo&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -5422,6 +5853,7 @@ Downloading an S3 object as a local file stream
             alt=&quot;Fullstack bulletin website preview&quot;
             title=&quot;Fullstack bulletin website preview&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -5461,6 +5893,7 @@ Downloading an S3 object as a local file stream
             alt=&quot;Serverless Lab website preview&quot;
             title=&quot;Serverless Lab website preview&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -5501,6 +5934,7 @@ Downloading an S3 object as a local file stream
             alt=&quot;Middy website preview&quot;
             title=&quot;Middy website preview&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -5566,6 +6000,7 @@ module&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;exports &lt;
             alt=&quot;Fastify website preview&quot;
             title=&quot;Fastify website preview&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -5714,6 +6149,7 @@ Anyway, &lt;strong&gt;I’d really love to know what was your biggest achievemen
             alt=&quot;1989-1991 — Sir Tim Berners-Lee invented the World Wide Web&quot;
             title=&quot;1989-1991 — Sir Tim Berners-Lee invented the World Wide Web&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -5753,6 +6189,7 @@ Anyway, &lt;strong&gt;I’d really love to know what was your biggest achievemen
             alt=&quot;1991-1995 — The bare metal age&quot;
             title=&quot;1991-1995 — The bare metal age&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -5792,6 +6229,7 @@ Anyway, &lt;strong&gt;I’d really love to know what was your biggest achievemen
             alt=&quot;1995 — The invention of web hosting&quot;
             title=&quot;1995 — The invention of web hosting&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -5831,6 +6269,7 @@ Anyway, &lt;strong&gt;I’d really love to know what was your biggest achievemen
             alt=&quot;1997 Ian Foster and the idea of Grid Computing&quot;
             title=&quot;1997 Ian Foster and the idea of Grid Computing&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -5874,6 +6313,7 @@ Anyway, &lt;strong&gt;I’d really love to know what was your biggest achievemen
             alt=&quot;1999 — Salesforce introduces the concept of Software as a Service (SaaS)&quot;
             title=&quot;1999 — Salesforce introduces the concept of Software as a Service (SaaS)&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -5913,6 +6353,7 @@ Anyway, &lt;strong&gt;I’d really love to know what was your biggest achievemen
             alt=&quot;2001 — VMWare releases ESXi, &amp;quot;server virtualization&amp;quot; becomes a thing&quot;
             title=&quot;2001 — VMWare releases ESXi, &amp;quot;server virtualization&amp;quot; becomes a thing&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -5954,6 +6395,7 @@ Anyway, &lt;strong&gt;I’d really love to know what was your biggest achievemen
             alt=&quot;2002-2006 — AWS is born (IaaS), people talk about &amp;quot;Cloud computing&amp;quot;&quot;
             title=&quot;2002-2006 — AWS is born (IaaS), people talk about &amp;quot;Cloud computing&amp;quot;&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -5994,6 +6436,7 @@ Anyway, &lt;strong&gt;I’d really love to know what was your biggest achievemen
             alt=&quot;2009 — Heroku and the invention of the &amp;quot;Platform as a Service&amp;quot;&quot;
             title=&quot;2009 — Heroku and the invention of the &amp;quot;Platform as a Service&amp;quot;&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -6033,6 +6476,7 @@ Anyway, &lt;strong&gt;I’d really love to know what was your biggest achievemen
             alt=&quot;2011 — Envolve/Firebase, real-time database as a service&quot;
             title=&quot;2011 — Envolve/Firebase, real-time database as a service&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -6074,6 +6518,7 @@ Anyway, &lt;strong&gt;I’d really love to know what was your biggest achievemen
             alt=&quot;2012 — Parse.com and the first Backend as a Service (BaaS)&quot;
             title=&quot;2012 — Parse.com and the first Backend as a Service (BaaS)&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -6113,6 +6558,7 @@ Anyway, &lt;strong&gt;I’d really love to know what was your biggest achievemen
             alt=&quot;2013 — Docker, &amp;quot;containers are better than virtual machines&amp;quot;&quot;
             title=&quot;2013 — Docker, &amp;quot;containers are better than virtual machines&amp;quot;&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -6152,6 +6598,7 @@ Anyway, &lt;strong&gt;I’d really love to know what was your biggest achievemen
             alt=&quot;2013-2015 — Kubernetes / Swarm / Nomad / CoreOs (containers at scale)&quot;
             title=&quot;2013-2015 — Kubernetes / Swarm / Nomad / CoreOs (containers at scale)&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -6191,6 +6638,7 @@ Anyway, &lt;strong&gt;I’d really love to know what was your biggest achievemen
             alt=&quot;aws lambda launch faas function as a service from bare metal to serverless&quot;
             title=&quot;aws lambda launch faas function as a service from bare metal to serverless&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -6241,6 +6689,7 @@ Anyway, &lt;strong&gt;I’d really love to know what was your biggest achievemen
             alt=&quot;You told me there were no servers!&quot;
             title=&quot;You told me there were no servers!&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -6279,6 +6728,7 @@ Anyway, &lt;strong&gt;I’d really love to know what was your biggest achievemen
             alt=&quot;Serverless through abstractions&quot;
             title=&quot;Serverless through abstractions&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -6373,6 +6823,7 @@ Anyway, &lt;strong&gt;I’d really love to know what was your biggest achievemen
             alt=&quot;Certbot help output&quot;
             title=&quot;Certbot help output&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -6861,6 +7312,7 @@ As expected it was a super interesting event and it gave me the chance to meet f
             alt=&quot;How short URL services work&quot;
             title=&quot;How short URL services work&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -6934,6 +7386,7 @@ As expected it was a super interesting event and it gave me the chance to meet f
             alt=&quot;CURL unshorten short URL output&quot;
             title=&quot;CURL unshorten short URL output&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -6995,6 +7448,7 @@ Being part of this initiative served me a double value. First of all, it was an 
             alt=&quot;Book Cover Node.js design patterns second edition Mario Casciaro Luciano Mammino Packt Publishing&quot;
             title=&quot;Book Cover Node.js design patterns second edition Mario Casciaro Luciano Mammino Packt Publishing&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -7094,6 +7548,7 @@ Being part of this initiative served me a double value. First of all, it was an 
             alt=&quot;Comparison trend Elixir, Rust and Clojure&quot;
             title=&quot;Comparison trend Elixir, Rust and Clojure&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -7405,6 +7860,7 @@ Feel free to leave any question or comment below on the comments box.&lt;/p&gt;
             alt=&quot;ZeroMQ &amp;amp; Node.js Tutorial - Cracking JWT Tokens&quot;
             title=&quot;ZeroMQ &amp;amp; Node.js Tutorial - Cracking JWT Tokens&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -7443,6 +7899,7 @@ Feel free to leave any question or comment below on the comments box.&lt;/p&gt;
             alt=&quot;With Node.js, it’s easy to get things done interview image&quot;
             title=&quot;With Node.js, it’s easy to get things done interview image&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -7478,6 +7935,7 @@ Feel free to leave any question or comment below on the comments box.&lt;/p&gt;
             alt=&quot;Meet the community: Luciano Mammino, software developer from Sicily interview image&quot;
             title=&quot;Meet the community: Luciano Mammino, software developer from Sicily interview image&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -7516,6 +7974,7 @@ Feel free to leave any question or comment below on the comments box.&lt;/p&gt;
             alt=&quot;Judo Heroes main page screenshot&quot;
             title=&quot;Judo Heroes main page screenshot&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -7554,6 +8013,7 @@ Feel free to leave any question or comment below on the comments box.&lt;/p&gt;
             alt=&quot;React on the Server for Beginners: Build a Universal React and Node App Article Banner&quot;
             title=&quot;React on the Server for Beginners: Build a Universal React and Node App Article Banner&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -7640,6 +8100,7 @@ At this stage I wondered if there was a way to get only the wikitext of a specif
             alt=&quot;flagIOCmedalist matches the characters flagIOCmedalist literally&quot;
             title=&quot;flagIOCmedalist matches the characters flagIOCmedalist literally&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -7865,6 +8326,7 @@ After this command we will have something like this:&lt;/p&gt;
             alt=&quot;Node.js design patterns second edition book cover&quot;
             title=&quot;Node.js design patterns second edition book cover&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -8080,6 +8542,7 @@ By the way, GitKraken looks promising thanks to a set of interesting features. L
             alt=&quot;GitKraken network view branching model graph&quot;
             title=&quot;GitKraken network view branching model graph&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -8122,6 +8585,7 @@ By the way, GitKraken looks promising thanks to a set of interesting features. L
             alt=&quot;GitKraken integration with GitHub&quot;
             title=&quot;GitKraken integration with GitHub&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -8169,6 +8633,7 @@ Just look at recent softwares like &lt;a href=&quot;https://github.com/nylas/N1&
             alt=&quot;I don&amp;#39;t always modularize my gulp tasks, but when I do it must be cozy!&quot;
             title=&quot;I don&amp;#39;t always modularize my gulp tasks, but when I do it must be cozy!&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -8268,6 +8733,7 @@ The project is currently using &lt;a href=&quot;https://github.com/sindresorhus/
             alt=&quot;Gulp is a very popular stream-based build system written in Node.js&quot;
             title=&quot;Gulp is a very popular stream-based build system written in Node.js&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -8494,6 +8960,7 @@ This way I can just override the parts of the connection string that are effecti
             alt=&quot;Building a Slack bot with Node.js and Chuck Norris Super Powers&quot;
             title=&quot;Building a Slack bot with Node.js and Chuck Norris Super Powers&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -8533,6 +9000,7 @@ In a recent collaboration with &lt;a href=&quot;http://usersnap.com/&quot;&gt;Us
             alt=&quot;A beginner&amp;#39;s guide to deploying static websites&quot;
             title=&quot;A beginner&amp;#39;s guide to deploying static websites&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -8582,6 +9050,7 @@ In a recent collaboration with &lt;a href=&quot;http://usersnap.com/&quot;&gt;Us
             alt=&quot;Your code should be fast as Flash&quot;
             title=&quot;Your code should be fast as Flash&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -8650,6 +9119,7 @@ In a recent collaboration with &lt;a href=&quot;http://usersnap.com/&quot;&gt;Us
             alt=&quot;Tomorrow definition mystical land for human productivity&quot;
             title=&quot;Tomorrow definition mystical land for human productivity&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -8694,6 +9164,7 @@ The most common way to do that is to use &lt;a href=&quot;https://en.wikipedia.o
             alt=&quot;Comic strip about the cloud and the cache&quot;
             title=&quot;Comic strip about the cloud and the cache&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -8806,6 +9277,7 @@ Well, you can do that by using &lt;strong&gt;HTTP Cache headers&lt;/strong&gt; l
             alt=&quot;Horizontal scalability is hard&quot;
             title=&quot;Horizontal scalability is hard&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -8867,6 +9339,7 @@ For those who are not aware of this new service, Keybase.io is a website and a c
             alt=&quot;Keybase.io illustration&quot;
             title=&quot;Keybase.io illustration&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -8932,6 +9405,7 @@ Y+yURG9sqr92QGVDLX/x
             alt=&quot;a screenshoot of flickr-set-get&quot;
             title=&quot;a screenshoot of flickr-set-get&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -8990,6 +9464,7 @@ Thanks to &lt;code&gt;Async&lt;/code&gt; it was very easy to create a &lt;code&g
             alt=&quot;flickr-set-get asynchronous requests diagram&quot;
             title=&quot;flickr-set-get asynchronous requests diagram&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -9039,6 +9514,7 @@ To work best our app should obviously be fancy, with über cool background image
             alt=&quot;Motivational quotes Lumen Php app screenshot&quot;
             title=&quot;Motivational quotes Lumen Php app screenshot&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -9304,6 +9780,7 @@ Have you already used Lumen? Do you think it will become a mainstream framework 
             alt=&quot;Symfony Http Kernel component overview&quot;
             title=&quot;Symfony Http Kernel component overview&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -9517,6 +9994,7 @@ I have two different interpretation of it.&lt;/p&gt;
             alt=&quot;Dockerize a Go application&quot;
             title=&quot;Dockerize a Go application&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -9640,6 +10118,7 @@ Let’s try if it works.&lt;/p&gt;
             alt=&quot;Go echo server terminal windows execution&quot;
             title=&quot;Go echo server terminal windows execution&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -9771,6 +10250,7 @@ A container is an active (or inactive if exited) stateful instantiation of an im
             alt=&quot;Tracking email opening&quot;
             title=&quot;Tracking email opening&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -9936,6 +10416,7 @@ Anyway, regarding tracking email opening, you should be aware that &lt;strong&gt
             alt=&quot;ORM Cheatsheet homepage screenshoot&quot;
             title=&quot;ORM Cheatsheet homepage screenshoot&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -9978,6 +10459,7 @@ In my opinion it seems very promising (even if it’s significantly slower than 
             alt=&quot;Atom.io screenshoot&quot;
             title=&quot;Atom.io screenshoot&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -10019,6 +10501,7 @@ Anyway it seems that GitHub distributes other invitations sometime. So if you ha
             alt=&quot;Reset your MySql server password&quot;
             title=&quot;Reset your MySql server password&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -10073,6 +10556,7 @@ The last argument (&lt;code&gt;mysql&lt;/code&gt;) specifies you want to access 
             alt=&quot;Sample command line app&quot;
             title=&quot;Sample command line app&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;
@@ -10430,6 +10914,7 @@ Notice that I know there are a lot of great and stable OAuth bundles out there (
             alt=&quot;Symfony Authentication chart&quot;
             title=&quot;Symfony Authentication chart&quot;
             loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
             style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
           /&gt;
         &lt;/picture&gt;

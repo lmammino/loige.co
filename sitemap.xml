@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url> <loc>https://loige.co/how-to-send-gzipped-requests-with-boto3/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://loige.co/how-to-to-string-in-rust/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://loige.co/rust-shenanigans-return-type-polymorphism/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://loige.co/where-to-go-to-learn-rust-in-2021/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -62,6 +63,8 @@
 <url> <loc>https://loige.co/page/4/</loc> <changefreq>daily</changefreq> <priority>0.5</priority> </url>
 <url> <loc>https://loige.co/page/5/</loc> <changefreq>daily</changefreq> <priority>0.5</priority> </url>
 <url> <loc>https://loige.co/page/6/</loc> <changefreq>daily</changefreq> <priority>0.5</priority> </url>
+<url> <loc>https://loige.co/tag/python/</loc> <changefreq>daily</changefreq> <priority>0.5</priority> </url>
+<url> <loc>https://loige.co/tag/aws/</loc> <changefreq>daily</changefreq> <priority>0.5</priority> </url>
 <url> <loc>https://loige.co/tag/rust/</loc> <changefreq>daily</changefreq> <priority>0.5</priority> </url>
 <url> <loc>https://loige.co/tag/life/</loc> <changefreq>daily</changefreq> <priority>0.5</priority> </url>
 <url> <loc>https://loige.co/tag/jwt/</loc> <changefreq>daily</changefreq> <priority>0.5</priority> </url>
@@ -77,7 +80,6 @@
 <url> <loc>https://loige.co/tag/shell/</loc> <changefreq>daily</changefreq> <priority>0.5</priority> </url>
 <url> <loc>https://loige.co/tag/lua/</loc> <changefreq>daily</changefreq> <priority>0.5</priority> </url>
 <url> <loc>https://loige.co/tag/go/</loc> <changefreq>daily</changefreq> <priority>0.5</priority> </url>
-<url> <loc>https://loige.co/tag/aws/</loc> <changefreq>daily</changefreq> <priority>0.5</priority> </url>
 <url> <loc>https://loige.co/tag/ssl/</loc> <changefreq>daily</changefreq> <priority>0.5</priority> </url>
 <url> <loc>https://loige.co/tag/web/</loc> <changefreq>daily</changefreq> <priority>0.5</priority> </url>
 <url> <loc>https://loige.co/tag/terraform/</loc> <changefreq>daily</changefreq> <priority>0.5</priority> </url>
