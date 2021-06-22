@@ -4,8 +4,8 @@ layout: post
 title: "How to send gzipped requests with boto3"
 slug: "how-to-send-gzipped-requests-with-boto3"
 subtitle: null
-date: "2021-06-22T18:50:00.000Z"
-updated: "2021-06-22T18:50:00.000Z"
+date: "2021-06-22T18:20:00.000Z"
+updated: "2021-06-22T18:20:00.000Z"
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: "./how-to-send-gzipped-requests-with-boto3-luciano-mammino-loige.jpg"
@@ -36,7 +36,7 @@ Be aware that the various AWS SDKs are just a convenience layer in front of the 
 
 This is how you can intercept and modify such HTTP requests before they are sent to AWS:
 
-  1. `boto3` has a built-in event system that, among other things, it allows you to intercept (and even modify) HTTP requests that are ready to be forwarded to AWS.
+  1. `boto3` has a built-in event system that, among other things, allows you to intercept (and even modify) HTTP requests that are ready to be forwarded to AWS.
   2. By using this event system, you can implement an event handler that takes the payload of an outgoing request and gzips it. The same handler can also alter the set of outgoing HTTP headers so that it can indicate the request is gzipped by adding the header `Content-Encoding: gzip`.
 
 Here is a code example that uses a CloudWatch client, intercepts calls to the `PutMetricData` API, and gzips the request payload:
@@ -99,6 +99,8 @@ This Lambda is triggered by a Kinesis stream in which we publish custom metric d
 
 ![Schematic of a Kinesis stream being processed by a Lambda to collect metrics and send them to CloudWatch](./boto3-custom-metrics-kinesis-lambda-cloudwatch.jpg)
 
+<small>Note that this idea is coming from [Lumigo's SAR async Lmabda metrics](https://github.com/lumigo-io/SAR-async-lambda-metrics).</small>
+
 The issue is that in our original implementation we took the naive approach of submitting 1 data point at a time. Therefore, under load, we would be sending a large number of HTTP requests per second to AWS and we might end up being throttled.
 
 The solution to the problem is actually quite simple: we can reduce the total number of HTTP requests by sending the data in batches containing multiple data points, rather than sending data points one by one.
@@ -158,7 +160,7 @@ But if you have used AWS for long enough, you learn not to give too many things 
 ## Testing `boto3` default behavior
 
 So, how can we see if the by default `boto3` is already gzipping our requests?
-Requests are going to AWS and I could think of 3 different ways to inspect how the final HTTP request actually looks like when sent to AWS:
+Requests are going to AWS and I could think of 3 different ways to inspect how the final HTTP request actually looks when sent to AWS:
 
  1. Use a debugger and step through the execution in the deep corners of the `boto3` code.
  2. Use an HTTP proxy like [Burp Suite](https://portswigger.net/burp/communitydownload) to intercept all the outgoing traffic and have a chance to inspect what's being sent to AWS.
@@ -350,13 +352,13 @@ In this article, we saw how that can be useful for inspecting how AWS APIs are a
 
 If you found this article useful [consider following me on Twitter](https://twitter.com/loige) and feel more than welcome to leave a comment below. I'd be really curious to find out what was your use case and if this article helped you out.
 
-A huge "thank you" goes to my colleague Martin for involving me in this piece of work (and indirectly for dragging me into this rabbit hole 🐇)!
+A huge "thank you" goes to my colleague Martin for involving me in this piece of work (and indirectly for dragging me into this rabbit hole 🐇)! Also thanks to [Eoin Shanaghy](https://twitter.com/eoins) for kindly reviewing this article!
 
 See you soon! 👋
 
 
 ### About fourTheorem
 
-If you want to know more about [fourTheorem](https://www.fourtheorem.com/), we are a team of business-focused technologists that deliver. We have been helping dozen of companies to get the best out of AWS and we had a lot of fun while doing that. If you are curious you can check out some of our [case studies](https://www.fourtheorem.com/case-studies) and our [customer success stories](https://www.fourtheorem.com/customers).
+If you want to know more about [fourTheorem](https://www.fourtheorem.com/), we are a team of business-focused technologists that deliver. We have been helping a dozen companies to get the best out of AWS and we had a lot of fun while doing that. If you are curious to know more about what we do you can check out some of our [case studies](https://www.fourtheorem.com/case-studies) and our [customer success stories](https://www.fourtheorem.com/customers).
 
 If you would like to work with us, don't be shy, [we'd love to get in touch with you](https://www.fourtheorem.com/contact)! 🙂
