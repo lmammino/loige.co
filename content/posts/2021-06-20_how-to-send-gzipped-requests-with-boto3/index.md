@@ -23,7 +23,7 @@ tags:
 
 I recently needed to send a big payload to CloudWatch and I managed to increase my chances of staying within the AWS payload size limit by using gzip encoding on the request body with `boto3`.
 
-Unfortunately, with `boto3`, gzip encoding is not enbled by default and it can't be turned on with some simple boolean flag. To make things worse, as of today, there isn't a great body of documentation or examples available on how to achieve this. Or maybe I am just terrible at _googling_...
+Unfortunately, with `boto3`, gzip encoding is not enabled by default and it can't be turned on with some simple boolean flag. To make things worse, as of today, there isn't a great body of documentation or examples available on how to achieve this. Or maybe I am just terrible at _googling_...
 
 I had to go down the rabbit hole to figure out how to support this use case and, in this article, I want to share what I learned with you.
 
@@ -34,12 +34,12 @@ Ok, this is the TLDR; a little gift for the ones in a rush that are looking for 
 
 Be aware that the various AWS SDKs are just a convenience layer in front of the AWS HTTP API. Python and `boto3` are no exception. Every time you are calling a method on a `boto3` client, you are just sending HTTP requests to AWS behind the scenes...
 
-This is how you can intercept and modify such HTTP requests, before they are sent to AWS:
+This is how you can intercept and modify such HTTP requests before they are sent to AWS:
 
   1. `boto3` has a built-in event system that, among other things, it allows you to intercept (and even modify) HTTP requests that are ready to be forwarded to AWS.
-  2. By using this event system, you can implement an event handler that takes the payload of an outgoing requests and gzips it. The same handler can also alter the set of outgoing HTTP headers so that it can indicate the request is gzipped by adding the header `Content-Encoding: gzip`.
+  2. By using this event system, you can implement an event handler that takes the payload of an outgoing request and gzips it. The same handler can also alter the set of outgoing HTTP headers so that it can indicate the request is gzipped by adding the header `Content-Encoding: gzip`.
 
-Here is a code example that uses a CloudWatch client, intercepts calls to the `PutMetricData` API and gzips the request payload:
+Here is a code example that uses a CloudWatch client, intercepts calls to the `PutMetricData` API, and gzips the request payload:
 
 
 ```python
@@ -95,13 +95,13 @@ Last week, during my work at [fourTheorem](https://www.fourtheorem.com/), we sta
 
 Once we looked at the error, the problem was actually quite obvious, but let me give you a simplified overview of what we are doing with this Lambda.
 
-This Lambda is triggered by a Kinesis stream in which we publish custom metric data from all the other components of our application. The Lambda reads these metrics and publish them to CloudWatch using the [`PutMetricData` API](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutMetricData.html).
+This Lambda is triggered by a Kinesis stream in which we publish custom metric data from all the other components of our application. The Lambda reads these metrics and publishes them to CloudWatch using the [`PutMetricData` API](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutMetricData.html).
 
 ![Schematic of a Kinesis stream being processed by a Lambda to collect metrics and send them to CloudWatch](./boto3-custom-metrics-kinesis-lambda-cloudwatch.jpg)
 
-The issue is that, in our original implementation we took the naive approach of submitting 1 data point at the time. Therefore, under load, we would be sending a large number of HTTP requests per second to AWS and we might end up being throttled.
+The issue is that in our original implementation we took the naive approach of submitting 1 data point at a time. Therefore, under load, we would be sending a large number of HTTP requests per second to AWS and we might end up being throttled.
 
-The solution to the problem is actually quite simple: we can reduce the total number of HTTP requests by sending batche containing multiple data points, rather then sending them one by one.
+The solution to the problem is actually quite simple: we can reduce the total number of HTTP requests by sending the data in batches containing multiple data points, rather than sending data points one by one.
 
 This is actually possible by using the same `PutMetricData` API from CloudWatch.
 
@@ -142,7 +142,7 @@ As you can tell from the comments in the snippet above, the API has some interes
 
 So, the best case scenario to reduce the number of `PutMetricData` requests is to have batches of 20 metrics, but we need to make sure that all this data, once encoded, fits in 40 KB.
 
-Splitting the metrics in chunks of 20 entries per request is not a big deal. But how do we make sure all the other constrainsts are respected. Especially the payload size one.
+Splitting the metrics in chunks of 20 entries per request is not a big deal. But how do we make sure all the other constraints are respected. Especially the payload size one.
 
 The `PutMetricData` documentation page adds an interesting bit of information:
 
@@ -150,19 +150,19 @@ The `PutMetricData` documentation page adds an interesting bit of information:
 
 It would be convenient to use gzip compression to increase our chances to stay within boundaries.
 
-At this point I thought _"Ok, probably `boto3` is automatically doing the compression for us, because why not?"_
+At this point, I thought _"Ok, probably `boto3` is automatically doing the compression for us, because why shouldn't it?"_
 
 But if you have used AWS for long enough, you learn not to give too many things for granted, so... Let's test this assumption, first!
 
 
-## Testing `boto3` default behaviour
+## Testing `boto3` default behavior
 
 So, how can we see if the by default `boto3` is already gzipping our requests?
 Requests are going to AWS and I could think of 3 different ways to inspect how the final HTTP request actually looks like when sent to AWS:
 
  1. Use a debugger and step through the execution in the deep corners of the `boto3` code.
  2. Use an HTTP proxy like [Burp Suite](https://portswigger.net/burp/communitydownload) to intercept all the outgoing traffic and have a chance to inspect what's being sent to AWS.
- 3. Use the [`endpoint_url` parameter](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/core/session.html#boto3.session.Session.client) to configure the `boto3` client to send requests somewhere else .
+ 3. Use the [`endpoint_url` parameter](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/core/session.html#boto3.session.Session.client) to configure the `boto3` client to send requests somewhere else.
 
 I opted for option 3, just because I thought it would be the quickest and easiest for me. I quickly wrote a very simple [HTTP debugging server in Node.js](https://gist.github.com/lmammino/34373d61ff28ba34c9c26eb1edad5684) and let it listen for requests at `locahost:8000`.
 
@@ -194,15 +194,15 @@ cw_client.put_metric_data(
 )
 ```
 
-Note that I am also using `use_ssl=False` because my local endpoint supports only plan HTTP.
+Note that I am also using `use_ssl=False` because my local endpoint supports only plain HTTP.
 
-Ok at this point I used all my confidence in AWS and run this script... This is what i got in my debug web server:
+Ok at this point I used all my confidence in AWS and run this script... This is what I got in my debug web server:
 
 ![Boto3 does not use gzip compression by default](./boto3-no-gzip-by-default.png)
 
 As you can see from the picture above, `boto3` does not use gzip compression by default.
 
-Sad me... 😢 Time to rollup the sleeves and figure out how to gzip the request body manually!
+Sad me... 😢 Time to roll up the sleeves and figure out how to gzip the request body manually!
 
 
 ## The `boto3` events system
@@ -214,9 +214,9 @@ This event system allows you to intercept requests being sent to AWS and alter t
 This is not a very well known feature of `boto3`, but I can see it being useful in a couple of circumstances:
 
  - Log all outgoing requests and incoming responses (for debugging)
- - Alter HTTP requests or HTTP responses to and from AWS to implement custom behaviours (gzipping the payload of outgoing requests is a great example).
+ - Alter HTTP requests or HTTP responses to and from AWS to implement custom behaviors (gzipping the payload of outgoing requests is a great example).
 
-If you want to look at a quick example of how to use this feature, here is one: we want to add a `x-trace-id` header when we invoke a lambda using `boto3`:
+If you want to look at a quick example of how to use this feature, here is one: we want to add an `x-trace-id` header when we invoke a lambda using `boto3`:
 
 ```python
 import boto3
@@ -239,7 +239,7 @@ lambda_client.invoke(FunctionName='my-function')
 
 The example should be pretty straightforward, but let's zoom on some interesting details.
 
-  - An event handler is just a function that receives a number of arguments which depend from the type of event.
+  - An event handler is just a function that receives a number of arguments that depend on the type of event.
   - Every `boto3` client exposes the event system as `client.meta.events`.
   - We can register an event handler by using the `register` function on the event system of a given client and pass the event name and the handler to it.
 
@@ -249,7 +249,7 @@ The event name is interesting because it follows this specification:
 <event-type>.<service-name>.<operation-name>
 ```
 
-  - `event-type` is used to indicate the type of event. This is generally representing a phase of the lifecycle of a request. Some examples are: `provide-client-params`, `request-created`, `before-sign`, `before-send` and `response-received`.
+  - `event-type` is used to indicate the type of event. This is generally representing a phase of the lifecycle of a request. Some examples are `provide-client-params`, `request-created`, `before-sign`, `before-send`, and `response-received`.
   - `service-name` is the name of the service used. For instance: `s3` or `cloudwatch`.
   - `operation-name` indicates the type of operation the client is trying to perform (the method). For instance: `PutMetricData` or `Invoke`.
 
@@ -258,12 +258,12 @@ Not all these parts are mandatory and you can create event listeners for multipl
   - `*` will listen to every event
   - `after-call.lambda.*` (or `after-call.lambda`) will listen to all `after-call` type events for lambda and intercept all methods.
 
-The `botocore` documentation isn't very clear on how these events work, but after some digging I managed to find the slides of a very interesting talk by [Kyle Knapp](https://twitter.com/thekyleknapp) called [Deep Dive on AWS SDK for Python (Boto3)](https://pages.awscloud.com/rs/112-TZM-766/images/B-4.pdf). This one was a real life saver for me to understand how all of this works!
+The `botocore` documentation isn't very clear on how these events work, but after some digging, I managed to find the slides of a very interesting talk by [Kyle Knapp](https://twitter.com/thekyleknapp) called [Deep Dive on AWS SDK for Python (Boto3)](https://pages.awscloud.com/rs/112-TZM-766/images/B-4.pdf). This one was a real lifesaver for me to understand how all of this works! Thank you, Kyle!
 
 
 ## A `boto3` event handler for gzipping requests
 
-At this point, we know enough to understand how we can add the gzip behaviour to our CloudWatch `PutMetricData` requests.
+At this point, we know enough to understand how we can add the gzip behavior to our CloudWatch `PutMetricData` requests.
 
 Let's update our test example and add a custom event listener:
 
@@ -305,7 +305,7 @@ response = cw_client.put_metric_data(
 print(response)
 ```
 
-Note that we are using the `before-sign` event type, because we want to alter the request before the signature is applied to the request.
+Note that we are using the `before-sign` event type because we want to alter the request before the signature is applied to the request.
 
 If we run this code and check our debug web server we will see something like this:
 
@@ -326,34 +326,37 @@ Success!
 
 ## A few ideas for more defensive solutions
 
-Compressing the payload for `PutMetricData` requests is not an absolute guarantee that we won't be exceeding the 40 KB pyaload limit. Gzip certainly helps, but you might still bump into the limit and have failures in your application.
+Compressing the payload for `PutMetricData` requests is not an absolute guarantee that we won't be exceeding the 40 KB payload limit. Gzip certainly helps, but you might still bump into the limit and have failures in your application.
 
-If you want to be _failure-proof_™️, here are some ideas that we explored with our colleagues:
+If you want to be _failure-proof_ ™️, here are some ideas that we explored with our colleagues:
 
-  - Optimistic solution: Try the request and catch potential exceptions. If you see the `PutMetricData` failed because of the payload being too large, just split all the data in 2 requests.
-  - Pessimistic solution: pre-compute the gzipped payload before sendind the request and if that's bigger than 40 KB, then split the request in 2 parts.
+  - Optimistic solution: Try the request and catch potential exceptions. If you see the `PutMetricData` failed because the payload is too large, just split all the data into 2 requests.
+  - Pessimistic solution: pre-compute the gzipped payload before sending the request and if that's bigger than 40 KB, then split the request into 2 parts.
 
-The pessimistic solution has the disadvantage that you will be gzipping the payload twice (before you create the request to make sure it's within boundaries and then in your event handler), but it will avoid to send invalid requests upfront.
+The pessimistic solution has the disadvantage that you will be gzipping the payload twice (before you create the request to make sure it's within boundaries and then in your event handler), but it will avoid sending invalid requests upfront.
 
-Right now, we haven't implemented any of these strategies. In our case, these metrics are not business critical and we can afford some failure, so we preferred to keep the code as simple as possible.
+Right now, we haven't implemented any of these strategies. In our case, these metrics are not business-critical and we can afford some sparse failure, so we preferred to keep the code as simple as possible.
 
-If, later on, we will observe production errors, then it might be worth applying one of these strategies. I am more in favour of the optimistic solution, because I expect it will be pretty rare to bump into this limit.
+If, later on, we will observe production errors, then it might be worth applying one of these strategies. I am more in favor of the optimistic approach because I expect it will be pretty rare to bump into this limit.
 
 What do you think, which strategy would you apply? Do you have other ideas? let me know that in the comments box below! 😁
 
 
 ## Conclusion
 
-The event system in `boto3` is pretty powerful and it allows you to customise the default behaviour of how clients will send HTTP requests to AWS.
+The event system in `boto3` is pretty powerful and it allows you to customize the default behavior of how clients will send HTTP requests to AWS.
 
-In this article we saw how that can be useful for inspecting how AWS APIs are actually used or to add additional functionality that isn't supported out of the box (e.g. gzipping the HTTP payload of outgoing requests).
+In this article, we saw how that can be useful for inspecting how AWS APIs are actually used or to add additional functionality that isn't supported out of the box (e.g. gzipping the HTTP payload of outgoing requests).
 
 If you found this article useful [consider following me on Twitter](https://twitter.com/loige) and feel more than welcome to leave a comment below. I'd be really curious to find out what was your use case and if this article helped you out.
 
 A huge "thank you" goes to my colleague Martin for involving me in this piece of work (and indirectly for dragging me into this rabbit hole 🐇)!
 
-If you want to know more about [fourTheorem](https://www.fourtheorem.com/), we are a team of business focused technologists that deliver. We have been helping dozen of companies to get the best out of AWS and we had a lot of fun while doing that. If you are curious you can check out some of our [case studies](https://www.fourtheorem.com/case-studies) and our [customer success stories](https://www.fourtheorem.com/customers).
+See you soon! 👋
+
+
+### About fourTheorem
+
+If you want to know more about [fourTheorem](https://www.fourtheorem.com/), we are a team of business-focused technologists that deliver. We have been helping dozen of companies to get the best out of AWS and we had a lot of fun while doing that. If you are curious you can check out some of our [case studies](https://www.fourtheorem.com/case-studies) and our [customer success stories](https://www.fourtheorem.com/customers).
 
 If you would like to work with us, don't be shy, [we'd love to get in touch with you](https://www.fourtheorem.com/contact)! 🙂
-
-See you soon! 👋
