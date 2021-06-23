@@ -5,7 +5,7 @@ title: "How to send gzipped requests with boto3"
 slug: "how-to-send-gzipped-requests-with-boto3"
 subtitle: null
 date: "2021-06-22T18:20:00.000Z"
-updated: "2021-06-22T18:20:00.000Z"
+updated: "2021-06-23T10:00:00.000Z"
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: "./how-to-send-gzipped-requests-with-boto3-luciano-mammino-loige.jpg"
@@ -99,7 +99,7 @@ This Lambda is triggered by a Kinesis stream in which we publish custom metric d
 
 ![Schematic of a Kinesis stream being processed by a Lambda to collect metrics and send them to CloudWatch](./boto3-custom-metrics-kinesis-lambda-cloudwatch.jpg)
 
-<small>Note that this idea is coming from [Lumigo's SAR async Lmabda metrics](https://github.com/lumigo-io/SAR-async-lambda-metrics).</small>
+<small>Note that this idea is coming from [Lumigo's SAR async Lambda metrics](https://github.com/lumigo-io/SAR-async-lambda-metrics).</small>
 
 The issue is that in our original implementation we took the naive approach of submitting 1 data point at a time. Therefore, under load, we would be sending a large number of HTTP requests per second to AWS and we might end up being throttled.
 
@@ -352,7 +352,7 @@ In this article, we saw how that can be useful for inspecting how AWS APIs are a
 
 If you found this article useful [consider following me on Twitter](https://twitter.com/loige) and feel more than welcome to leave a comment below. I'd be really curious to find out what was your use case and if this article helped you out.
 
-A huge "thank you" goes to my colleague Martin for involving me in this piece of work (and indirectly for dragging me into this rabbit hole 🐇)! Also thanks to [Eoin Shanaghy](https://twitter.com/eoins) for kindly reviewing this article!
+A huge "thank you" goes to my colleague [Martin](https://twitter.com/martinbpeters) for involving me in this piece of work (and indirectly for dragging me into this rabbit hole 🐇)! Also thanks to [Eoin Shanaghy](https://twitter.com/eoins) for kindly reviewing this article!
 
 See you soon! 👋
 
