@@ -19,8 +19,8 @@ event_location_gps: null
 event_city: 'remote'
 event_days: 'June 24, 2021'
 is_workshop: false
-slides_link: ~
-video_link: ~
+slides_link: "https://loige.link/iter-sails"
+video_link: "https://www.youtube.com/watch?v=yott9nYsEZ8"
 with: ~
 ---
 
