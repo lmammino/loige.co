@@ -5,7 +5,7 @@ title: "How to send gzipped requests with boto3"
 slug: "how-to-send-gzipped-requests-with-boto3"
 subtitle: null
 date: "2021-06-22T18:20:00.000Z"
-updated: "2021-06-23T10:00:00.000Z"
+updated: "2021-06-24T13:00:00.000Z"
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: "./how-to-send-gzipped-requests-with-boto3-luciano-mammino-loige.jpg"
@@ -342,6 +342,19 @@ Right now, we haven't implemented any of these strategies. In our case, these me
 If, later on, we will observe production errors, then it might be worth applying one of these strategies. I am more in favor of the optimistic approach because I expect it will be pretty rare to bump into this limit.
 
 What do you think, which strategy would you apply? Do you have other ideas? let me know that in the comments box below! 😁
+
+
+## Extensibility in the AWS SDK
+
+**UPDATE**: It turns out that also with other languages like PHP, Go and JavaScript, the AWS SDK offers some degree of extensibility that should allow you to accomplish something similar to what was discussed in this post.
+
+If you are using any of these other languages you can consult the following resources:
+
+  - [Customizing the AWS SDK for Go V2 Client Requests](https://aws.github.io/aws-sdk-go-v2/docs/middleware/)
+  - [Introducing Middleware Stack in Modular AWS SDK for JavaScript](https://aws.amazon.com/blogs/developer/middleware-stack-modular-aws-sdk-js/)
+  - [Handlers and Middleware in the AWS SDK for PHP Version 3](https://docs.aws.amazon.com/sdk-for-php/v3/developer-guide/guide_handlers-and-middleware.html)
+
+Thanks a lot to the following (amazing) people at AWS for helping me to find out this information in the huge haystack that is the AWS documentation: [Danilo Poccia](https://twitter.com/danilop), [Heitor Lessa](https://twitter.com/heitor_lessa), and [Trivikram](https://twitter.com/trivikram). You rock! 🤘
 
 
 ## Conclusion
