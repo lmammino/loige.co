@@ -365,7 +365,7 @@ In this article, we saw how that can be useful for inspecting how AWS APIs are a
 
 If you found this article useful [consider following me on Twitter](https://twitter.com/loige) and feel more than welcome to leave a comment below. I'd be really curious to find out what was your use case and if this article helped you out.
 
-A huge "thank you" goes to my colleague [Martin](https://twitter.com/martinbpeters) for involving me in this piece of work (and indirectly for dragging me into this rabbit hole 🐇)! Also thanks to [Eoin Shanaghy](https://twitter.com/eoins) for kindly reviewing this article! Finally thanks to [Ben Bridts](https://twitter.com/benbridts) for reporting an error in one of the examples! 🙏
+A huge "thank you" goes to my colleague [Martin](https://twitter.com/martinbpeters) for involving me in this piece of work (and indirectly for dragging me into this rabbit hole 🐇)! Also thanks to [Eoin Shanaghy](https://twitter.com/eoins) for kindly reviewing this article! Finally, thanks to [Ben Bridts](https://twitter.com/benbridts) for reporting an error in one of the examples! 🙏
 
 See you soon! 👋
 
