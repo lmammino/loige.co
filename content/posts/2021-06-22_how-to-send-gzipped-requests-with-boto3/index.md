@@ -260,7 +260,7 @@ Not all these parts are mandatory and you can create event listeners for multipl
   - `*` will listen to every event
   - `after-call.lambda.*` (or `after-call.lambda`) will listen to all `after-call` type events for lambda and intercept all methods.
 
-The `botocore` documentation isn't very clear on how these events work, but after some digging, I managed to find the slides of a very interesting talk by [Kyle Knapp](https://twitter.com/thekyleknapp) called [Deep Dive on AWS SDK for Python (Boto3)](https://pages.awscloud.com/rs/112-TZM-766/images/B-4.pdf). This one was a real lifesaver for me to understand how all of this works! Thank you, Kyle!
+The `botocore` documentation isn't very clear on how these events work, but after some digging, I managed to find the slides of a very interesting talk by [Kyle Knapp](https://twitter.com/thekyleknapp) called [Deep Dive on AWS SDK for Python (Boto3)](https://pages.awscloud.com/rs/112-TZM-766/images/B-4.pdf). There's also [a video available](https://www.youtube.com/watch?v=eM8uoGJO2AI)! This one was a real lifesaver for me to understand how all of this works. Thank you, Kyle!
 
 
 ## A `boto3` event handler for gzipping requests
