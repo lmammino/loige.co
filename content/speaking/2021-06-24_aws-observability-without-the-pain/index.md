@@ -19,7 +19,7 @@ event_location_gps: null
 event_city: 'remote'
 event_days: 'June 24, 2021'
 is_workshop: false
-slides_link: ~
+slides_link: "https://fth.link/o11y-no-pain"
 video_link: ~
 with:
   - name: Eoin Shanaghy
