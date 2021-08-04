@@ -85,7 +85,7 @@ class PrevNextPosts extends Component {
       <PrevNextPostsContainer>
         {previous && (
           <Item style={{ backgroundImage: previousBg }}>
-            <Link to={previous.fields.slug} rel="prev">
+            <Link to={`/${previous.fields.slug}`} rel="prev">
               <CallToAction>Read this next</CallToAction>
               <h4>{previous.frontmatter.title}</h4>
               <p>
@@ -97,7 +97,7 @@ class PrevNextPosts extends Component {
 
         {next && (
           <Item style={{ backgroundImage: nextBg }}>
-            <Link to={next.fields.slug} rel="next">
+            <Link to={`/${next.fields.slug}`} rel="next">
               <CallToAction>You might enjoy</CallToAction>
               <h4>{next.frontmatter.title}</h4>
               <p>
