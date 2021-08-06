@@ -24,9 +24,9 @@ tags:
   - nginx
 ---
 
-You are using CDK and you need to provision an EC2 instance. What if you prefer to use **Ubuntu** over **Amazon Linux**? In this article we will see exactly how to do that and, hopefully, we will learn a bunch of interesting things in the process!
+You are using CDK and you need to provision an EC2 instance. What if you prefer to use **Ubuntu** over **Amazon Linux**? In this article, we will see exactly how to do that, and, hopefully, we will learn a bunch of interesting things in the process!
 
-I have to be honest, I am more on the Ubuntu camp then I am in the Amazon Linux one... It's a subjective preference. I just find myself more comfortable with `apt`, `snap`, `systemd` and other Ubuntu nuances than I am with `yum` and other things in Amazon Linux. Plus, I find just easier in general to find resources regarding how to do all sort of things with Ubuntu.
+I have to be honest, I am more on the Ubuntu camp than I am in the Amazon Linux one... It's a subjective preference. I find myself more comfortable with `apt`, `snap`, `systemd` and other Ubuntu nuances than I am with `yum` and other things in Amazon Linux. Plus, I find easier to find resources about how to do all sort of things with Ubuntu.
 
 So, the story goes that I was playing with CDK and I was trying to deploy a simple Node.js application to an EC2 instance. All the CDK examples I could find were using Amazon Linux, but I thought it wouldn't be too complicated to switch to Ubuntu instead. I already had a Systemd service definition written for my app and a script to install all dependencies using `apt`.
 
@@ -35,13 +35,15 @@ How hard could it be to use Ubuntu? It turns out there are some dark corners and
 
 ## What is CDK
 
-Ok, if you know CDK already, you can just skip this section. If you don't, how in the world wide web did you end up in this page? 😅
+Ok, if you know CDK already, you can just skip this section. If you don't, how on the world wide web did you end up on this page? 😅
 
-[CDK](https://aws.amazon.com/cdk/) stands for **Cloud Development Kit** and it's a relatively new tool from Amazon to write infrastructure as code (_IaC_). It is thought to help you to define all your cloud infrastructure programmatically so you can keep it versioned and you can have a reproducible deployment process. If you use CDK you won't have to go in the AWS web console and click around to provision resources, you'll write code and use command line tools (or CI/CD pipelines) to do all of that for you.
+[CDK](https://aws.amazon.com/cdk/) stands for **Cloud Development Kit** and it's a relatively new tool from Amazon to write infrastructure as code (_IaC_).
+
+CDK allows you to define all your cloud infrastructure programmatically so you can keep it versioned and you can have a reproducible deployment process. If you use CDK you won't have to go in the AWS web console and click around to provision resources, you'll write code and use command-line tools (or CI/CD pipelines) to do that for you.
 
 If you have used tools like **Terraform** or **CloudFormation** already, CDK addresses the same type of problems. What's different with CDK is that you don't have to write a ton of JSON, Yaml or learn a new markup language such as [HCL](https://github.com/hashicorp/hcl).
 
-In fact, with CDK you can use your favourite programming language (TypeScript, Python, Java and C# are supported right now) and you can define the resources in your cloud infrastructure by importing classes and instantiating objects.
+In fact, with CDK you can use your favorite programming language (TypeScript, Python, Java and C# are supported right now) and you can define the resources in your cloud infrastructure by importing classes and instantiating objects.
 
 Just to give you an example, this is how you can create a new SSM parameter using CDK (TypeScript):
 
@@ -57,7 +59,7 @@ new ssm.StringParameter(stack, 'Parameter', {
 })
 ```
 
-You can probably see already that the main advantage of CDK is that you'll be able to use your favourite language, your favourite code editor or IDE and get other nice things like syntax highligting, type checking, auto-completion, etc.
+You can see already that the main advantage of CDK is that you'll be able to use your favorite language, your favorite code editor or IDE and get other nice things like syntax highligting, type checking, auto-completion, etc.
 
 I have found that there's much less guesswork or "writing configuration by trial and error" when using CDK as opposed to writing plain CloudFormation configuration or using Terraform.
 
@@ -72,7 +74,7 @@ From here, I am assuming you have already installed CDK and generated a project 
 
 If you want to have a look at the final version of the code we will be discussing here, you can check out the [project repository on GitHub](https://github.com/lmammino/cdk-ubuntu-ec2).
 
-In order to be able to provision and EC2 instance with CDK using TypeScript we need first to install the package `@aws-cdk/aws-ec2`:
+To provision an EC2 instance with CDK using TypeScript we need to install the package `@aws-cdk/aws-ec2`:
 
 ```bash
 npm i --save @aws-cdk/aws-ec2
@@ -106,11 +108,11 @@ As you can see that there are 3 mandatory pieces of information we need to provi
 
   - The [type of EC2 instance](https://aws.amazon.com/ec2/instance-types/) we want to run (i.e. `t2.micro`)
   - The id of the machine image (more on this in the next section)
-  - The id of the VPC (Virtual Private Cloud) where you want to deploy your instance. For example, in the example above we are using the default VPC in your AWS account.
+  - The id of the VPC (Virtual Private Cloud) where you want to deploy your instance. For example, in the snippet above, we are using the default VPC in your AWS account.
 
 You can also specify a ton of other optional configuration options (Security Groups, a role for IAM permissions, volumes, etc). For a full list of supported options you can check out [the official documentation for the CDK EC2 Instance construct](https://docs.aws.amazon.com/cdk/api/latest/docs/@aws-cdk_aws-ec2.Instance.html).
 
-Ok, now how do we specify that we want to use an Ubuntu based image? Let's talk about AMIs!
+Ok, now how do we specify that we want to use an Ubuntu-based image? Let's talk about AMIs!
 
 
 ## Ubuntu AMIs and where to find them
@@ -119,12 +121,12 @@ When provisioning EC2 instances on AWS you have to provide a virtual machine ima
 
 These two approaches have their pros and cons:
 
-  - If you use a public image, you will need to provision all the needed software and configuration after the machine starts by using an init script. This is an easy and quick way to experiment and iterate over different versions of your virtual machines, but it will mean that the machine bootstrap might be slow, depending on how much stuff you need to do to prepare the environment.
-  - If you build your own custom images you'll need to have a pipeline (or some other reproducible approach) to bootstrap a base image, install all your software and create a new image from there. This path adds a bit more complexity but then your images will have everything built in and the bootstrap time will probably be much faster.
+  - If you use a public image, you will need to use an init script to provision the machine with all the needed software and configuration. This is a quick and easy way to experiment and iterate over different versions of your virtual machines. On the other hand, this approach might be slow, depending on how much stuff you need to do at every boot.
+  - If you build your own custom images you'll need to have a pipeline (or some other reproducible approach) to bootstrap a base image, install all your software and create a new image from there. This path adds a bit more complexity but then your images will have everything built in and the bootstrap will probably be much faster.
 
-In this article we will go with a public image (Ubuntu) and we will provision the additional bits and pieces by using an init script.
+In this article we will go with a public image (Ubuntu) and we will provide the additional bits and pieces by using an init script.
 
-If you are interested in the "build your own image" approach, I'd recommend you to check out [Packer](https://www.packer.io/), a brilliant tool for building VM images from the same authors of Terraform.
+If you are interested in the "build your own image" approach, I'd recommend you to check out [EC2 Image Builder](https://aws.amazon.com/image-builder/) or [Packer](https://www.packer.io/) (a brilliant tool for building VM images from the same authors of Terraform).
 
 So, back to our main question: _how do we find a base image with Ubuntu installed_?
 
@@ -132,9 +134,9 @@ There's an entire website dedicated to finding public AMIs for just Ubuntu: [Ubu
 
 [![Ubuntu Amazon EC2 AMI Locator screenshot](./ubuntu-amazon-ec2-ami-finder-ui.png)](https://cloud-images.ubuntu.com/locator/ec2/)
 
-Every image is built for a specific AWS region, processor architecture and instance type. Every image is identified by a unique ID called _AMI ID_.
+Every image is built for a specific AWS region, processor architecture, and instance type. Every image is identified by a unique ID called _AMI ID_.
 
-When provisioning a new EC2 instance you need to specify the wantend _AMI ID_ and make sure to select the correct one for the region you are deploying your istance to.
+When provisioning a new EC2 instance you need to specify the wanted _AMI ID_ and make sure to select the correct one for the region you are deploying your instance to.
 
 There are a couple of different ways to do that.
 
@@ -158,9 +160,9 @@ const machineImage = ec2.MachineImage.genericLinux({
 
 Here I have copied some AMI IDs manually from the Ubuntu Amazon EC2 AMI Locator website.
 
-This is a bit of tedious copy paste to do and you need to make sure you do it right. Furthermore, what if there's an update? There will be new IDs and I will need to update them manually again... 🥲
+This is a bit of tedious copy-paste ( 🍝 ) to do and you need to make sure you do it right. Furthermore, what if there's an update? There will be new IDs and we will need to update them manually again... 🥲
 
-Of course there's an easier and more maintanable way! 😋
+Of course, there's an easier and more maintainable way! 😋
 
 
 ### Machine AMI from a public SSM parameter
@@ -168,7 +170,7 @@ Of course there's an easier and more maintanable way! 😋
 The better way is to use the function [`ec2.MachineImage.fromSSMParameter()`](https://docs.aws.amazon.com/cdk/api/latest/docs/@aws-cdk_aws-ec2.MachineImage.html#static-fromwbrssmparameterparametername-os-userdata).
 
 As the name suggests, this function allows us to use take the AMI ID from an SSM parameter.
-At a first glance, this idea might not sound particularly appealing. In fact, using SSM adds another layer of complexity and we would need to store the wanted AMI ID in SSM first somehow, only to consume the value later from our CDK stack.
+At a first glance, this idea might not sound particularly appealing. In fact, using SSM adds another layer of complexity. We would need to store the wanted AMI ID in SSM first somehow, only to consume the value later from our CDK stack.
 
 The good news is that there are some public SSM parameters that are already pre-populated with the latest ubuntu AMI IDs.
 
@@ -194,13 +196,13 @@ The command above will output something like this:
 }
 ```
 
-As the name of the SSM parameter suggests, these SSM parameters are managed directly by Canonical (the company behind Ubuntu). You can also see that there is a specific path structure to identify the AMI ID.
+As the name of the SSM parameter suggests, these SSM parameters are managed directly by Canonical (the company behind Ubuntu). You can also see that there is a specific path structure to identify the AMI ID. If you are curious to find out more and to discover all the available images you can check out [Finding Ubuntu Images with the AWS SSM Parameter Store](https://discourse.ubuntu.com/t/finding-ubuntu-images-with-the-aws-ssm-parameter-store/15507).
 
-One more thing to notice is that SSM parameters are region specific. You can have the same parameter key in different region and therefore have different values in different regions (given the same key).
+One more thing to notice is that SSM parameters are region-specific. You can have the same parameter key in different regions and therefore have different values in different regions (given the same key).
 
-I am running this command using `eu-west-1` as default region and you can see that the `Value` matches the AMI ID we have manually specified with the AMI map approach. Try to switch your region using the `--region` flag and you will get the correct AMI ID for the given region.
+I am running this command using `eu-west-1` as the default region and you can see that the `Value` matches the AMI ID we have manually specified with the AMI map approach. Try to switch your region using the `--region` flag and you will get the correct AMI ID for the given region.
 
-This is a rather clever usage of SSM, if you ask me!
+This is a rather clever usage of SSM if you ask me! 🤩
 
 Enough chit chat, let's see how to use this approach with CDK:
 
@@ -217,7 +219,7 @@ That's it! Now we can pass the `machineImage` value to the settings of our EC2 i
 
 ## A simple EC2 instance with Ubuntu
 
-Ok now we have all the building blocks to try to provision the most basic Ubuntu-based EC2 instance.
+Ok, now we have all the building blocks to provision the most basic Ubuntu-based EC2 instance.
 
 This is how the code for our stack (`lib/*stack.ts`) looks like so far:
 
@@ -259,7 +261,7 @@ If we try to run `cdk deploy` we should see something like this:
 
 We can now say `y` to confirm the deployment and sit patiently with our fingers crossed... 🤞
 
-Ok ... wait over ...
+Ok ... ⏱ wait over!
 
 If all went well, we should see something like this in the console:
 
@@ -270,20 +272,20 @@ Stack ARN:
 arn:aws:cloudformation:eu-west-1:012345678901:stack/CdkUbuntuEc2Stack/a0d34481-a364-4261-864b-3cb16f57dc15
 ```
 
-Our machine has been deployed! 🎉
+Our machine is deployed! 🎉
 
-As a small aside, I have to say that [I love the usage of some good emojis in the terminal](/random-emoji-in-your-prompt-how-and-why), well done AWS!
+As a small aside, I have to say that [I love the usage of some good emojis in the terminal](/random-emoji-in-your-prompt-how-and-why), well-done AWS!
 
 But let's be fair, our virtual machine is not very useful... it doesn't do anything right now!
 
 Let's try to update our machine and make it do something useful. For instance, we could install nginx and enable ingress on port 80 so that, once the machine is provisioned, we will be able to see the default nginx welcome page.
 
-In a real life scenario you might do something a bit more sophisticated to deploy and run a real application on the machine.
+In a real-life scenario, you might do something a bit more sophisticated to deploy and run a real application on the machine.
 
 
 ### Adding a security group to an EC2 with CDK
 
-Let's start by adding a secuirty group to our EC2, this is something we can do by adding the following code to our stack:
+Let's start by adding a security group to our EC2, this is something we can do by adding the following code to our stack:
 
 ```typescript
 const myVmSecurityGroup = new ec2.SecurityGroup(this, 'myVmSecurityGroup', {
@@ -337,15 +339,15 @@ CdkUbuntuEc2Stack: creating CloudFormation changeset...
 Failed to receive 1 resource signal(s) within the specified duration
 ```
 
-It took me a while to figure out what was going on here and how to solve this problem.
+It took me a while to figure out what was going wrong and how to solve this problem.
 
 One thing that I eventually did during my investigation was to run `cdk synth` to see the CloudFormation stack that was being generated and deployed by CDK.
 
 In there I noticed that as part of the [user data script](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html), the following command gets executed: `/opt/aws/bin/cfn-signal`.
 
-Then, with a bit of timed effort, I managed to establish an SSH connection to an instance while it was being provisioned (and before it was destroyed by CDK) and I realised that the default Ubuntu distribution does not have `cfn-signal` installed.
+Then, with a bit of timed effort, I managed to establish an SSH connection to an instance while it was being provisioned (and before it was destroyed by CDK) and I realized that the default Ubuntu distribution does not have `cfn-signal` installed.
 
-This makes sense. This is a specific AWS utility which is pre-installed in Amazon Linux, but there is no reason why it should be installed in Ubuntu or other generic Linux distributions.
+This makes sense. This is a specific AWS utility that is pre-installed in Amazon Linux, but there is no reason why it should be installed in Ubuntu or other generic Linux distributions.
 
 So now the problem is "How do we install cfn-signal?"
 
@@ -376,7 +378,7 @@ ln -s /usr/local/bin/cfn-* /opt/aws/bin/;
 
 Note that this script also installs the AWS CLI and `ec2-instance-connect`. These are not strictly necessary for our use case, but they are nice to have.
 
-In CDK, we can create a userScript with these commands as follows:
+In CDK, we can create a user data script with these commands as follows:
 
 ```typescript
 const userData = ec2.UserData.forLinux()
@@ -404,7 +406,7 @@ const machineImage = ec2.MachineImage.fromSSMParameter(
 )
 ```
 
-With these changes we should be able to get everything working, but before doing that let's do one last change: let's add an output parameter so that, once our stack is deployed, we can see the URL to our web server running nginx.
+With these changes, we should be able to get everything working, but before doing that let's do one last change: let's add an output parameter so that, once our stack is deployed, we can see the URL to our web server running nginx.
 
 ### Adding an output value in CDK
 
@@ -439,7 +441,7 @@ It's working, we made it! 🥳
 
 If you want to see how the full code looks like you can check out the ["official" repository for this project](https://github.com/lmammino/cdk-ubuntu-ec2).
 
-If you want to clean up your account and destroy the stack created by this project, you can simply run:
+If you want to clean up your account and destroy the stack created by this project, you can run:
 
 ```bash
 cdk destroy
@@ -450,14 +452,23 @@ cdk destroy
 
 In this article we learned how to use CDK to provision an Ubuntu-based virtual machine and how to configure it to run the default installation of nginx.
 
-In the process we also learned a bunch of related concepts such as: what is CDK, how to use it to define an EC2 instance, how to reference an AMI, how to add security groups, how to use user data and init script, how to install the AWS Linux Utilities and finally how to create a CDK output argument.
+In the process we also learned a bunch of related concepts such as:
+ - what is CDK
+ - how to use it to define an EC2 instance
+ - how to reference an AMI
+ - how to add security groups
+ - how to use user data and init script
+ - how to install the AWS Linux Utilities
+ - ...and finally how to create a CDK output argument.
 
 WOW that was quite a journey, and there I thought this would be a short article! 😅
 
-I hope I didn't bore you to death and that this article was somewhat useful! Let me know what you think in the comments and feel free to [connect with me on Twitter](https://twitter.com/loige) for more AWS and cloud chats.
+I hope I didn't bore you to death and that this article was somewhat useful! [Let me know what you think in the comments](#comments) and feel free to [connect with me on Twitter](https://twitter.com/loige) for more [AWS](/tag/aws) and cloud chats.
 
-If you are interested in working more with AWS and the cloud, you might also want to check out [fourTheorem](https://www.fourtheorem.com/), a group of business focused technologist that [has already helped many companies](https://www.fourtheorem.com/case-studies) to get the best out of the cloud (yes, this is where I work 🙃).
+If you are interested in working more with AWS and the cloud, you might also want to check out [fourTheorem](https://www.fourtheorem.com/), a group of business focused technologists that [has already helped many companies](https://www.fourtheorem.com/case-studies) to get the best out of the cloud (yes, this is where I work 🙃).
 
 See you in the next post!
 
 Bye 👋
+
+<small>Thanks to [Eoin Shanaghy](https://twitter.com/eoins) for kindly reviewing this article!</small>
