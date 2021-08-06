@@ -4,8 +4,8 @@ layout: post
 title: "Provision an Ubuntu-based EC2 instance with CDK"
 slug: "provision-ubuntu-ec2-with-cdk"
 subtitle: null
-date: "2021-08-04T18:20:00.000Z"
-updated: "2021-08-04T13:00:00.000Z"
+date: "2021-08-06T13:05:00.000Z"
+updated: "2021-08-06T13:05:00.000Z"
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: "./provision-ubuntu-ec2-with-cdk-luciano-mammino-loige.jpg"
