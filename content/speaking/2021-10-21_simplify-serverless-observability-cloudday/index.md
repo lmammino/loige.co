@@ -19,7 +19,7 @@ event_location_gps: null
 event_city: 'remote'
 event_days: 'Oct 21, 2021'
 is_workshop: false
-slides_link: ~
+slides_link: 'https://loige.link/simple-obs'
 video_link: ~
 with: ~
 ---
