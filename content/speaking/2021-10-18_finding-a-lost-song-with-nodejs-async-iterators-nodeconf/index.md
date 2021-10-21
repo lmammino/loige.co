@@ -19,8 +19,8 @@ event_location_gps: null
 event_city: 'remote'
 event_days: 'Oct 18, 2021'
 is_workshop: false
-slides_link: ~
-video_link: ~
+slides_link: 'https://loige.link/nodeconf-iter'
+video_link: 'https://t.co/WRedjKFu55'
 with: ~
 ---
 
