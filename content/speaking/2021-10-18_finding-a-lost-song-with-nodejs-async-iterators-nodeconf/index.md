@@ -20,7 +20,7 @@ event_city: 'remote'
 event_days: 'Oct 18, 2021'
 is_workshop: false
 slides_link: 'https://loige.link/nodeconf-iter'
-video_link: 'https://t.co/WRedjKFu55'
+video_link: 'https://youtu.be/uTzBHPpMEhA'
 with: ~
 ---
 
