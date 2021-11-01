@@ -105,6 +105,7 @@ class BlogPostTemplate extends Component {
           <h1>
             <span>{post.frontmatter.title}</span>
           </h1>
+          {post.frontmatter.subtitle && <h2><span>{post.frontmatter.subtitle}</span></h2>}
         </Hero>
         <ContentContainer>
           <Content>
@@ -168,6 +169,7 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
+        subtitle
         meta_description
         slug
         author

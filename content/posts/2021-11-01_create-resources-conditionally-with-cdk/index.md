@@ -3,7 +3,7 @@ uuid: 9f447a1e-6076-4a63-a58e-f2009df02ce7
 layout: post
 title: "Create resources conditionally with CDK"
 slug: "create-resources-conditionally-with-cdk"
-subtitle: null
+subtitle: "Using deploy-time Cloudformation conditions"
 date: "2021-11-01T09:15:00.000Z"
 updated: "2021-11-01T09:15:00.000Z"
 author: Luciano Mammino
@@ -14,7 +14,7 @@ tw_img: "./create-resources-conditionally-with-cdk-tw.png"
 status: published
 language: en_US
 meta_title: null
-meta_description: null
+meta_description: Learn how you can use Cloudformation conditions with CDK to be able to create resources using deploy-time conditions.
 written_with: []
 tags:
   - aws
@@ -94,7 +94,7 @@ Because of this, our TypeScript expression is effectively the following:
 '${Token[TOKEN.55]}' === 'true'
 ```
 
-Which means that this expression will always evalutate to `false`. Therefore, we are always importing the bucket and never creating it, regardless of the actual value in our SSM parameter.
+Which means that this expression will always evaluate to `false`. Therefore, we are always importing the bucket and never creating it, regardless of the actual value in our SSM parameter.
 
 Of course, this is not what we want. But, how do we fix it?
 
@@ -147,7 +147,7 @@ This attribute is used to define an expression that gets evaluated to determine 
 
 Here we are using [`cdk.Fn.conditionEquals`](https://docs.aws.amazon.com/cdk/api/latest/docs/@aws-cdk_core.Fn.html#static-conditionwbrequalslhs-rhs) to indicate that the condition will be `true` if `shouldCreateBucket` matches the string `'true'`. There are other functions you can use to create more complicated conditions including thing like _and_ or _or_ operators. Check out the [documentation of the `Fn` class](https://docs.aws.amazon.com/cdk/api/latest/docs/@aws-cdk_core.Fn.html#class-fn) if you want to find out more.
 
-This allow us to evaluate the expression at deployment time when the actual value of the SSM parameter will be available, therefore this condition will work as inteded.
+This allow us to evaluate the expression at deployment time when the actual value of the SSM parameter will be available, therefore this condition will work as intended.
 
 Now, this condition alone doesn't really do much. We need to _attach_ the condition to a resource to tell CDK (and CloudFormation) to actually create the given resource only if the condition holds true.
 
@@ -237,7 +237,7 @@ const importedOrCreatedBucket = s3.Bucket.fromBucketAttributes(this, 'ImportedOr
 })
 ```
 
-The code above will give us a valid reference to the bucket in both cases. We can use this _generic_ reference in our stack everytime we want to do something with the bucket, for instance grant a permission to another resource:
+The code above will give us a valid reference to the bucket in both cases. We can use this _generic_ reference in our stack every time we want to do something with the bucket, for instance grant a permission to another resource:
 
 ```typescript
 importedOrCreatedBucket.grantReadWrite(someEc2Instance)
