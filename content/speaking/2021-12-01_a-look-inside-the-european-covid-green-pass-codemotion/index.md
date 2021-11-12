@@ -17,7 +17,7 @@ event_link: 'https://events.codemotion.com/conferences/online/2021/online-tech-c
 event_location: 'Remote'
 event_location_gps: null
 event_city: 'remote'
-event_days: 'Nov 30, 2021'
+event_days: 'Dec 1, 2021'
 is_workshop: false
 slides_link: ~
 video_link: ~
