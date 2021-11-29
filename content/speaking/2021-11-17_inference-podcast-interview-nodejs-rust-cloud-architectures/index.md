@@ -34,7 +34,7 @@ In this episode, I had a fantastic talk with Luciano Mammino, a Senior Software 
 Buy Node.js Design Patterns: https://www.nodejsdesignpatterns.com.
 
 Listen to the podcast on other streaming platforms:
-- Spotify: https://open.spotify.com/show/2NNGeCX...
+- Spotify: https://open.spotify.com/show/2NNGeCXmWrabFuL4HkOfNc?si=08b8d5847e104156
 - Anchor: https://anchor.fm/michele-riva (free!)
 - RadioPublic: https://radiopublic.com/inference-6VrjxM (free!)
 - Breaker: https://www.breaker.audio/inference (free!)
