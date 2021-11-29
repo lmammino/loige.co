@@ -3,7 +3,7 @@ uuid: 209e5791-0439-4e5a-ac89-8b0121ed7ba8
 layout: speaking
 title: "A look inside the European Covid Green Pass"
 slug: 'a-look-inside-the-european-covid-green-pass'
-date: 2021-11-30T15:00:00.000Z
+date: 2021-12-01T12:55:00.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: null
