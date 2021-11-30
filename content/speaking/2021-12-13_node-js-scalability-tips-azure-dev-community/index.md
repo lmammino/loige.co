@@ -9,7 +9,7 @@ author_slug: luciano-mammino
 header_img: null
 status: published
 language: en_US
-presentation_language: it_IT
+presentation_language: en_US
 meta_title: null
 meta_description: null
 event_name: 'Azure Developer Community Meetup'
