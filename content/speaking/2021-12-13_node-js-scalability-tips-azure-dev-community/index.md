@@ -13,7 +13,7 @@ presentation_language: en_US
 meta_title: null
 meta_description: null
 event_name: 'Azure Developer Community Meetup'
-event_link: 'https://www.azdev.community/'
+event_link: 'https://www.meetup.com/azure-developer-community-vijaywada/events/282424163'
 event_location: "Remote"
 event_location_gps: null
 event_city: "remote"
