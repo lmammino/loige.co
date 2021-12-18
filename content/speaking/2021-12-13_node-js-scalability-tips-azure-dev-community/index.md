@@ -19,7 +19,7 @@ event_location_gps: null
 event_city: "remote"
 event_days: "December 13 2021"
 is_workshop: false
-slides_link: ~
+slides_link: "https://loige.link/node-adc"
 video_link: ~
 with: []
 ---
