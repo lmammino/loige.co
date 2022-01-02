@@ -20,7 +20,7 @@ event_city: 'remote'
 event_days: 'Dec 1, 2021'
 is_workshop: false
 slides_link: "https://loige.link/green"
-video_link: ~
+video_link: "https://talks.codemotion.com/a-look-inside-the-european-covid-green-p?playlist=online-tech-conference-2021---english-ed"
 with: ~
 ---
 
