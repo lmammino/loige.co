@@ -176,7 +176,7 @@ If you prefer the audio-only version, you can check out [AWS Bites podcast on An
 
 ## Advent of Code in Rust (Twitch live streams)
 
-On my personal quest to learn [Rust](/tag/rust), I decided to start a [Twitch channel](https://www.twitch.tv/loige) where I could live-stream my efforts. And that best thing ever is that I haven't been alone in this effort because I have been joined by my good friends [Roberto](https://twitter.com/gbinside) and [Eugen](https://twitter.com/88_eugen)!
+On my personal quest to learn [Rust](/tag/rust), I decided to start a [Twitch channel](https://www.twitch.tv/loige) where I could live-stream my efforts. And the best thing ever is that I haven't been alone in this effort because I have been joined by my good friends [Roberto](https://twitter.com/gbinside) and [Eugen](https://twitter.com/88_eugen)!
 
 Together we have been live-streaming our attempts at cracking [Advent of Code](https://adventofcode.com/) using Rust. It has been a great challenge and a very good way to consistently have something to hack in Rust.
 
@@ -214,7 +214,7 @@ What's amazing is that Node.js Design Patterns has recently surpassed [100 revie
 
 [![Reviews of Node.js Design Patterns as of January 2022](./node-js-design-patterns-amazon-reviews.png)](https://www.amazon.com/dp/1839214112?tag=loige09-21#customerReviews)
 
-If you haven't left a review for Node.js Design Patterns, please [consider doing that](https://www.amazon.com/dp/1839214112?tag=loige09-21#customerReviews). This is one of the most effective actions you could do to help us promoting the book and tell us what we can do to make it better! 🙏
+If you haven't left a review for Node.js Design Patterns yet, please [consider doing so](https://www.amazon.com/dp/1839214112?tag=loige09-21#customerReviews). This is one of the most effective actions you could do to help us promoting the book and tell us what we can do to make it better! 🙏
 
 A final note is that, throughout last year, we published 3 new blog articles on the blog section of the book website:
 
@@ -446,7 +446,7 @@ If we look at acquisition channels, the figure does not change too much from las
 
 ![Top acquisition channels for loige.co in 2021](./loige-co-acquisition-channels-2021.png)
 
-The majority (more than half) of the readers come through organic search. This is probably because I have a large chunk of articles in the long time still driving a lot of traffic and hopefully because of some SEO.
+The majority (more than half) of the readers came from organic search. This is probably because I have a large chunk of articles in the long time still driving a lot of traffic and hopefully because of some SEO.
 
 But, if I have to be honest, I am not particularly interested in doing an in-depth analysis and trying to figure out how to squeeze more traffic from search engines.
 
