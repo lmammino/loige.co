@@ -19,7 +19,7 @@ event_location_gps: null
 event_city: 'remote'
 event_days: 'Feb 22, 2022'
 is_workshop: false
-slides_link: ~
+slides_link: 'https://loige.link/rust-green'
 video_link: ~
 with: ~
 ---
