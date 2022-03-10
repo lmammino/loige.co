@@ -53,15 +53,18 @@ class SpeakingEntry extends Component {
           <EntryDetails>
             <p>
               <span>
-                <a
+                {f.event_link
+                  ? <a
                   itemProp="url"
                   href={f.event_link}
                   rel="nofollow noopener noreferrer"
                   target="_blank"
                 >
                   {f.event_name}
-                </a>{' '}
-                (
+                </a>
+                  : f.event_name}{' '}
+                { f.event_location
+                  ? (
                 <span
                   itemProp="location"
                   itemScope
@@ -76,7 +79,8 @@ class SpeakingEntry extends Component {
                     {f.event_location}
                   </span>
                 </span>
-                )
+                    )
+                  : ''}
               </span>
               &nbsp; - <span itemProp="startDate">{f.date}</span>
             </p>
