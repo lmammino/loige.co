@@ -79,3 +79,6 @@
 - title: "What do you need to know about SQS?"
   link: "https://www.fourtheorem.com/blog/what-do-you-need-to-know-about-sqs"
   date: "2022-02-26T18:10:00.000Z"
+- title: "Node.js stream consumer utilities"
+  link: "https://www.nodejsdesignpatterns.com/blog/node-js-stream-consumer/"
+  date: "2022-03-11T12:30:00.000Z"
