@@ -1,15 +1,15 @@
 - name: Node.js Design Patterns
-  link: 'https://www.nodejsdesignpatterns.com'
-  role: 'co-author'
-- name: ServerlessLab
-  link: 'https://serverlesslab.com'
-  role: 'co-founder'
+  link: "https://www.nodejsdesignpatterns.com"
+  role: "co-author"
+- name: AWS Bites
+  link: "https://awsbites.com/"
+  role: "co-host"
 - name: Fullstack Bulletin
-  link: 'https://fullstackbulletin.com'
-  role: 'co-creator and maintainer'
+  link: "https://fullstackbulletin.com"
+  role: "co-creator and maintainer"
 - name: Middy
-  link: 'https://middy.js.org'
-  role: 'co-creator and maintainer'
+  link: "https://middy.js.org"
+  role: "co-creator and maintainer"
 - name: Fastify
-  link: 'https://www.fastify.io'
-  role: 'Website developer and contributor'
+  link: "https://www.fastify.io"
+  role: "Website developer and contributor"

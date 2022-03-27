@@ -82,3 +82,6 @@
 - title: "Node.js stream consumer utilities"
   link: "https://www.nodejsdesignpatterns.com/blog/node-js-stream-consumer/"
   date: "2022-03-11T12:30:00.000Z"
+- title: "What can you do with EventBridge"
+  link: "https://www.fourtheorem.com/blog/what-can-you-do-with-eventbridge"
+  date: "2022-03-22T18:30:00.000Z"
