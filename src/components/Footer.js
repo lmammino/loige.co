@@ -212,14 +212,14 @@ class Footer extends Component {
                 <ListLink
                   target="_blank"
                   rel="nofollow noopener noreferrer"
-                  href="https://serverlesslab.com"
+                  href="https://awsbites.com"
                 >
                   AWS Bites
                 </ListLink>
                 <ListLink
                   target="_blank"
                   rel="nofollow noopener noreferrer"
-                  href="https://awsbites.com"
+                  href="https://fullstackbulletin.com"
                 >
                   FullStack Bulletin
                 </ListLink>
