@@ -8,8 +8,8 @@ author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: null
 status: published
-language: en_US
-presentation_language: en_US
+language: it_IT
+presentation_language: it_IT
 meta_title: null
 meta_description: null
 event_name: "Fabio Biondi's Twitch Channel"
@@ -21,7 +21,10 @@ event_days: 'Feb 15, 2022'
 is_workshop: false
 slides_link: "https://loige.link/mono-cloud"
 video_link: ~
-with: ~
+with:
+  - name: Fabio Biondi
+    link: 'https://twitter.com/biondifabio'
+    image: 'https://unavatar.io/github/fabiobiondi'
 ---
 
 How can you take an existing monolith to the cloud with very minimal effort? In this talk we will explore an architecture that can help you to achieve that while focusing on scalability and resilience.
