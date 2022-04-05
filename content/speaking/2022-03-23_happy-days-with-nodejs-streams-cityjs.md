@@ -11,7 +11,7 @@ status: published
 language: en_US
 meta_title: null
 meta_description: null
-event_name: 'CityJS'
+event_name: 'CityJS London'
 event_link: 'https://cityjsconf.org'
 event_location: 'Remote'
 event_location_gps: null
