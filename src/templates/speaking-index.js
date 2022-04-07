@@ -172,7 +172,7 @@ class SpeakingIndex extends Component {
             {future.length > 0 && (
               <ul className="events">
                 {future.map(e => (
-                  <li key={e.frontmatter.slug}>
+                  <li key={e.frontmatter.uuid}>
                     <SpeakingEntry event={e} />
                   </li>
                 ))}
@@ -185,7 +185,7 @@ class SpeakingIndex extends Component {
             <h2>Past events ({past.length})</h2>
             <ul className="events">
               {past.map(e => (
-                <li key={e.frontmatter.slug}>
+                <li key={e.frontmatter.uuid}>
                   <SpeakingEntry event={e} />
                 </li>
               ))}
