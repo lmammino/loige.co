@@ -1,8 +1,8 @@
 ---
 uuid: a8aed195-8064-4b30-b6e1-a68b68f09c4b
 layout: speaking
-title: "Finding a lost song with Node.js & async iterators"
-slug: 'finding-a-lost-song-with-nodejs-async-iterators-sailsconf'
+title: "Async JavaScript and Node.js Design Patterns"
+slug: 'async-javasript-and-node-js-design-patterns-sailsconf'
 date: 2022-06-22T15:00:00.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
