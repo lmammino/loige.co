@@ -20,7 +20,7 @@ event_city: 'remote'
 event_days: 'April 7 2022'
 is_workshop: false
 slides_link: null
-video_link: null
+video_link: 'https://www.ugidotnet.org/tv/episodio/2950/Ask-Me-Anything/Node-js-design-patterns-AWS-e-altre-cose-fantastiche'
 with:
   - name: Emanuele Bartolesi
     link: 'https://twitter.com/kasuken'
