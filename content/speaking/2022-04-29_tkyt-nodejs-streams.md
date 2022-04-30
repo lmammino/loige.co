@@ -20,7 +20,7 @@ event_city: 'remote'
 event_days: 'April 29 2022'
 is_workshop: false
 slides_link: ~
-video_link: ~
+video_link: "https://www.youtube.com/watch?v=ldcfYB_mo6Q"
 with:
   - name: Kelvin Omereshone
     link: 'https://twitter.com/Dominus_Kelvin'
