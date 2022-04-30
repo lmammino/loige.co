@@ -65,6 +65,8 @@ const Sidebar = styled.aside`
       margin: 1em 0 0 0;
       position: sticky;
       overflow-y: auto;
+      max-height: 100vh;
+      padding: 0 0 3em 0;
       top: 70px;
     }
   }

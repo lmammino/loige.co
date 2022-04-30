@@ -5,7 +5,7 @@ import { Link } from 'gatsby'
 const SimilarPostsList = styled.ul`
   color: #6d6d6d;
   list-style: outside;
-  padding: 0 0 0 1.25em;
+  padding: 0 0 3em 1.25em;
 
   li {
     margin: 0.75em 0 0 0;
