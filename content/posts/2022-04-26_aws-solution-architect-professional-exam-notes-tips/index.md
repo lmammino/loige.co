@@ -381,7 +381,10 @@ The purpose of an "Egress-Only Internet Gateway" is to allow IPv6 based traffic 
 
 #### Default DNS address for DHCP
 
-for defaullt settings the DHCP addres of a subnet is always the base CIDR of the subnet plus 2. E.g. if the base is 10.0.0.0/16 the DHCP address is 10.0.0.2
+For default settings the DHCP address of a subnet is always the base CIDR of the subnet plus 2.
+
+E.g. if the base is `10.0.0.0/16` the DHCP address is `10.0.0.2`
+
 
 ### WAF
 
@@ -399,13 +402,13 @@ Here are some things that I picked up while doing the practice exams and that ca
 - Never pick reserved instances with workloads that are limited in time.
 - Oracle RAC is not supported by RDS: all questions mentioning RAC will probably require you to spin up Oracle RAC in a dedicated EC2 instance.
 - When TCO (Total Cost of Ownership) is mentioned, the answer is generally requiring you to use AWS Application Discovery Service.
-- "Dedicated" vs "Reserved" instances. Sometimes used in the wrong way in the answes. Make sure you understand the difference so you can easily spot choices that can be easily removed. Dedicated: instances that are not shared with other AWS customers; Reserved: instances that you reserved (paid for) in advance.
+- "Dedicated" vs "Reserved" instances. Sometimes used in the wrong way in the answers. Make sure you understand the difference so you can easily spot choices that can be easily removed. Dedicated: instances that are not shared with other AWS customers; Reserved: instances that you reserved (paid for) in advance.
 - "Memcache" vs "Redis" (ElastiCache), always pick Redis, except when it's explicitly requested that the caching layer needs to be multithreaded.
 
 
 ## Conclusion
 
-I want to give a huge shout out to [fourTheorem](https://fourtheorem.com) for supporting me in this endeavor and giving me time to study and access to paid material! ❤️
+I want to give a huge shout out to [fourTheorem](https://fourtheorem.com) for supporting me in this endeavor and giving me time to study and access to paid material! ❤️ Also, thanks a million to my colleague [Marin](https://github.com/adminy) for reviewing this article and suggesting a few improvements! 🙌
 
 This concludes what I had to share. Please do let me know if you found this material interesting and useful.
 
