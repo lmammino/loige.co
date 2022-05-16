@@ -12,11 +12,11 @@ language: en_US
 presentation_language: en_US
 meta_title: null
 meta_description: null
-event_name: "CityJS Athens"
+event_name: "CityJS"
 event_link: 'https://greece.cityjsconf.org/'
-event_location: 'Remote'
-event_location_gps: null
-event_city: 'remote'
+event_location: 'Papagou Garden Theatre'
+event_location_gps: "37.993202,23.79582"
+event_city: 'Athens'
 event_days: 'May 27, 2022'
 is_workshop: false
 slides_link: ~

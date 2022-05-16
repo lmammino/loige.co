@@ -1,9 +1,9 @@
 ---
 uuid: a8aed195-8064-4b30-b6e1-a68b68f09c4b
 layout: speaking
-title: "Serverless Battle Scars"
-slug: 'serverless-battle-scars-atlantec'
-date: 2022-05-18T09:00:00.000Z
+title: "Serverless for HPC"
+slug: 'serverless-for-hpc'
+date: 2022-06-09T13:00:00.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: null
@@ -12,12 +12,12 @@ language: en_US
 presentation_language: en_US
 meta_title: null
 meta_description: null
-event_name: "Atlantec"
-event_link: 'https://atlantec.ie/'
-event_location: 'Remote'
-event_location_gps: null
-event_city: 'remote'
-event_days: 'May 18, 2022'
+event_name: "AWS"
+event_link: ~
+event_location: 'AWS Dublin'
+event_location_gps: "53.330793,-6.247588"
+event_city: 'Dublin'
+event_days: 'June 9, 2022'
 is_workshop: false
 slides_link: ~
 video_link: ~
