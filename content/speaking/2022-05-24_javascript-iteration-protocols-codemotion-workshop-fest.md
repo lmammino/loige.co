@@ -19,7 +19,7 @@ event_location_gps: null
 event_city: 'remote'
 event_days: 'May 24, 2022'
 is_workshop: true
-slides_link: ~
+slides_link: 'https://github.com/lmammino/iteration-protocols-workshop'
 video_link: ~
 with: ~
 ---
