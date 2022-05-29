@@ -19,7 +19,7 @@ event_location_gps: "37.998063,23.800937"
 event_city: 'Athens'
 event_days: 'May 26, 2022'
 is_workshop: true
-slides_link: ~
+slides_link: 'https://fth.link/sec'
 video_link: ~
 with: ~
 ---

@@ -19,7 +19,7 @@ event_location_gps: "37.993202,23.79582"
 event_city: 'Athens'
 event_days: 'May 27, 2022'
 is_workshop: false
-slides_link: ~
+slides_link: 'https://slides.com/lucianomammino/finding-a-lost-song-with-node-js-and-async-iterators-cityjs'
 video_link: ~
 with: ~
 ---
