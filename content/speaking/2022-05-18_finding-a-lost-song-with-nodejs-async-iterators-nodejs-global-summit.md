@@ -20,7 +20,7 @@ event_city: 'remote'
 event_days: 'May 18, 2022'
 is_workshop: false
 slides_link: "https://loige.link/async-iter-song"
-video_link: ~
+video_link: "https://youtu.be/cTD4KWSTEd8"
 with: ~
 ---
 
