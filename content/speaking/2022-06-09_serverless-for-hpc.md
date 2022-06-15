@@ -19,7 +19,7 @@ event_location_gps: "53.330793,-6.247588"
 event_city: 'Dublin'
 event_days: 'June 9, 2022'
 is_workshop: false
-slides_link: ~
+slides_link: 'https://slides.com/lucianomammino/serverless-for-hpc'
 video_link: ~
 with: ~
 ---
