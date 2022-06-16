@@ -24,4 +24,6 @@ video_link: ~
 with: ~
 ---
 
-Did you ever get that feeling when a random song pops into your brain and you can’t get rid of it? Well, that happened to me recently and I couldn’t even remember the title of the damn song! In this talk, I want to share with you the story of how I was able to recover the details of the song by navigating some music-related APIs using JavaScript, Node.js and the magic of async iterators!
+Let's take a walk into the JavaScript/Node.js ecosystem and let's try to understand what makes this ecosystem so special compared to other languages. Why is the async paradigm so convenient in the world of full stack web development and what are the challenges that come with it?
+In this talk, we will discuss the JavaScript async history, some common gotchas and some interesting design patterns that are unique to the JavaScript ecosystem.
+
