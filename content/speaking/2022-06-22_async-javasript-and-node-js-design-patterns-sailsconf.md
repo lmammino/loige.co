@@ -19,8 +19,8 @@ event_location_gps: null
 event_city: 'remote'
 event_days: 'June 22, 2022'
 is_workshop: false
-slides_link: ~
-video_link: ~
+slides_link: https://slides.com/lucianomammino/async-javascript-and-nodejs-design-patterns
+video_link: https://www.youtube.com/watch?v=lxi8W7Z07To
 with: ~
 ---
 
