@@ -2,7 +2,7 @@
 uuid: c76db783-a9d2-4d9b-ae02-051fa04dd917
 layout: speaking
 title: "Interview with Reconfigured podcast"
-slug: 'reconfigured-podcast-interview.md'
+slug: 'reconfigured-podcast-interview'
 date: 2022-07-05T12:00:00.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
