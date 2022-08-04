@@ -142,6 +142,8 @@ As you can tell from the comments in the snippet above, the API has some interes
   - Up to **150 values** per metric
   - Up to **40 KB** in size for HTTP POST requests
 
+> **Update** (2022-08-04): AWS has recently incresed all these limits (by a lot), check out the new limits in their [official announcement post](https://aws.amazon.com/about-aws/whats-new/2022/08/amazon-cloudwatch-metrics-increases-throughput/).
+
 So, the best case scenario to reduce the number of `PutMetricData` requests is to have batches of 20 metrics, but we need to make sure that all this data, once encoded, fits in 40 KB.
 
 Splitting the metrics in chunks of 20 entries per request is not a big deal. But how do we make sure all the other constraints are respected. Especially the payload size one.
