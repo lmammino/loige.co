@@ -163,6 +163,24 @@ As displayed in the picture above we are adding a few fields there:
 This makes sense for our fictional example. In a more generic use case, you'll be adding here all the pieces of information that are unique for every single guest.
 Note that on this website we also have a mini RSVP form. This means that we will be able to collect some data from the users. This is also something that we will be storing in AirTable.
 
+<details style="margin-top: 1em">
+  <summary>Are you following along and want an easy way to import this table into your Airtable base? (expand here)</summary>
+
+  <div style="background: #eee; margin-top: 1em; padding: 1em; border: 2px dotted #ccc; border-radius: 10px;">
+
+Airtable allows to import data into a base from a CSV, so here's my example data in CSV format:
+
+```csv
+invite,name,favouriteColor,weapon
+14b25700-fe5b-45e8-a9be-4863b6239fcf,Leonardo,blue,Twin Katana
+ce7d5886-2166-4aee-8038-548f68b9739d,Michelangelo,orange,Nunchaku
+ef7ab7b7-33d5-43b9-ad73-e73bb8fd8e77,Raffaello,red,Twin Sai
+b0cbb4a4-8a31-4bc1-bee9-d6fe39c1a6b3,Donatello,purple,Bo
+```
+
+  </div>
+</details>
+
 
 ## Reading invite codes using the AirTable SDK
 
@@ -309,7 +327,7 @@ We are essentially using the `airtable` SDK and building a nicer promise-based i
 Ok, for the eagle-eyed ones, you are probably wondering where the heck is that `escape` function coming from?! I elided it from the code to keep things simple. The TLDR; is that it makes things more secure.
 
 <details style="margin-top: 1em">
-  <summary>But "the how" needs a bit of a long-ish explanation (expand at your own risk)</summary>
+  <summary>But "the how" needs a bit of a long-ish explanation (expand at your own risk).</summary>
 
   <div style="background: #eee; margin-top: 1em; padding: 1em; border: 2px dotted #ccc; border-radius: 10px;">
   
@@ -331,13 +349,13 @@ Ok, for the eagle-eyed ones, you are probably wondering where the heck is that `
   {invite} = '' >= 0 & ''
   ```
 
-  Which always evaluates to `1` (`true`) in Airtable! So this very evil user is now accessing your private website without having to know a valid code. They will just get the code of the first record that Airtable matches in the table!
+  Which always evaluates to `1` (`true`) in Airtable! So this very evil user is now accessing your private website without having to know a valid code. They will just get the code of the first record that Airtable matches in the table! You try this attack by yourself [with this link](https://secret-pizza-party-fgpypfb66-lmammino.vercel.app/?code=%27%20%3E%3D%200%20%26%20%27).
 
-  This is like [SQL injections](https://owasp.org/www-community/attacks/SQL_Injection) but for Airtable formulas! 😱
+  This is like [SQL injections](https://owasp.org/www-community/attacks/SQL_Injection) but for Airtable filter formulas! 😱
 
-  The `escape` function, allows us to try to sanitize user input and escape dangerous characters like `'` and `"`. In other words, it tries to protect our website from this kind of injection attack.
+  The `escape` function, allows us to try to sanitize user input and escape dangerous characters like `'` and `"` which might allow a malicious actor to alter the structure of our filter formula.
 
-  If you are curious this is my basic implementation of the `escape` function (the one I used in this project), but I have to say I am quite disappointed that Airtable does not provide a built-in utility for this in their SDK... 🙁
+  If you are curious this is my basic implementation of the `escape` function (the one I used in this project), but I have to say I am quite disappointed that Airtable does not provide a built-in utility for this in their SDK, nor they warn users about this threat in their docs... 🙁
 
   ```ts
   function escape (value: string): string {
@@ -348,6 +366,7 @@ Ok, for the eagle-eyed ones, you are probably wondering where the heck is that `
     if (typeof value === 'string') {
       const escapedString = value
         .replace(/"/g, '\\"')
+        .replace(/'/g, "\\'")
         .replace(/\r/g, '')
         .replace(/\\/g, '\\\\')
         .replace(/\n/g, '\\n')
@@ -367,20 +386,22 @@ Ok, for the eagle-eyed ones, you are probably wondering where the heck is that `
   }
   ```
 
-  PS: I nudged Airtable [on Twitter](https://twitter.com/loige/status/1555622372085997569) and [their community forum](https://community.airtable.com/t/standard-way-to-prevent-formula-injections-when-using-airtable-as-a-backend-through-sdk/50283) but, unfortunately, they didn't get back to me yet...
+  Note that this function does not claim to be perfect or comprehensive. I haven't extensively tested it, nor do I know all the bells and whistles of the formula syntax to be able to do that. If you are doing something like this in your code, make sure to test this extensively.
+
+  PS: I nudged Airtable [on Twitter](https://twitter.com/loige/status/1555622372085997569) (with no response) and [their community forum](https://community.airtable.com/t/standard-way-to-prevent-formula-injections-when-using-airtable-as-a-backend-through-sdk/50283) (well, let's just say that the thread wasn't received particularly well...). I also reached out to their support channels and, hopefully, this will get somewhere...
 
   </div>
 
 </details>
 
-TODO: continue from here!
-
-...
+Now that we have created this utility function, we can use it in an API to be able to provide code validation and invite data to the frontend.
 
 
 ## Next.js invite endpoint
 
 ...
+
+TODO: continue from here
 
 
 ## Handling sensitive information
