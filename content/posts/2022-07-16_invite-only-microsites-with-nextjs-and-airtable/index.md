@@ -655,13 +655,399 @@ The field we added is a **single select** type of field. We added two possible v
 
 Now you know why we have originally defined a `coming` field (optional boolean) in our `Invite` interface and why we were popoluating it in our `utils/airtable.ts` helper file! 🙃
 
+In order to be allow our guests to submit their RSVP we need to do 4 main changes:
 
-TODO: continue from here
+  1. Update the Airtable utility file with a function to update the `coming` field for a recod
+  2. Create a new API endpoint to collects RSVP (using the new utility function from point 1.)
+  3. Update our `useInvite` hook to provide functionality to submit the RSVP (and handle progress)
+  4. Update the frontend to use the new functionality provided by the `useInvite` hook
 
-1. update airtable utility with refactoring and update rsvp code
-2. update hook with code to be able to modify state and updating indicator
-3. show example of how it is possible to use the new functionality in the hook
+We'll be doing some good amount of refactoring to introduce these changes, so let's roll up our sleeves and warm up our keyboards!
+
+### The RSVP Airtable utility
+
+In Airtable, every record in a table has a unique ID. If we know the ID we can use it to update one or more fields in that record.
+
+In our application we have been using the invite code as unique ID and we already have some code written to be able to fetch a record by invite code.
+
+It would be a good idea to refactor that code and extract the part that fetches a raw Airtable record. This way we can use this functionality in both our _retrieval_ and _update_ function (the latter which we still have to write).
+
+So let's open our file `utils/airtable.ts` again and add the following changes:
+
+```ts
+import Airtable, { FieldSet, Record } from 'airtable'
+// ...
+
+export function getInviteRecord (inviteCode: string): Promise<Record<FieldSet>> {
+  return new Promise((resolve, reject) => {
+    base('invites')
+      // runs a query on the `invites` table
+      .select({
+        filterByFormula: `{invite} = ${escape(inviteCode)}`,
+        maxRecords: 1
+      })
+      // reads the first page of results
+      .firstPage((err, records) => {
+        if (err) {
+          // propagate errors
+          console.error(err)
+          return reject(err)
+        }
+
+        // if the record could not be found
+        // we consider it an error
+        if (!records || records.length === 0) {
+          return reject(new Error('Invite not found'))
+        }
+
+        // returns the first record
+        resolve(records[0])
+      })
+  })
+}
+```
+
+You might have noticed that this function is almost identical to the `getInvite` function we wrote before, we are just returning the raw Airtable record, rather than mapping its data to an `Invite` object.
+
+So it makes sense to avoid duplication and refactor our `getInvite`:
+
+```ts
+export async function getInvite (inviteCode: string): Promise<Invite> {
+  const inviteRecord = await getInviteRecord(inviteCode)
+
+  return {
+    code: String(inviteRecord.fields.invite),
+    name: String(inviteRecord.fields.name),
+    favouriteColor: String(inviteRecord.fields.favouriteColor),
+    weapon: String(inviteRecord.fields.weapon),
+    coming: typeof inviteRecord.fields.coming === 'undefined'
+      ? undefined
+      : inviteRecord.fields.coming === 'yes'
+  }
+}
+```
+
+The function is now an `async` function. It simply calls our new utility method and performs the mapping to an `Invite` object. Pretty simple, right?
+
+Ok, now we can finally write the utility that allows us to update the `coming` field for a given record (by it's invite code). Let's call it `updateRsvp`:
+
+```ts
+export async function updateRsvp (inviteCode: string, rsvp: boolean): Promise<void> {
+  // gets the raw Airtable id of the record to update
+  const { id } = await getInviteRecord(inviteCode)
+
+  return new Promise((resolve, reject) => {
+    base('invites').update(id, { coming: rsvp ? 'yes' : 'no' }, (err) => {
+      if (err) {
+        return reject(err)
+      }
+
+      resolve()
+    })
+  })
+}
+```
+
+One thing to remark here is that we are using the Airtable `update` method, which allows us to mutate a subset of fields (in our case only the `coming` field) and leave unchanged all the other fields. If you'll ever want to entirely replace a record, well, there's a `replace` method for that!
+
+
+### The RSVP endpoint
+
+Now we can put our `updateRsvp` utility to good use and expose it through an API endpoint. To do that we can create a new API route by adding the file `pages/api/rsvp.ts`:
+
+```ts
+import type { NextApiRequest, NextApiResponse } from 'next'
+import { updateRsvp } from '../../utils/airtable'
+
+type RequestBody = {coming?: boolean}
+
+export default async function handler (
+  req: NextApiRequest,
+  res: NextApiResponse<{updated: boolean} | { error: string }>
+) {
+  // if the request is not a PUT, return an error
+  if (req.method !== 'PUT') {
+    return res.status(405).json({ error: 'Method Not Allowed' })
+  }
+
+  // if the code is missing we return a 400 error
+  if (!req.query.code) {
+    return res.status(400).json({ error: 'Missing invite code' })
+  }
+
+  const reqBody = req.body as RequestBody
+
+  // if the code is missing we return a 400 error
+  if (typeof reqBody.coming === 'undefined') {
+    return res.status(400).json({ error: 'Missing `coming` field in body' })
+  }
+
+  // If there are multiple invite codes (?code=x&code=y)
+  // we pick the first one and ignore the rest
+  const code = Array.isArray(req.query.code)
+    ? req.query.code[0]
+    : req.query.code
+
+  try {
+    await updateRsvp(code, reqBody.coming)
+    return res.status(200).json({ updated: true })
+  } catch (err) {
+    // In case of error we return either a 401 or a 500 error:
+    // - if the code was not found we return 401
+    // - otherwise we return a generic 500 server error
+    const e = (err as Error)
+    res.status(e.message === 'Invite not found' ? 401 : 500).json({ error: e.message })
+  }
+}
+```
+
+A few things to note here:
+
+  - The API endpoint is now live at `http://localhost:3000/api/rsvp`.
+  - This API receives 2 pieces of information: the invite code as a query string parameter and the `coming` field in the request body (encoded as a JSON object with just the `coming` field).
+  - This API is a `PUT` endpoint. We are receiving some partial data to update a record so it makes sense to use PUT.
+  - We are not being entirely _RESTful_ (mostly for simplicity). If we wanted to be _RESTful_ we should have created a `PUT` endpoint on the `/api/invite/{code}` path. This is possible in Next.js but it's slightly more involved, so I went for a simpler solution (since this is a small pet project).
+
+
+### `useInvite` hook version 2
+
+Ok, now that we have an API to update to submit an RSVP, we can update the `useInvite` hook to take advantage of this functionality. Be warned: we'll also be doing some decent amount of refactoring here... Let's update the `useInvite` code in `components/hooks/useInvite.tsx`:
+
+```tsx
+// ...
+
+// adds the URL of the new endpoint
+const RSVP_ENDPOINT = API_BASE + '/rsvp'
+
+// type for the data returned by the hook
+// since we want to return 4 different pieces of information
+// it's better to organise them in an object, rather tha using
+// an array
+interface HookResult {
+  inviteResponse: InviteResponse | null,
+  error: string | null,
+  updating: boolean,
+  updateRsvp: (coming: boolean) => Promise<void>
+}
+
+// ...
+
+// Helper function that invokes the rsvp API endpoint
+async function updateRsvpRequest (code: string, coming: boolean): Promise<void> {
+  const requestUrl = new URL(RSVP_ENDPOINT)
+  requestUrl.searchParams.append('code', code)
+  const response = await fetch(requestUrl, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ coming })
+  })
+  if (!response.ok) {
+    throw new Error('Failed to update RSVP')
+  }
+}
+
+export default function useInvite (): HookResult {
+  const [inviteResponse, setInviteResponse] = useState<InviteResponse | null>(null)
+  const [error, setError] = useState<string | null>(null)
+  // new state field to track when an RSVP update is in progress
+  const [updating, setUpdating] = useState<boolean>(false)
+
+  useEffect(() => {
+    const url = new URL(window.location.toString())
+    const code = url.searchParams.get('code')
+
+    if (!code) {
+      setError('No code provided')
+    } else {
+      fetchInvite(code)
+        .then(setInviteResponse)
+        .catch(err => {
+          setError(err.message)
+        })
+    }
+  }, [])
+
+  // new hook function that exposes the ability to update the current invite by
+  // providing a value for the `coming` field
+  async function updateRsvp (coming: boolean) {
+    if (inviteResponse) {
+      setUpdating(true)
+      await updateRsvpRequest(inviteResponse.invite.code, coming)
+      // updates the current invite response, by cloning the original
+      // object and updating the `coming` property.
+      setInviteResponse({
+        ...inviteResponse,
+        invite: { ...inviteResponse.invite, coming }
+      })
+      setUpdating(false)
+    }
+  }
+
+  // We return the state variables and the updateRsvp function.
+  return { inviteResponse, error, updating, updateRsvp }
+}
+```
+
+Some code was omitted. You should have gotten an idea for the main changes, but feel free to check the full content of the file [in the repository](https://github.com/lmammino/secret-pizza-party/blob/main/components/hooks/useInvite.tsx) in case you are following along and using this as an hands-on tutorial.
+
+
+### Using the updated hook
+
+I have mixed feelings when it comes to hooks and react. They are sometimes hard to use correctly because of the many rules around them, but to be honest, once you get the gist of them, they are pretty darn convenient.
+
+In this case, our `useInvite` hook can deliver us a lot of value. In fact, it encapsulates all the business logic and lifecycle management to deal with loading and updating invites for the current user. When using this hook in a component, we don't really have to worry too much about all of these concers: we can literally just access the data and decide when to trigger an update, the hook will handle everything else and trigger a re-render when necessary.
+
+Let's see how we can use the hook now. Again, there isn't much point in showing all our actual code, so let's observe a simplified example that illustrates the point (you can still [see the complete file in the repository](https://github.com/lmammino/secret-pizza-party/blob/main/components/Home.tsx)).
+
+```tsx
+import React, { ChangeEvent } from 'react'
+import useInvite from './hooks/useInvite'
+
+// ...
+
+export default function Home () {
+  // We are now destructuring all the hook attributes and functions
+  //  - inviteResponse: the invite response (when available)
+  //  - error: an error message (if there was an error loading the data)
+  //  - updating: a boolean that will be true if an update is in progress
+  //  - updateRsvp: the function that allows us to update the current invite (coming or not)
+  const { inviteResponse, error, updating, updateRsvp } = useInvite()
+
+  if (error) {
+    // There was an error loading the data
+    return <div>Duh! {error}</div>
+  }
+
+  if (!inviteResponse) {
+    // Still loading the invite data
+    return <div>Loading...</div>
+  }
+
+  // Utility function to trigger an update when the user
+  // checks one of the radio buttons to RSVP
+  function onRsvpChange (e: ChangeEvent<HTMLInputElement>) {
+    const coming = e.target.value === 'yes'
+    updateRsvp(coming)
+  }
+
+  // Data loaded correctly: we can display the UI!
+  return (
+    <div>
+      <fieldset disabled={updating}>
+        <legend>Are you coming?</legend>
+
+        <label htmlFor="yes">
+          <input 
+            type="radio"
+            id="yes"
+            name="coming"
+            value="yes"
+            onChange={onRsvpChange}
+            checked={inviteResponse.invite.coming === true}
+          />
+          YES
+        </label>
+
+        <label htmlFor="no">
+          <input
+            type="radio"
+            id="no"
+            name="coming"
+            value="no"
+            onChange={onRsvpChange}
+            checked={inviteResponse.invite.coming === false}
+          />
+          NO
+        </label>
+      </fieldset>
+    </div>
+  )
+}
+```
+
+Note how the two `input` have an `onChange={onRsvpChange}` to actually trigger the change when the user checks one of the radio buttons. `onRsvpChange` will in turn invoke `updateRsvp` from the hook, using the value of the selected radio button (`"yes"` or `"no"` will turn into `true` or `false`).
+
+We also control the input, by specifying `checked={inviteResponse.invite.coming === <value>}`, so that the input updates accordingly when the data is actually changed by the `useInvite` hook.
+
+
+### Working app
+
+At this point we should have a working application!
+
+One thing that I really like about Airtable is that, when you are looking at a table in their web UI, if the underlying data changes, you'll see a flash that showcases the change.
+
+This is a pretty great way to test how our application is actually changing the data in real-time:
+
+![Airtable dynamic table update animation](./airtable-dynamic-table-update-example.gif)
+
+Cool, isn't it? 😎
+
+
+## Deploying to Vercel
+
+Now we have a fully functional application. We are able to get users in only if they have a valid invite code and we can even register their RSVP.
+
+But all of this is running on our local machine, so how do we put it online?
+
+Next.js websites can be deployed in a number of places, but being a Vercel product, it should be no surprise the deploying on Vercel is the easiest option (at least for what I have tried).
+
+This is roughly the list of steps that you should take to deploy on Vercel (from GitHub):
+
+  - Once you have all your code in a repository on GitHub, you can create an account on [Vercel](https://vercel.com/) by logging in using GitHub.
+  - At this point, you can create a new project (there's a big button for that) and then select **import Git Repository**.
+  - From that window you should see a list containing all your GitHub repositories.
+  - Select the repository with your code and cick on **import**.
+  - At this point Vercel will automatically build your code and deploy it, giving you a **.vercel.app** unique domain.
+  - If you want, you can also customise the domain and provide a custom one!
+
+What happened behind the scens is that Vercel has deployed all your static assets (HTML, CSS, JavaScript, images,etc) to a CDN and all your API code to a serverless runtime that will be spawn up on demand when new requests arrive.
+
+The best part is that, once you have done all of this and you have your website online, Vercel has already setup a simple but effective CI/CD workflow for you:
+
+  - Every time you deploy to your `main` branch, Vercel will automatically build and release the changes
+  - If you deploy on another branch, Vercel will deploy and release the changes, but on a temporary URL that you can use to preview your changes.
+
+![Vercel Application dashboard](./vercel-application-dashboard.png)
+
+That's it! You can finally share your invite-only website will all your guests, and I am sure they are going to love it! 😜
+
 
 ## An idea for a backend-less alternative
 
-...
+Before we wrap up, I want to give a quick mention to an idea I had while I was writing this post.
+
+If we relax a bit our requirements removing the fact that we might want to collect user data (RSVP), there migth be a *"backend-less"* alternative implementation.
+
+Rather than using random invite codes, we could, in fact, use [JSON Web Tokens](/whats-in-a-jwt).
+
+We could embed all the necessary information into the token paylos:
+
+```bash
+jwtinfo "eyJhbGciOiJFUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGVvbmFyZG8iLCJmYXZvdXJpdGVDb2xvciI6ImJsdWUiLCJ3ZWFwb24iOiJUd2luIEthdGFuYSJ9.Ac69w5qHwnpzX3DZX4np-AZxcYcUA2D1aW64O2wB53v277MmamEuALJp6un2LTkYAeyciCz8eY6bRMNf9tq9e_KRAZcznffZf-vNUnzaWh9TgFhKuEdn2kI8B4d4NBP0TSW6iq-PLNVfwzldjilYA-QJRevcztSmcc-cEpZHukQdUHjy" | jq .
+
+{
+  "favouriteColor": "blue",
+  "name": "Leonardo",
+  "weapon": "Twin Katana"
+}
+```
+
+Yes, you should totally check out [the story of this cool `jwtinfo` command](/learning-rust-through-open-source-and-live-code-reviews)!
+
+The JWT signature should be generated using an asymmetric algorithm like `ES512`. At that point the frontend could embed the public key and use it to validate tokens and decide to show the information or not.
+
+This would a be a very simple approach and it's not free from flaws, for example:
+
+  - All the information needs to be embedded in the token
+  - You won't have a way to fetch private information from an API, so you are forced to put more stuff into the token or end up leaking sensitive information in your JavaScript bundle
+
+Still this simple approach might be good enough for simple websites that might be building for your friends and family!
+
+Plus, you'd get to use JWT, which is a cool technology! 😜
+
+
+## Conclusion
+
+TODO: add conclusions!
