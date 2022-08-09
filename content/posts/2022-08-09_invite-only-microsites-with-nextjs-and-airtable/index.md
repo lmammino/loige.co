@@ -5,8 +5,8 @@ title: >-
   Invite-only microsites with Next.js and AirTable
 slug: invite-only-microsites-with-nextjs-and-airtable
 subtitle: null
-date: 2022-07-16T18:20:00.000Z
-updated: 2022-07-16T18:20:00.000Z
+date: 2022-08-09T08:40:00.000Z
+updated: 2022-08-09T08:40:00.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: ./invite-only-microsites-with-nextjs-and-airtable.jpg
@@ -1014,7 +1014,7 @@ The best part is that, once you have done all of this and you have your website 
 That's it! You can finally share your invite-only website will all your guests, and I am sure they are going to love it! 😜
 
 
-## An idea for a backend-less alternative
+## A backend-less alternative approach
 
 Before we wrap up, I want to give a quick mention to an idea I had while I was writing this post.
 
@@ -1025,7 +1025,7 @@ Rather than using random invite codes, we could, in fact, use [JSON Web Tokens](
 We could embed all the necessary information into the token paylos:
 
 ```bash
-jwtinfo "eyJhbGciOiJFUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGVvbmFyZG8iLCJmYXZvdXJpdGVDb2xvciI6ImJsdWUiLCJ3ZWFwb24iOiJUd2luIEthdGFuYSJ9.Ac69w5qHwnpzX3DZX4np-AZxcYcUA2D1aW64O2wB53v277MmamEuALJp6un2LTkYAeyciCz8eY6bRMNf9tq9e_KRAZcznffZf-vNUnzaWh9TgFhKuEdn2kI8B4d4NBP0TSW6iq-PLNVfwzldjilYA-QJRevcztSmcc-cEpZHukQdUHjy" | jq .
+❯ jwtinfo "eyJhbGciOiJFUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGVvbmFyZG8iLCJmYXZvdXJpdGVDb2xvciI6ImJsdWUiLCJ3ZWFwb24iOiJUd2luIEthdGFuYSJ9.Ac69w5qHwnpzX3DZX4np-AZxcYcUA2D1aW64O2wB53v277MmamEuALJp6un2LTkYAeyciCz8eY6bRMNf9tq9e_KRAZcznffZf-vNUnzaWh9TgFhKuEdn2kI8B4d4NBP0TSW6iq-PLNVfwzldjilYA-QJRevcztSmcc-cEpZHukQdUHjy" | jq .
 
 {
   "favouriteColor": "blue",
@@ -1047,7 +1047,17 @@ Still this simple approach might be good enough for simple websites that might b
 
 Plus, you'd get to use JWT, which is a cool technology! 😜
 
+As always, keep in mind that in technology there isn't a perfect solution, just a different set of tradeoffs!
+
 
 ## Conclusion
 
-TODO: add conclusions!
+In this post we learned how to build an invite only Single Page Application using Next.js and Airtable as a data storage layer.
+
+In the process we also saw how to create backend APIs with Next.js, how to create custom hook to simplify data fetching and update from the frontend and how to deploy our final creation to Vercel.
+
+I am curious to know what you think about this approach and if you are thinking to use this for some personal or work projects.
+
+Do let me know in the comments and, if you found this post valuable, consider [following me on Twitter](https://twitter.com/loige) and sharing this article!
+
+Thank you and see you in the next article! 👋
