@@ -55,7 +55,7 @@
     "glob": "^7.1.6",
     "prettier": "^2.2.1",
     "prettier-standard": "^16.4.1",
-    "puppeteer": "^5.3.1",
+    "puppeteer": "^16.1.0",
     "yaml": "^1.7.0"
   },
   "homepage": "https://loige.co",
