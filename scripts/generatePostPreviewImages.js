@@ -15,7 +15,7 @@ const takeScreenshot = async (url, width, height, destination) => {
     args: ['--no-sandbox', '--disable-setuid-sandbox', '--window-size=1400,900']
   })
   const page = await browser.newPage()
-  await page._client.send('Emulation.clearDeviceMetricsOverride')
+  // await page._client.send('Emulation.clearDeviceMetricsOverride')
   await page.goto(url)
   await sleep(200) // give it some time to load images
   await page.screenshot({
