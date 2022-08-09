@@ -15,7 +15,8 @@ tw_img: ./invite-only-microsites-with-nextjs-and-airtable-tw.png
 status: published
 language: en_US
 meta_title: null
-meta_description: null
+meta_description: >-
+  A tutorial on how to build invite-only micro-sites cheaply and quickly using Next.js (on Vercel) and Airtable as a mini database
 tags:
   - javascript
   - typescript
