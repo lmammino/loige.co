@@ -5,8 +5,8 @@ title: >-
   Invite-only microsites with Next.js and AirTable
 slug: invite-only-microsites-with-nextjs-and-airtable
 subtitle: null
-date: 2022-08-09T08:40:00.000Z
-updated: 2022-08-09T08:40:00.000Z
+date: 2022-08-09T07:40:00.000Z
+updated: 2022-08-09T07:40:00.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: ./invite-only-microsites-with-nextjs-and-airtable.jpg

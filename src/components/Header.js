@@ -179,7 +179,7 @@ class Header extends Component {
                   <a
                     rel="nofollow"
                     className={css(socialLinkStyle)}
-                    href="https://www.youtube.com/channel/UCL0w2IAjTBx3NNka-l7InPw"
+                    href="https://www.youtube.com/loige"
                   >
                     <YoutubeIcon
                       className={css(socialIconStyle)}

@@ -251,7 +251,7 @@ class Footer extends Component {
 
                 <ListLink
                   rel="nofollow noopener noreferrer"
-                  href="https://www.youtube.com/channel/UCL0w2IAjTBx3NNka-l7InPw"
+                  href="https://www.youtube.com/loige"
                 >
                   <YoutubeIcon /> Youtube
                 </ListLink>
