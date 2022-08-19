@@ -19,7 +19,7 @@ event_location_gps: '53.34463,-6.250172'
 event_city: 'Dublin, Ireland'
 event_days: 'Aug 18, 2022'
 is_workshop: false
-slides_link: ~
+slides_link: 'https://loige.link/microsite'
 video_link: ~
 with: ~
 ---
