@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro'
+
+export async function getStaticPaths({ paginate }) {
+  const posts = await Astro.glob('../../content/posts/**/*.(md|mdx)')
+  posts.sort((a, b) => {
+    return new Date(b.date) - new Date(a.date)
+  })
+
+  const paginated = paginate(posts, 10)
+
+  console.log(paginated[0].props)
+
+  return paginated.map(({ props, params }) => {
+    console.log(props)
+    return {
+      props: { ...props, page: params.page || 1 },
+      params: { page: params.page ? `page/${params.page}` : `page/1` },
+    }
+  })
+}
+
+// const { page } = Astro.params
+const { page } = await Astro.props
+---
+
+<Layout title={`Page ${page}`}>
+  <h1>Page {page}</h1>
+</Layout>

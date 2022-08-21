@@ -1,0 +1,36 @@
+---
+import logo from './images/luciano8bit.svg'
+---
+
+<a href="/">
+  <img src={logo} alt="Loige" height="60px" />
+  <span>Loige</span>
+</a>
+
+<style lang="scss">
+  a {
+    color: #46c9e5;
+    display: flex;
+    margin-right: 10px;
+    height: 100%;
+    text-decoration: none;
+    flex-direction: center;
+    align-items: center;
+
+    @media (min-width: 600px) {
+      width: calc(100% / 6);
+    }
+  }
+
+  img {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  span {
+    margin-left: 10px;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 20px;
+  }
+</style>

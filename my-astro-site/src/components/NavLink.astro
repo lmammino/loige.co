@@ -1,0 +1,48 @@
+---
+export interface Props {
+  href: string
+  active: boolean
+}
+
+const { href, active } = Astro.props as Props
+---
+
+<a href={href} class:list={{ 'link-active': active }}
+  >{active && <span class="link-underline" />}
+  <slot />
+</a>
+
+<style lang="scss">
+  a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #ffffff;
+    transition: color 0.2s ease-out;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-weight: 300;
+    text-decoration: none;
+
+    @media (min-width: 1280px) {
+      padding-left: 20px;
+      padding-right: 20px;
+      font-size: 18px;
+    }
+  }
+
+  .link-active {
+    color: #46c9e5;
+    position: relative;
+  }
+
+  .link-underline {
+    position: absolute;
+    bottom: -1px;
+    height: 4px;
+    left: 0px;
+    right: 0px;
+    z-index: 1;
+    background: #46c9e5;
+  }
+</style>

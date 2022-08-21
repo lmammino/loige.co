@@ -1,0 +1,196 @@
+---
+import Logo from './Logo.astro'
+import NavLink from './NavLink.astro'
+import TwitterIcon from './icons/Twitter.astro'
+import TwitchIcon from './icons/Twitch.astro'
+import YoutubeIcon from './icons/Youtube.astro'
+import LinkedinIcon from './icons/Linkedin.astro'
+import GithubIcon from './icons/Github.astro'
+
+export interface Props {
+  section?: 'blog' | 'speaking' | 'about'
+}
+
+const { section } = Astro.props as Props
+---
+
+<header>
+  <div class="center-container">
+    <div class="flex-container">
+      <Logo class="logo" />
+      <nav>
+        <NavLink href="/" active={true || section === 'blog'}>Blog</NavLink>
+        <NavLink href="/speaking" active={section === 'speaking'}
+          >Speaking
+        </NavLink>
+        <NavLink href="/about" active={section === 'about'}>About</NavLink>
+      </nav>
+      <div class="social-links-container">
+        <a
+          class="social-link"
+          rel="nofollow"
+          href="https://twitter.com/loige"
+          title="Luciano's Twitter profile"
+        >
+          <TwitterIcon className="social-icon" />
+        </a>
+        <a
+          class="social-link"
+          rel="nofollow"
+          href="https://twitch.tv/loige"
+          title="Luciano's Twitch profile"
+        >
+          <TwitchIcon className="social-icon" />
+        </a>
+        <a
+          class="social-link"
+          rel="nofollow"
+          href="https://www.youtube.com/loige"
+          title="Luciano's YouTube profile"
+        >
+          <YoutubeIcon className="social-icon" />
+        </a>
+        <a
+          class="social-link"
+          rel="nofollow"
+          href="https://www.linkedin.com/in/lucianomammino/"
+          title="Luciano's LinkedIn profile"
+        >
+          <LinkedinIcon className="social-icon" />
+        </a>
+        <a
+          class="social-link"
+          rel="nofollow"
+          href="https://github.com/lmammino"
+          title="Luciano's GitHub profile"
+        >
+          <GithubIcon className="social-icon" />
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="header-border"></div>
+</header>
+
+<style lang="scss">
+  :root {
+    background-color: rgba(32, 35, 42, 0.95);
+    color: #ffffff;
+    display: block;
+    position: auto;
+    z-index: 2000;
+    width: 100%;
+    top: 0;
+    left: 0;
+
+    @media (min-width: 780px) {
+      position: fixed;
+    }
+  }
+
+  .center-container {
+    padding-left: 4px;
+    padding-right: 4px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1260px;
+
+    @media (min-width: 780px) {
+      width: 90%;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+
+  .flex-container {
+    display: flex;
+    height: 60px;
+  }
+
+  .logo {
+    display: none;
+
+    @media (min-width: 540px) {
+      display: flex;
+    }
+  }
+
+  nav {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    height: 100%;
+    width: 60%;
+
+    @media (min-width: 1180px) {
+      width: 60%;
+    }
+  }
+
+  .social-links-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    height: 100%;
+    width: 40%;
+
+    @media (min-width: 1180px) {
+      width: 40%;
+    }
+
+    .social-icon {
+      width: 16px;
+      height: 16px;
+      color: #fff;
+      fill: currentColor;
+
+      @media (min-width: 540px) {
+        width: 24px;
+        height: 24px;
+      }
+
+      @media (min-width: 1180px) {
+        margin: 0 0 0 0;
+      }
+    }
+  }
+
+  .social-link {
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    padding: 5px 4px;
+    white-space: nowrap;
+    font-size: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    transition: background 150ms;
+    border-radius: 0.5em;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    @media (min-width: 780px) {
+      padding: 5px 10px;
+    }
+  }
+
+  .header-border {
+    height: 2px;
+    display: block;
+    transform-origin: left center 0px;
+    transform: scaleX(1);
+    z-index: 50;
+    transition: transform 400ms ease 100ms;
+    background: linear-gradient(90deg, #46c9e5, #d26ac2);
+  }
+</style>

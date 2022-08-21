@@ -78,7 +78,7 @@ const SocialLinksContainer = styled.div`
   height: 100%;
   width: 40%;
 
-  @media (min-width: 1180px) { {
+  @media (min-width: 1180px) {
     width: 40%;
   }
 `
