@@ -20,5 +20,6 @@ const { frontmatter, Content } = await Astro.props
 ---
 
 <Layout title={frontmatter.title}>
+  <p>{slug}</p>
   <Content />
 </Layout>

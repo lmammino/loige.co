@@ -1,21 +1,28 @@
 ---
+import type { GetStaticPathsOptions } from 'astro'
+import { sortByFrontmatterDate, PAGE_SIZE } from '../utils/posts'
+import type { PostType } from '../utils/posts'
+
 import Layout from '../layouts/Layout.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import BlogList from '../components/BlogList.astro'
 
-export async function getStaticPaths({ paginate }) {
-  const posts = await Astro.glob('../../content/posts/**/*.(md|mdx)')
-  posts.sort((a, b) => {
-    return new Date(b.date) - new Date(a.date)
-  })
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const posts = await Astro.glob<PostType>('../../content/posts/**/*.(md|mdx)')
+  posts.sort(sortByFrontmatterDate)
 
-  const paginated = paginate(posts, 10)
+  const paginated = paginate(posts, { pageSize: PAGE_SIZE })
 
-  console.log(paginated[0].props)
+  // removes first page (handled separately as the home page)
+  paginated.splice(0, 1)
 
   return paginated.map(({ props, params }) => {
-    console.log(props)
     return {
-      props: { ...props, page: params.page || 1 },
-      params: { page: params.page ? `page/${params.page}` : `page/1` },
+      props,
+      params: {
+        page: `page/${params.page}`,
+      },
     }
   })
 }
@@ -25,5 +32,15 @@ const { page } = await Astro.props
 ---
 
 <Layout title={`Page ${page}`}>
-  <h1>Page {page}</h1>
+  <Header slot="header" section="blog" />
+  <Footer slot="footer" />
+  <BlogList
+    posts={page.data}
+    currentPage={page.currentPage}
+    lastPage={page.lastPage}
+    prevPage={page.currentPage == 2 ? '/' : `/page/${page.currentPage - 1}`}
+    nextPage={page.currentPage == page.lastPage
+      ? undefined
+      : `/page/${page.currentPage + 1}`}
+  />
 </Layout>

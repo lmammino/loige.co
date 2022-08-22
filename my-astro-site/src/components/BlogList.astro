@@ -1,0 +1,26 @@
+---
+import type { PostType } from '../utils/posts'
+
+export interface Props {
+  currentPage: number
+  lastPage: number
+  prevPage?: string
+  nextPage?: string
+  posts: PostType[]
+}
+
+const props = Astro.props as Props
+---
+
+<main>
+  {
+    props.posts.map((post) => (
+      <h1>
+        <a href={`/${post.frontmatter.slug}`}>{post.frontmatter.title}</a>
+      </h1>
+    ))
+  }
+  <p>page {props.currentPage} of {props.lastPage}</p>
+  {props.prevPage && <a href={props.prevPage}>← Newer Posts</a>}
+  {props.nextPage && <a href={props.nextPage}>Older Posts →</a>}
+</main>
