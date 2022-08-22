@@ -27,7 +27,6 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   })
 }
 
-// const { page } = Astro.params
 const { page } = await Astro.props
 ---
 
@@ -39,8 +38,7 @@ const { page } = await Astro.props
     currentPage={page.currentPage}
     lastPage={page.lastPage}
     prevPage={page.currentPage == 2 ? '/' : `/page/${page.currentPage - 1}`}
-    nextPage={page.currentPage == page.lastPage
-      ? undefined
-      : `/page/${page.currentPage + 1}`}
+    nextPage={page.currentPage != page.lastPage &&
+    `/page/${page.currentPage + 1}`}
   />
 </Layout>

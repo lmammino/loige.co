@@ -5,7 +5,7 @@ export interface Props {
   currentPage: number
   lastPage: number
   prevPage?: string
-  nextPage?: string
+  nextPage?: string | false
   posts: PostType[]
 }
 
@@ -21,6 +21,6 @@ const props = Astro.props as Props
     ))
   }
   <p>page {props.currentPage} of {props.lastPage}</p>
-  {props.prevPage && <a href={props.prevPage}>← Newer Posts</a>}
-  {props.nextPage && <a href={props.nextPage}>Older Posts →</a>}
+  <p>{props.prevPage && <a href={props.prevPage}>← Newer Posts</a>}</p>
+  <p>{props.nextPage && <a href={props.nextPage}>Older Posts →</a>}</p>
 </main>
