@@ -1,8 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro'
+import Header from '../components/Header.astro'
 ---
 
-<Layout title="Speaking">
-  <h1>Hello World</h1>
-  <p>This is the about page</p>
+<Layout title="About">
+  <Header slot="header" section="about" />
+  <h1>About</h1>
+  <p>This is the About page</p>
 </Layout>

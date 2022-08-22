@@ -1,0 +1,150 @@
+---
+import site from '../site'
+---
+
+<footer>
+  <span class="footer-border"></span>
+  <div class="footer-wrapper">
+    <div class="footer-columns">
+      <div class="footer-full-column">
+        <div class="footer-list-title">Loige.co</div>
+        <p class="footer-copyright">
+          Copyright © Luciano Mammino {site.startYear}-{site.currentYear}.
+        </p>
+        <p class="footer-copyright">
+          Built with <a
+            rel="nofollow noopener noreferrer"
+            target="_blank"
+            href="https://astro.build/"
+          >
+            Astro
+          </a>, Coffee and a lot of <span class="heart">❤︎</span>.
+        </p>
+        <p class="footer-copyright">
+          Loige logo designed by <a
+            rel="nofollow noopener noreferrer"
+            target="_blank"
+            href="http://andreamangano.com"
+            >Andrea Mangano
+          </a>.
+        </p>
+        <p class="footer-copyright">
+          Hosted on <a
+            rel="nofollow noopener noreferrer"
+            target="_blank"
+            href="https://github.com/lmammino/loige.co"
+            >GitHub
+          </a>, accelerated by <a
+            rel="nofollow noopener noreferrer"
+            target="_blank"
+            href="https://www.cloudflare.com"
+            >Cloudflare
+          </a>.
+        </p>
+        <p class="footer-copyright">
+          Theme inspired by <a
+            rel="nofollow noopener noreferrer"
+            target="_blank"
+            href="https://reactjs.org/docs/"
+            >React documentation
+          </a>.
+        </p>
+        <p class="footer-copyright">
+          Icons by <a
+            rel="nofollow noopener noreferrer"
+            target="_blank"
+            href="https://fontawesome.com/"
+            >Font Awesome
+          </a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style lang="scss">
+  footer {
+    background-color: #20232a;
+    color: #ffffff;
+    padding-top: 30px;
+    padding-bottom: 50px;
+    position: relative;
+  }
+
+  .footer-border {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    height: 2px;
+    display: block;
+    transform-origin: left center 0px;
+    transform: scaleX(1);
+    z-index: 50;
+    transition: transform 400ms ease 100ms;
+    background: linear-gradient(90deg, #46c9e5, #d26ac2);
+  }
+
+  .footer-wrapper {
+    padding-left: 20px;
+    padding-right: 20px;
+    max-width: 1260px;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media (min-width: 780px) {
+      width: 90%;
+    }
+  }
+
+  .footer-columns {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .footer-full-column {
+    flex: 1 auto;
+    margin-bottom: 1em;
+    padding-right: 1em;
+    width: 100%;
+
+    @media (min-width: 780px) {
+      width: auto;
+    }
+  }
+
+  .footer-list-title {
+    color: #46c9e5;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 3;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .footer-copyright {
+    font-size: 0.8em;
+    padding: 4px 0 0 0;
+    color: #ccc;
+
+    a {
+      color: inherit;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #46c9e5;
+      text-decoration: underline;
+    }
+  }
+
+  .heart {
+    color: #d26ac2;
+
+    &:hover {
+      color: red;
+    }
+  }
+</style>

@@ -1,11 +1,7 @@
 ---
+import site from '../site'
 import Logo from './Logo.astro'
 import NavLink from './NavLink.astro'
-import TwitterIcon from './icons/Twitter.astro'
-import TwitchIcon from './icons/Twitch.astro'
-import YoutubeIcon from './icons/Youtube.astro'
-import LinkedinIcon from './icons/Linkedin.astro'
-import GithubIcon from './icons/Github.astro'
 
 export interface Props {
   section?: 'blog' | 'speaking' | 'about'
@@ -19,53 +15,25 @@ const { section } = Astro.props as Props
     <div class="flex-container">
       <Logo class="logo" />
       <nav>
-        <NavLink href="/" active={true || section === 'blog'}>Blog</NavLink>
+        <NavLink href="/" active={section === 'blog'}>Blog</NavLink>
         <NavLink href="/speaking" active={section === 'speaking'}
           >Speaking
         </NavLink>
         <NavLink href="/about" active={section === 'about'}>About</NavLink>
       </nav>
       <div class="social-links-container">
-        <a
-          class="social-link"
-          rel="nofollow"
-          href="https://twitter.com/loige"
-          title="Luciano's Twitter profile"
-        >
-          <TwitterIcon className="social-icon" />
-        </a>
-        <a
-          class="social-link"
-          rel="nofollow"
-          href="https://twitch.tv/loige"
-          title="Luciano's Twitch profile"
-        >
-          <TwitchIcon className="social-icon" />
-        </a>
-        <a
-          class="social-link"
-          rel="nofollow"
-          href="https://www.youtube.com/loige"
-          title="Luciano's YouTube profile"
-        >
-          <YoutubeIcon className="social-icon" />
-        </a>
-        <a
-          class="social-link"
-          rel="nofollow"
-          href="https://www.linkedin.com/in/lucianomammino/"
-          title="Luciano's LinkedIn profile"
-        >
-          <LinkedinIcon className="social-icon" />
-        </a>
-        <a
-          class="social-link"
-          rel="nofollow"
-          href="https://github.com/lmammino"
-          title="Luciano's GitHub profile"
-        >
-          <GithubIcon className="social-icon" />
-        </a>
+        {
+          site.social.map(({ name, href, Icon }) => (
+            <a
+              class="social-link"
+              rel="nofollow"
+              href={href}
+              title={`Luciano's ${name} profile`}
+            >
+              <Icon className="social-icon" />
+            </a>
+          ))
+        }
       </div>
     </div>
   </div>
@@ -73,7 +41,7 @@ const { section } = Astro.props as Props
 </header>
 
 <style lang="scss">
-  :root {
+  header {
     background-color: rgba(32, 35, 42, 0.95);
     color: #ffffff;
     display: block;

@@ -1,0 +1,19 @@
+/* TEAM */
+
+Author: Luciano Mammino
+Site: https://loige.co
+Twitter: @loige
+Location: Dublin, Ireland
+
+
+/* THANKS */
+
+Loige logo designed by Andrea Mangano (https://andreamangano.com/).
+
+
+/* SITE */
+
+Built with Gatsby, Coffee and a lot of ❤︎.
+Hosted on GitHub, accelerated by Clouflare.
+Theme inspired by React documentation.
+Icons by Font Awesome.
