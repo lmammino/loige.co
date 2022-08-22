@@ -7,7 +7,7 @@ import site from '../site'
   <div class="footer-wrapper">
     <div class="footer-columns">
       <div class="footer-full-column">
-        <div class="footer-list-title">Loige.co</div>
+        <div class="footer-list-title footer-list-title-accent">Loige.co</div>
         <p class="footer-copyright">
           Copyright © Luciano Mammino {site.startYear}-{site.currentYear}.
         </p>
@@ -57,6 +57,52 @@ import site from '../site'
             >Font Awesome
           </a>.
         </p>
+      </div>
+
+      <div class="footer-column">
+        <div class="footer-list">
+          <div class="footer-list-title">Explore</div>
+          <a class="footer-list-link" href="/">Blog</a>
+          <a class="footer-list-link" href="/speaking">Speaking</a>
+          <a class="footer-list-link" href="/about">About</a>
+          <a class="footer-list-link" href="/comment-policy">Comment Policy</a>
+        </div>
+      </div>
+
+      <div class="footer-column">
+        <div class="footer-list">
+          <div class="footer-list-title">My projects</div>
+          {
+            site.projects.map(({ href, name }) => (
+              <a
+                class="footer-list-link"
+                href={href}
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+              >
+                {name}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="footer-column">
+        <div class="footer-list">
+          <div class="footer-list-title">Follow me</div>
+          {
+            site.social.map(({ name, href, Icon }) => (
+              <a
+                class="footer-list-link"
+                href={href}
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+              >
+                <Icon /> {name}
+              </a>
+            ))
+          }
+        </div>
       </div>
     </div>
   </div>
@@ -114,13 +160,23 @@ import site from '../site'
     }
   }
 
+  .footer-column {
+    flex: 1 auto;
+    margin-bottom: 1em;
+    padding-right: 1em;
+  }
+
   .footer-list-title {
-    color: #46c9e5;
+    color: #d26ac2;
     font-size: 14px;
     font-weight: bold;
     line-height: 3;
     text-transform: uppercase;
     letter-spacing: 0.08em;
+  }
+
+  .footer-list-title-accent {
+    color: #46c9e5;
   }
 
   .footer-copyright {
@@ -137,6 +193,21 @@ import site from '../site'
     a:hover {
       color: #46c9e5;
       text-decoration: underline;
+    }
+  }
+
+  .footer-list {
+    display: inline-flex;
+    flex-direction: column;
+  }
+
+  .footer-list-link {
+    color: inherit;
+    line-height: 2;
+    text-decoration: none;
+
+    &:hover {
+      color: #46c9e5;
     }
   }
 
