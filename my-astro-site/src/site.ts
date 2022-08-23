@@ -5,6 +5,10 @@ import LinkedinIcon from './components/icons/Linkedin.astro'
 import GithubIcon from './components/icons/Github.astro'
 
 const site = {
+  hero: {
+    title: 'Luciano Mammino',
+    subtitle: 'Cloud developer, entrepreneur, fighter, butterfly maker!',
+  },
   startYear: 2014,
   currentYear: new Date().getFullYear(),
   social: [

@@ -1,5 +1,7 @@
 ---
+import Hero from './Hero.astro'
 import type { PostType } from '../utils/posts'
+import site from '../site'
 
 export interface Props {
   currentPage: number
@@ -12,6 +14,10 @@ export interface Props {
 const props = Astro.props as Props
 ---
 
+<Hero variations={['bottomRightBg']}>
+  <h1>{site.hero.title}</h1>
+  <h2>{site.hero.subtitle}</h2>
+</Hero>
 <main>
   {
     props.posts.map((post) => (
