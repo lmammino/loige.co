@@ -11,7 +11,7 @@ const posts = await Astro.glob<PostType>('../../content/posts/**/*.(md|mdx)')
 posts.sort(sortByFrontmatterDate)
 const lastPage = Math.ceil(posts.length / PAGE_SIZE)
 const currentPage = 1
-const nextPage = '/page/2'
+const nextPage = 2
 posts.splice(PAGE_SIZE) // keeps only the items for the first page
 ---
 

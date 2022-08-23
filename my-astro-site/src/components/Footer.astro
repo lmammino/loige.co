@@ -1,5 +1,6 @@
 ---
 import site from '../site'
+import * as links from '../utils/links'
 ---
 
 <footer>
@@ -62,10 +63,12 @@ import site from '../site'
       <div class="footer-column">
         <div class="footer-list">
           <div class="footer-list-title">Explore</div>
-          <a class="footer-list-link" href="/">Blog</a>
-          <a class="footer-list-link" href="/speaking">Speaking</a>
-          <a class="footer-list-link" href="/about">About</a>
-          <a class="footer-list-link" href="/comment-policy">Comment Policy</a>
+          <a class="footer-list-link" href={links.blog()}>Blog</a>
+          <a class="footer-list-link" href={links.speaking()}>Speaking</a>
+          <a class="footer-list-link" href={links.about()}>About</a>
+          <a class="footer-list-link" href={links.commentPolicy()}
+            >Comment Policy
+          </a>
         </div>
       </div>
 
