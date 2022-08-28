@@ -1,12 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro'
+import SEO from '../components/SEO.astro'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
 import ResponsiveWrapper from '../components/ResponsiveWrapper.astro'
 import ArticleContainer from '../components/ArticleContainer.astro'
 ---
 
-<Layout title="Comment Policy at loige.co">
+<Layout>
+  <SEO title="Comment Policy at loige.co" slot="seo" />
   <Header slot="header" />
   <Footer slot="footer" />
   <ResponsiveWrapper>

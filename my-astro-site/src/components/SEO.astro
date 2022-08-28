@@ -1,0 +1,154 @@
+---
+import site from '../site'
+import type { PostFrontmatter } from '../utils/Frontmatter'
+
+export interface Props {
+  title?: string
+  path?: string
+  frontmatter?: PostFrontmatter
+  isBlogPost?: boolean
+}
+
+const defaultProps = {
+  path: '',
+  pageData: undefined,
+  isBlogPost: false,
+}
+
+type GetSchemaOrgJSONLDConfig = {
+  isBlogPost: boolean
+  url: string
+  title: string
+  image: string
+  description: string
+  datePublished: string
+}
+
+const getSchemaOrgJSONLD = ({
+  isBlogPost,
+  url,
+  title,
+  image,
+  description,
+  datePublished,
+}: GetSchemaOrgJSONLDConfig) => {
+  const schemaOrgJSONLD = [
+    {
+      '@context': 'http://schema.org',
+      '@type': 'WebSite',
+      url,
+      name: title,
+      alternateName: site.metadata.title,
+    },
+  ]
+
+  return isBlogPost
+    ? [
+        ...schemaOrgJSONLD,
+        {
+          '@context': 'http://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            {
+              '@type': 'ListItem',
+              position: 1,
+              item: {
+                '@id': url,
+                name: title,
+                image,
+              },
+            },
+          ],
+        },
+        {
+          '@context': 'http://schema.org',
+          '@type': 'BlogPosting',
+          url,
+          name: title,
+          alternateName: site.metadata.title,
+          headline: title,
+          image: {
+            '@type': 'ImageObject',
+            url: image,
+          },
+          description,
+          author: {
+            '@type': 'Person',
+            name: 'Luciano Mammino',
+          },
+          publisher: {
+            '@type': 'Organization',
+            url: site.metadata.siteUrl,
+            name: 'Luciano Mammino',
+            logo: {
+              '@context': 'http://schema.org',
+              itemtype: 'https://schema.org/ImageObject',
+              url: 'https://loige.co/favicon.ico',
+            },
+          },
+          mainEntityOfPage: {
+            '@type': 'WebSite',
+            '@id': site.metadata.siteUrl,
+          },
+          datePublished,
+        },
+      ]
+    : schemaOrgJSONLD
+}
+
+const props = { ...defaultProps, ...Astro.props } as Props
+const title = props.title || props.frontmatter?.title || site.metadata.title
+const description =
+  props.frontmatter?.meta_description ||
+  props.frontmatter?.excerpt ||
+  site.metadata.description
+const pageImageFb =
+  props.frontmatter?.fb_img &&
+  `${site.metadata.siteUrl}${props.frontmatter.fb_img.src}`
+const pageImageTw =
+  props.frontmatter?.tw_img &&
+  `${site.metadata.siteUrl}${props.frontmatter.tw_img.src}`
+const image =
+  pageImageFb ||
+  pageImageTw ||
+  `${site.metadata.siteUrl}${site.metadata.defaultImage.src}`
+const url = `${site.metadata.siteUrl}${props.path}`
+const datePublished = (props.isBlogPost && props.frontmatter?.date) || ''
+const schemaOrgJSONLD = getSchemaOrgJSONLD({
+  isBlogPost: props.isBlogPost || false,
+  url,
+  title,
+  image,
+  description,
+  datePublished,
+})
+---
+
+<title>{title}</title>
+<link rel="canonical" href={url} />
+<meta name="description" content={description} />
+<meta name="image" content={image} />
+
+{/* Schema.org tags */}
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify(schemaOrgJSONLD, null, 2)}
+></script>
+
+{/* OpenGraph tags */}
+<meta property="og:url" content={url} />
+<meta property="og:type" content={props.isBlogPost ? 'article' : 'website'} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={pageImageFb || image} />
+<meta property="fb:app_id" content={site.metadata.fbAppId} />
+
+{/* Twitter Card tags */}
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:creator" content={site.metadata.twitterProfile} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={pageImageTw || image} />
+
+{/* Allow passing extra data to helmet from the outside */}
+<slot />

@@ -1,3 +1,5 @@
+import type { ImageMetadata } from '@astrojs/image'
+import defaultImage from './components/images/page-image-fb.jpg'
 import TwitterIcon from './components/icons/Twitter.astro'
 import TwitchIcon from './components/icons/Twitch.astro'
 import YoutubeIcon from './components/icons/Youtube.astro'
@@ -5,6 +7,18 @@ import LinkedinIcon from './components/icons/Linkedin.astro'
 import GithubIcon from './components/icons/Github.astro'
 
 const site = {
+  metadata: {
+    title:
+      'Luciano Mammino "Loige" - FullStack & Cloud developer, fighter, butterfly maker!',
+    author: 'Luciano Mammino',
+    description:
+      'The website of Luciano Mammino a.k.a. Loige: FullStack & Cloud developer, fighter, butterfly maker',
+    siteUrl: 'https://loige.co/',
+    defaultImage: defaultImage as unknown as ImageMetadata,
+    twitterProfile: 'loige',
+    disqusShortName: 'loige',
+    fbAppId: '231187154413670'
+  },
   hero: {
     title: 'Luciano Mammino',
     subtitle: 'Cloud developer, entrepreneur, fighter, butterfly maker!',

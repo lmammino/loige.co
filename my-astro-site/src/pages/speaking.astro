@@ -1,9 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import Header from '../components/Header.astro'
+import SEO from '../components/SEO.astro'
 ---
 
-<Layout title="Speaking">
+<Layout>
+  <SEO title="Speaking" slot="seo" />
   <Header slot="header" section="speaking" />
   <h1>Speaking</h1>
   <p>This is the Speaking page</p>

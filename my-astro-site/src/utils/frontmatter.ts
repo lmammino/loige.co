@@ -1,3 +1,6 @@
+import type { ImageMetadata } from '@astrojs/image';
+
+
 export type PostFrontmatter = {
   uuid: string;
   title: string;
@@ -7,9 +10,9 @@ export type PostFrontmatter = {
   updated: string;
   author: string;
   author_slug: string;
-  header_img?: string;
-  fb_img?: string;
-  tw_img?: string;
+  header_img?: ImageMetadata;
+  fb_img?: ImageMetadata;
+  tw_img?: ImageMetadata;
   status?: 'published' | 'draft' | 'hidden';
   language?: 'en_US' | 'it_IT';
   meta_title?: string;

@@ -1,5 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import SEO from '../components/SEO.astro'
 
 export async function getStaticPaths() {
   const posts = await Astro.glob('../../content/posts/**/*.(md|mdx)')
@@ -19,7 +22,10 @@ const { slug } = Astro.params
 const { frontmatter, Content } = await Astro.props
 ---
 
-<Layout title={frontmatter.title}>
+<Layout>
+  <SEO frontmatter={frontmatter} slot="seo" />
+  <Header slot="header" section="blog" />
+  <Footer slot="footer" />
   <p>{slug}</p>
   <Content />
 </Layout>

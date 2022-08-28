@@ -2,6 +2,7 @@
 import { sortByFrontmatterDate, PAGE_SIZE } from '../utils/posts'
 import type { PostType } from '../utils/posts'
 
+import SEO from '../components/SEO.astro'
 import Layout from '../layouts/Layout.astro'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
@@ -15,7 +16,8 @@ const nextPage = 2
 posts.splice(PAGE_SIZE) // keeps only the items for the first page
 ---
 
-<Layout title="Luciano's blog">
+<Layout>
+  <SEO slot="seo" />
   <Header slot="header" section="blog" />
   <Footer slot="footer" />
   <BlogList

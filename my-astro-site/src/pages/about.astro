@@ -1,10 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro'
+import SEO from '../components/SEO.astro'
 import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
 ---
 
-<Layout title="About">
+<Layout>
+  <SEO title="About" slot="seo" />
   <Header slot="header" section="about" />
+  <Footer slot="footer" />
   <h1>About</h1>
   <p>This is the About page</p>
 </Layout>

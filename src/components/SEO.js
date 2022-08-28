@@ -25,55 +25,55 @@ const getSchemaOrgJSONLD = ({
 
   return isBlogPost
     ? [
-      ...schemaOrgJSONLD,
-      {
-        '@context': 'http://schema.org',
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          {
-            '@type': 'ListItem',
-            position: 1,
-            item: {
-              '@id': url,
-              name: title,
-              image
+        ...schemaOrgJSONLD,
+        {
+          '@context': 'http://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            {
+              '@type': 'ListItem',
+              position: 1,
+              item: {
+                '@id': url,
+                name: title,
+                image
+              }
             }
-          }
-        ]
-      },
-      {
-        '@context': 'http://schema.org',
-        '@type': 'BlogPosting',
-        url,
-        name: title,
-        alternateName: siteMetadata.title,
-        headline: title,
-        image: {
-          '@type': 'ImageObject',
-          url: image
+          ]
         },
-        description,
-        author: {
-          '@type': 'Person',
-          name: 'Luciano Mammino'
-        },
-        publisher: {
-          '@type': 'Organization',
-          url: siteMetadata.siteUrl,
-          name: 'Luciano Mammino',
-          logo: {
-            '@context': 'http://schema.org',
-            itemtype: 'https://schema.org/ImageObject',
-            url: 'https://loige.co/favicon.ico'
-          }
-        },
-        mainEntityOfPage: {
-          '@type': 'WebSite',
-          '@id': siteMetadata.siteUrl
-        },
-        datePublished
-      }
-    ]
+        {
+          '@context': 'http://schema.org',
+          '@type': 'BlogPosting',
+          url,
+          name: title,
+          alternateName: siteMetadata.title,
+          headline: title,
+          image: {
+            '@type': 'ImageObject',
+            url: image
+          },
+          description,
+          author: {
+            '@type': 'Person',
+            name: 'Luciano Mammino'
+          },
+          publisher: {
+            '@type': 'Organization',
+            url: siteMetadata.siteUrl,
+            name: 'Luciano Mammino',
+            logo: {
+              '@context': 'http://schema.org',
+              itemtype: 'https://schema.org/ImageObject',
+              url: 'https://loige.co/favicon.ico'
+            }
+          },
+          mainEntityOfPage: {
+            '@type': 'WebSite',
+            '@id': siteMetadata.siteUrl
+          },
+          datePublished
+        }
+      ]
     : schemaOrgJSONLD
 }
 
