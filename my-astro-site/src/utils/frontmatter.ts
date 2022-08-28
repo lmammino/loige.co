@@ -15,4 +15,6 @@ export type PostFrontmatter = {
   meta_title?: string;
   meta_description?: string;
   tags: string[];
+  timeToRead: number;
+  excerpt: string;
 }
