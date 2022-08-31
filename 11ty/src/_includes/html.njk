@@ -1,0 +1,18 @@
+<html lang="en">
+  <head>
+    {%- block head -%}
+      <meta charSet="utf-8"/>
+      <meta httpEquiv="x-ua-compatible" content="ie=edge"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+      <title>
+        {% block head_title %}{% endblock head_title %}
+      </title>
+      <link rel="stylesheet" href="{{ '../src/_includes/global.scss' | sass }}"/>
+      {%- block head_end %}{% endblock head_end -%}
+    {%- endblock head -%}
+  </head>
+  <body>
+    {%- block body %}{% endblock body -%}
+    {%- block body_end %}{% endblock body_end -%}
+  </body>
+</html>

@@ -1,0 +1,7 @@
+{%- macro navlink(content, href, active) -%}
+  <a class="navlink{%- if active %} navlink__active{%- endif -%}" href="{{-href-}}">
+    {%- if active -%}
+      <span class="navlink__underline"></span>{%- endif -%}
+    {{- content | safe -}}
+  </a>
+{%- endmacro -%}
