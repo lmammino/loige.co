@@ -91,3 +91,6 @@
 - title: "A Recipe to Migrate and Scale Monoliths in the Cloud"
   link: "https://www.infoq.com/articles/cloud-migrate-scale/"
   date: "2022-05-13T18:00:00.000Z"
+- title: "A serverless architecture for high performance financial modelling"
+  link: "https://aws.amazon.com/blogs/hpc/a-serverless-architecture-for-high-performance-financial-modelling/"
+  date: "2022-09-06T18:00:00"
