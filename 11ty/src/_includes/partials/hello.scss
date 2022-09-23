@@ -1,0 +1,42 @@
+.hello {
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 1em;
+  border-radius: 1em;
+  margin: -2em 0 2em 0;
+
+  @media (min-width: 1024px) {
+    margin-top: 0;
+  }
+
+  p,
+  span {
+    line-height: 1.7em;
+    color: #3a4145;
+    max-width: 820px;
+    margin: 0 auto;
+
+    a {
+      color: inherit;
+      font-weight: bold;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .picture {
+    text-align: center;
+    display: block;
+
+    h3 {
+      color: #000;
+    }
+
+    img {
+      border-radius: 50%;
+    }
+  }
+}

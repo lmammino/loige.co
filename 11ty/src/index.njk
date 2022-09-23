@@ -1,7 +1,15 @@
+---
+pagination:
+  data: collections.posts
+  size: 10
+permalink: '{% if pagination.pageNumber > 0 %}/page/{{ pagination.pageNumber + 1 }}/{%else%}/{% endif %}'
+---
 {% extends 'base.njk' %}
 {%- from 'components/hero.njk' import hero -%}
+{%- from 'components/postPreview.njk' import postPreview -%}
 
 {% set section = "blog" %}
+{% set body_class = "home" %}
 
 {% block head_title %}A new website{% endblock head_title %}
 
@@ -13,6 +21,35 @@
 {%block body_content %}
   {{ super() }}
   {{ hero(hero_content, "bottomRightBg") }}
+  <div class="content__container">
+    <section class="content__inner">
+      <div class="content__columns">
+        <main class="content__columns_main-column">
+          <article class="content__article">
+            {% for post in pagination.items %}
+              {{ postPreview(post.data.title, '/' + post.data.permalink, 'excerpt', post.data.date, 'timetoread',  post.data.tags) }}
 
-  <h1>Hello World</h1>
+              <p>{{ post.data.description }}</p>
+              <p>{{ post.data.date }}</p>
+            {% endfor %}
+
+            {% if pagination.href.previous %}
+              <a href="{{ pagination.href.previous }}">Previous page</a>
+            {% endif %}
+
+            {% if pagination.href.next %}
+              <a href="{{ pagination.href.next }}">Next page</a>
+            {% endif %}
+          </article>
+        </main>
+        <aside class="content__sidebar">
+          <div>
+            {%- include 'partials/hello.njk' -%}
+            {%- include 'partials/sidebarAd.njk' -%}
+          </div>
+        </aside>
+      </div>
+    </section>
+  </div>
+
 {% endblock body_content %}

@@ -8,6 +8,7 @@ module.exports = function (eleventyConfig, config = {}) {
     outputPath: 'public',
     minify: process.env.NODE_ENV === 'production',
     sourceMap: true,
+    sourceMapIncludeSources: true,
     includePaths: ['node_modules'],
     watchTarget: `${eleventyConfig.dir.input}/**/*.scss`,
     sass: null
@@ -44,6 +45,7 @@ module.exports = function (eleventyConfig, config = {}) {
     const result = await sass.compileAsync(sourcePath, {
       style: conf.minify ? 'compressed' : 'expanded',
       sourceMap: conf.sourceMap,
+      sourceMapIncludeSources: conf.sourceMapIncludeSources,
       loadPaths
     })
 

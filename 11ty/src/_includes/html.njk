@@ -11,7 +11,7 @@
       {%- block head_end %}{% endblock head_end -%}
     {%- endblock head -%}
   </head>
-  <body>
+  <body {% if body_class %}class="{{body_class}}"{% endif %}>
     {%- block body %}{% endblock body -%}
     {%- block body_end %}{% endblock body_end -%}
   </body>

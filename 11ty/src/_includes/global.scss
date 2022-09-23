@@ -1,8 +1,12 @@
 @use '_includes/partials/header.scss';
 @use '_includes/partials/footer.scss';
+@use '_includes/partials/home.scss';
+@use '_includes/partials/hello.scss';
+@use '_includes/partials/sidebarAd.scss';
 @use '_includes/components/hero.scss';
 @use '_includes/components/logo.scss';
 @use '_includes/components/navlink.scss';
+@use '_includes/components/postPreview.scss';
 
 $char: '#D8DEE9';
 $comment: '#999999';

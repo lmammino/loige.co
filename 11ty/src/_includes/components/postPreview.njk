@@ -1,0 +1,27 @@
+{%- from 'components/images/icons.njk' import tagsSolid -%}
+
+{%- macro postPreview(title, link, excerpt, date, timeToRead, tags) -%}
+  <article class="postPreview">
+    <header>
+      <h3 class="postPreview__title">
+        <a href="{{ link }}">{{ title }}</a>
+      </h3>
+    </header>
+    <section>
+      <p class="postPreview__excerpt">{{ excerpt }}</p>
+    </section>
+    <footer class="postPreview__footer">
+      <img class="postPreview__profilePic" src="/public/images/profile-pic.jpg"
+            alt="Luciano Mammino's Profile picture"/>
+      <a href="/about">Luciano Mammino</a>
+      <span class="postPreview__tagsContainer">
+        {{ tagsSolid() }}
+        {% for tag in tags %}
+          <a href="/tags/{{ tag }}">{{ tag }}</a>
+          {% if not loop.last %}
+            <span class="tag-separator">, </span>{% endif %}
+        {% endfor %}
+      </span>
+    </footer>
+  </article>
+{%- endmacro -%}

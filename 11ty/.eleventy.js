@@ -9,6 +9,14 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(htmlminPlugin)
   eleventyConfig.addPlugin(sassPlugin, { sass })
 
+  eleventyConfig.addCollection('posts', function(collectionApi) {
+    return collectionApi.getFilteredByGlob('src/posts/**/*.md').reverse()
+  })
+
+  eleventyConfig.addCollection('speaking', function(collectionApi) {
+    return collectionApi.getFilteredByGlob('src/speaking/**/*.md').reverse()
+  })
+
   return {
     dir: {
       input: 'src',
