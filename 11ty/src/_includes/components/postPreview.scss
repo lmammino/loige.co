@@ -92,3 +92,33 @@
     vertical-align: text-bottom;
   }
 }
+
+.postPreview__calendarViewContainer {
+  vertical-align: middle;
+  font-size: inherit;
+  margin: 0 0.5em;
+  display: inline-block;
+
+  span {
+    vertical-align: text-bottom;
+  }
+
+  .svg-inline {
+    margin: 0 0.25em 0 0;
+  }
+}
+
+.postPreview__readingTimeContainer {
+  vertical-align: middle;
+  font-size: inherit;
+  margin: 0 0.5em;
+  display: inline-block;
+
+  span {
+    vertical-align: text-bottom;
+  }
+
+  .svg-inline {
+    margin: 0 0.25em 0 0;
+  }
+}

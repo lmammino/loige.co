@@ -1,4 +1,4 @@
-{%- from 'components/images/icons.njk' import tagsSolid -%}
+{%- from 'components/images/icons.njk' import tagsSolid, calendarRegular, eyeRegular -%}
 
 {%- macro postPreview(title, link, excerpt, date, timeToRead, tags) -%}
   <article class="postPreview">
@@ -16,11 +16,19 @@
       <a href="/about">Luciano Mammino</a>
       <span class="postPreview__tagsContainer">
         {{ tagsSolid() }}
-        {% for tag in tags %}
-          <a href="/tags/{{ tag }}">{{ tag }}</a>
-          {% if not loop.last %}
-            <span class="tag-separator">, </span>{% endif %}
-        {% endfor %}
+        {% for tag in tags -%}
+          <a href="/tags/{{ tag }}">#{{ tag }}</a>
+          {%- if not loop.last -%}
+            <span class="tag-separator">, </span>{%- endif %}
+        {%- endfor -%}
+      </span>
+      <span class="postPreview__calendarViewContainer">
+        {{ calendarRegular() }}
+        <span>{{ date | dateFormat('dd LLLL, yyyy') }}</span>
+      </span>
+      <span class="postPreview__readingTimeContainer">
+        {{ eyeRegular() }}
+        <span>{{ timeToRead }} min</span>
       </span>
     </footer>
   </article>

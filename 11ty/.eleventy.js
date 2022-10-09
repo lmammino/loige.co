@@ -1,15 +1,22 @@
 const yaml = require('js-yaml')
 const sass = require('sass')
+const dateUtilsPlugin = require('./plugins/dateutils')
+const excerptPlugin = require('./plugins/excerpt')
 const htmlminPlugin = require('./plugins/htmlmin')
+const readingTimePlugin = require('./plugins/readingtime')
 const sassPlugin = require('./plugins/sass')
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addDataExtension("yml", contents => yaml.load(contents));
   eleventyConfig.addPassthroughCopy({ 'public': 'public' })
+  eleventyConfig.addPlugin(dateUtilsPlugin)
+  eleventyConfig.addPlugin(excerptPlugin)
   eleventyConfig.addPlugin(htmlminPlugin)
+  eleventyConfig.addPlugin(readingTimePlugin)
   eleventyConfig.addPlugin(sassPlugin, { sass })
 
   eleventyConfig.addCollection('posts', function(collectionApi) {
+    console.log(collectionApi.getFilteredByGlob('src/posts/**/*.md').reverse())
     return collectionApi.getFilteredByGlob('src/posts/**/*.md').reverse()
   })
 

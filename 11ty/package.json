@@ -15,9 +15,12 @@
   "license": "MIT",
   "devDependencies": {
     "@11ty/eleventy": "^2.0.0-canary.15",
+    "date-fns": "^2.29.3",
     "html-minifier": "^4.0.0",
     "js-yaml": "^4.1.0",
     "mkdirp": "^1.0.4",
-    "sass": "^1.54.9"
+    "reading-time": "^1.5.0",
+    "sass": "^1.54.9",
+    "text-clipper": "^2.2.0"
   }
 }

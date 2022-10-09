@@ -27,10 +27,7 @@ permalink: '{% if pagination.pageNumber > 0 %}/page/{{ pagination.pageNumber + 1
         <main class="content__columns_main-column">
           <article class="content__article">
             {% for post in pagination.items %}
-              {{ postPreview(post.data.title, '/' + post.data.permalink, 'excerpt', post.data.date, 'timetoread',  post.data.tags) }}
-
-              <p>{{ post.data.description }}</p>
-              <p>{{ post.data.date }}</p>
+              {{ postPreview(post.data.title, '/' + post.data.permalink, (post.templateContent | excerpt), post.data.date, (post.templateContent | readingTime),  post.data.tags) }}
             {% endfor %}
 
             {% if pagination.href.previous %}
