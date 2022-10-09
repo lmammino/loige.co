@@ -1,0 +1,7 @@
+{%- macro hero(content, body_hero_extra_classes="", body_hero_bg="/public/default-bg.jpg") -%}
+  <div class="hero {{ body_hero_extra_classes | default("") }}" style="background-image: url('{{ body_hero_bg }}')">
+    <div class="hero__content">
+      {{ content | safe }}
+    </div>
+  </div>
+{%- endmacro -%}

@@ -1,0 +1,32 @@
+.navlink {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: #ffffff;
+  transition: color 0.2s ease-out;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-weight: 300;
+  text-decoration: none;
+
+  @media (min-width: 1280px) {
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 18px;
+  }
+
+  &.navlink__active {
+    color: #46c9e5;
+    position: relative;
+  }
+
+  .navlink__underline {
+    position: absolute;
+    bottom: -1px;
+    height: 4px;
+    left: 0px;
+    right: 0px;
+    z-index: 1;
+    background: #46c9e5;
+  }
+}

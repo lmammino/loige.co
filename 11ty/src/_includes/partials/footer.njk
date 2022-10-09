@@ -1,0 +1,61 @@
+{%- from 'components/images/social.njk' import icon -%}
+
+<footer class="footer">
+  <span class="footer__border"></span>
+  <div class="footer__wrapper">
+    <div class="footer__columns">
+
+      <div class="footer__full-column">
+        <div class="footer__list-title footer__list-title--accent">Loige.co</div>
+        <p class="footer__copyright">
+          Copyright © Luciano Mammino {{site.startYear}}-{{site.currentYear}}
+        </p>
+        <p class="footer__copyright">
+          Built with <a rel="nofollow noopener noreferrer" target="_blank" href="https://www.11ty.dev/">Eleventy</a>, <a rel="nofollow noopener noreferrer" target="_blank" href="https://vitejs.dev/">Vite</a>, Coffee, Pizza and a lot of <span class="footer__heart">❤︎</span>.
+        </p>
+        <p class="footer__copyright">
+          Loige logo designed by <a rel="nofollow noopener noreferrer" target="_blank" href="http://andreamangano.com">Andrea Mangano</a>.
+        </p>
+        <p class="footer__copyright">
+          Hosted on <a rel="nofollow noopener noreferrer" target="_blank" href="https://github.com/lmammino/loige.co">GitHub</a>, accelerated by <a rel="nofollow noopener noreferrer" target="_blank" href="https://www.cloudflare.com">Cloudflare</a>.
+        </p>
+        <p class="footer__copyright">
+          Theme inspired by <a rel="nofollow noopener noreferrer" target="_blank" href="https://reactjs.org/docs/">React documentation</a>.
+        </p>
+        <p class="footer__copyright">
+          Icons by <a rel="nofollow noopener noreferrer" target="_blank" href="https://fontawesome.com/">Font Awesome</a>.
+        </p>
+      </div>
+
+      <div class="footer__column">
+        <div class="footer__list">
+          <div class="footer__list-title">Explore</div>
+          <a class="footer__list-link" href="/">Blog</a>
+          <a class="footer__list-link" href="/speaking">Speaking</a>
+          <a class="footer__list-link" href="/about">About</a>
+          <a class="footer__list-link" href="/comment-policy">Comment Policy</a>
+        </div>
+      </div>
+
+      <div class="footer__column">
+        <div class="footer__list">
+          <div class="footer__list-title">My Projects</div>
+          {% for project in sideProjects %}
+            <a class="footer__list-link" href="{{project.link}}">{{project.name}}</a>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="footer__column">
+        <div class="footer__list">
+          <div class="footer__list-title">Follow me</div>
+          {% for social in site.social %}
+            <a class="footer__list-link" href="{{social.href}}">{{ icon(social.icon) }}
+              {{social.name}}</a>
+          {% endfor %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>

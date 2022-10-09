@@ -1,0 +1,22 @@
+{%- from 'components/navlink.njk' import navlink -%}
+{%- from 'components/logo.njk' import logo -%}
+{%- from 'components/images/social.njk' import icon -%}
+
+<header class="header">
+  <div class="header__center-container">
+    <div class="header__flex-container">
+      {{ logo() }}
+      <nav class="header__nav">
+        {{ navlink('Blog', '/', section == 'blog') }}
+        {{ navlink('Speaking', '/speaking', section == 'speaking') }}
+        {{ navlink('About', '/about', section == 'about') }}
+      </nav>
+      <div class="header__social-links-container">
+        {%- for social in site.social %}
+          <a rel="nofollow" class="header__social-link" href="{{social.href}}">{{- icon(social.icon, "Luciano's " + social.name + " profile") -}}</a>
+        {% endfor -%}
+      </div>
+    </div>
+  </div>
+  <span class="header__border"></span>
+</header>

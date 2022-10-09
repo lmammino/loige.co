@@ -1,0 +1,25 @@
+.logo {
+  color: #46c9e5;
+  display: flex;
+  margin-right: 10px;
+  height: 100%;
+  text-decoration: none;
+  flex-direction: row;
+  align-items: center;
+
+  @media (min-width: 600px) {
+    width: calc(100% / 6);
+  }
+}
+
+.logo__text {
+  margin-left: 10px;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 20px;
+}
+
+.logo__img {
+  display: inline-block;
+  vertical-align: top;
+}

@@ -1,0 +1,18 @@
+{% extends 'base.njk' %}
+{%- from 'components/hero.njk' import hero -%}
+
+{% set section = "blog" %}
+
+{% block head_title %}A new website{% endblock head_title %}
+
+{% set hero_content %}
+<h1>Luciano Mammino</h1>
+<h2>Cloud developer, entrepreneur, fighter, butterfly maker!</h2>
+{% endset %}
+
+{%block body_content %}
+  {{ super() }}
+  {{ hero(hero_content, "bottomRightBg") }}
+
+  <h1>Hello World</h1>
+{% endblock body_content %}
