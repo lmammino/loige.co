@@ -8,7 +8,7 @@ const sassPlugin = require('./plugins/sass')
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addDataExtension("yml", contents => yaml.load(contents));
-  eleventyConfig.addPassthroughCopy({ 'public': 'public' })
+  eleventyConfig.addPassthroughCopy({static: '.'})
   eleventyConfig.addPlugin(dateUtilsPlugin)
   eleventyConfig.addPlugin(excerptPlugin)
   eleventyConfig.addPlugin(htmlminPlugin)

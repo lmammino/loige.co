@@ -1,3 +1,5 @@
+const eleventyPkg = require('@11ty/eleventy/package.json')
+
 module.exports = {
   metadata: {
     title:
@@ -6,10 +8,12 @@ module.exports = {
     description:
       'The website of Luciano Mammino a.k.a. Loige: FullStack & Cloud developer, fighter, butterfly maker',
     siteUrl: 'https://loige.co/',
-    // defaultImage: defaultImage as unknown as ImageMetadata,
     twitterProfile: 'loige',
     disqusShortName: 'loige',
-    fbAppId: '231187154413670'
+    fbAppId: '231187154413670',
+    analyticsId: 'UA-47248506-1',
+    themeColor: '#20232a',
+    generator: `Eleventy v${eleventyPkg.version}`
   },
   hero: {
     title: 'Luciano Mammino',

@@ -7,6 +7,7 @@ permalink: '{% if pagination.pageNumber > 0 %}/page/{{ pagination.pageNumber + 1
 {% extends 'base.njk' %}
 {%- from 'components/hero.njk' import hero -%}
 {%- from 'components/postPreview.njk' import postPreview -%}
+{%- from 'components/pagination.njk' import pagination as paginationComponent -%}
 
 {% set section = "blog" %}
 {% set body_class = "home" %}
@@ -29,14 +30,7 @@ permalink: '{% if pagination.pageNumber > 0 %}/page/{{ pagination.pageNumber + 1
             {% for post in pagination.items %}
               {{ postPreview(post.data.title, '/' + post.data.permalink, (post.templateContent | excerpt), post.data.date, (post.templateContent | readingTime),  post.data.tags) }}
             {% endfor %}
-
-            {% if pagination.href.previous %}
-              <a href="{{ pagination.href.previous }}">Previous page</a>
-            {% endif %}
-
-            {% if pagination.href.next %}
-              <a href="{{ pagination.href.next }}">Next page</a>
-            {% endif %}
+            {{ paginationComponent(pagination.pageNumber + 1, pagination.pages.length, pagination.href.previous, pagination.href.next) }}
           </article>
         </main>
         <aside class="content__sidebar">

@@ -1,0 +1,14 @@
+FRAUTH-CONTENTS
+name = "loige"
+pubkey = "knGAv6rUabVcLTDnsw2++i/FRONOawjLklfBQbQRd5g="
+last_updated = "2020-01-19T15:49:41.061595Z"
+friends = []
+
+[identities]
+github = "lmammino"
+twitter = "loige"
+website = "https://loige.co"
+FRAUTH-SIGNATURE
+lXxcxXaDXKrk+0Hv5c/eG5FbHUsFfHSrWV7vdnXahgrW/D/kq4lFzyJcX4NepUm+Gm7UUvmq6eoxthzxWdfDCA==
+FRAUTH-ENDOFFILE
+

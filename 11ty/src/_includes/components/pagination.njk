@@ -1,0 +1,17 @@
+{%- macro pagination(currentPage, totalPages, prevPageLink, nextPageLink, prevPageText = '← Newer Posts', nextPageText = 'Older Posts →') -%}
+  <nav class="pagination__paginationContainer">
+    {% if prevPageLink %}
+      <a class="pagination__pageLink pagination__pageLink--prev" href="{{ prevPageLink }}">{{ prevPageText }}</a>
+    {% else %}
+      <div class="pagination__spacer pagination__spacer--prev"></div>
+    {% endif %}
+    <span class="pagination__pageLabel">
+      Page {{currentPage}} of {{totalPages}}
+    </span>
+    {% if nextPageLink %}
+      <a class="pagination__pageLink pagination__pageLink--next" href="{{ nextPageLink }}">{{ nextPageText }}</a>
+    {% else %}
+      <div class="pagination__spacer pagination__spacer--next"></div>
+    {% endif %}
+  </nav>
+{%- endmacro -%}
