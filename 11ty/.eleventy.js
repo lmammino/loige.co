@@ -16,7 +16,6 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(sassPlugin, { sass })
 
   eleventyConfig.addCollection('posts', function(collectionApi) {
-    console.log(collectionApi.getFilteredByGlob('src/posts/**/*.md').reverse())
     return collectionApi.getFilteredByGlob('src/posts/**/*.md').reverse()
   })
 
