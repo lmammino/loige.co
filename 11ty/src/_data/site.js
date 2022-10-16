@@ -1,5 +1,3 @@
-const eleventyPkg = require('@11ty/eleventy/package.json')
-
 module.exports = {
   metadata: {
     title:
@@ -12,8 +10,7 @@ module.exports = {
     disqusShortName: 'loige',
     fbAppId: '231187154413670',
     analyticsId: 'UA-47248506-1',
-    themeColor: '#20232a',
-    generator: `Eleventy v${eleventyPkg.version}`
+    themeColor: '#20232a'
   },
   hero: {
     title: 'Luciano Mammino',

@@ -1,8 +1,18 @@
 {%- extends 'html.njk' -%}
+{%- from 'components/hero.njk' import hero -%}
+
+{%- set hero_content -%}
+<h1>
+  <span>{{ title }}</span></h1>
+{%- if subtitle -%}
+  <h2>
+    <span>{{ subtitle }}</span></h2>
+{%- endif -%}
+{%- endset -%}
 
 {%- block body_content -%}
   {%- include 'partials/header.njk' -%}
-  <h1>TODO</h1>
+  {{ hero(hero_content, "textOverlay", header_img | filecopy | default('/public/default-bg.jpg') ) }}
   {{ content | safe }}
   {%- include 'partials/footer.njk' -%}
 {%- endblock body_content -%}

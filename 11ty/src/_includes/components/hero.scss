@@ -38,6 +38,14 @@
     }
   }
 
+  &.textOverlay span {
+    background: #000000c4;
+    display: inline;
+    padding: 0.2em;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
   @media (min-width: 780px) {
     height: 70vh;
   }
@@ -67,14 +75,6 @@
       font-size: 1.5em;
       margin: 0.5em 0 0 0;
       line-height: 1.6em;
-    }
-
-    &.textOverlay>*>span {
-      background: #000000c4;
-      display: inline;
-      padding: 0.2em;
-      box-decoration-break: clone;
-      -webkit-box-decoration-break: clone;
     }
   }
 }
