@@ -15,9 +15,11 @@
   "license": "MIT",
   "devDependencies": {
     "@11ty/eleventy": "^2.0.0-canary.16",
+    "@11ty/eleventy-img": "^2.0.1",
     "date-fns": "^2.29.3",
     "html-minifier": "^4.0.0",
     "js-yaml": "^4.1.0",
+    "markdown-it": "^13.0.1",
     "mkdirp": "^1.0.4",
     "nunjucks": "^3.2.3",
     "reading-time": "^1.5.0",

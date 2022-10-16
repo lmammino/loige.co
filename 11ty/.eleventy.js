@@ -4,6 +4,7 @@ const dateUtilsPlugin = require('./plugins/dateutils')
 const excerptPlugin = require('./plugins/excerpt')
 const filecopyPlugin = require('./plugins/filecopy')
 const htmlminPlugin = require('./plugins/htmlmin')
+const mdImagesPlugin = require('./plugins/mdimages')
 const readingTimePlugin = require('./plugins/readingtime')
 const sassPlugin = require('./plugins/sass')
 
@@ -14,6 +15,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(excerptPlugin)
   eleventyConfig.addPlugin(filecopyPlugin)
   eleventyConfig.addPlugin(htmlminPlugin)
+  eleventyConfig.addPlugin(mdImagesPlugin)
   eleventyConfig.addPlugin(readingTimePlugin)
   eleventyConfig.addPlugin(sassPlugin, { sass })
 
