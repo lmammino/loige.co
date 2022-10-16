@@ -13,6 +13,52 @@
 {%- block body_content -%}
   {%- include 'partials/header.njk' -%}
   {{ hero(hero_content, "textOverlay", header_img | filecopy | default('/public/default-bg.jpg') ) }}
-  {{ content | safe }}
+  <div class="post__contentContainer">
+    <section class="post__content">
+      <div class="post__columns">
+
+        <main class="post__columns_column--main">
+          <div class="post__article_sectionContainer">
+            TODO:
+            {{ date }}
+            {{ tags }}
+            <a href="#comments" title="Read comments">comments</a>
+            <p>— Published by</p>
+          </div>
+          <article class="post__article_container">
+            {{ content | safe }}
+          </article>
+          <div class="post__article_githubSectionContainer">
+            TODO: fix link and Github icon - 
+            <strong>Found a typo or something that can be improved?</strong>
+            <br/>
+            In the spirit of Open Source, you can contribute to this article by
+            <a href={githubLink} target="_blank" rel="noopener noreferrer">
+              submitting a PR on <GitHubIcon/> GitHub
+            </a>
+          </div>
+          <div class="post__article_sectionContainer post__article_sectionContainer--comments">
+            TODO: add comments icon and Disqus integration
+            <h2 id="comments">Comments</h2>
+          </div>
+        </main>
+
+        <aside class="post__sidebar">
+          <p>TODO: sidebar ads</p>
+          <p>TODO: headings</p>
+          <p>TODO: social share</p>
+          <p>TODO: similar posts</p>
+        </aside>
+
+      </div>
+
+    </section>
+  </div>
+
+  <ul class="prevNextPosts__container">
+    TODO: prev next post
+  </ul>
+
   {%- include 'partials/footer.njk' -%}
+
 {%- endblock body_content -%}
