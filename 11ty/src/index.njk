@@ -4,7 +4,7 @@ pagination:
   size: 10
 permalink: '{% if pagination.pageNumber > 0 %}/page/{{ pagination.pageNumber + 1 }}/{%else%}/{% endif %}'
 ---
-{% extends 'base.njk' %}
+{%- extends 'html.njk' -%}
 {%- from 'components/hero.njk' import hero -%}
 {%- from 'components/postPreview.njk' import postPreview -%}
 {%- from 'components/pagination.njk' import pagination as paginationComponent -%}
@@ -12,6 +12,7 @@ permalink: '{% if pagination.pageNumber > 0 %}/page/{{ pagination.pageNumber + 1
 {% set section = "blog" %}
 {% set body_class = "home" %}
 
+{# TODO: address title below #}
 {% block head_title %}A new website{% endblock head_title %}
 
 {% set hero_content %}
@@ -20,7 +21,7 @@ permalink: '{% if pagination.pageNumber > 0 %}/page/{{ pagination.pageNumber + 1
 {% endset %}
 
 {%block body_content %}
-  {{ super() }}
+  {%- include 'partials/header.njk' -%}
   {{ hero(hero_content, "bottomRightBg") }}
   <div class="content__container">
     <section class="content__inner">
@@ -42,5 +43,5 @@ permalink: '{% if pagination.pageNumber > 0 %}/page/{{ pagination.pageNumber + 1
       </div>
     </section>
   </div>
-
+  {%- include 'partials/footer.njk' -%}
 {% endblock body_content %}

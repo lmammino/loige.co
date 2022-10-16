@@ -1,12 +1,8 @@
-<html lang="en">
-  <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>A new website</title>
-  </head>
-  <body>
-    <h1>Post</h1>
+{%- extends 'html.njk' -%}
 
-    {{ content | safe }}
-  </body>
-</html>
+{%- block body_content -%}
+  {%- include 'partials/header.njk' -%}
+  <h1>TODO</h1>
+  {{ content | safe }}
+  {%- include 'partials/footer.njk' -%}
+{%- endblock body_content -%}
