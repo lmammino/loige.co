@@ -19,7 +19,7 @@ event_location_gps: '45.451750,9.248950'
 event_city: 'Milan, Italy'
 event_days: 'Oct 18-19, 2022'
 is_workshop: false
-slides_link: ~
+slides_link: 'https://fth.link/cm22'
 video_link: ~
 with: ~
 ---
