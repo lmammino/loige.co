@@ -3,11 +3,13 @@
 @use '_includes/partials/home.scss';
 @use '_includes/partials/hello.scss';
 @use '_includes/partials/sidebarAd.scss';
+@use '_includes/components/dateViewer.scss';
 @use '_includes/components/hero.scss';
 @use '_includes/components/logo.scss';
 @use '_includes/components/navlink.scss';
 @use '_includes/components/pagination.scss';
 @use '_includes/components/postPreview.scss';
+@use '_includes/components/tagsList.scss';
 @use '_includes/post.scss';
 @use '_includes/prism.scss';
 

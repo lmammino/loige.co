@@ -1,0 +1,8 @@
+{%- from 'components/images/icons.njk' import calendarRegular -%}
+
+{%- macro dateViewer(date, extraClasses="") -%}
+  <span class="dateViewer {{extraClasses}}">
+    {{ calendarRegular() }}
+    <span>{{ date | dateFormat('dd LLLL, yyyy') }}</span>
+  </span>
+{%- endmacro -%}

@@ -1,5 +1,10 @@
 {%- extends 'html.njk' -%}
 {%- from 'components/hero.njk' import hero -%}
+{%- from 'components/dateViewer.njk' import dateViewer -%}
+{%- from 'components/tagsList.njk' import tagsList -%}
+{%- from 'components/images/icons.njk' import commentsSolid -%}
+
+{% set section = "blog" %}
 
 {%- set hero_content -%}
 <h1>
@@ -19,10 +24,12 @@
 
         <main class="post__columns_column--main">
           <div class="post__article_sectionContainer">
-            TODO:
-            {{ date }}
-            {{ tags }}
-            <a href="#comments" title="Read comments">comments</a>
+            {{ dateViewer(date, 'dateViewer__no-left-margin') }}
+            {{ tagsList(tags) }}
+            <a href="#comments" title="Read comments">
+              {{ commentsSolid("margin: 0 .25em 0 1em") }}
+              comments
+            </a>
             <p>— Published by</p>
           </div>
           <article class="post__article_container">
