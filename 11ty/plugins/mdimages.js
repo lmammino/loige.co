@@ -1,5 +1,6 @@
 const path = require('path')
-const markdown = require('markdown-it')()
+const { copyFileSync } = require('node:fs')
+const mkdirp = require('mkdirp')
 const Image = require('@11ty/eleventy-img')
 
 module.exports = function (eleventyConfig, options = {}) {
@@ -7,83 +8,84 @@ module.exports = function (eleventyConfig, options = {}) {
     return `<figure>${html}<figcaption>${caption}</figcaption></figure>`
   }
 
-  const originalImage = markdown.renderer.rules.image
-  markdown.renderer.rules.image = function (tokens, idx, options, env, self) {
+  eleventyConfig.amendLibrary('md', markdown => {
+    const originalImage = markdown.renderer.rules.image
+    const cache = new Map()
+    markdown.renderer.rules.image = function (tokens, idx, options, env, self) {
     // TODO: add a cache to speed up development
-    const page = env.page
-    const token = tokens[idx]
-    const imgSrc = token.attrGet('src')
-    const imgAlt = token.content
-    const imgTitle = token.attrGet('title')
+      const page = env.page
+      const token = tokens[idx]
+      const imgSrc = token.attrGet('src')
+      const imgAlt = token.content
+      const imgTitle = token.attrGet('title')
 
-    const imgExt = path.extname(imgSrc)
-    const imageName = path.basename(imgSrc, imgExt)
+      const imgExt = path.extname(imgSrc)
+      const imageName = path.basename(imgSrc, imgExt)
 
-    // don't treat non relative images in a special way
-    if (!imgSrc.startsWith('./')) {
-      return originalImage(tokens, idx, options, env, self)
-    }
-
-    const sourcePath = path.join(path.dirname(page.inputPath), imgSrc)
-    const outputDir = path.dirname(page.outputPath)
-
-    const parsed = (imgTitle || '').match(
-      /^(?<skip>@skip(?:\[(?<width>\d+)x(?<height>\d+)\])? ?)?(?:\?\[(?<sizes>.*?)\] ?)?(?<caption>.*)/
-    ).groups
-
-    const htmlOpts = { alt: imgAlt, loading: 'lazy', decoding: 'async' }
-    if (parsed.caption) {
-      htmlOpts.title = parsed.caption
-    }
-
-    if (parsed.skip) {
-      const options = { ...htmlOpts }
-      if (parsed.sizes) {
-        options.sizes = parsed.sizes
+      // don't treat non relative images in a special way
+      if (imgSrc.startsWith('http')) {
+        return originalImage(tokens, idx, options, env, self)
       }
 
-      const metadata = { jpeg: [{ url: sourcePath }] }
-      if (parsed.width && parsed.height) {
-        metadata.jpeg[0].width = parsed.width
-        metadata.jpeg[0].height = parsed.height
+      const sourcePath = path.join(path.dirname(page.inputPath), imgSrc)
+      const outputDir = path.dirname(page.outputPath)
+
+      if (cache.has(sourcePath)) {
+        return cache.get(sourcePath)
       }
 
-      const generated = Image.generateHTML(metadata, options)
-
-      if (parsed.caption) {
-        return figure(generated, parsed.caption)
+      const htmlOpts = { alt: imgAlt, loading: 'lazy', decoding: 'async' }
+      if (imgTitle) {
+        htmlOpts.title = imgTitle
       }
-      return generated
-    }
 
-    const widths = [250, 426, 580, 768]
-    const imgOpts = {
-      widths: widths
-        .concat(widths.map((w) => w * 2)) // generate 2x sizes
-        .filter((v, i, s) => s.indexOf(v) === i), // dedupe
-      // TODO: gif lose animation anyway, so we should just copy them as they are...
-      formats: [imgExt === '.gif' ? 'gif' : ('webp', 'jpeg', 'avif')],
-      urlPath: page.url,
-      outputDir: outputDir,
-      filenameFormat: function (id, src, width, format, options) {
-        return `${imageName}-${id}-${width}.${format}`
+      // by default just copy images
+      let widths = [null]
+      let imgOpts = {
+        outputDir,
+        urlPath: page.url,
+        svgShortCircuit: true,
+        statsOnly: true,
+        filenameFormat: function (id, src, width, format, options) {
+          return `${imageName}${imgExt}`
+        }
       }
+
+      if (['.jpeg', '.jpg', '.png'].includes(imgExt)) {
+        // but re-process jpegs and pngs
+        widths = [250, 426, 580, 768]
+        imgOpts = {
+          ...imgOpts,
+          statsOnly: false,
+          widths: widths
+            .concat(widths.map((w) => w * 2)) // generate 2x sizes
+            .filter((v, i, s) => s.indexOf(v) === i), // dedupe
+          formats: ['webp', 'jpeg', 'avif'],
+          filenameFormat: function (id, src, width, format, options) {
+            return `${imageName}-${id}-${width}.${format}`
+          }
+        }
+      } else {
+        // if it's not one of these formats just copy the image as it is to the final folder
+        mkdirp.sync(outputDir)
+        copyFileSync(sourcePath, path.join(outputDir, imgSrc))
+      }
+
+      Image(sourcePath, imgOpts)
+
+      const metadata = Image.statsSync(sourcePath, imgOpts)
+
+      let result = Image.generateHTML(metadata, {
+        sizes: '(max-width: 768px) 100vw, 768px',
+        ...htmlOpts
+      })
+
+      if (imgTitle) {
+        result = figure(result, imgTitle)
+      }
+
+      cache.set(sourcePath, result)
+      return result
     }
-
-    Image(sourcePath, imgOpts)
-
-    const metadata = Image.statsSync(sourcePath, imgOpts)
-
-    const generated = Image.generateHTML(metadata, {
-      sizes: parsed.sizes || '(max-width: 768px) 100vw, 768px',
-      ...htmlOpts
-    })
-
-    if (parsed.caption) {
-      return figure(generated, parsed.caption)
-    }
-    return generated
-  }
-
-  eleventyConfig.setLibrary('md', markdown)
+  })
 }

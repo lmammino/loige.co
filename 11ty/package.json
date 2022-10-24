@@ -20,6 +20,7 @@
     "html-minifier": "^4.0.0",
     "js-yaml": "^4.1.0",
     "markdown-it": "^13.0.1",
+    "markdown-it-prism": "^2.3.0",
     "mkdirp": "^1.0.4",
     "nunjucks": "^3.2.3",
     "reading-time": "^1.5.0",

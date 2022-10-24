@@ -1,0 +1,141 @@
+$color-char: #D8DEE9;
+$color-comment: #999999;
+$color-keyword: #c5a5c5;
+$color-lineHighlight: #14161a;
+$color-primitive: #5a9bcf;
+$color-string: #8dc891;
+$color-variable: #d7deea;
+$color-boolean: #ff8b50;
+$color-punctuation: #5FB3B3;
+$color-tag: #fc929e;
+$color-function: #79b6f2;
+$color-className: #FAC863;
+$color-method: #6699CC;
+$color-operator: #fc929e;
+
+blockquote .code-highlight {
+	margin: 1.5em 0 1.5em 0;
+	padding: 0.5em;
+}
+
+.code-highlight {
+	font-size: 15px;
+	line-height: 1.7;
+	background: #282c34;
+	color: #ffffff;
+	border-radius: 10px;
+	overflow: auto;
+	tab-size: 1.5em;
+
+	margin: 1.5em -1em 1.5em 0;
+	padding: 1em;
+
+	@media (min-width: 780px) {
+		margin-left: -2em;
+		padding-left: 2em;
+		padding-right: 2em;
+		font-size: 16px;
+	}
+
+	.token.attr-name {
+		color: $color-keyword;
+	}
+
+	.token.comment,
+	.token.block-comment,
+	.token.prolog,
+	.token.doctype,
+	.token.cdata {
+		color: $color-comment;
+	}
+
+	.token.property,
+	.token.number,
+	.token.function-name,
+	.token.constant,
+	.token.symbol,
+	.token.deleted {
+		color: $color-primitive;
+	}
+
+	.token.boolean {
+		color: $color-boolean;
+	}
+
+	.token.tag {
+		color: $color-tag;
+	}
+
+	.token.string {
+		color: $color-string;
+	}
+
+	.token.punctuation {
+		color: $color-punctuation;
+	}
+
+	.token.selector,
+	.token.char,
+	.token.builtin,
+	.token.inserted {
+		color: $color-char;
+	}
+
+	.token.function {
+		color: $color-function;
+	}
+
+	.token.operator,
+	.token.entity,
+	.token.url,
+	.token.variable {
+		color: $color-variable;
+	}
+
+	.token.attr-value {
+		color: $color-string;
+	}
+
+	.token.keyword {
+		color: $color-keyword;
+	}
+
+	.token.atrule,
+	.token.class-name {
+		color: $color-className;
+	}
+
+	.token.important {
+		font-weight: 400;
+	}
+
+	.token.bold {
+		font-weight: 700;
+	}
+
+	.token.italic {
+		font-style: italic;
+	}
+
+	.token.entity {
+		cursor: help;
+	}
+}
+
+.code-highlight>pre {
+	height: auto !important;
+	margin: 1rem;
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.code-highlight+.code-highlight {
+	margin-top: 20px,
+}
+
+.code-highlight-code-line {
+	background-color: #14161a;
+	display: block;
+	margin: -0.125rem calc(-1rem - 15px);
+	padding: 0.125rem calc(1rem + 15px);
+}
