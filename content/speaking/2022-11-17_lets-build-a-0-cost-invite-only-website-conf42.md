@@ -1,7 +1,7 @@
 ---
 uuid: 7ae679ca-1f2a-46b6-b928-27a25bf3645f
 layout: speaking
-title: 'Let\'s build a 0-cost invite-only website with Next.js and Airtable'
+title: "Let's build a 0-cost invite-only website with Next.js and Airtable"
 slug: 'lets-build-a-0-cost-invite-only-website-conf42'
 date: '2022-11-17T12:00:00.000Z'
 author: Luciano Mammino
