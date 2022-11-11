@@ -28,9 +28,9 @@ with:
   - name: Davide Barasti
     link: 'https://twitter.com/Dbarasti'
     image: 'https://unavatar.now.sh/twitter/Dbarasti'
-  - name: Giovanni
-    link: ~
-    image: ~
+  - name: Giovanni Sorice
+    link: 'https://github.com/GiovanniSorice'
+    image: 'https://unavatar.now.sh/github/GiovanniSorice'
 ---
 
 Intervista in Italiano sulla mia carriera e vari consigli su come sviluppare una carriera nel mondo tech.
