@@ -20,7 +20,7 @@ event_city: 'Milan, Italy'
 event_days: 'Oct 18-19, 2022'
 is_workshop: false
 slides_link: 'https://fth.link/cm22'
-video_link: ~
+video_link: 'https://talks.codemotion.com/serverless-for-hpc'
 with: ~
 ---
 
