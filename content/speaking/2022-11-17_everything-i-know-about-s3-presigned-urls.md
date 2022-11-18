@@ -19,7 +19,7 @@ event_location_gps: '53.347910,-6.258190'
 event_city: 'Dublin'
 event_days: 'Nov 17, 2022'
 is_workshop: false
-slides_link: ~
+slides_link: 'https://fth.link/presign'
 video_link: ~
 with: ~
 ---
