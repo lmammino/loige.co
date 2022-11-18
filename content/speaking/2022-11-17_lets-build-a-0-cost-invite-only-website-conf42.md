@@ -19,7 +19,7 @@ event_location_gps: null
 event_city: 'remote'
 event_days: 'Nov 17, 2022'
 is_workshop: false
-slides_link: ~
+slides_link: 'https://loige.link/micro42'
 video_link: ~
 with: ~
 ---
