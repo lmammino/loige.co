@@ -68,10 +68,17 @@
         </main>
 
         <aside class="post__sidebar">
-          <p>TODO: sidebar ads</p>
-          <p>TODO: headings</p>
-          <p>TODO: social share</p>
-          <p>TODO: similar posts</p>
+          {%- include 'partials/sidebarAd.njk' -%}
+          <div>
+            <p>TODO: headings</p>
+            {{ content | toc ({tags:["h2","h3"],wrapper:"div",wrapperClass:"content-tableau"}) | safe }}
+
+            <h3 style="margin-top: 1em">Share</h3>
+            <p>TODO: social share</p>
+
+            <h3 style="margin-top: 1em">Similar posts</h3>
+            <p>TODO: similar posts</p>
+          </div>
         </aside>
 
       </div>

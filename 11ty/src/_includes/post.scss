@@ -100,6 +100,21 @@
   & h4,
   & h5 {
     margin: 2em 0 0 0;
+    position: relative;
+
+    .direct-link {
+      position: absolute;
+      left: -1em;
+      opacity: 0;
+      background-color: transparent;
+      border: none;
+      color: #ccc;
+      transition: opacity 0.2s ease-in-out;
+    }
+
+    &:hover .direct-link {
+      opacity: 1;
+    }
   }
 
   & p>code,
