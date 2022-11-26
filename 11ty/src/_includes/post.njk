@@ -28,9 +28,11 @@
             {{ tagsList(tags) }}
             <a href="#comments" title="Read comments">
               {{ commentsSolid("margin: 0 .25em 0 1em") }}
-              comments
+              <span class="disqus-comment-count" data-disqus-identifier="{{permalink}}">comments</span>
             </a>
-            <p>— Published by</p>
+            <p class="post__article_sectionContainer--publishedBy">
+              — Published by <a href="https://twitter.com/loige" rel="nofollow noopener noreferrer" target="_blank" class="css-1u9uk5p e1ondplw2"><img alt="Luciano Mammino's profile picture" src="https://unavatar.now.sh/github/lmammino" class="css-1gejjbo e1ondplw1">Luciano Mammino</a>
+            </p>
           </div>
           <article class="post__article_container">
             {{ content | safe }}
@@ -61,6 +63,7 @@
             </script>
             <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
             </noscript>
+            <script id="dsq-count-scr" src="//{{site.metadata.disqusShortName}}.disqus.com/count.js" async></script>
           </div>
         </main>
 

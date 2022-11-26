@@ -305,6 +305,16 @@
   }
 }
 
+.post__article_sectionContainer--publishedBy img {
+  border-radius: 50%;
+  width: 2em;
+  height: 2em;
+  vertical-align: middle;
+  display: inline-block;
+  margin: 0 0.5em 0 0;
+  overflow: hidden;
+}
+
 .post__article_sectionContainer--comments {
   border-top: 1px solid #ececec;
   margin-top: 2em;

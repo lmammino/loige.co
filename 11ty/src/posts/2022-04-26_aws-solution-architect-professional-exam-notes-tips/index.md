@@ -412,7 +412,7 @@ I want to give a huge shout out to [fourTheorem](https://fourtheorem.com) for su
 
 This concludes what I had to share. Please do let me know if you found this material interesting and useful.
 
-[Give me a nudge on Twitter](https://twitter.com/loige) (my DMs are ope) if you are preparing for the exam and there are topics that you want to discuss or if you have questions you want to ask. Chances are I won't have great answers for you, but we can still have fun chatting about AWS and cloud topic! 🙃
+[Give me a nudge on Twitter](https://twitter.com/loige) (my DMs are open) if you are preparing for the exam and there are topics that you want to discuss or if you have questions you want to ask. Chances are I won't have great answers for you, but we can still have fun chatting about AWS and cloud topic! 🙃
 
 I wish you the very best for your exam!
 
