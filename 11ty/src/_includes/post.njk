@@ -2,7 +2,7 @@
 {%- from 'components/hero.njk' import hero -%}
 {%- from 'components/dateViewer.njk' import dateViewer -%}
 {%- from 'components/tagsList.njk' import tagsList -%}
-{%- from 'components/images/icons.njk' import commentsSolid -%}
+{%- from 'components/images/icons.njk' import commentsSolid, github -%}
 
 {% set section = "blog" %}
 
@@ -36,12 +36,11 @@
             {{ content | safe }}
           </article>
           <div class="post__article_githubSectionContainer">
-            TODO: fix link and Github icon - 
             <strong>Found a typo or something that can be improved?</strong>
             <br/>
             In the spirit of Open Source, you can contribute to this article by
-            <a href={githubLink} target="_blank" rel="noopener noreferrer">
-              submitting a PR on <GitHubIcon/> GitHub
+            <a href="https://github.com/lmammino/loige.co/blob/master/{{page.inputPath.substr(2)}}" target="_blank" rel="noopener noreferrer">
+              submitting a PR on {{ github() }} GitHub
             </a>
           </div>
           <div class="post__article_sectionContainer post__article_sectionContainer--comments">
