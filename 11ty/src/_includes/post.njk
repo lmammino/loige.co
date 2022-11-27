@@ -70,9 +70,11 @@
         <aside class="post__sidebar">
           {%- include 'partials/sidebarAd.njk' -%}
           <div>
-            <p>TODO: headings</p>
-            {{ content | toc ({tags:["h2","h3"],wrapper:"div",wrapperClass:"content-tableau"}) | safe }}
-
+            {% set renderedToc = content | toc | safe %}
+            {% if renderedToc %}
+              <h3>Sections</h3>
+              {{ renderedToc | safe }}
+            {% endif %}
             <h3 style="margin-top: 1em">Share</h3>
             <p>TODO: social share</p>
 

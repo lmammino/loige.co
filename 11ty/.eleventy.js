@@ -1,6 +1,10 @@
 const yaml = require('js-yaml')
 const sass = require('sass')
 const slugify = require("slugify")
+// TODO: for now this uses a manually linked version of 
+// the plugin from `https://github.com/lmammino/eleventy-plugin-toc/tree/feat-parse-headers`
+// alternatively use https://github.com/ds300/patch-package with the changes
+// in the following PR: https://github.com/jdsteinbach/eleventy-plugin-toc/pull/39
 const pluginTOC = require('eleventy-plugin-toc')
 const markdownItAnchor = require("markdown-it-anchor");
 const markdownItToc = require("markdown-it-table-of-contents")
@@ -18,10 +22,7 @@ function markdownItSlugify(s) {
 }
 
 function removeExtraText(s) {
-	let newStr = String(s).replace(/New\ in\ v\d+\.\d+\.\d+/, "");
-	newStr = newStr.replace(/Coming\ soon\ in\ v\d+\.\d+\.\d+/, "");
-	newStr = newStr.replace(/⚠️/g, "");
-	newStr = newStr.replace(/[?!]/g, "");
+	let newStr = String(s).replace(/[?!]/g, "");
 	newStr = newStr.replace(/<[^>]*>/g, "");
 	return newStr;
 }
@@ -37,7 +38,13 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(prismPlugin)
   eleventyConfig.addPlugin(readingTimePlugin)
   eleventyConfig.addPlugin(sassPlugin, { sass })
-  eleventyConfig.addPlugin(pluginTOC)
+  eleventyConfig.addPlugin(pluginTOC, {
+    tags: ['h2', 'h3'],
+    wrapperClass: 'post__sidebar--toc',
+    extractText: function(el) {
+      return el.text().replace('Jump to heading', '').replace('#', '').trim()
+    }
+  })
   eleventyConfig.amendLibrary('md', markdown => {
     markdown.use(markdownItAnchor, {
       slugify: markdownItSlugify,
