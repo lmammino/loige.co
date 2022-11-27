@@ -16,6 +16,7 @@ const mdImagesPlugin = require('./plugins/mdimages')
 const prismPlugin = require('./plugins/prism')
 const readingTimePlugin = require('./plugins/readingtime')
 const sassPlugin = require('./plugins/sass')
+const similarPosts = require('./plugins/similarPosts')
 
 function markdownItSlugify(s) {
 	return slugify(removeExtraText(s), { lower: true, remove: /[\=\":’'`,]/g });
@@ -38,6 +39,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(prismPlugin)
   eleventyConfig.addPlugin(readingTimePlugin)
   eleventyConfig.addPlugin(sassPlugin, { sass })
+  eleventyConfig.addPlugin(similarPosts)
   eleventyConfig.addPlugin(pluginTOC, {
     tags: ['h2', 'h3'],
     wrapperClass: 'post__sidebar--toc',

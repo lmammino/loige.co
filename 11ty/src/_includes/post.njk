@@ -75,11 +75,18 @@
               <h3>Sections</h3>
               {{ renderedToc | safe }}
             {% endif %}
-            <h3 style="margin-top: 1em">Share</h3>
-            <p>TODO: social share</p>
 
-            <h3 style="margin-top: 1em">Similar posts</h3>
-            <p>TODO: similar posts</p>
+            {% set similarPosts = page.url | similar(tags, collections.posts) %}
+            {% if similarPosts.length > 0 %}
+              <h3 style="margin-top: 1em">Similar posts</h3>
+              <ul class="post__sidebar--similarPosts">
+                {% for post in similarPosts %}
+                  <li>
+                    <a href="{{ post.url }}">{{ post.title }}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
           </div>
         </aside>
 

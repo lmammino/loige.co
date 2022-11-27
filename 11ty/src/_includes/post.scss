@@ -405,6 +405,30 @@
   }
 }
 
+.post__sidebar--similarPosts {
+  color: #6d6d6d;
+  list-style: outside;
+  padding: 0 0 3em 1.25em;
+
+  li {
+    margin: 0.75em 0 0 0;
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+  }
+
+  a {
+    color: #6d6d6d;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  a:hover {
+    color: #000;
+  }
+}
+
 .prevNextPosts__container {
   display: flex;
   flex-wrap: wrap;
