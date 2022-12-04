@@ -19,8 +19,8 @@ event_location_gps: null
 event_city: 'remote'
 event_days: 'Dec 2, 2022'
 is_workshop: false
-slides_link: ~
-video_link: ~
+slides_link: 'https://loige.link/node2dp'
+video_link: 'https://www.youtube.com/watch?v=GVe9Ih47pm4'
 with: ~
 ---
 
