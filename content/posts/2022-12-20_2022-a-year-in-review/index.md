@@ -5,8 +5,8 @@ title: >-
   2022 - A year in Review
 slug: 2022-a-year-in-review
 subtitle: null
-date: 2022-12-20T10:45:00.000Z
-updated: 2022-12-20T10:45:00.000Z
+date: 2022-12-20T08:50:00.000Z
+updated: 2022-12-20T08:50:00.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: './2022-a-year-in-review.jpg'
