@@ -20,7 +20,7 @@ event_city: 'remote'
 event_days: 'Nov 17, 2022'
 is_workshop: false
 slides_link: 'https://loige.link/micro42'
-video_link: ~
+video_link: 'https://www.youtube.com/watch?v=2Spu3SQSMjQ&t=703s'
 with: ~
 ---
 

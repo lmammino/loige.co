@@ -20,7 +20,7 @@ event_city: 'remote'
 event_days: 'March 1, 2022'
 is_workshop: false
 slides_link: 'https://loige.link/mono-lit'
-video_link: ~
+video_link: 'https://talks.codemotion.com/dal-monolite-al-cloud-no-stress'
 with: ~
 ---
 
