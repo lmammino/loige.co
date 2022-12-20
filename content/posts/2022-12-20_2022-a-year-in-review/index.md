@@ -356,7 +356,7 @@ Here's a list of the most meaningful contributions:
 
 [![A screenshot of my crappy object detection app built using tensorflow.js](./screenshot-for-lmammino-crappy-object-recognition-web-app.jpg)](https://github.com/lmammino/crappy-object-recognition-web-app)
 
-Above a screenshot of my [crappy object recognition application](https://github.com/lmammino/crappy-object-recognition-web-app) built with Tensorflow.js and Solid.js.
+Above a screenshot of my [crappy object recognition application](https://github.com/lmammino/crappy-object-recognition-web-app) built with Tensorflow.js and Solid.js. I am also about _70% sure_ that I am a real person! 😆
 
  
 A final mention is my [open PR](https://github.com/nodesecurity/eslint-plugin-security/pull/95) together with [Simone Sanfratello](https://twitter.com/simonesanfradev) where we are trying to bring the awesome [`anti-trojan-source`](https://github.com/lirantal/anti-trojan-source/) detector by [Liran Tal](https://twitter.com/liran_tal) directly into [`nodesecurity/eslint-plugin-security`](https://github.com/nodesecurity/eslint-plugin-security). I hope this will be merged before the end of 2022!
