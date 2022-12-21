@@ -63,6 +63,8 @@ Yeah, my box probably got a few kicks on the way...
 
 Other than that, you'll probably see me posting more AWS and serverless-related content and most likely I will attend the re:Invent in 2023!
 
+Also, I want to take this opportunity to give a big thank you to the AWS Heroes team: [Farrah](https://twitter.com/FarrahC32), Taylor, and Albert.
+
 
 > "With great power comes great responsibility"
 >
@@ -110,6 +112,8 @@ I am particularly proud of one of the many initiatives I have been involved with
 I had the pleasure to work with **Danilo Spinella** who presented a talk called [Beautiful CLI Applications in Rust](https://danyspin97.org/talks/beautiful_cli_apps_in_rust/). You can [watch the recordings](https://talks.codemotion.com/wannabe-speaker-1) if you are curious (and you should).
 
 To be fair, Danilo did not need a lot of support and he was able to deliver an excellent and enjoyable presentation like a true veteran speaker!
+
+Also, I want to take this opportunity to thank [Francesco Sciuti](https://twitter.com/FrancescoSciuti), [Mara Marzocchi](https://www.linkedin.com/in/maraexception/), and the rest of the Codemotion team for adding me to this fantanstic group of professionals. Ok, we are not always that _professionals_ but we definitely know how to have some fun!
 
 
 >"You cannot teach a man anything. You can only help him discover it within himself"
