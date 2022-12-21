@@ -113,7 +113,7 @@ I had the pleasure to work with **Danilo Spinella** who presented a talk called 
 
 To be fair, Danilo did not need a lot of support and he was able to deliver an excellent and enjoyable presentation like a true veteran speaker!
 
-Also, I want to take this opportunity to thank [Francesco Sciuti](https://twitter.com/FrancescoSciuti), [Mara Marzocchi](https://www.linkedin.com/in/maraexception/), and the rest of the Codemotion team for adding me to this fantanstic group of professionals. Ok, we are not always that _professionals_ but we definitely know how to have some fun!
+Also, I want to take this opportunity to thank [Francesco Sciuti](https://twitter.com/FrancescoSciuti), [Mara Marzocchi](https://www.linkedin.com/in/maraexception/), and the rest of the Codemotion team for adding me to this fantastic group of professionals. Ok, we are not always that _professionals_ but we definitely know how to have some fun!
 
 
 >"You cannot teach a man anything. You can only help him discover it within himself"
