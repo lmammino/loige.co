@@ -63,7 +63,7 @@ Yeah, my box probably got a few kicks on the way...
 
 Other than that, you'll probably see me posting more AWS and serverless-related content and most likely I will attend the re:Invent in 2023!
 
-Also, I want to take this opportunity to give a big thank you to the AWS Heroes team: [Farrah](https://twitter.com/FarrahC32), Taylor, and Albert.
+Also, I want to take this opportunity to give a big thank you to the AWS Heroes team: [Farrah](https://twitter.com/FarrahC32), [Taylor](https://twitter.com/taylorjacobsen), and Albert.
 
 
 > "With great power comes great responsibility"
