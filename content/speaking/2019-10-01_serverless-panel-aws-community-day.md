@@ -23,19 +23,19 @@ video_link: null
 with:
   - name: Abby Fuller
     link: 'https://twitter.com/abbyfuller'
-    image: 'https://unavatar.now.sh/github/abby-fuller'
+    image: 'https://unavatar.io/github/abby-fuller'
   - name: Fabio Douek
     link: 'https://twitter.com/FDouek'
-    image: 'https://unavatar.now.sh/github/FDouek'
+    image: 'https://unavatar.io/github/FDouek'
   - name: Chris Paton
     link: 'https://twitter.com/PatonCrispy'
-    image: 'https://unavatar.now.sh/github/PatonCrispy'
+    image: 'https://unavatar.io/github/PatonCrispy'
   - name: Gillian McCann
     link: 'https://twitter.com/othergill'
-    image: 'https://unavatar.now.sh/twitter/othergill'
+    image: 'https://unavatar.io/twitter/othergill'
   - name: Eoin Shanaghy
     link: 'https://twitter.com/eoins'
-    image: 'https://unavatar.now.sh/github/eoinsha'
+    image: 'https://unavatar.io/github/eoinsha'
 ---
 
 Panel about "serverless", Moderated by Abby Fuller (AWS)

@@ -27,7 +27,7 @@ with:
     image: 'https://unavatar.io/github/conzy'
   - name: Danilo Poccia
     link: "https://twitter.com/danilop"
-    image: 'https://unavatar.now.sh/github/danilop'
+    image: 'https://unavatar.io/github/danilop'
   - name: Heitor Lessa
     link: 'https://twitter.com/heitor_lessa'
     image: 'https://unavatar.io/github/heitorlessa'

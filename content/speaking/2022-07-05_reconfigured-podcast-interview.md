@@ -24,7 +24,7 @@ video_link: https://youtu.be/23bKVdY0gp8
 with:
   - name: Mohamad Kalaaji
     link: 'https://twitter.com/technolaaji'
-    image: 'https://unavatar.now.sh/github/technolaaji'
+    image: 'https://unavatar.io/github/technolaaji'
 ---
 
 Today’s episode is with Luciano Mammino, Senior Architect at fourTheorem and co-author of the well known book “Nodejs Design Patterns” that is published by Packt. In this episode we have discussed the following:

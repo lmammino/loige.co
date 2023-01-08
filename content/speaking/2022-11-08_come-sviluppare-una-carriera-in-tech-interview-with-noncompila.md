@@ -24,13 +24,13 @@ video_link: 'https://www.twitch.tv/videos/1647170014'
 with:
   - name: Lorenzo Barasti
     link: 'https://twitter.com/lbarasti'
-    image: 'https://unavatar.now.sh/twitter/lbarasti'
+    image: 'https://unavatar.io/twitter/lbarasti'
   - name: Davide Barasti
     link: 'https://twitter.com/Dbarasti'
-    image: 'https://unavatar.now.sh/twitter/Dbarasti'
+    image: 'https://unavatar.io/twitter/Dbarasti'
   - name: Giovanni Sorice
     link: 'https://github.com/GiovanniSorice'
-    image: 'https://unavatar.now.sh/github/GiovanniSorice'
+    image: 'https://unavatar.io/github/GiovanniSorice'
 ---
 
 Intervista in Italiano sulla mia carriera e vari consigli su come sviluppare una carriera nel mondo tech.

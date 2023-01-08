@@ -24,10 +24,10 @@ video_link: ~
 with:
   - name: Christian Varisco
     link: 'https://twitter.com/ChriVarisco'
-    image: 'https://unavatar.now.sh/twitter/ChriVarisco'
+    image: 'https://unavatar.io/twitter/ChriVarisco'
   - name: Emanuele Gurini
     link: 'https://twitter.com/EmanueleGurini'
-    image: 'https://unavatar.now.sh/twitter/EmanueleGurini'
+    image: 'https://unavatar.io/twitter/EmanueleGurini'
 ---
 
 Live interview with Caffé Sviluppo by Christian Varisco (in Italian).

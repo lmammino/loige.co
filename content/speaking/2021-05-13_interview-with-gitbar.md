@@ -24,16 +24,16 @@ video_link: ~
 with:
   - name: Mauro Murru
     link: 'https://twitter.com/brainrepo'
-    image: 'https://unavatar.now.sh/github/brainrepo'
+    image: 'https://unavatar.io/github/brainrepo'
   - name: Luca Rainone
     link: 'https://twitter.com/chumkiu81'
-    image: 'https://unavatar.now.sh/github/LucaRainone'
+    image: 'https://unavatar.io/github/LucaRainone'
   - name: Mattia Tommasone
     link: 'https://twitter.com/raibaz'
-    image: 'https://unavatar.now.sh/github/Raibaz'
+    image: 'https://unavatar.io/github/Raibaz'
   - name: Carmine di Monaco
     link: 'https://twitter.com/cdimonaco'
-    image: 'https://unavatar.now.sh/github/CDimonaco'
+    image: 'https://unavatar.io/github/CDimonaco'
 ---
 
 Il mondo javascript è immenso, e sapersi districare tra le buone pratiche non è una cosa semplice, questa settimana ne abbiamo parlato con Luciano Mammino, senior architect per fourTheorem e coautore di Node.js Design Patterns, libro indispensabile per che approccia al mondo di node in modo professionale.

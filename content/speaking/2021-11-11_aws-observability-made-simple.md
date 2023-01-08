@@ -24,7 +24,7 @@ video_link: ~
 with:
   - name: Eoin Shanaghy
     link: 'https://twitter.com/eoins'
-    image: 'https://unavatar.now.sh/github/eoinsha'
+    image: 'https://unavatar.io/github/eoinsha'
 ---
 
 Have you ever thought that your Lambda functions could fail without you even noticing?

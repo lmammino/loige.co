@@ -24,7 +24,7 @@ video_link: "https://www.youtube.com/watch?v=l2CA9FtW1Pw&t=2972s"
 with:
   - name: Kelvin Omereshone
     link: 'https://twitter.com/Dominus_Kelvin'
-    image: 'https://unavatar.now.sh/github/DominusKelvin'
+    image: 'https://unavatar.io/github/DominusKelvin'
 ---
 
 In this session of "Teach Kelvin Your Thing" (TKYT), we explore the world of JavaScript iteration with a special focus on iteration protocols and async iterators.

@@ -24,10 +24,10 @@ video_link: 'https://www.youtube.com/watch?v=yK2Jh-QZQkQ'
 with:
   - name: Francesco Sciuti
     link: 'https://twitter.com/FrancescoSciuti'
-    image: 'https://unavatar.now.sh/github/fsciuti'
+    image: 'https://unavatar.io/github/fsciuti'
   - name: Roberto Gambuzzi
     link: 'https://twitter.com/gbinside'
-    image: 'https://unavatar.now.sh/github/gbinside'
+    image: 'https://unavatar.io/github/gbinside'
   - name: Alexiei Bottino
     link: 'https://www.linkedin.com/in/alexiei/'
     image: 'https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-4.jpg'

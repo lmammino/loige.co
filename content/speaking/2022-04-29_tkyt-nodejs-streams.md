@@ -24,7 +24,7 @@ video_link: "https://www.youtube.com/watch?v=ldcfYB_mo6Q"
 with:
   - name: Kelvin Omereshone
     link: 'https://twitter.com/Dominus_Kelvin'
-    image: 'https://unavatar.now.sh/github/DominusKelvin'
+    image: 'https://unavatar.io/github/DominusKelvin'
 ---
 
 In this session of "Teach Kelvin Your Thing" (TKYT), we explore the world of Node.js Streams. We will improvise a little and play around with some examples and see where that leads us.

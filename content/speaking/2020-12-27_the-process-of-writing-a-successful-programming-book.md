@@ -24,7 +24,7 @@ video_link: "https://www.youtube.com/watch?v=kGa_jvtXKYQ"
 with:
   - name: Francesco Ciulla
     link: 'https://twitter.com/FrancescoCiull4'
-    image: 'https://unavatar.now.sh/github/FrancescoXX'
+    image: 'https://unavatar.io/github/FrancescoXX'
 ---
 
 An interview about some important steps in my career, writing a book and how open source, tech communities and asking for feedback have helped me to be where I am today.

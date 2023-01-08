@@ -24,7 +24,7 @@ video_link: 'https://www.youtube.com/watch?v=9C-akUL8Dw4'
 with:
   - name: Zak Aghbal
     link: 'https://twitter.com/zakcontent'
-    image: 'https://unavatar.now.sh/twitter/zakcontent'
+    image: 'https://unavatar.io/twitter/zakcontent'
 ---
 
 Today our guest is Luciano Mammino, a passionate FullStack & Cloud developer and a published author. He maintains a Blog and Podcast for developers and is active Twitter and Linkedin.

@@ -24,7 +24,7 @@ video_link: ~
 with:
   - name: Eoin Shanaghy
     link: 'https://twitter.com/eoins'
-    image: 'https://unavatar.now.sh/github/eoinsha'
+    image: 'https://unavatar.io/github/eoinsha'
 ---
 
 Good observability is a must-have for modern AWS applications. CloudWatch gives you the tools but leaves you with a lot of work to do. To accelerate this, we created a serverless plugin to quickly build best practice alarms and dashboards.
