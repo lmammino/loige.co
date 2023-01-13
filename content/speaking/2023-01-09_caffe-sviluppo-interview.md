@@ -20,7 +20,7 @@ event_city: 'remote'
 event_days: 'Jan 9, 2023'
 is_workshop: false
 slides_link: ~
-video_link: ~
+video_link: 'https://www.youtube.com/watch?v=ggvowBqTtD8'
 with:
   - name: Christian Varisco
     link: 'https://twitter.com/ChriVarisco'
