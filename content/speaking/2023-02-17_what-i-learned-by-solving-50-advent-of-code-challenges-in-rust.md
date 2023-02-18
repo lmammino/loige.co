@@ -3,7 +3,7 @@ uuid: 3404f8c2-b483-419b-9493-25b0da41092a
 layout: speaking
 title: 'What I learned by solving 50 Advent of Code challenges in Rust'
 slug: 'what-i-learned-by-solving-50-advent-of-code-challenges-in-rust'
-date: 2023-02-16T12:00:00.000Z
+date: 2023-02-17T12:00:00.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: null
@@ -19,7 +19,7 @@ event_location_gps: '51.520794,-0.090706'
 event_city: 'London'
 event_days: 'Feb 16-17, 2023'
 is_workshop: false
-slides_link: ~
+slides_link: 'https://loige.link/crablearn'
 video_link: ~
 with: ~
 ---
