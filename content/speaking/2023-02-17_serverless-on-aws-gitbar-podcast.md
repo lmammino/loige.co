@@ -28,6 +28,9 @@ with:
   - name: Luca Rainone
     link: 'https://twitter.com/chumkiu81'
     image: 'https://unavatar.io/github/LucaRainone'
+  - name: Leonardo Rossi
+    link: 'https://github.com/leorossi'
+    image: 'https://unavatar.io/github/leorossi'
 ---
 
 A podcast episode talking about serverless, the experience of serverless on AWS and other interesting things (in Italian).

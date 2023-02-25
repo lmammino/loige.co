@@ -20,7 +20,7 @@ event_city: 'London'
 event_days: 'Feb 16-17, 2023'
 is_workshop: false
 slides_link: 'https://loige.link/crablearn'
-video_link: ~
+video_link: 'https://www.youtube.com/watch?v=udHjmno-tfA'
 with: ~
 ---
 
