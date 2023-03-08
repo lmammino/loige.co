@@ -19,7 +19,7 @@ event_location_gps: '53.339256,-6.261551'
 event_city: 'Dublin'
 event_days: 'Mar 7, 2023'
 is_workshop: false
-slides_link: ~
+slides_link: 'https://loige.link/iterate'
 video_link: ~
 with: ~
 ---
