@@ -19,7 +19,7 @@ event_location_gps: null
 event_city: 'remote'
 event_days: 'Jan 25-26, 2023'
 is_workshop: false
-slides_link: ~
+slides_link: 'https://loige.link/pizzapazza'
 video_link: ~
 with: ~
 ---
