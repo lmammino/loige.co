@@ -24,10 +24,10 @@ video_link: 'https://www.twitch.tv/videos/1647170014'
 with:
   - name: Lorenzo Barasti
     link: 'https://twitter.com/lbarasti'
-    image: 'https://unavatar.io/twitter/lbarasti'
+    image: 'https://unavatar.io/github/lbarasti'
   - name: Davide Barasti
     link: 'https://twitter.com/Dbarasti'
-    image: 'https://unavatar.io/twitter/Dbarasti'
+    image: 'https://unavatar.io/telegram/dbdave'
   - name: Giovanni Sorice
     link: 'https://github.com/GiovanniSorice'
     image: 'https://unavatar.io/github/GiovanniSorice'

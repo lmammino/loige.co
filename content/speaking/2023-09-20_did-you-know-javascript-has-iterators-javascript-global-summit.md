@@ -1,9 +1,9 @@
 ---
-uuid: abb7f508-6239-4735-a52e-299d08a61b23
+uuid: 3dd68002-2b71-4322-a465-4298f4e2f885
 layout: speaking
 title: 'Did you know JavaScript has iterators?'
-slug: 'did-you-know-javascript-has-iterators-dublinjs'
-date: 2023-03-07T11:30:00.000Z
+slug: 'did-you-know-javascript-has-iterators-javascript-global-summit'
+date: 2023-09-20T11:30:00.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: null
@@ -12,14 +12,14 @@ language: en_US
 presentation_language: en_US
 meta_title: null
 meta_description: null
-event_name: 'DublinJS meetup'
-event_link: 'https://www.meetup.com/dublinjs/events/291843075/'
-event_location: 'Dublin'
-event_location_gps: '53.339256,-6.261551'
-event_city: 'Dublin'
-event_days: 'Mar 7, 2023'
+event_name: 'JavaScript Global Summit 2023'
+event_link: 'https://events.geekle.us/js23/'
+event_location: 'Remote'
+event_location_gps: ~
+event_city: 'remote'
+event_days: 'Sep 19-20, 2023'
 is_workshop: false
-slides_link: 'https://loige.link/iterate'
+slides_link: ~
 video_link: ~
 with: ~
 ---

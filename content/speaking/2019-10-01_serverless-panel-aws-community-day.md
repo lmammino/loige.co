@@ -32,7 +32,7 @@ with:
     image: 'https://unavatar.io/github/PatonCrispy'
   - name: Gillian McCann
     link: 'https://twitter.com/othergill'
-    image: 'https://unavatar.io/twitter/othergill'
+    image: 'https://unavatar.io/github/gillster'
   - name: Eoin Shanaghy
     link: 'https://twitter.com/eoins'
     image: 'https://unavatar.io/github/eoinsha'
