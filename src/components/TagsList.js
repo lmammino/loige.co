@@ -39,6 +39,9 @@ const TagsSeparator = styled.span`
 class TagsList extends Component {
   render () {
     const { tags } = this.props
+
+    if (!tags || tags.length === 0) return []
+
     return (
       <ClassNames>
         { ({ css, cx }) => (
