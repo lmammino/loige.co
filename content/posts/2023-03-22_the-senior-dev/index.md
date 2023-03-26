@@ -1,7 +1,7 @@
 ---
 uuid: f184d499-3f81-4dd5-8c17-e8b761744d5d
 layout: post
-title: 'The Role of Senior Software Engineers: Skills, Mindset, and Duties'
+title: 'The Definition of Senior: A Look at the expectations for Software Engineers'
 slug: the-senior-dev
 subtitle: null
 date: 2023-03-21T12:50:00.000Z
@@ -338,7 +338,10 @@ Of course, you can't always avoid all disappointments or failure scenarios. So w
 
 ## How can I grow?
 
-If you're a software engineer looking to level up your skills and become a senior member of your team, you might be wondering what steps you can take to get there. Well, fear not! Here are 5 tips that I believe will help you on your journey.
+If you're a software engineer looking to level up your skills and become a senior member of your team, you might be wondering what steps you can take to get there.
+
+Well, fear not! Here are 4 ideas (plus some extras) that I believe will help you on your journey.
+
 
 ### Go one level deeper
 
@@ -350,73 +353,110 @@ Yes, it's an endless rabbit hole if you start to dig... so how we we dive deeper
 
 My rule of thumb (which I have actually ~~stolen~~ learned from my friend [Roberto](https://twitter.com/gbinside)), is to dig only 1 level down in respect to the technologies you are already familiar with.
 
---- TODO FROM HERE!
+Are you working a lot with OAuth and OpenID Connect? Well, you'll probably want to know [what's inside a JWT](/whats-in-a-jwt). Do you understand the OAuth authorization code flow and what happens with all the redirects? Actually, do you know how signing algorithms such as RSA and HMAC work?
 
-But don't stop there! Learning can be fun, so why not create some side projects or utilities to test out your newfound knowledge? And when you're done, share your creations with your peers. Not only will this help solidify your understanding, but it'll also demonstrate your skills to others.
+These are all topics that you can explore to consolidate your knowledge of this particular domain. They will allow to exploer more general concepts that you might be able to re-use somewhere else.
 
-Another way to learn is by pairing up with others in your organization. Don't just focus on seniors - everyone has something to offer. Even if you're the one teaching, you'll likely learn something new in the process. And if you're not into pairing, there are other ways to collaborate, like code reviews or show-and-tell sessions.
+All good steps towards broadening your knowlege and becoming a more well-rounded engineer.
 
-But learning is only part of the equation. It's also important to have a positive attitude. When faced with a challenge, don't just throw up your hands and blame the system. Instead, propose solutions and facilitate conversations. And don't forget that compromise is often the key to success.
+If am often biased towards building. I feel like I don't truly understand something if I can't build a small prototype for it.
+If you are like me you could try to do that as well. Can you decode a JWT token without using a library? Can you take it a step further and even implement the signature verification algorithm?
 
-Creating content can also help you level up your skills. Writing articles or giving talks on a topic you're interested in can help you solidify your knowledge, while also improving your communication skills.
+Building prototypes is a great way to memorise certain concepts and truly put your understanding to test. Of course, it take more effort, so choose your prototypes wisely: you can't possibly re-implement everything just for the sake of learning!
 
-Finally, don't shy away from the hard work. Volunteering to tackle difficult tasks or messy parts of the codebase might not be the most glamorous job, but it's a great way to demonstrate your dedication and willingness to learn.
+One funny video that I really enjoyed lately is [The Computer Science Iceberg](https://www.youtube.com/watch?v=H565avw-ufk). Why do I like it so much? Because it truly illustrates this idea of descending down levels of abstractions and exploring more fundamental and generic pieces of knowledge.
 
-In short, if you want to become a senior software engineer, it's all about going deeper, having fun, collaborating with others, staying positive, creating content, and taking on challenges. By following these tips, you'll be well on your way to becoming a true master of your craft!
+![Just an image of an iceberg](./an-iceberg.jpg)
 
-
-
-
----
+<small>Photo by <a href="https://unsplash.com/@sickle?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Sergey Pesterev</a> on <a href="https://unsplash.com/photos/6KCnl-EgbiU?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></small>
 
 
-Know when (and how) to say NO
+### Have fun
 
-They should be humble, open to feedback, and willing to share their knowledge and expertise.
+This is one of my core belief: software engineering is a very challenging profession. Not because it's harder than other professions but because things move so quickly that you can never stop learning and you'll always have to feel behind.
 
-Duties
-The duties of a senior software engineer are varied and can vary from company to company. However, some common responsibilities of a senior engineer include:
+The one thing that could make the profession a little bit easier is a genuine passion for the subject. If you are passionate it's going to be easier to motivate yourself to learning new things over and over!
 
-Leading and mentoring junior team members
-Making technical decisions and providing technical guidance
-Collaborating with cross-functional teams
-Contributing to code reviews and ensuring code quality
-Communicating technical concepts to non-technical stakeholders
-Identifying areas for improvement and proposing solutions
-Conclusion
-In conclusion, the role of a senior software engineer is crucial in today's tech industry. Senior engineers must possess technical and soft skills, a growth mindset, and a team-oriented mindset. They should be willing to take risks, learn from failure, and contribute to their team's success. As the definition of seniority varies from company to company, it's essential for managers to set clear expectations and support their senior engineers' growth and development.
+But if I don't know if I am passionate or not?
+
+Fair, especially if you are at the beginning of your career. There is so much in front of you that it might be scary and even discouraging.
+
+Again, my recommendation is to be biased towards building. Building something will give you a tangible feedback that what you are learning can actually be useful. You can build side projects to put new knowledge into practice.
+
+Also, you shouldn't be shy to show what you built (and what you learned) to your peers and even your friends outside work! Chances are you'll get feedback and come up with new ideas, new things you'd like to learn and try.
+
+Even better if you realise you can apply some of these learnings at work. Maybe you can develop a new path in the company you are working for, maybe you can help with something that is currenty being neglected because no one else has the time or the expertise, maybe all of this can demostrate more value and you'll get a promotion!
+
+When you apply this mindset of continuous learning and sharing knowledge at work, this might generate cross-pollination and you might end up with a team that has fun learning and building together.
+
+If you get there (or a way to get there) consider organising company **hackatons** or **free-study days**. These are great ways to help teams to become more passionate about what they do, explore new ideas, learn new things, and ultimately put people in a position to deliver more value in the short and the long term.
 
 
+### Pair programming
+
+In my opinion, pair programming is another great tool that you can leverage to give a boost to your expertise.
+
+pairing with as many people as possible within your organization is key. Even if someone is more junior than you, they can still have insights and perspectives that you may not have considered before. Pair programming gives you a platform to share ideas and learn from one another.
+
+Similarly, don't discount the value of teaching others. Even the most senior members of your team can benefit from your knowledge and expertise. By pairing with others, you can share your skills and help everyone grow and develop.
+
+Now, I get it - not everyone loves pair programming. If that's the case, don't worry! There are other approaches that can still provide you with valuable feedback and help you learn from your peers. Interactive code reviews and show and tell sessions are great alternatives that allow you to share your work and receive feedback without having to work together in real-time.
+
+In the end, the most important thing is to remain open to new ideas and approaches. By continuing to learn and grow, you'll be well on your way to becoming a senior software developer. So why not give pair programming a try and see what you can learn?
+
+![A pair of dogs who are not pair programming, but let's pretend they are](./not-pair-programming-dogs.jpg)
+
+<small>Photo by <a href="https://unsplash.com/@itfeelslikefilm?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">🇸🇮 Janko Ferlič</a> on <a href="https://unsplash.com/photos/9Yzy1ZVS7xc?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></small>
 
 
-Senior software engineers play a crucial role in moving projects and teams forward. They are not just skilled programmers, but they also possess a range of soft skills that are essential for success in their role. In this article, we'll explore what's expected from a senior software engineer, their skills, mindset, and duties.
+### Content creation
 
-## Skills
+First off, creating content can take many forms: articles, talks, videos, Twitter threads, you name it! And guess what? You don't need to be an expert to share something new you learned. Even if you're just starting out, your fresh perspective can bring value to others and help you establish yourself as a thought leader.
 
-Technical skills are important, but they are not enough to be a successful senior software engineer. Senior engineers have a "T-shaped profile," which means they have mastered one area of expertise but are proficient in several other areas. For example, a senior engineer may be an expert in backend and API development but can also do some frontend and understand cloud architectures.
+But here's the thing: you gotta make it a habit. Commit to a regular schedule, and you'll develop discipline and consistency in your content creation. Plus, the more you create, the more you'll hone your communication skills - a critical skill for any senior engineer.
 
-Besides technical skills, senior engineers must have a broad understanding of the platform, architecture, code structure, testing, deployment process, and scalability model. They should also understand tradeoffs, such as monolith vs. microservices, memory vs. CPU, and highly scalable vs. low latency, and optimize for the most relevant ones. Senior engineers should also be flexible, comfortable with different programming languages, and paradigms, and can solve problems in different ways and with different tools.
+And speaking of communication, that's where content creation really shines. As engineers, we love getting lost in technical details, but explaining complex concepts to non-technical stakeholders can be a challenge. By creating content, you'll learn to communicate your ideas in a way that's accessible and engaging to a broader audience. Plus, you'll get feedback on your content that can help you improve your communication skills even further.
 
-Bug catching is another critical skill for senior software engineers. They should understand and refine user stories, write different types of tests, and find and discuss edge cases. Additionally, senior engineers should keep track of technical debt and help to pay it back. They should be good advisors, understanding patterns and best practices, and suggest patterns that have good long-term effects while avoiding others that may lead to problems.
+Now, you may have heard of the concept of ["atomic essays"](https://www.ship30for30.com/post/how-to-write-an-atomic-essay-a-beginners-guide). That just means breaking down your ideas into shorter, more focused pieces of content. This approach can make your content more engaging and easier to consume - especially on platforms like Twitter, where brevity is key.
 
-## Mindset and Duties
+In summary, creating content can help you become a more senior engineer by establishing yourself as a thought leader, developing your communication skills, and contributing to the community. So go ahead, share your knowledge and insights with the world. You may be surprised at how much impact you can have!
 
-Senior software engineers are team players, not heroes, rockstars, superstars, magicians, or unicorns. They are active levers that ask hard questions, take leadership to find what they don't know, and bridge between product and technology. They know when (and how) to say NO and understand the business, its purpose, long-term vision, strategy, unique strengths, main weaknesses, and how technology can help.
 
-Senior engineers must also be excellent communicators, able to talk with all stakeholders, explain uncertainties, propose ideas on how to address them, talk about failures and learnings, write docs and deliver presentations, and make complex topics digestible. They should support management, plan, drive ceremonies, keep track of priorities and technical debt, split complex tasks into manageable parts, and understand and leverage team strengths.
+### Other ideas
 
-Autonomy is another important mindset for senior software engineers. They can drive projects that require research and grind, but are aware of avoiding silos. They know how to get unstuck, ask for help, research and experiment, read the docs, and read and understand existing code. Senior engineers focus on delivery, negotiate expectations, and have a positive attitude. They don't blame the system, propose solutions, facilitate conversations, help find compromises, and have confidence that hard problems can be solved, even if they don't know how yet.
+First off, keeping a positive attitude is crucial. When things get tough, it's easy to get discouraged and lose sight of the bigger picture. But remember, with enough time and resources, our teams can overcome any challenge. And if not, we can always find creative compromises that meet everyone's needs.
 
-## Growth and Fun
+Another key to upskilling is to avoid being too picky about technology or style. It's important to support our colleagues' ideas, even if we would have done things differently. This kind of collaborative attitude helps build trust and fosters a culture of innovation and teamwork.
 
-To grow, senior software engineers should go one level deeper and not stop at the layer they are familiar with. They should build prototypes to test their understanding and learn new things, even if they are not directly related to their work. Senior engineers should have fun and showcase what they learned to their peers, applying their learnings at work. They should also create content such as articles, talks, videos, Twitter threads, etc., and make it a habit. Creating content improves communication skills and helps them become better senior engineers.
+When it comes to taking on tough jobs, don't be afraid to volunteer. That refactoring that nobody wants to do? Step up and take it on. Those messy, complicated parts of the code that everyone avoids? Dive in and try to make sense of them. By taking on these challenging tasks, we can develop a reputation as problem solvers and become the go-to people for the toughest jobs.
+
+Finally, try to make things just a little bit better wherever you can. Whether it's by documenting a process, improving an application's user interface, or streamlining a workflow, every small improvement counts. Over time, these small wins can add up and help us become more valuable team members.
+
+In summary, upskilling as a software engineer requires a combination of technical and soft skills. By keeping a positive attitude, avoiding being too picky, volunteering for tough jobs, and making small improvements wherever we can, we can develop the skills and reputation we need to advance our careers. So let's take on those challenges with confidence and keep learning and growing every day!
 
 
 ## How do I sell myself as a senior?
 
-TODO
+If I think I am a senior engineer what can I do to be recognised as one?
+
+First, start by taking on more responsibility. Look for opportunities to lead projects or mentor junior engineers. Share your knowledge and experience with others and provide guidance to help them grow.
+
+Secondly, try to make an impact beyond your immediate team or project. Participate in cross-functional initiatives, contribute to open source projects, or speak at industry events. These types of activities can help you establish yourself as a thought leader in your field and demonstrate your expertise to a wider audience.
+
+Thirdly, focus on developing your soft skills. As a senior engineer, you will be expected to communicate effectively with both technical and non-technical stakeholders, lead meetings, and negotiate effectively. So work on improving your communication, leadership, and conflict resolution skills to become a well-rounded and respected member of your team.
+
+Another way to demonstrate your expertise is by sharing your knowledge with others. Write technical blog posts, record tutorial videos, or speak at internal or external events to showcase your expertise and demonstrate your willingness to help others learn.
+
+Lastly, seek feedback from your colleagues, mentors, and managers. Ask for constructive criticism and be open to suggestions for improvement. By being receptive to feedback, you can continuously improve your skills and demonstrate your commitment to growing and learning as a senior engineer.
+
+![A software engineer in the sunlight raising their fist to the sky in sign of victory](./a-software-engineer-who-definitely-wants-to-be-recognised-as-senior.jpg)
+
+<small>Photo by <a href="https://unsplash.com/fr/@mbrunacr?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Miguel Bruna</a> on <a href="https://unsplash.com/photos/TzVN0xQhWaQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></small>
+
 
 
 ## Conclusion
 
-Senior software engineers are essential to moving projects and teams forward. They possess a range of technical and soft skills, a growth mindset, and a
+The definition of a senior software engineer is complex and multifaceted, but it generally involves possessing a deep technical expertise, a broad understanding of the industry, and a range of soft skills that enable effective communication, leadership, and problem-solving. To become a senior software engineer, it's important to continually develop and refine your skills, focusing not just on technical abilities but also on communication, leadership, and business acumen. This might involve pair programming, creating content, volunteering for challenging projects, and seeking out new learning opportunities. Ultimately, the path to seniority is not a linear one, and it requires dedication, perseverance, and a growth mindset to continue improving and evolving as a software engineer. So keep pushing yourself to go one level deeper, to have fun and find joy in your work, and to always strive to make a positive impact on your team and organization.
+
+We cannot excel at everything But we should know our strengths and weaknesses Work with our team to amplify strenghts and compensate weaknesses ...and strive to get better every day!
