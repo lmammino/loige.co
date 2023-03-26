@@ -4,8 +4,8 @@ layout: post
 title: 'The Definition of Senior: A Look at the expectations for Software Engineers'
 slug: the-senior-dev
 subtitle: null
-date: 2023-03-21T12:50:00.000Z
-updated: 2023-03-21T12:50:00.000Z
+date: 2023-03-26T16:30:00.000Z
+updated: 2023-03-26T16:30:00.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: './the-senior-dev.jpg'
@@ -234,30 +234,30 @@ A senior should know when it's time to ask hard questions and take leadership to
 
 Being able to bring a strong technical perspective to a business conversation can be very impactful and inform the business on what's the best strategy to move things forward.
 
-To all effects, a senior should become a bridge between product and technology.
+To all effect, a senior should become a bridge between product and technology.
 
 This sometimes means that a senior should also **know when to say NO**. No to quick and dirty solutions (that will eventually backfire hard) just to hit a deadline. No to plans that only account for building features on top of features without considering user experience and the long term stability of the product. No to arbitrary technical choices just because "_we have always done it this way and it has been fine_".
 
-Saying NO is easy, but also very hard. Everyone can just say NO, that's the easy part! What's difficoult is to argument the why of that NO, propose alternative point of views, find compromises and defuse short or long term time-bombs.
+Saying NO is easy, but also very hard. Everyone can just say NO, that's the easy part! What's difficult is to argue the why of that NO, propose alternative points of view, find compromises and defuse short or long term time-bombs.
 
 Being effective at this requires a fine degree of soft skills. You should know how to communicate effectively and pick your battle wisely. You cannot always say NO to everything or you'll become recognised as a grumpy _naysayer_.
 
-It's more about being able to say _NO BUT_ rather than just a dry _NO_. And you should also be capable of doing that in front of the right people and at the right time...
+It's more about being able to say _"NO, BUT"_ rather than just a dry _"NO"_. And you should also be capable of doing that in front of the right people and at the right time...
 
 When done successfully, this can have a massive positive impact on the business and the team. It can lead to innovation and create new business capabilities or unique competitive advantages.
 
-This is definitely an area of growth for me personally. One of those things where when I look back at my career, I feel like I have failed at it many many times. But hopefully, I have learned something and over time I'll get better at it...
+This is an area of growth for me. One of those things where, when I look back at my career, I feel like I have failed at it many many times. But hopefully, I have learned something and over time I'll get better at it...
 
-![A kid playing Jenga as an analogy to the senior software engineer soft skills and being able to take balanced decisions for the business](./a-kid-playing-jenga-soft-skills-balance.jpg)
+![A kid playing Jenga as an analogy to the senior software engineer's soft skills and being able to take balanced decisions for the business](./a-kid-playing-jenga-soft-skills-balance.jpg)
 
 <small>Photo by <a href="https://unsplash.com/@mparzuchowski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Michał Parzuchowski</a> on <a href="https://unsplash.com/photos/geNNFqfvw48?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></small>
 
 
 ### Understanding the business
 
-In order to be an active level in your organisation, you need to be able to understand the business as deeply as possible.
+To be an active level in your organisation, you need to be able to understand the business as deeply as possible.
 
-Do you know what's the purpose of the business? What's the long term vision? Is there a clear strategy? What are the unique strengths and what are the weaknesses?
+Do you know what's the purpose of the business? What's the long-term vision? Is there a clear strategy? What are the unique strengths and what are the weaknesses?
 
 If you can answer all these questions you are in a good position to use your technical skills to determine how technology can help the business to succeed.
 
@@ -271,32 +271,32 @@ Only with a solid understanding of the business you will be able to pick the rig
 
 As a software engineer, communication skills are crucial to your success. You must be able to communicate effectively with a variety of stakeholders, including other engineers, project managers, customers, and executives. This requires a wide range of communication skills, from speaking and listening to writing and presenting.
 
-Since you will need to talk with all the stakeholders, you should learn how communicate technical concepts to non-technical stakeholders in a way that is easy to understand. It also means being able to listen to feedback and incorporate it into your work. The ability to communicate effectively with stakeholders is essential for ensuring that everyone is on the same page and that projects are completed successfully.
+Since you will need to talk with all the stakeholders, you should learn how to communicate technical concepts to non-technical stakeholders in a way that is easy to understand. It also means being able to listen to feedback and incorporate it into your work. The ability to communicate effectively with stakeholders is essential for ensuring that everyone is on the same page and that projects are completed successfully.
 
 Another important communication skill for a software engineer is the ability to explain uncertainties and propose ideas on how to address them. Software development is an inherently uncertain process, and there will always be unknowns and unforeseen challenges. As a software engineer, you need to be able to communicate these uncertainties to stakeholders in a way that is clear and concise. You also need to be able to propose ideas on how to address these uncertainties and move the project forward.
 
 In addition, software engineers must be able to talk about failures and learnings. We already covered this, but it's important to remark that failure is an inevitable part of software development, and it is important to be transparent about failures and the lessons learned from them. This requires effective communication skills, including the ability to take ownership of mistakes and communicate them honestly to stakeholders. It also requires the ability to communicate the lessons learned from failures and incorporate them into future projects.
 
-Communication skills are also essential for writing documentation and delivering presentations. Software engineers must be able to write clear documentation that explains how their solutions works and how they should be used and operated in production. They must also be able to deliver presentations that effectively communicate technical concepts to a non-technical audience. This requires strong writing and presentation skills, as well as the ability to simplify complex topics and make them digestible for the audience.
+Communication skills are also essential for writing documentation and delivering presentations. Software engineers must be able to write clear documentation that explains how their solutions work and how they should be used and operated in production. They must also be able to deliver presentations that effectively communicate technical concepts to a non-technical audience. This requires strong writing and presentation skills, as well as the ability to simplify complex topics and make them digestible for the audience.
 
 Good communication skills can open many doors and unblock complex situations. So make sure to practice them as much as possible!
 
 
 ### Supporting management
 
-When you are a good communicator, you become someone who can be very effective at supporting various management activities, for instance planning, and driving ceremonies. You can help with keeping track of priorities and technical debt and split complex tasks into manageable parts.
+When you are a good communicator, you become someone who can be very effective at supporting various management activities, for instance, planning and driving ceremonies. You can help with keeping track of priorities and technical debt and split complex tasks into manageable parts.
 
 You are in a unique position to understand and leverage team strengths and pull in the right people at the right time.
 
-By working closely with management, you can ensure that your work aligns with the overall business objectives and that your team's efforts are being used effectively.
+By working closely with management, you can ensure that your work aligns with the overall business objectives and that your team's efforts are channeled in the right direction.
 
 Planning is another crucial skill for a software engineer. This involves breaking down large projects into smaller, manageable tasks, estimating the time required for each task, and prioritizing them. Effective planning helps to ensure that projects are completed on time and within budget.
 
-Driving ceremonies such as stand-up meetings, sprint reviews, and retrospectives can provide an opportunity to share progress, identify issues, and plan for the future. As a software engineer, you need to help driving these ceremonies and ensure that they are productive and efficient.
+Driving ceremonies such as stand-up meetings, sprint reviews, and retrospectives can provide an opportunity to share progress, identify issues, and plan for the future. As a software engineer, you need to help drive these ceremonies and ensure that they are productive and efficient.
 
-I am not suggesting that senior software engineers should replace the role of project or product managers, but instead they should complement these roles and provide their unique technical perspective to keep objectives, plans and execution aligned with the expectations of the technical team.
+I am not suggesting that senior software engineers should replace the role of project or product managers, but instead, they should complement these roles and provide their unique technical perspective to keep objectives, plans and execution aligned with the expectations of the technical team.
 
-![A kid holding a map as an analogy of a senior software engineer being able to support management](./a-kid-holding-a-map.jpg)
+![A kid holding a map: an analogy of a senior software engineer being able to support management](./a-kid-holding-a-map.jpg)
 
 <small>Photo by <a href="https://unsplash.com/@anniespratt?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Annie Spratt</a> on <a href="https://unsplash.com/photos/kZO9xqmO_TA?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></small>
 
@@ -305,31 +305,31 @@ I am not suggesting that senior software engineers should replace the role of pr
 
 The last 2 soft skills I want to touch on are autonomy and a focus on delivery.
 
-Sometimes senior software engineers are in a unique position to contribute significantly to projects that require in-depth research and grind. Heavily technical projects such as the ones related to performance optimization, significant refactoring, and re-architecturing. These are often projects that are quite important for the business because they can unblock innovation and bootstrap new business capabilities.
+Sometimes senior software engineers are in a unique position to contribute significantly to projects that require in-depth research and grind. Heavily technical projects such as the ones related to performance optimization, significant refactoring, and re-architecture. These are often projects that are quite important for the business because they can unblock innovation and bootstrap new business capabilities.
 
 In my experience, it's not uncommon that in such projects, a single individual contributor might be well positioned to spend some amount of time focusing and achieving a significant amount of progress in a very short amount of time driving the first big chunk of the research forward.
 
-But even in these situations it is important to avoid silos at all costs.
+But even in these situations, it is important to avoid silos at all costs.
 
-If you are working on such a project, make sure to have regular check-ins with management and other senior colleagues to keep your progress in check, get usuful feedback and share your learnings.
+If you are working on such a project, make sure to have regular check-ins with management and other senior colleagues to keep your progress in check, get useful feedback and share your learnings.
 
-But the ability to deliver value by working autonomously is not only useful in research projects, it's a good skill to master in general.
+But the ability to deliver value by working autonomously is not only useful in research projects, but it's also a good skill to master in general.
 
-In the software industry it is more common to work with things we don't know than it is to work we things we know!
+In the software industry, it is more common to work with things we don't know than it is to work we things we know!
 
-There are always new domains to explore, new challenges to face and new tools to deal with. Therefore, it's important to be able to learn quickly and upskill fast when needed. You shouldn't be waiting for other people to teach you and tell you how to do certain things, you should be able to do certain amount of progress on your own, for instance by consuming and understanding documentation and existing code.
+There are always new domains to explore, new challenges to face and new tools to deal with. Therefore, it's important to be able to learn quickly and upskill fast when needed. You shouldn't be waiting for other people to teach you and tell you how to do certain things, you should be able to do a certain amount of progress on your own, for instance by consuming and understanding documentation and existing code.
 
-If you have broad skills already, it should almost be a second nature to be able to add more to it when needed.
+If you have broad skills already, it should almost be second nature to be able to add more to them when needed.
 
-Of course, it is OK to ask for help if you feel stuck, but it's also important to try to do everything you can to progress on your own so you can build as much context as possibile and maximise the outcome of the time spent receiving help from others.
+Of course, it is OK to ask for help if you feel stuck, but it's also important to try to do everything you can to progress on your own so you can build as much context as possible and maximise the outcome of the time spent receiving help from others.
 
-Ideally, a senior software engineer doesn't need to much guidance. They are able to figure out what's needed to move things forward by themselves and by involving other people when needed.
+Ideally, a senior software engineer doesn't need too much guidance. They can figure out what's needed to move things forward by themselves and involve other people when needed.
 
-Another facet of this involves negotiating expectations and understanding what it means to be successful in the current environment. It's good to be upfront with management and the rest of the technical team and define what individual and team success look like. If you don't know what's expected from you and the rest of the team, even if you feel you are doing the right thing, you might end up not delivering the value that is expected from you; similarly, you might not be able to help your team at being successfull.
+Another facet of this involves negotiating expectations and understanding what it means to be successful in the current environment. It's good to be upfront with management and the rest of the technical team and define what individual and team success looks like. If you don't know what's expected from you and the rest of the team, even if you feel you are doing the right thing, you might end up not delivering the value that is expected from you; similarly, you might not be able to help your team at being successful.
 
-Building this attitude of bluntness and clarity, generally keeps the mood more positive and helps with avoiding disappointments.
+Building this attitude of bluntness and clarity generally keeps the mood more positive and helps with avoiding disappointments.
 
-Of course, you can't always avoid all disappointments or failure scenarios. So when poop hits the fan, you might be tempted to blame someone else or the system, but it's instead more mature to ask what could have been done better and what could be done in the future to avoid similar issues from raising again.
+Of course, you can't always avoid all disappointments or failure scenarios. So when the poop hits the fan, you might be tempted to blame someone else or the system, but it's instead more mature to ask what could have been done better and what could be done in the future to avoid similar issues from raising again.
 
 ![A fan with a red background](./a-fan-with-a-red-background.jpg)
 
@@ -345,26 +345,25 @@ Well, fear not! Here are 4 ideas (plus some extras) that I believe will help you
 
 ### Go one level deeper
 
-First off, don't just scratch the surface of technologies you're working with. Dive deeper and learn about the underlying layers.
+First off, don't just scratch the surface of the technologies you're working with. Dive deeper and learn about the underlying layers.
 
-You have probably built a website or an API, but did you ever wonder how does the HTTP protocol work? Or even how does the TCP protocol works and what happens in order to establish a connection? Understanding these details will give you a much richer understanding of the technologies you work with every day.
+You have probably built a website or an API, but did you ever wonder how does the HTTP protocol work? Or even how does the TCP protocol works and what happens to establish a connection? Appreciating these details will give you a much richer understanding of the technologies you work with every day.
 
-Yes, it's an endless rabbit hole if you start to dig... so how we we dive deeper without getting lost and get value from it?
+Yes, it's an endless rabbit hole if you start to dig... so how we dive deeper without getting lost and get value from it?
 
-My rule of thumb (which I have actually ~~stolen~~ learned from my friend [Roberto](https://twitter.com/gbinside)), is to dig only 1 level down in respect to the technologies you are already familiar with.
+My rule of thumb (which I have ~~stolen~~ learned from my friend [Roberto](https://twitter.com/gbinside)), is to dig only 1 level down starting from the technologies you are already familiar with.
 
-Are you working a lot with OAuth and OpenID Connect? Well, you'll probably want to know [what's inside a JWT](/whats-in-a-jwt). Do you understand the OAuth authorization code flow and what happens with all the redirects? Actually, do you know how signing algorithms such as RSA and HMAC work?
+Have you spent some time with _OAuth_ and _OpenID Connect_? Well, you'll probably want to know [what's inside a JWT](/whats-in-a-jwt). Do you understand the OAuth authorization code flow and what happens with all the redirects? Actually, do you know how signing algorithms such as RSA and HMAC work?
 
-These are all topics that you can explore to consolidate your knowledge of this particular domain. They will allow to exploer more general concepts that you might be able to re-use somewhere else.
+These are all topics that you can explore to consolidate your knowledge of this particular domain. They will allow you to explore more general concepts that you might be able to re-use somewhere else.
 
-All good steps towards broadening your knowlege and becoming a more well-rounded engineer.
+All good steps towards broadening your knowledge and becoming a more well-rounded engineer.
 
-If am often biased towards building. I feel like I don't truly understand something if I can't build a small prototype for it.
-If you are like me you could try to do that as well. Can you decode a JWT token without using a library? Can you take it a step further and even implement the signature verification algorithm?
+I am often biased toward building stuff. I feel like I don't truly understand something if I can't build a small prototype for it. If you are like me you could try to do that as well. Can you decode a JWT token without using a library? Can you take it a step further and even implement the signature verification algorithm?
 
-Building prototypes is a great way to memorise certain concepts and truly put your understanding to test. Of course, it take more effort, so choose your prototypes wisely: you can't possibly re-implement everything just for the sake of learning!
+Building prototypes is a great way to memorise certain concepts and truly put your understanding to the test. Of course, it takes more effort to build stuff, so choose your prototype exercises wisely: you can't possibly re-implement 60+ years of software engineering just for the sake of learning!
 
-One funny video that I really enjoyed lately is [The Computer Science Iceberg](https://www.youtube.com/watch?v=H565avw-ufk). Why do I like it so much? Because it truly illustrates this idea of descending down levels of abstractions and exploring more fundamental and generic pieces of knowledge.
+One funny video that I really enjoyed lately is [The Computer Science Iceberg](https://www.youtube.com/watch?v=H565avw-ufk). Why do I like it so much? Because it truly illustrates this idea of descending levels of abstractions and exploring more fundamental and generic pieces of knowledge.
 
 ![Just an image of an iceberg](./an-iceberg.jpg)
 
@@ -373,75 +372,81 @@ One funny video that I really enjoyed lately is [The Computer Science Iceberg](h
 
 ### Have fun
 
-This is one of my core belief: software engineering is a very challenging profession. Not because it's harder than other professions but because things move so quickly that you can never stop learning and you'll always have to feel behind.
+This is one of my core beliefs: software engineering is a very challenging profession. Not because it's harder than other professions but because things move so quickly that you can never stop learning and you'll always have to feel behind.
 
-The one thing that could make the profession a little bit easier is a genuine passion for the subject. If you are passionate it's going to be easier to motivate yourself to learning new things over and over!
+The one thing that could make the profession a little bit easier is a genuine passion for the subject. If you are passionate it's going to be easier to motivate yourself to learn new things over and over!
 
-But if I don't know if I am passionate or not?
+But what if I don't know if I am passionate enough?
 
 Fair, especially if you are at the beginning of your career. There is so much in front of you that it might be scary and even discouraging.
 
-Again, my recommendation is to be biased towards building. Building something will give you a tangible feedback that what you are learning can actually be useful. You can build side projects to put new knowledge into practice.
+Again, my recommendation is to be biased toward building stuff. Building something will give you tangible feedback that what you are learning can actually be useful. You can build side projects to put new knowledge into practice.
 
-Also, you shouldn't be shy to show what you built (and what you learned) to your peers and even your friends outside work! Chances are you'll get feedback and come up with new ideas, new things you'd like to learn and try.
+Also, you shouldn't be shy to show what you built (and what you learned) to your peers and even your friends outside of work! Chances are you'll get feedback and come up with new ideas and new things you'd like to learn and try.
 
-Even better if you realise you can apply some of these learnings at work. Maybe you can develop a new path in the company you are working for, maybe you can help with something that is currenty being neglected because no one else has the time or the expertise, maybe all of this can demostrate more value and you'll get a promotion!
+Even better if you realise you can apply some of these learnings at work. Maybe you can develop a new path in the company you are working for, maybe you can help with something that is currently being neglected because no one else has the time or the expertise, maybe all of this can demonstrate more value and you'll get a promotion!
 
 When you apply this mindset of continuous learning and sharing knowledge at work, this might generate cross-pollination and you might end up with a team that has fun learning and building together.
 
-If you get there (or a way to get there) consider organising company **hackatons** or **free-study days**. These are great ways to help teams to become more passionate about what they do, explore new ideas, learn new things, and ultimately put people in a position to deliver more value in the short and the long term.
+Another idea to make teams gel together and to generate cross-pollination of ideas is to organise company **hackatons** or **free-study days**. These are great ways to help teams to become more passionate about what they do, explore new ideas, learn new things, and ultimately put people in a position to deliver more value in the short and the long term.
 
 
 ### Pair programming
 
-In my opinion, pair programming is another great tool that you can leverage to give a boost to your expertise.
+Pair programming is another great tool that you can leverage to give a boost to your expertise.
 
 pairing with as many people as possible within your organization is key. Even if someone is more junior than you, they can still have insights and perspectives that you may not have considered before. Pair programming gives you a platform to share ideas and learn from one another.
 
 Similarly, don't discount the value of teaching others. Even the most senior members of your team can benefit from your knowledge and expertise. By pairing with others, you can share your skills and help everyone grow and develop.
 
-Now, I get it - not everyone loves pair programming. If that's the case, don't worry! There are other approaches that can still provide you with valuable feedback and help you learn from your peers. Interactive code reviews and show and tell sessions are great alternatives that allow you to share your work and receive feedback without having to work together in real-time.
+I picked up so many tricks by pairing with other people. Even small things such as how they configured their editor or their terminal.
+
+Now, I get it - not everyone loves pair programming. If that's the case, don't worry! There are other approaches to follow that can still provide you with valuable feedback and help you learn from your peers. Interactive code reviews and show-and-tell sessions are great alternatives that allow you to share your work and receive feedback without having to work together in real time.
 
 In the end, the most important thing is to remain open to new ideas and approaches. By continuing to learn and grow, you'll be well on your way to becoming a senior software developer. So why not give pair programming a try and see what you can learn?
 
 ![A pair of dogs who are not pair programming, but let's pretend they are](./not-pair-programming-dogs.jpg)
 
-<small>Photo by <a href="https://unsplash.com/@itfeelslikefilm?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">🇸🇮 Janko Ferlič</a> on <a href="https://unsplash.com/photos/9Yzy1ZVS7xc?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></small>
+<small>Photo by <a href="https://unsplash.com/@itfeelslikefilm?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Janko Ferlič</a> on <a href="https://unsplash.com/photos/9Yzy1ZVS7xc?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></small>
 
 
 ### Content creation
 
-First off, creating content can take many forms: articles, talks, videos, Twitter threads, you name it! And guess what? You don't need to be an expert to share something new you learned. Even if you're just starting out, your fresh perspective can bring value to others and help you establish yourself as a thought leader.
+First off, creating content can take many forms: articles, talks, videos, Twitter threads, you name it! And guess what? You don't need to be an expert to share something new you learned. Even if you're just starting on a given subject, your fresh perspective can bring value to others and help you establish yourself as a thought leader. So do create content on what it felt like to try a new programming language or a framework. What did you like? Was there something confusing? What did you miss from your previous experience?
 
-But here's the thing: you gotta make it a habit. Commit to a regular schedule, and you'll develop discipline and consistency in your content creation. Plus, the more you create, the more you'll hone your communication skills - a critical skill for any senior engineer.
+But here's the thing: you gotta make it a habit. Commit to a regular schedule, and you'll develop discipline and consistency in your content creation. Plus, the more you create, the more you'll hone your communication skills. And I'll say it one more time, communication is a critical skill for any senior engineer.
 
-And speaking of communication, that's where content creation really shines. As engineers, we love getting lost in technical details, but explaining complex concepts to non-technical stakeholders can be a challenge. By creating content, you'll learn to communicate your ideas in a way that's accessible and engaging to a broader audience. Plus, you'll get feedback on your content that can help you improve your communication skills even further.
+And speaking of communication, that's where content creation shines. As engineers, we love getting lost in technical details, but explaining complex concepts to non-technical stakeholders can be a challenge. By creating content, you'll learn to communicate your ideas in a way that's accessible and engaging to a broader audience. Plus, you'll have an opportunity to get feedback on your content and, if you listen to feedback, you can improve your communication skills even further.
 
-Now, you may have heard of the concept of ["atomic essays"](https://www.ship30for30.com/post/how-to-write-an-atomic-essay-a-beginners-guide). That just means breaking down your ideas into shorter, more focused pieces of content. This approach can make your content more engaging and easier to consume - especially on platforms like Twitter, where brevity is key.
+Have heard of the concept of ["atomic essays"](https://www.ship30for30.com/post/how-to-write-an-atomic-essay-a-beginners-guide)? That just means breaking down your ideas into shorter, more focused pieces of content. This approach can make your content more engaging and easier to consume - especially on platforms like Twitter, where brevity is key. If you don't know what kind of content to create, this could be a good format to start with.
 
-In summary, creating content can help you become a more senior engineer by establishing yourself as a thought leader, developing your communication skills, and contributing to the community. So go ahead, share your knowledge and insights with the world. You may be surprised at how much impact you can have!
+If you don't know what to create content about, here's my tip: every day, at the end of your work day write down 1 new thing that you think learned during that day. At the end of the work week, review your 5 points. I am sure that at least one of these will be worth creating some content about.
+
+Creating content can help you become a more senior engineer by establishing yourself as a thought leader, developing your communication skills, and contributing to the community. So go ahead and share your knowledge with the world. You will be surprised at how much impact it will have on yourself and others!
 
 
 ### Other ideas
 
-First off, keeping a positive attitude is crucial. When things get tough, it's easy to get discouraged and lose sight of the bigger picture. But remember, with enough time and resources, our teams can overcome any challenge. And if not, we can always find creative compromises that meet everyone's needs.
+Here are some other random-ish tips that you can add to the ones above.
 
-Another key to upskilling is to avoid being too picky about technology or style. It's important to support our colleagues' ideas, even if we would have done things differently. This kind of collaborative attitude helps build trust and fosters a culture of innovation and teamwork.
+First off, always try to keep a positive attitude. When things get tough, it's easy to get discouraged and lose sight of the bigger picture. But remember, with enough time and resources, teams can overcome any challenge. When that luxury is missing, I am sure there are decent compromises that can meet everyone's needs.
 
-When it comes to taking on tough jobs, don't be afraid to volunteer. That refactoring that nobody wants to do? Step up and take it on. Those messy, complicated parts of the code that everyone avoids? Dive in and try to make sense of them. By taking on these challenging tasks, we can develop a reputation as problem solvers and become the go-to people for the toughest jobs.
+Another key to upskilling is to avoid being too picky about technology or programming styles. Make an effort to expose yourself to different ways of solving problems. It's an exercise for your problem-solving skills.
 
-Finally, try to make things just a little bit better wherever you can. Whether it's by documenting a process, improving an application's user interface, or streamlining a workflow, every small improvement counts. Over time, these small wins can add up and help us become more valuable team members.
+It's important to support our colleagues' ideas, even if we would have done things differently. This kind of collaborative attitude helps build trust and fosters a culture of innovation and teamwork. Also, next time you will propose something, I am sure that people will be willing to discuss and support your ideas.
 
-In summary, upskilling as a software engineer requires a combination of technical and soft skills. By keeping a positive attitude, avoiding being too picky, volunteering for tough jobs, and making small improvements wherever we can, we can develop the skills and reputation we need to advance our careers. So let's take on those challenges with confidence and keep learning and growing every day!
+When it comes to taking on tough jobs, don't be afraid to volunteer. What about that refactoring that nobody wants to do? Step up and take it on. Those messy, complicated parts of the code that everyone avoids? Dive in and try to make sense of them. By taking on these challenging tasks, you can develop a reputation as a problem solver and become the go-to person for the toughest jobs.
+
+Finally, as a general rule, try to make things just a little bit better wherever you have the chance. Whether it's by documenting a process, improving an application's user interface, or streamlining a workflow, every small improvement counts. Over time, these small wins can add up and help us become more valuable team members.
 
 
 ## How do I sell myself as a senior?
 
 If I think I am a senior engineer what can I do to be recognised as one?
 
-First, start by taking on more responsibility. Look for opportunities to lead projects or mentor junior engineers. Share your knowledge and experience with others and provide guidance to help them grow.
+First, start by taking on more responsibility. Look for opportunities to lead projects or mentor junior engineers. Share your knowledge and experience with others and provide guidance.
 
-Secondly, try to make an impact beyond your immediate team or project. Participate in cross-functional initiatives, contribute to open source projects, or speak at industry events. These types of activities can help you establish yourself as a thought leader in your field and demonstrate your expertise to a wider audience.
+Secondly, try to make an impact beyond your immediate team or project. Participate in cross-functional initiatives, contribute to open-source projects, or speak at industry events. These types of activities can help you establish yourself as a thought leader in your field and demonstrate your expertise to a wider audience.
 
 Thirdly, focus on developing your soft skills. As a senior engineer, you will be expected to communicate effectively with both technical and non-technical stakeholders, lead meetings, and negotiate effectively. So work on improving your communication, leadership, and conflict resolution skills to become a well-rounded and respected member of your team.
 
@@ -457,6 +462,16 @@ Lastly, seek feedback from your colleagues, mentors, and managers. Ask for const
 
 ## Conclusion
 
-The definition of a senior software engineer is complex and multifaceted, but it generally involves possessing a deep technical expertise, a broad understanding of the industry, and a range of soft skills that enable effective communication, leadership, and problem-solving. To become a senior software engineer, it's important to continually develop and refine your skills, focusing not just on technical abilities but also on communication, leadership, and business acumen. This might involve pair programming, creating content, volunteering for challenging projects, and seeking out new learning opportunities. Ultimately, the path to seniority is not a linear one, and it requires dedication, perseverance, and a growth mindset to continue improving and evolving as a software engineer. So keep pushing yourself to go one level deeper, to have fun and find joy in your work, and to always strive to make a positive impact on your team and organization.
+The definition of a senior software engineer is complex and multifaceted, but it generally involves possessing a deep technical expertise, a broad understanding of the industry, and a range of soft skills that enable effective communication, leadership, and problem-solving.
 
-We cannot excel at everything But we should know our strengths and weaknesses Work with our team to amplify strenghts and compensate weaknesses ...and strive to get better every day!
+To become a senior software engineer, it's important to continually develop and refine your skills, focusing not just on technical abilities but also on communication, leadership, and business acumen.
+
+This might involve pair programming, creating content, volunteering for challenging projects, and seeking out new learning opportunities.
+
+Ultimately, the path to seniority is not a linear one, and it requires dedication, perseverance, and a growth mindset to continue improving and evolving as a software engineer. So keep pushing yourself to go one level deeper, to have fun and find joy in your work, and to always strive to make a positive impact on your team and organization.
+
+But if you have been wondering all the time whether I have been describing the _perfect_ senior software engineer, let me only tell you that I am not expecting people to nail every single aspect mentioned in this article. There will be things you will be great at and others where you'll be barely sufficient. That's just human nature and it's okay!
+
+We cannot excel at everything But we should know our strengths and weaknesses Work with our team to amplify strengths and compensate for weaknesses ...and strive to get better every day!
+
+It's a journey, not a destination! Touché...
