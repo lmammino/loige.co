@@ -2,7 +2,7 @@
 uuid: 081c003f-db57-484a-a163-ce78a3e1344b
 layout: speaking
 title: "The senior dev"
-slug: 'the-senior-dev'
+slug: 'the-senior-dev-talk'
 date: 2022-03-10T16:10:00.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
