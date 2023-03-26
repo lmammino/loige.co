@@ -22,7 +22,7 @@ In today's fast-paced tech industry, the role of a senior software engineer has 
 
 The truth is that answering these questions is a very subjective matter and different people or different companies might give very different answers.
 
-In this article, I'll try to give you my take, based on my opinions and personal experience.
+In this article, I'll try to give you my take, based on my opinion and personal experience.
 
 So let's get to it!
 
@@ -472,6 +472,6 @@ Ultimately, the path to seniority is not a linear one, and it requires dedicatio
 
 But if you have been wondering all the time whether I have been describing the _perfect_ senior software engineer, let me only tell you that I am not expecting people to nail every single aspect mentioned in this article. There will be things you will be great at and others where you'll be barely sufficient. That's just human nature and it's okay!
 
-We cannot excel at everything But we should know our strengths and weaknesses Work with our team to amplify strengths and compensate for weaknesses ...and strive to get better every day!
+We cannot excel at everything but we should know our strengths and weaknesses work with our team to amplify strengths and compensate for weaknesses ...and strive to get better every day!
 
 It's a journey, not a destination! Touché...
