@@ -160,7 +160,7 @@ The path to success is rarely a straight line...
 <small>Photo by <a href="https://unsplash.com/@sylvaingllm?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Sylvain Gllm</a> on <a href="https://unsplash.com/photos/X4dBqRUzO2U?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></small>
 
 
-### Gonna cath all bugs!
+### Gonna catch all bugs!
 
 We know that bug-free software is a myth, so I am not going to say that a senior software engineer doesn't create bugs! Of course, they do...
 
