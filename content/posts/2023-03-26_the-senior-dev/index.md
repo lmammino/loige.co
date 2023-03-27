@@ -168,7 +168,7 @@ But it's really important for a senior software engineer to know what can be don
 
 Understanding and refining user stories, writing different types of tests such as unit, integration, and end-to-end tests, finding and discussing edge cases, and keeping track of technical debt are all essential skills.
 
-A senior software engineer should be able to make a big difference here and help the entire team to write better softaware by introducing and educating best practices about software testing.
+A senior software engineer should be able to make a big difference here and help the entire team to write better software by introducing and educating best practices about software testing.
 
 I would argue that it's not too hard to write tests, but writing good tests it's almost an art!
 
@@ -255,7 +255,7 @@ This is an area of growth for me. One of those things where, when I look back at
 
 ### Understanding the business
 
-To be an active level in your organisation, you need to be able to understand the business as deeply as possible.
+To be an active lever in your organisation, you need to be able to understand the business as deeply as possible.
 
 Do you know what's the purpose of the business? What's the long-term vision? Is there a clear strategy? What are the unique strengths and what are the weaknesses?
 
