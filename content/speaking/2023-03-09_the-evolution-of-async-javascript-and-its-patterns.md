@@ -20,7 +20,7 @@ event_city: 'remote'
 event_days: 'Mar 8-9, 2023'
 is_workshop: false
 slides_link: 'https://loige.link/async-evo'
-video_link: ~
+video_link: 'https://www.youtube.com/watch?v=DRxod84Ftws'
 with: ~
 ---
 
