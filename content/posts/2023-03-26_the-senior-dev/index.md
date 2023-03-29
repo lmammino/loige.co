@@ -388,7 +388,7 @@ Even better if you realise you can apply some of these learnings at work. Maybe 
 
 When you apply this mindset of continuous learning and sharing knowledge at work, this might generate cross-pollination and you might end up with a team that has fun learning and building together.
 
-Another idea to make teams gel together and to generate cross-pollination of ideas is to organise company **hackatons** or **free-study days**. These are great ways to help teams to become more passionate about what they do, explore new ideas, learn new things, and ultimately put people in a position to deliver more value in the short and the long term.
+Another idea to make people gel with each other and to generate cross-pollination of ideas is to organise company **hackatons** or **free-study days**. These are great ways to help teams to become more passionate about what they do, explore new ideas, learn new things, and ultimately put people in a position to deliver more value in the short and the long term.
 
 
 ### Pair programming
