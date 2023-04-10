@@ -193,7 +193,7 @@ Learn the different types of tests and different testing frameworks. Finally, le
 
 Having written [a book on design patterns](https://nodejsdesignpatterns.com/) I am certainly biased on this one...
 
-A senior software engineer should have developed some degree of _flexibility_ in different programming languages and paradigms such as OOP vs Functional, Declarative vs Imperative, and Compiled vs Interpreted is also a vital skill. This will allow a senior software engineer to be able to solve the same problem using different tools and techniques.
+A senior software engineer should have developed some degree of _flexibility_ in different programming languages and they should understand paradigms such as OOP vs Functional, Declarative vs Imperative, and Compiled vs Interpreted. This will allow a senior software engineer to be able to solve the same problem using different tools and techniques.
 
 Similarly, a senior software engineer should understand various design patterns and best practices. This will allow them to suggest patterns that can have good long-term effects, and avoid patterns that will eventually lead to problems.
 
