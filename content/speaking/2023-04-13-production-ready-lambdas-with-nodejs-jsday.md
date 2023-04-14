@@ -19,7 +19,7 @@ event_location_gps: '45.4299,10.98444'
 event_city: 'Verona'
 event_days: 'Apr 13, 2023'
 is_workshop: false
-slides_link: ~
+slides_link: 'https://loige.link/prod-lambda'
 video_link: ~
 with: ~
 ---
