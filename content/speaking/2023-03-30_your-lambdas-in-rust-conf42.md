@@ -19,8 +19,8 @@ event_location_gps: null
 event_city: 'remote'
 event_days: 'Mar 30, 2023'
 is_workshop: false
-slides_link: ~
-video_link: ~
+slides_link: 'https://loige.link/rusty-lambdas'
+video_link: 'https://youtu.be/jJjdKJHqKkI'
 with: ~
 ---
 
