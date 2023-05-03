@@ -19,7 +19,7 @@ event_location_gps: null
 event_city: 'remote'
 event_days: 'May 3, 2023'
 is_workshop: false
-slides_link: ~
+slides_link: 'https://loige.link/lambda-rs'
 video_link: ~
 with: ~
 ---
