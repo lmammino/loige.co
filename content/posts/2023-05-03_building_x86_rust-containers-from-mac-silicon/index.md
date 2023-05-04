@@ -29,7 +29,7 @@ My solution involves a bunch of interesting technology, so if nothing else, it's
 - [QEMU](https://www.qemu.org/)
 - [RusTLS](https://github.com/rustls/rustls)
 
-The big caveat is that, I am not sure this is the best solution ever, but it's definitely "a solution". If you have been through the same journey and you think there's something that can be improved, I'd love to hear that! After all, we are here to learn from each other, so do reach out [on Twitter](https://twitter.com/loige) or [in the comments below](#comments).
+The big disclaimer is that, I am not sure this is the best solution ever, but it's definitely "a solution". If you have been through the same journey and you think there's something that can be improved, I'd love to hear that! After all, we are here to learn from each other, so do reach out [on Twitter](https://twitter.com/loige) or [in the comments below](#comments).
 
 
 ## The use case
@@ -53,24 +53,32 @@ Another critical piece of information is that my development machine is a Mac wi
 
 If you are thinking I could create some kind of build pipeline on an x86 architecture, well, great idea! But I like the pain and the challenge, so I want to be able to build from my machine and just ship the damn container image!
 
-So I rolled up my sleeves and came up with this first `Dockerfile` (of which you get to see a simplified version just to get to the point):
+Before we deep dive into the Docker code, keep in mind that my project is structured as a monorepo. I have frontend and backend colocated in the same project and my folder structure looks more or less like this:
+
+```plain
+.
+├── Dockerfile
+├── README.md
+├── backend
+└── frontend
+```
+
+So I rolled up my sleeves and came up with this first version of `Dockerfile` (of which you get to see a simplified version just to get to the point):
 
 ```Dockerfile
+# build container
 FROM rust:1.68.2-slim-buster as backend
 RUN apt update && apt install -y librust-openssl-dev libssl-dev 
 RUN mkdir /app
 COPY backend /app/backend
 RUN cd /app/backend && cargo build --release
 
-FROM node:18.15.0-buster-slim as frontend
-RUN mkdir /app
-COPY frontend /app/frontend
-RUN cd /app/frontend && npm install && npm run build
+# frontend build container removed for simplicity
 
+# target container
 FROM rust:1.68.2-slim-buster
 RUN mkdir /app
 COPY --from=backend /app/backend/target/release/backend /app/backend
-COPY --from=frontend /app/frontend/dist /app/frontend
 WORKDIR /app
 CMD ["./backend"]
 EXPOSE 3000
@@ -78,13 +86,97 @@ ENV RUST_LOG="info"
 ENV PORT="3000"
 ```
 
-Let's break down what's happening here
+Let's break down what's happening here.
 
-explain the concept of multi-stage build
+This is a [multi-stage Docker build](https://docs.docker.com/build/building/multi-stage/) which, in short, means that I am using an intermediate container that knows how to compile the Rust binary. Then I can build the target container by copying over the binary from the build container.
 
-TODO
+There are a few advantages to this approach:
 
-Command to build the container
+- It's easier to end up with a smaller target container because it doesn't contain all the baggage of the build tools. The build happens in a dedicated container that is not going to be used in production.
+- If you are building multiple things (in my case a frontend and a backend) you can parallelise these parts by using multiple build containers.
+
+Let's now review the current `Dockerfile` and go through the main bits:
+
+```Dockerfile
+# build container
+FROM rust:1.68.2-slim-buster as backend
+RUN apt update && apt install -y librust-openssl-dev libssl-dev 
+RUN mkdir /app
+COPY backend /app/backend
+RUN cd /app/backend && cargo build --release
+```
+
+This is the build container. It's responsible _just_ for building the executable binary by compiling the Rust code.
+
+In short, what's happening here is the following:
+
+- We start from a Debian based Rust container which we label `backend`. This base image contains all the build tools that we are expected to use to compile Rust-based projects (`cargo`, `rustc`, etc.).
+- Because the project uses some crates that require `openssl` (such as `sqlx` and `reqwest`) we need to make sure `openssl` is present in the build environment.
+- We create the `/app/backend` folder and copy all the Rust source code in there.
+- Finally, we run `cargo build --release` to compile the executable binary for the app.
+
+Let's now look at the target container:
+
+```Dockerfile
+# target container
+FROM rust:1.68.2-slim-buster
+RUN mkdir /app
+COPY --from=backend /app/backend/target/release/backend /app/backend
+WORKDIR /app
+CMD ["./backend"]
+EXPOSE 3000
+ENV RUST_LOG="info"
+ENV PORT="3000"
+```
+
+The first (and probably unexpected bit) is that we are using the same base image as our build container. This is something that I wasn't really happy with because it means we give away one of the benefits of multi-stage containers: keep the target container small.
+
+The reason for this is that I tried other smaller base images, such as plain Debian (slim) or even Alpine and in all these attempts I ended up with different runtime errors indicating some kind of missing library.
+
+Out of frustration, I eventually capitulated, and decided _this is fine_ 🐶☕️🔥 and moved on with my life (massive spoiler alert: I'll eventually get to regret this decision).
+
+The other bits in this `Dockerfile` are:
+
+- Again, we create an `/app` folder.
+- We copy from the `backend` build container the `backend` binary into `/app/backend`.
+- We set the working directory of this container to `/app`.
+- We define the default runtime command to execute the `backend` binary we just copied.
+- We expose port `3000` and set some environment variables.
+
+Great, all clear?!
+
+Awesome, let's build this now! 🛠️
+
+```bash
+docker build --platform linux/amd64 .
+```
+
+The secret ingredient here is the `--platform` flag. In case you didn't know, Docker has [multi-platform](https://docs.docker.com/build/building/multi-platform/) capabilities!
+
+This flag uses `buildkit`, `buildx` and `QEMU` behind the scene to build the container for the specified target architecture, regardless what's your current architecture.
+
+This is what allows us to build a `linux/amd64` binary on a machine with a different architecture such as a Mac silicon (_AArch64_).
+
+
+## Going to production and container size issues
+
+Long story short, I was eventually happy with this approach and I _shipped_ the resulting container.
+
+I didn't initially pay too much attention to the container size, but I did realise that it took a _significantly long time_ to transfer it over the wire to the target machine. It is also worth calling out that here we are not using a Docker registry but just shipping raw TAR files for the Docker image.
+
+Easy to conclude two things:
+
+- The networking between my development machine and the production machine is not great which is something outside my control, unfortunately.
+- The filesize of this container must be _significantly big_.
+
+I discovered this cool tool called [`dive`](https://github.com/wagoodman/dive) to inspect container images and I analysed my image.
+
+A whooping **900 MB** is what came out!
+
+That felt indeed like a lot for a container _just_ running a Rust-based binary!
+
+Maybe I can ...
+
 
 TODO
 
@@ -98,7 +190,7 @@ Container too big problems
 
 TODO
 
-## Reducing the file size
+## Second attempt: reducing the file size
 
 Mention article by Sylvain Kerkour [How to create small Docker images for Rust](https://kerkour.com/rust-small-docker-image)
 
@@ -149,7 +241,10 @@ TODO
 
 ## Conclusion
 
+
 TODO
+
+mention other alternative solutions: zig & cargo cross
 
 Cover photo by [novi raj](https://unsplash.com/@noviraj) on [Unsplash](https://unsplash.com/photos/gNhPDsTxz2U).
   
