@@ -5,7 +5,7 @@ title: 'Building x86 Rust containers from Mac Silicon'
 slug: building_x86_rust-containers-from-mac-silicon
 subtitle: null
 date: 2023-05-05T09:29:00.000Z
-updated: 2023-05-05T09:29:00.000Z
+updated: 2023-05-06T12:50:00.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: './building_x86_rust-containers-from-mac-silicon.jpg'
@@ -377,27 +377,32 @@ Now we can build again with `docker build --platform linux/amd64 .` and this tim
 ![small ratatouille gif](./small.gif)
 
 
-### Final Dockerfile
+### Version 3: simpler faster build container
 
-Just as a recap, here's the final `Dockerfile`:
+**UPDATE 2023-05-06**: Thanks to all the comments I received on [a lobste.rs thread](https://lobste.rs/s/alzpfn/building_x86_rust_containers_from_mac) (special thanks to _jmillikin_ and _david\_chisnall_) I ended up with a revised version of the build container which is simpler and build a bit faster.
+
+Here's the final `Dockerfile`:
 
 ```Dockerfile
 FROM rust:1.68.2-slim-buster as backend
-ENV RUSTFLAGS='-C linker=x86_64-linux-gnu-gcc'
-ENV CC_x86_64_unknown_linux_musl=clang
-ENV AR_x86_64_unknown_linux_musl=llvm-ar
-ENV CARGO_TARGET_X86_64_UNKNOWN_LINUX_MUSL_RUSTFLAGS="-Clink-self-contained=yes -Clinker=rust-lld"
-ENV CARGO_TARGET_X86_64_UNKNOWN_LINUX_MUSL_RUNNER="qemu-x86_64 -L /usr/x86-64-linux-gnu"
-RUN rustup target add x86_64-unknown-linux-musl
-RUN apt update && apt install -y musl-tools musl-dev build-essential gcc-x86-64-linux-gnu clang llvm
+# Dependency `ring` requires a cross-compiler for bundled C/C++
+# sources, and may require Perl for some the target platforms.
+RUN apt update && apt install -y --no-install-recommends clang llvm perl
 RUN update-ca-certificates
-RUN mkdir /app
+RUN rustup target add x86_64-unknown-linux-musl
 COPY backend /app/backend
-RUN cd /app/backend && cargo build --target x86_64-unknown-linux-musl --release
+ENV CC_x86_64_unknown_linux_musl=clang
+ENV RUST_BACKTRACE=full
+RUN \
+  --mount=type=cache,target=/app/backend/target,rw \
+  --mount=type=cache,target=/usr/local/cargo/registry,rw \
+  cd /app/backend && \
+  cargo build --target x86_64-unknown-linux-musl --release && \
+  cp /app/backend/target/x86_64-unknown-linux-musl/release/backend /app/backend/server
 
 FROM alpine:3.17.3
 RUN mkdir /app
-COPY --from=backend /app/backend/target/x86_64-unknown-linux-musl/release/backend /app/backend
+COPY --from=backend /app/backend/server /app/backend
 WORKDIR /app
 WORKDIR /app
 CMD ["./backend"]
@@ -405,6 +410,12 @@ EXPOSE 3000
 ENV RUST_LOG="info"
 ENV PORT="3000"
 ```
+
+These changes are removing the need for `qemu` and making everything simpler.
+
+I also learned about Docker cache mounts thanks to [an article by Nathanial Lattimer](https://d0nut.hashnode.dev/entering-the-garden-of-ferris) which is something that helps a ton in speeding up subsequent builds. This allows us to keep the built dependencies in the cache and rebuild only the changes made on the app!
+
+I am much happier with these changes. That's the power of sharing your stuff even if you don't feel like an expert on it! So thanks to everyone reading this and suggesting various improvements! Please keep doing that if you see more opportunities for improvement!
 
 
 ## Conclusion
