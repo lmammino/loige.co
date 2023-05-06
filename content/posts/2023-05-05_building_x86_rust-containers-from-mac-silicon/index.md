@@ -377,7 +377,7 @@ Now we can build again with `docker build --platform linux/amd64 .` and this tim
 ![small ratatouille gif](./small.gif)
 
 
-### Version 3: simpler faster build container
+## Version 3: simpler & faster build container
 
 **UPDATE 2023-05-06**: Thanks to all the comments I received on [a lobste.rs thread](https://lobste.rs/s/alzpfn/building_x86_rust_containers_from_mac) (special thanks to _jmillikin_ and _david\_chisnall_) I ended up with a revised version of the build container which is simpler and build a bit faster.
 
