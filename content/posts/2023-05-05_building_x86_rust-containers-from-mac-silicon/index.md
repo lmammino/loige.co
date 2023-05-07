@@ -418,6 +418,61 @@ I also learned about Docker cache mounts thanks to [an article by Nathanial Latt
 I am much happier with these changes. That's the power of sharing your stuff even if you don't feel like an expert on it! So thanks to everyone reading this and suggesting various improvements! Please keep doing that if you see more opportunities for improvement!
 
 
+## Docker history
+
+**UPDATE 2023-05-07**: I already mentioned `dive` as a way to check the layers making up a given Docker image.
+
+Today I discovered there's a much simpler way to do that without having to install any third-party tool: `docker history`.
+
+You just use:
+
+```bash
+docker history <image_id>
+```
+
+And you will get a breakdown of all the commands used to build that image and how much space every one of them is taking.
+
+In my case, I see something like this:
+
+```plain
+IMAGE          CREATED          CREATED BY                                      SIZE      COMMENT
+e7c3a275c427   10 minutes ago   ENV MAILCHIMP_LIST_ID=                          0B        buildkit.dockerfile.v0
+<missing>      10 minutes ago   ENV MAILCHIMP_API_KEY=                          0B        buildkit.dockerfile.v0
+<missing>      10 minutes ago   ENV MAILCHIMP_ENDPOINT=                         0B        buildkit.dockerfile.v0
+<missing>      10 minutes ago   ENV GEOIP_PATH=/app/geoip/GeoLite2-City.mmdb    0B        buildkit.dockerfile.v0
+<missing>      10 minutes ago   ENV FRONTEND_PATH=/app/frontend                 0B        buildkit.dockerfile.v0
+<missing>      10 minutes ago   ENV IMAGES_PATH=/app/images                     0B        buildkit.dockerfile.v0
+<missing>      10 minutes ago   ENV SECRET=                                     0B        buildkit.dockerfile.v0
+<missing>      10 minutes ago   ENV DATABASE_URL=                               0B        buildkit.dockerfile.v0
+<missing>      10 minutes ago   ENV PORT=3000                                   0B        buildkit.dockerfile.v0
+<missing>      10 minutes ago   ENV RUST_LOG=info                               0B        buildkit.dockerfile.v0
+<missing>      10 minutes ago   ENV VERSION=0.0.29                              0B        buildkit.dockerfile.v0
+<missing>      10 minutes ago   EXPOSE map[3000/tcp:{}]                         0B        buildkit.dockerfile.v0
+<missing>      10 minutes ago   CMD ["./backend"]                               0B        buildkit.dockerfile.v0
+<missing>      10 minutes ago   WORKDIR /app                                    0B        buildkit.dockerfile.v0
+<missing>      10 minutes ago   COPY images /app/images # buildkit              3.82MB    buildkit.dockerfile.v0
+<missing>      10 minutes ago   COPY geoip/GeoLite2-City.mmdb /app/geoip/Geo…   71.8MB    buildkit.dockerfile.v0
+<missing>      10 minutes ago   RUN |1 version=0.0.29 /bin/sh -c mkdir /app/…   0B        buildkit.dockerfile.v0
+<missing>      10 minutes ago   COPY /app/frontend/dist /app/frontend # buil…   865kB     buildkit.dockerfile.v0
+<missing>      10 minutes ago   COPY /app/backend/server /app/backend # buil…   22.5MB    buildkit.dockerfile.v0
+<missing>      10 minutes ago   RUN |1 version=0.0.29 /bin/sh -c mkdir /app …   0B        buildkit.dockerfile.v0
+<missing>      10 minutes ago   ARG version                                     0B        buildkit.dockerfile.v0
+<missing>      5 weeks ago      /bin/sh -c #(nop)  CMD ["/bin/sh"]              0B
+<missing>      5 weeks ago      /bin/sh -c #(nop) ADD file:9a4f77dfaba7fd2aa…   7.05MB
+```
+
+This is telling me that:
+
+- The base image adds an overhead of about 7MB
+- The Rust binary is about 22MB
+- Frontend assets and images make up together for about 4MB
+- Finally, I have a GeoLite DB that makes the bulk of the image with about 72MB
+
+If we sum all of these we get to the ~100MB that makes up for the entire image size.
+
+I could probably squeeze a bit more from the Rust binary by stripping debug symbols or doing other compilation optimizations, but I am honestly quite happy with this result for now!
+
+
 ## Conclusion
 
 I hope this article helps you if you are also going through the pain... ehm... the journey of trying to figure out how to cross-compile a Rust binary and run it through a small Docker container.
