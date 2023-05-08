@@ -5,7 +5,7 @@ title: 'Building x86 Rust containers from Mac Silicon'
 slug: building_x86_rust-containers-from-mac-silicon
 subtitle: null
 date: 2023-05-05T09:29:00.000Z
-updated: 2023-05-06T12:50:00.000Z
+updated: 2023-05-08T09:40:00.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: './building_x86_rust-containers-from-mac-silicon.jpg'
@@ -309,12 +309,12 @@ And this is how I changed them to use RusTLS instead:
 
 [dependencies]
 # ...
-reqwest = { version = "0.11.17", default-features = false, features = ["rustls"] }
+reqwest = { version = "0.11.17", default-features = false, features = ["rustls-tls"] }
 sqlx = { version = "0.6.2", features = ["runtime-tokio-rustls", "mysql", "chrono", "offline"] }
 # ...
 ```
 
-For `sqlx` we are replacing the `runtime-tokio-native-tls` feature with `runtime-tokio-rustls`. `reqwest` is a bit trickier and it took me a while to figure out that I couldn't just enable the `rustls` feature, but I also needed to specify `default-features = false`.
+For `sqlx` we are replacing the `runtime-tokio-native-tls` feature with `runtime-tokio-rustls`. `reqwest` is a bit trickier and it took me a while to figure out that I couldn't just enable the `rustls-tls` feature, but I also needed to specify `default-features = false`.
 
 
 ### Compiling Rust using musl
