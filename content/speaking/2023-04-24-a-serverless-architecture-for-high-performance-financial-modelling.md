@@ -20,7 +20,7 @@ event_city: 'London'
 event_days: 'Apr 24-27, 2023'
 is_workshop: false
 slides_link: 'https://fth.link/sa23'
-video_link: ~
+video_link: 'https://www.youtube.com/watch?v=9NyeoWqdIQk'
 with: ~
 ---
 
