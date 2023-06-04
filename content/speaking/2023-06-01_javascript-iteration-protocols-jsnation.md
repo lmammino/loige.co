@@ -19,7 +19,7 @@ event_location_gps: '52.3833042,4.9204881'
 event_city: 'Amsterdam'
 event_days: 'Jun 1, 2023'
 is_workshop: false
-slides_link: ~
+slides_link: 'https://loige.link/iter-nation'
 video_link: ~
 with: ~
 ---
