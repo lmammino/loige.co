@@ -1,7 +1,7 @@
 ---
 uuid: 0b51c5b0-96c9-4c97-9b3f-4159cdccb37d
 layout: speaking
-title: 'Did you know JavaScript has iterators?'
+title: 'Production-ready lambdas with Node.js'
 slug: 'production-ready-lambdas-with-nodejs-sailsconf'
 date: 2023-06-14T11:30:00.000Z
 author: Luciano Mammino
