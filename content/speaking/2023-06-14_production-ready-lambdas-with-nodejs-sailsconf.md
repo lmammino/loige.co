@@ -19,8 +19,8 @@ event_location_gps: ~
 event_city: 'remote'
 event_days: 'June 14-16, 2023'
 is_workshop: false
-slides_link: ~
-video_link: ~
+slides_link: 'https://loige.link/lambda-pirate'
+video_link: 'https://www.youtube.com/watch?v=_OBBwuplpBY'
 with: ~
 ---
 
