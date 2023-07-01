@@ -20,7 +20,7 @@ event_city: 'Amsterdam'
 event_days: 'Jun 1, 2023'
 is_workshop: false
 slides_link: 'https://loige.link/iter-nation'
-video_link: ~
+video_link: 'https://portal.gitnation.org/contents/javascript-iteration-protocols'
 with: ~
 ---
 
