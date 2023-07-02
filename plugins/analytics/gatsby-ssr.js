@@ -1,11 +1,24 @@
+// based on https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-plugin-google-analytics/src/gatsby-ssr.js
 const React = require('react')
 
 const analyticsInitCode = `
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-L3TVXXPHTW');
+  window.gtag = window.gtag || function gtag(){dataLayer.push(arguments);}
+  window.gtag('js', new Date());
+  window.gtag('config', 'G-L3TVXXPHTW');
 `
+
+const Preconnect = React.createElement('link', {
+  rel: 'preconnect',
+  key: 'preconnect-google-analytics',
+  href: 'https://www.google-analytics.com'
+})
+
+const DnsPrefetch = React.createElement('link', {
+  rel: 'dns-prefetch',
+  key: 'dns-prefetch-google-analytics',
+  href: 'https://www.google-analytics.com'
+})
 
 const AnalyticsImport = React.createElement('script', {
   key: 'analyticsImport',
@@ -21,5 +34,10 @@ const AnalyticsInit = React.createElement('script', {
 })
 
 exports.onRenderBody = ({ setHeadComponents }) => {
-  setHeadComponents([AnalyticsImport, AnalyticsInit])
+  setHeadComponents([
+    Preconnect,
+    DnsPrefetch,
+    AnalyticsImport,
+    AnalyticsInit
+  ])
 }
