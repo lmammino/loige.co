@@ -1,3 +1,4 @@
+/* eslint-disable node/no-path-concat */
 module.exports = {
   siteMetadata: {
     title:
@@ -13,6 +14,7 @@ module.exports = {
   },
   pathPrefix: '/',
   plugins: [
+    'analytics',
     'mario-banner',
     'blog',
     'speaking',
@@ -92,12 +94,6 @@ module.exports = {
     },
     'gatsby-transformer-sharp',
     'gatsby-plugin-catch-links',
-    {
-      resolve: 'gatsby-plugin-google-analytics',
-      options: {
-        trackingId: 'UA-47248506-1'
-      }
-    },
     require('./gatsby-sitemap'),
     require('./gatsby-rss'),
     {

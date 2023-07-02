@@ -1,6 +1,8 @@
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable no-undef */
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Global, css, jsx } from '@emotion/react'
+import { Global, css } from '@emotion/react'
 
 const colors = {
   char: '#D8DEE9',
