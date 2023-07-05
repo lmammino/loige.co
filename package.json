@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "author": "Luciano Mammino",
   "dependencies": {
-    "@babel/core": "^7.13.15",
+    "@babel/core": "^7.22.6",
     "@emotion/core": "^11.0.0",
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.3.0",
