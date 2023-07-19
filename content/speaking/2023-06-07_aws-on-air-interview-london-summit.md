@@ -25,6 +25,9 @@ with:
   - name: Farrah Campbell
     link: 'https://github.com/Farrah32'
     image: 'https://unavatar.io/github/Farrah32'
+  - name: Allen-Michael (AM) Grobelny
+    link: 'https://github.com/allenmichael'
+    image: 'https://unavatar.io/github/allenmichael'
 ---
 
 An interview with Farrah Campbell about what I do as part of my role at fourTheorem and other personal tech side projects.
