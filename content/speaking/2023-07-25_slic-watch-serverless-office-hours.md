@@ -1,7 +1,7 @@
 ---
 uuid: d9fd51e1-baa7-4c06-b02f-68356015bdcf
 layout: speaking
-title: 'SLIC Watch'
+title: 'Easier Observability with SLIC Watch'
 slug: 'slic-watch-serverless-office-hours'
 date: 2023-07-25T18:00:00.000Z
 author: Luciano Mammino
@@ -19,8 +19,8 @@ event_location_gps: ~
 event_city: 'remote'
 event_days: 'Jul 25, 2023'
 is_workshop: false
-slides_link: ~
-video_link: ~
+slides_link: 'https://fth.link/observe'
+video_link: 'https://www.youtube.com/watch?v=wexRZ_9Zfwk'
 with:
   - name: Julian Wood
     link: 'https://www.linkedin.com/in/julianrwood/'
