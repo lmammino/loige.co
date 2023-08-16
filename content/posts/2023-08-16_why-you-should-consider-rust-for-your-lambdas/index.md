@@ -262,7 +262,7 @@ In this talk, I will show many practical code examples and use cases and some of
 
 If you are not in Dublin, you can join the event anyway. There will be a live stream as well 🙂
 
-Finally, if you think your organisation needs help with Serverless or with reducing your AWS bills, consider [reaching out to fourTheorem](https://fourtheorem.com/contact-us/). We are a consulting company specialised in serverless and all things AWS, and I like to think we are lovely to work with. 😊
+Finally, if you think your organisation needs help with Serverless or with reducing your AWS bills, consider [reaching out to fourTheorem](https://fourtheorem.com/contact-us/?utm_source=loige_co&utm_medium=article&utm_campaign=loige_co_rust_lambda_article&utm_id=loige_co_rust_lambda_article&utm_term=rust+lambda+serverless&utm_content=writing+lambdas+in+rust). We are a consulting company specialised in serverless and all things AWS, and I like to think we are lovely to work with. 😊
 
 
 ## Conclusion
