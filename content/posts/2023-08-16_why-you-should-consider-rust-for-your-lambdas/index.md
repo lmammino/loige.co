@@ -60,7 +60,7 @@ Serverless can also **increase team agility**. By virtue of forcing us to think 
 
 Serverless gives us some degree of **automatic scalability**. Lambdas will be spawned up and down depending on the number of events happening. If we have a sudden surge of user activity, the system is generally able to provide the necessary amount of computing power to handle that. This is not an absolute. In reality, it is important to understand how cloud providers achieve this level of auto-scalability. The way they do it is not always effective for all use cases, but in practice, it's something that can help a lot and that works well for the most common cases.
 
-So yes, serverless is great, but it's important to say that **it is not a silver bullet**. Certain scenarios are still better implemented with bare metal virtual machines, where you have to do all the hard work of managing servers... Or with long-running containers deployed on some container orchestration platform, were you have less infrastructure to manage, but still significantly more than what you get with serverless functions.
+So yes, serverless is great, but it's important to say that **it is not a silver bullet**. Certain scenarios are still better implemented with bare metal virtual machines, where you have to do all the hard work of managing servers... Or with long-running containers deployed on some container orchestration platform, where you have less infrastructure to manage, but still significantly more than what you get with serverless functions.
 
 
 ## AWS Lambda
@@ -232,7 +232,7 @@ Isn't that a nice proposition?
 
 ### Fewer bugs
 
-Ok, this is probably the most opinionated point I have about Rust. But having written enough Rust in the last 4 years, I came to the realisation that when I write code in Rust, it generally just works. Or to put it more sincerely, it's generally less buggy than it would compared to using other languages such as JavaScript, Python, or Java.
+Ok, this is probably the most opinionated point I have about Rust. But having written enough Rust in the last 4 years, I came to the realisation that when I write code in Rust, it generally just works. Or to put it more sincerely, it's generally less buggy than it would be compared to using other languages such as JavaScript, Python, or Java.
 
 This is not because Rust is magic or because you become some kind of super programmer with it. I honestly think that it's just due to some clever language design decisions that force you to think more about the cases when things can go wrong.
 
@@ -261,6 +261,8 @@ But if you really can't wait, I will be hosting a talk titled ["Rust, Serverless
 In this talk, I will show many practical code examples and use cases and some of the tooling you can use today to bootstrap, test and deploy Lambda functions written in Rust.
 
 If you are not in Dublin, you can join the event anyway. There will be a live stream as well 🙂
+
+Finally, if you think your organisation needs help with Serverless or with reducing your AWS bills, consider [reaching out to fourTheorem](https://fourtheorem.com/contact-us/). We are a consulting company specialised in serverless and all things AWS, and I like to think we are lovely to work with. 😊
 
 
 ## Conclusion
