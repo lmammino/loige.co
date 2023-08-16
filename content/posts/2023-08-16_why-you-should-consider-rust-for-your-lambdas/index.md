@@ -198,6 +198,8 @@ To summarise this point:
 - The memory efficiency might allow us to keep the allocated memory low.
 - The small binary size might reduce the duration of cold starts (less time needed to fetch the code from S3).
 
+Regarding cold starts, there is [a fantastic benchmark by Maxime David](https://maxday.github.io/lambda-perf/), and guess what? Rust is the fastest runtime in terms of cold start! And by far!
+
 If you have a very hot Lambda that you are running thousands of times per day and you used Java, Python or Node.js, and you are looking for opportunities to reduce your AWS billing, consider rewriting this one Lambda in Rust.
 
 After all, that's the beauty of Lambda-based architectures: Lambda functions are generally very small and decoupled, so it should be possible to rewrite one of them without having to touch the rest of your infrastructure.
