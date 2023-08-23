@@ -19,7 +19,7 @@ event_location_gps: null
 event_city: 'remote'
 event_days: 'Aug 22, 2023'
 is_workshop: false
-slides_link: ~
+slides_link: https://loige.link/oxidize-lambda
 video_link: ~
 with: ~
 ---
