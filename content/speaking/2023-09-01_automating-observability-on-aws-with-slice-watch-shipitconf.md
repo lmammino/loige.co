@@ -19,7 +19,7 @@ event_location_gps: '53.3411086,-6.2526659'
 event_city: 'Dublin'
 event_days: 'Sept 1, 2023'
 is_workshop: false
-slides_link: ~
+slides_link: 'https://fth.link/auto-obs'
 video_link: ~
 ---
 
