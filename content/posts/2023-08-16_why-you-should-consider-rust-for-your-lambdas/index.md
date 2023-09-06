@@ -264,6 +264,12 @@ In this talk, I will show many practical code examples and use cases and some of
 
 If you are not in Dublin, you can join the event anyway. There will be a live stream as well 🙂
 
+**Update**: here's the recording of the talk, I hope you'll enjoy it
+
+<div style=" position: relative; padding-bottom: 56.25%; height: 0; margin-bottom: 5em; margin-top: 2em;">
+<iframe style="position: absolute; top:0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/He4inXmMZZI" frameborder="0" allowfullscreen></iframe>
+</div>
+
 Finally, if you think your organisation needs help with Serverless or with reducing your AWS bills, consider [reaching out to fourTheorem](https://fourtheorem.com/contact-us/?utm_source=loige_co&utm_medium=article&utm_campaign=loige_co_rust_lambda_article&utm_id=loige_co_rust_lambda_article&utm_term=rust+lambda+serverless&utm_content=writing+lambdas+in+rust). We are a consulting company specialised in serverless and all things AWS, and I like to think we are lovely to work with. 😊
 
 
