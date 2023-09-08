@@ -19,7 +19,7 @@ event_location_gps: '54.595710,-5.931510'
 event_city: 'Belfast'
 event_days: 'Sep 7, 2023'
 is_workshop: false
-slides_link: ~
+slides_link: 'https://fth.link/sls-night'
 video_link: ~
 with:
   - name: Guilherme Dalla Rosa
