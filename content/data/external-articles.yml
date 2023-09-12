@@ -103,3 +103,6 @@
 - title: "The illustrated guide to S3 pre-signed URLs"
   link: "https://fourtheorem.com/the-illustrated-guide-to-s3-pre-signed-urls/"
   date: "2023-01-16T12:00:00.000Z"
+- title: "The case for Serverless Rust on AWS"
+  link: "https://awscq.substack.com/p/the-case-for-serverless-rust-on-aws"
+  date: "2023-09-12T12:00:00.000Z"
