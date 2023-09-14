@@ -19,7 +19,7 @@ event_location_gps: '53.344890,-6.264540'
 event_city: 'Dublin, Ireland'
 event_days: 'Sep 13, 2023'
 is_workshop: false
-slides_link: ~
+slides_link: 'https://loige.link/lambda-rust'
 video_link: ~
 with: ~
 ---
