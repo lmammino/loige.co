@@ -20,7 +20,7 @@ event_city: 'Belfast'
 event_days: 'Sep 7, 2023'
 is_workshop: false
 slides_link: 'https://fth.link/sls-night'
-video_link: ~
+video_link: 'https://www.youtube.com/watch?v=x8qpPpdsg1E'
 with:
   - name: Guilherme Dalla Rosa
     link: 'https://www.linkedin.com/in/guidr/'
