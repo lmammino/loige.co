@@ -19,7 +19,7 @@ event_location_gps: '53.492330,-2.326580'
 event_city: 'Manchester'
 event_days: 'Sept 28, 2023'
 is_workshop: false
-slides_link: ~
+slides_link: 'https://fth.link/sign-before'
 video_link: ~
 with: ~
 ---
