@@ -19,7 +19,7 @@ event_location_gps: '45.463900,10.536660'
 event_city: 'Brescia'
 event_days: 'Sep 30, 2023'
 is_workshop: false
-slides_link: ~
+slides_link: 'https://loige.link/iter-garda'
 video_link: ~
 with: ~
 ---
