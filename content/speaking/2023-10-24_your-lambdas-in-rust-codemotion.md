@@ -19,7 +19,7 @@ event_location_gps: '45.451780,9.163160'
 event_city: 'Milan'
 event_days: '24-25 October, 2023'
 is_workshop: false
-slides_link: ~
+slides_link: 'https://loige.link/lamb-rs'
 video_link: ~
 with: ~
 ---
