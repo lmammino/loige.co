@@ -20,7 +20,7 @@ event_city: 'Manchester'
 event_days: 'Sept 28, 2023'
 is_workshop: false
 slides_link: 'https://fth.link/sign-before'
-video_link: ~
+video_link: 'https://www.youtube.com/watch?v=3sbz5y_WXTY'
 with: ~
 ---
 
