@@ -14,7 +14,7 @@ tw_img: ./javascript-low-level-or-ai-tw.png
 status: published
 language: en_US
 meta_title: null
-meta_description: What's the future is going to be like in 5-10 years for Software Developers?
+meta_description: What's the future going to be like in 5-10 years for Software Developers?
 tags: ['opinion', 'javascript', 'rust', 'go', 'ai']
 ---
 
