@@ -81,7 +81,7 @@ I am not going to claim that writing stuff in Rust is easier than doing the same
 
 So there might be many cases where we will be able to use these new languages to achieve better performance and efficiency without having to pay a massive development price for using a low-level language.
 
-And I would go as far as saying that these use cases exist in the industry today and there's a starving lack of talent in these areas.
+And I would go as far as saying that these use cases exist in the industry today and there's a staggering lack of talent in these areas.
 
 
 ## Why the tension?
