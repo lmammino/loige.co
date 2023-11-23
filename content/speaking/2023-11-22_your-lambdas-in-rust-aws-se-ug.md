@@ -19,7 +19,7 @@ event_location_gps: '52.260002,-7.11289'
 event_city: 'Waterford'
 event_days: '22 November, 2023'
 is_workshop: false
-slides_link: ~
+slides_link: 'https://fth.link/rust-lambda'
 video_link: ~
 with: ~
 ---
