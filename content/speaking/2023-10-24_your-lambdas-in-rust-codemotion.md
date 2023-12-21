@@ -2,7 +2,7 @@
 uuid: ea9b184c-fc1b-4755-9f8f-22bffcf6b944
 layout: speaking
 title: 'Your Lambdas, In Rust!'
-slug: 'your-lambdas-in-rust-codemotion.md'
+slug: 'your-lambdas-in-rust-codemotion'
 date: 2023-10-24T11:30:00.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino

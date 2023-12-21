@@ -1,9 +1,9 @@
 ---
-uuid: 9a77b89f-a640-49c6-9a0c-a2bb8db7af05
+uuid: 9bae0579-7b81-436a-bb99-c1df85b411db
 layout: speaking
-title: 'Your Lambdas, In Rust!'
-slug: 'your-lambdas-in-rust-aws-se-ug'
-date: 2023-11-22T18:00:00.000Z
+title: 'Rust, Serverless, and AWS - Writing Lambdas in Rust'
+slug: 'rust-serverless-aws-rust-nation'
+date: 2024-03-28T10:00:00.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: null
@@ -12,14 +12,14 @@ language: en_US
 presentation_language: en_US
 meta_title: null
 meta_description: null
-event_name: 'AWS User Group South East'
-event_link: 'https://www.meetup.com/aws-user-group-south-east/events/297087761'
-event_location: 'Waterford, Ireland'
-event_location_gps: '52.260002,-7.11289'
-event_city: 'Waterford'
-event_days: '22 November, 2023'
+event_name: 'Rust Nation UK'
+event_link: 'https://www.rustnationuk.com/'
+event_location: 'London, UK'
+event_location_gps: '51.520794,-0.090706'
+event_city: 'London'
+event_days: '26-28 March, 2024'
 is_workshop: false
-slides_link: 'https://fth.link/rust-lambda'
+slides_link: ~
 video_link: ~
 with: ~
 ---
