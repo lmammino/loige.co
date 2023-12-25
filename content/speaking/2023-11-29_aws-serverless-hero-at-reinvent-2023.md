@@ -19,8 +19,8 @@ event_location_gps: '36.1217209,-115.1693347'
 event_city: 'Las Vegas'
 event_days: '29 November, 2023'
 is_workshop: false
-slides_link: 'https://www.youtube.com/watch?v=ErJ8KpYd5B8'
-video_link: ~
+slides_link: ~
+video_link: 'https://www.youtube.com/watch?v=ErJ8KpYd5B8'
 with: ~
 ---
 

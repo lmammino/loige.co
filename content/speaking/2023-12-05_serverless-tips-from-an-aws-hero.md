@@ -19,8 +19,8 @@ event_location_gps: ~
 event_city: 'remote'
 event_days: '5 December, 2023'
 is_workshop: false
-slides_link: 'https://www.youtube.com/watch?v=mfeF2aO8TTI'
-video_link: ~
+slides_link: ~
+video_link: 'https://www.youtube.com/watch?v=mfeF2aO8TTI'
 with: ~
 ---
 
