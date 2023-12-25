@@ -20,7 +20,7 @@ event_city: 'remote'
 event_days: 'Sep 04, 2023'
 is_workshop: false
 slides_link: ~
-video_link: ~
+video_link: 'https://www.youtube.com/watch?v=GHG3CxAWy6I'
 with:
   - name: Guido Penta
     link: 'https://www.linkedin.com/in/guido-penta/'
