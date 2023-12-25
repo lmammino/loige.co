@@ -20,7 +20,7 @@ event_city: 'Verona'
 event_days: 'Apr 13, 2023'
 is_workshop: false
 slides_link: 'https://loige.link/prod-lambda'
-video_link: ~
+video_link: 'https://www.youtube.com/watch?v=OIE60WkEGF8'
 with: ~
 ---
 
