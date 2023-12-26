@@ -20,7 +20,7 @@ event_city: 'remote'
 event_days: 'Feb 17, 2023'
 is_workshop: false
 slides_link: ~
-video_link: ~
+video_link: 'https://www.gitbar.it/episodes/ep147-serverless-su-aws-con-luciano-mammino-fourtheorem'
 with:
   - name: Mauro Murru
     link: 'https://twitter.com/brainrepo'
