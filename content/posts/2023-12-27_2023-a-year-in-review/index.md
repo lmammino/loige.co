@@ -5,8 +5,8 @@ title: >-
   2023 - A year in Review
 slug: 2023-a-year-in-review
 subtitle: null
-date: 2023-12-23T14:37:00.000Z
-updated: 2023-12-23T14:37:00.000Z
+date: 2023-12-27T15:00:00.000Z
+updated: 2023-12-27T15:00:00.000Z
 author: Luciano Mammino
 author_slug: luciano-mammino
 header_img: './2023-a-year-in-review.jpg'
@@ -338,7 +338,7 @@ We are still running this project at a loss (Mailchimp is expensive! 💸), just
 
 If you are interested in full-stack web development, make sure to [subscribe to FullStack Bulletin](https://fullstackbulletin.com/) and let us know what you think about it!
 
-You can also support the project financially by sponsoring an issue! We can offer a sponsored banner, a sponsored article slot, and we can even discuss custom sponsorship packages. [Reach out to us](mailto:luciano@fullstackbulletin.com) if you are interested in knowing the details.
+You can also support the project financially by sponsoring an issue! We can offer a sponsored banner, and a sponsored article slot. We can even discuss custom sponsorship packages. [Reach out to us](mailto:luciano@fullstackbulletin.com) if you are interested in knowing the details.
 
 A bit shout-out to our sponsors in 2023: **MisterDA**, **ConfigCat**, and **Packt**. Thanks for supporting us! 🙏
 
@@ -362,6 +362,8 @@ In this context, they wanted to create a publicly available game that could capt
 Landscape Hunt is a game where you are presented with a series of satellite images and you have to spot guess what's the right classification for that image. Are you looking at a fire, a forest cutting, a deciduous forest, a quarry or something else? It's not that easy to guess correctly if you are not trained, so the game can be quite fun to play.
 
 From a technical perspective, this was my first production Rust project, in fact, it features a Rust backend (written with [Axum](https://github.com/tokio-rs/axum)) while the frontend is written using [SolidJS](https://www.solidjs.com/) and TypeScript.
+
+A big thanks to the team responsible for LifeFoliage and Landscape Hunt for involving me in this awesome project.
 
 > The greatest threat to our planet is the belief that someone else will save it.
 >
@@ -436,20 +438,58 @@ To close this section here's my ritual GitHub yearly contribution graph! I know 
 > — Linus Torvalds
 
 
-
-
 ## Other stuff
 
-- Still an MVP
-- Still a Codemotion Ambassador
+Some other quick professional news (even though they are not really news).
+
+### Still an MVP
+
+In 2023 I was **confirmed as a Microsoft Most Valuable Professional for Developer Technologies and Security**. This marks [3 years as an MVP](https://mvp.microsoft.com/it-IT/mvp/profile/e25db9eb-f3bd-eb11-bacc-0022481f2c24)! 🎉
+
+Unfortunately, I cannot show you the [usual MVP tower trophy where I am adding another disc](/2022-a-year-in-review/#confirmed-as-mvp) because my parcel got lost in transit and I haven't been able to schedule another shipping with Microsoft 😢. BTW, if you work with Microsoft (or you know someone who can help), please let me know. I have sent countless emails and Teams messages already but it seems they are not reaching the right people... 🙁
+
+### Still a Codemotion Ambdassador
+
+In 2022 I became a Codemotion Ambassador.
+
+Codemotion is the biggest tech conference (and tech community) in Italy and one of the biggest in Europe. I have been speaking at Codemotion conferences for many years now and I have always been a big fan of their events. I am very happy to be part of the Codemotion Ambassador team and even more to still be part of this group in 2023!
+
+![Part of the Codemotion Ambassador team at Codemotion Milan 2023](./part-of-the-codemotion-ambassador-team-at-codemotion-milan-2023.jpg)
+
+<small>In this picture some members of Codemotion and the Codemotion Ambassador team during the after-party at Codemotion Milan 2023. From left to Right: [Michela Bertaina](https://twitter.com/BertainaMichela), _a random guy_, [Mattia Tommasone](https://www.linkedin.com/in/raibaz/) _a.k.a. "Mr. DJ"_,  [Gabriele Santomaggio](https://twitter.com/GSantomaggio), [Francesco Sciuti](https://twitter.com/FrancescoSciuti) _a.k.a. "Batman"_, [Emanuele Bartolesi](https://twitter.com/kasuken) _a.k.a "The Machine"_, [César Alberca](https://twitter.com/cesalberca), [Mara Marzocchi](https://twitter.com/Maraexceptioon).</small>
+
+Thanks for having me in this awesome community! I look forward to contributing more to it in 2024!
+
+... Also, a tiny extra thank you to Emanuele Bartolesi for reminding me to write this post! 😝
+
+> The future of every community lies in capturing the passion, imagination, and resources of its people.
+>
+> — Ernesto Sirolli
 
 
 ## Some random personal stuff
 
-- Purple belt BJJ
-- Trip to United States National Parks
+Now, onto some other more personal achievements of 2023 🦸🏻
 
+- After 2 years pandemic hiatus from Brazilian Jiu Jitsu (BJJ), this year I finally restarted my training and towards the end of the year, I received the grade of **purple belt**! 🥋
+- I took a wonderful road trip **visiting some of the most iconic national parks in California, Arizona, Utah and Nevada** with my wife and it was probably the best trip I (and we) ever had so far! ❤️
+- Kept **running** (even though less regularly than I did in the last 2 years) totaling **~160Km in 27 runs**. 🏃
+
+![The horseshoe bend](./the-horseshoe-bend.jpg)
+<small>One of my pictures from a visit to the Horseshoe Bend, a horseshoe-shaped incised meander of the Colorado River located near the town of Page, Arizona, United States</small>
+
+> Enjoy the little things in life, for one day you may look back and realize they were the big things.
+>
+> — Robert Breault
 
 ## Wrapping up
 
-TODO: 
+That's all folks!
+
+I am impressed to see that you got this far. Maybe it wasn't as boring as I had imagined 😇
+
+It's great to reflect on everything that happened in 2023 and start to think about what to invest my time and energies in 2024. I am not sure what the future holds, but I am sure it will be fun and exciting!
+
+What about you? What did you achieve in 2023 (or missed)? What's your masterplan (if any) for 2024? I hope I'll be reading about it in your own year in review post or in the comments below! 😉
+
+Bye 👋
