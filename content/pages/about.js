@@ -81,7 +81,7 @@ const AboutPage = props => {
             >
               Node.js design patterns
             </a>
-            , launched{' '}
+            , and launched{' '}
             <a
               href="https://fstack.link"
               target="_blank"
@@ -89,15 +89,7 @@ const AboutPage = props => {
             >
               FullStack Bulletin
             </a>{' '}
-            (a semi-automated newsletter for Fullstack developers) and{' '}
-            <a
-              href="https://serverlesslab.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              ServerlessLab
-            </a>{' '}
-            (in-house serverless training).
+            (a semi-automated newsletter for Fullstack developers)
           </p>
           <p>
             If you are interested in knowing more about my professional
@@ -150,8 +142,8 @@ const AboutPage = props => {
             >
               really exists
             </a>
-            ), black belt in <strong>Judo</strong> and blue belt in{' '}
-            <strong>Brasilian Jiu-Jitsu</strong>.
+            ), black belt in <strong>Judo</strong> and purple belt in{' '}
+            <strong>Brasilian Jiu-Jitsu</strong> (I still suck at martial arts, but it&apos;s fun and it keeps me reasonably fit).
           </p>
           <p>
             For what concerns the &quot;butterfly making&quot; part, well... you
