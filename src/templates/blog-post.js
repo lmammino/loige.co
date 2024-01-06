@@ -95,7 +95,7 @@ class BlogPostTemplate extends Component {
 
     const filename = get(this.props, 'data.markdownRemark.fileAbsolutePath')
     const githubLink = filename
-      ? `https://github.com/lmammino/loige.co/blob/master/${filename.substr(
+      ? `https://github.com/lmammino/loige.co/blob/main/${filename.substr(
         filename.indexOf('content/')
       )}`
       : null

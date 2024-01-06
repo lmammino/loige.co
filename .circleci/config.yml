@@ -38,7 +38,7 @@ jobs:
 
       - deploy:
           command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+            if [ "${CIRCLE_BRANCH}" == "main" ]; then
               echo "$DOMAIN" > public/CNAME
               cp -r .circleci public/.circleci
               git config --global user.email "$GH_EMAIL"
@@ -51,5 +51,5 @@ jobs:
                  -H "Content-Type: application/json" \
                  --data '{"purge_everything":true}'
             else
-              echo "Not in master branch, not deploying"
+              echo "Not in main branch, not deploying"
             fi
