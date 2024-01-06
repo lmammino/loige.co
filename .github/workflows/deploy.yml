@@ -40,6 +40,9 @@ jobs:
         with:
           path: public
 
+      - name: Zzzzz (need to sleep to get the artifact propagated)
+        run: sleep 10
+
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
         id: deployment
