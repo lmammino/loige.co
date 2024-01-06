@@ -48,11 +48,16 @@ jobs:
       - name: Build
         run: yarn build
 
+      - name: Fix permissions
+        run: |
+          chmod -c -R +rX "_site/" | while read line; do
+            echo "::warning title=Invalid file permissions automatically fixed::$line"
+          done
+
       - name: Upload Pages artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: github-pages
-          path: public
+          path: public  
 
   deploy:
     runs-on: ubuntu-latest
