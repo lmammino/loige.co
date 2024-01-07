@@ -18,5 +18,8 @@
     "canvas": "^2.11.2",
     "canvas-hypertxt": "^1.0.3",
     "typescript": "^5.3.3"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.4.1"
   }
 }
