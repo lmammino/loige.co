@@ -114,7 +114,7 @@ export async function GET({props}: GetParams) {
 
 
 export async function getStaticPaths() {
-  // TODO: add other collections
+  // TODO: add other collections and pages
   const allBlogPosts = await getCollection('posts');
 
   return allBlogPosts.map((post) => {
