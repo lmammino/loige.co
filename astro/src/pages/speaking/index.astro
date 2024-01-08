@@ -1,15 +1,8 @@
 ---
-import { Picture } from "astro:assets";
 import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
-import { getCollection } from 'astro:content';
-import FormattedDate from '../../components/FormattedDate.astro';
-
-const posts = (await getCollection('posts')).sort(
-	(a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-);
 ---
 
 <!doctype html>
@@ -90,21 +83,7 @@ const posts = (await getCollection('posts')).sort(
 		<Header />
 		<main>
 			<section>
-				<ul>
-					{
-						posts.map((post) => (
-							<li>
-								<a href={`/${post.slug}`}>
-									{post.data.header_img && <Picture class="fit-cover" width={720} height={260} src={post.data.header_img} alt="" formats={["webp", "avif"]} />}
-									<h4 class="title">{post.data.title}</h4>
-									<p class="date">
-										<FormattedDate date={post.data.date} />
-									</p>
-								</a>
-							</li>
-						))
-					}
-				</ul>
+				<h1>Speaking - TODO</h1>
 			</section>
 		</main>
 		<Footer />

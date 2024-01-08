@@ -15,5 +15,13 @@
       "quickfix.biome": true,
       "source.organizeImports.biome": true
     }
+  },
+  "[astro]": {
+    "editor.defaultFormatter": "biomejs.biome",
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "always",
+      "quickfix.biome": true,
+      "source.organizeImports.biome": true
+    }
   }
 }

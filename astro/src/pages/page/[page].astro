@@ -1,0 +1,39 @@
+---
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths({ paginate }) {
+  const posts = (await getCollection('posts')).sort(
+	  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+  );
+
+  const PAGE_SIZE = 10
+  const pages = await paginate(posts, PAGE_SIZE)
+
+  return pages.map((page, idx) => {
+    return {
+      ...page,
+      props: {
+        ...page.props,
+        start: idx * PAGE_SIZE,
+        end: idx * PAGE_SIZE + PAGE_SIZE - 1,
+        size: PAGE_SIZE,
+        total: posts.length,
+        currentPage: idx + 1,
+        lastPage: pages.length,
+        url: {
+          current: `/page/${idx + 1}`,
+          next: idx === pages.length - 1 ? null : `/page/${idx + 2}`,
+          prev: idx === 0 ? null : idx === 1 ? '/' : `/page/${idx}`,
+        }
+      }
+    }
+  }).slice(1)
+}
+
+const props = Astro.props
+
+import BlogIndexLayout from '../../layouts/BlogIndex.astro'
+---
+
+<BlogIndexLayout {...props} />
+
