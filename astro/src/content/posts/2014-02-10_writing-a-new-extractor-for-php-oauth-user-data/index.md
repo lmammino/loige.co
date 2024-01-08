@@ -4,15 +4,8 @@ slug: writing-a-new-extractor-for-php-oauth-user-data
 subtitle: null
 date: 2014-02-10T17:23:54.000Z
 updated: 2014-02-10T17:30:42.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
 header_img: ./writing-a-new-extractor-for-php-oauth-user-data.png
-fb_img: ./writing-a-new-extractor-for-php-oauth-user-data-fb.png
-tw_img: ./writing-a-new-extractor-for-php-oauth-user-data-tw.png
 status: published
-language: en_US
-meta_title: null
-meta_description: null
 tags:
   - library
   - php

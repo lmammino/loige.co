@@ -1,18 +1,11 @@
 ---
-title: "Create resources conditionally with CDK"
-slug: "create-resources-conditionally-with-cdk"
-subtitle: "Using deploy-time Cloudformation conditions"
-date: "2021-11-01T09:15:00.000Z"
-updated: "2021-11-01T09:15:00.000Z"
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: "./create-resources-conditionally-with-cdk.png"
-fb_img: "./create-resources-conditionally-with-cdk-fb.png"
-tw_img: "./create-resources-conditionally-with-cdk-tw.png"
+title: Create resources conditionally with CDK
+slug: create-resources-conditionally-with-cdk
+subtitle: Using deploy-time Cloudformation conditions
+date: 2021-11-01T09:15:00.000Z
+updated: 2021-11-01T09:15:00.000Z
+header_img: ./create-resources-conditionally-with-cdk.png
 status: published
-language: en_US
-meta_title: null
-meta_description: Learn how you can use Cloudformation conditions with CDK to be able to create resources using deploy-time conditions.
 written_with: []
 tags:
   - aws

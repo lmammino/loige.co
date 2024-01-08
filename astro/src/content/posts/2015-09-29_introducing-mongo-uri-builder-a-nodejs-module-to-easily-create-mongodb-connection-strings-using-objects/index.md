@@ -5,15 +5,8 @@ slug: introducing-mongo-uri-builder-a-nodejs-module-to-easily-create-mongodb-con
 subtitle: null
 date: 2015-09-29T23:07:02.000Z
 updated: 2015-09-29T23:07:02.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
 header_img: ./mongo-uri-builder-article-sample-image.jpg
-fb_img: ./introducing-mongo-uri-builder-a-nodejs-module-to-easily-create-mongodb-connection-strings-using-objects-fb.png
-tw_img: ./introducing-mongo-uri-builder-a-nodejs-module-to-easily-create-mongodb-connection-strings-using-objects-tw.png
 status: published
-language: en_US
-meta_title: null
-meta_description: null
 tags:
   - node-js
   - library

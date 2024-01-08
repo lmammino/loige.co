@@ -4,15 +4,8 @@ slug: javascript-iterator-patterns
 subtitle: null
 date: 2019-01-21T03:25:58.000Z
 updated: 2019-01-27T17:15:58.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
 header_img: ./javascript-iterator-patterns-rubber-ducks.jpg
-fb_img: ./javascript-iterator-patterns-fb.png
-tw_img: ./javascript-iterator-patterns-tw.png
 status: published
-language: en_US
-meta_title: null
-meta_description: null
 tags:
   - javascript
   - node-js

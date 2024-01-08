@@ -4,15 +4,8 @@ slug: 2017-a-year-in-review
 subtitle: null
 date: 2018-01-03T18:59:58.000Z
 updated: 2018-01-03T22:55:34.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
 header_img: ./loige-co-2017-a-year-in-review-luciano-mammino-blog.jpg
-fb_img: ./2017-a-year-in-review-fb.png
-tw_img: ./2017-a-year-in-review-tw.png
 status: published
-language: en_US
-meta_title: null
-meta_description: null
 tags:
   - life
 ---

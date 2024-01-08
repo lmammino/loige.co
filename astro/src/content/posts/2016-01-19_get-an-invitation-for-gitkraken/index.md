@@ -4,15 +4,8 @@ slug: get-an-invitation-for-gitkraken
 subtitle: null
 date: 2016-01-19T21:10:23.000Z
 updated: 2016-02-03T18:52:55.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
 header_img: ./get-an-invitation-for-gitkraken-loige-co-luciano-mammino.png
-fb_img: ./get-an-invitation-for-gitkraken-fb.png
-tw_img: ./get-an-invitation-for-gitkraken-tw.png
 status: published
-language: en_US
-meta_title: null
-meta_description: null
 tags:
   - git
   - github

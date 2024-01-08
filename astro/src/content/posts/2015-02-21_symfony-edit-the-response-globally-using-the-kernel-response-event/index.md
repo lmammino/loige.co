@@ -4,15 +4,8 @@ slug: symfony-edit-the-response-globally-using-the-kernel-response-event
 subtitle: null
 date: 2015-02-21T01:12:00.000Z
 updated: 2015-03-02T23:19:32.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
 header_img: ./symfony-edit-the-response-globally-using-the-kernel-response-event.jpg
-fb_img: ./symfony-edit-the-response-globally-using-the-kernel-response-event-fb.png
-tw_img: ./symfony-edit-the-response-globally-using-the-kernel-response-event-tw.png
 status: published
-language: en_US
-meta_title: ''
-meta_description: null
 tags:
   - php
   - symfony

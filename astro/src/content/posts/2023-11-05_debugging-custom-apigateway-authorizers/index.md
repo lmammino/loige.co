@@ -1,19 +1,16 @@
 ---
-title: 'Debugging custom ApiGateway authorizers'
+title: Debugging custom ApiGateway authorizers
 slug: debugging-custom-apigateway-authorizers
 subtitle: null
 date: 2023-11-05T13:48:00.000Z
 updated: 2023-11-05T13:48:00.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: './debugging-custom-apigateway-authorizers.jpg'
-fb_img: ./debugging-custom-apigateway-authorizers-fb.png
-tw_img: ./debugging-custom-apigateway-authorizers-tw.png
+header_img: ./debugging-custom-apigateway-authorizers.jpg
 status: published
-language: en_US
-meta_title: null
-meta_description: How to debug custom authorizers in AWS API Gateway with Lambda when they return 500 null
-tags: ['aws', 'serverless', 'lambda', 'api-gateway']
+tags:
+  - aws
+  - serverless
+  - lambda
+  - api-gateway
 ---
 
 Last week, while working on [a custom REST API Gateway Lambda authorizer](https://github.com/lmammino/oidc-authorizer), I spent some time trying to debug a mysterious `500` error with a `{"message":null}` body. In this article, I will share why this was happening and how to debug this kind of error when building custom API Gateway authorizers.

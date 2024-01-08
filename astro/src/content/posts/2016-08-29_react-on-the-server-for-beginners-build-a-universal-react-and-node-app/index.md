@@ -1,19 +1,11 @@
 ---
-title: >-
-  React on the Server for Beginners: Build a Universal React and Node App
+title: "React on the Server for Beginners: Build a Universal React and Node App"
 slug: react-on-the-server-for-beginners-build-a-universal-react-and-node-app
 subtitle: null
 date: 2016-08-29T21:49:47.000Z
 updated: 2016-08-29T21:49:47.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
 header_img: ./ryoko-tani-universal-javascript-nodejs-react-luciano-mammino-cover.jpg
-fb_img: ./react-on-the-server-for-beginners-build-a-universal-react-and-node-app-fb.png
-tw_img: ./react-on-the-server-for-beginners-build-a-universal-react-and-node-app-tw.png
 status: published
-language: en_US
-meta_title: null
-meta_description: null
 tags:
   - node-js
   - react

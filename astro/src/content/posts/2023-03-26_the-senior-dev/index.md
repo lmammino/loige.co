@@ -1,19 +1,14 @@
 ---
-title: 'The Definition of Senior: A Look at the expectations for Software Engineers'
+title: "The Definition of Senior: A Look at the expectations for Software Engineers"
 slug: the-senior-dev
 subtitle: null
 date: 2023-03-26T16:30:00.000Z
 updated: 2023-03-26T16:30:00.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: './the-senior-dev.jpg'
-fb_img: ./the-senior-dev-fb.png
-tw_img: ./the-senior-dev-tw.png
+header_img: ./the-senior-dev.jpg
 status: published
-language: en_US
-meta_title: null
-meta_description: An opinionated take on what's the role and the skills that are expected from a "senior" developer
-tags: ['life', 'career']
+tags:
+  - life
+  - career
 ---
 
 In today's fast-paced tech industry, the role of a senior software engineer has become increasingly important and something many engineers strive to be recognized as. But **are you senior yet**? And **what's expected from you a senior**?

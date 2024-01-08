@@ -4,15 +4,8 @@ slug: backup-your-server-with-dropbox
 subtitle: null
 date: 2014-01-17T03:44:19.000Z
 updated: 2014-04-05T16:21:17.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
 header_img: ./backup-your-server-with-dropbox.png
-fb_img: ./backup-your-server-with-dropbox-fb.png
-tw_img: ./backup-your-server-with-dropbox-tw.png
 status: published
-language: en_US
-meta_title: null
-meta_description: null
 tags:
   - backup
   - dropbox
@@ -146,7 +139,3 @@ At this point you can run the Dropbox CLI. For example if you want to disable th
 /dropbox/bin/dropbox.py lansync n
 ```
 
----
-
-That's all.
-It was a long read but I hope it has been useful ;)

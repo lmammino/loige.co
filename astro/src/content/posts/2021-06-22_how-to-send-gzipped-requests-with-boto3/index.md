@@ -1,18 +1,11 @@
 ---
-title: "How to send gzipped requests with boto3"
-slug: "how-to-send-gzipped-requests-with-boto3"
+title: How to send gzipped requests with boto3
+slug: how-to-send-gzipped-requests-with-boto3
 subtitle: null
-date: "2021-06-22T18:20:00.000Z"
-updated: "2021-06-24T13:00:00.000Z"
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: "./how-to-send-gzipped-requests-with-boto3-luciano-mammino-loige.jpg"
-fb_img: "./how-to-send-gzipped-requests-with-boto3-fb.png"
-tw_img: "./how-to-send-gzipped-requests-with-boto3-tw.png"
+date: 2021-06-22T18:20:00.000Z
+updated: 2021-06-24T13:00:00.000Z
+header_img: ./how-to-send-gzipped-requests-with-boto3-luciano-mammino-loige.jpg
 status: published
-language: en_US
-meta_title: null
-meta_description: null
 written_with: []
 tags:
   - python

@@ -4,15 +4,8 @@ slug: to-promise-or-to-callback-that-is-the-question
 subtitle: null
 date: 2016-02-14T13:32:00.000Z
 updated: 2017-03-03T21:08:07.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
 header_img: ./to-promise-or-to-callback-this-is-the-problem-loige-amlet-arnold-schwarzenegger-javascript.jpg
-fb_img: ./to-promise-or-to-callback-that-is-the-question-fb.png
-tw_img: ./to-promise-or-to-callback-that-is-the-question-tw.png
 status: published
-language: en_US
-meta_title: null
-meta_description: null
 tags:
   - javascript
   - node-js

@@ -5,17 +5,8 @@ subtitle: How to develop a simple but useful web application with the Php
   micro-framework Lumen and MySql in less than 30 minutes.
 date: 2015-04-18T16:10:35.000Z
 updated: 2015-05-12T14:33:37.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
 header_img: ./developing-a-web-application-with-lumen.jpg
-fb_img: ./developing-a-web-application-with-lumen-and-mysql-fb.png
-tw_img: ./developing-a-web-application-with-lumen-and-mysql-tw.png
 status: published
-language: en_US
-meta_title: ''
-meta_description:
-  How to develop a simple but useful web application with the Php
-  micro-framework Lumen and MySql in less than 30 minutes.
 tags:
   - php
   - mysql

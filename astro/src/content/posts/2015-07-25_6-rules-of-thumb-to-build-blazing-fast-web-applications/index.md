@@ -1,22 +1,12 @@
 ---
 title: 6 Rules of thumb to build blazing fast web server applications
 slug: 6-rules-of-thumb-to-build-blazing-fast-web-applications
-subtitle:
-  In this post are described 6 extremely important rules you should take under
-  consideration when writing your next web application
+subtitle: In this post are described 6 extremely important rules you should take
+  under consideration when writing your next web application
 date: 2015-07-25T18:57:00.000Z
 updated: 2016-01-15T19:15:54.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
 header_img: ./6-rules-of-thumb-to-build-blazing-fast-web-applications-flash-gordon-1.jpg
-fb_img: ./6-rules-of-thumb-to-build-blazing-fast-web-applications-fb.png
-tw_img: ./6-rules-of-thumb-to-build-blazing-fast-web-applications-tw.png
 status: published
-language: en_US
-meta_title: 6 Rules of thumb to build blazing fast web applications (server side)
-meta_description:
-  In this post are described 6 extremely important rules you should take under
-  consideration when writing your next web application
 tags:
   - php
   - symfony

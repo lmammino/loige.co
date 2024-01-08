@@ -4,15 +4,8 @@ slug: middy-1-is-here
 subtitle: null
 date: 2020-04-26T15:25:00.000Z
 updated: 2020-04-26T15:25:00.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: "./loige-co-middy-1-is-here.jpg"
-fb_img: ./middy-1-is-here-fb.png
-tw_img: ./middy-1-is-here-tw.png
+header_img: ./loige-co-middy-1-is-here.jpg
 status: published
-language: en_US
-meta_title: null
-meta_description: null
 tags:
   - serverless
   - node-js
@@ -128,77 +121,4 @@ Other interesting changes are new official middlewares, bug fixes and a number o
 
 You can read the full list of changes in the [release page on GitHub](https://github.com/middyjs/middy/releases/tag/1.0.0).
 
-If you are already using middy version 0.x, you can read the [dedicated migration guide](https://github.com/middyjs/middy/blob/1.0.0/UPGRADE.md#upgrade-0x---1x).
-
-
-## The community behind middy
-
-I am personally quite impressed and honoured about all the contributions spontaneously provided by the growing community around middy. I want to personally thank you and celebrate all the people that contributed to the project with the following video (click on the picture to see the full [video on Youtube](https://youtu.be/f2zJLi32a6g)).
-
-[![Middy contribution graph evolution](./git-graph-middy.gif)](https://youtu.be/f2zJLi32a6g)
-
-Thank you!
-
-
-## What's next for middy
-
-This is the hard question for me. The community is definitely asking for a number of interesting things like:
-
-  - Better integration with TypeScript ([#203](https://github.com/middyjs/middy/issues/203), [#300](https://github.com/middyjs/middy/issues/300), [#316](https://github.com/middyjs/middy/issues/316), [#373](https://github.com/middyjs/middy/issues/373), [#506](https://github.com/middyjs/middy/issues/506))
-  - Better (and more clear) support for promises and Async/Await ([#392](https://github.com/middyjs/middy/issues/392), [#414](https://github.com/middyjs/middy/issues/414))
-  - Better documentation ([#173](https://github.com/middyjs/middy/issues/173))
-
-All in all, my feeling is that the framework can still be improved a hell of a lot in terms of usability.
-
-Follow the [list of issues on GitHub](https://github.com/middyjs/middy/issues) to find out what are the common topics and feel free to open new issues if you want to suggest new features or improvements.
-
-
-## Looking for help
-
-Here's the moment where I am to be honest with myself...
-
-As a maintainer of the project I don't feel like I did a great job to make this project progress. I limited myself to doing code reviews and merge feature requests quite passively. I have been lacking vision and initiative to be able to steer the project forward and bring it to the next stage.
-
-The truth is that I haven't been as involved with serverless as I used to be in the last 2 years. I have probably been lacking perspective and I lost pace with the evolution of serverless and Lambda, so it's hard for me to be proactive and have a solid vision for the project.
-
-I want to shed some light on some people that helped carry the project forward and I want to give them a special thank you (in no particular order):
-
-  - [@willfarrell](https://github.com/willfarrell)
-  - [@theburningmonk](https://github.com/theburningmonk)
-  - [@sdomagala](https://github.com/sdomagala)
-  - [@dkatavic](https://github.com/dkatavic)
-  - [@vladgolubev](https://github.com/vladgolubev)
-
-If you use middy, don't be shy and please show yourself on GitHub. I created a new repository just to foster conversations at [github.com/middyjs/discuss](https://github.com/middyjs/discuss). Open an issue just to say hello and tell us how and why you are using middy and what you would like to see happening next.
-
-I'd love to be able to create a more cohesive community and possibly to pass the torch to a group of people that is actively involved in serverless and that can drive the project forward better than I am currently doing.
-
-
-## Alternatives to middy
-
-In case you don't like middy or you just want to explore possible alternatives, these are some of the alternatives I know about:
-
- - [curveball](https://github.com/curveball) by [@evert](https://github.com/evert)
- - [lambcycle](https://github.com/juliantellez/lambcycle) by [@juliantellez](https://github.com/juliantellez)
- - [lambda-middleware](https://github.com/dbartholomae/lambda-middleware) by [@dbartholomae](https://github.com/dbartholomae)
- - [aws-serverless-express](https://github.com/awslabs/aws-serverless-express) by AWS itself
- - [aws-lambda-fastify](https://github.com/fastify/aws-lambda-fastify) by the [fastify community](https://github.com/fastify)
- - [aws-lambda-middleware](https://github.com/blaxk/aws-lambda-middleware)
- - [nodejs-lambda-middleware](https://github.com/siroop-ch/nodejs-lambda-middleware)
- - [lambda_decorators](https://lambda-decorators.readthedocs.io/en/latest/) (python)
- - [beeline](https://honeycombio.github.io/beeline-python/) (python)
- - [vicuna](https://docs.rs/vicuna/0.4.1/vicuna/) (rust)
- - [aws-lambda-go](https://github.com/aws/aws-lambda-go) (go)
-
-Feel free to suggest me other alternatives in the comments and I'll happily add them to the article.
-
-
-## Closing notes
-
-That's it. I feel quite happy and relieved to know that we finally reached this milestone and I look forward to seeing what's next for the project.
-
-All the best and please let me know in the comments what do you think.
-
-Regards
-
-PS: thanks to [@theburningmonk](https://twitter.com/theburningmonk), [@StefanoAbalsamo](https://twitter.com/StefanoAbalsamo), [@PadraigOBrien](https://twitter.com/PadraigOBrien) and [@quasi_modal](https://twitter.com/quasi_modal) for feedback and reviews.
+If you are already using middy version 0.x, you can read the [dedicated migration guide](https://github.com/middyjs/middy/blob/1.0.0/UPGRADE.md#upgrade-0x

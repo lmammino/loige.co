@@ -1,19 +1,11 @@
 ---
-title: >-
-  Emerging JavaScript pattern: multiple return values
+title: "Emerging JavaScript pattern: multiple return values"
 slug: emerging-javascript-pattern-multiple-return-values
 subtitle: null
 date: 2018-11-11T17:00:00.000Z
 updated: 2018-11-11T17:00:00.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
 header_img: ./emerging-javascript-pattern-multiple-return-values.jpg
-fb_img: ./emerging-javascript-pattern-multiple-return-values-fb.png
-tw_img: ./emerging-javascript-pattern-multiple-return-values-tw.png
 status: published
-language: en_US
-meta_title: null
-meta_description: null
 tags:
   - javascript
   - node-js

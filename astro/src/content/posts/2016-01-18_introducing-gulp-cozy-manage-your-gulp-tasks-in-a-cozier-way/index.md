@@ -4,15 +4,8 @@ slug: introducing-gulp-cozy-manage-your-gulp-tasks-in-a-cozier-way
 subtitle: null
 date: 2016-01-18T23:27:40.000Z
 updated: 2016-01-18T23:27:40.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
 header_img: ./meerkat-459171_1920.jpg
-fb_img: ./introducing-gulp-cozy-manage-your-gulp-tasks-in-a-cozier-way-fb.png
-tw_img: ./introducing-gulp-cozy-manage-your-gulp-tasks-in-a-cozier-way-tw.png
 status: published
-language: en_US
-meta_title: null
-meta_description: null
 tags:
   - gulp
   - javascript

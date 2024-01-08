@@ -1,20 +1,11 @@
 ---
-title: >-
-  2023 - A year in Review
+title: 2023 - A year in Review
 slug: 2023-a-year-in-review
 subtitle: null
 date: 2023-12-27T15:00:00.000Z
 updated: 2023-12-27T15:00:00.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: './2023-a-year-in-review.jpg'
-fb_img: ./2023-a-year-in-review-fb.png
-tw_img: ./2023-a-year-in-review-tw.png
+header_img: ./2023-a-year-in-review.jpg
 status: published
-language: en_US
-meta_title: null
-meta_description: >-
-  A review of all the things I (Luciano Mammino, a.k.a. loige) accomplished professionally (and not) in 2023
 tags:
   - life
 ---

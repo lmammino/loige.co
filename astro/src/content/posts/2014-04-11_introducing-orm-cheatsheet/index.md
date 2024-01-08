@@ -4,15 +4,8 @@ slug: introducing-orm-cheatsheet
 subtitle: null
 date: 2014-04-11T08:50:53.000Z
 updated: 2014-04-11T09:24:23.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
 header_img: ./introducing-orm-cheatsheet.jpg
-fb_img: ./introducing-orm-cheatsheet-fb.png
-tw_img: ./introducing-orm-cheatsheet-tw.png
 status: published
-language: en_US
-meta_title: null
-meta_description: null
 tags:
   - php
   - doctrine

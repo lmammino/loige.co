@@ -4,15 +4,8 @@ slug: write-a-console-application-using-symfony-and-pimple
 subtitle: null
 date: 2014-03-15T02:16:20.000Z
 updated: 2014-03-16T16:50:57.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
 header_img: ./write-a-console-application-using-symfony-and-pimple.png
-fb_img: ./write-a-console-application-using-symfony-and-pimple-fb.png
-tw_img: ./write-a-console-application-using-symfony-and-pimple-tw.png
 status: published
-language: en_US
-meta_title: null
-meta_description: null
 tags:
   - php
   - symfony

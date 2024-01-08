@@ -4,15 +4,8 @@ slug: two-interviews-about-node-js-javascript-and-being-a-book-author
 subtitle: null
 date: 2016-09-25T13:24:08.000Z
 updated: 2016-10-02T08:24:23.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
 header_img: ./two-interviews-about-node-js-javascript-and-being-a-book-author.jpg
-fb_img: ./two-interviews-about-node-js-javascript-and-being-a-book-author-fb.png
-tw_img: ./two-interviews-about-node-js-javascript-and-being-a-book-author-tw.png
 status: published
-language: en_US
-meta_title: null
-meta_description: null
 tags:
   - collaboration
   - node-js

@@ -1,24 +1,14 @@
 ---
-title:
-  Using Let’s Encrypt and Certbot to automate the creation of certificates for
-  OpenVPN
+title: Using Let’s Encrypt and Certbot to automate the creation of certificates
+  for OpenVPN
 slug: using-lets-encrypt-and-certbot-to-automate-the-creation-of-certificates-for-openvpn
-subtitle:
-  This article illustrates you how to use Certbot to automate the creation of
-  SSL certificates for OpenVPN and how to release on AWS using Terraform.
+subtitle: This article illustrates you how to use Certbot to automate the
+  creation of SSL certificates for OpenVPN and how to release on AWS using
+  Terraform.
 date: 2017-06-19T22:00:20.000Z
 updated: 2017-06-27T18:09:34.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
 header_img: ./using-lets-encrypt-and-certbot-to-automate-the-creation-of-certificates-for-openvpn-loige-icover-image.jpg
-fb_img: ./using-lets-encrypt-and-certbot-to-automate-the-creation-of-certificates-for-openvpn-fb.png
-tw_img: ./using-lets-encrypt-and-certbot-to-automate-the-creation-of-certificates-for-openvpn-tw.png
 status: published
-language: en_US
-meta_title: Use Certbot to automate the creation of SSL certificates for OpenVPN
-meta_description:
-  This article illustrates you how to use Certbot to automate the creation of
-  SSL certificates for OpenVPN and how to release on AWS using Terraform.
 tags:
   - ssl
   - web

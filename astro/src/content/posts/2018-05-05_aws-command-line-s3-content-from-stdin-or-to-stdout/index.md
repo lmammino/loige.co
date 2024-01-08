@@ -1,19 +1,11 @@
 ---
-title: >-
-  AWS Command line: S3 content from stdin or to stdout
+title: "AWS Command line: S3 content from stdin or to stdout"
 slug: aws-command-line-s3-content-from-stdin-or-to-stdout
 subtitle: null
 date: 2018-05-05T12:00:14.000Z
 updated: 2018-05-06T09:55:40.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
 header_img: ./aws-command-line-s3-content-from-stdin-or-to-stdout-loige-co-luciano-mammino.jpg
-fb_img: ./aws-command-line-s3-content-from-stdin-or-to-stdout-fb.png
-tw_img: ./aws-command-line-s3-content-from-stdin-or-to-stdout-tw.png
 status: published
-language: en_US
-meta_title: null
-meta_description: null
 tags:
   - aws
   - bash

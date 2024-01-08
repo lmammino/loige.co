@@ -1,19 +1,11 @@
 ---
-title: >-
-  Gulp and FTP: update a website "on the fly"
+title: 'Gulp and FTP: update a website "on the fly"'
 slug: gulp-and-ftp-update-a-website-on-the-fly
 subtitle: null
 date: 2015-10-25T18:47:00.000Z
 updated: 2016-12-13T21:24:35.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
 header_img: ./gulp-and-ftp-update-a-website-on-the-fly-1.png
-fb_img: ./gulp-and-ftp-update-a-website-on-the-fly-fb.png
-tw_img: ./gulp-and-ftp-update-a-website-on-the-fly-tw.png
 status: published
-language: en_US
-meta_title: null
-meta_description: null
 tags:
   - gulp
   - javascript

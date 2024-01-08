@@ -1,19 +1,14 @@
 ---
-title: 'Building x86 Rust containers from Mac Silicon'
+title: Building x86 Rust containers from Mac Silicon
 slug: building_x86_rust-containers-from-mac-silicon
 subtitle: null
 date: 2023-05-05T09:29:00.000Z
 updated: 2023-05-08T09:40:00.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: './building_x86_rust-containers-from-mac-silicon.jpg'
-fb_img: ./building_x86_rust-containers-from-mac-silicon-fb.png
-tw_img: ./building_x86_rust-containers-from-mac-silicon-tw.png
+header_img: ./building_x86_rust-containers-from-mac-silicon.jpg
 status: published
-language: en_US
-meta_title: null
-meta_description: How to build a lightweight Alpine container for a Rust x86 binary from a Mac Silicon
-tags: ['rust', 'docker']
+tags:
+  - rust
+  - docker
 ---
 
 I recently struggled to build an x86_64 container for a web app written in Rust from my Mac Silicon. I eventually figured out a working solution that also heavily reduced the size of the container image. In this article, I will walk you through this solution!

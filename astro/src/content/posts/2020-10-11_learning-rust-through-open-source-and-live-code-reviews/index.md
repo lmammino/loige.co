@@ -2,17 +2,10 @@
 title: Learning Rust through open source and live code reviews
 slug: learning-rust-through-open-source-and-live-code-reviews
 subtitle: null
-date: "2020-10-11T19:50:00.000Z"
-updated: "2020-10-11T19:50:00.000Z"
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: "./learning-rust-through-open-source-and-live-code-reviews.jpg"
-fb_img: ./learning-rust-through-open-source-and-live-code-reviews-fb.png
-tw_img: ./learning-rust-through-open-source-and-live-code-reviews-tw.png
+date: 2020-10-11T19:50:00.000Z
+updated: 2020-10-11T19:50:00.000Z
+header_img: ./learning-rust-through-open-source-and-live-code-reviews.jpg
 status: published
-language: en_US
-meta_title: null
-meta_description: A collection of Rust tips and tricks that we learned after publishing our first open source project and receiving a live review on Twitch
 written_with:
   - name: Stefano Abalsamo
     image: https://unavatar.now.sh/github/stefanoabalsamo79

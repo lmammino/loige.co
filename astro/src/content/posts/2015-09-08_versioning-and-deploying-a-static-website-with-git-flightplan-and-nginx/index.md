@@ -4,15 +4,8 @@ slug: versioning-and-deploying-a-static-website-with-git-flightplan-and-nginx
 subtitle: null
 date: 2015-09-08T22:16:27.000Z
 updated: 2015-09-14T22:15:27.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
 header_img: ./Versioning-and-deploying-a-static-website-with-git-flightplan-and-nginx.jpg
-fb_img: ./versioning-and-deploying-a-static-website-with-git-flightplan-and-nginx-fb.png
-tw_img: ./versioning-and-deploying-a-static-website-with-git-flightplan-and-nginx-tw.png
 status: published
-language: en_US
-meta_title: null
-meta_description: null
 tags:
   - javascript
   - server

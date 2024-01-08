@@ -4,15 +4,8 @@ slug: lean-npm-packages
 subtitle: null
 date: 2019-09-08T16:40:58.000Z
 updated: 2019-09-08T16:40:58.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
 header_img: ./lean-npm-packages.jpg
-fb_img: ./lean-npm-packages-fb.png
-tw_img: ./lean-npm-packages-tw.png
 status: published
-language: en_US
-meta_title: null
-meta_description: null
 tags:
   - javascript
   - node-js

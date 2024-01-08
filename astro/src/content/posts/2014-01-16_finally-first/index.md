@@ -4,15 +4,8 @@ slug: finally-first
 subtitle: null
 date: 2014-01-16T23:04:36.000Z
 updated: 2014-01-17T03:06:07.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
 header_img: ./finally-first.png
-fb_img: ./finally-first-fb.png
-tw_img: ./finally-first-tw.png
 status: published
-language: en_US
-meta_title: null
-meta_description: null
 tags:
   - life
 ---

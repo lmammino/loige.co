@@ -4,15 +4,8 @@ slug: 3-invitations-to-try-atom-io
 subtitle: null
 date: 2014-04-09T10:58:22.000Z
 updated: 2016-01-19T22:37:15.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
 header_img: ./3-invitations-to-try-atom-io.png
-fb_img: ./3-invitations-to-try-atom-io-fb.png
-tw_img: ./3-invitations-to-try-atom-io-tw.png
 status: published
-language: en_US
-meta_title: null
-meta_description: null
 tags:
   - atom-io
 ---

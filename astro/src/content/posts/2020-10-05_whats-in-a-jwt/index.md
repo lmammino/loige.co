@@ -2,17 +2,10 @@
 title: What's in a JWT (Json Web Token)?
 slug: whats-in-a-jwt
 subtitle: null
-date: "2020-10-05T09:00:00.000Z"
-updated: "2020-10-05T09:00:00.000Z"
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: "./whats-in-a-jwt.png"
-fb_img: ./whats-in-a-jwt-fb.png
-tw_img: ./whats-in-a-jwt-tw.png
+date: 2020-10-05T09:00:00.000Z
+updated: 2020-10-05T09:00:00.000Z
+header_img: ./whats-in-a-jwt.png
 status: published
-language: en_US
-meta_title: null
-meta_description: null
 tags:
   - jwt
 ---

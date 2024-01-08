@@ -1,18 +1,11 @@
 ---
-title: "How to to_string in Rust"
-slug: "how-to-to-string-in-rust"
+title: How to to_string in Rust
+slug: how-to-to-string-in-rust
 subtitle: null
-date: "2021-05-26T18:50:00.000Z"
-updated: "2021-05-27T19:10:00.000Z"
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: "./how-to-to-string-in-rust.jpg"
-fb_img: "./how-to-to-string-in-rust-fb.png"
-tw_img: "./how-to-to-string-in-rust-tw.png"
+date: 2021-05-26T18:50:00.000Z
+updated: 2021-05-27T19:10:00.000Z
+header_img: ./how-to-to-string-in-rust.jpg
 status: published
-language: en_US
-meta_title: null
-meta_description: null
 written_with: []
 tags:
   - rust

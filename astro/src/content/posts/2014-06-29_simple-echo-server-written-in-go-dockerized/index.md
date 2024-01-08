@@ -1,22 +1,12 @@
 ---
 title: Simple echo server written in Go, dockerized!
 slug: simple-echo-server-written-in-go-dockerized
-subtitle: >-
-  How to write a very simple server app written in Go language and use a docker
-  container to launch it
+subtitle: How to write a very simple server app written in Go language and use a
+  docker container to launch it
 date: 2014-06-29T14:43:56.000Z
 updated: 2015-03-01T13:01:20.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
 header_img: ./simple-echo-server-written-in-go-dockerized.jpg
-fb_img: ./simple-echo-server-written-in-go-dockerized-fb.png
-tw_img: ./simple-echo-server-written-in-go-dockerized-tw.png
 status: published
-language: en_US
-meta_title: Simple server app written in Go lang and docker
-meta_description: >-
-  How to write a very simple server app written in Go language and use a docker
-  container to launch it
 tags:
   - server
   - go

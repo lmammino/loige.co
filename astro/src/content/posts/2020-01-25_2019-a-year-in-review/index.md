@@ -4,15 +4,8 @@ slug: 2019-a-year-in-review
 subtitle: null
 date: 2020-01-25T14:18:58.000Z
 updated: 2019-01-25T14:18:58.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: "./loige-co-2019-a-year-in-review-luciano-mammino-blog.jpg"
-fb_img: ./2019-a-year-in-review-fb.png
-tw_img: ./2019-a-year-in-review-tw.png
+header_img: ./loige-co-2019-a-year-in-review-luciano-mammino-blog.jpg
 status: published
-language: en_US
-meta_title: null
-meta_description: null
 tags:
   - life
 ---

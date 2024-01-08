@@ -1,25 +1,18 @@
 ---
-title: >-
-  New PHP library: PHPoAuthUserData
+title: "New PHP library: PHPoAuthUserData"
 slug: new-php-library-php-oauth-user-data
 subtitle: null
 date: 2014-02-10T12:13:50.000Z
 updated: 2014-02-10T23:23:21.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
 header_img: ./new-php-library-php-oauth-user-data.png
-fb_img: ./new-php-library-php-oauth-user-data-fb.png
-tw_img: ./new-php-library-php-oauth-user-data-tw.png
 status: published
-language: en_US
-meta_title: null
-meta_description: null
 tags:
   - library
   - php
   - oauth
   - github
 ---
+
 
 I recently wrote a new [PHP library](https://github.com/Oryzone/PHPoAuthUserData) to simplify the extraction of user data (_name_, _email_, _id_, etc...) from various OAuth providers such as _Facebook_, _Twitter_ and _Linkedin_.
 

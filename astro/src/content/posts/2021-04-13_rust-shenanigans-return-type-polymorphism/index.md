@@ -1,18 +1,11 @@
 ---
 title: "Rust shenanigans: return type polymorphism"
-slug: "rust-shenanigans-return-type-polymorphism"
+slug: rust-shenanigans-return-type-polymorphism
 subtitle: null
-date: "2021-04-13T09:15:00.000Z"
-updated: "2021-04-13T09:15:00.000Z"
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: "./rust-shenanigans-return-type-polymorphism.jpg"
-fb_img: "./rust-shenanigans-return-type-polymorphism-fb.png"
-tw_img: "./rust-shenanigans-return-type-polymorphism-tw.png"
+date: 2021-04-13T09:15:00.000Z
+updated: 2021-04-13T09:15:00.000Z
+header_img: ./rust-shenanigans-return-type-polymorphism.jpg
 status: published
-language: en_US
-meta_title: null
-meta_description: null
 written_with: []
 tags:
   - rust

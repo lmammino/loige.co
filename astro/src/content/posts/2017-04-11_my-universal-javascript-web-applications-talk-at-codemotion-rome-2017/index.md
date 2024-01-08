@@ -4,15 +4,8 @@ slug: my-universal-javascript-web-applications-talk-at-codemotion-rome-2017
 subtitle: null
 date: 2017-04-11T22:41:40.000Z
 updated: 2017-06-15T13:22:04.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
 header_img: ./my-universal-javascript-web-applications-talk-at-codemotion-rome-2017.jpg
-fb_img: ./my-universal-javascript-web-applications-talk-at-codemotion-rome-2017-fb.png
-tw_img: ./my-universal-javascript-web-applications-talk-at-codemotion-rome-2017-tw.png
 status: published
-language: en_US
-meta_title: null
-meta_description: null
 tags:
   - slides
   - talk

@@ -4,15 +4,8 @@ slug: fastify-and-preact-for-quick-web-app-prototyping
 subtitle: null
 date: 2019-02-18T20:22:58.000Z
 updated: 2019-02-18T20:22:58.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
 header_img: ./fastify-and-preact-for-quick-web-app-prototyping.jpg
-fb_img: ./fastify-and-preact-for-quick-web-app-prototyping-fb.png
-tw_img: ./fastify-and-preact-for-quick-web-app-prototyping-tw.png
 status: published
-language: en_US
-meta_title: null
-meta_description: null
 tags:
   - javascript
   - node-js

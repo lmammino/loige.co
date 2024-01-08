@@ -1,19 +1,11 @@
 ---
-title: >-
-  AWS Solution Architect Professional exam, my notes and tips
+title: AWS Solution Architect Professional exam, my notes and tips
 slug: aws-solution-architect-professional-exam-notes-tips
 subtitle: null
 date: 2022-04-26T18:20:00.000Z
 updated: 2022-04-26T18:20:00.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
 header_img: ./aws-solution-architect-professional-exam-notes-tips.jpg
-fb_img: ./aws-solution-architect-professional-exam-notes-tips-fb.png
-tw_img: ./aws-solution-architect-professional-exam-notes-tips-tw.png
 status: published
-language: en_US
-meta_title: null
-meta_description: null
 tags:
   - aws
 ---

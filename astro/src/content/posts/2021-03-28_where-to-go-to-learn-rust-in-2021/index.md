@@ -1,18 +1,11 @@
 ---
-title: "Where to go to learn Rust in 2021"
-slug: "where-to-go-to-learn-rust-in-2021"
+title: Where to go to learn Rust in 2021
+slug: where-to-go-to-learn-rust-in-2021
 subtitle: null
-date: "2021-03-28T19:55:00.000Z"
-updated: "2021-03-28T19:55:00.000Z"
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: "./where-to-go-to-learn-rust-in-2021.jpg"
-fb_img: "./where-to-go-to-learn-rust-in-2021-fb.png"
-tw_img: "./where-to-go-to-learn-rust-in-2021-tw.png"
+date: 2021-03-28T19:55:00.000Z
+updated: 2021-03-28T19:55:00.000Z
+header_img: ./where-to-go-to-learn-rust-in-2021.jpg
 status: published
-language: en_US
-meta_title: null
-meta_description: null
 written_with:
   - name: Stjepan Golemac
     image: https://unavatar.now.sh/github/stjepangolemac

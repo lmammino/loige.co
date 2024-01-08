@@ -4,15 +4,8 @@ slug: my-universal-javascript-web-applications-talk-at-codemotion-milan-2016-2
 subtitle: null
 date: 2016-11-26T09:53:55.000Z
 updated: 2016-12-12T23:44:38.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
 header_img: ./my-universal-javascript-web-applications-talk-at-codemotion-milan-2016-2.jpg
-fb_img: ./my-universal-javascript-web-applications-talk-at-codemotion-milan-2016-2-fb.png
-tw_img: ./my-universal-javascript-web-applications-talk-at-codemotion-milan-2016-2-fb.png
 status: published
-language: en_US
-meta_title: null
-meta_description: null
 tags:
   - slides
   - talk

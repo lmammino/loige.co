@@ -1,19 +1,17 @@
 ---
-title: 'JavaScript, low-level or AI?'
+title: JavaScript, low-level or AI?
 slug: javascript-low-level-or-ai
 subtitle: null
 date: 2023-11-10T14:37:00.000Z
 updated: 2023-11-10T14:37:00.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: './javascript-low-level-or-ai.jpg'
-fb_img: ./javascript-low-level-or-ai-fb.png
-tw_img: ./javascript-low-level-or-ai-tw.png
+header_img: ./javascript-low-level-or-ai.jpg
 status: published
-language: en_US
-meta_title: null
-meta_description: What's the future going to be like in 5-10 years for Software Developers?
-tags: ['opinion', 'javascript', 'rust', 'go', 'ai']
+tags:
+  - opinion
+  - javascript
+  - rust
+  - go
+  - ai
 ---
 
 The software industry is going to be fun to see in the coming 5-10 years.
