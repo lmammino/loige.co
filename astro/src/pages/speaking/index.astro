@@ -1,5 +1,8 @@
 ---
-import { type CollectionEntry, getCollection } from 'astro:content';
+/// <reference path="../../../.astro/types.d.ts" />
+
+import { getCollection } from 'astro:content';
+import type {  CollectionEntry } from 'astro:content';
 import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';

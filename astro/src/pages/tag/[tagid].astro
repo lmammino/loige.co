@@ -1,14 +1,17 @@
 ---
+/// <reference path="../../../.astro/types.d.ts" />
+
+import type { InferGetStaticPropsType } from 'astro';
 import { type CollectionEntry, getCollection } from 'astro:content';
 
-type Props = CollectionEntry<'posts'>;
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 export async function getStaticPaths() {
   const posts = (await getCollection('posts')).sort(
 	  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
   );
 
-  const postsByTag = {}
+  const postsByTag: Record<string, CollectionEntry<'posts'>[]> = {}
 
   for (const post of posts) {
     for (const tag of post.data.tags) {

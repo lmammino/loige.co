@@ -41,6 +41,6 @@ Notice that the following graph tries to represent the classical schema availabl
 
 [![Symfony Authentication chart](./symfony_security_component_authentication_flow.png)](https://docs.google.com/drawings/d/1uTA7gQZ5IEV51Nv-HKR98sKWQNBUhEm0PPueJcoRW7c/edit?usp=sharing)
 
-Get the image in [full resolution on Google Drive](https://docs.google.com/drawings/d/1uTA7gQZ5IEV51Nv-HKR98sKWQNBUhEm0PPueJcoRW7c/edit?usp=sharing) (you can also propose edits with comments if you want) or [Download the PDF](./symfony_security_component_authentication_flow.pdf).
+Get the image in [full resolution on Google Drive](https://docs.google.com/drawings/d/1uTA7gQZ5IEV51Nv-HKR98sKWQNBUhEm0PPueJcoRW7c/edit?usp=sharing) (you can also propose edits with comments if you want) or [Download the PDF](/downloads/symfony_security_component_authentication_flow.pdf).
 
 That's all, I hope this post has been useful. If you have interesting link related to this topic feel free to add them in the comment box and I will add them into the article.

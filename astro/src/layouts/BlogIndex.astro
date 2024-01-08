@@ -5,8 +5,27 @@ import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import { Picture } from "astro:assets";
 import FormattedDate from '../components/FormattedDate.astro';
+import type { CollectionEntry } from 'astro:content';
+
+type Props = {
+	page: {
+		start: number;
+		end: number;
+		size: number;
+		total: number;
+		currentPage: number;
+		lastPage: number;
+		url: {
+			prev: string | null;
+			next: string | null;
+			current: string;
+		};
+		data: CollectionEntry<'posts'>[];
+	};
+};
 
 const props = Astro.props;
+console.log(props)
 ---
 
 <!doctype html>
@@ -76,7 +95,7 @@ const props = Astro.props;
 		<Header title={SITE_TITLE} />
 		<main>
       <section>
-        <h2>Blog posts - page {props.currentPage}</h2>
+        <h2>Blog posts - page {props.page.currentPage}</h2>
 				<ul>
 					{
 						props.page.data.map((post) => (
