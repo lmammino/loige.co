@@ -16,4 +16,4 @@ const posts = defineCollection({
     }),
 })
 
-export const collections = { blog, posts }
+export const collections = { posts }
