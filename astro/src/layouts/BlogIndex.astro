@@ -88,6 +88,9 @@ const props = Astro.props;
 										<FormattedDate date={post.data.date} />
 									</p>
 								</a>
+                <p>In <ul>
+                    {post.data.tags.map(tag => <li><a href={`/tag/${tag}`}>{tag}</a></li>)}
+                  </ul></p>
 							</li>
 						))
 					}

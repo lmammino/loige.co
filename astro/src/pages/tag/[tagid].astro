@@ -1,0 +1,44 @@
+---
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = (await getCollection('posts')).sort(
+	  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+  );
+
+  const postsByTag = {}
+
+  for (const post of posts) {
+    for (const tag of post.data.tags) {
+      if (!postsByTag[tag]) {
+        postsByTag[tag] = []
+      }
+      postsByTag[tag].push(post)
+    }
+  }
+
+  return Object.entries(postsByTag).map(([tagid, posts]) => {
+    return {
+      params: {
+        tagid
+      },
+      props: {
+        posts
+      }
+    }
+  })
+}
+
+const props = Astro.props
+const params = Astro.params
+---
+
+<h1>Tag {params.tagid}</h1>
+<ul>
+  {props.posts.map(post => (
+    <li>
+      <a href={`/${post.slug}`}>{post.data.title}</a>
+    </li>
+  ))
+</ul>
+
