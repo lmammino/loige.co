@@ -2,6 +2,8 @@
 import { type CollectionEntry, getCollection } from 'astro:content';
 import BlogPost from '../layouts/BlogPost.astro';
 
+type Props = CollectionEntry<'posts'>;
+
 export async function getStaticPaths() {
 	const posts = await getCollection('posts');
 	return posts.map((post) => ({
@@ -9,7 +11,7 @@ export async function getStaticPaths() {
 		props: post,
 	}));
 }
-type Props = CollectionEntry<'posts'>;
+
 
 const post = Astro.props;
 const { Content } = await post.render();

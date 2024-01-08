@@ -1,5 +1,7 @@
 ---
-import { getCollection } from 'astro:content';
+import { type CollectionEntry, getCollection } from 'astro:content';
+
+type Props = CollectionEntry<'posts'>;
 
 export async function getStaticPaths() {
   const posts = (await getCollection('posts')).sort(

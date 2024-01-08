@@ -1,8 +1,15 @@
 ---
+import { type CollectionEntry, getCollection } from 'astro:content';
 import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
+
+type Props = CollectionEntry<'speaking'>;
+
+const speaking = (await getCollection('speaking')).sort(
+	(a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+)
 ---
 
 <!doctype html>
@@ -84,6 +91,9 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
 		<main>
 			<section>
 				<h1>Speaking - TODO</h1>
+				<ul>
+					{speaking.map(s => <li>{s.data.title}</li>)}
+				</ul>
 			</section>
 		</main>
 		<Footer />
