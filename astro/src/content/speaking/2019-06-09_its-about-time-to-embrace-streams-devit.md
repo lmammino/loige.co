@@ -1,24 +1,18 @@
 ---
-uuid: d5c74f7f-ccaf-4ac1-a39b-9c2841f9efcf
-layout: speaking
-title: 'It’s about time to embrace Streams'
-slug: 'its-about-time-to-embrace-streams-devit'
+title: It’s about time to embrace Streams
+slug: its-about-time-to-embrace-streams-devit
 date: 2019-06-09T20:30:00.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: null
 status: published
 language: en_US
-meta_title: null
-meta_description: null
-event_name: 'DevIT'
-event_link: 'https://devitconf.org'
-event_location: 'CITY College, International Faculty of the University of Sheffield, Thessaloniki, Greece'
-event_location_gps: '40.63743995,22.93683177161686'
-event_city: 'Thessaloniki'
-event_days: 'June 09-10 2019'
+event_name: DevIT
+event_link: https://devitconf.org
+event_location: CITY College, International Faculty of the University of
+  Sheffield, Thessaloniki, Greece
+event_location_gps: 40.63743995,22.93683177161686
+event_city: Thessaloniki
+event_days: June 09-10 2019
 is_workshop: true
-slides_link: "https://slides.com/lucianomammino/its-about-time-to-embrace-nodejs-streams-workshop-thessaloniki"
+slides_link: https://slides.com/lucianomammino/its-about-time-to-embrace-nodejs-streams-workshop-thessaloniki
 video_link: null
 with: []
 ---

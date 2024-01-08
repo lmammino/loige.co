@@ -1,26 +1,18 @@
 ---
-uuid: ce435b74-8092-4410-8e6a-28b11c48305c
-layout: speaking
-title: 'Node.js scalability tips'
-slug: 'node-js-scalability-tips-codemotion'
+title: Node.js scalability tips
+slug: node-js-scalability-tips-codemotion
 date: 2020-11-24T14:50:00.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: null
 status: published
 language: en_US
-presentation_language: it_IT
-meta_title: null
-meta_description: null
-event_name: 'Codemotion online 2020'
-event_link: 'https://events.codemotion.com/conferences/online/2020/online-tech-conference-italian-edition/agenda/'
-event_location: "Remote"
+event_name: Codemotion online 2020
+event_link: https://events.codemotion.com/conferences/online/2020/online-tech-conference-italian-edition/agenda/
+event_location: Remote
 event_location_gps: null
-event_city: "remote"
-event_days: "November 24 2020"
+event_city: remote
+event_days: November 24 2020
 is_workshop: false
-slides_link: "https://loige.link/nodescale"
-video_link: "https://youtu.be/K9b3Hf6w004?t=3156"
+slides_link: https://loige.link/nodescale
+video_link: https://youtu.be/K9b3Hf6w004?t=3156
 with: []
 ---
 

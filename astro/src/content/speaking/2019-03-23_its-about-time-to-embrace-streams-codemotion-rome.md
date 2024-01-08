@@ -1,24 +1,18 @@
 ---
-uuid: 1efb4925-dc41-4906-861a-5c3425a3d5eb
-layout: speaking
-title: 'It’s about time to embrace Streams'
-slug: 'its-about-time-to-embrace-streams-codemotion-rome'
+title: It’s about time to embrace Streams
+slug: its-about-time-to-embrace-streams-codemotion-rome
 date: 2019-03-23T18:00:00.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: null
 status: published
 language: en_US
-meta_title: null
-meta_description: null
-event_name: 'Codemotion'
-event_link: 'https://events.codemotion.com/conferences/rome/2019'
-event_location: 'Università Roma TRE - Ingegneria, Via Vito Volterra, Rome, Metropolitan City of Rome, Italy'
-event_location_gps: '41.8547021,12.470359300000041'
-event_city: 'Rome'
-event_days: 'March 23 2019'
+event_name: Codemotion
+event_link: https://events.codemotion.com/conferences/rome/2019
+event_location: Università Roma TRE - Ingegneria, Via Vito Volterra, Rome,
+  Metropolitan City of Rome, Italy
+event_location_gps: 41.8547021,12.470359300000041
+event_city: Rome
+event_days: March 23 2019
 is_workshop: false
-slides_link: 'https://loige.link/streams-rome'
+slides_link: https://loige.link/streams-rome
 video_link: null
 with: []
 ---

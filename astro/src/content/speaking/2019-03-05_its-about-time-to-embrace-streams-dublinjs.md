@@ -1,22 +1,15 @@
 ---
-uuid: 670ff14e-2046-457a-8671-3c81b30c67f4
-layout: speaking
-title: 'It’s about time to embrace Streams'
-slug: 'its-about-time-to-embrace-streams-dublinjs'
+title: It’s about time to embrace Streams
+slug: its-about-time-to-embrace-streams-dublinjs
 date: 2019-03-05T21:00:00.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: null
 status: published
 language: en_US
-meta_title: null
-meta_description: null
-event_name: 'Dublin JS'
-event_link: 'https://www.meetup.com/DublinJS/events/258466646/'
-event_location: 'Workday, Kings Building, May Ln, Dublin 7, D07 W310, Ireland'
-event_location_gps: '53.3478343,-6.2776726'
-event_city: 'Dublin'
-event_days: 'March 05 2019'
+event_name: Dublin JS
+event_link: https://www.meetup.com/DublinJS/events/258466646/
+event_location: Workday, Kings Building, May Ln, Dublin 7, D07 W310, Ireland
+event_location_gps: 53.3478343,-6.2776726
+event_city: Dublin
+event_days: March 05 2019
 is_workshop: false
 slides_link: https://loige.link/streams-dub
 video_link: null

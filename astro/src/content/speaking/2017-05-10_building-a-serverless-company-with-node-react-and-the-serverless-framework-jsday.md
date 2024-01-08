@@ -1,25 +1,18 @@
 ---
-uuid: 0f0a74f0-a7e3-44ea-a490-9892c42b33e4
-layout: speaking
-title: "Building a Serverless company with Node.js, React and the Serverless Framework"
-slug: "building-a-serverless-company-with-node-react-and-the-serverless-framework-jsday"
+title: Building a Serverless company with Node.js, React and the Serverless Framework
+slug: building-a-serverless-company-with-node-react-and-the-serverless-framework-jsday
 date: 2017-05-10T00:00:00.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: null
 status: published
 language: en_US
-meta_title: null
-meta_description: null
-event_name: "JS Day"
-event_link: "https://2017.jsday.it"
-event_location: "Hotel San Marco - Via Longhena, 42 37138 Verona, Italy"
-event_location_gps: "45.439915,10.971974400000022"
-event_city: "Verona"
-event_days: "May 10 2017"
+event_name: JS Day
+event_link: https://2017.jsday.it
+event_location: Hotel San Marco - Via Longhena, 42 37138 Verona, Italy
+event_location_gps: 45.439915,10.971974400000022
+event_city: Verona
+event_days: May 10 2017
 is_workshop: false
-slides_link: "https://slides.com/lucianomammino/building-a-serverless-company-with-node-react-and-the-serverless-framework-jsday-2017"
-video_link: "https://vimeo.com/235772722"
+slides_link: https://slides.com/lucianomammino/building-a-serverless-company-with-node-react-and-the-serverless-framework-jsday-2017
+video_link: https://vimeo.com/235772722
 with: []
 ---
 

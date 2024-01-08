@@ -1,26 +1,18 @@
 ---
-uuid: d500f703-71e6-46f9-b15f-f45de7bbf8a0
-layout: speaking
-title: 'Automating observability on AWS with SLIC Watch'
-slug: 'automating-observability-on-aws-with-slice-watch-shipitconf'
+title: Automating observability on AWS with SLIC Watch
+slug: automating-observability-on-aws-with-slice-watch-shipitconf
 date: 2023-09-01T12:00:00.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: null
 status: published
 language: en_US
-presentation_language: en_US
-meta_title: null
-meta_description: null
-event_name: 'Ship It Conference 2023'
-event_link: 'https://shipitcon.com/'
-event_location: 'Dublin, Ireland'
-event_location_gps: '53.3411086,-6.2526659'
-event_city: 'Dublin'
-event_days: 'Sept 1, 2023'
+event_name: Ship It Conference 2023
+event_link: https://shipitcon.com/
+event_location: Dublin, Ireland
+event_location_gps: 53.3411086,-6.2526659
+event_city: Dublin
+event_days: Sept 1, 2023
 is_workshop: false
-slides_link: 'https://fth.link/auto-obs'
-video_link: ~
+slides_link: https://fth.link/auto-obs
+video_link: null
 ---
 
 Have you ever thought that your Lambda functions could fail without you even noticing?

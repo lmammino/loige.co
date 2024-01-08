@@ -1,33 +1,25 @@
 ---
-uuid: d9fd51e1-baa7-4c06-b02f-68356015bdcf
-layout: speaking
-title: 'Easier Observability with SLIC Watch'
-slug: 'slic-watch-serverless-office-hours'
+title: Easier Observability with SLIC Watch
+slug: slic-watch-serverless-office-hours
 date: 2023-07-25T18:00:00.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: null
 status: published
 language: en_US
-presentation_language: en_US
-meta_title: null
-meta_description: null
-event_name: 'Serverless Office Hours (Serverless Land)'
-event_link: 'https://www.youtube.com/serverlessland'
-event_location: 'Remote'
-event_location_gps: ~
-event_city: 'remote'
-event_days: 'Jul 25, 2023'
+event_name: Serverless Office Hours (Serverless Land)
+event_link: https://www.youtube.com/serverlessland
+event_location: Remote
+event_location_gps: null
+event_city: remote
+event_days: Jul 25, 2023
 is_workshop: false
-slides_link: 'https://fth.link/observe'
-video_link: 'https://www.youtube.com/watch?v=wexRZ_9Zfwk'
+slides_link: https://fth.link/observe
+video_link: https://www.youtube.com/watch?v=wexRZ_9Zfwk
 with:
   - name: Julian Wood
-    link: 'https://www.linkedin.com/in/julianrwood/'
-    image: 'https://unavatar.io/github/julianwood'
-  - name: Diren Akkoc 
-    link: 'https://github.com/direnakkoc'
-    image: 'https://unavatar.io/github/direnakkoc'
+    link: https://www.linkedin.com/in/julianrwood/
+    image: https://unavatar.io/github/julianwood
+  - name: Diren Akkoc
+    link: https://github.com/direnakkoc
+    image: https://unavatar.io/github/direnakkoc
 ---
 
 Have you ever thought that your Lambda functions could fail without you even noticing?

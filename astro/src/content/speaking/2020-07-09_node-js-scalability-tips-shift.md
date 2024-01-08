@@ -1,23 +1,15 @@
 ---
-uuid: e13eb11d-87b4-4065-9aba-a997c46169df
-layout: speaking
-title: 'Node.js scalability tips'
-slug: 'node-js-scalability-tips-shift'
+title: Node.js scalability tips
+slug: node-js-scalability-tips-shift
 date: 2020-07-09T17:00:00.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: null
 status: published
 language: en_US
-presentation_language: en_US
-meta_title: null
-meta_description: null
-event_name: 'Shift remote'
-event_link: 'https://remote.shiftconf.co/'
-event_location: "Remote"
+event_name: Shift remote
+event_link: https://remote.shiftconf.co/
+event_location: Remote
 event_location_gps: null
-event_city: "remote"
-event_days: 'July 09 2020'
+event_city: remote
+event_days: July 09 2020
 is_workshop: false
 slides_link: https://loige.link/node-scale
 video_link: https://www.youtube.com/watch?v=4GuxWlQPhLs

@@ -1,29 +1,22 @@
 ---
-uuid: 9e8cf5e4-a499-49c0-89dc-18302d9160b4
-layout: speaking
-title: "Serverless from the trenches"
-slug: "serverless-from-the-trenches-aws-usergroup-dublin"
+title: Serverless from the trenches
+slug: serverless-from-the-trenches-aws-usergroup-dublin
 date: 2017-10-03T00:00:00.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: null
 status: published
 language: en_US
-meta_title: null
-meta_description: null
 event_name: AWS Usergroup Dublin
-event_link: "https://www.meetup.com/AWS-Ireland-Usergroup/events/235653352/"
-event_location: "Button Factory - 2 Curved Street, Dublin, Ireland"
-event_location_gps: "53.3449334,-6.264522800000009"
-event_city: "Dublin"
-event_days: "October 10 2017"
+event_link: https://www.meetup.com/AWS-Ireland-Usergroup/events/235653352/
+event_location: Button Factory - 2 Curved Street, Dublin, Ireland
+event_location_gps: 53.3449334,-6.264522800000009
+event_city: Dublin
+event_days: October 10 2017
 is_workshop: false
-slides_link: "http://loige.link/serverless-trenches"
+slides_link: http://loige.link/serverless-trenches
 video_link: null
 with:
   - name: Padraig O'Brien
-    link: "https://twitter.com/PadraigOBrien"
-    image: 'https://unavatar.io/github/PadraigOBrien'
+    link: https://twitter.com/PadraigOBrien
+    image: https://unavatar.io/github/PadraigOBrien
 ---
 
 99% of our daily work is in lambdas. We have been working with them for almost 2 years. In that time we learned a lot and in this presentation we will share some of those learnings with you.We are going to focus on unexpected failures and how we recovered from them.

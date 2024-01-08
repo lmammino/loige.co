@@ -1,24 +1,17 @@
 ---
-uuid: 4e08a5da-735d-40ac-a048-1149312f4b66
-layout: speaking
-title: "Universal JS web applications with React"
-slug: "universal-js-web-applications-with-react-workshop-web-summer-camp"
+title: Universal JS web applications with React
+slug: universal-js-web-applications-with-react-workshop-web-summer-camp
 date: 2017-08-30T00:00:00.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: null
 status: published
 language: en_US
-meta_title: null
-meta_description: null
 event_name: Web Summer Camp
-event_link: "http://2017.websummercamp.com/JS"
-event_location: "Lone Hotel, Rovinj, Croatia"
-event_location_gps: "45.0731163,13.6371103"
-event_city: "Rovinj"
-event_days: "August 30 - September 2 2017"
+event_link: http://2017.websummercamp.com/JS
+event_location: Lone Hotel, Rovinj, Croatia
+event_location_gps: 45.0731163,13.6371103
+event_city: Rovinj
+event_days: August 30 - September 2 2017
 is_workshop: true
-slides_link: "https://loige.link/uni-js-workshop"
+slides_link: https://loige.link/uni-js-workshop
 video_link: null
 with: []
 ---

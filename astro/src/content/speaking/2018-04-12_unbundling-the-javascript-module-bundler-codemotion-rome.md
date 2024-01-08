@@ -1,25 +1,19 @@
 ---
-uuid: a8de1e0a-db99-4e26-b203-902d176fe26a
-layout: speaking
-title: "Unbundling the JavaScript module bundler"
-slug: "unbundling-the-javascript-module-bundler-codemotion-rome"
+title: Unbundling the JavaScript module bundler
+slug: unbundling-the-javascript-module-bundler-codemotion-rome
 date: 2018-04-13T00:00:00.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: null
 status: published
 language: en_US
-meta_title: null
-meta_description: null
 event_name: Codemotion Rome
-event_link: "https://rome2018.codemotionworld.com/conference/"
-event_location: "Università Roma TRE - Ingegneria, Via Vito Volterra, Rome, Metropolitan City of Rome, Italy"
-event_location_gps: "41.8547021,12.470359300000041"
-event_city: "Rome"
-event_days: "April 11-14 2018"
+event_link: https://rome2018.codemotionworld.com/conference/
+event_location: Università Roma TRE - Ingegneria, Via Vito Volterra, Rome,
+  Metropolitan City of Rome, Italy
+event_location_gps: 41.8547021,12.470359300000041
+event_city: Rome
+event_days: April 11-14 2018
 is_workshop: false
-slides_link: "http://loige.link/bundle-rome"
-video_link: "https://www.youtube.com/watch?v=WGlT921ixx4"
+slides_link: http://loige.link/bundle-rome
+video_link: https://www.youtube.com/watch?v=WGlT921ixx4
 with: []
 ---
 

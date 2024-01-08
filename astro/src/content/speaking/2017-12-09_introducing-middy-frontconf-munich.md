@@ -1,24 +1,17 @@
 ---
-uuid: a1908f2a-1d31-4176-ab6c-517216131515
-layout: speaking
-title: "Introducing Middy, Node.js middleware engine for AWS Lambda (Lightning talk)"
-slug: "introducing-middy-frontconf-munich"
+title: Introducing Middy, Node.js middleware engine for AWS Lambda (Lightning talk)
+slug: introducing-middy-frontconf-munich
 date: 2017-12-09T00:00:00.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: null
 status: published
 language: en_US
-meta_title: null
-meta_description: null
 event_name: Frontconf Munich
-event_link: "https://frontconf.com/"
-event_location: "Microsoft Germany GmbH, Walter-Gropius-Straße 5, 80807 München, Germany"
-event_location_gps: "48.177622,11.593452999999954"
-event_city: "Munich"
-event_days: "December 8-9 2017"
+event_link: https://frontconf.com/
+event_location: Microsoft Germany GmbH, Walter-Gropius-Straße 5, 80807 München, Germany
+event_location_gps: 48.177622,11.593452999999954
+event_city: Munich
+event_days: December 8-9 2017
 is_workshop: false
-slides_link: "https://slides.com/lucianomammino/introducing-middy-11"
+slides_link: https://slides.com/lucianomammino/introducing-middy-11
 video_link: null
 with: []
 ---

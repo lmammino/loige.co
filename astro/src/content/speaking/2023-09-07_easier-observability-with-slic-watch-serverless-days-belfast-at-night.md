@@ -1,30 +1,22 @@
 ---
-uuid: 7c991363-5a6b-4003-87bb-f21e91787bb1
-layout: speaking
-title: 'Easier Observability with SLIC Watch'
-slug: 'easier-observability-with-slic-watch-serverless-days-belfast-at-night'
+title: Easier Observability with SLIC Watch
+slug: easier-observability-with-slic-watch-serverless-days-belfast-at-night
 date: 2023-09-07T18:00:00.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: null
 status: published
 language: en_US
-presentation_language: en_US
-meta_title: null
-meta_description: null
-event_name: 'ServerlessDays Belfast At Night'
-event_link: 'https://www.eventbrite.co.uk/e/serverlessdays-belfast-at-night-tickets-695897958527'
-event_location: 'Belfast, UK'
-event_location_gps: '54.595710,-5.931510'
-event_city: 'Belfast'
-event_days: 'Sep 7, 2023'
+event_name: ServerlessDays Belfast At Night
+event_link: https://www.eventbrite.co.uk/e/serverlessdays-belfast-at-night-tickets-695897958527
+event_location: Belfast, UK
+event_location_gps: 54.595710,-5.931510
+event_city: Belfast
+event_days: Sep 7, 2023
 is_workshop: false
-slides_link: 'https://fth.link/sls-night'
-video_link: 'https://www.youtube.com/watch?v=x8qpPpdsg1E'
+slides_link: https://fth.link/sls-night
+video_link: https://www.youtube.com/watch?v=x8qpPpdsg1E
 with:
   - name: Guilherme Dalla Rosa
-    link: 'https://www.linkedin.com/in/guidr/'
-    image: 'https://unavatar.io/github/guidr'
+    link: https://www.linkedin.com/in/guidr/
+    image: https://unavatar.io/github/guidr
 ---
 
 Have you ever thought that your Lambda functions could fail without you even noticing?

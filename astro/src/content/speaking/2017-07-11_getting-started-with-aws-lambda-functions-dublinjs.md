@@ -1,29 +1,22 @@
 ---
-uuid: b11153eb-f89a-4909-ba9a-1822f79363fe
-layout: speaking
-title: "Getting started w/ AWS Lambda Functions"
-slug: "getting-started-with-aws-lambda-functions-dublinjs"
+title: Getting started w/ AWS Lambda Functions
+slug: getting-started-with-aws-lambda-functions-dublinjs
 date: 2017-07-11T00:00:00.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: null
 status: published
 language: en_US
-meta_title: null
-meta_description: null
-event_name: "Dublin JS"
-event_link: "https://www.meetup.com/DublinJS/events/241147605/"
-event_location: "Intercom, Stephen Court, 18-21 St Stephen's Green, Dublin 2, Ireland"
-event_location_gps: "53.3394054,-6.257663600000001"
-event_city: "Dublin"
-event_days: "July 11 2017"
+event_name: Dublin JS
+event_link: https://www.meetup.com/DublinJS/events/241147605/
+event_location: Intercom, Stephen Court, 18-21 St Stephen's Green, Dublin 2, Ireland
+event_location_gps: 53.3394054,-6.257663600000001
+event_city: Dublin
+event_days: July 11 2017
 is_workshop: true
-slides_link: "http://www.loige.link/lambda-workshop"
+slides_link: http://www.loige.link/lambda-workshop
 video_link: null
 with:
   - name: Padraig O'Brien
-    link: "https://twitter.com/PadraigOBrien"
-    image: 'https://unavatar.io/github/PadraigOBrien'
+    link: https://twitter.com/PadraigOBrien
+    image: https://unavatar.io/github/PadraigOBrien
 ---
 
 Serverless is becoming the cool new kid on the block taking software development by storm. Enterprises and developers alike are embracing the new paradigm in order to drive innovation, time to marked and solve complex architectural challenges.

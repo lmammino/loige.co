@@ -1,25 +1,17 @@
 ---
-uuid: ec688aff-7c8d-431b-8e6b-debbfc47e477
-layout: speaking
-title: "Let's play with Node.js streams"
-slug: 'lets-play-with-nodejs-streams-codemotion'
+title: Let's play with Node.js streams
+slug: lets-play-with-nodejs-streams-codemotion
 date: 2021-03-23T20:30:00.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: null
 status: published
 language: it_IT
-presentation_language: it_IT
-meta_title: null
-meta_description: null
-event_name: 'Codemotion'
-event_link: 'https://events.codemotion.com/conferences/online/2021/online-tech-conference-italian-edition-spring/workshops'
-event_location: 'Remote'
+event_name: Codemotion
+event_link: https://events.codemotion.com/conferences/online/2021/online-tech-conference-italian-edition-spring/workshops
+event_location: Remote
 event_location_gps: null
-event_city: 'remote'
-event_days: 'March 23-25 2021'
+event_city: remote
+event_days: March 23-25 2021
 is_workshop: true
-slides_link: 'https://loige.link/streams-cm'
+slides_link: https://loige.link/streams-cm
 video_link: null
 with: []
 ---

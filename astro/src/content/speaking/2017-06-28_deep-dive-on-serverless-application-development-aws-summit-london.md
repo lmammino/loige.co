@@ -1,32 +1,25 @@
 ---
-uuid: bfcafa13-62b0-4402-a183-0b1d1d5d8511
-layout: speaking
-title: "Deep Dive on Serverless Application Development"
-slug: "deep-dive-on-serverless-application-development-aws-summit-london"
+title: Deep Dive on Serverless Application Development
+slug: deep-dive-on-serverless-application-development-aws-summit-london
 date: 2017-06-28T00:00:00.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: null
 status: published
 language: en_US
-meta_title: null
-meta_description: null
-event_name: "AWS Summit London"
-event_link: "https://aws.amazon.com/summits"
-event_location: "ICC, ExCeL London, UK"
-event_location_gps: "51.5075864,0.034090699999978824"
-event_city: "London"
-event_days: "June 28 2017"
+event_name: AWS Summit London
+event_link: https://aws.amazon.com/summits
+event_location: ICC, ExCeL London, UK
+event_location_gps: 51.5075864,0.034090699999978824
+event_city: London
+event_days: June 28 2017
 is_workshop: false
-slides_link: "https://speakerdeck.com/danilop/deep-dive-on-serverless-application-development"
+slides_link: https://speakerdeck.com/danilop/deep-dive-on-serverless-application-development
 video_link: null
 with:
   - name: Danilo Poccia
-    link: "https://twitter.com/danilop"
-    image: 'https://unavatar.io/github/danilop'
+    link: https://twitter.com/danilop
+    image: https://unavatar.io/github/danilop
   - name: Padraig O'Brien
-    link: "https://twitter.com/PadraigOBrien"
-    image: 'https://unavatar.io/github/PadraigOBrien'
+    link: https://twitter.com/PadraigOBrien
+    image: https://unavatar.io/github/PadraigOBrien
 ---
 
 AWS Lambda and Amazon API Gateway have changed how developers build and run their applications or services. But what are the best practices for tasks such as deployment, monitoring, and debugging in a serverless world?

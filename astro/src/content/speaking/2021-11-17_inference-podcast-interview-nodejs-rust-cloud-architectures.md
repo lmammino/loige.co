@@ -1,30 +1,22 @@
 ---
-uuid: 054bb473-a6b0-4bc9-ad32-7d4a8172aa3a
-layout: speaking
-title: "Node.js, Rust & Cloud Architectures (interview)"
-slug: 'inference-podcast-interview-nodejs-rust-cloud-architectures'
+title: Node.js, Rust & Cloud Architectures (interview)
+slug: inference-podcast-interview-nodejs-rust-cloud-architectures
 date: 2021-11-17T15:00:00.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: null
 status: published
 language: en_US
-presentation_language: en_US
-meta_title: null
-meta_description: null
-event_name: "Inference Podcast S2"
-event_link: 'https://www.youtube.com/playlist?list=PLVNFy4aOttkQ9OmK6zRPC3VT5TVCm_K9C'
-event_location: 'Remote'
+event_name: Inference Podcast S2
+event_link: https://www.youtube.com/playlist?list=PLVNFy4aOttkQ9OmK6zRPC3VT5TVCm_K9C
+event_location: Remote
 event_location_gps: null
-event_city: 'remote'
-event_days: 'Nov 17, 2021'
+event_city: remote
+event_days: Nov 17, 2021
 is_workshop: false
-slides_link: ~
-video_link: 'https://www.youtube.com/watch?v=oCjps_uv7P4'
+slides_link: null
+video_link: https://www.youtube.com/watch?v=oCjps_uv7P4
 with:
   - name: Michele Riva
-    link: 'https://twitter.com/MicheleRivaCode'
-    image: 'https://unavatar.io/github/micheleriva'
+    link: https://twitter.com/MicheleRivaCode
+    image: https://unavatar.io/github/micheleriva
 ---
 
 Node.js, Rust, and Cloud Architectures with Luciano Mammino - #InferencePodcast S2E1

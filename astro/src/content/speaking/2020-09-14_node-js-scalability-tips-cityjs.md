@@ -1,26 +1,18 @@
 ---
-uuid: d5e48e5d-9f52-4f9f-9e95-afa894cd74f7
-layout: speaking
-title: 'Node.js scalability tips'
-slug: 'node-js-scalability-tips-cityjs'
+title: Node.js scalability tips
+slug: node-js-scalability-tips-cityjs
 date: 2020-09-14T17:00:00.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: null
 status: published
 language: en_US
-presentation_language: en_US
-meta_title: null
-meta_description: null
-event_name: 'CityJS 2020'
-event_link: 'https://cityjsconf.org/'
-event_location: "Remote"
+event_name: CityJS 2020
+event_link: https://cityjsconf.org/
+event_location: Remote
 event_location_gps: null
-event_city: "remote"
-event_days: 'September 14-18 2020'
+event_city: remote
+event_days: September 14-18 2020
 is_workshop: false
-slides_link: "https://loige.link/node-scale-city"
-video_link: "https://youtu.be/LpHoTEw2vKg"
+slides_link: https://loige.link/node-scale-city
+video_link: https://youtu.be/LpHoTEw2vKg
 with: []
 ---
 

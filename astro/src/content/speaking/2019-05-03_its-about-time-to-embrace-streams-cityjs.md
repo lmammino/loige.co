@@ -1,25 +1,18 @@
 ---
-uuid: 3800e2c5-2aeb-4782-966c-aee5e2f68729
-layout: speaking
-title: 'It’s about time to embrace Streams'
-slug: 'its-about-time-to-embrace-streams-cityjs'
+title: It’s about time to embrace Streams
+slug: its-about-time-to-embrace-streams-cityjs
 date: 2019-05-03T20:30:00.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: null
 status: published
 language: en_US
-meta_title: null
-meta_description: null
-event_name: 'CityJS Conf'
-event_link: 'https://cityjsconf.org'
-event_location: 'Curzon Soho - 99 Shaftesbury Ave, Soho, London W1D 5DY, UK'
-event_location_gps: '51.512793,-0.130486'
-event_city: 'London'
-event_days: 'May 03 2019'
+event_name: CityJS Conf
+event_link: https://cityjsconf.org
+event_location: Curzon Soho - 99 Shaftesbury Ave, Soho, London W1D 5DY, UK
+event_location_gps: 51.512793,-0.130486
+event_city: London
+event_days: May 03 2019
 is_workshop: false
-slides_link: 'https://loige.link/streams-cityjs'
-video_link: 'https://www.youtube.com/watch?v=NMqO0JwEEQU'
+slides_link: https://loige.link/streams-cityjs
+video_link: https://www.youtube.com/watch?v=NMqO0JwEEQU
 with: []
 ---
 

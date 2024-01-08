@@ -1,27 +1,19 @@
 ---
-uuid: d56413ad-2fc0-473f-8f68-26e955502f33
-layout: speaking
-title: 'JavaScript Iteration Protocols'
-slug: 'javascript-iteration-protocols-workshop-nodeconf'
+title: JavaScript Iteration Protocols
+slug: javascript-iteration-protocols-workshop-nodeconf
 date: 2022-10-03T12:00:00.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: null
 status: published
 language: en_US
-presentation_language: en_US
-meta_title: null
-meta_description: null
-event_name: 'NodeConf EU'
-event_link: 'https://nodeconf.eu/'
-event_location: 'Kilkenny'
-event_location_gps: '52.452450,-6.957840'
-event_city: 'Kilkenny, Ireland'
-event_days: 'Oct 3-5, 2022'
+event_name: NodeConf EU
+event_link: https://nodeconf.eu/
+event_location: Kilkenny
+event_location_gps: 52.452450,-6.957840
+event_city: Kilkenny, Ireland
+event_days: Oct 3-5, 2022
 is_workshop: true
-slides_link: 'https://loige.link/lets-iter'
-video_link: ~
-with: ~
+slides_link: https://loige.link/lets-iter
+video_link: null
+with: []
 ---
 
 How many ways do you know to do iteration with JavaScript and Node.js?

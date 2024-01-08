@@ -1,27 +1,19 @@
 ---
-uuid: e3ba0e22-18f3-4e1d-a56e-7938d8c09798
-layout: speaking
-title: 'Your Lambdas, In Rust!'
-slug: 'your-lambdas-in-rust-conf42'
+title: Your Lambdas, In Rust!
+slug: your-lambdas-in-rust-conf42
 date: 2023-03-30T11:30:00.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: null
 status: published
 language: en_US
-presentation_language: en_US
-meta_title: null
-meta_description: null
-event_name: 'Conf42: Cloud Native'
-event_link: 'https://www.conf42.com/cloud2023'
-event_location: 'Remote'
+event_name: "Conf42: Cloud Native"
+event_link: https://www.conf42.com/cloud2023
+event_location: Remote
 event_location_gps: null
-event_city: 'remote'
-event_days: 'Mar 30, 2023'
+event_city: remote
+event_days: Mar 30, 2023
 is_workshop: false
-slides_link: 'https://loige.link/rusty-lambdas'
-video_link: 'https://youtu.be/jJjdKJHqKkI'
-with: ~
+slides_link: https://loige.link/rusty-lambdas
+video_link: https://youtu.be/jJjdKJHqKkI
+with: []
 ---
 
 Rust is taking the software engineering world by storm, but how does it affect serverless? In AWS it's not even a supported runtime, so how can we even use it... and should we even try to do that? Spoiler: yes we should and it's actually quite easy to get started with it!

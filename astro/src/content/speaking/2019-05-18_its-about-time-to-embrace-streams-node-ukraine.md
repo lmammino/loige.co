@@ -1,24 +1,17 @@
 ---
-uuid: 9b500775-4921-444f-9bc5-947598ec1e65
-layout: speaking
-title: 'It’s about time to embrace Streams'
-slug: 'its-about-time-to-embrace-streams-node-ukraine'
+title: It’s about time to embrace Streams
+slug: its-about-time-to-embrace-streams-node-ukraine
 date: 2019-05-18T20:30:00.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: null
 status: published
 language: en_US
-meta_title: null
-meta_description: null
-event_name: 'Node Ukraine'
-event_link: 'https://nodeukraine.org.ua/en/'
-event_location: 'Favor Park Hotel - Kyiv, 6 Marshal Konev St.'
-event_location_gps: '50.3840765,30.4573224'
-event_city: 'Kyiv'
-event_days: 'May 18 2019'
+event_name: Node Ukraine
+event_link: https://nodeukraine.org.ua/en/
+event_location: Favor Park Hotel - Kyiv, 6 Marshal Konev St.
+event_location_gps: 50.3840765,30.4573224
+event_city: Kyiv
+event_days: May 18 2019
 is_workshop: false
-slides_link: 'https://loige.link/streams-kyiv'
+slides_link: https://loige.link/streams-kyiv
 video_link: null
 with: []
 ---

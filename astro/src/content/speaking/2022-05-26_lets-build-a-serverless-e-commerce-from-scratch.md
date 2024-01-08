@@ -1,27 +1,19 @@
 ---
-uuid: 9d5a9718-6269-4166-aed6-49d40a2bb47a
-layout: speaking
-title: "Let's build a Serverless e-commerce from scratch!"
-slug: 'lets-build-a-serverless-e-commerce-from-scratch'
+title: Let's build a Serverless e-commerce from scratch!
+slug: lets-build-a-serverless-e-commerce-from-scratch
 date: 2022-05-26T10:00:00.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: null
 status: published
 language: en_US
-presentation_language: en_US
-meta_title: null
-meta_description: null
-event_name: "CityJS"
-event_link: 'https://greece.cityjsconf.org/'
-event_location: 'Cholargos Town Hall'
-event_location_gps: "37.998063,23.800937"
-event_city: 'Athens'
-event_days: 'May 26, 2022'
+event_name: CityJS
+event_link: https://greece.cityjsconf.org/
+event_location: Cholargos Town Hall
+event_location_gps: 37.998063,23.800937
+event_city: Athens
+event_days: May 26, 2022
 is_workshop: true
-slides_link: 'https://fth.link/sec'
-video_link: ~
-with: ~
+slides_link: https://fth.link/sec
+video_link: null
+with: []
 ---
 
 What would you do if you had just invented a time machine?! I can give you an idea: what about setting up a business that allows people to travel back in time to attend some of the most iconic concerts in the history of rock music? Ok, I can give you something more, let's build this business together... on AWS, using Serverless technologies like Lambda, API Gateway and DynamoDB!

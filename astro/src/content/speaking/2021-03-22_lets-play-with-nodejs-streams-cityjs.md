@@ -1,24 +1,17 @@
 ---
-uuid: 26acfe0e-6241-4565-a770-749b39585b95
-layout: speaking
-title: "Let's play with Node.js streams"
-slug: 'lets-play-with-nodejs-streams-cityjs'
+title: Let's play with Node.js streams
+slug: lets-play-with-nodejs-streams-cityjs
 date: 2021-03-22T20:30:00.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: null
 status: published
 language: en_US
-meta_title: null
-meta_description: null
-event_name: 'CityJS'
-event_link: 'https://cityjsconf.org/workshops'
-event_location: 'Remote'
+event_name: CityJS
+event_link: https://cityjsconf.org/workshops
+event_location: Remote
 event_location_gps: null
-event_city: 'remote'
-event_days: 'March 22-26 2021'
+event_city: remote
+event_days: March 22-26 2021
 is_workshop: true
-slides_link: 'https://loige.link/streams-city'
+slides_link: https://loige.link/streams-city
 video_link: null
 with: []
 ---

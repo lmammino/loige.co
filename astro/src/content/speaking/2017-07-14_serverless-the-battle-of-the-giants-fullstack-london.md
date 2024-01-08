@@ -1,29 +1,22 @@
 ---
-uuid: 1137e062-1239-4dfc-a164-0e6d3f707aa2
-layout: speaking
 title: "Serverless: The Battle of the Giants"
-slug: "serverless-the-battle-of-the-giants-fullstack-london"
+slug: serverless-the-battle-of-the-giants-fullstack-london
 date: 2017-07-14T00:00:00.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: null
 status: published
 language: en_US
-meta_title: null
-meta_description: null
 event_name: FullStack
-event_link: "https://skillsmatter.com/conferences/8264-fullstack-2017-the-conference-on-javascript-node-and-internet-of-things"
-event_location: "CodeNode - Skills Matter | CodeNode, 10 South Place, London, EC2M 7EB, GB"
-event_location_gps: "51.518551,-0.08611399999995228"
-event_city: "London"
-event_days: "July 12-14 2017"
+event_link: https://skillsmatter.com/conferences/8264-fullstack-2017-the-conference-on-javascript-node-and-internet-of-things
+event_location: CodeNode - Skills Matter | CodeNode, 10 South Place, London, EC2M 7EB, GB
+event_location_gps: 51.518551,-0.08611399999995228
+event_city: London
+event_days: July 12-14 2017
 is_workshop: true
-slides_link: "https://loige.link/giants"
+slides_link: https://loige.link/giants
 video_link: null
 with:
   - name: Christos Matskas
-    link: 'https://twitter.com/ChristosMatskas'
-    image: 'https://unavatar.io/github/cmatskas'
+    link: https://twitter.com/ChristosMatskas
+    image: https://unavatar.io/github/cmatskas
 ---
 
 Serverless is becoming the cool new kid on the block taking software development by storm. Enterprises and developers alike are embracing the new paradigm in order to drive innovation, time to marked and solve complex architectural challenges.

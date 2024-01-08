@@ -1,24 +1,17 @@
 ---
-uuid: 8b583e3b-76f6-41ef-bfed-21af33247cf6
-layout: speaking
-title: 'It’s about time to embrace Streams'
-slug: 'its-about-time-to-embrace-streams-nodejs-manchester'
+title: It’s about time to embrace Streams
+slug: its-about-time-to-embrace-streams-nodejs-manchester
 date: 2019-10-02T20:30:00.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: null
 status: published
 language: en_US
-meta_title: null
-meta_description: null
-event_name: 'MancJS Meetup'
-event_link: 'https://www.meetup.com/MancJS/events/264733752/'
-event_location: 'Federation House 2, Federation St · Manchester'
-event_location_gps: '53.4860609,-2.2402689'
-event_city: 'Machester, UK'
-event_days: 'October 2 2019'
+event_name: MancJS Meetup
+event_link: https://www.meetup.com/MancJS/events/264733752/
+event_location: Federation House 2, Federation St · Manchester
+event_location_gps: 53.4860609,-2.2402689
+event_city: Machester, UK
+event_days: October 2 2019
 is_workshop: false
-slides_link: 'https://loige.link/streams-manc'
+slides_link: https://loige.link/streams-manc
 video_link: null
 with: []
 ---

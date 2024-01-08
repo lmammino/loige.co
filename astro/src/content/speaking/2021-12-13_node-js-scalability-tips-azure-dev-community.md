@@ -1,26 +1,18 @@
 ---
-uuid: 6a78b86d-abca-4eca-bcf1-6456ab04f3ae
-layout: speaking
-title: 'Node.js scalability tips'
-slug: 'node-js-scalability-tips-azure-dev-community'
+title: Node.js scalability tips
+slug: node-js-scalability-tips-azure-dev-community
 date: 2021-12-13T12:00:00.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: null
 status: published
 language: en_US
-presentation_language: en_US
-meta_title: null
-meta_description: null
-event_name: 'Azure Developer Community Meetup'
-event_link: 'https://www.meetup.com/azure-developer-community-vijaywada/events/282424163'
-event_location: "Remote"
+event_name: Azure Developer Community Meetup
+event_link: https://www.meetup.com/azure-developer-community-vijaywada/events/282424163
+event_location: Remote
 event_location_gps: null
-event_city: "remote"
-event_days: "December 13 2021"
+event_city: remote
+event_days: December 13 2021
 is_workshop: false
-slides_link: "https://loige.link/node-adc"
-video_link: ~
+slides_link: https://loige.link/node-adc
+video_link: null
 with: []
 ---
 

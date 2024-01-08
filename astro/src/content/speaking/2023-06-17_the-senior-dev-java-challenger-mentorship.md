@@ -1,27 +1,19 @@
 ---
-uuid: 4e600ee3-22c5-4ce4-896d-15697998f99a
-layout: speaking
-title: 'The senior dev: an opinionated take'
-slug: 'the-senior-dev-java-challenger-mentorship'
+title: "The senior dev: an opinionated take"
+slug: the-senior-dev-java-challenger-mentorship
 date: 2023-06-17T12:00:00.000Z
-author: Luciano Mammino
-author_slug: luciano-mammino
-header_img: null
 status: published
 language: en_US
-presentation_language: en_US
-meta_title: null
-meta_description: null
-event_name: 'Java Challenger channel'
-event_link: 'https://www.youtube.com/@JavaChallengers'
-event_location: 'Remote'
-event_location_gps: ~
-event_city: 'remote'
-event_days: 'Jun 17, 2023'
+event_name: Java Challenger channel
+event_link: https://www.youtube.com/@JavaChallengers
+event_location: Remote
+event_location_gps: null
+event_city: remote
+event_days: Jun 17, 2023
 is_workshop: false
-slides_link: 'https://loige.link/senior'
-video_link: 'https://www.youtube.com/live/oO6zgqFuKCY?feature=share&t=7061'
-with: ~
+slides_link: https://loige.link/senior
+video_link: https://www.youtube.com/live/oO6zgqFuKCY?feature=share&t=7061
+with: []
 ---
 
 A presentation by Luciano Mammino(@loige) about what it takes to be recognised as a Senior Software Engineer:
