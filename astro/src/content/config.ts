@@ -16,4 +16,28 @@ const posts = defineCollection({
     }),
 })
 
-export const collections = { posts }
+const speaking = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    date: z.coerce.date(),
+    language: z.enum(['en_UK', 'it_IT']),
+    status: z.enum(['published', 'draft']),
+    event_name: z.string(),
+    event_link: z.string().url(),
+    event_location: z.string(),
+    event_location_gps: z.string().regex(/^-?\d+.\d+,-?\d+.\d+$/).optional().nullable(),
+    event_city: z.string().optional().nullable(),
+    event_days: z.string(),
+    is_workshop: z.boolean(),
+    slides_link: z.string().url().optional().nullable(),
+    video_link: z.string().url().optional().nullable(),
+    with: z.array(z.object({
+      name: z.string(),
+      link: z.string().url().optional().nullable(),
+      image: z.string().url().optional().nullable(),
+    })).optional().nullable(),
+  })
+})
+
+export const collections = { posts, speaking }
