@@ -85,7 +85,16 @@ export async function GET({ props }: GetParams) {
 
   // Draw cover image
   if (props.image) {
-    const imageUrl = new URL(`file://${props.image.src.replace('/@fs', '')}`)
+    // HACK: loads the content of the image to be able to draw it in the canvas
+    // it would be nice if astro gave us a way to get the image content from an AstroImage
+    let imageUrl: URL
+    if (props.image.src.startsWith('/@fs')) {
+      // dev server
+      imageUrl = new URL(`file://${props.image.src.replace('/@fs', '')}`)
+    } else {
+      // prod server
+      imageUrl = new URL(`file://${path.join(__dirname, '..', '..', '..', 'dist', props.image.src)}`)
+    }
     const image = await loadImage(imageUrl.pathname)
     ctx.drawImage(image, ...coverBounds(image, WIDTH, HEIGHT))
   }

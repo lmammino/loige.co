@@ -12,9 +12,6 @@ export async function getStaticPaths({ paginate } : GetStaticPathsArgs) {
   const PAGE_SIZE = 10
   const pages = paginate(posts, { pageSize: PAGE_SIZE })
 
-  console.log(pages)
-  console.log(pages[0].props)
-
   return pages.map((staticPath, idx) => ({
       ...staticPath,
       props: {

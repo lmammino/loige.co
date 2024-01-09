@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://loige.co/sitemap-index.xml
