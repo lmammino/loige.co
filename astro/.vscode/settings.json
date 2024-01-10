@@ -23,5 +23,12 @@
       "quickfix.biome": true,
       "source.organizeImports.biome": true
     }
+  },
+  "[astro][javascript][json]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "always",
+      "quickfix.biome": "explicit",
+      "source.organizeImports.biome": "explicit"
+    }
   }
 }
