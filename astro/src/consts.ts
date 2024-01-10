@@ -3,5 +3,5 @@
 
 // TODO: updated with actual site data
 export const SITE_URL = 'https://loige.co'
-export const SITE_TITLE = 'Astro Blog'
-export const SITE_DESCRIPTION = 'Welcome to my website!'
+export const SITE_TITLE = 'Luciano Mammino'
+export const SITE_DESCRIPTION = 'Cloud Architect and Fullstack Developer'
