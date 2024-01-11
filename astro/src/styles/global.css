@@ -34,6 +34,75 @@
 	unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
+:root,
+:root[data-theme='cezanne'] {
+	/* DEFAULT (LIGHT) */
+	--bg: #c4bcb1;
+	--text: #22170a;
+	--primary: #697A55;
+	--secondary: #C4AA88;
+	--accent: #8399B3;
+}
+
+:root[data-theme='klimt'] {
+	--bg: #9A9A9A;
+	--text: #FAFAFA;
+	--primary: #4A5FAB;
+	--secondary: #609F5C;
+	--accent: #E3C454;
+}
+
+:root[data-theme='leonardo'] {
+	--bg: #A0A584;
+	--text: #43362A;
+	--primary: #A88B4C;
+	--secondary: #C8B272;
+	--accent: #A0A584;
+}
+
+:root[data-theme='michelangelo'] {
+	--bg: #CBB396;
+	--text: #555234;
+	--primary: #4D280F;
+	--secondary: #86AA7D;
+	--accent: #42819F;
+}
+
+:root[data-theme='hokusai'] {
+	/* DARK */
+	--bg: #1F284C;
+	--text: #ECE2C6;
+	--primary: #D9CCAC;
+	--secondary: #6E6352;
+	--accent: #5271ae;
+}
+
+:root[data-theme='pollock'] {
+	/* DARK */
+	--bg: #1A1C23;
+	--text: #F1ECD7;
+	--primary: #D89CA9;
+	--secondary: #1962A0;
+	--accent: #E8C051;
+}
+
+:root[data-theme='rembrandt'] {
+	/* DARK */
+	--bg: #090A04;
+	--text: #dbd1ba;
+	--primary: #A68329;
+	--secondary: #8b8775;
+	--accent: #8A350C;
+}
+
+:root[data-theme='van-gogh'] {
+	--bg: #6283C8;
+	--text: #1A3431;
+	--primary: #C7AD24;
+	--secondary: #2B41A7;
+	--accent: #C7AD24;
+}
+
 body {
 	font-family: 'Atkinson', sans-serif;
 	margin: 0;
