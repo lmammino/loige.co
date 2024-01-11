@@ -1,69 +1,92 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
-import { Picture } from "astro:assets";
-import FormattedDate from '../components/FormattedDate.astro';
-import type { CollectionEntry } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
+import { Picture } from 'astro:assets'
+import FormattedDate from '../components/FormattedDate.astro'
+import type { CollectionEntry } from 'astro:content'
 
 type Props = {
-	page: {
-		start: number;
-		end: number;
-		size: number;
-		total: number;
-		currentPage: number;
-		lastPage: number;
-		url: {
-			prev: string | null;
-			next: string | null;
-			current: string;
-		};
-		data: CollectionEntry<'posts'>[];
-	};
-};
+  page: {
+    start: number
+    end: number
+    size: number
+    total: number
+    currentPage: number
+    lastPage: number
+    url: {
+      prev: string | null
+      next: string | null
+      current: string
+    }
+    data: CollectionEntry<'posts'>[]
+  }
+}
 
-const props = Astro.props;
+const props = Astro.props
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header title={SITE_TITLE} />
-		<main>
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header title={SITE_TITLE} />
+    <main>
       <section>
         <h2>Blog posts - page {props.page.currentPage}</h2>
-				<ul>
-					{
-						props.page.data.map((post) => (
-							<li>
-								<a href={`/${post.slug}`}>
-									{post.data.header_img && <Picture class="fit-cover" width={720} height={260} src={post.data.header_img} alt="" formats={["webp", "avif"]} />}
-									<h4 class="title">{post.data.title}</h4>
-									<p class="date">
-										<FormattedDate date={post.data.date} />
-									</p>
-								</a>
-                <p>In <ul>
-                    {post.data.tags.map(tag => <li><a href={`/tag/${tag}`}>{tag}</a></li>)}
-                  </ul></p>
-							</li>
-						))
-					}
-				</ul>
-        
-        <hr/>
         <ul>
-          <li>{ props.page.url.prev && <a href={props.page.url.prev}>Previous page</a> }</li>
-          <li>{ props.page.url.next && <a href={props.page.url.next}>Next page</a> }</li>
+          {
+            props.page.data.map((post) => (
+              <li>
+                <a href={`/${post.slug}`}>
+                  {post.data.header_img && (
+                    <Picture
+                      class="fit-cover"
+                      width={720}
+                      height={260}
+                      src={post.data.header_img}
+                      alt=""
+                      formats={['webp', 'avif']}
+                    />
+                  )}
+                  <h4 class="title">{post.data.title}</h4>
+                  <p class="date">
+                    <FormattedDate date={post.data.date} />
+                  </p>
+                </a>
+                <p>
+                  In{' '}
+                  <ul>
+                    {post.data.tags.map((tag) => (
+                      <li>
+                        <a href={`/tag/${tag}`}>{tag}</a>
+                      </li>
+                    ))}
+                  </ul>
+                </p>
+              </li>
+            ))
+          }
         </ul>
 
-			</section>
-		</main>
-		<Footer />
-	</body>
+        <hr />
+        <ul>
+          <li>
+            {
+              props.page.url.prev && (
+                <a href={props.page.url.prev}>Previous page</a>
+              )
+            }
+          </li>
+          <li>
+            {props.page.url.next && <a href={props.page.url.next}>Next page</a>}
+          </li>
+        </ul>
+      </section>
+    </main>
+    <Footer />
+  </body>
 </html>

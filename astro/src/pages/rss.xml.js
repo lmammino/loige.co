@@ -2,7 +2,7 @@ import rss from '@astrojs/rss'
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts'
 import { getCollection } from 'astro:content'
 
-export async function GET(context) {
+export async function GET (context) {
   const posts = await getCollection('posts')
   // TODO: add other pages to the feed
   return rss({

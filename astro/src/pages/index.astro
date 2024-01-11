@@ -1,34 +1,32 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection } from 'astro:content'
 
 const PAGE_SIZE = 10
 const posts = (await getCollection('posts')).sort(
-	(a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 )
 
 const numPages = Math.ceil(posts.length / PAGE_SIZE)
 const firstPage = posts.slice(0, 10)
 const idx = 0
 const props = {
-	page: {
-		data: firstPage,
-		start: idx * PAGE_SIZE,
-		end: idx * PAGE_SIZE + PAGE_SIZE - 1,
-		size: PAGE_SIZE,
-		total: posts.length,
-		currentPage: idx + 1,
-		lastPage: numPages,
-		url: {
-			current: '/',
-			next: idx === numPages - 1 ? null : `/page/${idx + 2}`,
-			prev: null
-		}
-	},
+  page: {
+    data: firstPage,
+    start: idx * PAGE_SIZE,
+    end: idx * PAGE_SIZE + PAGE_SIZE - 1,
+    size: PAGE_SIZE,
+    total: posts.length,
+    currentPage: idx + 1,
+    lastPage: numPages,
+    url: {
+      current: '/',
+      next: idx === numPages - 1 ? null : `/page/${idx + 2}`,
+      prev: null,
+    },
+  },
 }
-
 
 import BlogIndexLayout from '../layouts/BlogIndex.astro'
 ---
 
 <BlogIndexLayout {...props} />
-

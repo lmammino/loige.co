@@ -1,7 +1,8 @@
 ---
 import BaseHead from '../components/BaseHead.astro'
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
 ---
+
 <html>
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
@@ -10,92 +11,103 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
     <div>
       <select id="theme-select">
         <option value="">Default</option>
-        {['cezanne', 'klimt', 'leonardo', 'michelangelo', 'pollock', 'hokusai', 'rembrandt', 'van-gogh'].map(name => <option value={name}>{name}</option>)}
+        {
+          [
+            'cezanne',
+            'klimt',
+            'leonardo',
+            'michelangelo',
+            'pollock',
+            'hokusai',
+            'rembrandt',
+            'van-gogh',
+          ].map((name) => <option value={name}>{name}</option>)
+        }
       </select>
     </div>
     <div>
       <div class="p-10 border-gray-200 border-b">
         <h2>bg</h2>
         <ul>
-            <li class="bg-bg-100">100</li>
-            <li class="bg-bg-200">200</li>
-            <li class="bg-bg-300">300</li>
-            <li class="bg-bg-400">400</li>
-            <li class="bg-bg-500">500</li>
-            <li class="bg-bg-600">600</li>
-            <li class="bg-bg-700">700</li>
-            <li class="bg-bg-800">800</li>
-            <li class="bg-bg-900">900</li>
+          <li class="bg-bg-100">100</li>
+          <li class="bg-bg-200">200</li>
+          <li class="bg-bg-300">300</li>
+          <li class="bg-bg-400">400</li>
+          <li class="bg-bg-500">500</li>
+          <li class="bg-bg-600">600</li>
+          <li class="bg-bg-700">700</li>
+          <li class="bg-bg-800">800</li>
+          <li class="bg-bg-900">900</li>
         </ul>
       </div>
       <div class="p-10 border-gray-200 border-b">
         <h2>text</h2>
         <ul>
-            <li class="bg-text-100">100</li>
-            <li class="bg-text-200">200</li>
-            <li class="bg-text-300">300</li>
-            <li class="bg-text-400">400</li>
-            <li class="bg-text-500">500</li>
-            <li class="bg-text-600">600</li>
-            <li class="bg-text-700">700</li>
-            <li class="bg-text-800">800</li>
-            <li class="bg-text-900">900</li>
+          <li class="bg-text-100">100</li>
+          <li class="bg-text-200">200</li>
+          <li class="bg-text-300">300</li>
+          <li class="bg-text-400">400</li>
+          <li class="bg-text-500">500</li>
+          <li class="bg-text-600">600</li>
+          <li class="bg-text-700">700</li>
+          <li class="bg-text-800">800</li>
+          <li class="bg-text-900">900</li>
         </ul>
       </div>
       <div class="p-10 border-gray-200 border-b">
         <h2>primary</h2>
         <ul>
-            <li class="bg-primary-100">100</li>
-            <li class="bg-primary-200">200</li>
-            <li class="bg-primary-300">300</li>
-            <li class="bg-primary-400">400</li>
-            <li class="bg-primary-500">500</li>
-            <li class="bg-primary-600">600</li>
-            <li class="bg-primary-700">700</li>
-            <li class="bg-primary-800">800</li>
-            <li class="bg-primary-900">900</li>
+          <li class="bg-primary-100">100</li>
+          <li class="bg-primary-200">200</li>
+          <li class="bg-primary-300">300</li>
+          <li class="bg-primary-400">400</li>
+          <li class="bg-primary-500">500</li>
+          <li class="bg-primary-600">600</li>
+          <li class="bg-primary-700">700</li>
+          <li class="bg-primary-800">800</li>
+          <li class="bg-primary-900">900</li>
         </ul>
       </div>
       <div class="p-10 border-gray-200 border-b">
         <h2>secondary</h2>
         <ul>
-            <li class="bg-secondary-100">100</li>
-            <li class="bg-secondary-200">200</li>
-            <li class="bg-secondary-300">300</li>
-            <li class="bg-secondary-400">400</li>
-            <li class="bg-secondary-500">500</li>
-            <li class="bg-secondary-600">600</li>
-            <li class="bg-secondary-700">700</li>
-            <li class="bg-secondary-800">800</li>
-            <li class="bg-secondary-900">900</li>
+          <li class="bg-secondary-100">100</li>
+          <li class="bg-secondary-200">200</li>
+          <li class="bg-secondary-300">300</li>
+          <li class="bg-secondary-400">400</li>
+          <li class="bg-secondary-500">500</li>
+          <li class="bg-secondary-600">600</li>
+          <li class="bg-secondary-700">700</li>
+          <li class="bg-secondary-800">800</li>
+          <li class="bg-secondary-900">900</li>
         </ul>
       </div>
       <div class="p-10 border-gray-200 border-b">
         <h2>accent</h2>
         <ul>
-            <li class="bg-accent-100">100</li>
-            <li class="bg-accent-200">200</li>
-            <li class="bg-accent-300">300</li>
-            <li class="bg-accent-400">400</li>
-            <li class="bg-accent-500">500</li>
-            <li class="bg-accent-600">600</li>
-            <li class="bg-accent-700">700</li>
-            <li class="bg-accent-800">800</li>
-            <li class="bg-accent-900">900</li>
+          <li class="bg-accent-100">100</li>
+          <li class="bg-accent-200">200</li>
+          <li class="bg-accent-300">300</li>
+          <li class="bg-accent-400">400</li>
+          <li class="bg-accent-500">500</li>
+          <li class="bg-accent-600">600</li>
+          <li class="bg-accent-700">700</li>
+          <li class="bg-accent-800">800</li>
+          <li class="bg-accent-900">900</li>
         </ul>
       </div>
-  </div>
-  </body>
-  <script>
-      const html = document.querySelector('html');
-      const themeSelect = document.getElementById('theme-select');
+    </div>
+    <script>
+      const html = document.querySelector('html')
+      const themeSelect = document.getElementById('theme-select')
       themeSelect?.addEventListener('change', (e) => {
         const target = e.target as HTMLSelectElement
         if (target.value) {
-          html?.setAttribute('data-theme', target.value);
+          html?.setAttribute('data-theme', target.value)
         } else {
-          html?.removeAttribute('data-theme');
+          html?.removeAttribute('data-theme')
         }
-      });
-  </script>
+      })
+    </script>
+  </body>
 </html>

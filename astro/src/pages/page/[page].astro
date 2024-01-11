@@ -1,18 +1,19 @@
 ---
-import { getCollection } from 'astro:content';
-import { type PaginateFunction } from 'astro';
+import { getCollection } from 'astro:content'
+import { type PaginateFunction } from 'astro'
 
-type GetStaticPathsArgs = {paginate: PaginateFunction}
+type GetStaticPathsArgs = { paginate: PaginateFunction }
 
-export async function getStaticPaths({ paginate } : GetStaticPathsArgs) {
+export async function getStaticPaths({ paginate }: GetStaticPathsArgs) {
   const posts = (await getCollection('posts')).sort(
-	  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-  );
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+  )
 
   const PAGE_SIZE = 10
   const pages = paginate(posts, { pageSize: PAGE_SIZE })
 
-  return pages.map((staticPath, idx) => ({
+  return pages
+    .map((staticPath, idx) => ({
       ...staticPath,
       props: {
         page: {
@@ -27,10 +28,11 @@ export async function getStaticPaths({ paginate } : GetStaticPathsArgs) {
             current: `/page/${idx + 1}`,
             next: idx === pages.length - 1 ? null : `/page/${idx + 2}`,
             prev: idx === 0 ? null : idx === 1 ? '/' : `/page/${idx}`,
-          }
-        }
-      }
-    })).slice(1)
+          },
+        },
+      },
+    }))
+    .slice(1)
 }
 
 const props = Astro.props

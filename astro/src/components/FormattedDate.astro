@@ -1,10 +1,11 @@
 ---
 interface Props {
-	date: Date;
+  date: Date
 }
 
-const { date } = Astro.props;
+const { date } = Astro.props
 ---
+
 <span>{date}</span>
 <!-- <time datetime={date.toISOString()}>
 	{
