@@ -37,7 +37,7 @@
 :root,
 :root[data-theme='cezanne'] {
 	/* DEFAULT (LIGHT) */
-	--bg: #c4bcb1;
+	--bg: #ecfafb;
 	--text: #22170a;
 	--primary: #697A55;
 	--secondary: #C4AA88;
