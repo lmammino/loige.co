@@ -17,6 +17,12 @@
       "source.organizeImports.biome": "explicit"
     }
   },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "always"
+    }
+  },
   "[astro][javascript][json][typescript]": {
     "editor.codeActionsOnSave": {
       "source.fixAll": "always",
