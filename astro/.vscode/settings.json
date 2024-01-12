@@ -13,8 +13,8 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.codeActionsOnSave": {
       "source.fixAll": "always",
-      "quickfix.biome": true,
-      "source.organizeImports.biome": true
+      "quickfix.biome": "explicit",
+      "source.organizeImports.biome": "explicit"
     }
   },
   "[astro][javascript][json][typescript]": {
