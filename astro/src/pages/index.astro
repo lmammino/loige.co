@@ -26,14 +26,13 @@ const props = {
   },
 }
 
-import { Image } from 'astro:assets'
 import CommonLayout from '../layouts/CommonLayout.astro'
 import Hero from '../components/Hero.astro'
 import A from '../components/A.astro'
 import ServerlessHero from '../components/badges/ServerlessHero.astro'
 import CertifiedSolutionsArchitect from '../components/badges/CertifiedSolutionsArchitect.astro'
 import Mvp from '../components/badges/Mvp.astro'
-import CodemotionAmbassador from '../components/badges/CodemotionAmbassador.png'
+import CodemotionAmbassador from '../components/badges/CodemotionAmbassador.astro'
 ---
 
 <CommonLayout>
@@ -44,11 +43,7 @@ import CodemotionAmbassador from '../components/badges/CodemotionAmbassador.png'
         <ServerlessHero class="h-24 text-text-400" />
         <CertifiedSolutionsArchitect class="h-24 text-text-400" />
         <Mvp class="h-24 text-text-400" />
-        <Image
-          src={CodemotionAmbassador}
-          alt="Codemotion Ambassador badge"
-          class="h-24 w-auto opacity-85"
-        />
+        <CodemotionAmbassador class="h-24 text-text-400 opacity-85" />
       </div>
     </div>
   </div>
