@@ -1,0 +1,14 @@
+---
+interface Props {
+  href: string
+  label?: string
+  primary?: boolean
+  class?: string
+}
+
+const { href, label, primary } = Astro.props
+---
+
+<a href={href} class={`inline-block rounded border ${Astro.props.class || ''}`}>
+  <slot>{label}</slot>
+</a>

@@ -26,7 +26,83 @@ const props = {
   },
 }
 
-import BlogIndexLayout from '../layouts/BlogIndex.astro'
+import { Image } from 'astro:assets'
+import CommonLayout from '../layouts/CommonLayout.astro'
+import Hero from '../components/Hero.astro'
+import A from '../components/A.astro'
+import ServerlessHero from '../components/badges/ServerlessHero.astro'
+import CertifiedSolutionsArchitect from '../components/badges/CertifiedSolutionsArchitect.astro'
+import Mvp from '../components/badges/Mvp.astro'
+import CodemotionAmbassador from '../components/badges/CodemotionAmbassador.png'
 ---
 
-<BlogIndexLayout {...props} />
+<CommonLayout>
+  <Hero />
+  <div class="bg-bg-500">
+    <div class="mx-auto max-w-screen-xl py-8">
+      <div class="flex flex-wrap justify-center gap-8">
+        <ServerlessHero class="h-24 text-text-400" />
+        <CertifiedSolutionsArchitect class="h-24 text-text-400" />
+        <Mvp class="h-24 text-text-400" />
+        <Image
+          src={CodemotionAmbassador}
+          alt="Codemotion Ambassador badge"
+          class="h-24 w-auto opacity-85"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="bg-bg-500">
+    <div class="mx-auto max-w-screen-xl py-8 flex justify-center">
+      <div class="max-w-[800px] flex">
+        <p class="text-text-500">
+          Luciano Mammino, a.k.a. <em>loige</em>, is a Cloud Architect and a
+          Full Stack developer with more than 15 years of experience in the
+          field. He currently works at FourTheorem as a Senior Architect.
+          <A href="/about">Curious to know more?</A>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-bg-500">
+    <div class="mx-auto max-w-screen-xl py-8">
+      <h2 class="text-3xl">Some of my projects</h2>
+      <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
+        <div class="h-32 rounded-lg bg-bg-600">Node.js Design Patterns</div>
+        <div class="h-32 rounded-lg bg-bg-600">AWS Bites</div>
+        <div class="h-32 rounded-lg bg-bg-600">FullStack Bulletin</div>
+        <div class="h-32 rounded-lg bg-bg-600">Middy</div>
+      </div>
+    </div>
+  </div>
+  <div class="text-center p-4">
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+  </div>
+</CommonLayout>
