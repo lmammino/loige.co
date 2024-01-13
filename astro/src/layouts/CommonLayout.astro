@@ -3,6 +3,12 @@ import BaseHead from '../components/BaseHead.astro'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
+
+type Props = {
+  section?: 'blog' | 'speaking' | 'about'
+}
+
+const { section } = Astro.props
 ---
 
 <!doctype html>
@@ -11,7 +17,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
   <body class="overscroll-y-none">
-    <Header />
+    <Header section={section} />
     <main>
       <slot />
     </main>

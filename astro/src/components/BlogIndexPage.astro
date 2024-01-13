@@ -1,0 +1,116 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import CommonLayout from '../layouts/CommonLayout.astro'
+import BlogCard from '../components/BlogCard.astro'
+import Button from '../components/Button.astro'
+import TagsList from '../components/TagsList.astro'
+
+type Props = {
+  page: {
+    start: number
+    end: number
+    size: number
+    total: number
+    currentPage: number
+    lastPage: number
+    url: {
+      prev: string | null
+      next: string | null
+      current: string
+    }
+    data: CollectionEntry<'posts'>[]
+  }
+  tags: {
+    name: string
+    link: string
+    count: number
+  }[]
+}
+
+const { page, tags } = Astro.props
+---
+
+<CommonLayout section="blog">
+  <div class="bg-bg-500">
+    <div class="mx-auto max-w-screen-xl py-8 px-8">
+      <h2 class="text-3xl text-center my-8"
+        >Articles from the blog {
+          page.currentPage !== 1
+            ? `(Page ${page.currentPage} of ${page.lastPage})`
+            : ''
+        }</h2
+      >
+
+      <div
+        class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-8"
+      >
+        {
+          page.data.map((post, idx) => (
+            <BlogCard post={post} isBig={page.currentPage === 1 && idx === 0}>
+              {post.data.description}
+            </BlogCard>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+  <div class="bg-bg-500">
+    <div class="mx-auto max-w-screen-xl py-8 px-8">
+      <div class="flex items-center justify-center">
+        <div>
+          <Button
+            isDisabled={page.url.prev === null}
+            href={page.url.prev || undefined}
+          >
+            <span class="flex justify-center items-center">
+              <svg
+                class="w-3.5 h-3.5 me-2 rtl:rotate-180"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 14 10"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 5H1m0 0 4 4M1 5l4-4"></path>
+              </svg> Prev Page
+            </span>
+          </Button>
+        </div>
+        <div class="px-8">{page.currentPage} of {page.lastPage}</div>
+        <div
+          ><Button
+            isDisabled={page.url.next === null}
+            href={page.url.next || undefined}
+          >
+            <span class="flex justify-center items-center"
+              >Next Page <svg
+                class="w-3.5 h-3.5 ms-2 rtl:rotate-180"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 14 10"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M1 5h12m0 0L9 1m4 4L9 9"></path>
+              </svg></span
+            >
+          </Button></div
+        >
+      </div>
+    </div>
+  </div>
+  <div class="bg-bg-500">
+    <div class="mx-auto max-w-screen-xl py-8 px-8">
+      <h2 class="text-3xl text-center mb-4">Topics</h2>
+      <TagsList tags={tags.slice(0, 20)} />
+    </div>
+  </div>
+</CommonLayout>

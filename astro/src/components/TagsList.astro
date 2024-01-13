@@ -1,0 +1,37 @@
+---
+type Props = {
+  tags: {
+    name: string
+    link: string
+    count: number
+  }[]
+}
+
+const { tags } = Astro.props
+---
+
+<ul class="flex flex-wrap gap-2">
+  {
+    tags.slice(0, 20).map((tag) => (
+      <li>
+        <a
+          href={tag.link}
+          class="group inline-block bg-bg-300 hover:bg-bg-700 rounded-xl py-2 px-4 text-sm text-500"
+        >
+          <span class="font-mono">#{tag.name}</span>{' '}
+          <span class="ml-2 px-2 bg-bg-500 group-hover:bg-bg-800 group-hover:text-text-100 rounded-xl">
+            {tag.count}
+          </span>
+        </a>
+      </li>
+    ))
+  }
+  <li>
+    <a
+      href="/tag"
+      class="inline-block bg-bg-300 hover:bg-bg-700 rounded-xl py-2 px-4 text-sm text-500"
+    >
+      All tags
+    </a>
+  </li>
+</ul>
