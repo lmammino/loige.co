@@ -1,0 +1,56 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import { Image } from 'astro:assets'
+import DefaultHeaderImage from '../assets/default-post-header-img.jpg'
+
+type Props = {
+  post: CollectionEntry<'posts'>
+  isBig?: boolean
+}
+
+const { post, isBig } = Astro.props
+---
+
+<a
+  href={`/${post.slug}`}
+  title={post.data.title}
+  class={`flex flex-col overflow-hidden rounded-lg transition-all hover:shadow-lg hover:outline outline-4 outline-primary-500 ${
+    isBig ? 'col-span-1 md:col-span-2' : ''
+  }`}
+>
+  <Image
+    width={400}
+    height={224}
+    alt={`Cover picture for a blog post titled ${post.data.title}`}
+    src={post.data.header_img || DefaultHeaderImage}
+    class="h-56 w-full object-cover transition"
+  />
+  <div class="bg-bg-300 p-4 sm:p-6 flex flex-1 flex-col">
+    <h3 class="mt-0.5 text-xl font-bold text-text-500">{post.data.title}</h3>
+    <p
+      class="mt-2 text-sm/relaxed text-text-400 line-clamp-3 text-ellipsis mb-auto"
+    >
+      {post.data.description || post.body.slice(0, 200)}
+    </p>
+    <p class="text-text-300 text-sm/relaxed mt-2">
+      <span class="inline-flex self-center gap-2">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.75"
+          stroke="currentColor"
+          class="h-4 w-4"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z"
+          ></path></svg
+        >
+        <time datetime={post.data.date.toISOString()}
+          >{post.data.date.toISOString().substring(0, 10)}</time
+        >
+      </span>
+    </p>
+  </div>
+</a>

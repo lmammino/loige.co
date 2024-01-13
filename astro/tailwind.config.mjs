@@ -23,6 +23,7 @@ export default {
 					900: "var(--color-bg-900)",
 				},
 				text: {
+					50: "var(--color-text-50)",
 					100: "var(--color-text-100)",
 					200: "var(--color-text-200)",
 					300: "var(--color-text-300)",

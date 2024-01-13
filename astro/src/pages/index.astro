@@ -34,6 +34,8 @@ import CertifiedSolutionsArchitect from '../components/badges/CertifiedSolutions
 import Mvp from '../components/badges/Mvp.astro'
 import CodemotionAmbassador from '../components/badges/CodemotionAmbassador.astro'
 import ProjectCard from '../components/ProjectCard.astro'
+import BlogCard from '../components/BlogCard.astro'
+import Button from '../components/Button.astro'
 import NodejsDPPicture from '../assets/nodejs-dp-mockup.png'
 import AWSBitesPicture from '../assets/aws-bites-mockup.png'
 import FSBPicture from '../assets/fsb-mockup.png'
@@ -41,52 +43,48 @@ import FSBPicture from '../assets/fsb-mockup.png'
 
 <CommonLayout>
   <Hero />
+
   <div class="bg-bg-500">
-    <div class="mx-auto max-w-screen-xl py-8">
+    <div class="mx-auto max-w-screen-xl px-8 py-16">
       <div class="flex flex-wrap justify-center gap-8">
-        <ServerlessHero class="h-24 text-text-400" />
-        <CertifiedSolutionsArchitect class="h-24 text-text-400" />
-        <Mvp class="h-24 text-text-400" />
-        <CodemotionAmbassador class="h-24 text-text-400 opacity-85" />
-      </div>
-    </div>
-  </div>
-  <div class="bg-bg-500">
-    <div class="mx-auto max-w-screen-xl py-8 flex justify-center">
-      <div class="max-w-[800px] text-text-500">
-        <p class="text-text-500">
-          Hello, I am Luciano Mammino, a.k.a. <em>loige</em>, a Cloud Architect
-          and a Full Stack developer with more than 15 years of experience in
-          the field. I currently works at <strong>FourTheorem</strong> as a <strong
-            >Senior Architect</strong
-          >.
-        </p>
-        <p class="text-text-500 mt-1">
-          <span>
-            I am into into <A href="/tag/node-js">Node.js</A> and <A
-              href="/tag/javascript"
-            >
-              JavaScript
-            </A>, <A href="/tag/aws">AWS</A> and <A href="/tag/serverless">
-              Serverless
-            </A>, and <A href="/tag/rust">Rust</A>. I often <A href="/speaking">
-              speak
-            </A> at <strong>conferences</strong>, <strong>meetups</strong>, and <strong
-              >podcasts</strong
-            >.
-          </span>
-        </p>
-        <p class="text-text-500 mt-1"
-          >Are you curious to <A href="/about">know more about me?</A></p
-        >
+        <ServerlessHero class="h-20 text-text-400" />
+        <CertifiedSolutionsArchitect class="h-20 text-text-400" />
+        <Mvp class="h-20 text-text-400" />
+        <CodemotionAmbassador class="h-20 text-text-400 opacity-85" />
       </div>
     </div>
   </div>
 
   <div class="bg-bg-500">
-    <div class="mx-auto max-w-screen-xl py-8">
+    <div class="mx-auto max-w-screen-xl px-8 pb-16 flex justify-center">
+      <div class="max-w-[800px]">
+        <p class="text-text-500">
+          Hello, I am Luciano, a.k.a. <em>loige</em>, a Cloud Architect and a
+          Full Stack developer with more than 15 years of experience in the
+          field. I work at <strong>FourTheorem</strong> as a <strong
+            >Senior Architect</strong
+          >. I am passionate about <A href="/tag/node-js">Node.js</A> and <A
+            href="/tag/javascript"
+          >
+            JavaScript
+          </A>, <A href="/tag/aws">AWS</A> and <A href="/tag/serverless">
+            Serverless
+          </A>, and <A href="/tag/rust">Rust</A>. I often <A href="/speaking">
+            speak
+          </A> at <strong>conferences</strong>, <strong>meetups</strong>, and <strong
+            >podcasts</strong
+          >. <A href="/about">Do you want to know more?</A>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-bg-500">
+    <div class="mx-auto max-w-screen-xl pb-16 px-8">
       <h2 class="text-3xl text-center mb-4">Some of my projects</h2>
-      <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
+      <div
+        class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-8"
+      >
         <ProjectCard
           href="https://nodejsdesignpatterns.com"
           title="Node.js Design Patterns"
@@ -124,37 +122,57 @@ import FSBPicture from '../assets/fsb-mockup.png'
   </div>
 
   <div class="bg-bg-500">
-    <div class="mx-auto max-w-screen-xl py-8">
+    <div class="mx-auto max-w-screen-xl py-8 px-8">
       <h2 class="text-3xl text-center mb-4">Latest from the blog</h2>
+
+      <div
+        class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-8"
+      >
+        {
+          props.page.data.map((post, idx) => (
+            <BlogCard post={post} isBig={idx === 0}>
+              {post.data.description}
+            </BlogCard>
+          ))
+        }
+        <div class="bg-bg-200 rounded-lg flex justify-center items-center py-8"
+          ><Button href="/blog">Read the blog</Button></div
+        >
+      </div>
     </div>
   </div>
+
+  <div class="bg-bg-500">
+    <div></div>
+  </div>
+
+  <div class="text-center p-4">
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+    <p>Stuff</p>
+  </div>
 </CommonLayout>
-<div class="text-center p-4">
-  <p>Stuff</p>
-  <p>Stuff</p>
-  <p>Stuff</p>
-  <p>Stuff</p>
-  <p>Stuff</p>
-  <p>Stuff</p>
-  <p>Stuff</p>
-  <p>Stuff</p>
-  <p>Stuff</p>
-  <p>Stuff</p>
-  <p>Stuff</p>
-  <p>Stuff</p>
-  <p>Stuff</p>
-  <p>Stuff</p>
-  <p>Stuff</p>
-  <p>Stuff</p>
-  <p>Stuff</p>
-  <p>Stuff</p>
-  <p>Stuff</p>
-  <p>Stuff</p>
-  <p>Stuff</p>
-  <p>Stuff</p>
-  <p>Stuff</p>
-  <p>Stuff</p>
-  <p>Stuff</p>
-  <p>Stuff</p>
-  <p>Stuff</p>
-</div>
