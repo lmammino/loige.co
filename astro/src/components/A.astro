@@ -12,7 +12,5 @@ const { href, label } = Astro.props
   href={href}
   class={`text-primary-500 hover:underline hover:text-primary-700 ${
     Astro.props.class || ''
-  }`}
+  }`}><slot>{label}</slot></a
 >
-  <slot>{label}</slot>
-</a>

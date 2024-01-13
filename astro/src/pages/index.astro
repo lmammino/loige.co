@@ -33,6 +33,10 @@ import ServerlessHero from '../components/badges/ServerlessHero.astro'
 import CertifiedSolutionsArchitect from '../components/badges/CertifiedSolutionsArchitect.astro'
 import Mvp from '../components/badges/Mvp.astro'
 import CodemotionAmbassador from '../components/badges/CodemotionAmbassador.astro'
+import ProjectCard from '../components/ProjectCard.astro'
+import NodejsDPPicture from '../assets/nodejs-dp-mockup.png'
+import AWSBitesPicture from '../assets/aws-bites-mockup.png'
+import FSBPicture from '../assets/fsb-mockup.png'
 ---
 
 <CommonLayout>
@@ -49,55 +53,108 @@ import CodemotionAmbassador from '../components/badges/CodemotionAmbassador.astr
   </div>
   <div class="bg-bg-500">
     <div class="mx-auto max-w-screen-xl py-8 flex justify-center">
-      <div class="max-w-[800px] flex">
+      <div class="max-w-[800px] text-text-500">
         <p class="text-text-500">
-          Luciano Mammino, a.k.a. <em>loige</em>, is a Cloud Architect and a
-          Full Stack developer with more than 15 years of experience in the
-          field. He currently works at FourTheorem as a Senior Architect.
-          <A href="/about">Curious to know more?</A>
+          Hello, I am Luciano Mammino, a.k.a. <em>loige</em>, a Cloud Architect
+          and a Full Stack developer with more than 15 years of experience in
+          the field. I currently works at <strong>FourTheorem</strong> as a <strong
+            >Senior Architect</strong
+          >.
         </p>
+        <p class="text-text-500 mt-1">
+          <span>
+            I am into into <A href="/tag/node-js">Node.js</A> and <A
+              href="/tag/javascript"
+            >
+              JavaScript
+            </A>, <A href="/tag/aws">AWS</A> and <A href="/tag/serverless">
+              Serverless
+            </A>, and <A href="/tag/rust">Rust</A>. I often <A href="/speaking">
+              speak
+            </A> at <strong>conferences</strong>, <strong>meetups</strong>, and <strong
+              >podcasts</strong
+            >.
+          </span>
+        </p>
+        <p class="text-text-500 mt-1"
+          >Are you curious to <A href="/about">know more about me?</A></p
+        >
       </div>
     </div>
   </div>
 
   <div class="bg-bg-500">
     <div class="mx-auto max-w-screen-xl py-8">
-      <h2 class="text-3xl">Some of my projects</h2>
+      <h2 class="text-3xl text-center mb-4">Some of my projects</h2>
       <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
-        <div class="h-32 rounded-lg bg-bg-600">Node.js Design Patterns</div>
-        <div class="h-32 rounded-lg bg-bg-600">AWS Bites</div>
-        <div class="h-32 rounded-lg bg-bg-600">FullStack Bulletin</div>
-        <div class="h-32 rounded-lg bg-bg-600">Middy</div>
+        <ProjectCard
+          href="https://nodejsdesignpatterns.com"
+          title="Node.js Design Patterns"
+          image={NodejsDPPicture}
+          imageAlt="A picture of the cover of the Node.js Design Patterns book"
+        >
+          The <strong>top-tier book</strong> that will guide you through the design
+          and implementation of production-grade
+          <strong>Node.js apps</strong> with <strong>tested patterns</strong> and
+          <strong>techniques</strong>.
+        </ProjectCard>
+
+        <ProjectCard
+          href="https://awsbites.com/"
+          title="AWS Bites"
+          image={AWSBitesPicture}
+          imageAlt="The AWS Bites logo on a shaded purple background"
+        >
+          A weekly <strong>podcast</strong> where we answer interesting questions
+          about <strong>AWS</strong> and <strong>Cloud Computing</strong>.
+        </ProjectCard>
+
+        <ProjectCard
+          href="https://fullstackbulletin.com/"
+          title="FullStack Bulletin"
+          image={FSBPicture}
+          imageAlt="The FullStack Bulletin logo on a shaded yellow background"
+        >
+          The most awesome <strong>weekly newsletter</strong> about <strong
+            >Full Stack Web Development</strong
+          >.
+        </ProjectCard>
       </div>
     </div>
   </div>
-  <div class="text-center p-4">
-    <p>Stuff</p>
-    <p>Stuff</p>
-    <p>Stuff</p>
-    <p>Stuff</p>
-    <p>Stuff</p>
-    <p>Stuff</p>
-    <p>Stuff</p>
-    <p>Stuff</p>
-    <p>Stuff</p>
-    <p>Stuff</p>
-    <p>Stuff</p>
-    <p>Stuff</p>
-    <p>Stuff</p>
-    <p>Stuff</p>
-    <p>Stuff</p>
-    <p>Stuff</p>
-    <p>Stuff</p>
-    <p>Stuff</p>
-    <p>Stuff</p>
-    <p>Stuff</p>
-    <p>Stuff</p>
-    <p>Stuff</p>
-    <p>Stuff</p>
-    <p>Stuff</p>
-    <p>Stuff</p>
-    <p>Stuff</p>
-    <p>Stuff</p>
+
+  <div class="bg-bg-500">
+    <div class="mx-auto max-w-screen-xl py-8">
+      <h2 class="text-3xl text-center mb-4">Latest from the blog</h2>
+    </div>
   </div>
 </CommonLayout>
+<div class="text-center p-4">
+  <p>Stuff</p>
+  <p>Stuff</p>
+  <p>Stuff</p>
+  <p>Stuff</p>
+  <p>Stuff</p>
+  <p>Stuff</p>
+  <p>Stuff</p>
+  <p>Stuff</p>
+  <p>Stuff</p>
+  <p>Stuff</p>
+  <p>Stuff</p>
+  <p>Stuff</p>
+  <p>Stuff</p>
+  <p>Stuff</p>
+  <p>Stuff</p>
+  <p>Stuff</p>
+  <p>Stuff</p>
+  <p>Stuff</p>
+  <p>Stuff</p>
+  <p>Stuff</p>
+  <p>Stuff</p>
+  <p>Stuff</p>
+  <p>Stuff</p>
+  <p>Stuff</p>
+  <p>Stuff</p>
+  <p>Stuff</p>
+  <p>Stuff</p>
+</div>

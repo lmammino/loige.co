@@ -10,6 +10,7 @@ export default {
       files: '*.astro',
       options: {
         parser: 'astro',
+        htmlWhitespaceSensitivity: 'strict',
       },
     },
   ],

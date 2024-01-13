@@ -1,0 +1,43 @@
+---
+import type { ImageMetadata } from 'astro'
+import { Image } from 'astro:assets'
+
+type Props = {
+  title: string
+  href: string
+  image: ImageMetadata
+  imageAlt: string
+}
+
+const { title, href, image, imageAlt } = Astro.props
+---
+
+<a
+  href={href}
+  title={title}
+  target="_blank"
+  class="block overflow-hidden rounded-lg transition hover:shadow-lg hover:outline outline-4 outline-primary-500"
+>
+  <Image
+    width={400}
+    height={224}
+    alt={imageAlt}
+    src={image}
+    class="h-56 w-full object-cover transition"
+  />
+  <div class="bg-bg-300 p-4 sm:p-6 h-full">
+    <h3 class="mt-0.5 text-xl font-bold text-text-500">{title}</h3>
+    <p class="mt-2 text-sm/relaxed text-text-400">
+      <slot>Some description here</slot>
+    </p>
+  </div>
+</a>
+<style>
+  :root img {
+    filter: grayscale(0.85);
+  }
+
+  :root a:hover img {
+    filter: grayscale(0);
+  }
+</style>
