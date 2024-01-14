@@ -16,9 +16,9 @@ const { section } = Astro.props
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
-  <body class="overscroll-y-none">
+  <body class="overscroll-y-none flex flex-col">
     <Header section={section} />
-    <main>
+    <main class="min-h-screen">
       <slot />
     </main>
     <Footer />

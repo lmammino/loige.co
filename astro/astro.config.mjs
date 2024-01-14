@@ -16,5 +16,6 @@ export default defineConfig({
     '/page/5': '/blog/page/5',
     '/page/6': '/blog/page/6',
     '/page/7': '/blog/page/7',
+    '/blog/page/1': '/blog',
   }
 });

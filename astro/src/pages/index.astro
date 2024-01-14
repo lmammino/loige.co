@@ -47,7 +47,7 @@ import TagsList from '../components/TagsList.astro'
 <CommonLayout>
   <Hero />
 
-  <div class="bg-bg-500">
+  <div class="bg-bg-500 relative z-40">
     <div class="mx-auto max-w-screen-xl px-8 py-16">
       <div class="flex flex-wrap justify-center gap-8">
         <ServerlessHero class="h-20 text-text-400" />
@@ -58,7 +58,7 @@ import TagsList from '../components/TagsList.astro'
     </div>
   </div>
 
-  <div class="bg-bg-500">
+  <div class="bg-bg-500 relative z-40">
     <div class="mx-auto max-w-screen-xl px-8 pb-16 flex justify-center">
       <div class="max-w-[800px]">
         <p class="text-text-500">
@@ -82,7 +82,7 @@ import TagsList from '../components/TagsList.astro'
     </div>
   </div>
 
-  <div class="bg-bg-500">
+  <div class="bg-bg-500 relative z-40">
     <div class="mx-auto max-w-screen-xl pb-16 px-8">
       <h2 class="text-3xl text-center mb-4">Some of my projects</h2>
       <div
@@ -124,7 +124,7 @@ import TagsList from '../components/TagsList.astro'
     </div>
   </div>
 
-  <div class="bg-bg-500">
+  <div class="bg-bg-500 relative z-40">
     <div class="mx-auto max-w-screen-xl py-8 px-8">
       <h2 class="text-3xl text-center mb-4">Latest from the blog</h2>
 
@@ -145,7 +145,7 @@ import TagsList from '../components/TagsList.astro'
     </div>
   </div>
 
-  <div class="bg-bg-500">
+  <div class="bg-bg-500 relative z-40">
     <div class="mx-auto max-w-screen-xl py-8 px-8">
       <h2 class="text-3xl text-center mb-4">Topics</h2>
       <TagsList tags={tags.slice(0, 20)} />
