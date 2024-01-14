@@ -5,14 +5,15 @@ type Props = {
     link: string
     count: number
   }[]
+  hideAllTagsButton?: boolean
 }
 
-const { tags } = Astro.props
+const { tags, hideAllTagsButton } = Astro.props
 ---
 
 <ul class="flex flex-wrap gap-2">
   {
-    tags.slice(0, 20).map((tag) => (
+    tags.map((tag) => (
       <li>
         <a
           href={tag.link}
@@ -26,12 +27,16 @@ const { tags } = Astro.props
       </li>
     ))
   }
-  <li>
-    <a
-      href="/tag"
-      class="inline-block bg-bg-300 hover:bg-bg-700 rounded-xl py-2 px-4 text-sm text-500"
-    >
-      All tags
-    </a>
-  </li>
+  {
+    !hideAllTagsButton && (
+      <li>
+        <a
+          href="/tag"
+          class="inline-block bg-bg-300 hover:bg-bg-700 rounded-xl py-2 px-4 text-sm text-500"
+        >
+          All tags
+        </a>
+      </li>
+    )
+  }
 </ul>
