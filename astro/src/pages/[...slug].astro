@@ -1,7 +1,13 @@
 ---
+import { Image } from 'astro:assets'
 import { getCollection } from 'astro:content'
 import type { InferGetStaticPropsType } from 'astro'
-import BlogPost from '../layouts/BlogPost.astro'
+import { format } from 'date-fns'
+import CommonLayout from '../layouts/CommonLayout.astro'
+import UserIcon from '../components/icons/UserIcon.astro'
+import CalendarIcon from '../components/icons/CalendarIcon.astro'
+import TagIcon from '../components/icons/TagIcon.astro'
+import ProfilePicture from '../assets/profile-picture.jpg'
 
 type Props = InferGetStaticPropsType<typeof getStaticPaths>
 
@@ -17,6 +23,155 @@ const post = Astro.props
 const { Content } = await post.render()
 ---
 
-<BlogPost {...post.data}>
-  <Content />
-</BlogPost>
+<CommonLayout {...post.data}>
+  <div class="bg-bg-500 relative z-40">
+    <div class="mx-auto max-w-screen-xl py-16 px-8">
+      <h1 class="text-text-500 text-4xl leading-normal md:text-5xl font-bold"
+        >{post.data.title}</h1
+      >
+      {
+        post.data.subtitle && (
+          <h2 class="text-text-400 text-xl/relaxed md:text-2xl/relaxed font-medium mt-4">
+            {post.data.subtitle}
+          </h2>
+        )
+      }
+    </div>
+
+    {
+      post.data.header_img && (
+        <Image
+          class="h-[300px] sm:h-[500px] w-full object-cover xl:max-w-screen-xl xl:mx-auto xl:rounded-xl shadow-xl"
+          width={1280}
+          height={200}
+          src={post.data.header_img}
+          alt=""
+        />
+      )
+    }
+
+    <div class="mx-auto max-w-screen-xl py-8 px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-10 gap-4 mt-8">
+        <!-- Sidebar -->
+        <aside
+          class="col-span-10 lg:col-span-3 flex lg:flex-col gap-8 gap-x-16 flex-wrap border-b border-text-100 mb-8 pb-8 lg:border-0 lg:mb-0 lg:pb-0"
+        >
+          <div>
+            <dt class="font-bold text-text-400">
+              <span
+                class="inline-flex self-center gap-2 align-baseline items-baseline"
+              >
+                <UserIcon class="h-4 w-4" />
+                <span>Author</span>
+              </span>
+            </dt>
+            <dd class="font-normal text-text-400 text-lg">
+              <a
+                href="/about"
+                class="inline-flex gap-2 items-center hover:underline hover:text-primary-600"
+              >
+                <Image
+                  src={ProfilePicture}
+                  alt="Luciano Mammino's profile picture"
+                  width={32}
+                  height={32}
+                  class="rounded-full w-8 h-8"
+                />
+                <span>Luciano Mammino</span>
+              </a>
+            </dd>
+          </div>
+
+          <div>
+            <dt class="font-bold text-text-400">
+              <span
+                class="inline-flex self-center gap-2 align-baseline items-baseline"
+              >
+                <CalendarIcon class="h-4 w-4" />
+                <span>Published</span>
+              </span>
+            </dt>
+            <dd class="font-normal text-text-400 text-lg">
+              <div>
+                <time
+                  title={post.data.date.toISOString()}
+                  datetime={post.data.date.toISOString()}
+                >
+                  {format(post.data.date, 'yyyy-MM-dd HH:mm')}
+                </time>
+              </div>
+              {
+                post.data.updated &&
+                  post.data.updated.toISOString() !==
+                    post.data.date.toISOString() && (
+                    <>
+                      <div class="text-text-300 mt-4">Last update</div>
+                      <time
+                        title={post.data.updated.toISOString()}
+                        datetime={post.data.updated.toISOString()}
+                        class="text-text-300"
+                      >
+                        {format(post.data.updated, 'yyyy-MM-dd HH:mm')}
+                      </time>
+                    </>
+                  )
+              }
+            </dd>
+          </div>
+
+          <div>
+            <dt class="font-bold text-text-400">
+              <span
+                class="inline-flex self-center gap-2 align-baseline items-baseline"
+              >
+                <TagIcon class="h-4 w-4" />
+                <span>Topics</span>
+              </span>
+            </dt>
+            <dd class="font-normal text-text-400 text-lg">
+              <ul class="flex flex-wrap gap-1">
+                {
+                  post.data.tags.map((tag) => (
+                    <li>
+                      <a
+                        href={`/tag/${tag}`}
+                        class="inline-block bg-bg-400 text-text-400 hover:bg-bg-600 hover:text-text-500 px-2 py-1 rounded-lg mr-2 mb-2"
+                      >
+                        {tag}
+                      </a>
+                    </li>
+                  ))
+                }
+              </ul>
+            </dd>
+          </div>
+        </aside>
+
+        <!-- Content -->
+        <article class="col-span-7">
+          <div class="prose">
+            <Content />
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</CommonLayout>
+<style>
+  .title {
+    margin-bottom: 1em;
+    padding: 1em 0;
+    text-align: center;
+    line-height: 1;
+  }
+  .title h1 {
+    margin: 0 0 0.5em 0;
+  }
+  .date {
+    margin-bottom: 0.5em;
+    color: rgb(var(--gray));
+  }
+  .last-updated-on {
+    font-style: italic;
+  }
+</style>

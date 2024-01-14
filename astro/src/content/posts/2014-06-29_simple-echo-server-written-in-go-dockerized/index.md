@@ -19,7 +19,7 @@ In this post we will see how to write a (very) simple **Go server app** and how 
 
 **Disclaimer**: I'm an absolute beginner with both [Go](http://golang.org) and [Docker](https://docker.com) and this is just an experiment I did to start to explore this two interesting technologies. If you'll find something weird or wrong you are **very** encouraged to scream at me in the comments ([Comments](#disqus_thread)), I will be extremely thankful ;)
 
-##Introduction
+## Introduction
 
 We are going to write a simple echo server in Go and then we will pack it into a Docker container for future execution/distribution.
 
@@ -35,7 +35,7 @@ I assume you have both technologies installed on your machine. If you are using 
 
 Beware that Go on your local machine is needed only if you want to test the application before "dockerizing" it. We will put the Go runtime into the Docker container in the second part of the post and this way we will be able to execute it without having Go installed in our local machine (that's infact the real advantage of using Docker).
 
-##The Go echo server
+## The Go echo server
 
 Ok, first of all let's write and test our server app. The app should open a socket and listen for TCP requests on a given port. Then when it receives some data it should reply by saying something like that _"Hi, I received your message! It was X bytes long and that's what it said: XXX ! Honestly I have no clue about what to do with your messages, so Bye Bye!"_.
 
@@ -139,7 +139,7 @@ The terminal window on the top is running our server and it logs all the receive
 
 That's all from the Go side. In the next part of the post we will see how to "dockerize" this simple Go app. For now, you can obviously quit the server with a `CTRL+C`.
 
-##Dockerizing the application
+## Dockerizing the application
 
 Ok, now we want to _"dockerize"_ this simple application. Wait, what does _"dockerize"_ mean? Well, by _"dockerizing"_ an application we will be able to put the application itself and all its dependencies within a Docker container that can be easily shipped and executed elsewhere.
 

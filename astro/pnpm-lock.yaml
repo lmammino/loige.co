@@ -29,6 +29,9 @@ dependencies:
   canvas-hypertxt:
     specifier: ^1.0.3
     version: 1.0.3
+  date-fns:
+    specifier: ^3.2.0
+    version: 3.2.0
   sharp:
     specifier: ^0.33.1
     version: 0.33.1
@@ -1869,6 +1872,10 @@ packages:
     resolution: {integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==}
     engines: {node: '>=4'}
     hasBin: true
+    dev: false
+
+  /date-fns@3.2.0:
+    resolution: {integrity: sha512-E4KWKavANzeuusPi0jUjpuI22SURAznGkx7eZV+4i6x2A+IZxAMcajgkvuDAU1bg40+xuhW1zRdVIIM/4khuIg==}
     dev: false
 
   /debug@2.6.9:
