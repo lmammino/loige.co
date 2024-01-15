@@ -30,7 +30,6 @@ const props = {
 
 import CommonLayout from '../layouts/CommonLayout.astro'
 import Hero from '../components/Hero.astro'
-import A from '../components/A.astro'
 import ServerlessHero from '../components/badges/ServerlessHero.astro'
 import CertifiedSolutionsArchitect from '../components/badges/CertifiedSolutionsArchitect.astro'
 import Mvp from '../components/badges/Mvp.astro'
@@ -60,23 +59,27 @@ import TagsList from '../components/TagsList.astro'
 
   <div class="bg-bg-500 relative z-40">
     <div class="mx-auto max-w-screen-xl px-8 pb-16 flex justify-center">
-      <div class="max-w-[800px]">
-        <p class="text-text-500">
-          Hello, I am Luciano, a.k.a. <em>loige</em>, a Cloud Architect and a
-          Full Stack developer with more than 15 years of experience in the
-          field. I work at <strong>FourTheorem</strong> as a <strong
-            >Senior Architect</strong
-          >. I am passionate about <A href="/tag/node-js">Node.js</A> and <A
-            href="/tag/javascript"
-          >
-            JavaScript
-          </A>, <A href="/tag/aws">AWS</A> and <A href="/tag/serverless">
-            Serverless
-          </A>, and <A href="/tag/rust">Rust</A>. I often <A href="/speaking">
-            speak
-          </A> at <strong>conferences</strong>, <strong>meetups</strong>, and <strong
-            >podcasts</strong
-          >. <A href="/about">Do you want to know more?</A>
+      <div
+        class="max-w-[800px] prose md:prose-lg lg:prose-xl prose:text-text-500 first:prose-p:text-text-700 first:prose-p:text-lg/relaxed md:first:prose-p:text-xl/relaxed lg:first:prose-p:text-2xl/relaxed prose-a:underline-offset-4 prose-a:decoration-text-100 prose-a:text-primary-700 hover:prose-a:text-primary-500 hover:prose-a:decoration-primary-500"
+      >
+        <p>
+          Hello, I am <a href="/about">Luciano</a>, a.k.a. <em>loige</em>, a
+          Cloud Architect and a Full Stack developer with more than 15 years of
+          experience in the field.
+        </p>
+        <p
+          >I work at <a
+            href="https://fourtheorem.com"
+            target="_blank"
+            rel="nofollow noopener noreferrer">FourTheorem</a
+          > as a Senior Architect. I am passionate about <a href="/tag/node-js"
+            >Node.js</a
+          > and <a href="/tag/javascript"> JavaScript</a>, <a href="/tag/aws"
+            >AWS</a
+          > and <a href="/tag/serverless"> Serverless</a>, and <a
+            href="/tag/rust">Rust</a
+          >. I often <a href="/speaking"> speak</a> at conferences, meetups, and
+          podcasts.
         </p>
       </div>
     </div>

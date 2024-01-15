@@ -162,7 +162,7 @@ const { Content } = await post.render()
         <!-- Content -->
         <div class="col-span-7">
           <article
-            class="prose md:prose-lg lg:prose-xl prose:text-text-500 first:prose-p:text-text-700 first:prose-p:text-lg/relaxed md:first:prose-p:text-xl/relaxed lg:first:prose-p:text-2xl/relaxed prose-a:underline-offset-4 prose-a:text-primary-700 hover:prose-a:text-primary-500"
+            class="prose md:prose-lg lg:prose-xl prose:text-text-500 first:prose-p:text-text-700 first:prose-p:text-lg/relaxed md:first:prose-p:text-xl/relaxed lg:first:prose-p:text-2xl/relaxed prose-a:underline-offset-4 prose-a:text-primary-700 prose-a:decoration-text-200 hover:prose-a:text-primary-500 hover:prose-a:decoration-primary-500"
           >
             <Content />
           </article>
@@ -310,7 +310,7 @@ const { Content } = await post.render()
     const disqusElement = document.getElementById(
       'disqus_thread',
     ) as HTMLElement
-    globalThis['disqus_config'] = function (this: any) {
+    ;(globalThis as any).disqus_config = function (this: any) {
       this.page.url = disqusElement.dataset.url as string
     }
     ;(function () {
