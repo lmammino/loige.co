@@ -302,4 +302,89 @@ In my previous example:
 Here is a table with different `_FormatCode_` values and their effect.
 
 | `_FormatCode_` | Description      |
-| 
+| -------------: | ---------------- |
+|              1 | Bold             |
+|              2 | Dim              |
+|              4 | Underline        |
+|              5 | Blink            |
+|              8 | Hidden           |
+|              0 | Reset all        |
+|             21 | Reset bold       |
+|             22 | Reset dim        |
+|             24 | Reset underline  |
+|             25 | Reset blink      |
+|             28 | Reset hidden     |
+|             39 | Default color    |
+|             30 | Black            |
+|             31 | Red              |
+|             32 | Green            |
+|             33 | Yellow           |
+|             34 | Blue             |
+|             35 | Magenta          |
+|             36 | Cyan             |
+|             97 | White            |
+|             49 | Default bg color |
+|             40 | Black bg         |
+|             41 | Red bg           |
+|             42 | Green bg         |
+|             43 | Yellow bg        |
+|             44 | Blue bg          |
+|             45 | Magenta bg       |
+|             46 | Cyan bg          |
+|            107 | White bg         |
+
+For more information about additional formatting options checkout [Bash tips: Colors and formatting](https://misc.flogisoft.com/bash/tip_colors_and_formatting).
+
+Other ways to achieve similar formatting are [tput](http://unixhelp.ed.ac.uk/CGI/man-cgi?tput+1) and [terminfo](http://www.manpagez.com/man/5/terminfo/).
+
+## Bonus 2: my actual PS1!
+
+I keep [my `.bash_profile`](https://github.com/lmammino/dotfiles/blob/master/.bash_profile) public on GitHub (not because it's cool, but because this way I can easily clone it into different machines).
+
+If you are curious you can see how my _bash-emojification_ is actually done or what else I put in my `PS1` variable or even some aliases I use.
+
+Feel free to tell me what you think or ask questions about it in the comment box in this article.
+
+## Bonus 3: A bash prompt generator
+
+Of course there had to be a service online to help you with this stuff! It turns out there are many!
+If you want to build your fancy Bash prompt in a _drag-and-dropppy_ or _clicky-clicky_ way, checkout these links:
+
+- [.bashrc PS1 generator by Julien Ricard](http://bashrcgenerator.com/)
+- [Easy Bash PS1 Generator by Josh Matthews](http://ezprompt.net/)
+
+At this point, you should know enough to be able to build your own PS1 generator website! Maybe that's an idea for you next _hack-weekend_!
+
+## Bonus 4: Use the return code
+
+This is an amazing snippet from [@bdesham](https://lobste.rs/u/bdesham) on _Lobste.rs_.
+
+```bash
+function success_indicator() {
+    if [ $? -eq 0 ] ; then
+        echo "😎"
+    else
+        echo "💩"
+    fi
+}
+
+export PS1='$(success_indicator) $ '
+```
+
+With this approach you won't have a random emoji anymore but instead a very deterministic emoji given by the return code of the previous command. If the command exited successfully you will see a _cool dude_ emoji, otherwise a _surprised poop_ will show up on your prompt!
+
+## Why all of this?!
+
+In the title of this article I said "how and why", but if you have been careful you probably noticed I never really explained why you might want to go through all of this stuff!
+
+Well, the real reason why you should care about this is because "why not?!"
+
+Seriously, there isn't a very strong reason why this stuff is important, it is definitely fun and interesting but you might be a fantastic developer even without having all this knowledge (and without emojis in your terminal)!
+
+Anyway, if this answer is not convincing you, I can actually prove that emojis in your terminal will make you more productive. Try to put a toilet (🚽) or a poop (💩) emoji in your list of supported emojis. Next time you'll mistype a command and you'll randomly see a poop emoji, I can assure you that you'll have a bit of fun, your morale will stay up and you'll hopefully keep pounding your way on the keyboard enjoying your work 😎.
+
+Whether you believe me or not on this, I hope I'll see you soon in the next article 😜
+
+Byez!
+
+PS: A special thanks to all the people who contributed to this [Lobste.rs thread](https://lobste.rs/s/8oozfh/random_emoji_your_terminal_prompt_how_why). A lot of great insights! Also, thanks to [@gschizas](https://www.reddit.com/user/gschizas) on Reddit for spotting some errors! 🙏

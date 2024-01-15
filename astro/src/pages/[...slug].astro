@@ -23,7 +23,7 @@ const post = Astro.props
 const { Content } = await post.render()
 ---
 
-<CommonLayout {...post.data}>
+<CommonLayout section="blog">
   <div class="bg-bg-500 relative z-40">
     <div class="mx-auto max-w-screen-xl py-16 px-8">
       <h1 class="text-text-500 text-4xl leading-normal md:text-5xl font-bold"
@@ -148,10 +148,10 @@ const { Content } = await post.render()
         </aside>
 
         <!-- Content -->
-        <article class="col-span-7">
-          <div class="prose">
-            <Content />
-          </div>
+        <article
+          class="col-span-7 prose md:prose-lg lg:prose-xl prose:text-text-500 first:prose-p:text-text-700 first:prose-p:text-lg/relaxed md:first:prose-p:text-xl/relaxed lg:first:prose-p:text-2xl/relaxed prose-a:underline-offset-4 prose-a:text-primary-700 hover:prose-a:text-primary-500"
+        >
+          <Content />
         </article>
       </div>
     </div>
