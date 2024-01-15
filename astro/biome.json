@@ -8,13 +8,17 @@
     "rules": {
       "recommended": true,
       "nursery": {
-        "all": true
+        "all": true,
+        "noNodejsModules": "off",
+        "noUnusedImports": "warn"
       },
       "correctness": {
         "all": true
       }
     },
-    "ignore": ["coverage/"]
+    "ignore": [
+      "coverage/"
+    ]
   },
   "formatter": {
     "enabled": true,
@@ -22,7 +26,9 @@
     "indentStyle": "space",
     "indentWidth": 2,
     "lineWidth": 80,
-    "ignore": ["coverage/"]
+    "ignore": [
+      "coverage/"
+    ]
   },
   "javascript": {
     "formatter": {

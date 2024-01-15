@@ -1,10 +1,13 @@
 import { readFile, readdir, stat, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import {
   BedrockRuntimeClient,
   InvokeModelCommand,
 } from '@aws-sdk/client-bedrock-runtime'
 import { parse, stringify } from 'yaml'
+
+const __dirname = fileURLToPath(new URL('.', import.meta.url))
 
 const MODEL_ID = 'anthropic.claude-v2'
 const REGION = 'us-east-1'
@@ -93,13 +96,21 @@ async function generateMetadata(filename: string) {
   }
 }
 
-const folders = await readdir('./src/content/posts')
+const folders = await readdir(join(__dirname, '..', 'src', 'content', 'posts'))
 for (const folder of folders) {
-  const filename = join('./src/content/posts', folder, 'index.md')
+  const filename = join(
+    __dirname,
+    '..',
+    'src',
+    'content',
+    'posts',
+    folder,
+    'index.md',
+  )
   // skip folders that don't have an index.md file (or it's not a folder)
   try {
     await stat(filename)
-  } catch (e) {
+  } catch (_e) {
     continue
   }
 
