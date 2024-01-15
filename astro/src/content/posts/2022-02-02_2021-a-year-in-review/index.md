@@ -348,11 +348,7 @@ I have been thinkering with the idea of using QRCodes with a digital signature i
 
 As part of this research I ended up creating a [_decoder_ library](https://github.com/rust-italia/dgc) in [Rust](/tag/rust).
 
-<center>
-  <a href="https://github.com/rust-italia/dgc" style="background: none; text-decoration: none; border: none;">
-    <img src="./dgc-rust-logo.svg" alt="DGC rust library logo" width="300" style="margin: 2em 0">
-  </a>
-</center>
+![DGC rust library logo](./dgc-rust-logo.svg)
 
 This library allows you to be able to read all the information encoded within the QRCode and to verify the autenticity of the certificate by checking its digital signature.
 

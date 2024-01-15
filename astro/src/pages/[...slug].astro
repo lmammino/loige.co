@@ -3,8 +3,14 @@ import { Image } from 'astro:assets'
 import { getCollection } from 'astro:content'
 import type { InferGetStaticPropsType } from 'astro'
 import { format } from 'date-fns'
-import { getAbsoluteUrl, getShareUrl } from '../utils/posts.ts'
+import {
+  getAbsoluteUrl,
+  getShareUrl,
+  getPostsByTag,
+  getSimilarPosts,
+} from '../utils/posts.ts'
 import CommonLayout from '../layouts/CommonLayout.astro'
+import BlogCard from '../components/BlogCard.astro'
 import UserIcon from '../components/icons/UserIcon.astro'
 import CalendarIcon from '../components/icons/CalendarIcon.astro'
 import TagIcon from '../components/icons/TagIcon.astro'
@@ -18,13 +24,14 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts')
+  const postsByTags = getPostsByTag(posts)
   return posts.map((post) => ({
     params: { slug: post.slug },
-    props: post,
+    props: { post, similar: getSimilarPosts(post, postsByTags, 6) },
   }))
 }
 
-const post = Astro.props
+const { post, similar } = Astro.props
 const { Content } = await post.render()
 ---
 
@@ -246,39 +253,72 @@ const { Content } = await post.render()
               >.</p
             >
           </div>
-          <div class="mt-8 pt-8 border-t border-text-100">Comments (TODO)</div>
-          <div class="mt-8 pt-8 border-t border-text-100"
-            >Similar articles (TODO)</div
-          >
+          <div class="mt-8 pt-8 border-t border-text-100">
+            <div id="disqus_thread" data-url={getAbsoluteUrl(post)}></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End of 2 columns layout -->
+    <div class="bg-bg-500 relative z-40">
+      <div class="mx-auto max-w-screen-xl py-16 px-8">
+        <h2 class="text-3xl text-center mb-8 text-text-500 font-bold"
+          >You might also like</h2
+        >
+
+        <div
+          class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-8"
+        >
+          {
+            similar.map((post) => (
+              <BlogCard post={post}>{post.data.description}</BlogCard>
+            ))
+          }
         </div>
       </div>
     </div>
   </div>
+  <script>
+    // Supports copy to clipboard
+    import type { SignatureHelpTriggerReason } from 'typescript'
+    const copyLinkButton = document.getElementById(
+      'copy-link',
+    ) as HTMLAnchorElement
+    const copyLinkLabel = copyLinkButton.querySelector(
+      '[aria-role="label"]',
+    ) as HTMLSpanElement
+    let animatingCopyLink = false
+    if (typeof navigator.clipboard !== 'undefined') {
+      copyLinkButton.classList.remove('hidden')
+      copyLinkButton.classList.add('inline-flex')
+      copyLinkButton.addEventListener('click', async (e) => {
+        e.preventDefault()
+        const url = window.location.href
+        await navigator.clipboard.writeText(url)
+        if (!animatingCopyLink) {
+          copyLinkLabel.innerText = copyLinkLabel.dataset.textCopied as string
+          animatingCopyLink = true
+          setTimeout(() => {
+            copyLinkLabel.innerText = copyLinkLabel.dataset.textNormal as string
+            animatingCopyLink = false
+          }, 2000)
+        }
+      })
+    }
+
+    // DISQUS integration for the comments section
+    const disqusElement = document.getElementById(
+      'disqus_thread',
+    ) as HTMLElement
+    globalThis['disqus_config'] = function (this: any) {
+      this.page.url = disqusElement.dataset.url as string
+    }
+    ;(function () {
+      var d = document,
+        s = d.createElement('script')
+      s.src = 'https://loige.disqus.com/embed.js'
+      s.setAttribute('data-timestamp', `${new Date().toString()}`)
+      ;(d.head || d.body).appendChild(s)
+    })()
+  </script>
 </CommonLayout>
-<script>
-  // Supports copy to clipboard
-  const copyLinkButton = document.getElementById(
-    'copy-link',
-  ) as HTMLAnchorElement
-  const copyLinkLabel = copyLinkButton.querySelector(
-    '[aria-role="label"]',
-  ) as HTMLSpanElement
-  let animatingCopyLink = false
-  if (typeof navigator.clipboard !== 'undefined') {
-    copyLinkButton.classList.remove('hidden')
-    copyLinkButton.classList.add('inline-flex')
-    copyLinkButton.addEventListener('click', async (e) => {
-      e.preventDefault()
-      const url = window.location.href
-      await navigator.clipboard.writeText(url)
-      if (!animatingCopyLink) {
-        copyLinkLabel.innerText = copyLinkLabel.dataset.textCopied as string
-        animatingCopyLink = true
-        setTimeout(() => {
-          copyLinkLabel.innerText = copyLinkLabel.dataset.textNormal as string
-          animatingCopyLink = false
-        }, 2000)
-      }
-    })
-  }
-</script>
