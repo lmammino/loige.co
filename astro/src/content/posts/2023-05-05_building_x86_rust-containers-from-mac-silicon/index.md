@@ -1,7 +1,8 @@
 ---
 title: Building x86 Rust containers from Mac Silicon
 slug: building_x86_rust-containers-from-mac-silicon
-subtitle: null
+subtitle: Cross-compiling Rust for x86 containers from Mac Silicon using musl,
+  RusTLS, and other tricks
 date: 2023-05-05T09:29:00.000Z
 updated: 2023-05-08T09:40:00.000Z
 header_img: ./building_x86_rust-containers-from-mac-silicon.jpg
@@ -9,6 +10,10 @@ status: published
 tags:
   - rust
   - docker
+description: This article walks through the challenges of cross-compiling a Rust
+  web app from a Mac Silicon machine to an x86 Docker container using musl,
+  RusTLS, multi-stage builds and other techniques to produce a small container
+  image.
 ---
 
 I recently struggled to build an x86_64 container for a web app written in Rust from my Mac Silicon. I eventually figured out a working solution that also heavily reduced the size of the container image. In this article, I will walk you through this solution!

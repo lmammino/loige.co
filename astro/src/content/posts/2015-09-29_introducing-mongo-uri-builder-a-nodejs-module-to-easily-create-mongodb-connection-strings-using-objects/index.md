@@ -2,7 +2,8 @@
 title: Introducing mongo-uri-builder, a Node.js module to easily create mongodb
   connection strings using objects
 slug: introducing-mongo-uri-builder-a-nodejs-module-to-easily-create-mongodb-connection-strings-using-objects
-subtitle: null
+subtitle: mongo-uri-builder simplifies creating MongoDB connection strings from
+  configuration objects in Node.js
 date: 2015-09-29T23:07:02.000Z
 updated: 2015-09-29T23:07:02.000Z
 header_img: ./mongo-uri-builder-article-sample-image.jpg
@@ -12,6 +13,10 @@ tags:
   - library
   - mongodb
   - github
+description: The mongo-uri-builder Node.js package easily generates MongoDB
+  connection strings from configuration objects, supporting features like
+  authentication, replicas, and options. It integrates well with config for
+  managing different environments.
 ---
 
 A couple of days ago I had the need to store the MongoDB connection string for a Node.js application I am currently building.

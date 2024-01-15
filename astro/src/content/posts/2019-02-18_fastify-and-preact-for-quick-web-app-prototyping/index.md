@@ -1,7 +1,8 @@
 ---
 title: Fastify and Preact for quick web app prototyping
 slug: fastify-and-preact-for-quick-web-app-prototyping
-subtitle: null
+subtitle: Fastify and Preact enable quick web app prototyping and easy sharing
+  with Docker
 date: 2019-02-18T20:22:58.000Z
 updated: 2019-02-18T20:22:58.000Z
 header_img: ./fastify-and-preact-for-quick-web-app-prototyping.jpg
@@ -12,6 +13,11 @@ tags:
   - fastify
   - react
   - docker
+description: This article shows how to quickly build web app prototypes using
+  Fastify for the backend API and Preact for the frontend UI. It also covers how
+  to dockerize the app for easy sharing. Key points are the plugin architecture
+  of Fastify, the lightweight nature of Preact, and the use of htm for defining
+  UI without transpilation.
 ---
 
 In this article I will show my setup to build and share web apps prototypes using **Fastify** and **Preact**, two technologies that I love.
@@ -127,7 +133,7 @@ At this point we are ready to create our Fastify API, let's place the server cod
 ```javascript
 const path = require('path')
 
-module.exports = async function(fastify, opts) {
+module.exports = async function (fastify, opts) {
   // serves static assets from the `src/ui` folder
   fastify.register(require('fastify-static'), {
     root: path.join(__dirname, '..', 'ui'),
@@ -207,7 +213,7 @@ curl "https://github.com/lmammino/fastify-preact-htm-boilerplate/blob/master/src
 Now it's time to create our `src/ui/index.html`:
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -243,8 +249,8 @@ class App extends Component {
   componentDidMount() {
     this.setState({ loading: true, time: null })
     fetch('/api/time')
-      .then(response => response.json())
-      .then(data => this.setState({ loading: false, time: data.time }))
+      .then((response) => response.json())
+      .then((data) => this.setState({ loading: false, time: data.time }))
   }
   render(props, state) {
     return html`
@@ -253,13 +259,8 @@ class App extends Component {
           <div class="col">
             <h1>Hello from your new App</h1>
             <div>
-              ${state.loading &&
-                html`
-                  <p>😴 Loading time from server...</p>
-                `} ${state.time &&
-                html`
-                  <p>⏱ Time from server: <i>${state.time}</i></p>
-                `}
+              ${state.loading && html` <p>😴 Loading time from server...</p> `} ${state.time &&
+              html` <p>⏱ Time from server: <i>${state.time}</i></p> `}
             </div>
             <hr />
             <div>
@@ -276,12 +277,7 @@ class App extends Component {
   }
 }
 
-render(
-  html`
-    <${App} />
-  `,
-  document.getElementById('app')
-)
+render(html` <${App} /> `, document.getElementById('app'))
 ```
 
 In our frontend app we have only one stateful component called `App`.

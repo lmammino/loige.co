@@ -1,13 +1,18 @@
 ---
 title: 3 invitations to try Atom.io
 slug: 3-invitations-to-try-atom-io
-subtitle: null
+subtitle: Atom.io is a promising new text editor built on web technologies. This
+  post shares 3 invites to try its closed beta.
 date: 2014-04-09T10:58:22.000Z
 updated: 2016-01-19T22:37:15.000Z
 header_img: ./3-invitations-to-try-atom-io.png
 status: published
 tags:
   - atom-io
+description: The author received 3 invites to try Atom.io, a new text editor
+  built by GitHub using Node.js. They find it promising but slower than
+  SublimeText. The post shares the invites with readers who follow the author on
+  social media and comment.
 ---
 
 I have finally got my invitation to try the new text editor [Atom.io](https://atom.io). Atom is built with web technologies (node.js in it's core) by the folks at GitHub and it's somewhat very similar to the famous [SublimeText](http://www.sublimetext.com/).

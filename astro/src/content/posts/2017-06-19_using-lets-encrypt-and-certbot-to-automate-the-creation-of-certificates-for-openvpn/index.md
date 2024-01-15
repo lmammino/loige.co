@@ -15,6 +15,9 @@ tags:
   - terraform
   - security
   - aws
+description: This post explains how to use Let's Encrypt and Certbot to
+  automatically generate and renew SSL certificates for OpenVPN. It provides a
+  complete Terraform setup as a practical example.
 ---
 
 Recently at [Planet 9 Energy](https://planet9energy.com), I had to setup a VPN access to secure some of our internal services. One of the requirements was to make the provisioning easy to reproduce over multiple environments, so we ended up playing a bit with Terraform, while obviously adopting OpenVPN for the VPN server.

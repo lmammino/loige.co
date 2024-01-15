@@ -1,13 +1,19 @@
 ---
 title: 2016 - A year in review
 slug: 2016-a-year-in-review
-subtitle: null
+subtitle: 2016 was an exciting and productive year. Achievements include
+  co-authoring a Node.js book, career growth, conference talks, open source
+  contributions, and learning new technologies.
 date: 2016-12-24T18:13:18.000Z
 updated: 2017-01-09T21:36:49.000Z
 header_img: ./loige-luciano-mammino-2016-a-year-in-review-blog-post.jpg
 status: published
 tags:
   - life
+description: A personal review of 2016 highlights career growth through a new
+  job, open source contributions, conference talks, and co-authoring a Node.js
+  book. The post also covers learning new technologies like Elixir and AWS,
+  while noting failures like lack of focus on a side project.
 ---
 
 2016 is almost over and I just realised that it has been one of my most productive and exciting years ever. With that in mind I would love to write a recap of all the good and bad things (mostly from a career perspective) that happened in my life during this year. I want to keep track and benchmark my productivity over the coming years. This might be boring for you to read but I hope it's going to serve myself as a good motivation to keep doing better over the years, both in terms of career and quality of life.

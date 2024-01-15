@@ -1,7 +1,7 @@
 ---
 title: Unshorten (expand) short URLs with Node.js
 slug: unshorten-expand-short-urls-with-node-js
-subtitle: null
+subtitle: Expand short URLs programmatically in Node.js with tall library
 date: 2017-03-31T23:23:09.000Z
 updated: 2017-05-21T08:17:34.000Z
 header_img: ./unshorten-expand-short-urls-with-node-js-loige-compressed.jpg
@@ -10,6 +10,11 @@ tags:
   - node-js
   - library
   - javascript
+description: This article explains how short URLs work and provides code
+  examples to expand them in Node.js using request module or tall library. It
+  covers basics of URL redirection, shows how to disable auto-redirect in
+  request module, and introduces tall - a promise-based Node.js library to
+  unshorten URLs.
 ---
 
 Short URLs have been an invaluable tool for social media marketing for so many years and we are now used to seeing them everywhere. Most of the credit probably goes to _URL shorteners_ services like [Bit.ly](https://bitly.com), [Goo.gl](https://goo.gl/), [YOURLS](https://yourls.org/) and [Rebrandly](https://www.rebrandly.com) that popularised the concept and made easy for everyone to start creating short URLs.

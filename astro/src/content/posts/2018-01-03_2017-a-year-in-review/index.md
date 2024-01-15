@@ -1,13 +1,18 @@
 ---
 title: 2017 - A year in review
 slug: 2017-a-year-in-review
-subtitle: null
+subtitle: 2017 was a year of conferences, side projects, and learning new
+  technologies for Luciano Mammino
 date: 2018-01-03T18:59:58.000Z
 updated: 2018-01-03T22:55:34.000Z
 header_img: ./loige-co-2017-a-year-in-review-luciano-mammino-blog.jpg
 status: published
 tags:
   - life
+description: In 2017, Luciano Mammino gave 17 conference talks, contributed to
+  open source projects like Fastify and Middy, and learned new technologies like
+  Terraform and Ansible. He looks forward to presenting more in 2018 and
+  learning technologies like Rust, Elastic Search, and Kubernetes.
 ---
 
 2017 is over and it's time to sit down and see what happened during this year. As I already did [last year](https://loige.co/2016-a-year-in-review/), I would love to write a (potentially boring) recap of all the good and bad things (mostly from a career perspective) that happened in my life during this year.

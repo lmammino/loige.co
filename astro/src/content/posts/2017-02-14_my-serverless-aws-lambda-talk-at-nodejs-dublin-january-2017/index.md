@@ -1,7 +1,8 @@
 ---
 title: My Serverless & AWS Lambda talk at Node.js Dublin January 2017
 slug: my-serverless-aws-lambda-talk-at-nodejs-dublin-january-2017
-subtitle: null
+subtitle: Serverless architectures with AWS Lambda offer scalability and cost
+  savings but require careful planning around security, testing, and monitoring
 date: 2017-02-14T19:03:00.000Z
 updated: 2017-06-08T11:23:57.000Z
 header_img: ./my-serverless-aws-lambda-talk-at-nodejs-dublin-january-2017.png
@@ -13,6 +14,11 @@ tags:
   - javascript
   - aws-lambda
   - serverless
+description: This post summarizes a talk about building a serverless
+  architecture on AWS Lambda using the Serverless framework. It covers topics
+  like authentication, authorization, testing, CI/CD, and cost monitoring. The
+  presenters share lessons learned from real-world experience building a
+  production serverless application.
 ---
 
 Last January I had the pleasure to share the stage with the great [Padraig O'Brien](https://twitter.com/Podgeypoos79) to talk about how we use Node.js, AWS Lambda and the Serverless framework at [Planet9 Energy](https://planet9energy.com).

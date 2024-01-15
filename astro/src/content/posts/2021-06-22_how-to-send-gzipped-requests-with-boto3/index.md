@@ -1,7 +1,7 @@
 ---
 title: How to send gzipped requests with boto3
 slug: how-to-send-gzipped-requests-with-boto3
-subtitle: null
+subtitle: Learn how to send gzipped payloads to AWS APIs using boto3's event handlers
 date: 2021-06-22T18:20:00.000Z
 updated: 2021-06-24T13:00:00.000Z
 header_img: ./how-to-send-gzipped-requests-with-boto3-luciano-mammino-loige.jpg
@@ -10,6 +10,9 @@ written_with: []
 tags:
   - python
   - aws
+description: The boto3 Python SDK allows intercepting requests before they are
+  sent to AWS through an event handler system. This article shows how to use it
+  to gzip the payload of PutMetricData requests sent to CloudWatch.
 ---
 
 I recently needed to send a big payload to CloudWatch and I managed to increase my chances of staying within the AWS payload size limit by using gzip encoding on the request body with `boto3`.

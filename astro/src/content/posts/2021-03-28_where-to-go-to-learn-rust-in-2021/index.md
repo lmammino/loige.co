@@ -1,7 +1,7 @@
 ---
 title: Where to go to learn Rust in 2021
 slug: where-to-go-to-learn-rust-in-2021
-subtitle: null
+subtitle: Learn Rust in 2021 through free and paid books, blogs, videos, and more
 date: 2021-03-28T19:55:00.000Z
 updated: 2021-03-28T19:55:00.000Z
 header_img: ./where-to-go-to-learn-rust-in-2021.jpg
@@ -12,6 +12,9 @@ written_with:
     link: https://twitter.com/SGolemac
 tags:
   - rust
+description: This article provides a list of free and paid resources to learn
+  Rust in 2021 including books, blogs, videos, newsletters, podcasts,
+  communities, exercises, workshops, and open source projects.
 ---
 
 

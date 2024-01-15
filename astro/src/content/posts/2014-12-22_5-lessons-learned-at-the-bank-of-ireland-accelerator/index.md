@@ -1,7 +1,8 @@
 ---
 title: 5 lessons learned at the Bank of Ireland Accelerator
 slug: 5-lessons-learned-at-the-bank-of-ireland-accelerator
-subtitle: null
+subtitle: 5 key lessons for entrepreneurs from 3 intense months at the Bank of
+  Ireland Accelerator
 date: 2014-12-22T21:23:58.000Z
 updated: 2014-12-24T10:43:15.000Z
 header_img: ./boi-1.png
@@ -9,6 +10,11 @@ status: published
 tags:
   - startup
   - entrepreneurship
+description: The author shares 5 powerful quotes and lessons learned from
+  mentors during an intensive 3-month accelerator program in Ireland focused on
+  startups and entrepreneurship. Key takeaways include the importance of
+  passion, understanding customers' problems, building a great team, and working
+  tirelessly while maintaining positivity.
 ---
 
 **What a hell of 3 months!**

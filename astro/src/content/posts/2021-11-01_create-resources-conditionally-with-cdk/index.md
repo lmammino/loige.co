@@ -12,6 +12,11 @@ tags:
   - cdk
   - javascript
   - typescript
+description: This post explains how to conditionally create resources in AWS CDK
+  using CfnCondition. It provides a practical example of creating an S3 bucket
+  based on an SSM parameter value. The post covers defining a condition,
+  attaching it to a low-level CDK construct, and importing the conditionally
+  created resource.
 ---
 
 Did you ever need to create a resource based on a condition in CDK? I recently needed to do that and finding a viable solution for this problem took me longer than I originally anticipated. In this article I will try to summarise what I learned and present my solution.

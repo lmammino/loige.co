@@ -1,13 +1,17 @@
 ---
 title: 2019 - A year in review
 slug: 2019-a-year-in-review
-subtitle: null
+subtitle: 2019 retrospective of Luciano Mammino's tech career highlights and 2020 goals
 date: 2020-01-25T14:18:58.000Z
 updated: 2019-01-25T14:18:58.000Z
 header_img: ./loige-co-2019-a-year-in-review-luciano-mammino-blog.jpg
 status: published
 tags:
   - life
+description: Luciano Mammino reflects on his 2019 tech career achievements
+  including conference talks, career moves, open source contributions, and blog
+  posts. He also sets realistic goals for 2020 like finding a new job, releasing
+  Middy 1.0, and getting an advanced AWS certification.
 ---
 
 A little bit later than I expected over the new year, but here we are again, with my usual introspective post to figure out how the hell did the last year went and how to make the best out of the new year.

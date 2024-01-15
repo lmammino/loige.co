@@ -12,6 +12,9 @@ tags:
   - slides
   - talk
   - performance
+description: This post shares 6 tips to build fast web applications based on a
+  talk at Php Dublin in March 2016. It includes slides and covers topics like
+  caching, compression, database optimization, and more.
 ---
 
 Following one of my previous posts about [performance in web applications](http://loige.co/6-rules-of-thumb-to-build-blazing-fast-web-applications/), yesterday night I had the chance to give a related talk at the [Php Dublin user group](https://phpdublin.com/).

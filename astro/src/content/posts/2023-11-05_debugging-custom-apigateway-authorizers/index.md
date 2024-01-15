@@ -1,7 +1,7 @@
 ---
 title: Debugging custom ApiGateway authorizers
 slug: debugging-custom-apigateway-authorizers
-subtitle: null
+subtitle: Debugging API Gateway authorizers by enabling CloudWatch logs
 date: 2023-11-05T13:48:00.000Z
 updated: 2023-11-05T13:48:00.000Z
 header_img: ./debugging-custom-apigateway-authorizers.jpg
@@ -11,6 +11,9 @@ tags:
   - serverless
   - lambda
   - api-gateway
+description: When building a custom API Gateway authorizer, mysterious 500
+  errors can happen. This post shows how to enable CloudWatch logging for API
+  Gateway to inspect the logs and debug problems.
 ---
 
 Last week, while working on [a custom REST API Gateway Lambda authorizer](https://github.com/lmammino/oidc-authorizer), I spent some time trying to debug a mysterious `500` error with a `{"message":null}` body. In this article, I will share why this was happening and how to debug this kind of error when building custom API Gateway authorizers.

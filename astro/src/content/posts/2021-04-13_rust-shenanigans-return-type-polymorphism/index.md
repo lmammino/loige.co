@@ -1,7 +1,8 @@
 ---
 title: "Rust shenanigans: return type polymorphism"
 slug: rust-shenanigans-return-type-polymorphism
-subtitle: null
+subtitle: Return type polymorphism in Rust allows writing generic functions that
+  behave differently based on expected return type
 date: 2021-04-13T09:15:00.000Z
 updated: 2021-04-13T09:15:00.000Z
 header_img: ./rust-shenanigans-return-type-polymorphism.jpg
@@ -9,6 +10,10 @@ status: published
 written_with: []
 tags:
   - rust
+description: This article explores return type polymorphism in Rust through
+  examples like Default::default() and a custom dice rolling library. The
+  technique allows writing generic functions that can return different types
+  based on usage. Useful for extensible APIs.
 ---
 
 In this article, I will describe Rust _return type polymorphism_ (a.k.a. _generic returns_), a feature that I recently discovered and that I have been pretty intrigued about.

@@ -1,7 +1,8 @@
 ---
 title: My Serverless talk at Shift conference in Split
 slug: my-serverless-talk-at-shift-conference-in-split
-subtitle: null
+subtitle: Luciano Mammino shares his experience speaking at Shift conference
+  about Serverless pros and cons
 date: 2017-06-15T13:49:59.000Z
 updated: 2017-06-15T13:54:06.000Z
 header_img: ./my-serverless-talk-at-shift-conference-in-split-cover-picture.jpg
@@ -13,6 +14,9 @@ tags:
   - serverless
   - javascript
   - node-js
+description: Luciano Mammino recounts his experience speaking at the Shift
+  conference in Split, Croatia about Serverless architecture and its pros and
+  cons. He provides links to his talk video, slides, and a Twitter moment.
 ---
 
 This June, I had an amazing experience talking again about Serverless and how we use it at [Planet 9 Energy](https://planet9energy.com/) at the recent [Shift Conference](http://shift.codeanywhere.com/index2017.html) in Split, Croatia.

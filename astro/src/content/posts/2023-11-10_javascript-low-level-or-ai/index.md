@@ -1,7 +1,7 @@
 ---
 title: JavaScript, low-level or AI?
 slug: javascript-low-level-or-ai
-subtitle: null
+subtitle: The tension between generative AI and low-level languages
 date: 2023-11-10T14:37:00.000Z
 updated: 2023-11-10T14:37:00.000Z
 header_img: ./javascript-low-level-or-ai.jpg
@@ -12,6 +12,10 @@ tags:
   - rust
   - go
   - ai
+description: The software industry sees an interesting tension between
+  generative AI capturing the software lifecycle and low-level languages aiming
+  for better performance. As developers we must understand these trends and find
+  a strategy. Learn one or both?
 ---
 
 The software industry is going to be fun to see in the coming 5-10 years.

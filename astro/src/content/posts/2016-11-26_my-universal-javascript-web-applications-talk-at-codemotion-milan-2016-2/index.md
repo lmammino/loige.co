@@ -1,7 +1,8 @@
 ---
 title: My Universal JavaScript Web Applications talk at Codemotion Milan 2016
 slug: my-universal-javascript-web-applications-talk-at-codemotion-milan-2016-2
-subtitle: null
+subtitle: Universal JavaScript explained through a practical React application
+  demo at Codemotion Milan 2016
 date: 2016-11-26T09:53:55.000Z
 updated: 2016-12-12T23:44:38.000Z
 header_img: ./my-universal-javascript-web-applications-talk-at-codemotion-milan-2016-2.jpg
@@ -12,6 +13,12 @@ tags:
   - node-js
   - javascript
   - react
+description: This blog post summarizes a talk about building a Universal
+  JavaScript application with React given at Codemotion Milan 2016. It includes
+  commentary for each slide, photos from Twitter, and a video recording. The
+  post explains what Universal JavaScript is, its benefits, challenges, and
+  walks through demo code to add server-side rendering and routing to a React
+  app.
 ---
 
 Yesterday (25/11/2016) I had the pleasure of delivering a talk about Universal JavaScript at [Codemotion Milan 2016](http://milan2016.codemotionworld.com). It was a great fun and I was very happy to meet such a big pool of technology enthusiasts and professionals all in one places. I'm already looking forward for the next edition!

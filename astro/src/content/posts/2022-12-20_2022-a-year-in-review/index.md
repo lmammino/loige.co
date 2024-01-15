@@ -1,13 +1,18 @@
 ---
 title: 2022 - A year in Review
 slug: 2022-a-year-in-review
-subtitle: null
+subtitle: Achievements of 2022 and expectations for 2023
 date: 2022-12-20T08:50:00.000Z
 updated: 2022-12-20T08:50:00.000Z
 header_img: ./2022-a-year-in-review.jpg
 status: published
 tags:
   - life
+description: In 2022 Luciano Mammino was awarded AWS Serverless Hero, confirmed
+  as Microsoft MVP, became Codemotion Ambassador, spoke at 25 events, produced
+  45 AWS Bites podcast episodes, streamed live coding 36 times, surpassed 8M
+  downloads for Middy and much more. His plans for 2023 include growing his AWS
+  and Serverless expertise, learning Rust and Solid.js.
 ---
 
 Yup, 2022 flew and it's that time of the year again. I want to write that boring post that I am the only one to look forward to writing and I don't expect anyone to read.

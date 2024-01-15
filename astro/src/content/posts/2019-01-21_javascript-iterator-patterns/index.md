@@ -1,7 +1,8 @@
 ---
 title: JavaScript iterator patterns
 slug: javascript-iterator-patterns
-subtitle: null
+subtitle: Exploring functions, iterators, iterables and generators for dynamic
+  sequence generation in JavaScript
 date: 2019-01-21T03:25:58.000Z
 updated: 2019-01-27T17:15:58.000Z
 header_img: ./javascript-iterator-patterns-rubber-ducks.jpg
@@ -10,6 +11,10 @@ tags:
   - javascript
   - node-js
   - design-patterns
+description: This article explores different ways to create iterators and
+  iterable values in Javascript for dynamic sequence generation, specifically
+  using functions, iterators, iterables and generators. It provides code
+  examples for implementing the Fibonacci sequence with each approach.
 ---
 
 In this article we will explore different ways to create iterators and iterable

@@ -10,6 +10,9 @@ status: published
 tags:
   - serverless
   - aws
+description: This article explores the history of cloud computing from bare
+  metal servers to serverless, explaining key innovations like IaaS, PaaS,
+  containers and FaaS along the way.
 ---
 
 Lately, I tried to understand why modern cloud computing brought us to the idea (and growing adoption) of "Serverless".

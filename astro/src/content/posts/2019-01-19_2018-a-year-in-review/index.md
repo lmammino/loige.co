@@ -1,13 +1,19 @@
 ---
 title: 2018 - A year in review
 slug: 2018-a-year-in-review
-subtitle: null
+subtitle: "2018 year in review: Blogging, open source, career growth, and
+  setting goals for 2019"
 date: 2019-01-20T02:18:58.000Z
 updated: 2019-01-20T02:18:58.000Z
 header_img: ./loige-co-2018-a-year-in-review-luciano-mammino-blog.jpg
 status: published
 tags:
   - life
+description: A personal 2018 year in review including achievements like
+  migrating my blog to a serverless setup, 8 conference talks, career growth at
+  Vectra, open source contributions, and reflections on side projects. Outlines
+  goals for 2019 like writing more, releasing middy 1.0, and getting advanced
+  AWS certifications.
 ---
 
 It is that time of the year when I have to look back at the previous year and see what were my achievements, my failures and set my expectations for my 2019.

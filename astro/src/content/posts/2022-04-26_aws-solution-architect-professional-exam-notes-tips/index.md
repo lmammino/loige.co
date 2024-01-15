@@ -1,13 +1,17 @@
 ---
 title: AWS Solution Architect Professional exam, my notes and tips
 slug: aws-solution-architect-professional-exam-notes-tips
-subtitle: null
+subtitle: Tips and strategies to prepare for the challenging AWS Solutions
+  Architect Professional certification exam
 date: 2022-04-26T18:20:00.000Z
 updated: 2022-04-26T18:20:00.000Z
 header_img: ./aws-solution-architect-professional-exam-notes-tips.jpg
 status: published
 tags:
   - aws
+description: The AWS Solutions Architect Professional certification is one of
+  the toughest IT certifications. This post shares preparation tips, exam
+  strategies, study resources, and sample questions to help you succeed.
 ---
 
 Hello everyone, I am really happy to share with you that I recently got my AWS Solution Architect Professional certification (SAP-C01) 🎉

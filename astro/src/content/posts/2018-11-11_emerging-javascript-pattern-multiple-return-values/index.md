@@ -1,7 +1,8 @@
 ---
 title: "Emerging JavaScript pattern: multiple return values"
 slug: emerging-javascript-pattern-multiple-return-values
-subtitle: null
+subtitle: Multiple return values in JavaScript enable elegant APIs and flexible
+  error handling
 date: 2018-11-11T17:00:00.000Z
 updated: 2018-11-11T17:00:00.000Z
 header_img: ./emerging-javascript-pattern-multiple-return-values.jpg
@@ -13,6 +14,10 @@ tags:
   - react
   - lua
   - go
+description: This article explores how to simulate multiple return values in
+  JavaScript using arrays and objects. It covers use cases like React Hooks and
+  async/await error handling. The pattern enables elegant APIs but has
+  performance implications.
 ---
 
 In this article, I want to explore an interesting pattern that I am seeing more and more in JavaScript code which allows you to return multiple values from a function.

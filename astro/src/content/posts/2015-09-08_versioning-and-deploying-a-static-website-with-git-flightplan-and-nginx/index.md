@@ -1,7 +1,7 @@
 ---
 title: Versioning and deploying a static website with Git, Flightplan and Nginx
 slug: versioning-and-deploying-a-static-website-with-git-flightplan-and-nginx
-subtitle: null
+subtitle: Learn how to version and deploy static websites with Git, Flightplan, and Nginx
 date: 2015-09-08T22:16:27.000Z
 updated: 2015-09-14T22:15:27.000Z
 header_img: ./Versioning-and-deploying-a-static-website-with-git-flightplan-and-nginx.jpg
@@ -14,6 +14,10 @@ tags:
   - git
   - flightplan
   - collaboration
+description: This blog post provides a beginner's guide to managing versioning
+  and deployment of static websites using Git for version control, Flightplan.js
+  for automated deployment, and Nginx for serving. It outlines a simple yet
+  complete workflow for implementing continuous delivery and rollbacks.
 ---
 
 Do you ever wondered how to manage the **versioning** and **deployment** process of a website? It seems to be a very interesting yet complex topic for which there are already thousands of different solutions.

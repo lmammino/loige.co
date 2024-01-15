@@ -1,7 +1,8 @@
 ---
 title: 2020 - A year in review
 slug: 2020-a-year-in-review
-subtitle: null
+subtitle: A review of Luciano Mammino's 2020, including Node.js Design Patterns
+  book, conference talks, new job, side projects, and goals for 2021
 date: 2021-01-02T12:50:00.000Z
 updated: 2021-01-02T12:50:00.000Z
 header_img: ./2020-a-year-in-review.jpg
@@ -9,6 +10,11 @@ status: published
 written_with: null
 tags:
   - life
+description: Luciano Mammino reflects on his 2020, including publishing Node.js
+  Design Patterns Third Edition book, giving 13 conference talks, joining
+  Fabfitfun as Principal Engineer, releasing Middy 1.0, launching Linkerflix
+  MVP, and setting goals for improving as a software engineer, cloud architect,
+  and indie maker in 2021.
 ---
 
 As we transition into 2021 and we leave this crazy 2020 behind, it is a great time for me to reflect on my what happened in 2020 from a career perspective and make some plans for the year to come.

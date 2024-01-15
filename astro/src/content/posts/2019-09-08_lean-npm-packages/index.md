@@ -1,7 +1,7 @@
 ---
 title: Lean NPM packages
 slug: lean-npm-packages
-subtitle: null
+subtitle: Keep your NPM packages lean with selective publishing
 date: 2019-09-08T16:40:58.000Z
 updated: 2019-09-08T16:40:58.000Z
 header_img: ./lean-npm-packages.jpg
@@ -10,6 +10,8 @@ tags:
   - javascript
   - node-js
   - npm
+description: Learn how to configure NPM packages to publish only the files
+  needed by users, avoiding bloating node_modules folders.
 ---
 
 Every developer on the planet knows how modular Node.js and the JavaScript ecosystem have become.

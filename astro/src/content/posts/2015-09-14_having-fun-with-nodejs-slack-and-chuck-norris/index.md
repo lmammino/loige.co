@@ -1,7 +1,7 @@
 ---
 title: Having fun with Node.js, Slack and Chuck Norris
 slug: having-fun-with-nodejs-slack-and-chuck-norris
-subtitle: null
+subtitle: Building a fun Slack bot with Node.js and Chuck Norris jokes
 date: 2015-09-14T22:05:30.000Z
 updated: 2015-09-14T22:05:30.000Z
 header_img: ./having-fun-with-nodejs-slack-and-chuck-norris.jpg
@@ -10,6 +10,9 @@ tags:
   - node-js
   - slack
   - collaboration
+description: A tutorial was published on how to build a simple Slack bot in
+  Node.js that tells Chuck Norris jokes, for some amusing fun. The bot is open
+  source and available on GitHub and NPM.
 ---
 
 I recently wrote a **Slack bot** in **Node.js** in collaboration with one of my favourite web development websites: the amazing [Scotch.io](https://scotch.io).

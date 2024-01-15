@@ -1,7 +1,7 @@
 ---
 title: Write a console application using Symfony and Pimple
 slug: write-a-console-application-using-symfony-and-pimple
-subtitle: null
+subtitle: Using Symfony Console and Pimple to build organized command line apps
 date: 2014-03-15T02:16:20.000Z
 updated: 2014-03-16T16:50:57.000Z
 header_img: ./write-a-console-application-using-symfony-and-pimple.png
@@ -11,6 +11,11 @@ tags:
   - symfony
   - console
   - pimple
+description: This article shows how to build a simple command line application
+  using the Symfony Console component and Pimple dependency injection container.
+  It provides a step-by-step guide on structuring the code, defining services,
+  configuring parameters and wiring everything together to create a executable
+  console app.
 ---
 
 In this article I will show you how to set up a stand alone command line application by using the [Symfony Console component](https://github.com/symfony/console) and [Pimple](http://pimple.sensiolabs.org/).

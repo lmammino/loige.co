@@ -1,7 +1,7 @@
 ---
 title: Symfony, edit the Response globally using the Kernel Response event
 slug: symfony-edit-the-response-globally-using-the-kernel-response-event
-subtitle: null
+subtitle: Edit the Symfony response globally with Kernel Response event
 date: 2015-02-21T01:12:00.000Z
 updated: 2015-03-02T23:19:32.000Z
 header_img: ./symfony-edit-the-response-globally-using-the-kernel-response-event.jpg
@@ -10,6 +10,10 @@ tags:
   - php
   - symfony
   - http
+description: The Symfony HttpKernel Component allows interacting with the
+  response generation through events. The Kernel Response event permits
+  modifying the response before sending it out. Two examples show how to use it
+  to add custom headers and cookies without touching controller logic.
 ---
 
 One of the things I like most of the Symfony framework is its [Http Kernel component](https://packagist.org/packages/symfony/http-kernel). Not only it does offer a very straightforward abstraction to handle requests and responses in an object-oriented way but it also allows you to interact with the whole response generation process through [events](http://symfony.com/doc/current/components/http_kernel/introduction.html#creating-an-event-listener).

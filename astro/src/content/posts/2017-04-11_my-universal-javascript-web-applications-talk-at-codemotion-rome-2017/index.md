@@ -1,7 +1,8 @@
 ---
 title: My Universal JavaScript Web Applications talk at Codemotion Rome 2017
 slug: my-universal-javascript-web-applications-talk-at-codemotion-rome-2017
-subtitle: null
+subtitle: Universal JavaScript talk at Codemotion Rome 2017 covers React,
+  Webpack, and Express
 date: 2017-04-11T22:41:40.000Z
 updated: 2017-06-15T13:22:04.000Z
 header_img: ./my-universal-javascript-web-applications-talk-at-codemotion-rome-2017.jpg
@@ -12,6 +13,10 @@ tags:
   - react
   - javascript
   - node-js
+description: The author gave a talk on building universal JavaScript web apps at
+  Codemotion Rome 2017. He updated his Judo Heroes demo to v2 with React 15.4,
+  React Router 4, Webpack 2, and Express 5. The talk got positive feedback from
+  the audience. Slides and video are linked.
 ---
 
 Last month (March 25th) I had the pleasure of delivering again my Universal JavaScript talk in a Codemotion Event, [this time in Rome](http://rome2017.codemotionworld.com/).

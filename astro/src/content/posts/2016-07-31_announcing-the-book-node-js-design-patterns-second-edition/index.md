@@ -1,7 +1,8 @@
 ---
 title: Announcing the book "Node.js design patterns - second edition"
 slug: announcing-the-book-node-js-design-patterns-second-edition
-subtitle: null
+subtitle: New book provides comprehensive guide to applying design patterns with
+  Node.js and JavaScript
 date: 2016-07-31T18:25:00.000Z
 updated: 2016-08-01T18:45:47.000Z
 header_img: ./announcing-the-book-node-js-design-patterns-second-edition.jpg
@@ -10,6 +11,10 @@ tags:
   - node-js
   - books
   - design-patterns
+description: The author announces the release of "Node.js design patterns -
+  second edition", a new book covering design patterns for Node.js and
+  JavaScript. It includes updated code for Node v6 and ES2015 across 11 chapters
+  and 100+ examples.
 ---
 
 In this post I am going to introduce my last side-project: "Node.js design patterns — second edition", a technical book about Node.js and design patterns published by Packt.

@@ -1,7 +1,8 @@
 ---
 title: "Symfony security: authentication made simple (well, maybe!)"
 slug: symfony-security-authentication-made-simple
-subtitle: null
+subtitle: "Symfony authentication demystified: a guide to understanding the
+  security component"
 date: 2014-02-14T00:34:23.000Z
 updated: 2014-03-13T14:54:05.000Z
 header_img: ./symfony-security-authentication-made-simple.png
@@ -10,6 +11,10 @@ tags:
   - php
   - symfony
   - security
+description: This post collects resources and provides a graph to understand how
+  Symfony authentication works behind the scenes, from the initial request to
+  the final authenticated token. It clarifies the relationships between key
+  classes like firewall, authentication provider and authentication listener.
 ---
 
 The [Symfony2 security component](http://symfony.com/doc/current/components/security/introduction.html) has the fame of being one of the most complex in the framework. I tend to believe that's partially true, not because the component is really that complex, but because there are (really) a lot of concepts involved and it may be difficult to understand them all at once and have a clear vision as a whole.

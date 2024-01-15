@@ -1,13 +1,17 @@
 ---
 title: 2023 - A year in Review
 slug: 2023-a-year-in-review
-subtitle: null
+subtitle: "2023: A year of growth, learning, and connections"
 date: 2023-12-27T15:00:00.000Z
 updated: 2023-12-27T15:00:00.000Z
 header_img: ./2023-a-year-in-review.jpg
 status: published
 tags:
   - life
+description: In 2023, Luciano Mammino attended his first re:Invent, grew open
+  source projects like Middy, continued podcasting on AWS Bites, and
+  strengthened connections through public speaking and live coding. He also
+  contributed to sustainability through LifeFoliage's Landscape Hunt game.
 ---
 
 2023: End of another year!

@@ -1,7 +1,7 @@
 ---
 title: Backup your server with Dropbox
 slug: backup-your-server-with-dropbox
-subtitle: null
+subtitle: Backup your server files easily with Dropbox command line
 date: 2014-01-17T03:44:19.000Z
 updated: 2014-04-05T16:21:17.000Z
 header_img: ./backup-your-server-with-dropbox.png
@@ -10,6 +10,9 @@ tags:
   - backup
   - dropbox
   - server
+description: This post explains how to install Dropbox command line client on a
+  Linux server, create a dedicated user and setup it as a service to have
+  automated backups on Dropbox cloud.
 ---
 
 In my early days as _CTO_ at [Sbaam](http://sbaam.com) I had to setup a web server from the ground up. As it happens in many startups the work had to be done quickly and with an _almost-0-budget_, so it left no space to sophisticated solutions for recurring tasks such as **backup**. I always have been a web developer and focused on coding so, I admit I had really a poor knowledge about how to setup a remote unix virtual machine.

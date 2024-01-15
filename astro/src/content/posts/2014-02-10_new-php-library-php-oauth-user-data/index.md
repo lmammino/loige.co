@@ -1,7 +1,8 @@
 ---
 title: "New PHP library: PHPoAuthUserData"
 slug: new-php-library-php-oauth-user-data
-subtitle: null
+subtitle: New PHP library PHPoAuthUserData simplifies user data extraction from
+  OAuth providers like Facebook, Twitter, LinkedIn
 date: 2014-02-10T12:13:50.000Z
 updated: 2014-02-10T23:23:21.000Z
 header_img: ./new-php-library-php-oauth-user-data.png
@@ -11,6 +12,9 @@ tags:
   - php
   - oauth
   - github
+description: The PHPoAuthUserData library provides a simple interface to extract
+  common user data like name, username, ID from various OAuth providers. It
+  builds on top of PHPoAuthLib.
 ---
 
 

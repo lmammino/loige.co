@@ -12,6 +12,10 @@ tags:
   - mysql
   - lumen
   - laravel
+description: This tutorial shows step-by-step how to bootstrap a Lumen project,
+  configure MySQL, create migrations and models, seed the database, define
+  routes and templates to build a fully working motivational quote web app in
+  less than 30 minutes.
 ---
 
 [Lumen](http://lumen.laravel.com/) is a new [Php](/tag/php) micro-framework developed by [Taylor Otwell](https://twitter.com/taylorotwell), the same author of the famous [Laravel](http://laravel.com/) framework. I wanted to give it a try and I am here to share my experimentations. I am not an expert of Lumen (yet), but I think one of the best characteristics of this framework is that it makes really really easy to bootstrap a new project.

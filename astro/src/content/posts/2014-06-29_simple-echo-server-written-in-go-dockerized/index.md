@@ -11,6 +11,11 @@ tags:
   - server
   - go
   - docker
+description: By writing a Dockerfile we can containerize a simple Go echo server
+  app. The Dockerfile installs Go, copies the server code, exposes the port, and
+  defines the command to run the app. Building the Dockerfile produces an image
+  that can be run as a container. The containerized Go app can then be easily
+  distributed and run anywhere Docker is installed.
 ---
 
 In this post we will see how to write a (very) simple **Go server app** and how to put it into a **Docker container** and run it.

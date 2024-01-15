@@ -1,7 +1,7 @@
 ---
 title: Provision an Ubuntu-based EC2 instance with CDK
 slug: provision-ubuntu-ec2-with-cdk
-subtitle: null
+subtitle: Provisioning Ubuntu EC2 instances with CDK
 date: 2021-08-06T13:05:00.000Z
 updated: 2021-08-06T13:05:00.000Z
 header_img: ./provision-ubuntu-ec2-with-cdk-luciano-mammino-loige.jpg
@@ -13,6 +13,9 @@ tags:
   - javascript
   - typescript
   - nginx
+description: This post explains how to use CDK to provision Ubuntu EC2 instances
+  on AWS. It covers finding the right AMI, adding security groups, using init
+  scripts, installing AWS utilities, and more.
 ---
 
 You are using CDK and you need to provision an EC2 instance. What if you prefer to use **Ubuntu** over **Amazon Linux**? In this article, we will see exactly how to do that, and, hopefully, we will learn a bunch of interesting things in the process!

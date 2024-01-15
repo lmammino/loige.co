@@ -13,6 +13,12 @@ tags:
   - laravel
   - performance
   - scalability
+description: "This post highlights 6 important rules to keep in mind when
+  developing performant web applications: avoid premature optimization, do the
+  minimum required work, defer non-critical tasks, leverage caching, avoid N+1
+  queries, and design for horizontal scaling. Following these guidelines will
+  help you write efficient code from the start and build apps ready to handle
+  growth."
 ---
 
 In this post I will try to highlight some of the most common principles that you have to take under consideration when you want to achieve a great level of performance while building a web application (specifically on the backend part). I believe the concepts discussed here can be applied to any language and framework even if, due to my specific experience, I will mention some examples, design patterns, conventions and tools that are mostly used in the PHP world.

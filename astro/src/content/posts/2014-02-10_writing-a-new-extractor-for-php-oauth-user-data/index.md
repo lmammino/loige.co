@@ -1,7 +1,7 @@
 ---
 title: Writing a new Extractor for PHPoAuthUserData
 slug: writing-a-new-extractor-for-php-oauth-user-data
-subtitle: null
+subtitle: Writing a new Instagram extractor for PHPoAuthUserData
 date: 2014-02-10T17:23:54.000Z
 updated: 2014-02-10T17:30:42.000Z
 header_img: ./writing-a-new-extractor-for-php-oauth-user-data.png
@@ -12,6 +12,10 @@ tags:
   - oauth
   - instagram
   - github
+description: This post explains how to add support for Instagram to the
+  PHPoAuthUserData library by writing a dedicated extractor class. It
+  illustrates the concepts of loaders, normalizers and mapping to extract user
+  profile data from the Instagram API.
 ---
 
 In my [previous post](http://loige.com/new-php-library-php-oauth-user-data/) I introduced my latest library [PHPoAuthUserData](https://github.com/Oryzone/PHPoAuthUserData) that allows to abstract the process of

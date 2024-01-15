@@ -1,7 +1,9 @@
 ---
 title: "The Definition of Senior: A Look at the expectations for Software Engineers"
 slug: the-senior-dev
-subtitle: null
+subtitle: Being a senior software engineer is about technical expertise,
+  communication skills, and leadership - it's a continuous journey of learning
+  and growth.
 date: 2023-03-26T16:30:00.000Z
 updated: 2023-03-26T16:30:00.000Z
 header_img: ./the-senior-dev.jpg
@@ -9,6 +11,12 @@ status: published
 tags:
   - life
   - career
+description: This article explores the multifaceted definition of a senior
+  software engineer. It covers the technical skills like going a level deeper
+  and having a broad understanding, as well as soft skills like communication,
+  autonomy, business acumen, and leadership. It provides tips on how to grow,
+  such as pair programming and content creation. The path to seniority requires
+  dedication, perseverance and a growth mindset.
 ---
 
 In today's fast-paced tech industry, the role of a senior software engineer has become increasingly important and something many engineers strive to be recognized as. But **are you senior yet**? And **what's expected from you a senior**?

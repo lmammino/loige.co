@@ -1,7 +1,7 @@
 ---
 title: Why you should consider Rust for your Lambdas
 slug: why-you-should-consider-rust-for-your-lambdas
-subtitle: null
+subtitle: Rust's performance and safety can reduce AWS Lambda costs and bugs
 date: 2023-08-16T09:58:00.000Z
 updated: 2023-08-16T09:58:00.000Z
 header_img: ./why-you-should-consider-rust-for-your-lambdas.jpg
@@ -9,6 +9,9 @@ status: published
 tags:
   - rust
   - serverless
+description: Rust is an ideal language for writing AWS Lambda functions. Its
+  performance can reduce execution time and memory usage, lowering costs. Its
+  safety features like no nulls and error handling can reduce bugs.
 ---
 
 Rust is such a cool language, even though it might take a bit to get the hang of it. But trust me, the payoff is huge. As someone who's all into serverless stuff and loves playing around with AWS, I've been digging into how to write AWS Lambda functions in Rust and whether it's worth the sweat.

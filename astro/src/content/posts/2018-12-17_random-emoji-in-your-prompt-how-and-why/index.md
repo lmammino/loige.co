@@ -1,7 +1,7 @@
 ---
 title: A random emoji in your terminal prompt. How and Why!
 slug: random-emoji-in-your-prompt-how-and-why
-subtitle: null
+subtitle: Add a random emoji to your terminal prompt for fun and productivity
 date: 2018-12-17T18:50:00.000Z
 updated: 2018-12-18T12:01:00.000Z
 header_img: ./random-emoji-in-your-prompt-how-and-why.png
@@ -9,6 +9,10 @@ status: published
 tags:
   - bash
   - shell
+description: Customize your terminal prompt with Bash PS1 variable and RANDOM
+  function to show a random emoji on each command. Learn Bash arrays, escape
+  sequences, and functions. Emojis make your terminal more fun and keep your
+  morale up during debugging.
 ---
 
 In this article, we will see how to customize our terminal prompt and add a random emoji in it.

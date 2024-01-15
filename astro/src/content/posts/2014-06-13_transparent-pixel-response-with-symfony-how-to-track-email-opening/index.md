@@ -1,7 +1,8 @@
 ---
 title: Transparent pixel response with Symfony, how to track email opening
 slug: transparent-pixel-response-with-symfony-how-to-track-email-opening
-subtitle: null
+subtitle: Track email opens with a transparent pixel in Symfony for improved
+  email marketing analytics
 date: 2014-06-13T10:33:04.000Z
 updated: 2014-06-17T09:00:17.000Z
 header_img: ./transparent-pixel-response-with-symfony-how-to-track-email-opening.jpg
@@ -12,6 +13,10 @@ tags:
   - http
   - tracking
   - email
+description: This blog post explains how to implement email open tracking in
+  Symfony using a transparent tracking pixel. It provides code examples for
+  generating a tracking image response and handling the tracking logic in a
+  controller.
 ---
 
 If you have ever heard about "**transparent pixel**", "**1x1 blank pixel**", "**tracking pixel**" or simply "**tracking image**" you probably know what we are going to talk about and can just [skip to the implementation](#symfonyimplementation)!

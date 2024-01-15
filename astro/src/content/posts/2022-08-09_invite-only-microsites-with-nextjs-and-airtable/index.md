@@ -1,7 +1,8 @@
 ---
 title: Invite-only microsites with Next.js and AirTable
 slug: invite-only-microsites-with-nextjs-and-airtable
-subtitle: null
+subtitle: Build an invite-only website with Next.js, AirTable, custom React
+  hooks, and Vercel deploy
 date: 2022-08-09T07:40:00.000Z
 updated: 2022-08-09T07:40:00.000Z
 header_img: ./invite-only-microsites-with-nextjs-and-airtable.jpg
@@ -12,6 +13,10 @@ tags:
   - react
   - nextjs
   - jwt
+description: Learn how to create a private, invite-only website using Next.js,
+  AirTable, custom React hooks, and Vercel deploy. The post covers backend APIs
+  in Next.js, data storage with AirTable, validating access with invite codes,
+  collecting user input, and deploying the final app.
 ---
 
 I recently needed to create an invite-only Next.js-powered microsite (for my wedding 🌸) and in this article I'm going to show you how I went about creating invite codes and how I implemented code validation in the app, using Next.js API endpoints and [AirTable](https://airtable.com/invite/r/fQpMoVmw) as a lightweight backend.

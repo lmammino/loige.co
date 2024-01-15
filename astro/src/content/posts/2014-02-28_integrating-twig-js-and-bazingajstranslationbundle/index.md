@@ -1,7 +1,7 @@
 ---
 title: Integrating Twig.js and BazingaJsTranslationBundle
 slug: integrating-twig-js-and-bazingajstranslationbundle
-subtitle: null
+subtitle: Integrating Twig.js with BazingaJsTranslationBundle for consistent translations
 date: 2014-02-28T11:40:05.000Z
 updated: 2014-02-28T12:35:38.000Z
 header_img: ./integrating-twig-js-and-bazingajstranslationbundle.png
@@ -12,6 +12,11 @@ tags:
   - javascript
   - translation
   - twig
+description: The post explains how to integrate twig.js with
+  BazingaJsTranslationBundle to handle translations consistently between PHP and
+  JavaScript. It shows how to build a custom Twig extension to translate strings
+  with the Bazinga Translator object and handle differences in parameter
+  formatting.
 ---
 
 Recently I had the need to run a twig template that uses the `trans` filter on my frontend using [twig.js](http://jmsyst.com/libs/twig.js), a pure JavaScript port of twig written by the good [Johannes Schmitt](http://jmsyst.com/).

@@ -1,7 +1,8 @@
 ---
 title: Get an invitation for GitKraken
 slug: get-an-invitation-for-gitkraken
-subtitle: null
+subtitle: Get early access to GitKraken, an innovative Git GUI client with
+  useful features like interactive commit graph and GitHub integration
 date: 2016-01-19T21:10:23.000Z
 updated: 2016-02-03T18:52:55.000Z
 header_img: ./get-an-invitation-for-gitkraken-loige-co-luciano-mammino.png
@@ -9,6 +10,10 @@ status: published
 tags:
   - git
   - github
+description: GitKraken is a new cross-platform graphical interface for Git
+  currently in private beta. It has useful features like interactive commit
+  graph visualization, easy branching/stashing, and GitHub integration. The post
+  shares invites to try the private beta version of GitKraken.
 ---
 
 Axosoft is currently working on [GitKraken](http://www.gitkraken.com/) an innovative multi-platform graphical client for [git](/tag/git) which is already available for Windows, Linux and Mac OSX in **private beta** version.

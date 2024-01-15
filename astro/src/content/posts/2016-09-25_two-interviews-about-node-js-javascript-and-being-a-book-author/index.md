@@ -1,7 +1,7 @@
 ---
 title: Two Interviews about Node.js, JavaScript and being a book author
 slug: two-interviews-about-node-js-javascript-and-being-a-book-author
-subtitle: null
+subtitle: Interviews with Luciano Mammino about Node.js, JavaScript, and writing books
 date: 2016-09-25T13:24:08.000Z
 updated: 2016-10-02T08:24:23.000Z
 header_img: ./two-interviews-about-node-js-javascript-and-being-a-book-author.jpg
@@ -10,6 +10,9 @@ tags:
   - collaboration
   - node-js
   - javascript
+description: Luciano Mammino recently participated in two interviews discussing
+  his work with Node.js and JavaScript as well as his experience as an author
+  writing books about Node.js design patterns.
 ---
 
 In the last month I had the pleasure to seeing published two interviews regarding my life as developer with [Node.js](/tag/node-js) and [JavaScript](/tag/javascript) and about being a book author with [Node.Js design patterns second edition](https://www.nodejsdesignpatterns.com).

@@ -1,7 +1,7 @@
 ---
 title: Reset your MySql server password
 slug: reset-your-mysql-server-password
-subtitle: null
+subtitle: Reset lost MySQL root password with a quick trick
 date: 2014-03-30T09:07:56.000Z
 updated: 2014-03-30T09:20:07.000Z
 header_img: ./reset-your-mysql-server-password.png
@@ -10,6 +10,10 @@ tags:
   - security
   - mysql
   - server
+description: Learn how to reset a lost MySQL root password by restarting the
+  server with disabled security checks. This allows resetting the password
+  directly in the database. Useful when locked out but reduces security
+  temporarily.
 ---
 
 Few days ago I learned an interesting trick that allows you to reset the password on a MySql server. This trick is pretty useful in case you have lost (or you haven't ever had) the password of your MySql root user.

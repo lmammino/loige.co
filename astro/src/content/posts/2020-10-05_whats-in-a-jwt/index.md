@@ -1,13 +1,16 @@
 ---
 title: What's in a JWT (Json Web Token)?
 slug: whats-in-a-jwt
-subtitle: null
+subtitle: "A deep dive into JWTs: their structure, how they work, and when to use them"
 date: 2020-10-05T09:00:00.000Z
 updated: 2020-10-05T09:00:00.000Z
 header_img: ./whats-in-a-jwt.png
 status: published
 tags:
   - jwt
+description: This article explains what JWTs (JSON Web Tokens) are, looking at
+  their internal structure with header, body, and signature. It illustrates how
+  they enable stateless authentication and authorization in distributed systems.
 ---
 
 If you ended up on this article, chances are that you have been seeing JWTs (Json Web Tokens) for a while and you are curious to find out what they really are, what's inside of them and how they actually work! Why did they get so mainstream anyway?! 🤔

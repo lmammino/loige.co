@@ -1,7 +1,7 @@
 ---
 title: "React on the Server for Beginners: Build a Universal React and Node App"
 slug: react-on-the-server-for-beginners-build-a-universal-react-and-node-app
-subtitle: null
+subtitle: Build a Universal React and Node App with React for client and server rendering
 date: 2016-08-29T21:49:47.000Z
 updated: 2016-08-29T21:49:47.000Z
 header_img: ./ryoko-tani-universal-javascript-nodejs-react-luciano-mammino-cover.jpg
@@ -10,6 +10,9 @@ tags:
   - node-js
   - react
   - collaboration
+description: This article explains how to build a simple Universal JavaScript
+  application using React, React Router and Express. It shows how to implement
+  server side rendering with React and Node.js to create an isomorphic app.
 ---
 
 I recently wrote a new article in collaboration with one of my favourite web development websites: the amazing [Scotch.io](https://scotch.io/).

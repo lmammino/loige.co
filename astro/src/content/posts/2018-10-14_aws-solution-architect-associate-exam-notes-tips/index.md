@@ -1,13 +1,19 @@
 ---
 title: AWS Solution Architect Associate exam, my notes and tips
 slug: aws-solution-architect-associate-exam-notes-tips
-subtitle: null
+subtitle: Notes and tips for passing the AWS Solutions Architect Associate exam
 date: 2018-10-21T11:57:00.000Z
 updated: 2018-10-21T11:57:00.000Z
 header_img: ./aws-solution-architect-associate-exam-notes-tips.jpg
 status: published
 tags:
   - aws
+description: The AWS Solutions Architect Associate exam covers a wide range of
+  AWS services. This post shares helpful notes and tips for studying key
+  concepts like EC2, S3, VPC, DynamoDB, and more. It provides advice on the exam
+  mindset and lists official and unofficial preparation resources. The notes
+  summarize important details around provisioned throughput, instance types,
+  database replication and more that are helpful to know for the exam.
 ---
 
 In this article, I will share some of my notes and tips that might be useful if you are studying to get the AWS Solution Architect Associate Certification.

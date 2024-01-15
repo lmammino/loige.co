@@ -1,7 +1,10 @@
 ---
 title: Middy 1.0.0 is here
 slug: middy-1-is-here
-subtitle: null
+subtitle: Middy 1.0 brings a middleware framework to simplify AWS Lambda development
+description: The middleware framework Middy reached version 1.0, bringing
+  middleware capabilities to AWS Lambda. This allows cleaner handler code by
+  extracting cross-cutting concerns into reusable middleware.
 date: 2020-04-26T15:25:00.000Z
 updated: 2020-04-26T15:25:00.000Z
 header_img: ./loige-co-middy-1-is-here.jpg

@@ -1,7 +1,7 @@
 ---
 title: How to to_string in Rust
 slug: how-to-to-string-in-rust
-subtitle: null
+subtitle: "Exploring Rust traits for string conversion: Debug, Display and ToString"
 date: 2021-05-26T18:50:00.000Z
 updated: 2021-05-27T19:10:00.000Z
 header_img: ./how-to-to-string-in-rust.jpg
@@ -9,6 +9,9 @@ status: published
 written_with: []
 tags:
   - rust
+description: This article explores how to convert values to strings in Rust
+  using traits like Debug, Display and ToString. It explains the difference
+  between user-facing and debug representations.
 ---
 
 In Rust, there are several ways to turn a value into a string. In this article, we will explore a few different ways and discuss what are the most idiomatic approaches depending on the context you are currently working on.

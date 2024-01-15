@@ -1,7 +1,7 @@
 ---
 title: Learning Rust through open source and live code reviews
 slug: learning-rust-through-open-source-and-live-code-reviews
-subtitle: null
+subtitle: Learning Rust through open source projects and community reviews
 date: 2020-10-11T19:50:00.000Z
 updated: 2020-10-11T19:50:00.000Z
 header_img: ./learning-rust-through-open-source-and-live-code-reviews.jpg
@@ -12,6 +12,11 @@ written_with:
     link: https://twitter.com/stefanoabalsamo
 tags:
   - rust
+description: This article summarizes the experience of two developers learning
+  Rust by building an open source project and having it reviewed live by a Rust
+  expert. It covers the improvements suggested during the review, including
+  simplifying project structure, adding documentation, handling strings,
+  removing code duplication, improving input validation and testing.
 ---
 
 Hello from Luciano and Stefano! 👋

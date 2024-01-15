@@ -1,7 +1,8 @@
 ---
 title: 2021 - A year in review
 slug: 2021-a-year-in-review
-subtitle: null
+subtitle: 2021 was an exciting year full of learning, writing, speaking and open
+  source contributions
 date: 2022-02-02T20:25:00.000Z
 updated: 2022-02-02T20:25:00.000Z
 header_img: ./2021-a-year-in-review.jpg
@@ -9,6 +10,9 @@ status: published
 written_with: null
 tags:
   - life
+description: In 2021 I joined fourTheorem, became a Microsoft MVP, spoke at many
+  conferences, learned Rust, contributed to open source and much more. I reflect
+  on my professional achievements over the past year.
 ---
 
 A post where I reflect on my professional life in 2021 as a look ahead for what to expect in 2022.

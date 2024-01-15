@@ -1,7 +1,7 @@
 ---
 title: Introducing ORM Cheatsheet
 slug: introducing-orm-cheatsheet
-subtitle: null
+subtitle: ORM Cheatsheet provides a handy reference for PHP ORM libraries like Doctrine
 date: 2014-04-11T08:50:53.000Z
 updated: 2014-04-11T09:24:23.000Z
 header_img: ./introducing-orm-cheatsheet.jpg
@@ -10,6 +10,10 @@ tags:
   - php
   - doctrine
   - orm
+description: ORM Cheatsheet is a useful website that serves as a quick reference
+  guide for developers struggling to remember how to use common PHP ORM
+  libraries like Doctrine 2 and Propel. It provides examples for annotations,
+  relationships, and configuration.
 ---
 
 This week I received an interesting email from Martin Stradej, the developer of [ORM Designer](http://www.orm-designer.com), a tool to design ORM relationships with a simple but powerful graphic user interface.

@@ -1,7 +1,7 @@
 ---
 title: "AWS Command line: S3 content from stdin or to stdout"
 slug: aws-command-line-s3-content-from-stdin-or-to-stdout
-subtitle: null
+subtitle: Streaming content to and from S3 using stdin/stdout
 date: 2018-05-05T12:00:14.000Z
 updated: 2018-05-06T09:55:40.000Z
 header_img: ./aws-command-line-s3-content-from-stdin-or-to-stdout-loige-co-luciano-mammino.jpg
@@ -10,6 +10,9 @@ tags:
   - aws
   - bash
   - shell
+description: The AWS CLI s3 cp command supports streaming content to and from S3
+  using stdin/stdout with the - argument. This enables powerful pipelines
+  without intermediary files.
 ---
 
 This article presents a quick tip that will help you deal with the content of files in S3 through the AWS command line in a much faster and simpler way.

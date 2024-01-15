@@ -1,7 +1,8 @@
 ---
 title: Introducing flickr-set-get a command line app to download photos
 slug: introducing-flickr-set-get-a-command-line-app-to-download-photos
-subtitle: ""
+subtitle: flickr-set-get downloads Flickr galleries from the command line using
+  Node.js and asynchronous programming
 date: 2015-05-11T23:04:50.000Z
 updated: 2015-05-14T17:05:48.000Z
 header_img: ./flickr-set-get-download-photos-from-command-line-flickr.jpg
@@ -12,6 +13,11 @@ tags:
   - node-js
   - api
   - flickr
+description: The flickr-set-get command line app makes it easy to download
+  entire Flickr galleries. It uses the Flickr API and Node.js asynchronous
+  programming to download photos in parallel. The post explains the motivation
+  behind the project, the technologies used, and how the asynchronous code
+  works.
 ---
 
 I recently developed a small command line app that allows you to download an entire gallery from Flickr, it's called `flickr-set-get` and you can find it on [NPM](https://www.npmjs.com/package/flickr-set-get) and [GitHub](https://github.com/lmammino/flickr-set-get).

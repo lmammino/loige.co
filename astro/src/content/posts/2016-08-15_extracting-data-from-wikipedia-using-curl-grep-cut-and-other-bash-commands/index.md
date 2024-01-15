@@ -1,7 +1,7 @@
 ---
 title: Extracting data from Wikipedia using curl, grep, cut and other shell commands
 slug: extracting-data-from-wikipedia-using-curl-grep-cut-and-other-bash-commands
-subtitle: null
+subtitle: Shell commands to extract Olympic medalists data from Wikipedia
 date: 2016-08-15T17:17:00.000Z
 updated: 2016-08-29T22:08:11.000Z
 header_img: ./extracting-data-from-wikipedia-using-curl-grep-and-other-bash-commands-judo-teddy-riner.jpg
@@ -9,6 +9,9 @@ status: published
 tags:
   - bash
   - shell
+description: By using a combination of curl, grep, cut, sort, uniq and other
+  common bash utilities it is possible to extract structured data from Wikipedia
+  and compute insights without writing a full program.
 ---
 
 In this article I am going to show you how I was able to extract and process some information from Wikipedia only using a combination of common bash utilities like `curl` and `grep`.

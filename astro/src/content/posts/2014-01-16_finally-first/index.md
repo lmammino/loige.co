@@ -1,13 +1,16 @@
 ---
 title: Finally/First
 slug: finally-first
-subtitle: null
+subtitle: Exploring the reasons behind starting a developer blog
 date: 2014-01-16T23:04:36.000Z
 updated: 2014-01-17T03:06:07.000Z
 header_img: ./finally-first.png
 status: published
 tags:
   - life
+description: A web developer fascinated by the web since childhood discusses the
+  motivation behind starting a blog - to share thoughts on web development
+  trends and experiments in a personal space.
 ---
 
 Yep! **Finally** here's the **first** post on the path of this blog. _Finally/first_, indeed a curious binomial with a weird sound, but I think it's a good title to start this adventure.

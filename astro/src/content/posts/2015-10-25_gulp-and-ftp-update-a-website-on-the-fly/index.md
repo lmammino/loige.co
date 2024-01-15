@@ -1,7 +1,7 @@
 ---
 title: 'Gulp and FTP: update a website "on the fly"'
 slug: gulp-and-ftp-update-a-website-on-the-fly
-subtitle: null
+subtitle: Automate FTP deployments with Gulp for quick website updates
 date: 2015-10-25T18:47:00.000Z
 updated: 2016-12-13T21:24:35.000Z
 header_img: ./gulp-and-ftp-update-a-website-on-the-fly-1.png
@@ -11,6 +11,9 @@ tags:
   - javascript
   - ftp
   - server
+description: This tutorial explains how to use Gulp and vinyl-ftp to watch local
+  files for changes and automatically upload updates to a website via FTP.
+  Useful for quickly editing legacy sites only accessible through FTP.
 ---
 
 In this post I will explain you how to use [Gulp](http://gulpjs.com/) to interact with the files on your server through FTP. You will learn how to watch the files you are editing on your local machine and automatically synchronize them with your server as they change and how to setup a task to launch an FTP deploy on demand.

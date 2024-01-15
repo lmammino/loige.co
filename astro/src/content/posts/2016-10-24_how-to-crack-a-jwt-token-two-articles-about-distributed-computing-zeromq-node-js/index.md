@@ -2,7 +2,7 @@
 title: "How to crack a JWT token: two articles about distributed computing,
   ZeroMQ & Node.js"
 slug: how-to-crack-a-jwt-token-two-articles-about-distributed-computing-zeromq-node-js
-subtitle: null
+subtitle: Cracking JWT tokens with Node.js and ZeroMQ
 date: 2016-10-24T22:44:51.000Z
 updated: 2016-10-28T22:24:42.000Z
 header_img: ./how-to-crack-a-jwt-token-two-articles-about-distributed-computing-zeromq-node-js.jpg
@@ -14,6 +14,10 @@ tags:
   - collaboration
   - jwt
   - javascript
+description: This blog post explains how to build a distributed application
+  using Node.js and ZeroMQ that cracks JWT tokens. It provides a step-by-step
+  guide on implementing the application and links to two in-depth articles on
+  RisingStack that cover the theory and coding details.
 ---
 
 In the last 2 weeks I add the pleasure to release an article (in two parts) in collaboration with [RisingStack](http://risingstack.com/), one of the most famous companies in the [Node.js](/tag/node-js) ecosystem.

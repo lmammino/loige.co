@@ -1,7 +1,7 @@
 ---
 title: To promise or to callback? That is the question...
 slug: to-promise-or-to-callback-that-is-the-question
-subtitle: null
+subtitle: Support both callbacks and promises in async modules for maximum flexibility
 date: 2016-02-14T13:32:00.000Z
 updated: 2017-03-03T21:08:07.000Z
 header_img: ./to-promise-or-to-callback-this-is-the-problem-loige-amlet-arnold-schwarzenegger-javascript.jpg
@@ -9,6 +9,10 @@ status: published
 tags:
   - javascript
   - node-js
+description: "We explore two approaches to support both callbacks and promises
+  in async JavaScript modules: 1) promisify callback functions, 2) make callback
+  optional and return promise. The second allows flexible use of callbacks or
+  promises."
 ---
 
 You are building the next cool [JavaScript](/tag/javascript) or [Node.js](/tag/node-js) module with a lot of asynchronous functions and you are very happy about it. At some point a terrible doubt assaults you:
