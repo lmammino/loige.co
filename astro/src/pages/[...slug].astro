@@ -3,10 +3,15 @@ import { Image } from 'astro:assets'
 import { getCollection } from 'astro:content'
 import type { InferGetStaticPropsType } from 'astro'
 import { format } from 'date-fns'
+import { getAbsoluteUrl, getShareUrl } from '../utils/posts.ts'
 import CommonLayout from '../layouts/CommonLayout.astro'
 import UserIcon from '../components/icons/UserIcon.astro'
 import CalendarIcon from '../components/icons/CalendarIcon.astro'
 import TagIcon from '../components/icons/TagIcon.astro'
+import CopyIcon from '../components/icons/CopyIcon.astro'
+import LinkedinIcon from '../components/icons/LinkedinIcon.astro'
+import FacebookIcon from '../components/icons/FacebookIcon.astro'
+import XIcon from '../components/icons/XIcon.astro'
 import ProfilePicture from '../assets/profile-picture.jpg'
 
 type Props = InferGetStaticPropsType<typeof getStaticPaths>
@@ -148,30 +153,132 @@ const { Content } = await post.render()
         </aside>
 
         <!-- Content -->
-        <article
-          class="col-span-7 prose md:prose-lg lg:prose-xl prose:text-text-500 first:prose-p:text-text-700 first:prose-p:text-lg/relaxed md:first:prose-p:text-xl/relaxed lg:first:prose-p:text-2xl/relaxed prose-a:underline-offset-4 prose-a:text-primary-700 hover:prose-a:text-primary-500"
-        >
-          <Content />
-        </article>
+        <div class="col-span-7">
+          <article
+            class="prose md:prose-lg lg:prose-xl prose:text-text-500 first:prose-p:text-text-700 first:prose-p:text-lg/relaxed md:first:prose-p:text-xl/relaxed lg:first:prose-p:text-2xl/relaxed prose-a:underline-offset-4 prose-a:text-primary-700 hover:prose-a:text-primary-500"
+          >
+            <Content />
+          </article>
+
+          <div class="mt-8 pt-8 border-t border-text-100">
+            <div class="flex justify-between items-center gap-4">
+              <div>
+                <h3 class="text-text-500 font-bold">Sharing is caring!</h3>
+                <p class="text-text-400 text-sm max-w-sm"
+                  >If you got value from this article, please consider sharing
+                  it with your friends and colleagues.</p
+                >
+              </div>
+              <div class="flex gap-2">
+                <a
+                  role="button"
+                  id="copy-link"
+                  title="Copy link to clipboard"
+                  href={getAbsoluteUrl(post)}
+                  class="hidden transition px-4 py-1 rounded-full text-lg text-text-400 bg-primary-100 border border-primary-200 hover:bg-primary-200 hover:border-primary-300 hover:text-text-500"
+                  ><span class="flex gap-2 items-center text-nowrap">
+                    <CopyIcon class="h-4 w-4" />
+                    <span
+                      aria-role="label"
+                      data-text-normal="Copy link"
+                      data-text-copied="Copied!">Copy link</span
+                    >
+                  </span></a
+                >
+                <a
+                  role="button"
+                  title="Share this article on LinkedIn"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  href={getShareUrl(post, 'linkedin')}
+                  class="transition inline-flex px-3 py-2 rounded-full text-lg text-text-400 bg-secondary-100 border border-secondary-200 hover:bg-secondary-200 hover:border-secondary-300 hover:text-text-500"
+                >
+                  <span class="flex items-center text-nowrap"
+                    ><LinkedinIcon class="h-4 w-4" /><span class="sr-only"
+                      >Linkedin</span
+                    ></span
+                  >
+                </a>
+                <a
+                  role="button"
+                  title="Share this article on Facebook"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  href={getShareUrl(post, 'facebook')}
+                  class="transition inline-flex px-3 rounded-full text-lg text-text-400 bg-secondary-100 border border-secondary-200 hover:bg-secondary-200 hover:border-secondary-300 hover:text-text-500"
+                >
+                  <span class="flex items-center text-nowrap"
+                    ><FacebookIcon class="h-4 w-4" /><span class="sr-only"
+                      >Facebook</span
+                    ></span
+                  >
+                </a>
+                <a
+                  role="button"
+                  title="Share this article on X, formerly Twitter"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  href={getShareUrl(post, 'twitter')}
+                  class="transition inline-flex px-3 rounded-full text-lg text-text-400 bg-secondary-100 border border-secondary-200 hover:bg-secondary-200 hover:border-secondary-300 hover:text-text-500"
+                >
+                  <span class="flex items-center text-nowrap"
+                    ><XIcon class="h-4 w-4" /><span class="sr-only"
+                      >X, formerly Twitter</span
+                    ></span
+                  >
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 pt-8 border-t border-text-100 text-sm">
+            <h3 class="font-bold text-text-400"
+              >Found a typo or something that can be improved?</h3
+            >
+            <p class="mt-1 text-text-400"
+              >In the spirit of Open Source, you can contribute to this article
+              by <a
+                class="underline hover:text-text-500"
+                target="_blank"
+                rel="noopener noreferrer"
+                href={`https://github.com/lmammino/loige.co/edit/main/src/content/posts/${post.id}`}
+                >submitting a PR on GitHub</a
+              >.</p
+            >
+          </div>
+          <div class="mt-8 pt-8 border-t border-text-100">Comments (TODO)</div>
+          <div class="mt-8 pt-8 border-t border-text-100"
+            >Similar articles (TODO)</div
+          >
+        </div>
       </div>
     </div>
   </div>
 </CommonLayout>
-<style>
-  .title {
-    margin-bottom: 1em;
-    padding: 1em 0;
-    text-align: center;
-    line-height: 1;
+<script>
+  // Supports copy to clipboard
+  const copyLinkButton = document.getElementById(
+    'copy-link',
+  ) as HTMLAnchorElement
+  const copyLinkLabel = copyLinkButton.querySelector(
+    '[aria-role="label"]',
+  ) as HTMLSpanElement
+  let animatingCopyLink = false
+  if (typeof navigator.clipboard !== 'undefined') {
+    copyLinkButton.classList.remove('hidden')
+    copyLinkButton.classList.add('inline-flex')
+    copyLinkButton.addEventListener('click', async (e) => {
+      e.preventDefault()
+      const url = window.location.href
+      await navigator.clipboard.writeText(url)
+      if (!animatingCopyLink) {
+        copyLinkLabel.innerText = copyLinkLabel.dataset.textCopied as string
+        animatingCopyLink = true
+        setTimeout(() => {
+          copyLinkLabel.innerText = copyLinkLabel.dataset.textNormal as string
+          animatingCopyLink = false
+        }, 2000)
+      }
+    })
   }
-  .title h1 {
-    margin: 0 0 0.5em 0;
-  }
-  .date {
-    margin-bottom: 0.5em;
-    color: rgb(var(--gray));
-  }
-  .last-updated-on {
-    font-style: italic;
-  }
-</style>
+</script>
