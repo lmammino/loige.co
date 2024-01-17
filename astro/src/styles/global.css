@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @font-face {
   font-family: 'Atkinson';
   src: url('/fonts/atkinson-regular.woff') format('woff');
@@ -108,4 +112,10 @@ body {
   overflow-wrap: break-word;
   font-size: 20px;
   line-height: 1.7;
+}
+
+@layer components {
+  .link {
+    @apply underline underline-offset-4 decoration-text-100 text-primary-700 hover:text-primary-500 hover:decoration-primary-500;
+  }
 }

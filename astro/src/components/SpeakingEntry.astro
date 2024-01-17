@@ -1,0 +1,81 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import VideoIcon from './icons/VideoIcon.astro'
+import SlidesIcon from './icons/SlidesIcon.astro'
+
+type Props = {
+  entry: CollectionEntry<'speaking'>
+}
+
+const { entry } = Astro.props
+---
+
+<li
+  data-gps={entry.data.event_location_gps || undefined}
+  data-title={entry.data.title}
+  data-date={entry.data.date.toISOString().substring(0, 10)}
+  class="grid w-full lg:grid-cols-7 gap-2 odd:bg-bg-300 even:bg-bg-400 rounded-xl border border-bg-600 p-4"
+>
+  <datetime
+    title={entry.data.date.toISOString()}
+    datetime={entry.data.date.toISOString()}
+    class="text-text-400"
+    >{entry.data.date.toISOString().substring(0, 10)}</datetime
+  >
+  <div class="lg:col-span-4">
+    <h3 class="text-text-500 font-bold"
+      >{entry.data.title}
+      {
+        entry.data.language === 'it_IT' ? (
+          <span title="In italian" aria-label="In italian">
+            🇮🇹
+          </span>
+        ) : (
+          ''
+        )
+      }</h3
+    >
+    {
+      entry.data.slides_link || entry.data.video_link ? (
+        <span class="flex gap-4 text-sm">
+          {entry.data.slides_link ? (
+            <a
+              class="link flex gap-1 align-middle"
+              href={entry.data.slides_link}
+            >
+              <SlidesIcon class="h-4 w-4" />
+              <span>Slides</span>
+            </a>
+          ) : (
+            ''
+          )}
+          {entry.data.video_link ? (
+            <a
+              class="link flex gap-1 align-middle"
+              href={entry.data.video_link}
+            >
+              <VideoIcon class="h-4 w-4" />
+              <span>Video</span>
+            </a>
+          ) : (
+            ''
+          )}
+        </span>
+      ) : (
+        ''
+      )
+    }
+  </div>
+  <span class="text-sm text-text-400 pt-2"
+    >{
+      entry.data.event_link ? (
+        <a class="link" href={entry.data.event_link}>
+          {entry.data.event_name}
+        </a>
+      ) : (
+        entry.data.event_name
+      )
+    }</span
+  >
+  <span class="text-sm text-text-400 pt-2">{entry.data.event_city}</span>
+</li>
