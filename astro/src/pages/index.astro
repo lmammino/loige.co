@@ -1,6 +1,19 @@
 ---
 import { getCollection } from 'astro:content'
 import { getTagsFromPosts } from '../utils/posts'
+import CommonLayout from '../layouts/CommonLayout.astro'
+import Hero from '../components/Hero.astro'
+import ServerlessHero from '../components/badges/ServerlessHero.astro'
+import CertifiedSolutionsArchitect from '../components/badges/CertifiedSolutionsArchitect.astro'
+import Mvp from '../components/badges/Mvp.astro'
+import CodemotionAmbassador from '../components/badges/CodemotionAmbassador.astro'
+import ProjectCard from '../components/ProjectCard.astro'
+import BlogCard from '../components/BlogCard.astro'
+import Button from '../components/Button.astro'
+import NodejsDPPicture from '../assets/nodejs-dp-mockup.png'
+import AWSBitesPicture from '../assets/aws-bites-mockup.png'
+import FSBPicture from '../assets/fsb-mockup.png'
+import TagsList from '../components/TagsList.astro'
 
 const PAGE_SIZE = 10
 const posts = (await getCollection('posts')).sort(
@@ -27,20 +40,6 @@ const props = {
     },
   },
 }
-
-import CommonLayout from '../layouts/CommonLayout.astro'
-import Hero from '../components/Hero.astro'
-import ServerlessHero from '../components/badges/ServerlessHero.astro'
-import CertifiedSolutionsArchitect from '../components/badges/CertifiedSolutionsArchitect.astro'
-import Mvp from '../components/badges/Mvp.astro'
-import CodemotionAmbassador from '../components/badges/CodemotionAmbassador.astro'
-import ProjectCard from '../components/ProjectCard.astro'
-import BlogCard from '../components/BlogCard.astro'
-import Button from '../components/Button.astro'
-import NodejsDPPicture from '../assets/nodejs-dp-mockup.png'
-import AWSBitesPicture from '../assets/aws-bites-mockup.png'
-import FSBPicture from '../assets/fsb-mockup.png'
-import TagsList from '../components/TagsList.astro'
 ---
 
 <CommonLayout>

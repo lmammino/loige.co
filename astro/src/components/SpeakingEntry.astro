@@ -26,6 +26,15 @@ const { entry } = Astro.props
     <h3 class="text-text-500 font-bold"
       >{entry.data.title}
       {
+        entry.data.is_workshop ? (
+          <span title="Workshop" aria-label="Workshop">
+            🛠
+          </span>
+        ) : (
+          ''
+        )
+      }
+      {
         entry.data.language === 'it_IT' ? (
           <span title="In italian" aria-label="In italian">
             🇮🇹
@@ -42,6 +51,7 @@ const { entry } = Astro.props
             <a
               class="link flex gap-1 align-middle"
               href={entry.data.slides_link}
+              target="_blank"
             >
               <SlidesIcon class="h-4 w-4" />
               <span>Slides</span>
@@ -53,6 +63,7 @@ const { entry } = Astro.props
             <a
               class="link flex gap-1 align-middle"
               href={entry.data.video_link}
+              target="_blank"
             >
               <VideoIcon class="h-4 w-4" />
               <span>Video</span>
