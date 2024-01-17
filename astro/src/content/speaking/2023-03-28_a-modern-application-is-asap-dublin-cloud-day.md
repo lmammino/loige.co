@@ -8,7 +8,7 @@ event_name: AWS Cloud Day
 event_link: https://pages.awscloud.com/dublin-cloud-day.html
 event_location: Dublin
 event_location_gps: 53.339280,-6.281314
-event_city: Dublin
+event_city: Dublin, Ireland
 event_days: Mar 28, 2023
 is_workshop: false
 slides_link: null

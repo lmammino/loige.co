@@ -8,7 +8,7 @@ event_name: Web Summer Camp
 event_link: http://2017.websummercamp.com/JS
 event_location: Lone Hotel, Rovinj, Croatia
 event_location_gps: 45.0731163,13.6371103
-event_city: Rovinj
+event_city: Rovinj, Croatia
 event_days: August 30 - September 2 2017
 is_workshop: true
 slides_link: https://loige.link/uni-js-workshop

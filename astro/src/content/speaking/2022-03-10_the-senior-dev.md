@@ -8,7 +8,7 @@ event_name: Private event
 event_link: null
 event_location: null
 event_location_gps: null
-event_city: null
+event_city: remote
 event_days: March 10, 2022
 is_workshop: false
 slides_link: https://loige.link/senior

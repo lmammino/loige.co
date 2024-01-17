@@ -9,7 +9,7 @@ event_link: https://rome2018.codemotionworld.com/conference/
 event_location: Università Roma TRE - Ingegneria, Via Vito Volterra, Rome,
   Metropolitan City of Rome, Italy
 event_location_gps: 41.8547021,12.470359300000041
-event_city: Rome
+event_city: Rome, Italy
 event_days: April 11-14 2018
 is_workshop: false
 slides_link: http://loige.link/bundle-rome

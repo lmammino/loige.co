@@ -8,7 +8,7 @@ event_name: DevIT
 event_link: https://devitconf.org
 event_location: Royal Theatre, Thessaloniki, Greece
 event_location_gps: 40.62511625,22.9494063309175
-event_city: Thessaloniki
+event_city: Thessaloniki, Greece
 event_days: June 09-10 2019
 is_workshop: false
 slides_link: https://loige.link/bundle-devit

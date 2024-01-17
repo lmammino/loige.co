@@ -1,5 +1,5 @@
 ---
-title: "Cracking JWT tokens: a tale of magic, Node.JS and parallel computing"
+title: 'Cracking JWT tokens: a tale of magic, Node.JS and parallel computing'
 slug: cracking-jwt-tokens-web-rebels-oslo
 date: 2018-06-05T00:00:00.000Z
 status: published
@@ -8,7 +8,7 @@ event_name: Web Rebels Oslo
 event_link: https://2018.webrebels.org/
 event_location: Dansens Hus, 2, Møllerveien, Fredensborg, Grünerløkka, Oslo, 0182, Norway
 event_location_gps: 59.9215634,10.7522977
-event_city: Oslo
+event_city: Oslo, Norway
 event_days: June 4-5 2018
 is_workshop: false
 slides_link: https://loige.link/jwt-crack-oslo

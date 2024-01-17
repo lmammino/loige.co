@@ -8,7 +8,7 @@ event_name: Serverless Architecture Conference
 event_link: https://serverless-architecture.io/london/program-london/
 event_location: London, UK
 event_location_gps: 51.494247,-0.141821
-event_city: London
+event_city: London, England
 event_days: Apr 24-27, 2023
 is_workshop: false
 slides_link: https://fth.link/sa23

@@ -8,7 +8,7 @@ event_name: AWS Summit London
 event_link: https://aws.amazon.com/summits
 event_location: ICC, ExCeL London, UK
 event_location_gps: 51.5075864,0.034090699999978824
-event_city: London
+event_city: London, England
 event_days: June 28 2017
 is_workshop: false
 slides_link: https://speakerdeck.com/danilop/deep-dive-on-serverless-application-development

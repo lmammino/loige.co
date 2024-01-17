@@ -8,7 +8,7 @@ event_name: AWS
 event_link: null
 event_location: AWS Dublin
 event_location_gps: 53.330793,-6.247588
-event_city: Dublin
+event_city: Dublin, Ireland
 event_days: June 9, 2022
 is_workshop: false
 slides_link: https://slides.com/lucianomammino/serverless-for-hpc

@@ -8,7 +8,7 @@ event_name: JSDay
 event_link: https://2023.jsday.it/
 event_location: Verona, Italy
 event_location_gps: 45.4299,10.98444
-event_city: Verona
+event_city: Verona, Italy
 event_days: Apr 13, 2023
 is_workshop: false
 slides_link: https://loige.link/prod-lambda

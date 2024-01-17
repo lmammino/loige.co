@@ -1,5 +1,5 @@
 ---
-title: "Serverless: The Battle of the Giants"
+title: 'Serverless: The Battle of the Giants'
 slug: serverless-the-battle-of-the-giants-fullstack-london
 date: 2017-07-14T00:00:00.000Z
 status: published
@@ -8,7 +8,7 @@ event_name: FullStack
 event_link: https://skillsmatter.com/conferences/8264-fullstack-2017-the-conference-on-javascript-node-and-internet-of-things
 event_location: CodeNode - Skills Matter | CodeNode, 10 South Place, London, EC2M 7EB, GB
 event_location_gps: 51.518551,-0.08611399999995228
-event_city: London
+event_city: London, England
 event_days: July 12-14 2017
 is_workshop: true
 slides_link: https://loige.link/giants

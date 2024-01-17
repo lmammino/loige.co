@@ -8,7 +8,7 @@ event_name: vBrownBag (YouTube)
 event_link: https://www.youtube.com/@vBrownBag
 event_location: Las Vegas, USA
 event_location_gps: 36.1217209,-115.1693347
-event_city: Las Vegas
+event_city: Las Vegas, Nevada
 event_days: 29 November, 2023
 is_workshop: false
 slides_link: null

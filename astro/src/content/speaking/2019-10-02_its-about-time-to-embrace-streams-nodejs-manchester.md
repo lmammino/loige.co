@@ -8,7 +8,7 @@ event_name: MancJS Meetup
 event_link: https://www.meetup.com/MancJS/events/264733752/
 event_location: Federation House 2, Federation St · Manchester
 event_location_gps: 53.4860609,-2.2402689
-event_city: Machester, UK
+event_city: Machester, England
 event_days: October 2 2019
 is_workshop: false
 slides_link: https://loige.link/streams-manc

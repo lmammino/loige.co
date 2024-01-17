@@ -8,7 +8,7 @@ event_name: Codemotion Rome
 event_link: https://rome2018.codemotionworld.com/workshop/getting-started-with-serverless-and-lambda-functions/
 event_location: Polo Didattico - Piazza Oderico da Pordenone, 3, 00145 Roma RM, Italy
 event_location_gps: 41.860349,12.493917
-event_city: Rome
+event_city: Rome, Italy
 event_days: April 11-14 2018
 is_workshop: true
 slides_link: https://slides.com/lucianomammino/getting-started-with-serverless-and-lambda-functions-codemotion-rome2018/

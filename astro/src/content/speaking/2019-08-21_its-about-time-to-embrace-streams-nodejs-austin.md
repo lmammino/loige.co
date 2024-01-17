@@ -6,9 +6,9 @@ status: published
 language: en_US
 event_name: Austin Node.js Meetup
 event_link: https://www.meetup.com/austinnodejs/events/hvklzqyzlbcc/
-event_location: "Proof Technologies, 200 E 6th St #310 · Austin, TX"
+event_location: 'Proof Technologies, 200 E 6th St #310 · Austin, TX'
 event_location_gps: 30.267907,-97.741207
-event_city: Austin, TX
+event_city: Austin, Texas
 event_days: August 21 2019
 is_workshop: false
 slides_link: https://loige.link/streams-austin

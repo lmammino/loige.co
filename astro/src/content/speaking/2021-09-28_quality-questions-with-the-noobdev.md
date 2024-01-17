@@ -1,14 +1,14 @@
 ---
-title: "Quality questions with the NoobDev podcast"
+title: 'Quality questions with the NoobDev podcast'
 slug: 'quality-questions-with-the-noobdev'
 date: 2021-09-28T18:00:00.000Z
 status: published
 language: en_US
-event_name: "TheNoobDev Talks"
+event_name: 'TheNoobDev Talks'
 event_link: 'https://anchor.fm/noobdevtalks'
 event_location: 'Remote'
 event_location_gps: null
-event_city: 'remote'
+event_city: remote
 event_days: 'Sept 28, 2021'
 is_workshop: false
 slides_link: ~

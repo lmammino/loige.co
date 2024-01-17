@@ -8,7 +8,7 @@ event_name: Shift Conference
 event_link: https://shiftconf.co/2017/
 event_location: Trg Gaje Bulata 1, Split, Croatia
 event_location_gps: 43.5109755,16.437317200000052
-event_city: Split
+event_city: Split, Croatia
 event_days: June 1-2 2017
 is_workshop: false
 slides_link: http://slides.com/lucianomammino/serverless-the-pros-and-cons-of-building-a-company-without-infrastructure-shift-2017

@@ -1,5 +1,5 @@
 ---
-title: "Cracking JWT tokens: a tale of magic, Node.JS and parallel computing"
+title: 'Cracking JWT tokens: a tale of magic, Node.JS and parallel computing'
 slug: cracking-jwt-tokens-codeeurope-wroclaw
 date: 2017-12-13T12:00:00.000Z
 status: published
@@ -8,7 +8,7 @@ event_name: Code Europe Wroclaw
 event_link: https://2017autumn.codeeurope.pl/en/speakers/luciano-mammino
 event_location: Wystawowa 1, 51-618 Wrocław, Poland
 event_location_gps: 51.107689,17.077912
-event_city: Wrocław
+event_city: Wrocław, Poland
 event_days: December 13 2017
 is_workshop: false
 slides_link: https://slides.com/lucianomammino/cracking-jwt-tokens-a-tale-of-magic-nodejs-and-parallel-computing-wroclaw#/

@@ -8,7 +8,7 @@ event_name: JS Day
 event_link: https://2018.jsday.it/
 event_location: Hotel San Marco - Via Longhena, 42 37138 Verona, Italy
 event_location_gps: 45.439915,10.971974400000022
-event_city: Verona
+event_city: Verona, Italy
 event_days: May 9-10 2018
 is_workshop: false
 slides_link: https://loige.link/serverless-jsday

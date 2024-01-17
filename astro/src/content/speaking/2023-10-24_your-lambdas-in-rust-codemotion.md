@@ -8,7 +8,7 @@ event_name: Codemotion Milan
 event_link: https://conferences.codemotion.com/milan2023-live/
 event_location: Milan, Italy
 event_location_gps: 45.451780,9.163160
-event_city: Milan
+event_city: Milan, Italy
 event_days: 24-25 October, 2023
 is_workshop: false
 slides_link: https://loige.link/lamb-rs

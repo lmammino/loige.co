@@ -8,7 +8,7 @@ event_name: Content Creator Life (podcast)
 event_link: https://www.youtube.com/channel/UCV7uUzl-pfVHBSGZtgnL00g
 event_location: Remote
 event_location_gps: null
-event_city: Remote
+event_city: remote
 event_days: Nov 15, 2022
 is_workshop: false
 slides_link: null

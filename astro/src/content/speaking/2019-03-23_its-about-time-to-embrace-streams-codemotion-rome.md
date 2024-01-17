@@ -9,7 +9,7 @@ event_link: https://events.codemotion.com/conferences/rome/2019
 event_location: Università Roma TRE - Ingegneria, Via Vito Volterra, Rome,
   Metropolitan City of Rome, Italy
 event_location_gps: 41.8547021,12.470359300000041
-event_city: Rome
+event_city: Rome, Italy
 event_days: March 23 2019
 is_workshop: false
 slides_link: https://loige.link/streams-rome

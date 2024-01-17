@@ -1,5 +1,5 @@
 ---
-title: "Cracking JWT tokens: a tale of magic, Node.js and parallel computing"
+title: 'Cracking JWT tokens: a tale of magic, Node.js and parallel computing'
 slug: cracking-jwt-tokens-codemotion-milan
 date: 2017-11-10T00:00:00.000Z
 status: published
@@ -8,7 +8,7 @@ event_name: Codemotion Milan
 event_link: https://milan2017.codemotionworld.com/conference/
 event_location: Base - Via Bergognone 34, Milan, Italy
 event_location_gps: 45.451784,9.16234099999997
-event_city: Milan
+event_city: Milan, Italy
 event_days: November 8-11 2017
 is_workshop: false
 slides_link: http://loige.link/cracking-jwt-codemotion

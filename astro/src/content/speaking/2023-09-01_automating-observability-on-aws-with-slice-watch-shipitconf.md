@@ -8,7 +8,7 @@ event_name: Ship It Conference 2023
 event_link: https://shipitcon.com/
 event_location: Dublin, Ireland
 event_location_gps: 53.3411086,-6.2526659
-event_city: Dublin
+event_city: Dublin, Ireland
 event_days: Sept 1, 2023
 is_workshop: false
 slides_link: https://fth.link/auto-obs

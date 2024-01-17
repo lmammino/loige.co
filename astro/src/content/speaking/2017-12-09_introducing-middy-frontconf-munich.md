@@ -8,7 +8,7 @@ event_name: Frontconf Munich
 event_link: https://frontconf.com/
 event_location: Microsoft Germany GmbH, Walter-Gropius-Straße 5, 80807 München, Germany
 event_location_gps: 48.177622,11.593452999999954
-event_city: Munich
+event_city: Munich, Germany
 event_days: December 8-9 2017
 is_workshop: false
 slides_link: https://slides.com/lucianomammino/introducing-middy-11

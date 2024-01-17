@@ -8,7 +8,7 @@ event_name: CityJS Conf
 event_link: https://cityjsconf.org
 event_location: Curzon Soho - 99 Shaftesbury Ave, Soho, London W1D 5DY, UK
 event_location_gps: 51.512793,-0.130486
-event_city: London
+event_city: London, England
 event_days: May 03 2019
 is_workshop: false
 slides_link: https://loige.link/streams-cityjs

@@ -9,7 +9,7 @@ event_link: http://rome2017.codemotionworld.com/
 event_location: Università Roma TRE - Ingegneria, Via Vito Volterra, Rome,
   Metropolitan City of Rome, Italy
 event_location_gps: 41.8547021,12.470359300000041
-event_city: Rome
+event_city: Rome, Italy
 event_days: March 24-25 2017
 is_workshop: false
 slides_link: http://slides.com/lucianomammino/universal-js-web-applications-with-react-codemotion-rome-2017

@@ -8,7 +8,7 @@ event_name: JSNation
 event_link: https://jsnation.com/
 event_location: Amsterdam, Netherlands
 event_location_gps: 52.3833042,4.9204881
-event_city: Amsterdam
+event_city: Amsterdam, Netherlands
 event_days: Jun 1, 2023
 is_workshop: false
 slides_link: https://loige.link/iter-nation

@@ -8,7 +8,7 @@ event_name: noncompila
 event_link: https://www.twitch.tv/noncompila
 event_location: Remote
 event_location_gps: null
-event_city: Remote
+event_city: remote
 event_days: Nov 8, 2022
 is_workshop: false
 slides_link: null

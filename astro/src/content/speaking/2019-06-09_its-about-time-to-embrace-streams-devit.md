@@ -9,7 +9,7 @@ event_link: https://devitconf.org
 event_location: CITY College, International Faculty of the University of
   Sheffield, Thessaloniki, Greece
 event_location_gps: 40.63743995,22.93683177161686
-event_city: Thessaloniki
+event_city: Thessaloniki, Greece
 event_days: June 09-10 2019
 is_workshop: true
 slides_link: https://slides.com/lucianomammino/its-about-time-to-embrace-nodejs-streams-workshop-thessaloniki

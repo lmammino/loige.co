@@ -1,6 +1,6 @@
 ---
-title: "AWS Lambda and Serverless framework: lessons learned while building a
-  serverless company"
+title: 'AWS Lambda and Serverless framework: lessons learned while building a
+  serverless company'
 slug: aws-lambda-and-serverless-nodejs-dublin
 date: 2017-01-26T00:00:00.000Z
 status: published
@@ -9,7 +9,7 @@ event_name: Node.js Dublin
 event_link: https://www.meetup.com/Dublin-Node-js-Meetup/events/236870576/
 event_location: Intercom, Stephen Court, 18-21 St Stephen's Green, Dublin 2, Ireland
 event_location_gps: 53.3394054,-6.257663600000001
-event_city: Dublin
+event_city: Dublin, Ireland
 event_days: January 26 2017
 is_workshop: false
 slides_link: https://speakerdeck.com/lmammino/aws-lambda-and-serverless-framework-lessons-learned-while-building-a-serverless-company

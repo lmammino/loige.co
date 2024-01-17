@@ -8,7 +8,7 @@ event_name: Infiniteconf
 event_link: https://skillsmatter.com/conferences/11187-infiniteconf-2019-the-conference-on-big-data-and-ai
 event_location: CodeNode - Skills Matter | CodeNode, 10 South Place, London, EC2M 7EB, GB
 event_location_gps: 51.518551,-0.08611399999995228
-event_city: London
+event_city: London, England
 event_days: July 04-05 2019
 is_workshop: false
 slides_link: https://loige.link/tera-inf

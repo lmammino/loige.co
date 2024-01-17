@@ -8,7 +8,7 @@ event_name: ServerlessDays Belfast At Night
 event_link: https://www.eventbrite.co.uk/e/serverlessdays-belfast-at-night-tickets-695897958527
 event_location: Belfast, UK
 event_location_gps: 54.595710,-5.931510
-event_city: Belfast
+event_city: Belfast, Northern Ireland
 event_days: Sep 7, 2023
 is_workshop: false
 slides_link: https://fth.link/sls-night

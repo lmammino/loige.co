@@ -8,7 +8,7 @@ event_name: AWS Usergroup Dublin
 event_link: https://www.meetup.com/AWS-Ireland-Usergroup/events/235653352/
 event_location: Button Factory - 2 Curved Street, Dublin, Ireland
 event_location_gps: 53.3449334,-6.264522800000009
-event_city: Dublin
+event_city: Dublin, Ireland
 event_days: October 10 2017
 is_workshop: false
 slides_link: http://loige.link/serverless-trenches

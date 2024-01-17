@@ -8,7 +8,7 @@ event_name: AWS Summit London
 event_link: https://aws.amazon.com/events/summits/london/
 event_location: London, UK
 event_location_gps: 51.5085,0.0298
-event_city: London
+event_city: London, England
 event_days: Jun 7, 2023
 is_workshop: false
 slides_link: null

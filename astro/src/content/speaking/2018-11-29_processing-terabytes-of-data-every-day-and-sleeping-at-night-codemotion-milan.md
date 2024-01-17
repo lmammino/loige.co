@@ -8,7 +8,7 @@ event_name: Codemotion Milan
 event_link: https://milan2018.codemotionworld.com/conference/
 event_location: Superstudio, Via Tortona, 27, 20144 Milano MI, Italy
 event_location_gps: 45.4517668,9.1611362
-event_city: Milan
+event_city: Milan, Italy
 event_days: November 29-30 2018
 is_workshop: false
 slides_link: https://loige.link/terabytes

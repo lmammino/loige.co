@@ -8,7 +8,7 @@ event_name: Dublin JS
 event_link: https://www.meetup.com/DublinJS/events/258466646/
 event_location: Workday, Kings Building, May Ln, Dublin 7, D07 W310, Ireland
 event_location_gps: 53.3478343,-6.2776726
-event_city: Dublin
+event_city: Dublin, Ireland
 event_days: March 05 2019
 is_workshop: false
 slides_link: https://loige.link/streams-dub

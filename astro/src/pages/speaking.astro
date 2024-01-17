@@ -3,21 +3,226 @@
 
 import { getCollection } from 'astro:content'
 import type { CollectionEntry } from 'astro:content'
+import { Image } from 'astro:assets'
 import CommonLayout from '../layouts/CommonLayout.astro'
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
+
+const speakingPics = await Astro.glob('../assets/speaking/*')
+const shuffledSpeakingPics = speakingPics.sort(() => 0.5 - Math.random())
 
 type Props = CollectionEntry<'speaking'>
 
 const speaking = (await getCollection('speaking')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 )
+
+const firstYear = speaking[speaking.length - 1].data.date.getFullYear()
+const now = new Date()
+const futureTalks = speaking.filter((s) => s.data.date > now)
+const pastTalks = speaking.filter((s) => s.data.date <= now)
+const locations = new Set(
+  pastTalks.map((s) => s.data.event_city).filter((l) => !!l),
+)
+const countries = new Set(
+  [...locations].map((s) => (s as string).split(', ')[1]).filter((l) => !!l),
+)
 ---
 
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+  crossorigin=""
+/>
 <CommonLayout section="speaking">
-  <section>
-    <h1>Speaking - TODO</h1>
-    <ul>
-      {speaking.map((s) => <li>{s.data.title}</li>)}
-    </ul>
-  </section>
+  <div class="relative bg-bg-500">
+    <div
+      class="mx-auto max-w-screen-xl pt-24 pb-16 px-8 z-20 flex flex-col justify-center items-center"
+    >
+      <h1 class="text-4xl text-center my-8 font-bold"
+        >Luciano Mammino's talks</h1
+      >
+      <div
+        class="max-w-[800px] prose md:prose-lg lg:prose-xl prose:text-text-500 first:prose-p:text-text-700 first:prose-p:text-lg/relaxed md:first:prose-p:text-xl/relaxed lg:first:prose-p:text-2xl/relaxed prose-a:underline-offset-4 prose-a:decoration-text-100 prose-a:text-primary-700 hover:prose-a:text-primary-500 hover:prose-a:decoration-primary-500"
+      >
+        <p
+          >I am quite involved with technical speaking and I love delivering
+          talks and workshops at conferences and meetups.</p
+        >
+        <p
+          >Since <strong>{firstYear}</strong>, I have delivered <strong
+            >{pastTalks.length}</strong
+          > talks in
+          <strong>{countries.size}</strong> different countries. In this page you
+          can find my upcoming talks and all the past ones (with slides and videos,
+          when available).</p
+        >
+        <p
+          >If you think I can be a good suit to talk or host a workshop, you can
+          <a
+            rel="nofollow noreferrer noopener"
+            target="_blank"
+            href="http://loige.link/invite-me-to-a-conference"
+            >invite me to your next event</a
+          >.</p
+        >
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="py-4 sm:py-6 lg:py-10 bg-bg-500 [background:radial-gradient(circle_at_30%_60%,_var(--color-primary-200)_0%,transparent_30%),radial-gradient(circle_at_80%_90%,_var(--color-secondary-300)_0%,transparent_30%),radial-gradient(circle_at_bottom,_var(--color-accent-300)_0%,var(--color-bg-500)_60%)]"
+  >
+    <div class="relative mx-auto max-w-screen-xl z-10">
+      <div class="absolute rotate-6 top-[-30px] left-[-180px] z-10">
+        <Image
+          src={shuffledSpeakingPics[0].default}
+          width="200"
+          height="150"
+          alt="A photo of Luciano Mammino talking at a conference"
+          class="hidden xl:block rounded-xl shadow-xl parallax"
+        />
+      </div>
+
+      <div class="absolute -rotate-2 top-[-82px] right-[50%] z-10">
+        <Image
+          src={shuffledSpeakingPics[1].default}
+          width="160"
+          height="120"
+          alt="A photo of Luciano Mammino talking at a conference"
+          class="hidden xl:block rounded-xl shadow-xl parallax"
+        />
+      </div>
+
+      <div class="absolute -rotate-3 top-[82px] right-[-200px] z-10">
+        <Image
+          src={shuffledSpeakingPics[2].default}
+          width="240"
+          height="180"
+          alt="A photo of Luciano Mammino talking at a conference"
+          class="hidden xl:block rounded-xl shadow-xl parallax"
+        />
+      </div>
+
+      <div class="absolute -rotate-2 top-[282px] left-[-10%] z-10">
+        <Image
+          src={shuffledSpeakingPics[3].default}
+          width="160"
+          height="120"
+          alt="A photo of Luciano Mammino talking at a conference"
+          class="hidden xl:block rounded-xl shadow-xl parallax"
+        />
+      </div>
+
+      <div class="absolute -rotate-2 top-[482px] left-[50%] z-10">
+        <Image
+          src={shuffledSpeakingPics[4].default}
+          width="240"
+          height="180"
+          alt="A photo of Luciano Mammino talking at a conference"
+          class="hidden xl:block rounded-xl shadow-xl parallax"
+        />
+      </div>
+
+      <div class="absolute rotate-12 top-[380px] right-[-120px] z-10">
+        <Image
+          src={shuffledSpeakingPics[5].default}
+          width="200"
+          height="150"
+          alt="A photo of Luciano Mammino talking at a conference"
+          class="hidden xl:block rounded-xl shadow-xl parallax"
+        />
+      </div>
+    </div>
+
+    <div
+      class="relative z-30 h-[300px] sm:h-[500px] w-full object-cover xl:max-w-screen-xl xl:mx-auto xl:rounded-xl shadow-lg bg-primary-400"
+    >
+      <div
+        id="speaking_map"
+        class="h-full xl:rounded-xl xl:border-4 xl:border-bg-700"></div>
+    </div>
+  </div>
+
+  <div class="relative bg-bg-500">
+    <div
+      class="mx-auto max-w-screen-xl pt-36 pb-16 px-8 z-20 flex flex-col justify-center items-center"
+    >
+      <h2 class="text-3xl text-center my-8 font-bold">Upcoming talks</h2>
+      <div
+        class="max-w-[800px] prose md:prose-lg lg:prose-xl prose:text-text-500 first:prose-p:text-text-700 first:prose-p:text-lg/relaxed md:first:prose-p:text-xl/relaxed lg:first:prose-p:text-2xl/relaxed prose-a:underline-offset-4 prose-a:decoration-text-100 prose-a:text-primary-700 hover:prose-a:text-primary-500 hover:prose-a:decoration-primary-500"
+      >
+        {
+          futureTalks.length === 0 ? (
+            <>
+              <p>Bummer! No upcoming talks scheduled... </p>
+              <p>
+                Do you want to{' '}
+                <a
+                  rel="nofollow noreferrer noopener"
+                  target="_blank"
+                  href="http://loige.link/invite-me-to-a-conference"
+                >
+                  invite me to your next event
+                </a>
+                ?
+              </p>
+            </>
+          ) : (
+            ''
+          )
+        }
+      </div>
+    </div>
+  </div>
 </CommonLayout>
+
+<script>
+  // Speaking map
+  // @ts-ignore
+  import * as L from 'https://unpkg.com/leaflet/dist/leaflet-src.esm.js'
+
+  const StamenWatercolor = L.tileLayer(
+    'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+    {
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      // subdomains: 'abcd',
+      minZoom: 1,
+      maxZoom: 16,
+    },
+  )
+
+  const mymap = L.map('speaking_map').setView([45, -40], 3)
+  StamenWatercolor.addTo(mymap)
+
+  const gpsCoords = [...document.querySelectorAll('[data-gps]')].forEach(
+    (el) => {
+      let e = el as HTMLLIElement
+      if (e && e.dataset.gps) {
+        const coords = e.dataset.gps.split(',').map(parseFloat)
+        L.marker(coords)
+          .bindPopup(
+            `${e.dataset.date}<br/><strong>${e.dataset.title}</strong>`,
+          )
+          .addTo(mymap)
+      }
+    },
+  )
+
+  // Parallax effect
+  document.addEventListener('mousemove', parallax)
+  const elem = document.querySelectorAll('.parallax')
+  // Magic happens here
+  function parallax(e: MouseEvent) {
+    let _w = window.innerWidth / 2
+    let _h = window.innerHeight / 2
+    let _mouseX = e.clientX
+    let _mouseY = e.clientY
+    let x = (_mouseX - _w) * 0.01
+    let y = (_mouseY - _h) * 0.01
+    let z = 1 + (Math.abs(Math.sin(x)) + Math.abs(Math.cos(y))) * 0.1
+    ;[...elem].forEach((el: Element, i) => {
+      ;(el as HTMLImageElement).style.transform = `translate(${x}px, ${y}px)`
+    })
+  }
+</script>

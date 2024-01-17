@@ -8,7 +8,7 @@ event_name: AWS User Group South East
 event_link: https://www.meetup.com/aws-user-group-south-east/events/297087761
 event_location: Waterford, Ireland
 event_location_gps: 52.260002,-7.11289
-event_city: Waterford
+event_city: Waterford, Ireland
 event_days: 22 November, 2023
 is_workshop: false
 slides_link: https://fth.link/rust-lambda

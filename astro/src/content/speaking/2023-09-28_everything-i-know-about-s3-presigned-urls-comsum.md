@@ -8,7 +8,7 @@ event_name: AWS Community Summit
 event_link: https://www.comsum.co.uk/manchester-23
 event_location: Laughter Lounge
 event_location_gps: 53.492330,-2.326580
-event_city: Manchester
+event_city: Manchester, England
 event_days: Sept 28, 2023
 is_workshop: false
 slides_link: https://fth.link/sign-before

@@ -8,7 +8,7 @@ event_name: Øredev
 event_link: http://oredev.org/2018/
 event_location: MalmöMässan Exhibition & Congress Center - Mässgatan 6, 215 32 Malmö, Sweden
 event_location_gps: 55.5670018,12.9752333
-event_city: Malmo
+event_city: Malmö, Sweden
 event_days: November 19-22 2018
 is_workshop: false
 slides_link: https://slides.com/lucianomammino/unbundling-the-javascript-module-bundler-oredev-2018/fullscreen

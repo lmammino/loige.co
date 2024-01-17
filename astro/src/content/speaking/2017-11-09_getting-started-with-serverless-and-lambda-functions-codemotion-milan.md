@@ -8,7 +8,7 @@ event_name: Codemotion Milan
 event_link: https://milan2017.codemotionworld.com/workshop/getting-started-with-serverless-and-lambda-functions/
 event_location: Cariplo Factory - Via Bergognone 34, Milan, Italy
 event_location_gps: 45.45306919999999,9.163906699999984
-event_city: Milan
+event_city: Milan, Italy
 event_days: November 8-11 2017
 is_workshop: true
 slides_link: http://loige.link/serverless-workshop-milan17

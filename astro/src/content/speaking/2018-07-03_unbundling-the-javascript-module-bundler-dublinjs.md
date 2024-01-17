@@ -8,7 +8,7 @@ event_name: Dublin JS
 event_link: https://www.meetup.com/DublinJS/events/250800172/
 event_location: Stripe Dublin - 1 Grand Canal Street Lower Grand Canal Dock, Dublin, Ireland
 event_location_gps: 53.3399879,-6.2452673
-event_city: Dublin
+event_city: Dublin, Ireland
 event_days: July 03 2018
 is_workshop: false
 slides_link: https://loige.link/bundle-dublinjs

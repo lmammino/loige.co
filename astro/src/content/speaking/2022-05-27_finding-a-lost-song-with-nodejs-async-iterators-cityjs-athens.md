@@ -8,7 +8,7 @@ event_name: CityJS
 event_link: https://greece.cityjsconf.org/
 event_location: Papagou Garden Theatre
 event_location_gps: 37.993202,23.79582
-event_city: Athens
+event_city: Athens, Greece
 event_days: May 27, 2022
 is_workshop: false
 slides_link: https://slides.com/lucianomammino/finding-a-lost-song-with-node-js-and-async-iterators-cityjs

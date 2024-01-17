@@ -8,7 +8,7 @@ event_name: AWS Usergroup Belfast
 event_link: https://www.meetup.com/AWS-Usergroup-Belfast/events/257976141/
 event_location: Ormeau Baths - 18 Ormeau Ave · Belfast BT2 8HS
 event_location_gps: 54.59222,-5.925799
-event_city: Belfast
+event_city: Belfast, Northern Ireland
 event_days: February 06 2019
 is_workshop: false
 slides_link: https://loige.link/tera-bel

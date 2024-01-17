@@ -8,7 +8,7 @@ event_name: Rust Nation
 event_link: https://www.rustnationuk.com/
 event_location: London, UK
 event_location_gps: 51.520794,-0.090706
-event_city: London
+event_city: London, England
 event_days: Feb 16-17, 2023
 is_workshop: false
 slides_link: https://loige.link/crablearn

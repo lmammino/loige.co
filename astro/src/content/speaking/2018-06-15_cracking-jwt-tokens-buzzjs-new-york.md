@@ -1,5 +1,5 @@
 ---
-title: "Cracking JWT tokens: a tale of magic, Node.JS and parallel computing"
+title: 'Cracking JWT tokens: a tale of magic, Node.JS and parallel computing'
 slug: cracking-jwt-tokens-buzzjs-new-york
 date: 2018-06-15T00:00:00.000Z
 status: published
@@ -8,7 +8,7 @@ event_name: Buzz JS
 event_link: https://buzzjs.com/
 event_location: Microsoft Technology Center - 11 Times Square  New York, NY 10036
 event_location_gps: 40.7562416,-73.9899775
-event_city: New York
+event_city: New York, New York
 event_days: June 14-15 2018
 is_workshop: false
 slides_link: https://loige.link/jwt-crack-ny

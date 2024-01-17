@@ -8,7 +8,7 @@ event_name: Node.js Conference 2023
 event_link: https://2023.nodejsconf.it/
 event_location: Brescia
 event_location_gps: 45.463900,10.536660
-event_city: Brescia
+event_city: Brescia, Italy
 event_days: Sep 30, 2023
 is_workshop: false
 slides_link: https://loige.link/iter-garda

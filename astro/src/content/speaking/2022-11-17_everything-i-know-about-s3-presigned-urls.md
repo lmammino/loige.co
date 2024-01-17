@@ -8,7 +8,7 @@ event_name: AWS User Group
 event_link: https://www.meetup.com/awsdublin/events/289496801/
 event_location: Laughter Lounge
 event_location_gps: 53.347910,-6.258190
-event_city: Dublin
+event_city: Dublin, Ireland
 event_days: Nov 17, 2022
 is_workshop: false
 slides_link: https://fth.link/presign

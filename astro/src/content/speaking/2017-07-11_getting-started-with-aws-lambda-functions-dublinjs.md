@@ -8,7 +8,7 @@ event_name: Dublin JS
 event_link: https://www.meetup.com/DublinJS/events/241147605/
 event_location: Intercom, Stephen Court, 18-21 St Stephen's Green, Dublin 2, Ireland
 event_location_gps: 53.3394054,-6.257663600000001
-event_city: Dublin
+event_city: Dublin, Ireland
 event_days: July 11 2017
 is_workshop: true
 slides_link: http://www.loige.link/lambda-workshop

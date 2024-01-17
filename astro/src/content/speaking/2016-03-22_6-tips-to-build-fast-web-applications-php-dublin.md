@@ -8,7 +8,7 @@ event_name: PHP Dublin
 event_link: https://www.meetup.com/PHP-Dublin/events/229508512/
 event_location: Dogpatch Labs, North Dock, Dublin 1, Ireland
 event_location_gps: 53.349137,-6.247750999999994
-event_city: Dublin
+event_city: Dublin, Ireland
 event_days: March 22 2016
 is_workshop: false
 slides_link: https://slides.com/lucianomammino/6tips-web-perf

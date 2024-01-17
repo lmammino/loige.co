@@ -8,7 +8,7 @@ event_name: Frontend United Athens
 event_link: https://www.frontendunited.org/
 event_location: Danaos Cinema Λεωφ. Κηφισίας 109, 11524 Athens, Greece
 event_location_gps: 37.9934188,23.76677940000002
-event_city: Athens
+event_city: Athens, Greece
 event_days: May 26-27 2017
 is_workshop: false
 slides_link: https://slides.com/lucianomammino/universal-javascript-frontend-united-athens-2017

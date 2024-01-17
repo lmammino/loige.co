@@ -8,7 +8,7 @@ event_name: Codemotion Milan
 event_link: https://milan2016.codemotionworld.com/
 event_location: Politecnico di Milano - Via R. Lambruschini, 4 - Milano, italy
 event_location_gps: 45.50338379999999,9.156013700000017
-event_city: Milan
+event_city: Milan, Italy
 event_days: November 23-26 2016
 is_workshop: false
 slides_link: http://slides.com/lucianomammino/universal-js-web-applications-with-react-codemotion-milan-2016
