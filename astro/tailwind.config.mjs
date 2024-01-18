@@ -71,12 +71,24 @@ export default {
 				},
 			},
 			animation: {
+				'hero-pulse': 'hero-pulse 1s ease-in-out infinite alternate',
 				'slide-right': 'slide-right 200ms ease-in-out',
 				'slide-left': 'slide-left 200ms ease-in-out',
 				'slide-up': 'slide-up 200ms ease-in-out',
 				'slide-down': 'slide-down 200ms ease-in-out',
 			},
 			keyframes: {
+				'hero-pulse': {
+					'0%': {
+						filter: 'grayscale(0)',
+						opacity: 0.85
+					},
+					'100%':
+					{
+						filter: 'grayscale(0.8)',
+						opacity: 1
+					}
+				},
 				'slide-right': {
 					'0%': { transform: 'translateX(-100px)', opacity: 0 },
 					'100%': { transform: 'translateX(0)', opacity: 1 },

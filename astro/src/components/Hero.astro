@@ -31,7 +31,7 @@
           id="profile-picture"
           src="/loige/FRAME_0.png"
           alt="Luciano Mammino"
-          class="z-[2] fixed [transition:filter_.5s_ease-out_0s] w-[300px] h-[300px] sm:w-[480px] sm:h-[480px]"
+          class="z-[2] fixed [transition:filter_.5s_ease-out_0s] w-[300px] h-[300px] sm:w-[480px] sm:h-[480px] animate-hero-pulse"
         />
       </div>
     </div>
@@ -68,18 +68,3 @@
     }
   })
 </script>
-<style>
-  #profile-picture {
-    animation: pulse 1s ease-in-out infinite alternate;
-  }
-  @keyframes pulse {
-    from {
-      filter: grayscale(0);
-      opacity: 0.85;
-    }
-    to {
-      filter: grayscale(0.8);
-      opacity: 1;
-    }
-  }
-</style>
