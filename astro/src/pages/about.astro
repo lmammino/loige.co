@@ -56,7 +56,8 @@ const sideProjects: SideProject[] = parse(
           alt="A picture of Luciano Mammino delivering a tech talk"
           width={240}
           height={180}
-          class="rounded-xl h-[180px] w-[240px] float-start -ml-16 mr-8 mb-8 shadow-lg animate-slide-right not-prose"
+          class="opacity-0 rounded-xl h-[180px] w-[240px] float-start -ml-16 mr-8 mb-8 shadow-lg not-prose"
+          data-reveal="animate-[500ms_ease-in-out_10ms_slide-rigth]"
         />
         <div
           class="max-w-[800px] prose md:prose-lg lg:prose-xl prose:text-text-500 first:prose-p:text-text-700 first:prose-p:text-lg/relaxed md:first:prose-p:text-xl/relaxed lg:first:prose-p:text-2xl/relaxed prose-a:underline-offset-4 prose-a:decoration-text-100 prose-a:text-primary-700 hover:prose-a:text-primary-500 hover:prose-a:decoration-primary-500"
@@ -73,7 +74,8 @@ const sideProjects: SideProject[] = parse(
             alt="8 bit Mario"
             width={128}
             height={128}
-            class="float-end ml-4 mr-[-80px] mb-8 w-[128px] h-[128px] animate-[500ms_ease-in-out_100ms_slide-left] not-prose"
+            class="opacity-0 float-end ml-4 mr-[-80px] mb-8 w-[128px] h-[128px] not-prose hover:animate-bounce duration-75"
+            data-reveal="animate-[500ms_ease-in-out_100ms_slide-left]"
           />
           <p>
             I am a <strong>passionate software engineer</strong> born in 1987, the
@@ -105,9 +107,10 @@ const sideProjects: SideProject[] = parse(
             <Image
               src={NodeJsDesignPatternsCover}
               alt="Node.js design patterns book cover"
-              width={120}
-              height={150}
-              class="not-prose float-start mr-8 mb-8 mt-0 shadow-lg animate-[500ms_ease-in-out_200ms_slide-right]"
+              width={240}
+              height={300}
+              class="opacity-0 not-prose w-[120px] h-[150px] float-start mr-8 mb-8 mt-0 shadow-lg hover:scale-150 duration-75"
+              data-reveal="animate-[500ms_ease-in-out_10ms_slide-right]"
             />
           </a>
           <p>
@@ -134,7 +137,8 @@ const sideProjects: SideProject[] = parse(
           </blockquote>
 
           <div
-            class="not-prose float-start md:-ml-8 mr-4 mb-8 animate-[500ms_ease-in-out_300ms_slide-right]"
+            class="opacity-0 not-prose float-start md:-ml-8 mr-4 mb-8"
+            data-reveal="animate-[500ms_ease-in-out_10ms_slide-right]"
           >
             <ServerlessHeroBadge class="w-32 mb-8" />
             <MvpBadge class="not-prose float-start w-32 mr-8" />
@@ -177,7 +181,8 @@ const sideProjects: SideProject[] = parse(
               alt="A picture of Luciano Mammino and Giovanni Tomarchio in a Bastone Siciliano show"
               width={240}
               height={180}
-              class="shadow-lg rounded-xl animate-[500ms_ease-in-out_400ms_slide-left] not-prose"
+              class="opacity-0 shadow-lg rounded-xl not-prose hover:scale-150 duration-75"
+              data-reveal="animate-[500ms_ease-in-out_10ms_slide-left]"
             />
           </a>
 
@@ -296,3 +301,18 @@ const sideProjects: SideProject[] = parse(
     </div>
   </div>
 </CommonLayout>
+<script>
+  // reveal on scroll effect
+  const revealElements = document.querySelectorAll('[data-reveal]')
+  for (const element of revealElements) {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add(
+          (entry.target as HTMLElement).dataset.reveal as string,
+        )
+        entry.target.classList.remove('opacity-0')
+      }
+    })
+    observer.observe(element)
+  }
+</script>
