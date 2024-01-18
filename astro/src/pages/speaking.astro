@@ -222,19 +222,19 @@ const countries = new Set(
   // @ts-ignore
   import * as L from 'https://unpkg.com/leaflet/dist/leaflet-src.esm.js'
 
-  const StamenWatercolor = L.tileLayer(
-    'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+  const Stadia_StamenTerrainBackground = L.tileLayer(
+    'https://tiles.stadiamaps.com/tiles/stamen_terrain_background/{z}/{x}/{y}{r}.{ext}',
     {
+      minZoom: 0,
+      maxZoom: 18,
       attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-      // subdomains: 'abcd',
-      minZoom: 1,
-      maxZoom: 16,
+        '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia</a> &copy; <a href="https://www.stamen.com/" target="_blank">Stamen</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMap</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreet</a>',
+      ext: 'png',
     },
   )
 
   const mymap = L.map('speaking_map').setView([45, -40], 3)
-  StamenWatercolor.addTo(mymap)
+  Stadia_StamenTerrainBackground.addTo(mymap)
 
   const gpsCoords = [...document.querySelectorAll('[data-gps]')].forEach(
     (el) => {
@@ -243,7 +243,7 @@ const countries = new Set(
         const coords = e.dataset.gps.split(',').map(parseFloat)
         L.marker(coords)
           .bindPopup(
-            `${e.dataset.date}<br/><strong>${e.dataset.title}</strong>`,
+            `<small>${e.dataset.date}</small><br/><strong>${e.dataset.title}</strong><br/>${e.dataset.city}`,
           )
           .addTo(mymap)
       }
@@ -255,12 +255,12 @@ const countries = new Set(
   const elem = document.querySelectorAll('.parallax')
   // Magic happens here
   function parallax(e: MouseEvent) {
-    let _w = window.innerWidth / 2
-    let _h = window.innerHeight / 2
-    let _mouseX = e.clientX
-    let _mouseY = e.clientY
-    let x = (_mouseX - _w) * 0.01
-    let y = (_mouseY - _h) * 0.01
+    let w = window.innerWidth / 2
+    let h = window.innerHeight / 2
+    let mouseX = e.clientX
+    let mouseY = e.clientY
+    let x = (mouseX - w) * 0.01
+    let y = (mouseY - h) * 0.01
     let z = 1 + (Math.abs(Math.sin(x)) + Math.abs(Math.cos(y))) * 0.1
     ;[...elem].forEach((el: Element, i) => {
       ;(el as HTMLImageElement).style.transform = `translate(${x}px, ${y}px)`

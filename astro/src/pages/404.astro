@@ -16,7 +16,7 @@ import { SOCIALS } from '../consts'
         <h1
           class="text-4xl sm:text-7xl lg:text-8xl font-bold text-text-600 z-[3] drop-shadow-lg text-center"
         >
-          404: not found
+          <span class="text-primary-700">404</span> not found
         </h1>
       </div>
       <div
@@ -143,8 +143,8 @@ import { SOCIALS } from '../consts'
         if (
           ['c', 'k'].includes(text.charAt(0)) &&
           ['a', '4'].includes(text.charAt(1)) &&
-          ['z'].includes(text.charAt(2)) &&
-          ['z'].includes(text.charAt(3)) &&
+          text.charAt(2) === 'z' &&
+          text.charAt(3) === 'z' &&
           ['o', '0'].includes(text.charAt(4))
         ) {
           cazzo.classList.remove('text-accent-700')
