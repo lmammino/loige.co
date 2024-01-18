@@ -9,6 +9,7 @@ import Mario8Bit from '../assets/mario8bit.svg'
 import NodeJsDesignPatternsCover from '../assets/nodejs-design-pattens-cover.jpg'
 import BastoneSiciliano from '../assets/bastone-siciliano.jpg'
 import ServerlessHeroBadge from '../components/badges/ServerlessHero.astro'
+import MvpBadge from '../components/badges/Mvp.astro'
 import BlogCard from '../components/BlogCard.astro'
 import { SOCIALS } from '../consts'
 
@@ -132,9 +133,12 @@ const sideProjects: SideProject[] = parse(
             Cloud developer, entrepreneur, fighter, butterfly maker!
           </blockquote>
 
-          <ServerlessHeroBadge
-            class="not-prose float-start w-32 mr-8 mb-8 animate-[500ms_ease-in-out_300ms_slide-right]"
-          />
+          <div
+            class="not-prose float-start md:-ml-8 mr-4 mb-8 animate-[500ms_ease-in-out_300ms_slide-right]"
+          >
+            <ServerlessHeroBadge class="w-32 mb-8" />
+            <MvpBadge class="not-prose float-start w-32 mr-8" />
+          </div>
           <p>
             Yep, I am a <strong>Full stack web developer</strong> working on cloud
             products. I enjoy coding (a lot) even though, lately, I am spending more
@@ -143,7 +147,11 @@ const sideProjects: SideProject[] = parse(
             >. AWS has recognized my efforts in this area and I am now an <a
               href="https://aws.amazon.com/developer/community/heroes/luciano-mammino/"
               >AWS Hero</a
-            >.
+            >. Also Microsoft has recognized my efforts in knowledge sharing and
+            nomitaded me as a <a
+              href="https://mvp.microsoft.com/en-US/mvp/profile/e25db9eb-f3bd-eb11-bacc-0022481f2c24"
+              >Microsoft MVP</a
+            > for developer technologies.
           </p>
 
           <p>
@@ -235,7 +243,7 @@ const sideProjects: SideProject[] = parse(
       </div>
     </div>
   </div>
-  <div class="bg-bg-500">
+  <div class="bg-bg-500 flex flex-col items-center">
     <div class="max-w-screen-xl pt-8 px-8 pb-24">
       <div
         class="mx-auto max-w-[800px] prose md:prose-lg lg:prose-xl prose:text-text-500 first:prose-p:text-text-700 first:prose-p:text-lg/relaxed md:first:prose-p:text-xl/relaxed lg:first:prose-p:text-2xl/relaxed prose-a:underline-offset-4 prose-a:decoration-text-100 prose-a:text-primary-700 hover:prose-a:text-primary-500 hover:prose-a:decoration-primary-500"
