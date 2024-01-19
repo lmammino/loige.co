@@ -47,7 +47,7 @@ const countries = new Set(
 <CommonLayout section="speaking">
   <div class="relative bg-bg-500">
     <div
-      class="mx-auto max-w-screen-xl pt-24 pb-16 px-8 z-20 flex flex-col justify-center items-center"
+      class="mx-auto max-w-screen-xl pt-8 pb-2 sm:pb-8 md:pb-16 px-8 z-20 flex flex-col justify-center items-center"
     >
       <h1 class="text-4xl text-center my-8 font-bold"
         >Luciano Mammino's talks</h1
@@ -160,7 +160,7 @@ const countries = new Set(
 
   <div class="relative bg-bg-500">
     <div
-      class="mx-auto max-w-screen-xl pt-36 pb-8 px-8 z-20 flex flex-col justify-center items-center"
+      class="mx-auto max-w-screen-xl pt-2 sm:pt-8 md:pt-16 pb-8 px-8 z-20 flex flex-col justify-center items-center"
     >
       <h2 class="text-text-500 text-3xl text-left w-full my-8 font-bold"
         >Upcoming talks</h2
@@ -220,9 +220,9 @@ const countries = new Set(
 <script>
   // Speaking map
   // @ts-ignore
-  import * as L from 'https://unpkg.com/leaflet/dist/leaflet-src.esm.js'
+  import * as Leaflet from 'https://unpkg.com/leaflet/dist/leaflet-src.esm.js'
 
-  const Stadia_StamenTerrainBackground = L.tileLayer(
+  const Stadia_StamenTerrainBackground = Leaflet.tileLayer(
     'https://tiles.stadiamaps.com/tiles/stamen_terrain_background/{z}/{x}/{y}{r}.{ext}',
     {
       minZoom: 0,
@@ -233,14 +233,17 @@ const countries = new Set(
     },
   )
 
-  const mymap = L.map('speaking_map').setView([45, -40], 3)
-  Stadia_StamenTerrainBackground.addTo(mymap)([
-    ...document.querySelectorAll('[data-gps]'),
-  ]).forEach((e: HTMLLIElement) => {
+  const mymap = Leaflet.map('speaking_map').setView([45, -40], 3)
+  Stadia_StamenTerrainBackground.addTo(mymap)
+  ;[...document.querySelectorAll('[data-gps]')].forEach((el: Element) => {
+    const e = el as HTMLLIElement
     if (e && e.dataset.gps) {
       const coords = e.dataset.gps.split(',').map(parseFloat)
-      L.marker(coords)
+      Leaflet.marker(coords)
         .bindPopup(
+          `<small>${e.dataset.date}</small><br/><strong>${e.dataset.title}</strong><br/>${e.dataset.city}`,
+        )
+        .bindTooltip(
           `<small>${e.dataset.date}</small><br/><strong>${e.dataset.title}</strong><br/>${e.dataset.city}`,
         )
         .addTo(mymap)
