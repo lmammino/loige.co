@@ -68,15 +68,20 @@ const sideProjects: SideProject[] = parse(
             >, that's why this website is called "loige.co".
           </p>
 
-          <Image
-            src={Mario8Bit}
-            title="IT'S A ME, MARIO!"
-            alt="8 bit Mario"
-            width={128}
-            height={128}
-            class="opacity-0 float-end ml-4 mr-[-80px] mb-8 w-[128px] h-[128px] not-prose hover:animate-bounce duration-75"
+          <div
+            id="mario"
+            class="relative opacity-0 float-end not-prose ml-4 mr-[-80px] mb-8"
             data-reveal="animate-[500ms_ease-in-out_100ms_slide-left]"
-          />
+          >
+            <Image
+              src={Mario8Bit}
+              title="IT'S A ME, MARIO!"
+              alt="8 bit Mario"
+              width={128}
+              height={128}
+              class="w-[128px] h-[128px]"
+            />
+          </div>
           <p>
             I am a <strong>passionate software engineer</strong> born in 1987, the
             same year that “Super Mario Bros” was released in Europe, which, by chance
@@ -315,4 +320,95 @@ const sideProjects: SideProject[] = parse(
     })
     observer.observe(element)
   }
+  // mario
+  const marioPhrases = [
+    "It's a me, Mario!",
+    'Mamma mia!',
+    'Here we go!',
+    'Mario time!',
+    "Let's-a go!",
+    'WaAaAaAaahh!',
+    'Okey dokey!',
+    'Oh, no!',
+  ]
+  const mario = document.getElementById('mario') as HTMLElement
+  const marioImg = mario.querySelector('img') as HTMLImageElement
+  marioImg.style.cursor = 'pointer'
+  let animating = false
+  let numClicks = 0
+  marioImg.addEventListener('click', () => {
+    if (!animating) {
+      animating = true
+      numClicks++
+
+      // create speech bubble
+      const isAngry = numClicks % 10 === 0
+      const bubble = document.createElement('div')
+      bubble.classList.add(
+        'absolute',
+        'opacity-0',
+        'text-nowrap',
+        'top-[-2em]',
+        'right-[3.25em]',
+        'font-bold',
+        isAngry ? 'text-white' : 'text-text-400',
+        isAngry ? 'bg-red-700' : 'bg-bg-100',
+        'px-2',
+        'py-1',
+        'rounded-xl',
+        'shadow-lg',
+        'text-left',
+        'animate-[bubble_1.5s]',
+      )
+      bubble.innerText = isAngry
+        ? 'E CHE CA☠☠O!'
+        : marioPhrases[Math.floor(Math.random() * marioPhrases.length)]
+      mario.appendChild(bubble)
+      // destroy the bubble after the animation
+      setTimeout(() => {
+        bubble.remove()
+      }, 1500)
+
+      marioImg.classList.add('animate-[squish_ease-in-out_500ms]')
+      setTimeout(() => {
+        marioImg?.classList.remove('animate-[squish_ease-in-out_500ms]')
+        animating = false
+      }, 500)
+    }
+  })
 </script>
+<style>
+  @keyframes squish {
+    0% {
+      transform: scaleY(1);
+    }
+    10% {
+      transform: scaleY(0.75);
+    }
+    50% {
+      transform: scaleY(1.25);
+    }
+    100% {
+      transform: scaleY(1);
+    }
+  }
+
+  @keyframes bubble {
+    0% {
+      opacity: 0;
+      transform: translateY(0);
+    }
+    50% {
+      opacity: 1;
+      transform: translateY(-1em);
+    }
+    90% {
+      opacity: 0;
+      transform: translateY(-2em);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-3em);
+    }
+  }
+</style>
