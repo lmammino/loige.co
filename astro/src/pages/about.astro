@@ -39,15 +39,15 @@ const sideProjects: SideProject[] = _sideProjects
   <div class="bg-bg-500 overflow-x-hidden">
     <div class="mx-auto max-w-screen-xl py-8 px-8 flex flex-col items-center">
       <div>
-        <h1 class="text-text-500 text-4xl/relaxed my-8 font-bold"
+        <h1 class="text-text-500 text-4xl/relaxed my-4 font-bold"
           >Hello, this is Luciano 👋</h1
         >
         <Image
           src={MyPicture}
           alt="A picture of Luciano Mammino delivering a tech talk"
-          width={240}
-          height={180}
-          class="opacity-0 rounded-xl h-[180px] w-[240px] float-start -ml-16 mr-8 mb-8 shadow-lg not-prose"
+          width={480}
+          height={360}
+          class="opacity-0 min-w-full sm:min-w-0 object-cover -mr-16 rounded-xl h-[230px] sm:h-[180px] w-[240px] sm:float-start sm:-ml-16 sm:mr-8 mb-8 sm:shadow-lg not-prose"
           data-reveal="animate-[500ms_ease-in-out_10ms_slide-rigth]"
         />
         <div
@@ -360,9 +360,13 @@ const sideProjects: SideProject[] = _sideProjects
         bubble.remove()
       }, 1500)
 
-      marioImg.classList.add('animate-[squish_ease-in-out_500ms]')
+      let animation = isAngry
+        ? 'animate-[squish-much_ease-in-out_500ms]'
+        : 'animate-[squish_ease-in-out_500ms]'
+      marioImg.classList.add(animation)
+      marioImg.style.filter = isAngry ? 'hue-rotate(306deg)' : 'none'
       setTimeout(() => {
-        marioImg?.classList.remove('animate-[squish_ease-in-out_500ms]')
+        marioImg?.classList.remove(animation)
         animating = false
       }, 500)
     }
@@ -378,6 +382,21 @@ const sideProjects: SideProject[] = _sideProjects
     }
     50% {
       transform: scaleY(1.25);
+    }
+    100% {
+      transform: scaleY(1);
+    }
+  }
+
+  @keyframes squish-much {
+    0% {
+      transform: scaleY(1);
+    }
+    10% {
+      transform: scaleY(0.5);
+    }
+    50% {
+      transform: scaleY(1.5);
     }
     100% {
       transform: scaleY(1);
