@@ -4,6 +4,7 @@
 // TODO: updated with actual site data
 export const SITE_DOMAIN = 'loige.co'
 export const SITE_URL = `https://${SITE_DOMAIN}`
+export const SITE_AUTHOR = 'Luciano Mammino'
 export const SITE_TITLE = 'Luciano Mammino'
 export const SITE_DESCRIPTION = 'Cloud Architect and Fullstack Developer'
 export const SOCIALS = [

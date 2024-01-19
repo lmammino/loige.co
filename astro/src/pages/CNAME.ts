@@ -1,12 +1,7 @@
+import type { APIContext } from 'astro'
 import { SITE_DOMAIN } from '../consts'
 
-type GetParams = {
-  params: undefined
-  props: undefined
-  request: Request
-}
-
-export function GET(_params: GetParams) {
+export function GET(_params: APIContext) {
   return new Response(SITE_DOMAIN, {
     headers: { 'Content-Type': 'text/plain' },
   })

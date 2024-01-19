@@ -1,6 +1,7 @@
 import path from 'node:path'
 import consumers from 'node:stream/consumers'
 import * as url from 'node:url'
+import type { APIContext } from 'astro'
 import {
   type Image as CanvasImage,
   createCanvas,
@@ -13,16 +14,15 @@ import { getCollection } from 'astro:content'
 import type { ImageFunction } from 'astro:content'
 
 type AstroImage = z.infer<ReturnType<ImageFunction>>
-type GetParams = {
-  params: {
-    slug: string
-  }
-  props: {
+type GetParams = APIContext<
+  {
     title: string
     image?: AstroImage
+  },
+  {
+    slug: string
   }
-  request: Request
-}
+>
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
 const WIDTH = 1200
