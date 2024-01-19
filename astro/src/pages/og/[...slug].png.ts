@@ -1,14 +1,14 @@
-import * as url from 'node:url'
 import path from 'node:path'
 import consumers from 'node:stream/consumers'
+import * as url from 'node:url'
 import {
-  registerFont,
+  type Image as CanvasImage,
   createCanvas,
   loadImage,
-  Image as CanvasImage,
+  registerFont,
 } from 'canvas'
 import { split } from 'canvas-hypertxt'
-import { z } from 'zod'
+import type { z } from 'zod'
 import { getCollection } from 'astro:content'
 import type { ImageFunction } from 'astro:content'
 
@@ -93,7 +93,16 @@ export async function GET({ props }: GetParams) {
       imageUrl = new URL(`file://${props.image.src.replace('/@fs', '')}`)
     } else {
       // prod server
-      imageUrl = new URL(`file://${path.join(__dirname, '..', '..', '..', 'dist', props.image.src)}`)
+      imageUrl = new URL(
+        `file://${path.join(
+          __dirname,
+          '..',
+          '..',
+          '..',
+          'dist',
+          props.image.src,
+        )}`,
+      )
     }
     const image = await loadImage(imageUrl.pathname)
     ctx.drawImage(image, ...coverBounds(image, WIDTH, HEIGHT))

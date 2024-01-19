@@ -234,21 +234,18 @@ const countries = new Set(
   )
 
   const mymap = L.map('speaking_map').setView([45, -40], 3)
-  Stadia_StamenTerrainBackground.addTo(mymap)
-
-  const gpsCoords = [...document.querySelectorAll('[data-gps]')].forEach(
-    (el) => {
-      let e = el as HTMLLIElement
-      if (e && e.dataset.gps) {
-        const coords = e.dataset.gps.split(',').map(parseFloat)
-        L.marker(coords)
-          .bindPopup(
-            `<small>${e.dataset.date}</small><br/><strong>${e.dataset.title}</strong><br/>${e.dataset.city}`,
-          )
-          .addTo(mymap)
-      }
-    },
-  )
+  Stadia_StamenTerrainBackground.addTo(mymap)([
+    ...document.querySelectorAll('[data-gps]'),
+  ]).forEach((e: HTMLLIElement) => {
+    if (e && e.dataset.gps) {
+      const coords = e.dataset.gps.split(',').map(parseFloat)
+      L.marker(coords)
+        .bindPopup(
+          `<small>${e.dataset.date}</small><br/><strong>${e.dataset.title}</strong><br/>${e.dataset.city}`,
+        )
+        .addTo(mymap)
+    }
+  })
 
   // Parallax effect
   document.addEventListener('mousemove', parallax)
@@ -261,8 +258,7 @@ const countries = new Set(
     let mouseY = e.clientY
     let x = (mouseX - w) * 0.01
     let y = (mouseY - h) * 0.01
-    let z = 1 + (Math.abs(Math.sin(x)) + Math.abs(Math.cos(y))) * 0.1
-    ;[...elem].forEach((el: Element, i) => {
+    ;[...elem].forEach((el: Element) => {
       ;(el as HTMLImageElement).style.transform = `translate(${x}px, ${y}px)`
     })
   }
