@@ -3,6 +3,7 @@ import { Image } from 'astro:assets'
 import { getCollection } from 'astro:content'
 import type { InferGetStaticPropsType } from 'astro'
 import { format } from 'date-fns'
+import { SITE_TITLE, SITE_URL } from '../consts'
 import {
   getAbsoluteUrl,
   getShareUrl,
@@ -35,7 +36,16 @@ const { post, similar } = Astro.props
 const { Content } = await post.render()
 ---
 
-<CommonLayout section="blog">
+<CommonLayout
+  section="blog"
+  seo={{
+    title: post.data.title,
+    description:
+      post.data.description || `A blog post published by ${SITE_TITLE}`,
+    ogType: 'article',
+    image: `${SITE_URL}/og/${post.slug}.png`,
+  }}
+>
   <div class="bg-bg-500 relative z-40">
     <div class="mx-auto max-w-screen-xl py-16 px-8">
       <h1 class="text-text-500 text-4xl leading-normal md:text-5xl font-bold"

@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content'
 import { getTagsFromPosts } from '../utils/posts'
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
 import CommonLayout from '../layouts/CommonLayout.astro'
 import Hero from '../components/Hero.astro'
 import ServerlessHero from '../components/badges/ServerlessHero.astro'
@@ -42,7 +43,12 @@ const props = {
 }
 ---
 
-<CommonLayout>
+<CommonLayout
+  seo={{
+    title: `${SITE_TITLE} - ${SITE_DESCRIPTION}`,
+    description: `The website of Luciano Mammino: ${SITE_DESCRIPTION}`,
+  }}
+>
   <Hero />
 
   <div class="bg-bg-500 relative z-40">

@@ -1,8 +1,14 @@
 ---
+import { SITE_TITLE } from '../consts'
 import CommonLayout from '../layouts/CommonLayout.astro'
 ---
 
-<CommonLayout>
+<CommonLayout
+  seo={{
+    title: `${SITE_TITLE} - Comment policy`,
+    description: `Comment policy of ${SITE_TITLE}'s website. TLDR; don't suck! If you intend to leave a comment in one of the articles of this website you should abide this policy.`,
+  }}
+>
   <div class="relative bg-bg-500">
     <div
       class="mx-auto max-w-screen-xl pt-24 pb-16 px-8 z-20 flex flex-col justify-center items-center"

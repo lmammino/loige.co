@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content'
+import { SITE_TITLE } from '../consts'
 import CommonLayout from '../layouts/CommonLayout.astro'
 import BlogCard from '../components/BlogCard.astro'
 import Button from '../components/Button.astro'
@@ -30,15 +31,21 @@ type Props = {
 const { page, tags } = Astro.props
 ---
 
-<CommonLayout section="blog">
+<CommonLayout
+  section="blog"
+  seo={{
+    title: `${SITE_TITLE}'s Blog - Page ${page.currentPage}`,
+    description: `Page ${page.currentPage} of ${page.lastPage} of ${SITE_TITLE}'s blog. Here you will find all the articles publishe by ${SITE_TITLE} in the last years.`,
+  }}
+>
   <div class="bg-bg-500">
     <div class="mx-auto max-w-screen-xl py-8 px-8">
-      <h2 class="text-3xl text-center my-8"
+      <h1 class="text-3xl text-center my-8 font-bold text-text-500"
         >Articles from the blog {
           page.currentPage !== 1
             ? `(Page ${page.currentPage} of ${page.lastPage})`
             : ''
-        }</h2
+        }</h1
       >
 
       <div

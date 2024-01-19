@@ -2,19 +2,20 @@
 import BaseHead from '../components/BaseHead.astro'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
+import { type PartialSEOProps } from '../components/SEO'
 
 type Props = {
   section?: 'blog' | 'speaking' | 'about'
+  seo?: PartialSEOProps
 }
 
-const { section } = Astro.props
+const { section, seo } = Astro.props
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <BaseHead {...seo} />
   </head>
   <body class="overscroll-y-none flex flex-col">
     <Header section={section} />

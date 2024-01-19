@@ -11,7 +11,7 @@ import BastoneSiciliano from '../assets/bastone-siciliano.jpg'
 import ServerlessHeroBadge from '../components/badges/ServerlessHero.astro'
 import MvpBadge from '../components/badges/Mvp.astro'
 import BlogCard from '../components/BlogCard.astro'
-import { SOCIALS } from '../consts'
+import { SITE_TITLE, SITE_DESCRIPTION, SOCIALS } from '../consts'
 
 const posts = (await getCollection('posts')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
@@ -35,7 +35,13 @@ const externalArticles: ExternalArticle[] = _externalArticles.sort(
 const sideProjects: SideProject[] = _sideProjects
 ---
 
-<CommonLayout section="about">
+<CommonLayout
+  section="about"
+  seo={{
+    title: `${SITE_TITLE} - ${SITE_DESCRIPTION} - About`,
+    description: `About page of ${SITE_TITLE} - ${SITE_DESCRIPTION}. Find out more about Luciano: his work, his passions and his side projects.`,
+  }}
+>
   <div class="bg-bg-500 overflow-x-hidden">
     <div class="mx-auto max-w-screen-xl py-8 px-8 flex flex-col items-center">
       <div>

@@ -4,6 +4,7 @@
 import { getCollection } from 'astro:content'
 import type { CollectionEntry } from 'astro:content'
 import { Image } from 'astro:assets'
+import { SITE_TITLE } from '../consts'
 import CommonLayout from '../layouts/CommonLayout.astro'
 import SpeakingEntry from '../components/SpeakingEntry.astro'
 
@@ -44,7 +45,13 @@ const countries = new Set(
 )
 ---
 
-<CommonLayout section="speaking">
+<CommonLayout
+  section="speaking"
+  seo={{
+    title: `${SITE_TITLE} - Speaking activity`,
+    description: `Speaking activity of Luciano Mammino, past and upcoming talks and workshops in conferences and meetups. With slides and video links where available.`,
+  }}
+>
   <div class="relative bg-bg-500">
     <div
       class="mx-auto max-w-screen-xl pt-8 pb-2 sm:pb-8 md:pb-16 px-8 z-20 flex flex-col justify-center items-center"

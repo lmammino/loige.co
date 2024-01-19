@@ -15,3 +15,5 @@ export const SOCIALS = [
   { title: 'LinkedIn', url: 'https://www.linkedin.com/in/lucianomammino/' },
   { title: 'GitHub', url: 'https://github.com/lmammino' },
 ]
+export const FB_APP_ID = '231187154413670'
+export const TWITTER_HANDLE = 'loige'
