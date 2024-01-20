@@ -21,8 +21,7 @@ Unfortunately, with `boto3`, gzip encoding is not enabled by default and it can'
 
 I had to go down the rabbit hole to figure out how to support this use case and, in this article, I want to share what I learned with you.
 
-
-## Send gzipped metrics to CloudWatch using boto3 
+## Send gzipped metrics to CloudWatch using boto3
 
 Ok, this is the TLDR; a little gift for the ones in a rush that are looking for a quick _copy-pastable_ solution.
 
@@ -30,11 +29,10 @@ Be aware that the various AWS SDKs are just a convenience layer in front of the 
 
 This is how you can intercept and modify such HTTP requests before they are sent to AWS:
 
-  1. `boto3` has a built-in event system that, among other things, allows you to intercept (and even modify) HTTP requests that are ready to be forwarded to AWS.
-  2. By using this event system, you can implement an event handler that takes the payload of an outgoing request and gzips it. The same handler can also alter the set of outgoing HTTP headers so that it can indicate the request is gzipped by adding the header `Content-Encoding: gzip`.
+1. `boto3` has a built-in event system that, among other things, allows you to intercept (and even modify) HTTP requests that are ready to be forwarded to AWS.
+2. By using this event system, you can implement an event handler that takes the payload of an outgoing request and gzips it. The same handler can also alter the set of outgoing HTTP headers so that it can indicate the request is gzipped by adding the header `Content-Encoding: gzip`.
 
 Here is a code example that uses a CloudWatch client, intercepts calls to the `PutMetricData` API, and gzips the request payload:
-
 
 ```python
 import boto3
@@ -82,7 +80,6 @@ You are welcome! 😜
 
 Now, if you are curious to know more about my use case and how the `boto3` events system works you are more than welcome to keep reading the rest of the article.
 
-
 ## The use case: sending custom metrics to CloudWatch
 
 Last week, during my work at [fourTheorem](https://www.fourtheorem.com/), we started to get intermittent alarms for a Lambda in our stack that was failing because of requests to CloudWatch being occasionally throttled.
@@ -100,7 +97,6 @@ The issue is that in our original implementation we took the naive approach of s
 The solution to the problem is actually quite simple: we can reduce the total number of HTTP requests by sending the data in batches containing multiple data points, rather than sending data points one by one.
 
 This is actually possible by using the same `PutMetricData` API from CloudWatch.
-
 
 ## CloudWatch `PutMetricData` limits
 
@@ -131,10 +127,10 @@ More details can be found in the documentation for the [`MetricDatum` type](http
 
 As you can tell from the comments in the snippet above, the API has some interesting limits to be considered:
 
-  - Up to **20** different metrics
-  - Up to **10** dimensions per metric
-  - Up to **150 values** per metric
-  - Up to **40 KB** in size for HTTP POST requests
+- Up to **20** different metrics
+- Up to **10** dimensions per metric
+- Up to **150 values** per metric
+- Up to **40 KB** in size for HTTP POST requests
 
 > **Update** (2022-08-04): AWS has recently incresed all these limits (by a lot), check out the new limits in their [official announcement post](https://aws.amazon.com/about-aws/whats-new/2022/08/amazon-cloudwatch-metrics-increases-throughput/).
 
@@ -152,15 +148,14 @@ At this point, I thought _"Ok, probably `boto3` is automatically doing the compr
 
 But if you have used AWS for long enough, you learn not to give too many things for granted, so... Let's test this assumption, first!
 
-
 ## Testing `boto3` default behavior
 
 So, how can we see if the by default `boto3` is already gzipping our requests?
 Requests are going to AWS and I could think of 3 different ways to inspect how the final HTTP request actually looks when sent to AWS:
 
- 1. Use a debugger and step through the execution in the deep corners of the `boto3` code.
- 2. Use an HTTP proxy like [Burp Suite](https://portswigger.net/burp/communitydownload) to intercept all the outgoing traffic and have a chance to inspect what's being sent to AWS.
- 3. Use the [`endpoint_url` parameter](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/core/session.html#boto3.session.Session.client) to configure the `boto3` client to send requests somewhere else.
+1.  Use a debugger and step through the execution in the deep corners of the `boto3` code.
+2.  Use an HTTP proxy like [Burp Suite](https://portswigger.net/burp/communitydownload) to intercept all the outgoing traffic and have a chance to inspect what's being sent to AWS.
+3.  Use the [`endpoint_url` parameter](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/core/session.html#boto3.session.Session.client) to configure the `boto3` client to send requests somewhere else.
 
 I opted for option 3, just because I thought it would be the quickest and easiest for me. I quickly wrote a very simple [HTTP debugging server in Node.js](https://gist.github.com/lmammino/34373d61ff28ba34c9c26eb1edad5684) and let it listen for requests at `locahost:8000`.
 
@@ -202,7 +197,6 @@ As you can see from the picture above, `boto3` does not use gzip compression by 
 
 Sad me... 😢 Time to roll up the sleeves and figure out how to gzip the request body manually!
 
-
 ## The `boto3` events system
 
 After some research, I discovered that `boto3` has a [built-in event system](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/events.html).
@@ -211,8 +205,8 @@ This event system allows you to intercept requests being sent to AWS and alter t
 
 This is not a very well known feature of `boto3`, but I can see it being useful in a couple of circumstances:
 
- - Log all outgoing requests and incoming responses (for debugging)
- - Alter HTTP requests or HTTP responses to and from AWS to implement custom behaviors (gzipping the payload of outgoing requests is a great example).
+- Log all outgoing requests and incoming responses (for debugging)
+- Alter HTTP requests or HTTP responses to and from AWS to implement custom behaviors (gzipping the payload of outgoing requests is a great example).
 
 If you want to look at a quick example of how to use this feature, here is one: we want to add an `x-trace-id` header when we invoke a lambda using `boto3`:
 
@@ -228,7 +222,7 @@ def add_xtrace_header(request, **kwargs):
 # get the event system for the lambda_client
 event_system = lambda_client.meta.events
 
-# attach an event handler to the client for 
+# attach an event handler to the client for
 event_system.register('before-sign.lambda.Invoke', add_xtrace_header)
 
 # invoke a lambda function
@@ -237,27 +231,26 @@ lambda_client.invoke(FunctionName='my-function')
 
 The example should be pretty straightforward, but let's zoom on some interesting details.
 
-  - An event handler is just a function that receives a number of arguments that depend on the type of event.
-  - Every `boto3` client exposes the event system as `client.meta.events`.
-  - We can register an event handler by using the `register` function on the event system of a given client and pass the event name and the handler to it.
+- An event handler is just a function that receives a number of arguments that depend on the type of event.
+- Every `boto3` client exposes the event system as `client.meta.events`.
+- We can register an event handler by using the `register` function on the event system of a given client and pass the event name and the handler to it.
 
 The event name is interesting because it follows this specification:
 
-```text
+```plaintext
 <event-type>.<service-name>.<operation-name>
 ```
 
-  - `event-type` is used to indicate the type of event. This is generally representing a phase of the lifecycle of a request. Some examples are `provide-client-params`, `request-created`, `before-sign`, `before-send`, and `response-received`.
-  - `service-name` is the name of the service used. For instance: `s3` or `cloudwatch`.
-  - `operation-name` indicates the type of operation the client is trying to perform (the method). For instance: `PutMetricData` or `Invoke`.
+- `event-type` is used to indicate the type of event. This is generally representing a phase of the lifecycle of a request. Some examples are `provide-client-params`, `request-created`, `before-sign`, `before-send`, and `response-received`.
+- `service-name` is the name of the service used. For instance: `s3` or `cloudwatch`.
+- `operation-name` indicates the type of operation the client is trying to perform (the method). For instance: `PutMetricData` or `Invoke`.
 
 Not all these parts are mandatory and you can create event listeners for multiple events. Let's look at some examples:
 
-  - `*` will listen to every event
-  - `after-call.lambda.*` (or `after-call.lambda`) will listen to all `after-call` type events for lambda and intercept all methods.
+- `*` will listen to every event
+- `after-call.lambda.*` (or `after-call.lambda`) will listen to all `after-call` type events for lambda and intercept all methods.
 
 The `botocore` documentation isn't very clear on how these events work, but after some digging, I managed to find the slides of a very interesting talk by [Kyle Knapp](https://twitter.com/thekyleknapp) called [Deep Dive on AWS SDK for Python (Boto3)](https://pages.awscloud.com/rs/112-TZM-766/images/B-4.pdf). There's also [a video available](https://www.youtube.com/watch?v=eM8uoGJO2AI)! This one was a real lifesaver for me to understand how all of this works. Thank you, Kyle!
-
 
 ## A `boto3` event handler for gzipping requests
 
@@ -321,15 +314,14 @@ Now, if we remove the configuration for `endpoint_url` and send the request to A
 
 Success!
 
-
 ## A few ideas for more defensive solutions
 
 Compressing the payload for `PutMetricData` requests is not an absolute guarantee that we won't be exceeding the 40 KB payload limit. Gzip certainly helps, but you might still bump into the limit and have failures in your application.
 
 If you want to be _failure-proof_ ™️, here are some ideas that we explored with our colleagues:
 
-  - Optimistic solution: Try the request and catch potential exceptions. If you see the `PutMetricData` failed because the payload is too large, just split all the data into 2 requests.
-  - Pessimistic solution: pre-compute the gzipped payload before sending the request and if that's bigger than 40 KB, then split the request into 2 parts.
+- Optimistic solution: Try the request and catch potential exceptions. If you see the `PutMetricData` failed because the payload is too large, just split all the data into 2 requests.
+- Pessimistic solution: pre-compute the gzipped payload before sending the request and if that's bigger than 40 KB, then split the request into 2 parts.
 
 The pessimistic solution has the disadvantage that you will be gzipping the payload twice (before you create the request to make sure it's within boundaries and then in your event handler), but it will avoid sending invalid requests upfront.
 
@@ -339,19 +331,17 @@ If, later on, we will observe production errors, then it might be worth applying
 
 What do you think, which strategy would you apply? Do you have other ideas? let me know that in the comments box below! 😁
 
-
 ## Extensibility in the AWS SDK
 
 **UPDATE**: It turns out that also with other languages like PHP, Go and JavaScript, the AWS SDK offers some degree of extensibility that should allow you to accomplish something similar to what was discussed in this post.
 
 If you are using any of these other languages you can consult the following resources:
 
-  - [Customizing the AWS SDK for Go V2 Client Requests](https://aws.github.io/aws-sdk-go-v2/docs/middleware/)
-  - [Introducing Middleware Stack in Modular AWS SDK for JavaScript](https://aws.amazon.com/blogs/developer/middleware-stack-modular-aws-sdk-js/)
-  - [Handlers and Middleware in the AWS SDK for PHP Version 3](https://docs.aws.amazon.com/sdk-for-php/v3/developer-guide/guide_handlers-and-middleware.html)
+- [Customizing the AWS SDK for Go V2 Client Requests](https://aws.github.io/aws-sdk-go-v2/docs/middleware/)
+- [Introducing Middleware Stack in Modular AWS SDK for JavaScript](https://aws.amazon.com/blogs/developer/middleware-stack-modular-aws-sdk-js/)
+- [Handlers and Middleware in the AWS SDK for PHP Version 3](https://docs.aws.amazon.com/sdk-for-php/v3/developer-guide/guide_handlers-and-middleware.html)
 
 Thanks a lot to the following (amazing) people at AWS for helping me to find out this information in the huge haystack that is the AWS documentation: [Danilo Poccia](https://twitter.com/danilop), [Heitor Lessa](https://twitter.com/heitor_lessa), and [Trivikram](https://twitter.com/trivikram). You rock! 🤘
-
 
 ## Conclusion
 
@@ -364,7 +354,6 @@ If you found this article useful [consider following me on Twitter](https://twit
 A huge "thank you" goes to my colleague [Martin](https://twitter.com/martinbpeters) for involving me in this piece of work (and indirectly for dragging me into this rabbit hole 🐇)! Also thanks to [Eoin Shanaghy](https://twitter.com/eoins) for kindly reviewing this article! Finally, thanks to [Ben Bridts](https://twitter.com/benbridts) for reporting an error in one of the examples! 🙏
 
 See you soon! 👋
-
 
 ### About fourTheorem
 

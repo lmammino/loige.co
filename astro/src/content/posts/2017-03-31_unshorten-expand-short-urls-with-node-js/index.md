@@ -27,7 +27,7 @@ In this article, we are going to see how short URLs work and how we can "expand"
 
 A short URLs is a regular URL that most of the time results very short by following a very simple format:
 
-```none
+```plaintext
 http://<domain>/<id>
 ```
 

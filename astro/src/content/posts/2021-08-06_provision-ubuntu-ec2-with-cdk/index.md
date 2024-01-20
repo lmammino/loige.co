@@ -26,7 +26,6 @@ So, the story goes that I was playing with CDK and I was trying to deploy a simp
 
 How hard could it be to use Ubuntu? It turns out there are some dark corners and the necessary documentation is scattered around the web. I will try to document my finding and provide a complete example in this article. We will also see how to install the `aws` CLI and other necessary AWS utilities in our Ubuntu-based virtual machine. Once you do all these things, you should have a Ubuntu image that is pretty much on par with the Amazon Linux one.
 
-
 ## What is CDK
 
 Ok, if you know CDK already, you can just skip this section. If you don't, how on the world wide web did you end up on this page? 😅
@@ -61,7 +60,6 @@ It's worth knowing that CDK is not a standalone tool, but it's an abstraction bu
 
 If you want to know how to get started with CDK check out the official guide [Getting started with the AWS CDK](https://docs.aws.amazon.com/cdk/latest/guide/getting_started.html).
 
-
 ## Defining An EC2 resource with CDK
 
 From here, I am assuming you have already installed CDK and generated a project with `cdk init`.
@@ -81,18 +79,18 @@ import * as cdk from '@aws-cdk/core'
 import * as ec2 from '@aws-cdk/aws-ec2'
 
 export class MyAppStack extends cdk.Stack {
-  const defaultVpc = ec2.Vpc.fromLookup(this, 'VPC', {
+  defaultVpc = ec2.Vpc.fromLookup(this, 'VPC', {
     isDefault: true,
   })
 
-  const myVm = new ec2.Instance(this, 'myVm', {
+  myVm = new ec2.Instance(this, 'myVm', {
     // the type of instance to deploy (e.g. a 't2.micro')
     instanceType: new ec2.InstanceType('t2.micro'),
     // the id of the image to use for the instance
     machineImage: someAmiId,
     // A reference to the object representing the VPC
     // you want to deploy the instance into
-    vpc: defaultVpc
+    vpc: defaultVpc,
     // ... more configuration
   })
 }
@@ -100,14 +98,13 @@ export class MyAppStack extends cdk.Stack {
 
 As you can see that there are 3 mandatory pieces of information we need to provide:
 
-  - The [type of EC2 instance](https://aws.amazon.com/ec2/instance-types/) we want to run (i.e. `t2.micro`)
-  - The id of the machine image (more on this in the next section)
-  - The id of the VPC (Virtual Private Cloud) where you want to deploy your instance. For example, in the snippet above, we are using the default VPC in your AWS account.
+- The [type of EC2 instance](https://aws.amazon.com/ec2/instance-types/) we want to run (i.e. `t2.micro`)
+- The id of the machine image (more on this in the next section)
+- The id of the VPC (Virtual Private Cloud) where you want to deploy your instance. For example, in the snippet above, we are using the default VPC in your AWS account.
 
 You can also specify a ton of other optional configuration options (Security Groups, a role for IAM permissions, volumes, etc). For a full list of supported options you can check out [the official documentation for the CDK EC2 Instance construct](https://docs.aws.amazon.com/cdk/api/latest/docs/@aws-cdk_aws-ec2.Instance.html).
 
 Ok, now how do we specify that we want to use an Ubuntu-based image? Let's talk about AMIs!
-
 
 ## Ubuntu AMIs and where to find them
 
@@ -115,8 +112,8 @@ When provisioning EC2 instances on AWS you have to provide a virtual machine ima
 
 These two approaches have their pros and cons:
 
-  - If you use a public image, you will need to use an init script to provision the machine with all the needed software and configuration. This is a quick and easy way to experiment and iterate over different versions of your virtual machines. On the other hand, this approach might be slow, depending on how much stuff you need to do at every boot.
-  - If you build your own custom images you'll need to have a pipeline (or some other reproducible approach) to bootstrap a base image, install all your software and create a new image from there. This path adds a bit more complexity but then your images will have everything built in and the bootstrap will probably be much faster.
+- If you use a public image, you will need to use an init script to provision the machine with all the needed software and configuration. This is a quick and easy way to experiment and iterate over different versions of your virtual machines. On the other hand, this approach might be slow, depending on how much stuff you need to do at every boot.
+- If you build your own custom images you'll need to have a pipeline (or some other reproducible approach) to bootstrap a base image, install all your software and create a new image from there. This path adds a bit more complexity but then your images will have everything built in and the bootstrap will probably be much faster.
 
 In this article we will go with a public image (Ubuntu) and we will provide the additional bits and pieces by using an init script.
 
@@ -133,7 +130,6 @@ Every image is built for a specific AWS region, processor architecture, and inst
 When provisioning a new EC2 instance you need to specify the wanted _AMI ID_ and make sure to select the correct one for the region you are deploying your instance to.
 
 There are a couple of different ways to do that.
-
 
 ### Machine AMI map
 
@@ -157,7 +153,6 @@ Here I have copied some AMI IDs manually from the Ubuntu Amazon EC2 AMI Locator 
 This is a bit of tedious copy-paste ( 🍝 ) to do and you need to make sure you do it right. Furthermore, what if there's an update? There will be new IDs and we will need to update them manually again... 🥲
 
 Of course, there's an easier and more maintainable way! 😋
-
 
 ### Machine AMI from a public SSM parameter
 
@@ -200,16 +195,14 @@ This is a rather clever usage of SSM if you ask me! 🤩
 
 Enough chit chat, let's see how to use this approach with CDK:
 
-
 ```typescript
 const machineImage = ec2.MachineImage.fromSSMParameter(
   '/aws/service/canonical/ubuntu/server/focal/stable/current/amd64/hvm/ebs-gp2/ami-id',
-  ec2.OperatingSystemType.LINUX
+  ec2.OperatingSystemType.LINUX,
 )
 ```
 
 That's it! Now we can pass the `machineImage` value to the settings of our EC2 instance!
-
 
 ## A simple EC2 instance with Ubuntu
 
@@ -222,28 +215,29 @@ import * as cdk from '@aws-cdk/core'
 import * as ec2 from '@aws-cdk/aws-ec2'
 
 export class CdkUbuntuEc2Stack extends cdk.Stack {
-  constructor (scope: cdk.Construct, id: string, props?: cdk.StackProps) {
+  constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, {
       env: {
-        account: process.env.CDK_DEPLOY_ACCOUNT || process.env.CDK_DEFAULT_ACCOUNT,
-        region: process.env.CDK_DEPLOY_REGION || process.env.CDK_DEFAULT_REGION
+        account:
+          process.env.CDK_DEPLOY_ACCOUNT || process.env.CDK_DEFAULT_ACCOUNT,
+        region: process.env.CDK_DEPLOY_REGION || process.env.CDK_DEFAULT_REGION,
       },
-      ...props
+      ...props,
     })
 
     const defaultVpc = ec2.Vpc.fromLookup(this, 'VPC', {
-      isDefault: true
+      isDefault: true,
     })
 
     const machineImage = ec2.MachineImage.fromSSMParameter(
       '/aws/service/canonical/ubuntu/server/focal/stable/current/amd64/hvm/ebs-gp2/ami-id',
-      ec2.OperatingSystemType.LINUX
+      ec2.OperatingSystemType.LINUX,
     )
 
     const myVm = new ec2.Instance(this, 'myVm', {
       instanceType: new ec2.InstanceType('t2.micro'),
       machineImage: machineImage,
-      vpc: defaultVpc
+      vpc: defaultVpc,
     })
   }
 }
@@ -259,7 +253,7 @@ Ok ... ⏱ wait over!
 
 If all went well, we should see something like this in the console:
 
-```plain
+```plaintext
  ✅  CdkUbuntuEc2Stack
 
 Stack ARN:
@@ -276,20 +270,27 @@ Let's try to update our machine and make it do something useful. For instance, w
 
 In a real-life scenario, you might do something a bit more sophisticated to deploy and run a real application on the machine.
 
-
 ### Adding a security group to an EC2 with CDK
 
 Let's start by adding a security group to our EC2, this is something we can do by adding the following code to our stack:
 
 ```typescript
 const myVmSecurityGroup = new ec2.SecurityGroup(this, 'myVmSecurityGroup', {
-  vpc: defaultVpc
+  vpc: defaultVpc,
 })
-myVmSecurityGroup.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(80), 'httpIpv4')
-myVmSecurityGroup.addIngressRule(ec2.Peer.anyIpv6(), ec2.Port.tcp(80), 'httpIpv6')
+myVmSecurityGroup.addIngressRule(
+  ec2.Peer.anyIpv4(),
+  ec2.Port.tcp(80),
+  'httpIpv4',
+)
+myVmSecurityGroup.addIngressRule(
+  ec2.Peer.anyIpv6(),
+  ec2.Port.tcp(80),
+  'httpIpv6',
+)
 ```
 
-Then we need to associate this new security group to the instance by setting the `securityGroup` property: 
+Then we need to associate this new security group to the instance by setting the `securityGroup` property:
 
 ```typescript
 const myVm = new ec2.Instance(this, 'myVm', {
@@ -300,7 +301,6 @@ const myVm = new ec2.Instance(this, 'myVm', {
 ```
 
 Ok, now our virtual machine will be able to accept ingress traffic on port `80` from all IPv4 and IPv6 addresses.
-
 
 ### Installing software by using CloudFormation init with CDK
 
@@ -313,12 +313,11 @@ const myVm = new ec2.Instance(this, 'myVm', {
   // ...
   init: ec2.CloudFormationInit.fromElements(
     ec2.InitCommand.shellCommand('sudo apt-get update -y'),
-    ec2.InitCommand.shellCommand('sudo apt-get install -y nginx')
-  )
+    ec2.InitCommand.shellCommand('sudo apt-get install -y nginx'),
+  ),
   // ... more configuration
 })
 ```
-
 
 ### CDK signal problems with Ubuntu
 
@@ -326,7 +325,7 @@ At this point we are ready to do another deployment, so let's run `cdk deploy`.
 
 This time the deployment should take a long time (10-15mins) and then fail with an error that should look like the following:
 
-```plain
+```plaintext
 CdkUbuntuEc2Stack: deploying...
 CdkUbuntuEc2Stack: creating CloudFormation changeset...
 17:28:01 | UPDATE_FAILED        | AWS::EC2::Instance        | myVm11CC711A
@@ -346,7 +345,6 @@ This makes sense. This is a specific AWS utility that is pre-installed in Amazon
 So now the problem is "How do we install cfn-signal?"
 
 The answer to this question is "by using a custom user data script"!
-
 
 ## Installing AWS Linux utilities on an Ubuntu Image using CDK
 
@@ -386,7 +384,7 @@ userData.addCommands(
   'qs_bootstrap_pip || qs_err',
   'qs_aws-cfn-bootstrap || qs_err',
   'mkdir -p /opt/aws/bin',
-  'ln -s /usr/local/bin/cfn-* /opt/aws/bin/'
+  'ln -s /usr/local/bin/cfn-* /opt/aws/bin/',
 )
 ```
 
@@ -396,7 +394,7 @@ Then, `userData` needs to be passed to our `machineImage` as the third argument:
 const machineImage = ec2.MachineImage.fromSSMParameter(
   '/aws/service/canonical/ubuntu/server/focal/stable/current/amd64/hvm/ebs-gp2/ami-id',
   ec2.OperatingSystemType.LINUX,
-  userData
+  userData,
 )
 ```
 
@@ -410,14 +408,13 @@ Adding an output value is quite simple with CDK, we just need to instantiate a n
 const webVmUrl = new cdk.CfnOutput(this, 'webVmUrl', {
   value: `http://${myVm.instancePublicIp}/`,
   description: 'The URL of our instance',
-  exportName: 'webVmUrl'
+  exportName: 'webVmUrl',
 })
 ```
 
 Now if we run `cdk deploy`, after a few minutes we should see an output like the following:
 
-
-```plain
+```plaintext
  ✅  CdkUbuntuEc2Stack
 
 Outputs:
@@ -441,19 +438,19 @@ If you want to clean up your account and destroy the stack created by this proje
 cdk destroy
 ```
 
-
 ## Conclusion
 
 In this article we learned how to use CDK to provision an Ubuntu-based virtual machine and how to configure it to run the default installation of nginx.
 
 In the process we also learned a bunch of related concepts such as:
- - what is CDK
- - how to use it to define an EC2 instance
- - how to reference an AMI
- - how to add security groups
- - how to use user data and init script
- - how to install the AWS Linux Utilities
- - ...and finally how to create a CDK output argument.
+
+- what is CDK
+- how to use it to define an EC2 instance
+- how to reference an AMI
+- how to add security groups
+- how to use user data and init script
+- how to install the AWS Linux Utilities
+- ...and finally how to create a CDK output argument.
 
 WOW that was quite a journey, and there I thought this would be a short article! 😅
 

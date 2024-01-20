@@ -1,7 +1,7 @@
 ---
 title: How to to_string in Rust
 slug: how-to-to-string-in-rust
-subtitle: "Exploring Rust traits for string conversion: Debug, Display and ToString"
+subtitle: 'Exploring Rust traits for string conversion: Debug, Display and ToString'
 date: 2021-05-26T18:50:00.000Z
 updated: 2021-05-27T19:10:00.000Z
 header_img: ./how-to-to-string-in-rust.jpg
@@ -22,7 +22,6 @@ I finally decided to do a bit of research to try and demystify this topic a bit 
 
 Are you ready? 🙂
 
-
 ## Implementing our own `to_string()`
 
 Coming from other languages and not having a deep knowledge of the most idiomatic Rust approaches, the first thing that I generally tend to do when facing a problem is _"let's just make this work for now"_.
@@ -37,8 +36,8 @@ someValue.to_string(); // returns a String value
 
 For the sake of having a consistent example throughout the article, let's pretend that we are working on a struct that allows us to manage API credentials. In this context credentials are made up of 2 separate values:
 
-  - An `api_key`: effectively a unique id for the key.
-  - A `secret`: a secret string associated with the key. Something that we could use to sign API requests.
+- An `api_key`: effectively a unique id for the key.
+- A `secret`: a secret string associated with the key. Something that we could use to sign API requests.
 
 We can store this data in a struct called `Credentials`:
 
@@ -59,7 +58,7 @@ impl Credentials {
             secret,
         }
     }
-    
+
     pub fn to_string(&self) -> String {
         // We don't want to disclose the secret
         format!("Credentials({})", &self.api_key)
@@ -80,7 +79,7 @@ fn main() {
 
 The snippet above is going to print:
 
-```text
+```plaintext
 Credentials(SOME_API_KEY)
 ```
 
@@ -90,11 +89,11 @@ OK, this is easy and it works! But, let's face it, the implementation is very sp
 
 What I mean by that is that the rest of the codebase doesn't really know that this type can be converted to a String. It is just a method like any other and there is no agreement or standard that says that this is how you _signal_ that a given value can be converted to a string. Therefore, we cannot build abstractions on top of this...
 
-In fact, note how we needed to explicitly call `to_string()` in our `println!()` call. 
+In fact, note how we needed to explicitly call `to_string()` in our `println!()` call.
 
 If we try to remove that and just pass the `creds` value we get an error:
 
-```text
+```plaintext
 error[E0277]: `Credentials` doesn't implement `std::fmt::Display`
   --> src/main.rs:22:20
    |
@@ -113,7 +112,7 @@ For more information about this error, try `rustc --explain E0277`.
 
 If we zoom in a little, the error message is clear:
 
-```text
+```plaintext
 "`Credentials` cannot be formatted with the default formatter"
 ```
 
@@ -121,12 +120,11 @@ As expected, the Rust compiler doesn't seem to understand that we have defined a
 
 Wouldn't it be nice if we could somehow tell the Rust compiler that our `Credentials` type can be _stringified_?
 
-
 ## Rust traits
 
 If we have a second, more in-depth, look at the error above, there's an interesting hint there:
 
-```text
+```plaintext
 the trait `std::fmt::Display` is not implemented for `Credentials`
 ```
 
@@ -134,19 +132,17 @@ The Rust compiler is trying to be helpful and it's telling us:
 
 > "You know, if you want to be able to automatically convert `Credentials` values to a string, you should look into implementing the `std::fmt::Display` trait"
 
-
 In Rust, structs can expose certain common behavior by implementing specific traits.
 
 In other languages, you can do the same by extending certain classes or implementing certain interfaces. Other languages do the same by convention (or by protocols): if you implement certain methods with very specific names, arguments, and return types then your type (or object) can exhibit a certain behavior.
 
 Regarding the _"to string behavior_", in Rust, there are several interesting traits that we should look into!
 
-  1. the `std::fmt::Debug` trait
-  2. the `std::string::ToString` trait
-  3. the s`td::fmt::Display` trait (the one recommended by the previous error message)
+1. the `std::fmt::Debug` trait
+2. the `std::string::ToString` trait
+3. the s`td::fmt::Display` trait (the one recommended by the previous error message)
 
 They have very specific purposes, so in the rest of this article, we will be exploring all of them and discuss when you should be using them.
-
 
 ## The `Debug` trait
 
@@ -191,7 +187,7 @@ fn main() {
 
 The code above will output:
 
-```text
+```plaintext
 Credentials { api_key: "SOME_API_KEY", secret: "SOME_SECRET" }
 ```
 
@@ -199,7 +195,7 @@ Did you notice that we used the `{:?}` placeholder in our format string? This is
 
 A small productivity tip here: you can also use the `{:#?}` placeholder (note the hash) if you want the output to be pretty-printed! If we do that in our with our `Credentials` struct from the previous example, it will be printed like this:
 
-```text
+```plaintext
 Credentials {
     api_key: "SOME_API_KEY",
     secret: "SOME_SECRET",
@@ -251,7 +247,7 @@ fn main() {
 
 The code above will output:
 
-```text
+```plaintext
 Credentials {
     api_key: "SOME_API_KEY",
     secret: "SOME*******",
@@ -260,14 +256,13 @@ Credentials {
 
 Implementing the `Debug` trait manually is something that you rarely have to do manually. For the majority of use cases, the `Derive` macro will serve you well!
 
-It is interesting to note that implementing the Debug trait manually requires you to use a `Formatter`. 
+It is interesting to note that implementing the Debug trait manually requires you to use a `Formatter`.
 
-From the documentation: 
+From the documentation:
 
 > "A Formatter represents various options related to formatting. Users do not construct Formatters directly; a mutable reference to one is passed to the fmt method of all formatting traits, like Debug and Display."
 
 In short, a formatter is a utility that helps you to build the output string you want to generate. If you are curious to find out more, you can check out the [official documentation page on the `Formatter` type](https://doc.rust-lang.org/std/fmt/struct.Formatter.html).
-
 
 ## The `ToString` trait
 
@@ -299,9 +294,7 @@ Implementing `ToString` for a type will force that type to have a `to_string()` 
 
 <small>Thanks to [kornel](https://lobste.rs/s/7hrgbb/how_string_rust#c_cxqzse) from lobste.rs for this tip</small>.
 
-
 At this point, we can practically ignore the `ToString` trait and focus only on the `Display` trait!
-
 
 ## The `Display` trait
 
@@ -363,14 +356,14 @@ use std::fmt::Write;
 fn main() -> fmt::Result {
     let foo = Credentials::new(String::from("foo"), String::from("foosecret"));
     let bar = Credentials::new(String::from("bar"), String::from("barsecret"));
-    
+
     // pre-allocated buffer
     let mut output = String::with_capacity(200);
 
     write!(&mut output, "{}", foo)?;
     write!(&mut output, "{}", bar)?;
     println!("{}", output); // foobar
-    
+
     Ok(())
 }
 ```
@@ -378,7 +371,6 @@ fn main() -> fmt::Result {
 <small>Thanks to [nicoburns](https://www.reddit.com/r/rust/comments/nlor05/how_to_to_string_in_rust_extended_blog_post_from/gzmc14l) from Reddit for this tip.</small>
 
 Also, remember that the placeholder to use the `Display` trait is just `{}` (as opposed to `{:?}` or `{:#?}` for the `Debug` trait).
-
 
 ## Summary
 

@@ -1,7 +1,7 @@
 ---
 title: What's in a JWT (Json Web Token)?
 slug: whats-in-a-jwt
-subtitle: "A deep dive into JWTs: their structure, how they work, and when to use them"
+subtitle: 'A deep dive into JWTs: their structure, how they work, and when to use them'
 date: 2020-10-05T09:00:00.000Z
 updated: 2020-10-05T09:00:00.000Z
 header_img: ./whats-in-a-jwt.png
@@ -17,20 +17,19 @@ If you ended up on this article, chances are that you have been seeing JWTs (Jso
 
 In this article we will be trying to address this topic in a short but (hopefully) effective fashion!
 
-
 ## It's just a string with a well-defined format
 
-JWT stands for *JSON Web Token* and such a token is just a string composed by 3 parts:
+JWT stands for _JSON Web Token_ and such a token is just a string composed by 3 parts:
 
 ![The three parts of a JSON Web Token](./jwt-parts.png)
 
-  - a **header**
-  - a **body** (sometimes also referred to as **payload**)
-  - a cryptographic **signature**.
+- a **header**
+- a **body** (sometimes also referred to as **payload**)
+- a cryptographic **signature**.
 
 Let's have a look at a more concrete example, a JWT looks like this:
 
-```text
+```plaintext
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJoZWxsbyI6ImZyb20gSldUIn0.XoByFQCJvii_iOTO4xlz23zXmb4yuzC3gqrWNt3EHrg
 ```
 
@@ -38,16 +37,16 @@ The three parts are separated by a `.` (dot) character:
 
 ![The three parts of a sample JSON Web Token](./jwt-parts-example.png)
 
-  - header: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9`
-  - body: `eyJoZWxsbyI6ImZyb20gSldUIn0`
-  - signature: `XoByFQCJvii_iOTO4xlz23zXmb4yuzC3gqrWNt3EHrg`
+- header: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9`
+- body: `eyJoZWxsbyI6ImZyb20gSldUIn0`
+- signature: `XoByFQCJvii_iOTO4xlz23zXmb4yuzC3gqrWNt3EHrg`
 
-Header and Body are JSON strings (yeah, that's why the are called *JSON* web tokens...). This is somewhat hidden, because those two strings are encoded using the [Base64Url](https://tools.ietf.org/html/rfc4648#section-5) algorithm (a URL-safe variation of the standard Base64 encoding algorithm).
+Header and Body are JSON strings (yeah, that's why the are called _JSON_ web tokens...). This is somewhat hidden, because those two strings are encoded using the [Base64Url](https://tools.ietf.org/html/rfc4648#section-5) algorithm (a URL-safe variation of the standard Base64 encoding algorithm).
 
 If we decode them this is what we get:
 
-  - header: `{ "alg": "HS256", "typ": "JWT" }`
-  - body: `{ "hello": "from JWT" }`
+- header: `{ "alg": "HS256", "typ": "JWT" }`
+- body: `{ "hello": "from JWT" }`
 
 Which now looks like proper JSON!
 
@@ -59,10 +58,9 @@ If you try to decode the signature and visualize it a s UTF-8 string you will pr
 
 Again, this is because the signature just contains raw bytes which do not represent a valid UTF-8 string. So yeah, there is no point in trying to decode and visualize a signature. 🤗
 
-
 ## When are JWTs useful
 
-JWTs are mostly used as a mechanism for "stateless" claims exchange. We can define a claim as some piece of information that we want to certify and propagate through various systems. 
+JWTs are mostly used as a mechanism for "stateless" claims exchange. We can define a claim as some piece of information that we want to certify and propagate through various systems.
 
 A good example is authentication and authorization, were our claims could be information about the user session (user id, roles, etc). Let's try to discuss this example with a (rather crappy) illustration:
 
@@ -72,8 +70,8 @@ A good example is authentication and authorization, were our claims could be inf
 
 In this picture:
 
-  1. John is authenticating against an auth server. The auth server recognizes his credentials and gives him back a token
-  2. John can now use the token to connect to specific services, for instance the pizza service.
+1. John is authenticating against an auth server. The auth server recognizes his credentials and gives him back a token
+2. John can now use the token to connect to specific services, for instance the pizza service.
 
 Every time John makes a request to a service, he will need to attach his token to the request. The service can look at the token to understand if the request can be authorized. The service can read the information embedded within the token to understand that the request is coming from John and can verify that the signature was applied by the Auth server.
 
@@ -82,7 +80,6 @@ This process is "stateless" because this validation can be done without having t
 A stateless mechanism like this, is great for distributed systems or, in general, systems that deal with a high load of requests.
 
 Authentication is not the only use case for JWT. For instance a JWT can also be used to generate confirmation links like "confirm your subscription to this newsletter" or to generate "password reset links".
- 
 
 ## Now you can be nosy
 
@@ -91,7 +88,6 @@ Now that you know how a JWT token is made you can start to be nosy and look into
 You can copy-paste tokens into [jwt.io](https://jwt.io) or use a command-line tool like [`jwtinfo`](https://github.com/lmammino/jwtinfo) to read the content of the header and the body in plain text.
 
 Trust me, if you do that you will be surprised by how many interesting information you can find there!
-
 
 ## Closing notes
 

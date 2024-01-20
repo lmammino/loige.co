@@ -142,3 +142,7 @@ At this point you can run the Dropbox CLI. For example if you want to disable th
 /dropbox/bin/dropbox.py lansync n
 ```
 
+---
+
+That's all.
+It was a long read but I hope it has been useful ;)

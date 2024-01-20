@@ -32,7 +32,6 @@ This type of authentication is based on the idea that a token (in this case, a _
 
 I have been speaking and writing at length about [JWT](/tag/jwt) before, so I am just going to say that if you want to deep dive into the fascinating topic of OIDC you can check out the [official specification of the OIDC standard](https://openid.net/specs/openid-connect-core-1_0.html). If you have the guts to read protocol specifications, it's a very interesting read, I promise! 😇
 
-
 ## The problem
 
 Ok, all pretty cool, but what was the problem?
@@ -45,7 +44,7 @@ I take responsibility for that, but that's only part of the problem. The other s
 
 The full response:
 
-```plain
+```plaintext
 HTTP/2 500
 content-type: application/json
 content-length: 16
@@ -65,7 +64,6 @@ Shrugh... What do you do in these cases? 🤷
 
 You try to look for some logs in CloudWatch, right? Well, I did that and I found nothing. API Gateway doesn't have a log group by default and I was expecting to see some logs from my Lambda function, but there was nothing useful there!
 
-
 ## The solution
 
 The solution is to enable extensive logging for API Gateway.
@@ -80,7 +78,6 @@ These are the logical steps we need to follow:
 2. Use the [`AWS::ApiGateway::Account`](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-account.html) resource to assign the role we just created to API Gateway.
 3. Updated the specific instance of a REST API Gateway stage to enable logging and tracing on it.
 
-
 ## Enabling API Gateway logging to CloudWatch with CloudFormation
 
 OK, let's start with the code for the first 2 steps using the following CloudFormation template:
@@ -88,11 +85,10 @@ OK, let's start with the code for the first 2 steps using the following CloudFor
 ```yaml
 # apigw-logging.yaml
 
-AWSTemplateFormatVersion: "2010-09-09"
+AWSTemplateFormatVersion: '2010-09-09'
 Description: Allow API Gateway to write logs to CloudWatch
 
 Resources:
-  
   ApiCWLRoleArn:
     Type: AWS::ApiGateway::Account
     Properties:
@@ -102,15 +98,15 @@ Resources:
     Type: AWS::IAM::Role
     Properties:
       AssumeRolePolicyDocument:
-        Version: "2012-10-17"
+        Version: '2012-10-17'
         Statement:
-          Action: "sts:AssumeRole"
+          Action: 'sts:AssumeRole'
           Effect: Allow
           Principal:
             Service: apigateway.amazonaws.com
       Path: /
       ManagedPolicyArns:
-        - "arn:aws:iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs"
+        - 'arn:aws:iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs'
 ```
 
 To avoid overwriting other roles, we should only have one `AWS::ApiGateway::Account` resource per region per account, so we are creating a generic stack only to allow API Gateway to send logs to CloudWatch. We will be defining our APIs in other stacks.
@@ -128,14 +124,13 @@ Make sure to specify a region either with the `--region` flag or by setting the 
 
 If all goes well, you should see an output like this:
 
-```plain
+```plaintext
 Waiting for changeset to be created..
 Waiting for stack create/update to complete
 Successfully created/updated stack - apigw-logging
 ```
 
 > **Note**: if you prefer to use SAM (which we will use later), you can use it to deploy the template above with the following command: `sam deploy --guided --template apigw-logging.yaml`.
-
 
 ## Enable logging and tracing for a specific API Gateway stage using SAM
 
@@ -148,7 +143,7 @@ So, let's say we have another SAM template that defines an API Gateway and the s
 ```yaml
 # api.yaml
 
-AWSTemplateFormatVersion: "2010-09-09"
+AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: AWS SAM template with a simple API definition
 
@@ -161,9 +156,9 @@ Resources:
       # Enable traces and logs for the API Gateway stage
       TracingEnabled: true
       MethodSettings:
-        - HttpMethod: "*"
+        - HttpMethod: '*'
           LoggingLevel: INFO
-          ResourcePath: "/*"
+          ResourcePath: '/*'
           MetricsEnabled: true
           DataTraceEnabled: true
 
@@ -188,8 +183,8 @@ Resources:
 # Prints the full URL of our test endpoint
 Outputs:
   HelloEndpoint:
-    Description: "API Gateway endpoint"
-    Value: !Sub "https://${ApiGatewayApi}.execute-api.${AWS::Region}.amazonaws.com/prod/hello"
+    Description: 'API Gateway endpoint'
+    Value: !Sub 'https://${ApiGatewayApi}.execute-api.${AWS::Region}.amazonaws.com/prod/hello'
 ```
 
 Let's deploy this stack with:
@@ -200,12 +195,11 @@ sam deploy --guided --template api.yaml
 
 Note that SAM will warn us that we haven't set any authorization for our API Gateway. That's fine for now, we will add it later. But you need to make sure you reply `Y` to the following question:
 
-```plain
+```plaintext
 SampleApiFunction1 has no authentication. Is this okay?
 ```
 
 If all goes well, you should see an output containing the URL of our endpoint. If you call it you should see the message: _"Hello, my friend!"_.
-
 
 ## Adding a custom authorizer to our API Gateway
 
@@ -217,7 +211,7 @@ Just to have a simple example to work with, let's say that we want to authorise 
 
 So the following headers will be authorized: ✅
 
-```plain
+```plaintext
 Authorization: 1
 Authorization: 3
 Authorization: 5
@@ -226,7 +220,7 @@ Authorization: 5
 
 While, the following headers will be denied: ❌
 
-```plain
+```plaintext
 Authorization: 2
 Authorization: 4
 ...
@@ -261,7 +255,7 @@ def handler(event, context):
       }
   except:
     pass
-  
+
   # deny response
   return {
     "policyDocument": {
@@ -285,13 +279,13 @@ If you save this Python code in a file called `handler.py` in the same folder wh
 Resources:
   # [...]
 
-    # Authorizer Lambda
-    SimpleApiAuthorizerLambda:
-      Type: AWS::Serverless::Function
-      Properties:
-        Runtime: python3.9
-        Handler: handler.handler
-        CodeUri: .
+  # Authorizer Lambda
+  SimpleApiAuthorizerLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Runtime: python3.9
+      Handler: handler.handler
+      CodeUri: .
 ```
 
 This only creates the Lambda resource, but to configure it as an authorizer, we need to add the following section to the `ApiGatewayApi` resource:
@@ -330,7 +324,7 @@ curl -i -X GET -H 'Authorization: 17' <your-api-url>/hello
 
 You should see a response like this:
 
-```plain
+```plaintext
 HTTP/2 200
 content-type: application/json
 content-length: 21
@@ -348,7 +342,7 @@ Hello, my friend!
 
 If instead we send a request without an `Authorization` header we should see something like:
 
-```plain
+```plaintext
 HTTP/2 401
 content-type: application/json
 content-length: 26
@@ -367,7 +361,7 @@ x-amz-cf-id: PuyPcm7sY13bfhigJXgNGTgYkT5CjinaK_uD6bl0jDNdGn_U0_pmHw==
 
 Finally, if we send an invalid value for the `Authorization` header (e.g. not a number or an even number) we should see something like this:
 
-```plain
+```plaintext
 HTTP/2 403
 content-type: application/json
 content-length: 82
@@ -388,7 +382,6 @@ Note how there's a difference in the error response between not sending an `Auth
 
 In the first case, API Gateway is automatically handling the response for us and our custom authorizer lambda is not even invoked. In the second case, the authorizer is invoked and it returns a `Deny` response, which produces a `403` error and that specific error message.
 
-
 ## Looking at the API Gateway logs
 
 Ok, I have been kind enough to give you a working authorizer, so we didn't really have to debug much... but we should still have a look at the API Gateway logs to see what they look like and why they could be really useful in case something went wrong and we needed to troubleshoot.
@@ -398,7 +391,6 @@ To look at the logs, we need to go to the [CloudWatch console](https://console.a
 ![Example of API Gateway logs](./example-of-api-gateway-logs-with-custom-authorizer.png)
 
 As you can see, in these logs you can see quite a bit of detail about all the steps that API Gateway is performing before and after invoking our custom authorizer. This is really useful to understand what's going on and where the problem could be.
-
 
 ## Conclusion
 

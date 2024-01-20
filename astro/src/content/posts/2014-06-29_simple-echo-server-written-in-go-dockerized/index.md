@@ -177,7 +177,7 @@ Now let's get back to our `Dockerfile`. Every Dockerfile contains some metadata 
 
 Enough talking, let's jump to the code:
 
-```Dockerfile
+```dockerfile
 FROM ubuntu:12.04
 
 MAINTAINER Luciano Mammino

@@ -26,7 +26,6 @@ In the last few years we set ourselves onto the Rust learning path. We don't wor
 We recently had the pleasure to have our crate reviewed by [Tim McNamara](https://twitter.com/timClicks) of [Rust in Action](https://www.manning.com/books/rust-in-action)'s fame (one the best Rust books out there in our honest opinion!). The review was carried out live on [Tim's twitch channel](https://www.twitch.tv/timclicks) and it gave us a lot of cues on things to improve.
 This article serves as a summary for our experience and memorandum of all the interesting things we learned. If you are learning Rust as well, we hope you will find some of these notes useful!
 
-
 ## Our motivation
 
 Before getting into the weeds of what we learned, it probably makes sense for us to give you a little intro on who we are and why we are interested in Rust. If you couldn't care less about who is writing this, just skip to the next section! 😜
@@ -34,7 +33,6 @@ Before getting into the weeds of what we learned, it probably makes sense for us
 [Luciano](https://twitter.com/loige), considers himself a fullstack cloud developer. His career has been gravitating mostly around building web and cloud-focused products. He has been using mainly high level languages throughout his career (qBasic/VB, Php, JavaScript, Python, Go, Node.js). Node.js is his tool of choice and he is one of the co-authors of the book [Node.js Design Patterns (Packt)](https://www.nodejsdesignpatterns.com/). He is fascinated by Rust because it unveils fundamental topics like memory management and safety which he doesn't know much about, but he is also interested in using Rust on the web building Rust web servers and frontends with WebAssembly. If you are curious to know more about Luciano, check out the [about section of this blog](/about).
 
 [Stefano](https://twitter.com/StefanoAbalsamo) is a long time low-level C/C++ developer who got close to the world of web development in the last few years. Based on his previous experience, Stefano saw in Rust a great potential to write safe and performant code across all the stack.
-
 
 ## The project and a quick JWT primer
 
@@ -49,13 +47,12 @@ jwtinfo eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI
 And it will print:
 
 ```json
-{"sub":"1234567890","name":"John Doe","iat":1516239022}
+{ "sub": "1234567890", "name": "John Doe", "iat": 1516239022 }
 ```
 
-Which is essentially the *body* (or *payload*) of the token we pass as input to `jwtinfo`.
+Which is essentially the _body_ (or _payload_) of the token we pass as input to `jwtinfo`.
 
 Of course, `jwtinfo` will also tell you if you try to pass a token that is not valid and can't be parsed correctly, so, in a way, you could also call it a JWT validator, even though, at this time, it does not offer any functionality to validate the token signature against a secret or a public key.
-
 
 ## The review
 
@@ -67,24 +64,23 @@ After a couple of weeks Tim proceeded with the live review [that you can now wat
 
 [Our ask](https://twitter.com/loige/status/1306227257606836227) was to get some generic advice around the following topics:
 
-  - Project structure
-  - Error management
-  - Enums
-  - Exposing a lib and a cli together
-  - Testing
-  - Build process
+- Project structure
+- Error management
+- Enums
+- Exposing a lib and a cli together
+- Testing
+- Build process
 
 In hindsight, we reckon that this list might look a bit random and unclear, but nonetheless Tim managed to address most of these points and provided great insights around the concerns we had around these topics.
 
 We are going now to showcase our notes, in no special order and try to provide as much context as possible based on what we learned during the review process and even after it when we decided to go in greater depth on some of the suggested improvements.
-
 
 ## Simplified project structure and exposing a CLI and a library
 
 When we started working on this project we just wanted to create a simple command line tool. As we were writing the code, we realized that all the JWT parsing and validation logic could be externalized to its own external module. We didn't really want to split the project in two, mostly for simplicity, but also because there are [many cool JWT crates](https://crates.io/search?q=jwt) out there and don't want to compete or even try to provide feature parity with them. This is a learning project, and as such, we thought it might be nice to expose our JWT parsing layer as a library too.
 Tim provided 2 interesting pieces of advice. The first one is to simplify the folder structure. It turns out we were following a pattern that was required in Rust 2015 edition, which looks like the following:
 
-```text
+```plaintext
 src/
 ├── main.rs # our CLI app
 └── jwt # our internal lib for JWT parsing
@@ -94,7 +90,7 @@ src/
 
 In Rust 2018 edition it is possible to avoid creating `mod.rs` files. But why would you want to avoid them in the first place? It turns out that those files tend to be quite anonymous in big projects. If you have many submodules, chances are that you will end up having many tabs open at a given point in time and they would all be saying `mod.rs`. It will probably take you a while to be able to navigate through them and find the file you were looking for. What we learned is that with Rust 2018 we could simply promote `src/jwt/mod.rs` to `src/jwt.rs`. No other code change required: all the imports still work as a charm! So now our code structure looks like this:
 
-```text
+```plaintext
 src/
 ├── main.rs
 ├── jwt.rs
@@ -157,7 +153,7 @@ path = "src/cli.rs"
 
 And our files structure looks like this:
 
-```text
+```plaintext
 src/
 ├── cli.rs
 ├── jwt.rs
@@ -167,7 +163,6 @@ src/
 ```
 
 And that annoying warning disappeared. Plus, we are probably getting slightly faster compile times now! ⚡️
-
 
 ## Document all the things
 
@@ -187,7 +182,7 @@ One of the most amazing thing was that, once we published a new version of the c
 Another thing that we loved about writing documentation in Rust is the ability to execute code examples to make sure they are actually correct.
 Just to show a real example, this is a piece of documentation in our crate:
 
-```rust
+````rust
 //! To parse a given JWT as a string:
 //!
 //! ```rust
@@ -203,7 +198,7 @@ Just to show a real example, this is a piece of documentation in our crate:
 //!   Err(e) => panic!(e)
 //! }
 //! ```
-```
+````
 
 When we run our test suite with `cargo test`, Cargo will also extrapolate this example here from the docs and execute it. This will help us make sure that our documentation is actually correct and that it doesn't go stale over time.
 
@@ -230,7 +225,6 @@ fn parse_base64_string(s: &str) -> Result<String, JWTParseError> {
 
 This is convenient because we don't want any user of our crate to bother with this function which is just an implementation detail that we might decide to change in the future.
 
-
 ## Convert a string to anything
 
 Another great suggestion from Tim to improve the ergonomics of the JWT parsing library was to implement the [`str::FromStr` trait](https://doc.rust-lang.org/std/str/trait.FromStr.html) for the `Token` type.
@@ -244,7 +238,7 @@ let value = "1987";
 let result = value.parse::<i32>().unwrap();
 ```
 
-By the way, if you find the syntax `function::<type>()` weird, don't worry, we found it a bit "unfriendly" too. Once we discovered it is called *"turbofish"* we couldn't help but to fall in love with it. You can learn more about it here: [Where to put the turbofish](https://matematikaadit.github.io/posts/rust-turbofish.html).
+By the way, if you find the syntax `function::<type>()` weird, don't worry, we found it a bit "unfriendly" too. Once we discovered it is called _"turbofish"_ we couldn't help but to fall in love with it. You can learn more about it here: [Where to put the turbofish](https://matematikaadit.github.io/posts/rust-turbofish.html).
 
 Don't worry, if you still don't like the turbofish syntax, you can rewrite the code above using type hints as follows:
 
@@ -313,7 +307,7 @@ impl FromStr for YourType {
 }
 ```
 
-In our project it was rather trivial to implement this trait, because our `parse` function matches quite closely the signature of the `from_str` method defined in the  `str::FromStr` trait:
+In our project it was rather trivial to implement this trait, because our `parse` function matches quite closely the signature of the `from_str` method defined in the `str::FromStr` trait:
 
 ```rust
 impl FromStr for Token {
@@ -336,7 +330,6 @@ or, if you still hate the poor turbofish:
 ```rust
 let token: jwt::Token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c".parse().unwrap();
 ```
-
 
 ## Accept any type that can be converted to string
 
@@ -362,9 +355,9 @@ is_hello(s);
 
 Essentially, whenever you want to accept "anything that can be converted to a string" you can use the following recipe:
 
-  1. Make your function accept an argument `x` of generic type `T`
-  2. Define `T` so that it must implement the trait `AsRef<str>`
-  3. In your function body get the actual `str` value from `x` using `x.as_ref()`
+1. Make your function accept an argument `x` of generic type `T`
+2. Define `T` so that it must implement the trait `AsRef<str>`
+3. In your function body get the actual `str` value from `x` using `x.as_ref()`
 
 As you can see from the example above, with this recipe, we can pass both `&str` and `String` values to the `is_hello` function.
 
@@ -377,10 +370,9 @@ pub fn parse<T: AsRef<str>>(token: T) -> Result<Token, JWTParsePartError> {
 }
 ```
 
-
 ## Remove code duplication
 
-One of the things that amazed us when we started playing with Rust was to discover that Rust [*is primarily an expression language*](https://doc.rust-lang.org/reference/statements-and-expressions.html).
+One of the things that amazed us when we started playing with Rust was to discover that Rust [_is primarily an expression language_](https://doc.rust-lang.org/reference/statements-and-expressions.html).
 
 In practice, this means that most syntax elements, including `if-else` and `match`, once evaluated will produce a value that can be carried over to other expressions or assigned to a variable.
 
@@ -457,6 +449,7 @@ let part = match matches.is_present("header") {
 };
 println!("{}", part.to_string());
 ```
+
 When we run clippy on this code, it did trigger the [`match_bool`](https://rust-lang.github.io/rust-clippy/master/index.html#match_bool) rule and that it is suggested to refactor this with an `if-else` expression:
 
 ```rust
@@ -471,7 +464,6 @@ Which is indeed more readable. Another lesson learned: trust linters!
 
 In short, these types of change helped us to reduce the amount of inline composition and to make the code more sequential and easy to follow.
 
-
 ## Improve tests for invalid strings
 
 Another thing that Tim recommended us to do was to improve our coverage on testing different types of input. He tried to run our JWT parser against strings with non-utf8 characters and strings containing null bytes to see whether our code would handle that correctly (returning an error) or whether it would just panic.
@@ -482,7 +474,6 @@ This pushed us to increase our test coverage adding a few more tests as you can 
 
 Another interesting recommendation was to use something like [quickcheck](https://github.com/BurntSushi/quickcheck) to do fuzzy testing on our input. Although this seems like an extremely interesting thing to do, we haven't got time yet to play with this idea.
 
-
 ## Shell scripts deserve some love too
 
 As a last point, Tim had a look at our [cross-system installation script](https://github.com/lmammino/jwtinfo/blob/master/install.sh) and immediately noticed our poor use of Bash scripting.
@@ -490,7 +481,6 @@ As a last point, Tim had a look at our [cross-system installation script](https:
 The main advice here was to use some shell linter like [Shellcheck](https://www.shellcheck.net). Tim himself, ran the script against the linter by copy pasting the code on the web page and submitted a PR with some improvements.
 
 Shellcheck can be used as a command line tool too, so it would be nice in feature release to integrate in our automated tests.
-
 
 ## Conclusion
 

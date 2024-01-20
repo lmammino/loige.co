@@ -21,7 +21,6 @@ description: Learn how to create a private, invite-only website using Next.js,
 
 I recently needed to create an invite-only Next.js-powered microsite (for my wedding 🌸) and in this article I'm going to show you how I went about creating invite codes and how I implemented code validation in the app, using Next.js API endpoints and [AirTable](https://airtable.com/invite/r/fQpMoVmw) as a lightweight backend.
 
-
 ## The use case and the tech stack
 
 24 June 2022 was the best day of my life.
@@ -36,30 +35,29 @@ Specifically, we will discuss how to implement an invite-only microsite to share
 
 Just to put things in context, let's wear the PM hat for a second, and let's discuss what kind of requirements did I impose on myself while building my wedding website:
 
- - I wanted to be able to iterate quickly, mostly focusing on content and design, not much on infrastructure.
- - I wanted to build a simple solution that would be easy to host, maintain and update.
- - I wanted to have a very lightweight backend, possibly something managed.
- - Even better if I could give access to the data storage to someone else (my wife) so that we could collaborate on managing the data about the guests.
- - If I could host everything very cheaply (if not even freely), that would be great.
+- I wanted to be able to iterate quickly, mostly focusing on content and design, not much on infrastructure.
+- I wanted to build a simple solution that would be easy to host, maintain and update.
+- I wanted to have a very lightweight backend, possibly something managed.
+- Even better if I could give access to the data storage to someone else (my wife) so that we could collaborate on managing the data about the guests.
+- If I could host everything very cheaply (if not even freely), that would be great.
 
- For all the reasons above I settled for adopting the following pieces of tech:
+For all the reasons above I settled for adopting the following pieces of tech:
 
- - **Next.js** for building a statically rendered frontend and the backend APIs
- - A private **GitHub** repository for managing the code of the Next.js app
- - **Vercel** for hosting the project
- - **AirTable** to store and manage all the data (invite codes, guests, rsvp, etc.)
+- **Next.js** for building a statically rendered frontend and the backend APIs
+- A private **GitHub** repository for managing the code of the Next.js app
+- **Vercel** for hosting the project
+- **AirTable** to store and manage all the data (invite codes, guests, rsvp, etc.)
 
 Keep in mind that Next.js is free and open source, GitHub can be used for free (even if you want to keep your repo private), and Vercel and AirTable have both generous free plans that are more than enough for this kind of use case.
 
 With the stack above I ended up spending 0 money and I was able to complete the project in a couple of weekends! 🤑👌
 
-
 ## Making a Next.js site private
 
 On top of the requirements discussed above, my wedding website had 2 additional constraints:
 
-  - Every different guest should see something different (the website would look like a custom invite letter for them).
-  - People without an invite code should not be able to access any content on the website.
+- Every different guest should see something different (the website would look like a custom invite letter for them).
+- People without an invite code should not be able to access any content on the website.
 
 The following illustration shows how I went about making that happen in the context of a React SPA (Single Page Application):
 
@@ -69,11 +67,10 @@ Please boost my ego for a second, isn't this a beautiful illustration? 😜
 
 OK, let's be serious:
 
-  1. The user loads the application by visiting the website with a personal invite code (passed as a query string parameter). When the page is loaded the React application starts on the client side. The app displays only a loading spinner at this stage.
-  2. The first thing that the application does is to read the invite code from the URL. At this point, it can call the backend (a Next.js API endpoint running on Vercel) to get the invite code validated. In turn, the backend requests the data storage (an AirTable spreadsheet) to check if the code exists (in which case it's valid). If the code exists, the backend also returns the custom information associated with that invite code. For instance, the name of the invited person.
-  3. If the code is valid, the application has all the information to render the private website.
-  4. If it is not valid, an error message is displayed instead.
-
+1. The user loads the application by visiting the website with a personal invite code (passed as a query string parameter). When the page is loaded the React application starts on the client side. The app displays only a loading spinner at this stage.
+2. The first thing that the application does is to read the invite code from the URL. At this point, it can call the backend (a Next.js API endpoint running on Vercel) to get the invite code validated. In turn, the backend requests the data storage (an AirTable spreadsheet) to check if the code exists (in which case it's valid). If the code exists, the backend also returns the custom information associated with that invite code. For instance, the name of the invited person.
+3. If the code is valid, the application has all the information to render the private website.
+4. If it is not valid, an error message is displayed instead.
 
 ## Let's build an invite-only website!
 
@@ -88,15 +85,14 @@ As you can see from the picture, every guest (with a valid invite code) will get
 
 If you want to see a preview, check out the following links:
 
-  - [Leonardo's invite](https://secret-pizza-party.vercel.app/?code=14b25700-fe5b-45e8-a9be-4863b6239fcf)
-  - [Michelangelo's invite](https://secret-pizza-party.vercel.app/?code=ce7d5886-2166-4aee-8038-548f68b9739d)
-  - [Raffaello's invite](https://secret-pizza-party.vercel.app/?code=ef7ab7b7-33d5-43b9-ad73-e73bb8fd8e77)
-  - [Donatello's invite](https://secret-pizza-party.vercel.app/?code=b0cbb4a4-8a31-4bc1-bee9-d6fe39c1a6b3)
+- [Leonardo's invite](https://secret-pizza-party.vercel.app/?code=14b25700-fe5b-45e8-a9be-4863b6239fcf)
+- [Michelangelo's invite](https://secret-pizza-party.vercel.app/?code=ce7d5886-2166-4aee-8038-548f68b9739d)
+- [Raffaello's invite](https://secret-pizza-party.vercel.app/?code=ef7ab7b7-33d5-43b9-ad73-e73bb8fd8e77)
+- [Donatello's invite](https://secret-pizza-party.vercel.app/?code=b0cbb4a4-8a31-4bc1-bee9-d6fe39c1a6b3)
 
 Of course, if the invite code is missing or if it's not valid, an [error page](https://secret-pizza-party.vercel.app/?invite=invalid) is displayed.
 
 If you are curious to take a look at the code, it's all [public and hosted on GitHub](https://github.com/lmammino/secret-pizza-party) (did you give it a star already?)...
-
 
 ## Handling sensitive data in a SPA
 
@@ -124,15 +120,13 @@ Of course, make sure to keep your repository private, otherwise, that might beco
 
 Finally, it's also important that your user understand that they shouldn't be sharing their unique URL with other people. So make sure to warn them when you send them the invite URL.
 
-
 In summary, here are some good security rules we will abide by:
 
-  1. The website is public
-  2. We are enforcing access control from the client side
-  3. The client-side cannot be trusted (all its code is publicly accessible)
-  4. A backend needs to be used to validate the code and return any sensitive information that needs to be accessible only with a valid invite code.
-  5. For extra security, keep your repo private and make sure your user won't share their invite URL with other people!
-
+1. The website is public
+2. We are enforcing access control from the client side
+3. The client-side cannot be trusted (all its code is publicly accessible)
+4. A backend needs to be used to validate the code and return any sensitive information that needs to be accessible only with a valid invite code.
+5. For extra security, keep your repo private and make sure your user won't share their invite URL with other people!
 
 ## Generating and storing invite codes
 
@@ -142,7 +136,7 @@ AirTable is a SaaS that allows you to easily manage different kinds of datasets.
 
 For this particular use case, Airtable offers a [public REST API](https://support.airtable.com/hc/en-us/articles/203313985-Public-REST-API) and SDKs in various programming languages, including [JavaScript](https://github.com/airtable/airtable.js).
 
-We can start by creating a new *base* (which is kinda a workspace in AirTable lingo) and create a grid data view into it.
+We can start by creating a new _base_ (which is kinda a workspace in AirTable lingo) and create a grid data view into it.
 
 This first data table will contain all our invite codes, so let's call it **invites**:
 
@@ -150,10 +144,10 @@ This first data table will contain all our invite codes, so let's call it **invi
 
 As displayed in the picture above we are adding a few fields there:
 
-  - `invite`: a UUID that represents the invite code
-  - `name`: the name of the invited guest
-  - `favouriteColor`the favorite color of the guest
-  - `weapon`the weapons of the guest (small note: in real life I am not pro weapons, but if you haven't got it yet, we are talking about Mutant Ninja Turtles™️ here... 😝)
+- `invite`: a UUID that represents the invite code
+- `name`: the name of the invited guest
+- `favouriteColor`the favorite color of the guest
+- `weapon`the weapons of the guest (small note: in real life I am not pro weapons, but if you haven't got it yet, we are talking about Mutant Ninja Turtles™️ here... 😝)
 
 This makes sense for our fictional example. In a more generic use case, you'll be adding here all the pieces of information that are unique for every single guest.
 Note that on this website we also have a mini RSVP form. This means that we will be able to collect some data from the users. This is also something that we will be storing in AirTable.
@@ -165,7 +159,7 @@ Note that on this website we also have a mini RSVP form. This means that we will
 
 Airtable allows to import data into a base from a CSV, so here's my example data in CSV format:
 
-```csv
+```plaintext
 invite,name,favouriteColor,weapon
 14b25700-fe5b-45e8-a9be-4863b6239fcf,Leonardo,blue,Twin Katana
 ce7d5886-2166-4aee-8038-548f68b9739d,Michelangelo,orange,Nunchaku
@@ -175,7 +169,6 @@ b0cbb4a4-8a31-4bc1-bee9-d6fe39c1a6b3,Donatello,purple,Bo
 
   </div>
 </details>
-
 
 ## Reading invite codes using the AirTable SDK
 
@@ -193,11 +186,11 @@ The easiest thing I could come up with was to create a file called `types/invite
 
 ```typescript
 export interface Invite {
-  code: string,
-  name: string,
-  favouriteColor: string,
-  weapon: string,
-  coming?: boolean,
+  code: string
+  name: string
+  favouriteColor: string
+  weapon: string
+  coming?: boolean
 }
 ```
 
@@ -229,28 +222,35 @@ Isn't this an awesome way to provide documentation?! And you can even get a bunc
 What we want to do right now is to be able to retrieve a record by invite code. One way to do that is to list all the records and use a filter to try to match based on our invite code field. We can visit the section _List records_ to have a feeling for how we could do that. If we switch to the JavaScript code example we will see something like this:
 
 ```javascript
-var Airtable = require('airtable');
-var base = new Airtable({apiKey: 'YOUR_API_KEY'}).base('YOUR_BASE_ID');
+var Airtable = require('airtable')
+var base = new Airtable({ apiKey: 'YOUR_API_KEY' }).base('YOUR_BASE_ID')
 
-base('invites').select({
+base('invites')
+  .select({
     // Selecting the first 3 records in Grid view:
     maxRecords: 3,
-    view: "Grid view"
-}).eachPage(function page(records, fetchNextPage) {
-    // This function (`page`) will get called for each page of records.
+    view: 'Grid view',
+  })
+  .eachPage(
+    function page(records, fetchNextPage) {
+      // This function (`page`) will get called for each page of records.
 
-    records.forEach(function(record) {
-        console.log('Retrieved', record.get('invite'));
-    });
+      records.forEach(function (record) {
+        console.log('Retrieved', record.get('invite'))
+      })
 
-    // To fetch the next page of records, call `fetchNextPage`.
-    // If there are more records, `page` will get called again.
-    // If there are no more records, `done` will get called.
-    fetchNextPage();
-
-}, function done(err) {
-    if (err) { console.error(err); return; }
-});
+      // To fetch the next page of records, call `fetchNextPage`.
+      // If there are more records, `page` will get called again.
+      // If there are no more records, `done` will get called.
+      fetchNextPage()
+    },
+    function done(err) {
+      if (err) {
+        console.error(err)
+        return
+      }
+    },
+  )
 ```
 
 OK Airtable, you did such a great job with the auto-generated docs, but come on! What kind of JavaScript is this?! Still using `var`, _CommonJS_, and _callbacks_? 😢
@@ -277,13 +277,13 @@ const airtable = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY })
 const base = airtable.base(process.env.AIRTABLE_BASE_ID)
 
 // get an invite by invite code (promisified)
-export function getInvite (inviteCode: string): Promise<Invite> {
+export function getInvite(inviteCode: string): Promise<Invite> {
   return new Promise((resolve, reject) => {
     base('invites')
       // runs a query on the `invites` table
       .select({
         filterByFormula: `{invite} = ${escape(inviteCode)}`,
-        maxRecords: 1
+        maxRecords: 1,
       })
       // reads the first page of results
       .firstPage((err, records) => {
@@ -306,9 +306,10 @@ export function getInvite (inviteCode: string): Promise<Invite> {
           name: String(records[0].fields.name),
           favouriteColor: String(records[0].fields.favouriteColor),
           weapon: String(records[0].fields.weapon),
-          coming: typeof records[0].fields.coming === 'undefined'
-            ? undefined
-            : records[0].fields.coming === 'yes'
+          coming:
+            typeof records[0].fields.coming === 'undefined'
+              ? undefined
+              : records[0].fields.coming === 'yes',
         }
 
         resolve(result)
@@ -329,68 +330,67 @@ Ok, for the eagle-eyed ones, you are probably wondering where the heck is that `
   
   Every time you use user input to construct some kind of query, your spider senses should be immediately triggered! 🕷
 
-  The invite code is, in fact, user-controlled. It's part of the query string in the URL. A user can decide to change that and try to see what happens with different values.
+The invite code is, in fact, user-controlled. It's part of the query string in the URL. A user can decide to change that and try to see what happens with different values.
 
-  If the user inputs `?code=14b25700-fe5b-45e8-a9be-4863b6239fcf` as invite code, with a naïve string interpolation, we would be producing the following Airtable formula:
+If the user inputs `?code=14b25700-fe5b-45e8-a9be-4863b6239fcf` as invite code, with a naïve string interpolation, we would be producing the following Airtable formula:
 
-  ```plain
-  {invite} = '14b25700-fe5b-45e8-a9be-4863b6239fcf'
-  ```
+```plaintext
+{invite} = '14b25700-fe5b-45e8-a9be-4863b6239fcf'
+```
 
-  But what if a very evil user tries something like `?code=%27%20>%3D%200%20%26%20%27` (`?code=' >= 0 & '` unencoded)?!
+But what if a very evil user tries something like `?code=%27%20>%3D%200%20%26%20%27` (`?code=' >= 0 & '` unencoded)?!
 
-  In this case, we end up constructing the following Airtable formula:
+In this case, we end up constructing the following Airtable formula:
 
-  ```plain
-  {invite} = '' >= 0 & ''
-  ```
+```plaintext
+{invite} = '' >= 0 & ''
+```
 
-  Which always evaluates to `1` (`true`) for every record in the table! So this very evil user is now accessing your private website without having to know a valid code. They will just get the code of the first record that Airtable matches in the table! If you don't believe me you can try this attack by yourself [with this link](https://secret-pizza-party-fgpypfb66-lmammino.vercel.app/?code=%27%20%3E%3D%200%20%26%20%27) (running on a [vulnerable branch](https://github.com/lmammino/secret-pizza-party/tree/vulnerable) of the app where we don't perform the escape).
+Which always evaluates to `1` (`true`) for every record in the table! So this very evil user is now accessing your private website without having to know a valid code. They will just get the code of the first record that Airtable matches in the table! If you don't believe me you can try this attack by yourself [with this link](https://secret-pizza-party-fgpypfb66-lmammino.vercel.app/?code=%27%20%3E%3D%200%20%26%20%27) (running on a [vulnerable branch](https://github.com/lmammino/secret-pizza-party/tree/vulnerable) of the app where we don't perform the escape).
 
-  This is like [SQL injections](https://owasp.org/www-community/attacks/SQL_Injection) but for Airtable filter formulas! 😱
+This is like [SQL injections](https://owasp.org/www-community/attacks/SQL_Injection) but for Airtable filter formulas! 😱
 
-  The `escape` function, allows us to try to sanitize user input and escape dangerous characters like `'` and `"` which might allow a malicious actor to alter the structure of our filter formula.
+The `escape` function, allows us to try to sanitize user input and escape dangerous characters like `'` and `"` which might allow a malicious actor to alter the structure of our filter formula.
 
-  If you are curious this is my basic implementation of the `escape` function (the one I used in this project), but I have to say I am quite disappointed that Airtable does not provide a built-in utility for this in their SDK and that they don't warn their users about this threat in their docs... 🙁
+If you are curious this is my basic implementation of the `escape` function (the one I used in this project), but I have to say I am quite disappointed that Airtable does not provide a built-in utility for this in their SDK and that they don't warn their users about this threat in their docs... 🙁
 
-  ```ts
-  function escape (value: string): string {
-    if (value === null || typeof value === 'undefined') {
-      return 'BLANK()'
-    }
-
-    if (typeof value === 'string') {
-      const escapedString = value
-        .replace(/'/g, "\\'")
-        .replace(/\r/g, '')
-        .replace(/\\/g, '\\\\')
-        .replace(/\n/g, '\\n')
-        .replace(/\t/g, '\\t')
-      return `'${escapedString}'`
-    }
-
-    if (typeof value === 'number') {
-      return String(value)
-    }
-
-    if (typeof value === 'boolean') {
-      return value ? '1' : '0'
-    }
-
-    throw Error('Invalid value received')
+```ts
+function escape(value: string): string {
+  if (value === null || typeof value === 'undefined') {
+    return 'BLANK()'
   }
-  ```
 
-  Note that **this function does not claim to be perfect or comprehensive**. I haven't extensively tested it, nor do I know all the bells and whistles of the formula syntax to be able to do that. If you are doing something like this in your code, make sure to test this extensively.
+  if (typeof value === 'string') {
+    const escapedString = value
+      .replace(/'/g, "\\'")
+      .replace(/\r/g, '')
+      .replace(/\\/g, '\\\\')
+      .replace(/\n/g, '\\n')
+      .replace(/\t/g, '\\t')
+    return `'${escapedString}'`
+  }
 
-  PS: I nudged Airtable [on Twitter](https://twitter.com/loige/status/1555622372085997569) (with no response) and [their community forum](https://community.airtable.com/t/standard-way-to-prevent-formula-injections-when-using-airtable-as-a-backend-through-sdk/50283) (well, let's just say that the thread wasn't received particularly well by some members of the community and that the conversation derailed a little...). I also reached out to their support channels and, hopefully, this will get somewhere...
+  if (typeof value === 'number') {
+    return String(value)
+  }
+
+  if (typeof value === 'boolean') {
+    return value ? '1' : '0'
+  }
+
+  throw Error('Invalid value received')
+}
+```
+
+Note that **this function does not claim to be perfect or comprehensive**. I haven't extensively tested it, nor do I know all the bells and whistles of the formula syntax to be able to do that. If you are doing something like this in your code, make sure to test this extensively.
+
+PS: I nudged Airtable [on Twitter](https://twitter.com/loige/status/1555622372085997569) (with no response) and [their community forum](https://community.airtable.com/t/standard-way-to-prevent-formula-injections-when-using-airtable-as-a-backend-through-sdk/50283) (well, let's just say that the thread wasn't received particularly well by some members of the community and that the conversation derailed a little...). I also reached out to their support channels and, hopefully, this will get somewhere...
 
   </div>
 
 </details>
 
 Now that we have created this utility function, we can use it in an API to be able to provide code validation and invite data to the frontend.
-
 
 ## Next.js invite endpoint
 
@@ -405,9 +405,9 @@ To create an API endpoint you just need to create a file under `pages/api`. For 
 ```ts
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-export default async function handler (
+export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<{ message: string }>
+  res: NextApiResponse<{ message: string }>,
 ) {
   return res.status(200).json({ message: 'Hello World' })
 }
@@ -415,7 +415,7 @@ export default async function handler (
 
 Now you can simply call this API by sending a request to `http://localhost:3000/api/hello`. The convention says that the API path follows the file name (`hello.ts` -> `/api/hello`):
 
-```plain
+```plaintext
 ❯ curl -i http://localhost:3000/api/hello
 HTTP/1.1 200 OK
 Content-Type: application/json; charset=utf-8
@@ -439,9 +439,9 @@ import { InviteResponse } from '../../types/invite'
 import { getInvite } from '../../utils/airtable'
 import messages from '../../data/messages'
 
-export default async function handler (
+export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<InviteResponse | { error: string }>
+  res: NextApiResponse<InviteResponse | { error: string }>,
 ) {
   // if the request is not a GET, return an error
   if (req.method !== 'GET') {
@@ -468,7 +468,7 @@ export default async function handler (
     // In case of error we return either a 401 or a 500 error:
     // - if the code was not found we return 401
     // - otherwise we return a generic 500 server error
-    const e = (err as Error)
+    const e = err as Error
     res
       .status(e.message === 'Invite not found' ? 401 : 500)
       .json({ error: e.message })
@@ -490,15 +490,15 @@ export interface Invite {
 }
 
 export interface InviteResponse {
-  invite: Invite,
+  invite: Invite
   messages: Messages
 }
 ```
 
 The idea is that when a user has a valid code we want this API to return 2 different pieces of information:
 
-  1. All the data associated with the invite (inside `invite`)
-  2. All the sensitive messages that the UI will need to display to _authenticated_ users.
+1. All the data associated with the invite (inside `invite`)
+2. All the sensitive messages that the UI will need to display to _authenticated_ users.
 
 All the messages are stored in `data/messages.ts`, which currently looks like this:
 
@@ -506,11 +506,12 @@ All the messages are stored in `data/messages.ts`, which currently looks like th
 const messages = {
   title: 'Secret Pizza Party!',
   date_and_place: 'Dec 31st 2022 - 122 and 1/8th, New York City',
-  invitation: 'You have been invited to the most awesome secret pizza party of the year!',
+  invitation:
+    'You have been invited to the most awesome secret pizza party of the year!',
   question: 'Are you coming?',
   answer1: 'Cowabunga! (yes)',
   answer2: 'Nitwits! (no)',
-  secret_person: 'Shredder'
+  secret_person: 'Shredder',
 }
 
 export type Messages = typeof messages
@@ -518,7 +519,6 @@ export default messages
 ```
 
 The reason why we return these messages from the API (rather than embedding them in the frontend application code) is that this way these messages won't be included in the JavaScript bundle. So, a user without an invite code won't be able to extract potentially sensitive information from the JavaScript bundle of the frontend application.
-
 
 ## Invite validation in React
 
@@ -530,10 +530,10 @@ We can finally start to work on the frontend!
 
 The first thing that we can do is to build a **custom React hook** that can do the following:
 
-  1. Grab the invite code from the current URL
-  2. Call the invite API using the invite code
-  3. Expose the returned invite data and the messages
-  4. Also, expose possible errors throughout the process
+1. Grab the invite code from the current URL
+2. Call the invite API using the invite code
+3. Expose the returned invite data and the messages
+4. Also, expose possible errors throughout the process
 
 I am going to go ahead and show you the code (`components/hooks/useInvite.tsx`), but if you want to review React docs on how to build custom hooks [here's the page](https://reactjs.org/docs/hooks-custom.html).
 
@@ -544,12 +544,12 @@ import { useState, useEffect } from 'react'
 import { InviteResponse } from '../../types/invite'
 
 // Defines the endpoint based on the current window location
-const API_BASE = typeof window !== 'undefined'
-  && (window.location.origin + '/api')
+const API_BASE =
+  typeof window !== 'undefined' && window.location.origin + '/api'
 const INVITE_ENDPOINT = API_BASE + '/invite'
 
 // Helper function that uses fetch to invoke the invite API endpoint
-async function fetchInvite (code: string): Promise<InviteResponse> {
+async function fetchInvite(code: string): Promise<InviteResponse> {
   const requestUrl = new URL(INVITE_ENDPOINT)
   requestUrl.searchParams.append('code', code)
   const response = await fetch(requestUrl)
@@ -561,12 +561,11 @@ async function fetchInvite (code: string): Promise<InviteResponse> {
 }
 
 // The custom hook
-export default function useInvite (): [InviteResponse | null, string | null] {
+export default function useInvite(): [InviteResponse | null, string | null] {
   // This hook has the inviteResponse and a possilbe error as state.
-  const [
-    inviteResponse,
-    setInviteResponse
-  ] = useState<InviteResponse | null>(null)
+  const [inviteResponse, setInviteResponse] = useState<InviteResponse | null>(
+    null,
+  )
   const [error, setError] = useState<string | null>(null)
 
   // We want to make the API call when the component using the hook
@@ -584,7 +583,7 @@ export default function useInvite (): [InviteResponse | null, string | null] {
       // In case of success or failure we update the state accordingly.
       fetchInvite(code)
         .then(setInviteResponse)
-        .catch(err => {
+        .catch((err) => {
           setError(err.message)
         })
     }
@@ -601,7 +600,7 @@ We can now import this hook into any component and use it like this:
 import React from 'react'
 import useInvite from './hooks/useInvite'
 
-export default function SomeExampleComponent () {
+export default function SomeExampleComponent() {
   const [inviteResponse, error] = useInvite()
 
   // there was an error
@@ -615,9 +614,7 @@ export default function SomeExampleComponent () {
   }
 
   // has the data!
-  return <div>
-    actual component markup when inviteResponse is available
-  </div>
+  return <div>actual component markup when inviteResponse is available</div>
 }
 ```
 
@@ -631,7 +628,6 @@ In Next.js, page components are components inside the `page` directory. In our c
 
 Finally, if you run the application locally, you should have a loading screen and then a success error (with a valid invite code) or an error (if you didn't provide a code or if you have an invalid one). 🎉
 
-
 ## Collecting user data
 
 So far we have only been reading data from our Airtable table, but nothing is stopping us from also writing data into it!
@@ -644,18 +640,18 @@ The simplest idea that comes to mind is to add a new column to our table for the
 
 The field we added is a **single select** type of field. We added two possible values: **yes** and **no**. In alternative we could have used a boolean field, but with this approach it we actually can manage 3 possible states for user RSVP:
 
-  - _unknown_ (the gues hasn't submitted their RSVP yet)
-  - _coming_ ("yes")
-  - _not coming_ ("no")
+- _unknown_ (the gues hasn't submitted their RSVP yet)
+- _coming_ ("yes")
+- _not coming_ ("no")
 
 Now you know why we have originally defined a `coming` field (optional boolean) in our `Invite` interface and why we were popoluating it in our `utils/airtable.ts` helper file! 🙃
 
 In order to be allow our guests to submit their RSVP we need to do 4 main changes:
 
-  1. Update the Airtable utility file with a function to update the `coming` field for a recod
-  2. Create a new API endpoint to collects RSVP (using the new utility function from point 1.)
-  3. Update our `useInvite` hook to provide functionality to submit the RSVP (and handle progress)
-  4. Update the frontend to use the new functionality provided by the `useInvite` hook
+1. Update the Airtable utility file with a function to update the `coming` field for a recod
+2. Create a new API endpoint to collects RSVP (using the new utility function from point 1.)
+3. Update our `useInvite` hook to provide functionality to submit the RSVP (and handle progress)
+4. Update the frontend to use the new functionality provided by the `useInvite` hook
 
 We'll be doing some good amount of refactoring to introduce these changes, so let's roll up our sleeves and warm up our keyboards!
 
@@ -673,13 +669,13 @@ So let's open our file `utils/airtable.ts` again and add the following changes:
 import Airtable, { FieldSet, Record } from 'airtable'
 // ...
 
-export function getInviteRecord (inviteCode: string): Promise<Record<FieldSet>> {
+export function getInviteRecord(inviteCode: string): Promise<Record<FieldSet>> {
   return new Promise((resolve, reject) => {
     base('invites')
       // runs a query on the `invites` table
       .select({
         filterByFormula: `{invite} = ${escape(inviteCode)}`,
-        maxRecords: 1
+        maxRecords: 1,
       })
       // reads the first page of results
       .firstPage((err, records) => {
@@ -707,7 +703,7 @@ You might have noticed that this function is almost identical to the `getInvite`
 So it makes sense to avoid duplication and refactor our `getInvite`:
 
 ```ts
-export async function getInvite (inviteCode: string): Promise<Invite> {
+export async function getInvite(inviteCode: string): Promise<Invite> {
   const inviteRecord = await getInviteRecord(inviteCode)
 
   return {
@@ -715,9 +711,10 @@ export async function getInvite (inviteCode: string): Promise<Invite> {
     name: String(inviteRecord.fields.name),
     favouriteColor: String(inviteRecord.fields.favouriteColor),
     weapon: String(inviteRecord.fields.weapon),
-    coming: typeof inviteRecord.fields.coming === 'undefined'
-      ? undefined
-      : inviteRecord.fields.coming === 'yes'
+    coming:
+      typeof inviteRecord.fields.coming === 'undefined'
+        ? undefined
+        : inviteRecord.fields.coming === 'yes',
   }
 }
 ```
@@ -727,7 +724,10 @@ The function is now an `async` function. It simply calls our new utility method 
 Ok, now we can finally write the utility that allows us to update the `coming` field for a given record (by it's invite code). Let's call it `updateRsvp`:
 
 ```ts
-export async function updateRsvp (inviteCode: string, rsvp: boolean): Promise<void> {
+export async function updateRsvp(
+  inviteCode: string,
+  rsvp: boolean,
+): Promise<void> {
   // gets the raw Airtable id of the record to update
   const { id } = await getInviteRecord(inviteCode)
 
@@ -745,7 +745,6 @@ export async function updateRsvp (inviteCode: string, rsvp: boolean): Promise<vo
 
 One thing to remark here is that we are using the Airtable `update` method, which allows us to mutate a subset of fields (in our case only the `coming` field) and leave unchanged all the other fields. If you'll ever want to entirely replace a record, well, there's a `replace` method for that!
 
-
 ### The RSVP endpoint
 
 Now we can put our `updateRsvp` utility to good use and expose it through an API endpoint. To do that we can create a new API route by adding the file `pages/api/rsvp.ts`:
@@ -754,11 +753,11 @@ Now we can put our `updateRsvp` utility to good use and expose it through an API
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { updateRsvp } from '../../utils/airtable'
 
-type RequestBody = {coming?: boolean}
+type RequestBody = { coming?: boolean }
 
-export default async function handler (
+export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<{updated: boolean} | { error: string }>
+  res: NextApiResponse<{ updated: boolean } | { error: string }>,
 ) {
   // if the request is not a PUT, return an error
   if (req.method !== 'PUT') {
@@ -790,19 +789,20 @@ export default async function handler (
     // In case of error we return either a 401 or a 500 error:
     // - if the code was not found we return 401
     // - otherwise we return a generic 500 server error
-    const e = (err as Error)
-    res.status(e.message === 'Invite not found' ? 401 : 500).json({ error: e.message })
+    const e = err as Error
+    res
+      .status(e.message === 'Invite not found' ? 401 : 500)
+      .json({ error: e.message })
   }
 }
 ```
 
 A few things to note here:
 
-  - The API endpoint is now live at `http://localhost:3000/api/rsvp`.
-  - This API receives 2 pieces of information: the invite code as a query string parameter and the `coming` field in the request body (encoded as a JSON object with just the `coming` field).
-  - This API is a `PUT` endpoint. We are receiving some partial data to update a record so it makes sense to use PUT.
-  - We are not being entirely _RESTful_ (mostly for simplicity). If we wanted to be _RESTful_ we should have created a `PUT` endpoint on the `/api/invite/{code}` path. This is possible in Next.js but it's slightly more involved, so I went for a simpler solution (since this is a small pet project).
-
+- The API endpoint is now live at `http://localhost:3000/api/rsvp`.
+- This API receives 2 pieces of information: the invite code as a query string parameter and the `coming` field in the request body (encoded as a JSON object with just the `coming` field).
+- This API is a `PUT` endpoint. We are receiving some partial data to update a record so it makes sense to use PUT.
+- We are not being entirely _RESTful_ (mostly for simplicity). If we wanted to be _RESTful_ we should have created a `PUT` endpoint on the `/api/invite/{code}` path. This is possible in Next.js but it's slightly more involved, so I went for a simpler solution (since this is a small pet project).
 
 ### `useInvite` hook version 2
 
@@ -819,32 +819,34 @@ const RSVP_ENDPOINT = API_BASE + '/rsvp'
 // it's better to organise them in an object, rather tha using
 // an array
 interface HookResult {
-  inviteResponse: InviteResponse | null,
-  error: string | null,
-  updating: boolean,
+  inviteResponse: InviteResponse | null
+  error: string | null
+  updating: boolean
   updateRsvp: (coming: boolean) => Promise<void>
 }
 
 // ...
 
 // Helper function that invokes the rsvp API endpoint
-async function updateRsvpRequest (code: string, coming: boolean): Promise<void> {
+async function updateRsvpRequest(code: string, coming: boolean): Promise<void> {
   const requestUrl = new URL(RSVP_ENDPOINT)
   requestUrl.searchParams.append('code', code)
   const response = await fetch(requestUrl, {
     method: 'PUT',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ coming })
+    body: JSON.stringify({ coming }),
   })
   if (!response.ok) {
     throw new Error('Failed to update RSVP')
   }
 }
 
-export default function useInvite (): HookResult {
-  const [inviteResponse, setInviteResponse] = useState<InviteResponse | null>(null)
+export default function useInvite(): HookResult {
+  const [inviteResponse, setInviteResponse] = useState<InviteResponse | null>(
+    null,
+  )
   const [error, setError] = useState<string | null>(null)
   // new state field to track when an RSVP update is in progress
   const [updating, setUpdating] = useState<boolean>(false)
@@ -858,7 +860,7 @@ export default function useInvite (): HookResult {
     } else {
       fetchInvite(code)
         .then(setInviteResponse)
-        .catch(err => {
+        .catch((err) => {
           setError(err.message)
         })
     }
@@ -866,7 +868,7 @@ export default function useInvite (): HookResult {
 
   // new hook function that exposes the ability to update the current invite by
   // providing a value for the `coming` field
-  async function updateRsvp (coming: boolean) {
+  async function updateRsvp(coming: boolean) {
     if (inviteResponse) {
       setUpdating(true)
       await updateRsvpRequest(inviteResponse.invite.code, coming)
@@ -874,7 +876,7 @@ export default function useInvite (): HookResult {
       // object and updating the `coming` property.
       setInviteResponse({
         ...inviteResponse,
-        invite: { ...inviteResponse.invite, coming }
+        invite: { ...inviteResponse.invite, coming },
       })
       setUpdating(false)
     }
@@ -886,7 +888,6 @@ export default function useInvite (): HookResult {
 ```
 
 Some code was omitted. You should have gotten an idea for the main changes, but feel free to check the full content of the file [in the repository](https://github.com/lmammino/secret-pizza-party/blob/main/components/hooks/useInvite.tsx) in case you are following along and using this as an hands-on tutorial.
-
 
 ### Using the updated hook
 
@@ -902,7 +903,7 @@ import useInvite from './hooks/useInvite'
 
 // ...
 
-export default function Home () {
+export default function Home() {
   // We are now destructuring all the hook attributes and functions
   //  - inviteResponse: the invite response (when available)
   //  - error: an error message (if there was an error loading the data)
@@ -922,7 +923,7 @@ export default function Home () {
 
   // Utility function to trigger an update when the user
   // checks one of the radio buttons to RSVP
-  function onRsvpChange (e: ChangeEvent<HTMLInputElement>) {
+  function onRsvpChange(e: ChangeEvent<HTMLInputElement>) {
     const coming = e.target.value === 'yes'
     updateRsvp(coming)
   }
@@ -934,7 +935,7 @@ export default function Home () {
         <legend>Are you coming?</legend>
 
         <label htmlFor="yes">
-          <input 
+          <input
             type="radio"
             id="yes"
             name="coming"
@@ -966,7 +967,6 @@ Note how the two `input` have an `onChange={onRsvpChange}` to actually trigger t
 
 We also control the input, by specifying `checked={inviteResponse.invite.coming === <value>}`, so that the input updates accordingly when the data is actually changed by the `useInvite` hook.
 
-
 ### Working app
 
 At this point we should have a working application!
@@ -979,7 +979,6 @@ This is a pretty great way to test how our application is actually changing the 
 
 Cool, isn't it? 😎
 
-
 ## Deploying to Vercel
 
 Now we have a fully functional application. We are able to get users in only if they have a valid invite code and we can even register their RSVP.
@@ -990,30 +989,29 @@ Next.js websites can be deployed in a number of places, but being a Vercel produ
 
 This is roughly the list of steps that you should take to deploy on Vercel (from GitHub):
 
-  - Once you have all your code in a repository on GitHub, you can create an account on [Vercel](https://vercel.com/) by logging in using GitHub.
-  - At this point, you can create a new project (there's a big button for that) and then select **import Git Repository**.
-  - From that window you should see a list containing all your GitHub repositories.
-  - Select the repository with your code and cick on **import**.
-  - At this point Vercel will automatically build your code and deploy it, giving you a **.vercel.app** unique domain.
-  - If you want, you can also customise the domain and provide a custom one!
+- Once you have all your code in a repository on GitHub, you can create an account on [Vercel](https://vercel.com/) by logging in using GitHub.
+- At this point, you can create a new project (there's a big button for that) and then select **import Git Repository**.
+- From that window you should see a list containing all your GitHub repositories.
+- Select the repository with your code and cick on **import**.
+- At this point Vercel will automatically build your code and deploy it, giving you a **.vercel.app** unique domain.
+- If you want, you can also customise the domain and provide a custom one!
 
 What happened behind the scens is that Vercel has deployed all your static assets (HTML, CSS, JavaScript, images,etc) to a CDN and all your API code to a serverless runtime that will be spawn up on demand when new requests arrive.
 
 The best part is that, once you have done all of this and you have your website online, Vercel has already setup a simple but effective CI/CD workflow for you:
 
-  - Every time you deploy to your `main` branch, Vercel will automatically build and release the changes
-  - If you deploy on another branch, Vercel will deploy and release the changes, but on a temporary URL that you can use to preview your changes.
+- Every time you deploy to your `main` branch, Vercel will automatically build and release the changes
+- If you deploy on another branch, Vercel will deploy and release the changes, but on a temporary URL that you can use to preview your changes.
 
 ![Vercel Application dashboard](./vercel-application-dashboard.png)
 
 That's it! You can finally share your invite-only website will all your guests, and I am sure they are going to love it! 😜
 
-
 ## A backend-less alternative approach
 
 Before we wrap up, I want to give a quick mention to an idea I had while I was writing this post.
 
-If we relax a bit our requirements removing the fact that we might want to collect user data (RSVP), there migth be a *"backend-less"* alternative implementation.
+If we relax a bit our requirements removing the fact that we might want to collect user data (RSVP), there migth be a _"backend-less"_ alternative implementation.
 
 Rather than using random invite codes, we could, in fact, use [JSON Web Tokens](/whats-in-a-jwt).
 
@@ -1035,15 +1033,14 @@ The JWT signature should be generated using an asymmetric algorithm like `ES512`
 
 This would a be a very simple approach and it's not free from flaws, for example:
 
-  - All the information needs to be embedded in the token
-  - You won't have a way to fetch private information from an API, so you are forced to put more stuff into the token or end up leaking sensitive information in your JavaScript bundle
+- All the information needs to be embedded in the token
+- You won't have a way to fetch private information from an API, so you are forced to put more stuff into the token or end up leaking sensitive information in your JavaScript bundle
 
 Still this simple approach might be good enough for simple websites that might be building for your friends and family!
 
 Plus, you'd get to use JWT, which is a cool technology! 😜
 
 As always, keep in mind that in technology there isn't a perfect solution, just a different set of tradeoffs!
-
 
 ## Conclusion
 

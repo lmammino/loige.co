@@ -29,9 +29,7 @@ This solution involves a bunch of interesting technology, so if nothing else, it
 - [RusTLS](https://github.com/rustls/rustls)
 - [Jemalloc](https://jemalloc.net/)
 
-
 The big disclaimer is that I am not sure this is the best solution ever, but it's definitely "a solution". If you have been through the same journey and you think there's something that can be improved, I'd love to hear that! After all, we are here to learn from each other, so do reach out [on Twitter](https://twitter.com/loige) or [in the comments below](#comments).
-
 
 ## The use case
 
@@ -47,7 +45,6 @@ So no AWS joy, for me, this time around 🥲 ... but life is good, at least I ca
 
 ![How hard it can be? (Spongebob)](./hard.gif)
 
-
 ## The first attempt
 
 So, being able to ship a Docker container, I don't really have to know much about the target environment. I am guaranteed I will have enough memory and CPU for my container and that (critical piece of information) the VPS runs on a **x86 64 bits processor**. So I have to make sure to provide a container for this target architecture.
@@ -58,7 +55,7 @@ If you are thinking I could create some kind of build pipeline on an x86 archite
 
 Before we deep dive into the Docker code, keep in mind that my project is structured as a monorepo. I have frontend and backend colocated in the same project and my folder structure looks more or less like this:
 
-```plain
+```plaintext
 .
 ├── Dockerfile
 ├── README.md
@@ -68,10 +65,10 @@ Before we deep dive into the Docker code, keep in mind that my project is struct
 
 So I rolled up my sleeves and came up with this first version of `Dockerfile` (of which you get to see a simplified version just to get to the point):
 
-```Dockerfile
+```dockerfile
 # build container
 FROM rust:1.68.2-slim-buster as backend
-RUN apt update && apt install -y librust-openssl-dev libssl-dev 
+RUN apt update && apt install -y librust-openssl-dev libssl-dev
 RUN mkdir /app
 COPY backend /app/backend
 RUN cd /app/backend && cargo build --release
@@ -100,10 +97,10 @@ There are a few advantages to this approach:
 
 Let's now review the current `Dockerfile` and go through the main bits:
 
-```Dockerfile
+```dockerfile
 # build container
 FROM rust:1.68.2-slim-buster as backend
-RUN apt update && apt install -y librust-openssl-dev libssl-dev 
+RUN apt update && apt install -y librust-openssl-dev libssl-dev
 RUN mkdir /app
 COPY backend /app/backend
 RUN cd /app/backend && cargo build --release
@@ -122,7 +119,7 @@ In short, what's happening here is the following:
 
 Let's now look at the target container:
 
-```Dockerfile
+```dockerfile
 # ...
 
 # target container
@@ -164,7 +161,6 @@ This flag uses `buildkit`, `buildx` and `QEMU` behind the scene to build the con
 
 This is what allows us to build a `linux/amd64` binary on a machine with a different architecture such as a Mac silicon (_AArch64_).
 
-
 ## Going to production and container size issues
 
 Long story short, I was eventually happy with this approach and I _shipped_ the resulting container.
@@ -180,7 +176,7 @@ Ok, so now it's easy to conclude two things:
 
 I discovered this cool tool called [`dive`](https://github.com/wagoodman/dive) to inspect container images and I analysed my image.
 
-A whopping **900 MB**** is what came out!
+A whopping **900 MB\*\*** is what came out!
 
 ![this big gif (Paul McCartney)](./big.gif)
 
@@ -190,14 +186,13 @@ Maybe I can try to optimise something to reduce the container image size.
 
 It cannot be that hard, right? 😇
 
-
 ## Second attempt: reducing the image file size
 
 My first idea was to just try again with a Linux Alpine base image for the target container. I have used Alpine in the past and it comes with its quirks but it's always quite reliable when it comes to keeping the container image size small.
 
 So I just changed:
 
-```Dockerfile
+```dockerfile
 # ...
 
 # target container
@@ -208,7 +203,7 @@ FROM rust:1.68.2-slim-buster
 
 with:
 
-```Dockerfile
+```dockerfile
 # ...
 
 # target container
@@ -225,7 +220,7 @@ docker build --platform linux/amd64 .
 
 It built just fine, but now when we try to run the resulting container image, this is what we get!
 
-```plain
+```plaintext
 Could not open '/lib64/ld-linux-x86-64.so.2': No such file or directory
 ```
 
@@ -242,8 +237,6 @@ If you never heard about `musl` this is the official description:
 And here's `rustls` one:
 
 > `Rustls` is a modern TLS library written in Rust. It uses [`ring`](https://github.com/briansmith/ring) for cryptography and [`webpki`](https://github.com/rustls/webpki) for certificate verification.
-
-
 
 Overall, what we want is a way to create a self-contained binary, meaning **all the libraries should be statically linked into the executable** so we don't have to assume specific libraries have to exist in the execution environment.
 
@@ -271,7 +264,6 @@ static ALLOC: jemallocator::Jemalloc = jemallocator::Jemalloc;
 
 And, we also need to add the `jmallocator` crate to our `Cargo.toml`:
 
-
 ```toml
 # ...
 
@@ -280,7 +272,6 @@ version = "0.5"
 ```
 
 I haven't seen this kind of syntax before but my understanding of it is _"if compiling for a 64bit architecture with `musl` we want `jemallocator` version `0.5` installed as an additional dependency"_.
-
 
 ### Switching to RusTLS
 
@@ -313,7 +304,6 @@ sqlx = { version = "0.6.2", features = ["runtime-tokio-rustls", "mysql", "chrono
 ```
 
 For `sqlx` we are replacing the `runtime-tokio-native-tls` feature with `runtime-tokio-rustls`. `reqwest` is a bit trickier and it took me a while to figure out that I couldn't just enable the `rustls-tls` feature, but I also needed to specify `default-features = false`.
-
 
 ### Compiling Rust using musl
 
@@ -374,14 +364,13 @@ Now we can build again with `docker build --platform linux/amd64 .` and this tim
 
 ![small ratatouille gif](./small.gif)
 
-
 ## Version 3: simpler & faster build container
 
-**UPDATE 2023-05-06**: Thanks to all the comments I received on [a lobste.rs thread](https://lobste.rs/s/alzpfn/building_x86_rust_containers_from_mac) (special thanks to _jmillikin_ and _david\_chisnall_) I ended up with a revised version of the build container which is simpler and build a bit faster.
+**UPDATE 2023-05-06**: Thanks to all the comments I received on [a lobste.rs thread](https://lobste.rs/s/alzpfn/building_x86_rust_containers_from_mac) (special thanks to _jmillikin_ and _david_chisnall_) I ended up with a revised version of the build container which is simpler and build a bit faster.
 
 Here's the final `Dockerfile`:
 
-```Dockerfile
+```dockerfile
 FROM rust:1.68.2-slim-buster as backend
 # Dependency `ring` requires a cross-compiler for bundled C/C++
 # sources, and may require Perl for some the target platforms.
@@ -415,7 +404,6 @@ I also learned about Docker cache mounts thanks to [an article by Nathanial Latt
 
 I am much happier with these changes. That's the power of sharing your stuff even if you don't feel like an expert on it! So thanks to everyone reading this and suggesting various improvements! Please keep doing that if you see more opportunities for improvement!
 
-
 ## Docker history
 
 **UPDATE 2023-05-07**: I already mentioned `dive` as a way to check the layers making up a given Docker image.
@@ -432,7 +420,7 @@ And you will get a breakdown of all the commands used to build that image and ho
 
 In my case, I see something like this:
 
-```plain
+```plaintext
 IMAGE          CREATED          CREATED BY                                      SIZE      COMMENT
 e7c3a275c427   10 minutes ago   ENV MAILCHIMP_LIST_ID=                          0B        buildkit.dockerfile.v0
 <missing>      10 minutes ago   ENV MAILCHIMP_API_KEY=                          0B        buildkit.dockerfile.v0
@@ -470,7 +458,6 @@ If we sum all of these we get to the ~100MB that makes up for the entire image s
 
 I could probably squeeze a bit more from the Rust binary by stripping debug symbols or doing other compilation optimizations, but I am honestly quite happy with this result for now!
 
-
 ## Conclusion
 
 I hope this article helps you if you are also going through the pain... ehm... the journey of trying to figure out how to cross-compile a Rust binary and run it through a small Docker container.
@@ -485,7 +472,4 @@ If you know of other solutions, please do let me know in the comment box below!
 
 Until then, see you in the next article! ❤️
 
-
-
 <small>Original cover photo by [novi raj](https://unsplash.com/@noviraj) on [Unsplash](https://unsplash.com/photos/gNhPDsTxz2U).</small>
-  

@@ -1,5 +1,5 @@
 ---
-title: "Rust shenanigans: return type polymorphism"
+title: 'Rust shenanigans: return type polymorphism'
 slug: rust-shenanigans-return-type-polymorphism
 subtitle: Return type polymorphism in Rust allows writing generic functions that
   behave differently based on expected return type
@@ -23,7 +23,6 @@ I am seeing this feature for the first time in a programming language and at fir
 Keep in mind that I am still quite a beginner with Rust, so my description might not be the most accurate but I will try to make a point on why I like this feature and how it works by using some examples. Hopefully, you will find this topic as interesting as I did!
 
 Ok, enough chit chat, let's get into it! 🧐
-
 
 ## Return type polymorphism, what?!
 
@@ -68,7 +67,7 @@ fn main() {
 
 This example won't to compile because collect doesn't know what is the return type, so we get this nice-looking error:
 
-```text
+```plaintext
 error[E0282]: type annotations needed
  --> src/main.rs:3:9
   |
@@ -133,7 +132,7 @@ The [`Default` trait](https://doc.rust-lang.org/std/default/trait.Default.html) 
 
 Again, nothing extremely exciting here... except that at this point something clicked in my head and I started to ask myself _"so this is some sort of generalised feature that everyone can use..."_.
 
-My suspicion was that the `Default::default()` function can somehow infer the expected return type and, if that type implements the `Default` trait, then it simply calls the `default()` function for that type. 
+My suspicion was that the `Default::default()` function can somehow infer the expected return type and, if that type implements the `Default` trait, then it simply calls the `default()` function for that type.
 
 Of course, I immediately went and looked for the actual [implementation of `Default::default()`](https://doc.rust-lang.org/1.51.0/src/core/default.rs.html#158) to validate my guess.
 
@@ -149,14 +148,13 @@ pub fn default<T: Default>() -> T {
 
 I read this as:
 
-  - `Default::default()` has a generic parameter `T`
-  - `T` has a constraint: it can be any type as long as it implements the `Default` trait
-  - finally (and this is the important point), `T` is the type that `Default::default()` must return
+- `Default::default()` has a generic parameter `T`
+- `T` has a constraint: it can be any type as long as it implements the `Default` trait
+- finally (and this is the important point), `T` is the type that `Default::default()` must return
 
 And this is where the _magic_ is coming from. The implementation is actually generic over the return type. Also, by using the `Default` trait constraint, we can have an extensible definition: anyone can implement new types that will work with `Default::default()`. More on this later...
 
 For now, this is enough theory to digest, let's try to do something with it!
-
 
 ## Let's build something
 
@@ -164,7 +162,7 @@ Over the years, I learned that my brain can appreciate new programming concepts 
 
 I suppose, a good question here is _"When do I want to do different things based on different expected return type?"_
 
-I came up with a simple idea related to board games. Something like D&D where you have different kind of dice (different number of faces). 
+I came up with a simple idea related to board games. Something like D&D where you have different kind of dice (different number of faces).
 
 Can we use return type polymorphism to be able to _roll_ different type of dice?
 
@@ -221,7 +219,6 @@ Rust will automatically call the correct implementation based on what's the expe
 
 Well done to me for using return type polymorphism!
 
-
 ## Let's make it extensible
 
 Ok, but my silly implementation has a problem: it is not extensible.
@@ -236,12 +233,12 @@ Well, that's pretty much what `Default::default()` does, so it should be possibl
 
 Ok, here's an idea:
 
- - We can define a public `Rollable` trait that makes dice, well ... _rollable_
- - Our standard `D6` and `D8` will implement the `Rollable` trait to be rollable themselves
- - We provide one single implementation for our `roll()` function
- - We make that one implementation generic over a `T` where `T` must implement `Rollable`
- - `T` is also the return type for `roll()`
- - Now, this implementation of `roll()` just needs to use the `Rollable` trait on the current type for `T`
+- We can define a public `Rollable` trait that makes dice, well ... _rollable_
+- Our standard `D6` and `D8` will implement the `Rollable` trait to be rollable themselves
+- We provide one single implementation for our `roll()` function
+- We make that one implementation generic over a `T` where `T` must implement `Rollable`
+- `T` is also the return type for `roll()`
+- Now, this implementation of `roll()` just needs to use the `Rollable` trait on the current type for `T`
 
 This idea isn't really original. We are pretty much mimicking what `Default::default()` does with the trait `Default`, except that their naming choice is maybe slightly more confusing, since the module, the function and the trait are all called _default_ 😰 ...
 
@@ -334,12 +331,11 @@ Pretty neat, isn't it!?
 
 I actually did end up publishing this silly example [as a library](https://crates.io/crates/rollz). Check it out. Who knows, maybe you do really want to implement a board game of some sort!
 
-
 ## The turbo-fish syntax
 
 There is still one interesting detail to discuss before we can wrap this up.
 
-We already saw that, when a function is using return type polymorphism, we need to explicitly declare the expected type. 
+We already saw that, when a function is using return type polymorphism, we need to explicitly declare the expected type.
 
 What if you want to call a function implementing return type polymorphism but you don't want to assign it? Let's say we want to use the returned value immediately, maybe in a `println!()`:
 
@@ -353,7 +349,7 @@ How can Rust understand what we want?
 
 In fact, it doesn't! If you try to compile that code you will get a beautiful error message:
 
-```text
+```plaintext
 error[E0282]: type annotations needed
   --> src/main.rs:47:23
    |
@@ -365,7 +361,7 @@ The compiler also suggests running `rustc --explain E0282` to get a detailed gui
 
 Now, if you are patient enough to run that command and read the guide, you will find that we can solve this issue with the so-called **turbo-fish** syntax!
 
-The turbo-fish syntax looks like... a fish: `::<>`  ... yeah, with some degree of imagination!
+The turbo-fish syntax looks like... a fish: `::<>` ... yeah, with some degree of imagination!
 
 So, this is how we actually use it to specify **at call time** the type for the generic parameter:
 
@@ -401,7 +397,6 @@ fn main() {
 ```
 
 In this example, we are calling `try_dodge_attack(roll(), roll())` and we don't have to use the turbo-fish syntax. The Rust compiler looks at the type declaration of the function arguments and figures out that we want to roll a `D6` and a `D8`.
-
 
 ## Conclusion
 

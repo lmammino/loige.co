@@ -31,7 +31,7 @@ At this stage I wondered if there was a way to get only the wikitext of a specif
 
 So hitting [https://en.wikipedia.org/wiki/List_of_Olympic_medalists_in_judo?action=raw](https://en.wikipedia.org/wiki/List_of_Olympic_medalists_in_judo?action=raw) will give us our starting dataset which will look like this:
 
-```wiki
+```plaintext
 ==Men==
 ===Extra Lightweight===
 *60&nbsp;kg
@@ -78,7 +78,7 @@ The dataset shown before is just the wikitext code needed to render the tables o
 
 As you can see every athlete is referenced in the code using the _template_ `flagIOCmedalist` and every entry looks like:
 
-```wiki
+```plaintext
 {{flagIOCmedalist|[[NAME]]|COUNTRY|OLYMPIC GAME}}
 ```
 
@@ -373,13 +373,13 @@ You can extract data from the current web page using the developer console that 
 ;[].slice
   .call(
     document.querySelectorAll(
-      'table tr td:nth-child(n+2) > a:nth-child(1), table tr:nth-child(3) td > a:nth-child(1)'
-    )
+      'table tr td:nth-child(n+2) > a:nth-child(1), table tr:nth-child(3) td > a:nth-child(1)',
+    ),
   )
-  .map(function(e) {
+  .map(function (e) {
     return e.innerText
   })
-  .reduce(function(res, el) {
+  .reduce(function (res, el) {
     res[el] = res[el] ? res[el] + 1 : 1
     return res
   }, {})
