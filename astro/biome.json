@@ -17,7 +17,9 @@
       }
     },
     "ignore": [
-      "coverage/"
+      "coverage/",
+      "dist/",
+      "node_modules/"
     ]
   },
   "formatter": {
@@ -27,7 +29,9 @@
     "indentWidth": 2,
     "lineWidth": 80,
     "ignore": [
-      "coverage/"
+      "coverage/",
+      "dist/",
+      "node_modules/"
     ]
   },
   "javascript": {
