@@ -8,8 +8,9 @@ export default {
 	theme: {
 		extend: {
 			fontFamily: {
+				...defaultTheme.fontFamily,
 				sans: ['Atkinson', ...defaultTheme.fontFamily.sans],
-				serif: ['Roboto Serif', ...defaultTheme.fontFamily.serif]
+				mono: ['Fira Code', ...defaultTheme.fontFamily.mono]
 			},
 			colors: {
 				...defaultTheme.colors,
