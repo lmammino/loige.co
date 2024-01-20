@@ -17,3 +17,4 @@ export const SOCIALS = [
 ]
 export const FB_APP_ID = '231187154413670'
 export const TWITTER_HANDLE = 'loige'
+export const GTAG_ID = 'G-L3TVXXPHTW'

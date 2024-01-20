@@ -71,6 +71,7 @@ const seo: SEOProps = { ...defaultSEOProps(Astro), ...props }
 <meta name="theme-color" content="#22158a" />
 
 <!-- Open Graph / Facebook -->
+<meta property="fb:app_id" content={seo.fbAppId} />
 <meta property="og:type" content={seo.ogType} />
 <meta property="og:url" content={seo.canonical} />
 <meta property="og:title" content={seo.title} />
@@ -85,3 +86,21 @@ const seo: SEOProps = { ...defaultSEOProps(Astro), ...props }
 <meta property="twitter:title" content={seo.title} />
 <meta property="twitter:description" content={seo.description} />
 <meta property="twitter:image" content={seo.image} />
+<meta name="twitter:creator" content={seo.twitter.handle} />
+
+<!-- Google Analytics -->
+<meta
+  id="google-tag-manager-id"
+  name="google-tag-manager-id"
+  content={seo.googleTagManagerId}
+/>
+<link
+  rel="preconnect"
+  id="preconnect-google-analytics"
+  href="https://www.google-analytics.com"
+/>
+<link
+  rel="dns-prefetch"
+  id="dns-prefetch-google-analytics"
+  href="https://www.google-analytics.com"
+/>

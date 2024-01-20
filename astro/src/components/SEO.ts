@@ -1,6 +1,7 @@
 import type { AstroGlobal } from 'astro'
 import {
   FB_APP_ID,
+  GTAG_ID,
   SITE_DESCRIPTION,
   SITE_TITLE,
   SITE_URL,
@@ -27,6 +28,7 @@ export type SEOProps = {
     cardType: string
   }
   ogType: 'website' | 'article'
+  googleTagManagerId: string
 }
 
 export type PartialSEOProps = Partial<SEOProps>
@@ -52,5 +54,6 @@ export function defaultSEOProps(astro: AstroGlobal): SEOProps {
       cardType: 'summary_large_image',
     },
     ogType: 'website',
+    googleTagManagerId: GTAG_ID,
   }
 }

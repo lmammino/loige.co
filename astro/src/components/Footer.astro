@@ -266,3 +266,33 @@ const today = new Date()
     text-decoration: underline;
   }
 </style>
+<script>
+  // Initializes google tag manager for Analytics
+  declare global {
+    interface Window {
+      dataLayer: any[]
+      gtag: (...args: any[]) => void
+    }
+  }
+
+  const gtagMeta = document.getElementById('google-tag-manager-id')
+  if (gtagMeta !== null) {
+    const gtagId = (gtagMeta as HTMLMetaElement).content
+    const gtagScript = document.createElement('script')
+    gtagScript.setAttribute('async', '')
+    gtagScript.setAttribute(
+      'src',
+      `https://www.googletagmanager.com/gtag/js?id=${gtagId}`,
+    )
+    document.body.appendChild(gtagScript)
+
+    window.dataLayer = window.dataLayer || []
+    window.gtag =
+      window.gtag ||
+      function gtag() {
+        window.dataLayer.push(arguments)
+      }
+    window.gtag('js', new Date())
+    window.gtag('config', gtagId)
+  }
+</script>
