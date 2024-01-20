@@ -70,6 +70,14 @@ const sideProjects: SideProject[] = _sideProjects
             class="relative opacity-0 float-end not-prose ml-4 mr-[-80px] mb-8"
             data-reveal="animate-[500ms_ease-in-out_100ms_slide-left]"
           >
+            <audio class="hidden" id="audio-bump">
+              <source src="/audio/bump.mp3" type="audio/mpeg" />
+              <source src="/audio/bump.ogg" type="audio/ogg" />
+            </audio>
+            <audio class="hidden" id="audio-down">
+              <source src="/audio/down.mp3" type="audio/mpeg" />
+              <source src="/audio/down.ogg" type="audio/ogg" />
+            </audio>
             <Image
               src={Mario8Bit}
               title="IT'S A ME, MARIO!"
@@ -79,6 +87,7 @@ const sideProjects: SideProject[] = _sideProjects
               class="w-[128px] h-[128px]"
             />
           </div>
+
           <p>
             I am a <strong>passionate software engineer</strong> born in 1987, the
             same year that “Super Mario Bros” was released in Europe, which, by chance
@@ -127,8 +136,8 @@ const sideProjects: SideProject[] = _sideProjects
 
           <p>
             If you are interested in knowing more about my professional
-            experience and skills you can check out my <a href="">LinkedIn</a> or
-            my <a href="">GitHub</a>
+            experience and skills you can check out my <a href="">LinkedIn</a>
+            or my <a href="">GitHub</a>
             profile.
           </p>
 
@@ -327,9 +336,14 @@ const sideProjects: SideProject[] = _sideProjects
     'WaAaAaAaahh!',
     'Okey dokey!',
     'Oh, no!',
+    'Wahoo!',
+    "Oh no! It's-a Bowser!",
+    'Here we go again',
   ]
   const mario = document.getElementById('mario') as HTMLElement
   const marioImg = mario.querySelector('img') as HTMLImageElement
+  const audioBump = document.getElementById('audio-bump') as HTMLAudioElement
+  const audioDown = document.getElementById('audio-down') as HTMLAudioElement
   marioImg.style.cursor = 'pointer'
   let animating = false
   let numClicks = 0
@@ -358,7 +372,7 @@ const sideProjects: SideProject[] = _sideProjects
         'animate-[bubble_1.5s]',
       )
       bubble.innerText = isAngry
-        ? 'E CHE CA☠☠O!'
+        ? '☠ OfFff ☠'
         : marioPhrases[Math.floor(Math.random() * marioPhrases.length)]
       mario.appendChild(bubble)
       // destroy the bubble after the animation
@@ -371,6 +385,8 @@ const sideProjects: SideProject[] = _sideProjects
         : 'animate-[squish_ease-in-out_500ms]'
       marioImg.classList.add(animation)
       marioImg.style.filter = isAngry ? 'hue-rotate(306deg)' : 'none'
+      let sound = isAngry ? audioDown : audioBump
+      sound.play()
       setTimeout(() => {
         marioImg?.classList.remove(animation)
         animating = false
