@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content'
-import { Image } from 'astro:assets'
+import { Picture } from 'astro:assets'
 import CalendarIcon from './icons/CalendarIcon.astro'
 import DefaultHeaderImage from '../assets/default-post-header-img.jpg'
 
@@ -19,7 +19,8 @@ const { post, isBig } = Astro.props
     isBig ? 'col-span-1 md:col-span-2' : ''
   }`}
 >
-  <Image
+  <Picture
+    formats={['webp', 'avif', 'jpeg']}
     width={400}
     height={224}
     alt={`Cover picture for a blog post titled ${post.data.title}`}

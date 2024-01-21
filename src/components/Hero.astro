@@ -1,5 +1,55 @@
 ---
+import { getImage } from 'astro:assets'
+import HeroPicFrame0 from '../../public/loige/FRAME_0.png'
+import HeroPicFrame1 from '../../public/loige/FRAME_1.png'
+import HeroPicFrame2 from '../../public/loige/FRAME_2.png'
+import HeroPicFrame3 from '../../public/loige/FRAME_3.png'
+import HeroPicFrame4 from '../../public/loige/FRAME_4.png'
+import HeroPicMusicFrame0 from '../../public/loige/FRAME_m_0.png'
+import HeroPicMusicFrame1 from '../../public/loige/FRAME_m_1.png'
+import HeroPicMusicFrame2 from '../../public/loige/FRAME_m_2.png'
+import HeroPicMusicFrame3 from '../../public/loige/FRAME_m_3.png'
+import HeroPicMusicFrame4 from '../../public/loige/FRAME_m_4.png'
 
+const HERO_PIC_SIZE = 480
+const WEBP = 0
+const AVIF = 1
+const PNG = 2
+const profilePicFrames = await Promise.all(
+  [
+    HeroPicFrame0,
+    HeroPicFrame1,
+    HeroPicFrame2,
+    HeroPicFrame3,
+    HeroPicFrame4,
+    HeroPicMusicFrame0,
+    HeroPicMusicFrame1,
+    HeroPicMusicFrame2,
+    HeroPicMusicFrame3,
+    HeroPicMusicFrame4,
+  ].map((src) =>
+    Promise.all([
+      getImage({
+        src,
+        format: 'webp',
+        width: HERO_PIC_SIZE,
+        height: HERO_PIC_SIZE,
+      }),
+      getImage({
+        src,
+        format: 'avif',
+        width: HERO_PIC_SIZE,
+        height: HERO_PIC_SIZE,
+      }),
+      getImage({
+        src,
+        format: 'png',
+        width: HERO_PIC_SIZE,
+        height: HERO_PIC_SIZE,
+      }),
+    ]),
+  ),
+)
 ---
 
 <div
@@ -27,34 +77,72 @@
     </div>
     <div class="flex justify-center align-bottom z-[2]">
       <div class="w-[300px] h-[300px] sm:w-[480px] sm:h-[480px]">
-        <img
-          id="profile-picture"
-          src="/loige/FRAME_0.png"
-          alt="Luciano Mammino"
-          class="z-[2] fixed [transition:filter_.5s_ease-out_0s] w-[300px] h-[300px] sm:w-[480px] sm:h-[480px] animate-hero-pulse"
-        />
+        <picture>
+          <source
+            data-frames={JSON.stringify(
+              profilePicFrames.map((f) => f[WEBP].src),
+            )}
+            srcset={profilePicFrames[0][WEBP].src}
+            type="image/webp"
+          />
+          <source
+            data-frames={JSON.stringify(
+              profilePicFrames.map((f) => f[AVIF].src),
+            )}
+            srcset={profilePicFrames[0][AVIF].src}
+            type="image/avif"
+          />
+          <source
+            data-frames={JSON.stringify(
+              profilePicFrames.map((f) => f[PNG].src),
+            )}
+            srcset={profilePicFrames[0][PNG].src}
+            type="image/png"
+          />
+          <img
+            src={profilePicFrames[0][PNG].src}
+            id="profile-picture"
+            alt="Luciano Mammino"
+            class="z-[2] fixed [transition:filter_.5s_ease-out_0s] w-[300px] h-[300px] sm:w-[480px] sm:h-[480px] animate-hero-pulse"
+            width="480"
+            height="480"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
       </div>
     </div>
   </div>
 </div>
 <script>
+  const PNG = 2
   const PROFILE_NUM_FRAMES = 5
+  const SCROLL_TRIGGER_THRESHOLD = 20
+
   const profilePic = document.getElementById(
     'profile-picture',
   ) as HTMLImageElement
-
-  // preload scroll imageas
-  for (let i = 0; i < PROFILE_NUM_FRAMES; i++) {
-    const img = new Image()
-    img.src = `/loige/FRAME_${i}.png`
-  }
+  const sources = [
+    profilePic.parentElement!.querySelector(
+      'source[type="image/webp"]',
+    ) as HTMLSourceElement,
+    profilePic.parentElement!.querySelector(
+      'source[type="image/avif"]',
+    ) as HTMLSourceElement,
+    profilePic.parentElement!.querySelector(
+      'source[type="image/png"]',
+    ) as HTMLSourceElement,
+  ] as HTMLSourceElement[]
+  const framesUrl = sources.map((s) =>
+    JSON.parse(s.dataset.frames!),
+  ) as string[][]
 
   const isListeningToMusic = false
+  const frameOffset = isListeningToMusic ? 5 : 0
   // changes the image frame on scroll
   let lastScroll = 0
   let currentFrame = 0
-  let prefix = isListeningToMusic ? 'm_' : ''
-  const SCROLL_TRIGGER_THRESHOLD = 20
+
   window.addEventListener('scroll', () => {
     let scrollDiff = lastScroll - window.scrollY
     if (Math.abs(scrollDiff) > SCROLL_TRIGGER_THRESHOLD) {
@@ -63,7 +151,10 @@
       if (currentFrame < 0) {
         currentFrame = PROFILE_NUM_FRAMES - 1
       }
-      profilePic.src = `/loige/FRAME_${prefix}${currentFrame}.png`
+      for (let i = 0; i < sources.length; i++) {
+        sources[i].srcset = framesUrl[i][currentFrame + frameOffset]
+      }
+      profilePic.src = framesUrl[PNG][currentFrame + frameOffset]
       lastScroll = window.scrollY
     }
   })
