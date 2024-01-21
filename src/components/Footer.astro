@@ -267,6 +267,11 @@ const today = new Date()
   }
 </style>
 <script>
+  // Registers service worker
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').then((reg) => reg.update())
+  }
+
   // Initializes google tag manager for Analytics
   declare global {
     interface Window {
