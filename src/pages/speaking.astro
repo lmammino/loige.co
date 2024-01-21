@@ -229,19 +229,17 @@ const countries = new Set(
   // @ts-ignore
   import * as Leaflet from 'https://unpkg.com/leaflet/dist/leaflet-src.esm.js'
 
-  const Stadia_StamenTerrainBackground = Leaflet.tileLayer(
-    'https://tiles.stadiamaps.com/tiles/stamen_terrain_background/{z}/{x}/{y}{r}.{ext}',
+  const OpenStreetMap_Mapnik = L.tileLayer(
+    'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
     {
-      minZoom: 0,
-      maxZoom: 18,
+      maxZoom: 19,
       attribution:
-        '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia</a> &copy; <a href="https://www.stamen.com/" target="_blank">Stamen</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMap</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreet</a>',
-      ext: 'png',
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     },
   )
 
   const mymap = Leaflet.map('speaking_map').setView([45, -40], 3)
-  Stadia_StamenTerrainBackground.addTo(mymap)
+  OpenStreetMap_Mapnik.addTo(mymap)
   ;[...document.querySelectorAll('[data-gps]')].forEach((el: Element) => {
     const e = el as HTMLLIElement
     if (e && e.dataset.gps) {
