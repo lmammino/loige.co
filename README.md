@@ -1,72 +1,72 @@
 # Luciano Mammino - Full Stack Developer and Cloud Architect (Personal Blog)
 
-My personal blog built with [Astro](https://astro.build). All open-source!
+[![Built with Astro](https://astro.badg.es/v2/built-with-astro/tiny.svg)](https://astro.build)
+[![Deploy](https://github.com/lmammino/loige.co/actions/workflows/deploy.yml/badge.svg)](https://github.com/lmammino/loige.co/actions/workflows/deploy.yml)
+[![GitHub stars](https://img.shields.io/github/stars/lmammino/loige.co.svg)](https://github.com/lmammino/loige.co/stargazers)
+[![GitHub license](https://img.shields.io/github/license/lmammino/loige.co.svg)](https://github.com/lmammino/loige.co/blob/main/LICENSE)
+
+My blog, built with [Astro](https://astro.build). All open-source!
 
 ![The default](./public/loige-co.jpg)
 
-```sh
-npm create astro@latest -- --template blog
+If you want to run this locally (maybe you found a typo or an error in one of my articles and want to fix it), you can follow these instructions:
+
+## 1. Clone the repo
+
+```bash
+git clone https://github.com/lmammino/loige.co.git
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/blog)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/blog)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/blog/devcontainer.json)
+## 2. Make sure you have up-to-date versions of Node.js and pnpm
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Expected Node.js version: `20` or higher and `pnpm` version `8` or higher.
 
-![blog](https://github.com/withastro/astro/assets/2244813/ff10799f-a816-4703-b967-c78997e8323d)
-
-Features:
-
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and OpenGraph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-├── public/
-├── src/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
+```bash
+node -v
+pnpm -v
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+If you have `corepack` installed, you can easily enable `pnpm` with:
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```bash
+corepack enable
+corepack prepare pnpm@8 --activate
+```
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+Alternatively, check out the [pnpm official installation instructions](https://pnpm.io/installation).
 
-Any static assets, like images, can be placed in the `public/` directory.
+## 3. Install dependencies
 
-## 🧞 Commands
+```bash
+pnpm install
+```
 
-All commands are run from the root of the project, from a terminal:
+## 4. Run the dev server
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+```bash
+pnpm dev
+```
 
-## 👀 Want to learn more?
+The website should now be accessible at [http://localhost:4321](http://localhost:4321)
 
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## 5. Build the static website
 
-## Credit
+```bash
+pnpm build
+```
 
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+The static website will be available in the `./dist` folder.
+
+## 6. Deploy the website
+
+The website is deployed through [GitHub Actions](./.github/workflows/deploy.yml), so if you want to suggest some updates, open a PR and I will review it as soon as possible. Once merged into `main`, a deployment will kick in automatically.
+
+## Contributing
+
+Everyone is very welcome to contribute to this project.
+You can contribute just by submitting bugs or suggesting improvements by
+[opening an issue on GitHub](https://github.com/lmammino/loige.co/issues).
+
+## License
+
+Licensed under [MIT License](LICENSE). © Luciano Mammino.
