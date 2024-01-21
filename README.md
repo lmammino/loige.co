@@ -1,4 +1,4 @@
-# Luciano Mammino - Full Stack Developer and Cloud Architect (Personal Blog)
+# Luciano Mammino - Cloud Architect & Full Stack Developer (Personal Blog)
 
 [![Built with Astro](https://astro.badg.es/v2/built-with-astro/tiny.svg)](https://astro.build)
 [![Deploy](https://github.com/lmammino/loige.co/actions/workflows/deploy.yml/badge.svg)](https://github.com/lmammino/loige.co/actions/workflows/deploy.yml)
