@@ -1,17 +1,26 @@
 // this service worker doesn't do anything intentionally.
 // It's just here to clear up the previously installed SW from Gatsby
-// based on https://github.com/NekR/self-destroying-sw
-self.addEventListener('install', (_e) => {
-  self.skipWaiting()
+// based on https://github.com/NekR/self-destroying-sw 
+// and on https://web.dev/articles/service-worker-mindset
+// and https://developer.chrome.com/docs/workbox/remove-buggy-service-workers/
+
+self.addEventListener('install', () => {
+  // Skip over the "waiting" lifecycle state, to ensure that our
+  // new service worker is activated immediately, even if there's
+  // another tab open controlled by our older service worker code.
+  self.skipWaiting();
 })
 
-self.addEventListener('activate', (_e) => {
-  self.registration
-    .unregister()
-    .then(() => self.clients.matchAll())
-    .then((clients) => {
-      for (const client of clients) {
-        client.navigate(client.url)
-      }
-    })
+self.addEventListener('activate', () => {
+  // Optional: Get a list of all the current open windows/tabs under
+  // our service worker's control, and force them to reload.
+  // This can "unbreak" any open windows/tabs as soon as the new
+  // service worker activates, rather than users having to manually reload.
+  self.clients.matchAll({
+    type: 'window'
+  }).then(windowClients => {
+    for (const windowClient of windowClients) {
+      windowClient.navigate(windowClient.url)
+    }
+  })
 })

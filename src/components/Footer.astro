@@ -267,9 +267,16 @@ const today = new Date()
   }
 </style>
 <script>
-  // Registers service worker
+  // Registers service worker to clean up the old Gatsby one
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js').then((reg) => reg.update())
+    navigator.serviceWorker
+      .register('/sw.js')
+      .then((reg) => {
+        if (reg.active) {
+          reg.update()
+        }
+      })
+      .catch((err) => {}) // ignore errors
   }
 
   // Initializes google tag manager for Analytics
