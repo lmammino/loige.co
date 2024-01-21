@@ -8,9 +8,9 @@ export default {
 	theme: {
 		extend: {
 			fontFamily: {
-				...defaultTheme.fontFamily,
-				sans: ['Atkinson', ...defaultTheme.fontFamily.sans],
-				mono: ['Fira Code', ...defaultTheme.fontFamily.mono]
+				sans: ['Atkinson', 'Avenir', 'Montserrat', 'Corbel', 'URW Gothic', 'source-sans-pro', 'sans-serif'],
+				serif: ['Charter', 'Bitstream Charter', 'Sitka Text', 'Cambria', 'serif'],
+				mono: ['ui-monospace', 'Cascadia Code', 'Source Code Pro', 'Menlo', 'Consolas', 'DejaVu Sans Mono', 'monospace']
 			},
 			colors: {
 				...defaultTheme.colors,

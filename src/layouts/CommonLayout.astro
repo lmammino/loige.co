@@ -17,11 +17,13 @@ const { section, seo } = Astro.props
   <head>
     <BaseHead {...seo} />
   </head>
-  <body class="flex flex-col">
+  <body class="flex flex-col font-sans">
     <Header section={section} />
-    <main class="min-h-screen pb-32">
+    <main class="min-h-screen
+    pb-32">
       <slot />
-    </main>
-    <Footer />
-  </body></html
->
+
+      <Footer />
+    </main></body
+  >
+</html>
