@@ -1,4 +1,8 @@
-# Astro Starter Kit: Blog
+# Luciano Mammino - Full Stack Developer and Cloud Architect (Personal Blog)
+
+My personal blog built with [Astro](https://astro.build). All open-source!
+
+![The default](./public/loige-co.jpg)
 
 ```sh
 npm create astro@latest -- --template blog

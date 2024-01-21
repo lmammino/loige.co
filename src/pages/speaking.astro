@@ -229,7 +229,7 @@ const countries = new Set(
   // @ts-ignore
   import * as Leaflet from 'https://unpkg.com/leaflet/dist/leaflet-src.esm.js'
 
-  const OpenStreetMap_Mapnik = L.tileLayer(
+  const OpenStreetMap_Mapnik = Leaflet.tileLayer(
     'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
     {
       maxZoom: 19,
