@@ -1,5 +1,6 @@
 ---
 import { getImage } from 'astro:assets'
+import profilePicPlaceholders from '../../public/loige/FRAME_placeholder_480.json'
 import HeroPicFrame0 from '../../public/loige/FRAME_0.png'
 import HeroPicFrame1 from '../../public/loige/FRAME_1.png'
 import HeroPicFrame2 from '../../public/loige/FRAME_2.png'
@@ -15,6 +16,7 @@ const HERO_PIC_SIZE = 480
 const WEBP = 0
 const AVIF = 1
 const PNG = 2
+
 const profilePicFrames = await Promise.all(
   [
     HeroPicFrame0,
@@ -82,32 +84,30 @@ const profilePicFrames = await Promise.all(
             data-frames={JSON.stringify(
               profilePicFrames.map((f) => f[WEBP].src),
             )}
-            srcset={profilePicFrames[0][WEBP].src}
+            srcset={profilePicPlaceholders[WEBP]}
             type="image/webp"
           />
           <source
             data-frames={JSON.stringify(
               profilePicFrames.map((f) => f[AVIF].src),
             )}
-            srcset={profilePicFrames[0][AVIF].src}
+            srcset={profilePicPlaceholders[AVIF]}
             type="image/avif"
           />
           <source
             data-frames={JSON.stringify(
               profilePicFrames.map((f) => f[PNG].src),
             )}
-            srcset={profilePicFrames[0][PNG].src}
+            srcset={profilePicPlaceholders[PNG]}
             type="image/png"
           />
           <img
-            src={profilePicFrames[0][PNG].src}
+            src={profilePicPlaceholders[PNG]}
             id="profile-picture"
             alt="Luciano Mammino"
             class="z-[2] fixed [transition:filter_.5s_ease-out_0s] w-[300px] h-[300px] sm:w-[480px] sm:h-[480px] animate-hero-pulse"
             width="480"
             height="480"
-            loading="lazy"
-            decoding="async"
           />
         </picture>
       </div>
@@ -136,6 +136,11 @@ const profilePicFrames = await Promise.all(
   const framesUrl = sources.map((s) =>
     JSON.parse(s.dataset.frames!),
   ) as string[][]
+
+  // swaps the placeholder with the actual image
+  for (let i = 0; i < sources.length; i++) {
+    sources[i].srcset = framesUrl[i][0]
+  }
 
   const isListeningToMusic = false
   const frameOffset = isListeningToMusic ? 5 : 0

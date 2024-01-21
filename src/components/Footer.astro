@@ -292,6 +292,7 @@ const today = new Date()
     const gtagId = (gtagMeta as HTMLMetaElement).content
     const gtagScript = document.createElement('script')
     gtagScript.setAttribute('async', '')
+    gtagScript.setAttribute('defer', '')
     gtagScript.setAttribute(
       'src',
       `https://www.googletagmanager.com/gtag/js?id=${gtagId}`,
