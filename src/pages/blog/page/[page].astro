@@ -1,0 +1,47 @@
+---
+/// <reference path="../../../../.astro/types.d.ts" />
+
+import { getCollection } from 'astro:content'
+import { type PaginateFunction } from 'astro'
+import { getTagsFromPosts } from '../../../utils/posts'
+import BlogIndexPage from '../../../components/BlogIndexPage.astro'
+
+type GetStaticPathsArgs = { paginate: PaginateFunction }
+
+export async function getStaticPaths({ paginate }: GetStaticPathsArgs) {
+  const posts = (await getCollection('posts')).sort(
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+  )
+  const tags = getTagsFromPosts(posts)
+
+  const PAGE_SIZE = 10
+  const pages = paginate(posts, { pageSize: PAGE_SIZE })
+
+  return pages
+    .map((staticPath, idx) => ({
+      ...staticPath,
+      props: {
+        page: {
+          ...staticPath.props.page,
+          start: idx * PAGE_SIZE,
+          end: idx * PAGE_SIZE + PAGE_SIZE - 1,
+          size: PAGE_SIZE,
+          total: posts.length,
+          currentPage: idx + 1,
+          lastPage: pages.length,
+          url: {
+            current: `/blog/page/${idx + 1}`,
+            next: idx === pages.length - 1 ? null : `/blog/page/${idx + 2}`,
+            prev: idx === 0 ? null : idx === 1 ? '/blog' : `/blog/page/${idx}`,
+          },
+        },
+        tags,
+      },
+    }))
+    .slice(1)
+}
+
+const props = Astro.props
+---
+
+<BlogIndexPage {...props} />

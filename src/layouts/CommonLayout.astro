@@ -1,0 +1,27 @@
+---
+import BaseHead from '../components/BaseHead.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import { type PartialSEOProps } from '../components/SEO'
+
+type Props = {
+  section?: 'blog' | 'speaking' | 'about'
+  seo?: PartialSEOProps
+}
+
+const { section, seo } = Astro.props
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead {...seo} />
+  </head>
+  <body class="overscroll-y-none flex flex-col">
+    <Header section={section} />
+    <main class="min-h-screen pb-32">
+      <slot />
+    </main>
+    <Footer />
+  </body></html
+>

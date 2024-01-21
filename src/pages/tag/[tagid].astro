@@ -1,0 +1,81 @@
+---
+/// <reference path="../../../.astro/types.d.ts" />
+
+import type { InferGetStaticPropsType } from 'astro'
+import { type CollectionEntry, getCollection } from 'astro:content'
+import { SITE_TITLE } from '../../consts'
+import CommonLayout from '../../layouts/CommonLayout.astro'
+import BlogCard from '../../components/BlogCard.astro'
+import TagsList from '../../components/TagsList.astro'
+import { getTagsFromPosts } from '../../utils/posts'
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>
+
+export async function getStaticPaths() {
+  const posts = (await getCollection('posts')).sort(
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+  )
+  const tags = getTagsFromPosts(posts)
+
+  const postsByTag: Record<string, CollectionEntry<'posts'>[]> = {}
+
+  for (const post of posts) {
+    for (const tag of post.data.tags) {
+      if (!postsByTag[tag]) {
+        postsByTag[tag] = []
+      }
+      postsByTag[tag].push(post)
+    }
+  }
+
+  return Object.entries(postsByTag).map(([tagid, posts]) => {
+    return {
+      params: {
+        tagid,
+      },
+      props: {
+        posts,
+        tags: tags.filter((tag) => tag.name !== tagid),
+      },
+    }
+  })
+}
+
+const { posts, tags } = Astro.props
+const { tagid } = Astro.params
+---
+
+<CommonLayout
+  section="blog"
+  seo={{
+    title: `${SITE_TITLE}'s Blog - Articles published under "${tagid}"`,
+    description: `Page of ${SITE_TITLE}'s blog containing the list of all blog articles published under the topic "${tagid}".`,
+  }}
+>
+  <div class="bg-bg-500 relative z-40">
+    <div class="mx-auto max-w-screen-xl py-8 px-8">
+      <h1 class="text-3xl text-center my-8 font-bold text-text-500"
+        >Articles tagged <span class="font-mono">#{tagid}</span></h1
+      >
+
+      <div
+        class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-8"
+      >
+        {
+          posts.map((post) => (
+            <BlogCard post={post}>{post.data.description}</BlogCard>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-bg-500 relative z-40">
+    <div class="mx-auto max-w-screen-xl py-8 px-8">
+      <h2 class="text-3xl text-center mb-4 text-text-500"
+        >Other common topics</h2
+      >
+      <TagsList tags={tags.slice(0, 20)} />
+    </div>
+  </div>
+</CommonLayout>

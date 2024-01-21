@@ -1,0 +1,167 @@
+---
+import CommonLayout from '../layouts/CommonLayout.astro'
+import { SITE_TITLE, SITE_DESCRIPTION, SOCIALS } from '../consts'
+---
+
+<CommonLayout
+  seo={{
+    title: `${SITE_TITLE} - ${SITE_DESCRIPTION} - 404 not found`,
+    description: `${SITE_TITLE} - ${SITE_DESCRIPTION} - 404 not found. Sorry the page you were looking for was not found. Maybe it was deleted or you got the wrong URL.`,
+  }}
+>
+  <div
+    class="pt-4 sm:pt-6 lg:pt-10 bg-bg-500 [background:radial-gradient(circle_at_30%_60%,_var(--color-primary-200)_0%,transparent_30%),radial-gradient(circle_at_80%_90%,_var(--color-secondary-300)_0%,transparent_30%),radial-gradient(circle_at_bottom,_var(--color-accent-300)_0%,var(--color-bg-500)_60%)]"
+  >
+    <div
+      class="flex justify-center items-end relative mx-auto max-w-screen-xl h-[400px] sm:h-[640px] overflow-hidden [clip-path:border-box]"
+    >
+      <div
+        class="absolute top-[3.5rem] sm:top-[6rem] lg:top-[5rem] flex flex-col justify-center z-[3]"
+      >
+        <h1
+          class="text-4xl sm:text-7xl lg:text-8xl font-bold text-text-600 z-[3] drop-shadow-lg text-center"
+        >
+          <span class="text-primary-700">404</span> not found
+        </h1>
+      </div>
+      <div
+        class="absolute top-[6.5rem] sm:top-[11rem] flex flex-col justify-center z-[1]"
+      >
+        <div
+          class="font-serif sm:text-3xl lg:text-4xl text-text-400 z-[1] flex gap-2"
+        >
+          ...e che <span id="cazzo" class="font-bold text-accent-700">
+            <span class="inline-block w-6 text-center" data-letters="CcKk*@#☠"
+              >*</span
+            >
+            <span class="inline-block w-6 text-center" data-letters="Aa4*@#☠"
+              >*</span
+            >
+            <span class="inline-block w-6 text-center" data-letters="Zz*@#☠"
+              >*</span
+            >
+            <span class="inline-block w-6 text-center" data-letters="Zz*@#☠"
+              >*</span
+            >
+            <span class="inline-block w-6 text-center" data-letters="Oo0*@#☠"
+              >*</span
+            >
+          </span>!
+        </div>
+      </div>
+      <div class="flex justify-center align-bottom z-[2]">
+        <div class="w-[300px] h-[300px] sm:w-[480px] sm:h-[480px]">
+          <a href="/about"
+            ><img
+              id="profile-picture"
+              src="/loige/404_0.png"
+              alt="Luciano Mammino"
+              class="z-[2] fixed [transition:filter_.5s_ease-out_0s] w-[300px] h-[300px] sm:w-[480px] sm:h-[480px] animate-hero-pulse"
+            /></a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-8 bg-bg-500 relative z-40">
+    <div class="mx-auto max-w-screen-xl px-8 pb-16 flex justify-center">
+      <div
+        class="max-w-[800px] prose md:prose-lg lg:prose-xl prose:text-text-500 first:prose-p:text-text-700 first:prose-p:text-lg/relaxed md:first:prose-p:text-xl/relaxed lg:first:prose-p:text-2xl/relaxed prose-a:underline-offset-4 prose-a:decoration-text-100 prose-a:text-primary-700 hover:prose-a:text-primary-500 hover:prose-a:decoration-primary-500"
+      >
+        <p
+          >Sorry you didn't find what you were looking for! Maybe the page you
+          were looking for got deleted or you got the wrong URL...</p
+        >
+        <p
+          >But since you are here, why don't you check out <a href="/blog"
+            >my Blog</a
+          >? Or maybe learn more <a href="/about">about me</a> or <a
+            href="/speaking">my speaking activities</a
+          >? Oh, by the way, did you know that I wrote a <a
+            href="https://nodejsdesignpatterns.com">book about Node.js</a
+          >?
+        </p>
+        <p
+          >...OK, probably, you just want to tell me that you <strong
+            >hate me</strong
+          > for wasting your time! Fair, you can do that in any of these social channels:</p
+        >
+        <ul>
+          {
+            SOCIALS.map((s) => (
+              <li>
+                <a href={s.url} rel="me">
+                  {s.title}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+        <p>I look forward to hearing from you! ❤️</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    // animate picture
+    const PROFILE_NUM_FRAMES = 2
+    const FRAME_RATE = 600
+    const profilePic = document.getElementById(
+      'profile-picture',
+    ) as HTMLImageElement
+
+    // preload scroll imageas
+    for (let i = 0; i < PROFILE_NUM_FRAMES; i++) {
+      const img = new Image()
+      img.src = `/loige/404_${i}.png`
+    }
+
+    let currentFrameIndex = 0
+    let previousTimestamp = 0
+    function animate(timestamp: number) {
+      if (timestamp - previousTimestamp > FRAME_RATE) {
+        currentFrameIndex = (currentFrameIndex + 1) % PROFILE_NUM_FRAMES
+        profilePic.src = `/loige/404_${currentFrameIndex}.png`
+        previousTimestamp = timestamp
+      }
+      window.requestAnimationFrame(animate)
+    }
+
+    window.requestAnimationFrame(animate)
+
+    // animate cazzo
+    const cazzo = document.getElementById('cazzo') as HTMLSpanElement
+    const cazzoLetters = cazzo.querySelectorAll('span')
+    let cazzoPreviousTimestamp = 0
+    function animateCazzo(timestamp: number) {
+      if (timestamp - cazzoPreviousTimestamp > FRAME_RATE) {
+        cazzoLetters.forEach((letter) => {
+          const possibleLetters = [...(letter.dataset.letters as string)]
+          const randomLetter =
+            possibleLetters[Math.floor(Math.random() * possibleLetters.length)]
+          letter.textContent = randomLetter
+        })
+        const text = [...(cazzo.textContent as string)]
+          .filter((c) => c !== ' ')
+          .join('')
+          .toLowerCase()
+        if (
+          ['c', 'k'].includes(text.charAt(0)) &&
+          ['a', '4'].includes(text.charAt(1)) &&
+          text.charAt(2) === 'z' &&
+          text.charAt(3) === 'z' &&
+          ['o', '0'].includes(text.charAt(4))
+        ) {
+          cazzo.classList.remove('text-accent-700')
+          cazzo.classList.add('text-red-500')
+        } else {
+          cazzo.classList.remove('text-red-500')
+          cazzo.classList.add('text-accent-700')
+        }
+        cazzoPreviousTimestamp = timestamp
+      }
+      window.requestAnimationFrame(animateCazzo)
+    }
+    window.requestAnimationFrame(animateCazzo)
+  </script>
+</CommonLayout>

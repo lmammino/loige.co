@@ -1,0 +1,30 @@
+---
+interface Props {
+  href?: string
+  label?: string
+  isPrimary?: boolean
+  isDisabled?: boolean
+  class?: string
+}
+
+const { href, label, isPrimary, isDisabled } = Astro.props
+---
+
+{
+  isDisabled ? (
+    <span class="inline-block py-2 px-4 text-lg rounded border-2 text-text-300 cursor-not-allowed">
+      <slot>{label}</slot>
+    </span>
+  ) : (
+    <a
+      href={href}
+      class={`inline-block py-2 px-4 text-lg rounded border ${
+        isPrimary
+          ? 'bg-primary-600 hover:bg-primary-700 border-primary-400 hover:border-primary-900 border-2 text-bg-100'
+          : 'bg-secondary-600 hover:bg-secondary-700 border-secondary-400 hover:border-secondary-900 border-2 text-bg-100'
+      } ${Astro.props.class || ''}`}
+    >
+      <slot>{label}</slot>
+    </a>
+  )
+}

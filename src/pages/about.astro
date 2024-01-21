@@ -1,0 +1,446 @@
+---
+import { getCollection } from 'astro:content'
+import { Image } from 'astro:assets'
+import _externalArticles from '../content/data/external-articles.json'
+import _sideProjects from '../content/data/side-projects.json'
+import CommonLayout from '../layouts/CommonLayout.astro'
+import MyPicture from '../assets/speaking/13.jpg'
+import Mario8Bit from '../assets/mario8bit.svg'
+import NodeJsDesignPatternsCover from '../assets/nodejs-design-pattens-cover.jpg'
+import BastoneSiciliano from '../assets/bastone-siciliano.jpg'
+import ServerlessHeroBadge from '../components/badges/ServerlessHero.astro'
+import MvpBadge from '../components/badges/Mvp.astro'
+import BlogCard from '../components/BlogCard.astro'
+import { SITE_TITLE, SITE_DESCRIPTION, SOCIALS } from '../consts'
+
+const posts = (await getCollection('posts')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+)
+
+type ExternalArticle = {
+  title: string
+  link: string
+  date: string
+}
+
+type SideProject = {
+  name: string
+  link: string
+  role: string
+}
+
+const externalArticles: ExternalArticle[] = _externalArticles.sort(
+  (a: any, b: any) => b.date.localeCompare(a.date),
+)
+const sideProjects: SideProject[] = _sideProjects
+---
+
+<CommonLayout
+  section="about"
+  seo={{
+    title: `${SITE_TITLE} - ${SITE_DESCRIPTION} - About`,
+    description: `About page of ${SITE_TITLE} - ${SITE_DESCRIPTION}. Find out more about Luciano: his work, his passions and his side projects.`,
+  }}
+>
+  <div class="bg-bg-500 overflow-x-hidden">
+    <div class="mx-auto max-w-screen-xl py-8 px-8 flex flex-col items-center">
+      <div>
+        <h1 class="text-text-500 text-4xl/relaxed my-4 font-bold"
+          >Hello, this is Luciano 👋</h1
+        >
+        <Image
+          src={MyPicture}
+          alt="A picture of Luciano Mammino delivering a tech talk"
+          width={480}
+          height={360}
+          class="opacity-0 min-w-full sm:min-w-0 object-cover -mr-16 rounded-xl h-[230px] sm:h-[180px] w-[240px] sm:float-start sm:-ml-16 sm:mr-8 mb-8 sm:shadow-lg not-prose"
+          data-reveal="animate-[500ms_ease-in-out_10ms_slide-rigth]"
+        />
+        <div
+          class="max-w-[800px] prose md:prose-lg lg:prose-xl prose:text-text-500 first:prose-p:text-text-700 first:prose-p:text-lg/relaxed md:first:prose-p:text-xl/relaxed lg:first:prose-p:text-2xl/relaxed prose-a:underline-offset-4 prose-a:decoration-text-100 prose-a:text-primary-700 hover:prose-a:text-primary-500 hover:prose-a:decoration-primary-500"
+        >
+          <p>
+            Since I started navigating the great Internet, my nickname has been <em
+              >"loige"</em
+            >, that's why this website is called "loige.co".
+          </p>
+
+          <div
+            id="mario"
+            class="relative opacity-0 float-end not-prose ml-4 mr-[-80px] mb-8"
+            data-reveal="animate-[500ms_ease-in-out_100ms_slide-left]"
+          >
+            <audio class="hidden" id="audio-bump">
+              <source src="/audio/bump.mp3" type="audio/mpeg" />
+              <source src="/audio/bump.ogg" type="audio/ogg" />
+            </audio>
+            <audio class="hidden" id="audio-down">
+              <source src="/audio/down.mp3" type="audio/mpeg" />
+              <source src="/audio/down.ogg" type="audio/ogg" />
+            </audio>
+            <Image
+              src={Mario8Bit}
+              title="IT'S A ME, MARIO!"
+              alt="8 bit Mario"
+              width={128}
+              height={128}
+              class="w-[128px] h-[128px]"
+            />
+          </div>
+
+          <p>
+            I am a <strong>passionate software engineer</strong> born in 1987, the
+            same year that “Super Mario Bros” was released in Europe, which, by chance
+            is my favourite game!
+          </p>
+
+          <p>
+            I started coding early at the age of 12, hacking away with my
+            father's old i386 armed only with MS-DOS and the QBasic interpreter
+            and I have been professionally a software developer for more than 15
+            years.
+          </p>
+
+          <p>
+            I am a <strong>Senior Architect</strong> at <a
+              href="https://fourtheorem.com">fourTheorem</a
+            > in Dublin where we help companies to transtition to <a
+              href="/tag/aws">AWS</a
+            > and adopt the
+            <a href="/tag/serverless">Serverless</a> paradigm.
+          </p>
+
+          <a
+            href="https://nodejsdesignpatterns.com"
+            title="The cover of the book Node.js Design Patterns. Visit the website to find out more"
+            class="block -rotate-1"
+          >
+            <Image
+              src={NodeJsDesignPatternsCover}
+              alt="Node.js design patterns book cover"
+              width={240}
+              height={300}
+              class="opacity-0 not-prose w-[120px] h-[150px] float-start mr-8 mb-8 mt-0 shadow-lg hover:scale-150 duration-75"
+              data-reveal="animate-[500ms_ease-in-out_10ms_slide-right]"
+            />
+          </a>
+          <p>
+            I love the fullstack web, <a href="/tag/node-js">Node.js</a> and <a
+              href="/tag/serverless">Serverless</a
+            > so I co-authored the book <a
+              href="https://nodejsdesignpatterns.com">Node.js design patterns</a
+            >, and launched <a href="https://fullstackbulletin.com"
+              >FullStack Bulletin</a
+            > (a semi-automated newsletter for Fullstack developers).
+          </p>
+
+          <p>
+            If you are interested in knowing more about my professional
+            experience and skills you can check out my <a href="">LinkedIn</a>
+            or my <a href="">GitHub</a>
+            profile.
+          </p>
+
+          <p> This has been my personal tag-line for a while:</p>
+
+          <blockquote>
+            Cloud developer, entrepreneur, fighter, butterfly maker!
+          </blockquote>
+
+          <div
+            class="opacity-0 not-prose float-start md:-ml-8 mr-4 mb-8"
+            data-reveal="animate-[500ms_ease-in-out_10ms_slide-right]"
+          >
+            <ServerlessHeroBadge class="w-32 mb-8" />
+            <MvpBadge class="not-prose float-start w-32 mr-8" />
+          </div>
+          <p>
+            Yep, I am a <strong>Full stack web developer</strong> working on cloud
+            products. I enjoy coding (a lot) even though, lately, I am spending more
+            and more time working on systems and <strong
+              >cloud architectures</strong
+            >. AWS has recognized my efforts in this area and I am now an <a
+              href="https://aws.amazon.com/developer/community/heroes/luciano-mammino/"
+              >AWS Hero</a
+            >. Also Microsoft has recognized my efforts in knowledge sharing and
+            nomitaded me as a <a
+              href="https://mvp.microsoft.com/en-US/mvp/profile/e25db9eb-f3bd-eb11-bacc-0022481f2c24"
+              >Microsoft MVP</a
+            > for developer technologies.
+          </p>
+
+          <p>
+            I <strike>am</strike> was an entrepreneur: during the first part of my
+            career, I co-founded several companies, a couple of web and software
+            agencies and even a startup, <a href="https://sbaam.com/"
+              >Sbaam.com</a
+            >, that aimed to disrupt the emerging fashion brands industry. I
+            can't say any of these businesses was successful, but I definitely
+            learned a lot and I believe I still preserve some of that
+            entrepreneurial mindset.
+          </p>
+
+          <a
+            class="block -rotate-6 float-end -mr-16 ml-8 mb-8 mt-8"
+            href="https://letmegooglethat.com/?q=Bastone+Siciliano"
+            rel="nofollow noopener noreferrer"
+            target="_blank"
+            title="Are you curious? What the hell is this picture?"
+          >
+            <Image
+              src={BastoneSiciliano}
+              alt="A picture of Luciano Mammino and Giovanni Tomarchio in a Bastone Siciliano show"
+              width={240}
+              height={180}
+              class="opacity-0 shadow-lg rounded-xl not-prose hover:scale-150 duration-75"
+              data-reveal="animate-[500ms_ease-in-out_10ms_slide-left]"
+            />
+          </a>
+
+          <p>
+            I am a fighter, I enjoy practicing martial arts as a hobby and as a
+            way to stay healthy both phisically and mentally. I have a red belt
+            (master) in <em>Sicilian Stick Fighting</em> (yep, <a
+              href="https://letmegooglethat.com/?q=Bastone+Siciliano"
+              rel="nofollow noopener noreferrer"
+              target="_blank">such thing really exists</a
+            >), black belt in <em>Judo</em> and purple belt in <em
+              >Brasilian Jiu-Jitsu</em
+            > (I still suck at martial arts, but it's fun and it keeps me reasonably
+            fit).
+          </p>
+
+          <p>
+            For what concerns the <em>butterfly making</em> part, well... you will
+            have to ask me in person! :)
+          </p>
+
+          <h2 id="speaking">Speaking and workshops</h2>
+
+          <p
+            >I take any chance I have to speak at tech conferences or to deliver
+            workshops. I have delivered hundreds of conference talks and
+            workshops. You can consult the <a href="/speaking">speaking page</a>
+            if you want to know more about my past and future engagements.</p
+          >
+
+          <h2 id="writing">Writing</h2>
+          <p>
+            I love to write technical articles to share my knowledge and, most
+            importantly, to confront my learnings with other people and get
+            better bit by bit.
+          </p>
+
+          <p>
+            In the last few years, I have published <strong
+              >{posts.length}</strong
+            > articles in this blog and contributed to <strong
+              >{externalArticles.length}</strong
+            > articles for other publishers.
+          </p>
+
+          <h3>Latest articles on this blog</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bg-bg-500 relative z-40">
+    <div class="mx-auto max-w-screen-xl px-8">
+      <div
+        class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-8"
+      >
+        {
+          posts
+            .slice(0, 3)
+            .map((post) => (
+              <BlogCard post={post}>{post.data.description}</BlogCard>
+            ))
+        }
+      </div>
+    </div>
+  </div>
+  <div class="bg-bg-500 flex flex-col items-center">
+    <div class="max-w-screen-xl pt-8 px-8 pb-24">
+      <div
+        class="mx-auto max-w-[800px] prose md:prose-lg lg:prose-xl prose:text-text-500 first:prose-p:text-text-700 first:prose-p:text-lg/relaxed md:first:prose-p:text-xl/relaxed lg:first:prose-p:text-2xl/relaxed prose-a:underline-offset-4 prose-a:decoration-text-100 prose-a:text-primary-700 hover:prose-a:text-primary-500 hover:prose-a:decoration-primary-500"
+      >
+        <h3 id="external-articles" class="text-left w-full"
+          >Articles on other websites</h3
+        >
+        <ul>
+          {
+            externalArticles.map((a) => (
+              <li>
+                <a href={a.link}>{a.title}</a>
+              </li>
+            ))
+          }
+        </ul>
+        <h2 id="side-projects">Side Projects</h2>
+        <p>Here are some of the side projects I am involved with:</p>
+        <ul>
+          {
+            sideProjects.map((p) => (
+              <li>
+                <a href={p.link}>{p.name}</a> ({p.role})
+              </li>
+            ))
+          }
+        </ul>
+        <h2 id="social">Let's get social</h2>
+        <p
+          >Woha, if you got this far I think I'd like to know something about
+          you as well!</p
+        >
+        <p
+          >Why don't we <strong>connect</strong> on one of these social channels
+          and have a chat?</p
+        >
+        <ul>
+          {
+            SOCIALS.map((s) => (
+              <li>
+                <a href={s.url} rel="me">
+                  {s.title}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+        <p>I look forward to hearing from you!</p>
+      </div>
+    </div>
+  </div>
+</CommonLayout>
+<script>
+  // reveal on scroll effect
+  const revealElements = document.querySelectorAll('[data-reveal]')
+  for (const element of revealElements) {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add(
+          (entry.target as HTMLElement).dataset.reveal as string,
+        )
+        entry.target.classList.remove('opacity-0')
+      }
+    })
+    observer.observe(element)
+  }
+  // mario
+  const marioPhrases = [
+    "It's a me, Mario!",
+    'Mamma mia!',
+    'Here we go!',
+    'Mario time!',
+    "Let's-a go!",
+    'WaAaAaAaahh!',
+    'Okey dokey!',
+    'Oh, no!',
+    'Wahoo!',
+    "Oh no! It's-a Bowser!",
+    'Here we go again',
+  ]
+  const mario = document.getElementById('mario') as HTMLElement
+  const marioImg = mario.querySelector('img') as HTMLImageElement
+  const audioBump = document.getElementById('audio-bump') as HTMLAudioElement
+  const audioDown = document.getElementById('audio-down') as HTMLAudioElement
+  marioImg.style.cursor = 'pointer'
+  let animating = false
+  let numClicks = 0
+  marioImg.addEventListener('click', () => {
+    if (!animating) {
+      animating = true
+      numClicks++
+
+      // create speech bubble
+      const isAngry = numClicks % 10 === 0
+      const bubble = document.createElement('div')
+      bubble.classList.add(
+        'absolute',
+        'opacity-0',
+        'text-nowrap',
+        'top-[-2em]',
+        'right-[3.25em]',
+        'font-bold',
+        isAngry ? 'text-white' : 'text-text-400',
+        isAngry ? 'bg-red-700' : 'bg-bg-100',
+        'px-2',
+        'py-1',
+        'rounded-xl',
+        'shadow-lg',
+        'text-left',
+        'animate-[bubble_1.5s]',
+      )
+      bubble.innerText = isAngry
+        ? '☠ OfFff ☠'
+        : marioPhrases[Math.floor(Math.random() * marioPhrases.length)]
+      mario.appendChild(bubble)
+      // destroy the bubble after the animation
+      setTimeout(() => {
+        bubble.remove()
+      }, 1500)
+
+      let animation = isAngry
+        ? 'animate-[squish-much_ease-in-out_500ms]'
+        : 'animate-[squish_ease-in-out_500ms]'
+      marioImg.classList.add(animation)
+      marioImg.style.filter = isAngry ? 'hue-rotate(306deg)' : 'none'
+      let sound = isAngry ? audioDown : audioBump
+      sound.play()
+      setTimeout(() => {
+        marioImg?.classList.remove(animation)
+        animating = false
+      }, 500)
+    }
+  })
+</script>
+<style>
+  @keyframes squish {
+    0% {
+      transform: scaleY(1);
+    }
+    10% {
+      transform: scaleY(0.75);
+    }
+    50% {
+      transform: scaleY(1.25);
+    }
+    100% {
+      transform: scaleY(1);
+    }
+  }
+
+  @keyframes squish-much {
+    0% {
+      transform: scaleY(1);
+    }
+    10% {
+      transform: scaleY(0.5);
+    }
+    50% {
+      transform: scaleY(1.5);
+    }
+    100% {
+      transform: scaleY(1);
+    }
+  }
+
+  @keyframes bubble {
+    0% {
+      opacity: 0;
+      transform: translateY(0);
+    }
+    50% {
+      opacity: 1;
+      transform: translateY(-1em);
+    }
+    90% {
+      opacity: 0;
+      transform: translateY(-2em);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-3em);
+    }
+  }
+</style>

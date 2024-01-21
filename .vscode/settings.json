@@ -1,0 +1,37 @@
+{
+  "eslint.enable": false,
+  "prettier.documentSelectors": ["**/*.astro"],
+  "[javascript][typescript][json]": {
+    "editor.defaultFormatter": "biomejs.biome",
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "always",
+      "quickfix.biome": true,
+      "source.organizeImports.biome": true
+    }
+  },
+  "[astro]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "always",
+      "quickfix.biome": "explicit",
+      "source.organizeImports.biome": "explicit"
+    }
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "always"
+    }
+  },
+  "[astro][javascript][json][typescript]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "always",
+      "quickfix.biome": "explicit",
+      "source.organizeImports.biome": "explicit"
+    }
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "typescript.tsdk": "node_modules/typescript/lib"
+}

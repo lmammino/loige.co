@@ -1,0 +1,36 @@
+---
+/// <reference path="../../../.astro/types.d.ts" />
+
+import { getCollection } from 'astro:content'
+import { getTagsFromPosts } from '../../utils/posts'
+import BlogIndexPage from '../../components/BlogIndexPage.astro'
+
+const PAGE_SIZE = 10
+const posts = (await getCollection('posts')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+)
+const tags = getTagsFromPosts(posts)
+
+const numPages = Math.ceil(posts.length / PAGE_SIZE)
+const firstPage = posts.slice(0, 10)
+const idx = 0
+const props = {
+  page: {
+    data: firstPage,
+    start: idx * PAGE_SIZE,
+    end: idx * PAGE_SIZE + PAGE_SIZE - 1,
+    size: PAGE_SIZE,
+    total: posts.length,
+    currentPage: idx + 1,
+    lastPage: numPages,
+    url: {
+      current: '/blog',
+      next: idx === numPages - 1 ? null : `/blog/page/${idx + 2}`,
+      prev: null,
+    },
+  },
+  tags,
+}
+---
+
+<BlogIndexPage {...props} />

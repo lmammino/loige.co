@@ -1,0 +1,51 @@
+---
+import { getCollection } from 'astro:content'
+import { SITE_TITLE } from '../../consts'
+import CommonLayout from '../../layouts/CommonLayout.astro'
+import TagsList from '../../components/TagsList.astro'
+import BlogCard from '../../components/BlogCard.astro'
+import Button from '../../components/Button.astro'
+import { getTagsFromPosts } from '../../utils/posts'
+
+const posts = (await getCollection('posts')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+)
+const tags = getTagsFromPosts(posts)
+---
+
+<CommonLayout
+  section="blog"
+  seo={{
+    title: `${SITE_TITLE}'s Blog - List of topics (Tags) and recent articles`,
+    description: `Page containing the list of topics (Tags) and recent articles from ${SITE_TITLE}'s blog.`,
+  }}
+>
+  <div class="bg-bg-500 relative z-40">
+    <div class="mx-auto max-w-screen-xl py-8 px-8">
+      <h1 class="text-3xl text-center my-8 text-text-500 font-bold"
+        >All topics</h1
+      >
+      <TagsList tags={tags} hideAllTagsButton />
+    </div>
+  </div>
+  <div class="bg-bg-500 relative z-40">
+    <div class="mx-auto max-w-screen-xl py-8 px-8">
+      <h2 class="text-3xl text-center my-8 text-text-500">Recent Articles</h2>
+
+      <div
+        class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-8"
+      >
+        {
+          posts.slice(0, 4).map((post, idx) => (
+            <BlogCard post={post} isBig={idx === 0}>
+              {post.data.description}
+            </BlogCard>
+          ))
+        }
+        <div class="bg-bg-200 rounded-lg flex justify-center items-center py-8"
+          ><Button href="/blog">Read the blog</Button></div
+        >
+      </div>
+    </div>
+  </div>
+</CommonLayout>

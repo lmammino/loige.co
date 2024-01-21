@@ -1,0 +1,333 @@
+---
+import { Image } from 'astro:assets'
+import { getCollection } from 'astro:content'
+import type { InferGetStaticPropsType } from 'astro'
+import { format } from 'date-fns'
+import { SITE_TITLE, SITE_URL } from '../consts'
+import {
+  getAbsoluteUrl,
+  getShareUrl,
+  getPostsByTag,
+  getSimilarPosts,
+} from '../utils/posts.ts'
+import CommonLayout from '../layouts/CommonLayout.astro'
+import BlogCard from '../components/BlogCard.astro'
+import UserIcon from '../components/icons/UserIcon.astro'
+import CalendarIcon from '../components/icons/CalendarIcon.astro'
+import TagIcon from '../components/icons/TagIcon.astro'
+import CopyIcon from '../components/icons/CopyIcon.astro'
+import LinkedinIcon from '../components/icons/LinkedinIcon.astro'
+import FacebookIcon from '../components/icons/FacebookIcon.astro'
+import XIcon from '../components/icons/XIcon.astro'
+import ProfilePicture from '../assets/profile-picture.jpg'
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts')
+  const postsByTags = getPostsByTag(posts)
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post, similar: getSimilarPosts(post, postsByTags, 6) },
+  }))
+}
+
+const { post, similar } = Astro.props
+const { Content } = await post.render()
+---
+
+<CommonLayout
+  section="blog"
+  seo={{
+    title: post.data.title,
+    description:
+      post.data.description || `A blog post published by ${SITE_TITLE}`,
+    ogType: 'article',
+    image: `${SITE_URL}/og/${post.slug}.png`,
+  }}
+>
+  <div class="bg-bg-500 relative z-40 pb-16">
+    <div class="mx-auto max-w-screen-xl py-16 px-8">
+      <h1 class="text-text-500 text-4xl leading-normal md:text-5xl font-bold"
+        >{post.data.title}</h1
+      >
+      {
+        post.data.subtitle && (
+          <h2 class="text-text-400 text-xl/relaxed md:text-2xl/relaxed font-medium mt-4">
+            {post.data.subtitle}
+          </h2>
+        )
+      }
+    </div>
+
+    {
+      post.data.header_img && (
+        <Image
+          class="h-[300px] sm:h-[500px] w-full object-cover xl:max-w-screen-xl xl:mx-auto xl:rounded-xl shadow-xl"
+          width={1280}
+          height={200}
+          src={post.data.header_img}
+          alt=""
+        />
+      )
+    }
+
+    <div class="mx-auto max-w-screen-xl py-8 px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-10 gap-4 mt-8">
+        <!-- Sidebar -->
+        <aside
+          class="col-span-10 lg:col-span-3 flex lg:flex-col gap-8 gap-x-16 flex-wrap border-b border-text-100 mb-8 pb-8 lg:border-0 lg:mb-0 lg:pb-0"
+        >
+          <div>
+            <dt class="font-bold text-text-400">
+              <span
+                class="inline-flex self-center gap-2 align-baseline items-baseline"
+              >
+                <UserIcon class="h-4 w-4" />
+                <span>Author</span>
+              </span>
+            </dt>
+            <dd class="font-normal text-text-400 text-lg">
+              <a
+                href="/about"
+                class="inline-flex gap-2 items-center hover:underline hover:text-primary-600"
+              >
+                <Image
+                  src={ProfilePicture}
+                  alt="Luciano Mammino's profile picture"
+                  width={32}
+                  height={32}
+                  class="rounded-full w-8 h-8"
+                />
+                <span>Luciano Mammino</span>
+              </a>
+            </dd>
+          </div>
+
+          <div>
+            <dt class="font-bold text-text-400">
+              <span
+                class="inline-flex self-center gap-2 align-baseline items-baseline"
+              >
+                <CalendarIcon class="h-4 w-4" />
+                <span>Published</span>
+              </span>
+            </dt>
+            <dd class="font-normal text-text-400 text-lg">
+              <div>
+                <time
+                  title={post.data.date.toISOString()}
+                  datetime={post.data.date.toISOString()}
+                >
+                  {format(post.data.date, 'yyyy-MM-dd HH:mm')}
+                </time>
+              </div>
+              {
+                post.data.updated &&
+                  post.data.updated.toISOString() !==
+                    post.data.date.toISOString() && (
+                    <>
+                      <div class="text-text-300 mt-4">Last update</div>
+                      <time
+                        title={post.data.updated.toISOString()}
+                        datetime={post.data.updated.toISOString()}
+                        class="text-text-300"
+                      >
+                        {format(post.data.updated, 'yyyy-MM-dd HH:mm')}
+                      </time>
+                    </>
+                  )
+              }
+            </dd>
+          </div>
+
+          <div>
+            <dt class="font-bold text-text-400">
+              <span
+                class="inline-flex self-center gap-2 align-baseline items-baseline"
+              >
+                <TagIcon class="h-4 w-4" />
+                <span>Topics</span>
+              </span>
+            </dt>
+            <dd class="font-normal text-text-400 text-lg">
+              <ul class="flex flex-wrap gap-1">
+                {
+                  post.data.tags.map((tag) => (
+                    <li>
+                      <a
+                        href={`/tag/${tag}`}
+                        class="inline-block bg-bg-400 text-text-400 hover:bg-bg-600 hover:text-text-500 px-2 py-1 rounded-lg mr-2 mb-2"
+                      >
+                        {tag}
+                      </a>
+                    </li>
+                  ))
+                }
+              </ul>
+            </dd>
+          </div>
+        </aside>
+
+        <!-- Content -->
+        <div class="col-span-7">
+          <article
+            class="prose md:prose-lg lg:prose-xl prose:text-text-500 [&>p:first-of-type]:text-text-700 [&>p:first-of-type]:text-lg/relaxed md:[&>p:first-of-type]:text-xl/relaxed lg:[&>p:first-of-type]:text-2xl/relaxed prose-a:underline-offset-4 prose-a:text-primary-700 prose-a:decoration-text-200 hover:prose-a:text-primary-500 hover:prose-a:decoration-primary-500"
+          >
+            <Content />
+          </article>
+
+          <div class="mt-8 pt-8 border-t border-text-100">
+            <div class="flex justify-between items-center gap-4">
+              <div>
+                <h3 class="text-text-500 font-bold">Sharing is caring!</h3>
+                <p class="text-text-400 text-sm max-w-sm"
+                  >If you got value from this article, please consider sharing
+                  it with your friends and colleagues.</p
+                >
+              </div>
+              <div class="flex gap-2">
+                <a
+                  role="button"
+                  id="copy-link"
+                  title="Copy link to clipboard"
+                  href={getAbsoluteUrl(post)}
+                  class="hidden transition px-4 py-1 rounded-full text-lg text-text-400 bg-primary-100 border border-primary-200 hover:bg-primary-200 hover:border-primary-300 hover:text-text-500"
+                  ><span class="flex gap-2 items-center text-nowrap">
+                    <CopyIcon class="h-4 w-4" />
+                    <span
+                      aria-role="label"
+                      data-text-normal="Copy link"
+                      data-text-copied="Copied!">Copy link</span
+                    >
+                  </span></a
+                >
+                <a
+                  role="button"
+                  title="Share this article on LinkedIn"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  href={getShareUrl(post, 'linkedin')}
+                  class="transition inline-flex px-3 py-2 rounded-full text-lg text-text-400 bg-secondary-100 border border-secondary-200 hover:bg-secondary-200 hover:border-secondary-300 hover:text-text-500"
+                >
+                  <span class="flex items-center text-nowrap"
+                    ><LinkedinIcon class="h-4 w-4" /><span class="sr-only"
+                      >Linkedin</span
+                    ></span
+                  >
+                </a>
+                <a
+                  role="button"
+                  title="Share this article on Facebook"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  href={getShareUrl(post, 'facebook')}
+                  class="transition inline-flex px-3 rounded-full text-lg text-text-400 bg-secondary-100 border border-secondary-200 hover:bg-secondary-200 hover:border-secondary-300 hover:text-text-500"
+                >
+                  <span class="flex items-center text-nowrap"
+                    ><FacebookIcon class="h-4 w-4" /><span class="sr-only"
+                      >Facebook</span
+                    ></span
+                  >
+                </a>
+                <a
+                  role="button"
+                  title="Share this article on X, formerly Twitter"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  href={getShareUrl(post, 'twitter')}
+                  class="transition inline-flex px-3 rounded-full text-lg text-text-400 bg-secondary-100 border border-secondary-200 hover:bg-secondary-200 hover:border-secondary-300 hover:text-text-500"
+                >
+                  <span class="flex items-center text-nowrap"
+                    ><XIcon class="h-4 w-4" /><span class="sr-only"
+                      >X, formerly Twitter</span
+                    ></span
+                  >
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 pt-8 border-t border-text-100 text-sm">
+            <h3 class="font-bold text-text-400"
+              >Found a typo or something that can be improved?</h3
+            >
+            <p class="mt-1 text-text-400"
+              >In the spirit of Open Source, you can contribute to this article
+              by <a
+                class="underline hover:text-text-500"
+                target="_blank"
+                rel="noopener noreferrer"
+                href={`https://github.com/lmammino/loige.co/edit/main/src/content/posts/${post.id}`}
+                >submitting a PR on GitHub</a
+              >.</p
+            >
+          </div>
+          <div id="comments" class="mt-8 pt-8 border-t border-text-100">
+            <div id="disqus_thread" data-url={getAbsoluteUrl(post)}></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End of 2 columns layout -->
+    {
+      similar.length > 0 && (
+        <div class="bg-bg-500 relative z-40">
+          <div class="mx-auto max-w-screen-xl py-16 px-8">
+            <h2 class="text-3xl text-center mb-8 text-text-500 font-bold">
+              You might also like
+            </h2>
+
+            <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+              {similar.map((post) => (
+                <BlogCard post={post}>{post.data.description}</BlogCard>
+              ))}
+            </div>
+          </div>
+        </div>
+      )
+    }
+  </div>
+  <script>
+    // Supports copy to clipboard
+    const copyLinkButton = document.getElementById(
+      'copy-link',
+    ) as HTMLAnchorElement
+    const copyLinkLabel = copyLinkButton.querySelector(
+      '[aria-role="label"]',
+    ) as HTMLSpanElement
+    let animatingCopyLink = false
+    if (typeof navigator.clipboard !== 'undefined') {
+      copyLinkButton.classList.remove('hidden')
+      copyLinkButton.classList.add('inline-flex')
+      copyLinkButton.addEventListener('click', async (e) => {
+        e.preventDefault()
+        const url = window.location.href
+        await navigator.clipboard.writeText(url)
+        if (!animatingCopyLink) {
+          copyLinkLabel.innerText = copyLinkLabel.dataset.textCopied as string
+          animatingCopyLink = true
+          setTimeout(() => {
+            copyLinkLabel.innerText = copyLinkLabel.dataset.textNormal as string
+            animatingCopyLink = false
+          }, 2000)
+        }
+      })
+    }
+
+    // DISQUS integration for the comments section
+    const disqusElement = document.getElementById(
+      'disqus_thread',
+    ) as HTMLElement
+    ;(globalThis as any).disqus_config = function (this: any) {
+      this.page.url = disqusElement.dataset.url as string
+    }
+    ;(function () {
+      var d = document,
+        s = d.createElement('script')
+      s.src = 'https://loige.disqus.com/embed.js'
+      s.setAttribute('data-timestamp', `${new Date().toString()}`)
+      ;(d.head || d.body).appendChild(s)
+    })()
+  </script>
+</CommonLayout>

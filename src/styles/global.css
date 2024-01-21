@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Atkinson';
+  src: url('/fonts/atkinson-regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Atkinson';
+  src: url('/fonts/atkinson-bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Fira Code';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/fira-code-regular.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Fira Code';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/fira-code-bold.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* @font-face {
+  font-family: 'Roboto Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('/fonts/roboto-serif-regular.woff2') format('woff2');
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF,
+    U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Roboto Serif';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('/fonts/roboto-serif-bold.woff2') format('woff2');
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF,
+    U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+} */
+
+:root,
+:root[data-theme='light'] {
+  /* Generated with https://tailwindshades.app/ */
+  /* https://huemint.com/brand-intersection/#palette=f7f7f7-22158a-8796b0-48ea5b */
+  /* DEFAULT (LIGHT) */
+  --bg: #f7f7f7;
+  --color-bg-100: rgb(254 254 254);
+  --color-bg-200: rgb(253 253 253);
+  --color-bg-300: rgb(252 252 252);
+  --color-bg-400: rgb(249 249 249);
+  --color-bg-500: rgb(247 247 247);
+  --color-bg-600: rgb(222 222 222);
+  --color-bg-700: rgb(148 148 148);
+  --color-bg-800: rgb(111 111 111);
+  --color-bg-900: rgb(74 74 74);
+
+  --text: #151828;
+  --color-text-50: rgb(251, 251, 251);
+  --color-text-100: rgb(232 232 234);
+  --color-text-200: rgb(197 197 201);
+  --color-text-300: rgb(161 163 169);
+  --color-text-400: rgb(91 93 105);
+  --color-text-500: rgb(21 24 40);
+  --color-text-600: rgb(19 22 36);
+  --color-text-700: rgb(13 14 24);
+  --color-text-800: rgb(9 11 18);
+  --color-text-900: rgb(6 7 12);
+
+  --primary: #22158a;
+  --color-primary-100: rgb(233 232 243);
+  --color-primary-200: rgb(200 197 226);
+  --color-primary-300: rgb(167 161 208);
+  --color-primary-400: rgb(100 91 173);
+  --color-primary-500: rgb(34 21 138);
+  --color-primary-600: rgb(31 19 124);
+  --color-primary-700: rgb(20 13 83);
+  --color-primary-800: rgb(15 9 62);
+  --color-primary-900: rgb(10 6 41);
+
+  --secondary: #8796b0;
+  --color-secondary-100: rgb(243 245 247);
+  --color-secondary-200: rgb(225 229 235);
+  --color-secondary-300: rgb(207 213 223);
+  --color-secondary-400: rgb(171 182 200);
+  --color-secondary-500: rgb(135 150 176);
+  --color-secondary-600: rgb(122 135 158);
+  --color-secondary-700: rgb(81 90 106);
+  --color-secondary-800: rgb(61 68 79);
+  --color-secondary-900: rgb(41 45 53);
+
+  --accent: #48ea5b;
+  --color-accent-100: rgb(237 253 239);
+  --color-accent-200: rgb(209 250 214);
+  --color-accent-300: rgb(182 247 189);
+  --color-accent-400: rgb(127 240 140);
+  --color-accent-500: rgb(72 234 91);
+  --color-accent-600: rgb(65 211 82);
+  --color-accent-700: rgb(43 140 55);
+  --color-accent-800: rgb(32 105 41);
+  --color-accent-900: rgb(22 70 27);
+}
+
+body {
+  font-family: 'Atkinson', sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  background-color: var(--color-bg-500);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  font-size: 20px;
+  line-height: 1.7;
+}
+
+@layer components {
+  .link {
+    @apply underline underline-offset-4 decoration-text-100 text-primary-700 hover:text-primary-500 hover:decoration-primary-500;
+  }
+}
