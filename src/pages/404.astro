@@ -102,66 +102,67 @@ import { SITE_TITLE, SITE_DESCRIPTION, SOCIALS } from '../consts'
       </div>
     </div>
   </div>
-  <script>
-    // animate picture
-    const PROFILE_NUM_FRAMES = 2
-    const FRAME_RATE = 600
-    const profilePic = document.getElementById(
-      'profile-picture',
-    ) as HTMLImageElement
+</CommonLayout>
 
-    // preload scroll imageas
-    for (let i = 0; i < PROFILE_NUM_FRAMES; i++) {
-      const img = new Image()
-      img.src = `/loige/404_${i}.png`
+<script>
+  // animate picture
+  const PROFILE_NUM_FRAMES = 2
+  const FRAME_RATE = 600
+  const profilePic = document.getElementById(
+    'profile-picture',
+  ) as HTMLImageElement
+
+  // preload scroll imageas
+  for (let i = 0; i < PROFILE_NUM_FRAMES; i++) {
+    const img = new Image()
+    img.src = `/loige/404_${i}.png`
+  }
+
+  let currentFrameIndex = 0
+  let previousTimestamp = 0
+  function animate(timestamp: number) {
+    if (timestamp - previousTimestamp > FRAME_RATE) {
+      currentFrameIndex = (currentFrameIndex + 1) % PROFILE_NUM_FRAMES
+      profilePic.src = `/loige/404_${currentFrameIndex}.png`
+      previousTimestamp = timestamp
     }
-
-    let currentFrameIndex = 0
-    let previousTimestamp = 0
-    function animate(timestamp: number) {
-      if (timestamp - previousTimestamp > FRAME_RATE) {
-        currentFrameIndex = (currentFrameIndex + 1) % PROFILE_NUM_FRAMES
-        profilePic.src = `/loige/404_${currentFrameIndex}.png`
-        previousTimestamp = timestamp
-      }
-      window.requestAnimationFrame(animate)
-    }
-
     window.requestAnimationFrame(animate)
+  }
 
-    // animate cazzo
-    const cazzo = document.getElementById('cazzo') as HTMLSpanElement
-    const cazzoLetters = cazzo.querySelectorAll('span')
-    let cazzoPreviousTimestamp = 0
-    function animateCazzo(timestamp: number) {
-      if (timestamp - cazzoPreviousTimestamp > FRAME_RATE) {
-        cazzoLetters.forEach((letter) => {
-          const possibleLetters = [...(letter.dataset.letters as string)]
-          const randomLetter =
-            possibleLetters[Math.floor(Math.random() * possibleLetters.length)]
-          letter.textContent = randomLetter
-        })
-        const text = [...(cazzo.textContent as string)]
-          .filter((c) => c !== ' ')
-          .join('')
-          .toLowerCase()
-        if (
-          ['c', 'k'].includes(text.charAt(0)) &&
-          ['a', '4'].includes(text.charAt(1)) &&
-          text.charAt(2) === 'z' &&
-          text.charAt(3) === 'z' &&
-          ['o', '0'].includes(text.charAt(4))
-        ) {
-          cazzo.classList.remove('text-accent-700')
-          cazzo.classList.add('text-red-500')
-        } else {
-          cazzo.classList.remove('text-red-500')
-          cazzo.classList.add('text-accent-700')
-        }
-        cazzoPreviousTimestamp = timestamp
+  window.requestAnimationFrame(animate)
+
+  // animate cazzo
+  const cazzo = document.getElementById('cazzo') as HTMLSpanElement
+  const cazzoLetters = cazzo.querySelectorAll('span')
+  let cazzoPreviousTimestamp = 0
+  function animateCazzo(timestamp: number) {
+    if (timestamp - cazzoPreviousTimestamp > FRAME_RATE) {
+      cazzoLetters.forEach((letter) => {
+        const possibleLetters = [...(letter.dataset.letters as string)]
+        const randomLetter =
+          possibleLetters[Math.floor(Math.random() * possibleLetters.length)]
+        letter.textContent = randomLetter
+      })
+      const text = [...(cazzo.textContent as string)]
+        .filter((c) => c !== ' ')
+        .join('')
+        .toLowerCase()
+      if (
+        ['c', 'k'].includes(text.charAt(0)) &&
+        ['a', '4'].includes(text.charAt(1)) &&
+        text.charAt(2) === 'z' &&
+        text.charAt(3) === 'z' &&
+        ['o', '0'].includes(text.charAt(4))
+      ) {
+        cazzo.classList.remove('text-accent-700')
+        cazzo.classList.add('text-red-500')
+      } else {
+        cazzo.classList.remove('text-red-500')
+        cazzo.classList.add('text-accent-700')
       }
-      window.requestAnimationFrame(animateCazzo)
+      cazzoPreviousTimestamp = timestamp
     }
     window.requestAnimationFrame(animateCazzo)
-  </script>
-</CommonLayout>
+  }
+  window.requestAnimationFrame(animateCazzo)
+</script>
