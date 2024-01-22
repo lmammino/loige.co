@@ -106,6 +106,52 @@ export default {
 					'0%': { transform: 'translateY(-100px)', opacity: 0 },
 					'100%': { transform: 'translateY(0)', opacity: 1 },
 				},
+				squish: {
+					'0%': {
+						transform: 'scaleY(1)'
+					},
+					'10%': {
+						transform: 'scaleY(0.75)'
+					},
+					'50%': {
+						transform: 'scaleY(1.25)'
+					},
+					'100%': {
+						transform: 'scaleY(1)'
+					}
+				},
+				'squish-much': {
+					'0%': {
+						transform: 'scaleY(1)'
+					},
+					'10%': {
+						transform: 'scaleY(0.5)'
+					},
+					'50%': {
+						transform: 'scaleY(1.5)'
+					},
+					'100%': {
+						transform: 'scaleY(1)'
+					}
+				},
+				bubble: {
+					'0%': {
+						opacity: 0,
+						transform: 'translateY(0)',
+					},
+					'50%': {
+						opacity: 1,
+						transform: 'translateY(-1em)',
+					},
+					'90%': {
+						opacity: 0,
+						transform: 'translateY(-2em)',
+					},
+					'100%': {
+						opacity: 0,
+						transform: 'translateY(-3em)'
+					}
+				}
 			},
 		},
 	},
