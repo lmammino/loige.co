@@ -112,6 +112,61 @@ const profilePicFrames = await Promise.all(
         </picture>
       </div>
     </div>
+    <div
+      id="music"
+      class="hidden w-80 sm:w-96 bg-text-500 border border-accent-900 absolute z-40 bottom-4 p-2 rounded-xl shadow-lg opacity-90 hover:opacity-100 animate-all"
+    >
+      <a
+        class="flex items-center gap-2"
+        href="https://www.last.fm/user/loige"
+        rel="nofollow noopener noreferrer"
+        target="_blank"
+      >
+        <img
+          id="music-image"
+          class="w-16 h-16 rounded-xl"
+          src="/loige/no-music-cover.png"
+          alt="cover"
+        />
+        <div
+          class="pr-2 flex-1 whitespace-nowrap overflow-hidden text-ellipsis"
+        >
+          <div class="flex items-center gap-2">
+            <span class="flex gap-[0.1em] items-end">
+              <span
+                class="w-1 h-2 block bg-accent-500 animate-[squish_ease-in-out_400ms_infinite]"
+              ></span>
+              <span
+                class="w-1 h-2 block bg-accent-500 animate-[squish_400ms_ease-in-out_150ms_infinite]"
+              ></span>
+              <span
+                class="w-1 h-2 block bg-accent-500 animate-[squish_400ms_ease-in-out_100ms_infinite]"
+              ></span>
+              <span
+                class="w-1 h-2 block bg-accent-500 animate-[squish_400ms_ease-in-out_50ms_infinite]"
+              ></span>
+            </span>
+            <span
+              id="music-name"
+              class="text-sm min-w-0 font-bold text-accent-500 text-ellipsis whitespace-nowrap overflow-hidden"
+              >Song name</span
+            >
+          </div>
+          <div>
+            <p
+              id="music-artist-name"
+              class="text-xs min-w-0 text-accent-600 text-ellipsis whitespace-nowrap overflow-hidden"
+              >Band name</p
+            >
+            <p
+              id="music-album"
+              class="text-xs min-w-0 text-accent-600 text-ellipsis whitespace-nowrap overflow-hidden"
+              >Album name</p
+            >
+          </div>
+        </div>
+      </a>
+    </div>
   </div>
 </div>
 <script>
@@ -142,11 +197,17 @@ const profilePicFrames = await Promise.all(
     sources[i].srcset = framesUrl[i][0]
   }
 
-  const isListeningToMusic = false
-  const frameOffset = isListeningToMusic ? 5 : 0
+  let isListeningToMusic = false
   // changes the image frame on scroll
   let lastScroll = 0
   let currentFrame = 0
+  function updateProfilePic() {
+    const frameOffset = isListeningToMusic ? 5 : 0
+    for (let i = 0; i < sources.length; i++) {
+      sources[i].srcset = framesUrl[i][currentFrame + frameOffset]
+    }
+    profilePic.src = framesUrl[PNG][currentFrame + frameOffset]
+  }
 
   window.addEventListener('scroll', () => {
     let scrollDiff = lastScroll - window.scrollY
@@ -156,11 +217,111 @@ const profilePicFrames = await Promise.all(
       if (currentFrame < 0) {
         currentFrame = PROFILE_NUM_FRAMES - 1
       }
-      for (let i = 0; i < sources.length; i++) {
-        sources[i].srcset = framesUrl[i][currentFrame + frameOffset]
-      }
-      profilePic.src = framesUrl[PNG][currentFrame + frameOffset]
+      updateProfilePic()
       lastScroll = window.scrollY
     }
   })
+
+  // music player
+  let lastPlayingUrl = ''
+  const music = document.getElementById('music') as HTMLDivElement
+  const musicImage = music.querySelector('#music-image') as HTMLImageElement
+  const musicName = music.querySelector('#music-name') as HTMLSpanElement
+  const musicArtistName = music.querySelector(
+    '#music-artist-name',
+  ) as HTMLSpanElement
+  const musicAlbum = music.querySelector('#music-album') as HTMLSpanElement
+
+  async function nowPlaying() {
+    try {
+      const response = await fetch('https://fm.loige.co/playing', {
+        mode: 'cors',
+        method: 'GET',
+      })
+      const data = await response.json()
+      return data.now_playing
+    } catch (_e) {
+      // ignore errors
+    }
+  }
+
+  async function cleanPlayerAnimations() {
+    music.classList.remove('animate-fade-in-up')
+    music.classList.remove('animate-fade-out-down')
+    music.classList.remove('animate-fade-in-right')
+    music.classList.remove('animate-fade-out-left')
+    await new Promise((resolve) => setTimeout(resolve, 10))
+  }
+
+  async function animatePlayer(
+    animation: 'in' | 'out' | 'change',
+    updateDetailsFn: () => void,
+  ) {
+    await cleanPlayerAnimations()
+    if (animation === 'in') {
+      updateDetailsFn()
+      music.classList.remove('hidden')
+      music.classList.add('animate-fade-in-up')
+      await new Promise((resolve) => setTimeout(resolve, 200))
+    } else if (animation === 'out') {
+      music.classList.add('animate-fade-out-down')
+      await new Promise((resolve) => setTimeout(resolve, 200))
+      music.classList.add('hidden')
+    } else if (animation === 'change') {
+      music.classList.add('animate-fade-out-left')
+      await new Promise((resolve) => setTimeout(resolve, 200))
+      updateDetailsFn()
+      music.classList.remove('animate-fade-out-left')
+      music.classList.add('animate-fade-in-right')
+      await new Promise((resolve) => setTimeout(resolve, 200))
+    }
+  }
+
+  async function updateNowPlaying() {
+    const playing = await nowPlaying()
+    isListeningToMusic = playing !== null
+    updateProfilePic()
+
+    const updateDetails = () => {
+      if (playing) {
+        const coverSrc = playing?.image?.large || '/loige/no-music-cover.png'
+        const name = playing?.name || '(no name)'
+        const artistName = playing?.artist?.name || '(no artist)'
+        const album = playing?.album || '(no album)'
+
+        musicImage.src = coverSrc
+        musicImage.alt = `Album cover for ${album} by ${artistName}`
+        musicName.textContent = name
+        musicName.title = name
+        musicArtistName.textContent = artistName
+        musicArtistName.title = artistName
+        musicAlbum.textContent = album
+        musicAlbum.title = album
+      }
+    }
+
+    // handle transitions
+    if (lastPlayingUrl === '' && playing) {
+      // started playing, fade from below
+      await animatePlayer('in', updateDetails)
+    } else if (lastPlayingUrl !== '' && !playing) {
+      // stopped playing, fade to below
+      await animatePlayer('out', updateDetails)
+    } else if (lastPlayingUrl !== '' && lastPlayingUrl !== playing?.url) {
+      // changed song, fade out to left, fade in from right
+      await animatePlayer('change', updateDetails)
+    } else {
+      // same song or no song, no transition
+    }
+
+    if (playing) {
+      lastPlayingUrl = playing?.url || ''
+    } else {
+      lastPlayingUrl = ''
+    }
+
+    setTimeout(updateNowPlaying, 10000)
+  }
+
+  updateNowPlaying()
 </script>
