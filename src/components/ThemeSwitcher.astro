@@ -1,0 +1,51 @@
+---
+import Moon from './icons/Moon.astro'
+import Sun from './icons/Sun.astro'
+---
+
+<a id="theme-switch" href="#" class="flex relative w-8 h-8 group">
+  <Moon
+    id="moon"
+    title="Change theme to light"
+    class="w-8 h-8 text-slate-400 group-hover:text-slate-300 absolute hidden hover:animate-pulse"
+  />
+  <Sun
+    id="sun"
+    title="Change theme to dark"
+    class="w-8 h-8 text-yellow-500 group-hover:text-yellow-600 absolute hidden hover:animate-pulse"
+  />
+</a>
+
+<script>
+  // theme-switcher
+  let currentTheme = document.documentElement.getAttribute('data-theme')
+  const moon = document.getElementById('moon') as any as SVGElement
+  const sun = document.getElementById('sun') as any as SVGElement
+
+  function updateIcon() {
+    if (currentTheme === 'dark') {
+      moon.classList.remove('hidden')
+      sun.classList.add('hidden')
+    } else {
+      moon.classList.add('hidden')
+      sun.classList.remove('hidden')
+    }
+  }
+
+  const themeSwitch = document.getElementById(
+    'theme-switch',
+  ) as HTMLAnchorElement
+  themeSwitch.addEventListener('click', (e) => {
+    e.preventDefault()
+    currentTheme = document.documentElement.getAttribute('data-theme')
+    currentTheme = currentTheme === 'dark' ? 'light' : 'dark'
+    document.documentElement.setAttribute('data-theme', currentTheme)
+    localStorage.setItem('theme', currentTheme)
+    updateIcon()
+    const event = new Event('theme-changed') as Event & { theme: string }
+    event.theme = currentTheme
+    window.dispatchEvent(event)
+  })
+
+  updateIcon()
+</script>
