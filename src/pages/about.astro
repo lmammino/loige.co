@@ -11,6 +11,7 @@ import BastoneSiciliano from '../assets/bastone-siciliano.jpg'
 import ServerlessHeroBadge from '../components/badges/ServerlessHero.astro'
 import MvpBadge from '../components/badges/Mvp.astro'
 import BlogCard from '../components/BlogCard.astro'
+import Prose from '../components/Prose.astro'
 import { SITE_TITLE, SITE_DESCRIPTION, SOCIALS } from '../consts'
 
 const posts = (await getCollection('posts')).sort(
@@ -56,9 +57,7 @@ const sideProjects: SideProject[] = _sideProjects
           class="opacity-0 min-w-full sm:min-w-0 object-cover -mr-16 rounded-xl h-[230px] sm:h-[180px] w-[240px] sm:float-start sm:-ml-16 sm:mr-8 mb-8 sm:shadow-lg not-prose"
           data-reveal="animate-[500ms_ease-in-out_10ms_slide-rigth]"
         />
-        <div
-          class="max-w-[800px] prose md:prose-lg lg:prose-xl prose:text-text-500 first:prose-p:text-text-700 first:prose-p:text-lg/relaxed md:first:prose-p:text-xl/relaxed lg:first:prose-p:text-2xl/relaxed prose-a:underline-offset-4 prose-a:decoration-text-100 prose-a:text-primary-700 hover:prose-a:text-primary-500 hover:prose-a:decoration-primary-500"
-        >
+        <Prose class="max-w-[800px]">
           <p>
             Since I started navigating the great Internet, my nickname has been <em
               >"loige"</em
@@ -240,7 +239,7 @@ const sideProjects: SideProject[] = _sideProjects
           </p>
 
           <h3>Latest articles on this blog</h3>
-        </div>
+        </Prose>
       </div>
     </div>
   </div>
@@ -261,10 +260,8 @@ const sideProjects: SideProject[] = _sideProjects
   </div>
   <div class="bg-bg-500 flex flex-col items-center">
     <div class="max-w-screen-xl pt-8 px-8 pb-24">
-      <div
-        class="mx-auto max-w-[800px] prose md:prose-lg lg:prose-xl prose:text-text-500 first:prose-p:text-text-700 first:prose-p:text-lg/relaxed md:first:prose-p:text-xl/relaxed lg:first:prose-p:text-2xl/relaxed prose-a:underline-offset-4 prose-a:decoration-text-100 prose-a:text-primary-700 hover:prose-a:text-primary-500 hover:prose-a:decoration-primary-500"
-      >
-        <h3 id="external-articles" class="text-left w-full"
+      <Prose class="mx-auto max-w-[800px]">
+        <h3 id="external-articles" class="text-left w-full text-text-500"
           >Articles on other websites</h3
         >
         <ul>
@@ -308,7 +305,7 @@ const sideProjects: SideProject[] = _sideProjects
           }
         </ul>
         <p>I look forward to hearing from you!</p>
-      </div>
+      </Prose>
     </div>
   </div>
 </CommonLayout>
@@ -356,6 +353,8 @@ const sideProjects: SideProject[] = _sideProjects
       const isAngry = numClicks % 10 === 0
       const bubble = document.createElement('div')
       bubble.classList.add(
+        'flex',
+        'flex-1',
         'absolute',
         'opacity-0',
         'text-nowrap',

@@ -1,4 +1,6 @@
 ---
+import ThemeSwitcher from './ThemeSwitcher.astro'
+
 type Props = {
   section?: 'blog' | 'speaking' | 'about'
 }
@@ -80,6 +82,7 @@ const { section } = Astro.props
               </div></a
             >
           </li>
+          <li><ThemeSwitcher /></li>
         </ul>
       </div>
     </div>

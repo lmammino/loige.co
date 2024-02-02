@@ -12,6 +12,7 @@ import {
 } from '../utils/posts.ts'
 import CommonLayout from '../layouts/CommonLayout.astro'
 import BlogCard from '../components/BlogCard.astro'
+import Prose from '../components/Prose.astro'
 import UserIcon from '../components/icons/UserIcon.astro'
 import CalendarIcon from '../components/icons/CalendarIcon.astro'
 import TagIcon from '../components/icons/TagIcon.astro'
@@ -171,11 +172,9 @@ const { Content } = await post.render()
 
         <!-- Content -->
         <div class="col-span-7">
-          <article
-            class="prose md:prose-lg lg:prose-xl prose:text-text-500 [&>p:first-of-type]:text-text-700 [&>p:first-of-type]:text-lg/relaxed md:[&>p:first-of-type]:text-xl/relaxed lg:[&>p:first-of-type]:text-2xl/relaxed prose-a:underline-offset-4 prose-a:text-primary-700 prose-a:decoration-text-200 hover:prose-a:text-primary-500 hover:prose-a:decoration-primary-500"
-          >
+          <Prose>
             <Content />
-          </article>
+          </Prose>
 
           <div class="mt-8 pt-8 border-t border-text-100">
             <div class="flex justify-between items-center gap-4">
@@ -316,18 +315,26 @@ const { Content } = await post.render()
     }
 
     // DISQUS integration for the comments section
-    const disqusElement = document.getElementById(
-      'disqus_thread',
-    ) as HTMLElement
-    ;(globalThis as any).disqus_config = function (this: any) {
-      this.page.url = disqusElement.dataset.url as string
+    function loadDisqus() {
+      const disqusElement = document.getElementById(
+        'disqus_thread',
+      ) as HTMLElement
+      ;(globalThis as any).disqus_config = function (this: any) {
+        this.page.url = disqusElement.dataset.url as string
+      }
+      ;(function () {
+        var d = document,
+          s = d.createElement('script')
+        s.src = 'https://loige.disqus.com/embed.js'
+        s.setAttribute('data-timestamp', `${new Date().toString()}`)
+        ;(d.head || d.body).appendChild(s)
+      })()
     }
-    ;(function () {
-      var d = document,
-        s = d.createElement('script')
-      s.src = 'https://loige.disqus.com/embed.js'
-      s.setAttribute('data-timestamp', `${new Date().toString()}`)
-      ;(d.head || d.body).appendChild(s)
-    })()
+    loadDisqus()
+
+    // refresh disqus when theme changes
+    window.addEventListener('theme-changed', (e) => {
+      loadDisqus()
+    })
   </script>
 </CommonLayout>
