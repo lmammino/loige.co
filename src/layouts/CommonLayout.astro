@@ -16,6 +16,15 @@ const { section, seo } = Astro.props
 <html lang="en">
   <head>
     <BaseHead {...seo} />
+    <script is:inline>
+      const savedTheme = localStorage.getItem('theme')
+      const preferredTheme = ['dark', 'light'].includes(savedTheme)
+        ? savedTheme
+        : window.matchMedia('(prefers-color-scheme: dark)').matches
+          ? 'dark'
+          : 'light'
+      document.documentElement.setAttribute('data-theme', preferredTheme)
+    </script>
   </head>
   <body class="flex flex-col font-sans">
     <Header section={section} />

@@ -7,6 +7,7 @@ import { Image } from 'astro:assets'
 import { SITE_TITLE } from '../consts'
 import CommonLayout from '../layouts/CommonLayout.astro'
 import SpeakingEntry from '../components/SpeakingEntry.astro'
+import Prose from '../components/Prose.astro'
 
 const speakingPics = await Astro.glob('../assets/speaking/*')
 const shuffledSpeakingPics = speakingPics.sort(() => 0.5 - Math.random())
@@ -56,12 +57,10 @@ const countries = new Set(
     <div
       class="mx-auto max-w-screen-xl pt-8 pb-2 sm:pb-8 md:pb-16 px-8 z-20 flex flex-col justify-center items-center"
     >
-      <h1 class="text-4xl text-center my-8 font-bold"
+      <h1 class="text-4xl text-center my-8 font-bold text-text-500"
         >Luciano Mammino's talks</h1
       >
-      <div
-        class="max-w-[800px] prose md:prose-lg lg:prose-xl prose:text-text-500 first:prose-p:text-text-700 first:prose-p:text-lg/relaxed md:first:prose-p:text-xl/relaxed lg:first:prose-p:text-2xl/relaxed prose-a:underline-offset-4 prose-a:decoration-text-100 prose-a:text-primary-700 hover:prose-a:text-primary-500 hover:prose-a:decoration-primary-500"
-      >
+      <Prose class="max-w-[800px]">
         <p
           >I am quite involved with technical speaking and I love delivering
           talks and workshops at conferences and meetups.</p
@@ -83,7 +82,7 @@ const countries = new Set(
             >invite me to your next event</a
           >.</p
         >
-      </div>
+      </Prose>
     </div>
   </div>
 
@@ -167,7 +166,7 @@ const countries = new Set(
 
   <div class="relative bg-bg-500">
     <div
-      class="mx-auto max-w-screen-xl pt-2 sm:pt-8 md:pt-16 pb-8 px-8 z-20 flex flex-col justify-center items-center"
+      class="mx-auto max-w-screen-xl pt-2 sm:pt-8 md:pt-24 pb-8 px-8 z-20 flex flex-col justify-center items-center"
     >
       <h2 class="text-text-500 text-3xl text-left w-full my-8 font-bold"
         >Upcoming talks</h2
@@ -175,7 +174,7 @@ const countries = new Set(
       <div class="w-full">
         {
           futureTalks.length === 0 ? (
-            <div class="max-w-[800px] prose md:prose-lg lg:prose-xl prose:text-text-500 first:prose-p:text-text-700 first:prose-p:text-lg/relaxed md:first:prose-p:text-xl/relaxed lg:first:prose-p:text-2xl/relaxed prose-a:underline-offset-4 prose-a:decoration-text-100 prose-a:text-primary-700 hover:prose-a:text-primary-500 hover:prose-a:decoration-primary-500">
+            <Prose class="max-w-[800px]">
               <p>Bummer! No upcoming talks scheduled... </p>
               <p>
                 Do you want to{' '}
@@ -188,7 +187,7 @@ const countries = new Set(
                 </a>
                 ?
               </p>
-            </div>
+            </Prose>
           ) : (
             <ul class="flex flex-col gap-4 w-full">
               {futureTalks.map((t) => (

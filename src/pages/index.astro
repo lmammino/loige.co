@@ -15,6 +15,7 @@ import NodejsDPPicture from '../assets/nodejs-dp-mockup.png'
 import AWSBitesPicture from '../assets/aws-bites-mockup.png'
 import FSBPicture from '../assets/fsb-mockup.png'
 import TagsList from '../components/TagsList.astro'
+import Prose from '../components/Prose.astro'
 
 const PAGE_SIZE = 10
 const posts = (await getCollection('posts')).sort(
@@ -64,9 +65,7 @@ const props = {
 
   <div class="bg-bg-500 relative z-40">
     <div class="mx-auto max-w-screen-xl px-8 pb-16 flex justify-center">
-      <div
-        class="max-w-[800px] prose md:prose-lg lg:prose-xl prose:text-text-500 first:prose-p:text-text-700 first:prose-p:text-lg/relaxed md:first:prose-p:text-xl/relaxed lg:first:prose-p:text-2xl/relaxed prose-a:underline-offset-4 prose-a:decoration-text-100 prose-a:text-primary-700 hover:prose-a:text-primary-500 hover:prose-a:decoration-primary-500"
-      >
+      <Prose class="max-w-[800px]">
         <p>
           Hello, I am <a href="/about">Luciano</a>, a.k.a. <em>loige</em>, a
           Cloud Architect and a Full Stack developer with more than 15 years of
@@ -85,13 +84,15 @@ const props = {
             href="/tag/rust">Rust</a
           >. I often <a href="/speaking">talk</a> at conferences, meetups, and podcasts.
         </p>
-      </div>
+      </Prose>
     </div>
   </div>
 
   <div class="bg-bg-500 relative z-40">
     <div class="mx-auto max-w-screen-xl pb-16 px-8">
-      <h2 class="text-3xl text-center mb-4">Some of my projects</h2>
+      <h2 class="text-3xl text-text-500 text-center mb-4"
+        >Some of my projects</h2
+      >
       <div
         class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-8"
       >
@@ -133,7 +134,9 @@ const props = {
 
   <div class="bg-bg-500 relative z-40">
     <div class="mx-auto max-w-screen-xl py-8 px-8">
-      <h2 class="text-3xl text-center mb-4">Latest from the blog</h2>
+      <h2 class="text-3xl text-text-500 text-center mb-4"
+        >Latest from the blog</h2
+      >
 
       <div
         class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-8"
@@ -152,9 +155,9 @@ const props = {
     </div>
   </div>
 
-  <div class="bg-bg-500 relative z-40">
+  <div class="bg-bg-500 relative z-40 pb-24">
     <div class="mx-auto max-w-screen-xl py-8 px-8">
-      <h2 class="text-3xl text-center mb-4">Topics</h2>
+      <h2 class="text-3xl text-text-500 text-center mb-4">Topics</h2>
       <TagsList tags={tags.slice(0, 20)} />
     </div>
   </div>

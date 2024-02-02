@@ -1,5 +1,6 @@
 ---
 import CommonLayout from '../layouts/CommonLayout.astro'
+import Prose from '../components/Prose.astro'
 import { SITE_TITLE, SITE_DESCRIPTION, SOCIALS } from '../consts'
 ---
 
@@ -66,9 +67,7 @@ import { SITE_TITLE, SITE_DESCRIPTION, SOCIALS } from '../consts'
 
   <div class="mt-8 bg-bg-500 relative z-40">
     <div class="mx-auto max-w-screen-xl px-8 pb-16 flex justify-center">
-      <div
-        class="max-w-[800px] prose md:prose-lg lg:prose-xl prose:text-text-500 first:prose-p:text-text-700 first:prose-p:text-lg/relaxed md:first:prose-p:text-xl/relaxed lg:first:prose-p:text-2xl/relaxed prose-a:underline-offset-4 prose-a:decoration-text-100 prose-a:text-primary-700 hover:prose-a:text-primary-500 hover:prose-a:decoration-primary-500"
-      >
+      <Prose class="max-w-[800px]">
         <p
           >Sorry you didn't find what you were looking for! Maybe the page you
           were looking for got deleted or you got the wrong URL...</p
@@ -99,7 +98,7 @@ import { SITE_TITLE, SITE_DESCRIPTION, SOCIALS } from '../consts'
           }
         </ul>
         <p>I look forward to hearing from you! ❤️</p>
-      </div>
+      </Prose>
     </div>
   </div>
 </CommonLayout>

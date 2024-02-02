@@ -80,6 +80,7 @@ const { section } = Astro.props
               </div></a
             >
           </li>
+          <li><a id="theme-switch" href="#">Light|Dark</a></li>
         </ul>
       </div>
     </div>
@@ -96,5 +97,20 @@ const { section } = Astro.props
     const expanded = hamburgerBtn.getAttribute('aria-expanded') === 'true'
     hamburgerBtn.setAttribute('aria-expanded', (!expanded).toString())
     target!.classList.toggle('hidden')
+  })
+
+  // theme-switcher
+  const themeSwitch = document.getElementById(
+    'theme-switch',
+  ) as HTMLAnchorElement
+  themeSwitch.addEventListener('click', (e) => {
+    e.preventDefault()
+    const currentTheme = document.documentElement.getAttribute('data-theme')
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark'
+    document.documentElement.setAttribute('data-theme', newTheme)
+    localStorage.setItem('theme', newTheme)
+    const event = new Event('theme-changed') as Event & { theme: string }
+    event.theme = newTheme
+    window.dispatchEvent(event)
   })
 </script>
