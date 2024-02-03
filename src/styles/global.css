@@ -162,6 +162,20 @@ body {
   line-height: 1.7;
 }
 
+div,
+article,
+section,
+header,
+footer,
+nav,
+main,
+aside,
+a {
+  transition-property: color, background-color;
+  transition-timing-function: ease-in-out;
+  transition-duration: 150ms;
+}
+
 @layer components {
   .link {
     @apply underline underline-offset-4 decoration-text-100 text-primary-700 hover:text-primary-500 hover:decoration-primary-500;
