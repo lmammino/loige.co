@@ -81,6 +81,7 @@ export default {
 				'fade-in-right': 'fade-in-right 200ms ease-in-out',
 				'fade-out-down': 'fade-out-down 200ms ease-in-out',
 				'fade-in-up': 'fade-in-up 200ms ease-in-out',
+				wiggle: 'wiggle 1s ease-out infinite',
 			},
 			keyframes: {
 				'hero-pulse': {
@@ -125,6 +126,13 @@ export default {
 				'fade-in-up': {
 					'0%': { opacity: 0, transform: 'translateY(200px)' },
 					'100%': { opacity: .9, transform: 'translateY(0)' },
+				},
+				wiggle: {
+					'0%': { transform: 'rotateZ(0deg)' },
+					'25%': { transform: 'rotateZ(45deg)' },
+					'50%': { transform: 'rotateZ(0deg)' },
+					'75%': { transform: 'rotateZ(-15deg)' },
+					'100%': { transform: 'rotateZ(0deg)' },
 				},
 				squish: {
 					'0%': {
