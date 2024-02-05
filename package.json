@@ -17,6 +17,7 @@
     "@astrojs/sitemap": "^3.0.4",
     "@astrojs/tailwind": "^5.1.0",
     "@aws-sdk/client-bedrock-runtime": "^3.490.0",
+    "@oramacloud/client": "^1.0.6",
     "@tailwindcss/typography": "^0.5.10",
     "astro": "^4.1.1",
     "astro-compress": "^2.2.8",
