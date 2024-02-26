@@ -3,7 +3,7 @@ title: How to send gzipped requests with boto3
 slug: how-to-send-gzipped-requests-with-boto3
 subtitle: Learn how to send gzipped payloads to AWS APIs using boto3's event handlers
 date: 2021-06-22T18:20:00.000Z
-updated: 2021-06-24T13:00:00.000Z
+updated: 2024-02-26T20:08:00.000Z
 header_img: ./how-to-send-gzipped-requests-with-boto3-luciano-mammino-loige.jpg
 status: published
 written_with: []
@@ -23,7 +23,9 @@ I had to go down the rabbit hole to figure out how to support this use case and,
 
 ## Send gzipped metrics to CloudWatch using boto3
 
-Ok, this is the TLDR; a little gift for the ones in a rush that are looking for a quick _copy-pastable_ solution.
+> **UPDATE (2024-02-26)**: AWS has recently announced automatic GZip support for `PutMetricData` requests in the CloudWatch API. This means that, for the specific case of the `PutMetricData`, the approach described in this article is not necessary anymore. You can find more details in the [official announcement](https://aws.amazon.com/blogs/developer/new-default-payload-compression-for-amazon-cloudwatch-putmetricdata-with-the-aws-sdks/). This article might still be interesting if you want to learn more about the internals of `boto3` and how to use its event system.
+
+Ok, this is the TLDR; a little gift for the ones in a rush and who are looking for a quick _copy-pastable_ solution.
 
 Be aware that the various AWS SDKs are just a convenience layer in front of the AWS HTTP API. Python and `boto3` are no exception. Every time you are calling a method on a `boto3` client, you are just sending HTTP requests to AWS behind the scenes...
 
