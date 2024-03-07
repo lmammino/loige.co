@@ -11,8 +11,8 @@ event_location_gps: ~
 event_city: Remote
 event_days: 6 March, 2024
 is_workshop: false
-slides_link: null
-video_link: null
+slides_link: https://loige.link/nom-rs
+video_link: https://www.youtube.com/live/1atZzA3e3Kg?t=972
 with:
   - name: Roberto Gambuzzi
     link: https://twitter.com/gbinside
