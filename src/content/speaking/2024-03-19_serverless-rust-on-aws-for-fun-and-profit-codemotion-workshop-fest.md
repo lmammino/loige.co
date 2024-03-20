@@ -11,7 +11,7 @@ event_location_gps: ~
 event_city: Remote
 event_days: 19-20 March, 2024
 is_workshop: true
-slides_link: null
+slides_link: 'https://loige.link/cm2024-rust'
 video_link: null
 with: []
 ---
