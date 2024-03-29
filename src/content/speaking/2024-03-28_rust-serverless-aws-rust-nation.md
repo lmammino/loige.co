@@ -11,7 +11,7 @@ event_location_gps: 51.520794,-0.090706
 event_city: London, England
 event_days: 26-28 March, 2024
 is_workshop: false
-slides_link: null
+slides_link: 'https://loige.link/lambda-nation-24'
 video_link: null
 with: []
 ---
