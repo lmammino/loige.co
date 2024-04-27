@@ -8,7 +8,7 @@ event_name: ServerlessDays Belfast
 event_link: https://serverlessdaysbelfast.com/speakers/
 event_location: Belfast, UK
 event_location_gps: "54.607380,-5.908310"
-event_city: Remote
+event_city: Belfast, Northern Ireland
 event_days: 23 May, 2024
 is_workshop: true
 slides_link: null
