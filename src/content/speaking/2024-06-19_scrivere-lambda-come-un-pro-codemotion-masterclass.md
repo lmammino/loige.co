@@ -1,7 +1,7 @@
 ---
-title: Scrivere Lambdas come un PRO
+title: Scrivere Lambdas come un PRO (Date TBC)
 slug: scrivere-lambda-come-un-pro-codemotion-masterclass
-date: 2024-05-21T08:30:00.000Z
+date: 2024-06-19T08:30:00.000Z
 status: published
 language: it_IT
 event_name: Codemotion Masterclass

@@ -11,7 +11,7 @@ event_location_gps: 55.670059,12.565020
 event_city: Copenhagen, Denmark
 event_days: 7 May, 2024
 is_workshop: false
-slides_link: null
+slides_link: "https://loige.link/l-rs"
 video_link: null
 with: []
 ---
