@@ -11,7 +11,7 @@ event_location_gps: "54.607380,-5.908310"
 event_city: Belfast, Northern Ireland
 event_days: 23 May, 2024
 is_workshop: true
-slides_link: null
+slides_link: https://fth.link/tenants
 video_link: null
 with:
   - name: Guilherme Dalla Rosa
