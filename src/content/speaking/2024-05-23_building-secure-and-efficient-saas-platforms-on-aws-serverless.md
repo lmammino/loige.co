@@ -12,7 +12,7 @@ event_city: Belfast, Northern Ireland
 event_days: 23 May, 2024
 is_workshop: true
 slides_link: https://fth.link/tenants
-video_link: null
+video_link: https://www.youtube.com/watch?v=JB7d0427HLE
 with:
   - name: Guilherme Dalla Rosa
     link: https://github.com/guidr
