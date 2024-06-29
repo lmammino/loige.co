@@ -12,7 +12,7 @@ event_city: Copenhagen, Denmark
 event_days: 7 May, 2024
 is_workshop: false
 slides_link: "https://loige.link/l-rs"
-video_link: null
+video_link: https://www.youtube.com/watch?v=npqrTU2vK9c
 with: []
 ---
 

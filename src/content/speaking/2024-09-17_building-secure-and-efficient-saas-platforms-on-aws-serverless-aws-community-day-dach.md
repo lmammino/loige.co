@@ -1,18 +1,18 @@
 ---
 title: Building Secure and Efficient SaaS Platforms on AWS Serverless
-slug: building-secure-and-efficient-saas-platforms-on-aws-serverless
-date: 2024-05-23T08:30:00.000Z
+slug: building-secure-and-efficient-saas-platforms-on-aws-serverless-aws-community-day-dach
+date: 2024-09-17T08:30:00.000Z
 status: published
 language: en_US
-event_name: ServerlessDays Belfast
-event_link: https://serverlessdaysbelfast.com/speakers/
-event_location: Belfast, UK
-event_location_gps: "54.607380,-5.908310"
-event_city: Belfast, Northern Ireland
-event_days: 23 May, 2024
+event_name: AWS Community Day DACH
+event_link: https://www.aws-community-day.de/
+event_location: Rosenkavalierpl. 13, 81925 München, Deutschland
+event_location_gps: "48.151090,11.619080"
+event_city: Munich, Germany
+event_days: 17 Sep, 2024
 is_workshop: false
-slides_link: https://fth.link/tenants
-video_link: https://www.youtube.com/watch?v=JB7d0427HLE
+slides_link: ~
+video_link: ~
 with:
   - name: Guilherme Dalla Rosa
     link: https://github.com/guidr
