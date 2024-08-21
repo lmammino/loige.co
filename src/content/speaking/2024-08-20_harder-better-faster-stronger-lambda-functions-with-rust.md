@@ -11,7 +11,7 @@ event_location_gps: ~
 event_city: Remote
 event_days: 20 Aug, 2024
 is_workshop: false
-slides_link: ~
+slides_link: 'https://loige.link/hbfs'
 video_link: 'https://www.youtube.com/watch?v=eqUehphXNvs'
 with: ~
 ---
