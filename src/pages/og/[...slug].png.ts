@@ -2,6 +2,7 @@ import path from 'node:path'
 import consumers from 'node:stream/consumers'
 import * as url from 'node:url'
 import type { APIContext } from 'astro'
+import type { z } from 'astro/zod'
 import {
   type Image as CanvasImage,
   createCanvas,
@@ -9,7 +10,6 @@ import {
   registerFont,
 } from 'canvas'
 import { split } from 'canvas-hypertxt'
-import type { z } from 'zod'
 import { getCollection } from 'astro:content'
 import type { ImageFunction } from 'astro:content'
 

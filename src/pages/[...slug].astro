@@ -154,7 +154,7 @@ const { Content } = await post.render()
             <dd class="font-normal text-text-400 text-lg">
               <ul class="flex flex-wrap gap-1">
                 {
-                  post.data.tags.map((tag) => (
+                  post.data.tags.map((tag: string) => (
                     <li>
                       <a
                         href={`/tag/${tag}`}
@@ -333,7 +333,7 @@ const { Content } = await post.render()
     loadDisqus()
 
     // refresh disqus when theme changes
-    window.addEventListener('theme-changed', (e) => {
+    window.addEventListener('theme-changed', (_e) => {
       loadDisqus()
     })
   </script>
