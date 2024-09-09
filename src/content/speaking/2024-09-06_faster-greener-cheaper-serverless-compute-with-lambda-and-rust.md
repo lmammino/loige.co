@@ -11,7 +11,7 @@ event_location_gps: "54.5948382,-5.9345104"
 event_city: Belfast, Northern Ireland
 event_days: 06 Sep, 2024
 is_workshop: false
-slides_link: ~
+slides_link: 'https://loige.link/be-a-crab'
 video_link: ~
 with: ~
 ---
