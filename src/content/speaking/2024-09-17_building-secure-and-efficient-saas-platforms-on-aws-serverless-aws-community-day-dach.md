@@ -11,7 +11,7 @@ event_location_gps: "48.151090,11.619080"
 event_city: Munich, Germany
 event_days: 17 Sep, 2024
 is_workshop: false
-slides_link: 'fth.link/aws-saas'
+slides_link: 'https://fth.link/aws-saas'
 video_link: ~
 with:
   - name: Guilherme Dalla Rosa
