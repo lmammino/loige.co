@@ -11,7 +11,7 @@ event_location_gps: "52.0896679,4.382266"
 event_city: Leidschendam, Netherlands
 event_days: 03 Oct, 2024
 is_workshop: false
-slides_link: ~
+slides_link: 'https://fth.link/saas-nl'
 video_link: ~
 with:
   - name: Guilherme Dalla Rosa
