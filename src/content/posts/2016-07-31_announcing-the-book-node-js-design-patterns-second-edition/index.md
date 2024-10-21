@@ -58,8 +58,8 @@ design patterns, I worked with super skilled technical reviewers like
 [Joel Purra](http://joelpurra.com) and
 [Tane Piper](https://twitter.com/tanepiper) and with the amazing team at Packt.
 I also had chance to experiment with some new cool technologies like
-[React](/tag/react) and new ways of building websites like
-[Universal JavaScript](/tag/universal-javascript).
+[React](/tag/react) and new ways of building websites like **Universal
+JavaScript**.
 
 ## Content of the book
 
