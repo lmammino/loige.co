@@ -11,7 +11,7 @@ event_location_gps: "45.519720,9.086900"
 event_city: 'Milan, Italy'
 event_days: '22-32 Oct, 2024'
 is_workshop: true
-slides_link: ~
+slides_link: 'https://loige.link/rusty-sls'
 video_link: ~
 with: ~
 ---
