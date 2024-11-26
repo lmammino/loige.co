@@ -11,7 +11,7 @@ event_location_gps: "41.142330,-8.620000"
 event_city: Porto, Portugal
 event_days: 26 Nov, 2024
 is_workshop: false
-slides_link: ~
+slides_link: 'https://loige.link/sls-w-rust'
 video_link: ~
 with: ~
 ---
