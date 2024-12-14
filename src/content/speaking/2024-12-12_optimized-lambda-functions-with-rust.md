@@ -11,7 +11,7 @@ event_location_gps: "41.872260,12.476840"
 event_city: Roma, Italy
 event_days: '12 Dec, 2024'
 is_workshop: true
-slides_link: ~
+slides_link: 'https://loige.link/rust-lambda-ws'
 video_link: ~
 with: ~
 ---
