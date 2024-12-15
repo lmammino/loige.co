@@ -6,11 +6,11 @@ import { type CollectionEntry, getCollection } from 'astro:content'
 
 export async function GET(_context: APIContext) {
   const posts = await getCollection('posts')
-  type PostSlug = CollectionEntry<'posts'>['slug']
+  type PostSlug = CollectionEntry<'posts'>['id']
 
   const postsContent = {} as Record<PostSlug, string>
   for (const post of posts) {
-    postsContent[post.slug] = await marked.parse(post.body)
+    postsContent[post.id] = await marked.parse(post.body)
   }
 
   return rss({
@@ -20,11 +20,11 @@ export async function GET(_context: APIContext) {
     items: posts.map((post) => ({
       title: post.data.title,
       pubDate: post.data.date,
-      link: `${SITE_URL}/${post.slug}/`,
+      link: `${SITE_URL}/${post.id}/`,
       author: SITE_AUTHOR,
-      commentsUrl: `${SITE_URL}/${post.slug}/#comments`,
+      commentsUrl: `${SITE_URL}/${post.id}/#comments`,
       description: post.data.description || post.body.slice(0, 200),
-      content: postsContent[post.slug],
+      content: postsContent[post.id],
       categories: post.data.tags,
     })),
   })
