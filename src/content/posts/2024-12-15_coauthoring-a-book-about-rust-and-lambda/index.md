@@ -2,8 +2,8 @@
 title: I am co-authoring a book about Rust and Lambda
 slug: coauthoring-a-book-about-rust-and-lambda
 subtitle: 'Announcing Crafting Lambda Functions in Rust, a guide to building efficient AWS Lambda functions with Rust by Luciano Mammino and James Eastham'
-date: 2024-12-09:20:00.000Z
-updated: 2024-12-09:20:00.000Z
+date: 2024-12-16:09:30.000Z
+updated: 2024-12-16:09:30.000Z
 header_img: ./coauthoring-a-book-about-rust-and-lambda.png
 status: published
 tags:
