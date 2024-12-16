@@ -10,7 +10,7 @@ export async function GET(_context: APIContext) {
 
   const postsContent = {} as Record<PostSlug, string>
   for (const post of posts) {
-    postsContent[post.id] = await marked.parse(post.body)
+    postsContent[post.id] = await marked.parse(post?.body || '')
   }
 
   return rss({
@@ -23,7 +23,7 @@ export async function GET(_context: APIContext) {
       link: `${SITE_URL}/${post.id}/`,
       author: SITE_AUTHOR,
       commentsUrl: `${SITE_URL}/${post.id}/#comments`,
-      description: post.data.description || post.body.slice(0, 200),
+      description: post.data.description || post?.body?.slice(0, 200) || '',
       content: postsContent[post.id],
       categories: post.data.tags,
     })),

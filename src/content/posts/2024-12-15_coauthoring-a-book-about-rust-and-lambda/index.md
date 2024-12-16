@@ -2,8 +2,8 @@
 title: I am co-authoring a book about Rust and Lambda
 slug: coauthoring-a-book-about-rust-and-lambda
 subtitle: 'Announcing Crafting Lambda Functions in Rust, a guide to building efficient AWS Lambda functions with Rust by Luciano Mammino and James Eastham'
-date: 2024-01-24T18:26:00.000Z
-updated: 2024-01-24T18:26:00.000Z
+date: 2024-12-09:20:00.000Z
+updated: 2024-12-09:20:00.000Z
 header_img: ./coauthoring-a-book-about-rust-and-lambda.png
 status: published
 tags:
@@ -150,15 +150,15 @@ I have a bad and a good news though!
 
 The bad news is that the book isn't finished (unless you are reading this a bit
 ahead in the future). But, the good news is that everything we have produced so
-far is already avaialable and there's a significant amount of work already!
+far is already available and there's a significant amount of work already!
 
 You can get your copy of the book right now in early access. This means you can
 get started today! By purchasing early access, you’ll:
 
 - **Receive chapters as they’re written**: You’ll get new content and updates
   regularly.
-- **Contribute to the book**: Share your feedback, and help shape the final
-  version.
+- **Contribute to the book**: Share your feedback, help shape the final version,
+  and, if you like, get your name on the book!
 - **Enjoy a discounted price**: Early access comes at a (significantly) reduced
   cost from what we are expecting the final cover price to be!
 
@@ -176,42 +176,45 @@ service) from scratch and ship it to production. This accounts for **more than
 
 ## What’s in (and what will be in) the Book?
 
-Here's a list of the chapters of the book:
+![A diagram of a serverless architecture from AWS Application Composer](./serverless-architecture.png)
+
+Here's a list of the chapters of the book, giving you a clear roadmap of what’s
+available and what’s coming:
 
 - **Chapter 1: Rust & Lambda** (available): We'll explore why using Rust and AWS
   Lambda together is a great idea. We'll discuss the benefits of this
   combination compared to other alternatives.
 - **Chapter 2: A 'Hello, Serverless' API** (available): You'll learn how to
-  write your first Rust-powered Lambda Function. You'll create a simple "Hello,
+  write your first Rust-powered Lambda function. You'll create a simple "Hello,
   Serverless" API that demonstrates the basics of AWS Lambda and Rust.
-- **Chapter 3: Infrastructure as code with SAM** (available): We'll show you how
+- **Chapter 3: Infrastructure as Code with SAM** (available): We'll show you how
   to deploy and manage your Rust Lambda functions using the Serverless
   Application Model (SAM). You'll learn how to create, update, and delete your
   functions.
-- **Chapter 4: Integrating with external systems** (available): We'll teach you
+- **Chapter 4: Integrating with External Systems** (available): We'll teach you
   how to make arbitrary HTTP requests or interact with other AWS services from
   your Lambda functions. We'll cover various techniques for integrating with
   external systems.
-- **Chapter 5: Code organization** (available): This chapter will focus on best
+- **Chapter 5: Code Organization** (available): This chapter will focus on best
   practices for organizing the code for projects with multiple Lambda functions.
   You'll learn how to structure your code for maintainability and readability.
-- **Chapter 6: Making the code testable** (available): We'll show you how to
+- **Chapter 6: Making the Code Testable** (available): We'll show you how to
   structure your code in a way that allows you to write good tests for your
   Lambda functions. You'll learn about testing fundamentals and how they apply
   to Rust Lambda functions.
-- **Chapter 7: Handling different kinds of events** (in progress): In this
+- **Chapter 7: Handling Different Kinds of Events** (in progress): In this
   chapter, we'll discuss how to handle AWS-specific events, custom events, and
   arbitrary JSON in a strongly-typed way. You'll learn about event handling best
   practices for your Rust Lambda functions.
-- **Chapter 8: Different ways of writing Lambda handlers** (in progress): We'll
+- **Chapter 8: Different Ways of Writing Lambda Handlers** (in progress): We'll
   explore different ways to write your Lambda function handlers. We'll cover
   simple async functions, custom structs, and implementing the Tokio Tower
   service trait.
-- **Chapter 9: Configuration management and handling secrets** (planned): This
+- **Chapter 9: Configuration Management and Handling Secrets** (planned): This
   chapter will focus on best practices for injecting configuration and secrets
   into your Rust Lambda functions. You'll learn how to securely manage sensitive
   data in your serverless applications.
-- **Chapter 10: Observing all the things** (planned): We'll show you how to make
+- **Chapter 10: Observing All the Things** (planned): We'll show you how to make
   your Rust Lambda functions observable using CloudWatch or OpenTelemetry.
   You'll learn about monitoring best practices and how they apply to your
   serverless functions.
@@ -219,23 +222,40 @@ Here's a list of the chapters of the book:
   middleware pattern and show you how to handle cross-cutting concerns in an
   elegant and reusable way. You'll learn about middleware best practices for
   your Rust Lambda functions.
-- **Chapter 12: Hosting existing HTTP services** (planned): We'll teach you how
+- **Chapter 12: Hosting Existing HTTP Services** (planned): We'll teach you how
   to wrap existing HTTP services in a Lambda function to make them easily
   available as serverless functions. You'll learn about the benefits and
   trade-offs of using this approach.
-- **Chapter 13: Lambda extensions** (planned): Where we learn about Writing
-  Lambda extensions using Rust.
-- **Chapter 14: Integrating with GitHub Actions** (planned): How to configure
-  the integration between AWS and GitHub Actions to test, build and deploy your
-  Lambda Functions in an automated fashion.
-- **Appendix A: IaC alternatives** (planned): How to use CDK or Terraform as an
-  alternative to SAM.
+- **Chapter 13: Lambda Extensions** (planned): We'll dive into writing Lambda
+  extensions using Rust.
+- **Chapter 14: Integrating with GitHub Actions** (planned): Learn how to
+  configure the integration between AWS and GitHub Actions to test, build, and
+  deploy your Lambda functions in an automated fashion.
+- **Appendix A: IaC Alternatives** (planned): Discover how to use CDK or
+  Terraform as an alternative to SAM for managing your serverless
+  infrastructure.
+
+This list isn’t set in stone! If you think there’s a big topic missing or
+something you’d love to see covered, please let us know. We want to write the
+book you’d like to read about using Rust with AWS Lambda!
 
 ## Ready to Start?
 
-If this sounds like the kind of challenge you’re ready to take on, head over to
-[rust-lambda.com](https://rust-lambda.com) to grab your copy. Let’s build
-something amazing together!
+As we wrap up, it's worth mentioning that this journey isn’t just about writing
+AWS Lambda functions in Rust, but it’s about diving deep into the serverless
+ecosystem. Along the way, we’ll explore DynamoDB, S3, EventBridge, and other
+building blocks of serverless architecture, all while building a real,
+production-ready application.
 
-Of course, feel free to reach out if you have any kind of feedback or suggestion
-about this initiative, I'd seriously love to hear from you!
+And of course, this journey isn’t one you have to take alone. There’s a thriving
+community waiting to support you, including
+[our Discord server](https://discord.gg/w9CWQRHzjn), where you can connect with
+like-minded developers, ask questions, and share your experiences. Whether
+you’re here for the Rust, the serverless insights, or the hands-on learning, I’m
+glad to have you along for the ride.
+
+So, what are you waiting for? Dive in, experiment, and share your feedback.
+Together, let’s redefine what’s possible with serverless and Rust. Head over to
+[rust-lambda.com](https://rust-lambda.com) and start your journey today.
+
+Let’s build something amazing together!
