@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets'
-import { getCollection } from 'astro:content'
+import { getCollection, render } from 'astro:content'
 import type { InferGetStaticPropsType } from 'astro'
 import { format } from 'date-fns'
 import { SITE_TITLE, SITE_URL } from '../consts'
@@ -28,13 +28,13 @@ export async function getStaticPaths() {
   const posts = await getCollection('posts')
   const postsByTags = getPostsByTag(posts)
   return posts.map((post) => ({
-    params: { slug: post.slug },
+    params: { slug: post.id },
     props: { post, similar: getSimilarPosts(post, postsByTags, 6) },
   }))
 }
 
 const { post, similar } = Astro.props
-const { Content } = await post.render()
+const { Content } = await render(post)
 ---
 
 <CommonLayout
@@ -44,7 +44,7 @@ const { Content } = await post.render()
     description:
       post.data.description || `A blog post published by ${SITE_TITLE}`,
     ogType: 'article',
-    image: `${SITE_URL}/og/${post.slug}.png`,
+    image: `${SITE_URL}/og/${post.id}.png`,
   }}
 >
   <div class="bg-bg-500 relative z-40 pb-16">

@@ -1,7 +1,8 @@
+import { glob } from 'astro/loaders'
 import { defineCollection, z } from 'astro:content'
 
 const posts = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/[^_]*.md(x)?', base: './src/content/posts' }),
   schema: ({ image }) =>
     z.object({
       title: z.string(),
@@ -17,7 +18,7 @@ const posts = defineCollection({
 })
 
 const speaking = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/[^_]*.md(x)?', base: './src/content/speaking' }),
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
@@ -26,18 +27,27 @@ const speaking = defineCollection({
     event_name: z.string(),
     event_link: z.string().url().nullable().optional(),
     event_location: z.string().nullable().optional(),
-    event_location_gps: z.string().regex(/^-?\d+.\d+,-?\d+.\d+$/).optional().nullable(),
+    event_location_gps: z
+      .string()
+      .regex(/^-?\d+.\d+,-?\d+.\d+$/)
+      .optional()
+      .nullable(),
     event_city: z.string().optional().nullable(),
     event_days: z.string(),
     is_workshop: z.boolean(),
     slides_link: z.string().url().optional().nullable(),
     video_link: z.string().url().optional().nullable(),
-    with: z.array(z.object({
-      name: z.string(),
-      link: z.string().url().optional().nullable(),
-      image: z.string().url().optional().nullable(),
-    })).optional().nullable(),
-  })
+    with: z
+      .array(
+        z.object({
+          name: z.string(),
+          link: z.string().url().optional().nullable(),
+          image: z.string().url().optional().nullable(),
+        }),
+      )
+      .optional()
+      .nullable(),
+  }),
 })
 
 export const collections = { posts, speaking }
