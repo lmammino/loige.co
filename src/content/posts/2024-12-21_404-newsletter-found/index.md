@@ -47,7 +47,7 @@ The full-stack development world is among the fastest-moving industries of the
 past decade. It’s not just about front-end and back-end anymore—it’s about
 mastering UI/UX design, product architecture, databases, and everything else
 that goes into building amazing web experiences. Keeping up with this breadth of
-knowledge is daunting, to say the least. I have experience this firsthand, and
+knowledge is daunting, to say the least. I have experienced this firsthand, and
 it's still something that, even with my current level of seniority, I still
 struggle with.
 
@@ -132,6 +132,29 @@ GitHub Actions to generate a static JSON API. This automation takes care of
 converting the raw data into a series of discrete JSON files. These files are
 then hosted on a CDN through GitHub Pages, giving them predictable URLs that can
 be easily accessed. Effectively a file-based API!
+
+For example, if you run:
+
+```bash
+curl https://fullStackbulletin.github.io/tech-quotes/quotes/17.json | jq .
+```
+
+You'll get a JSON response like this:
+
+```json
+{
+  "id": 17,
+  "text": "The art challenges the technology, and the technology inspires the art",
+  "author": {
+    "id": "john-lasseter",
+    "name": "John Lasseter",
+    "description": "Director",
+    "wiki": "https://en.wikipedia.org/wiki/John_Lasseter",
+    "url": "https://fullStackbulletin.github.io/tech-quotes/authors/john-lasseter.json"
+  },
+  "url": "https://fullStackbulletin.github.io/tech-quotes/quotes/17.json"
+}
+```
 
 The newsletter's AWS Step Function (more on it later) make use of these static
 APIs by fetching the "book of the week" and the "quote of the week" directly
