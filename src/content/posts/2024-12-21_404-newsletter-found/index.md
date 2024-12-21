@@ -1,5 +1,5 @@
 ---
-title: 404 Newsletter Found
+title: "404: Newsletter Found"
 slug: 404-newsletter-found
 subtitle: 'How I Have Published 404 Issues of a Newsletter for Full-Stack Developers Over
 the Last 8 Years'
