@@ -34,14 +34,14 @@ community of 3,000+ full-stack web developers around the world.
 
 ## Why FullStack Bulletin?
 
-I was lucky enough to start my coding journey at the age of 12, but initially it
-was all fun and games playing with the qBasic interpreter. This passion for
-coding started to seriously turn into a career when I started to make money
-building websites for friends and local businesses. I was fascinated by the idea
-of creating something out of nothing, and I loved to see the endless
-possibilities that the web offered. But building websites was not a simple task
-as much as it isn't today. The web is ever-evolving, and keeping up with the new
-trends and technologies is a never-ending challenge.
+I was fortunate to begin my coding journey at the age of 12, starting with
+playful experiments using the qBasic interpreter. What began as a fun hobby
+gradually transformed into a career when I started earning money by building
+websites for friends and local businesses. I was captivated by the idea of
+creating something out of nothing and inspired by the limitless possibilities
+the web offered. However, building websites was no simple task then, just as it
+isn’t today. The web is constantly evolving, and staying updated with new trends
+and technologies remains an ongoing challenge.
 
 The full-stack development world is among the fastest-moving industries of the
 past decade. It’s not just about front-end and back-end anymore—it’s about
@@ -56,61 +56,61 @@ dear friend and ex-colleague [Andrea Mangano](https://andreamangano.com/). We
 originally designed the format together and Andrea is responsible for the
 awesome look and feel that still represents FullStack Bulletin today.
 
-FullStack Bulletin is our way of making life a little easier for full-stack
-developers and those aspiring to become one. Each week, we curate the most
-interesting, valuable content we can find, delivering it directly to your inbox.
-Since launching in March 2017, our mission has been to help developers stay
-current and inspired.
+FullStack Bulletin is our way of making life a bit easier for full-stack
+developers and those aspiring to join the field. Every week, we carefully curate
+the most interesting and valuable content, delivering it straight to your inbox.
+Since our launch in March 2017, our mission has been to help developers stay
+informed and inspired.
 
-In our minds, FullStack Bulletin is the newsletter we wish we had when we were
-starting out in our full-stack development journey. It’s a way to share
-knowledge, discover interesting nuggets of content, keep ourselves and others
-inspired and spread our shared passion for web development.
+To us, FullStack Bulletin is the newsletter we wish we had when we started our
+own full-stack development journey. It’s a platform to share knowledge, uncover
+fascinating content, stay motivated, and spread our shared passion for web
+development.
 
 ## Behind the Scenes: Technical Implementation
 
-Publishing a newsletter consistently every week is no small task. That’s why
-I’ve leaned on automation wherever possible, making FullStack Bulletin a
+Publishing a newsletter consistently every week is no easy feat. That’s why I’ve
+relied on automation whenever possible, making FullStack Bulletin a
 semi-automated newsletter.
 
-I know, some of my friends and colleagues make often fun of me for my attitude
-of always trying to automate stuff, perhaps even too much... and they often
-refer to me with this quote:
+I know, some of my friends and colleagues often tease me for my tendency to
+automate everything, maybe a little too much. They even like to refer to me with
+this quote:
 
 > Never spend 6 minutes doing something by hand when you can spend 6 hours
 > failing to automate it
 
-<small>(I am not sure who is the original author, let me know if you
-know!)</small>
+<small>I am not sure who is the original author, let me know if you
+know!</small>
 
 But I believe that automation is key to keep things running smoothly and to free
 up time for more important tasks, especially when you are planning to keep doing
 something for the long run (and in your spare time)!
 
-But not everything is fully automated. After all who would like to read a
-soul-less and aseptic fully automated newsletter?
+However, not everything is fully automated. After all, who would want to read a
+soulless, overly mechanical newsletter?
 
-The content selection is manual. I manually gather interesting articles
-throughout the week, but automation steps in to scrape the links, fetch titles
-and descriptions, then it ranks the content and creates a draft for the next
-issue. This draft includes curated links, a rotating quote, and a recommended
-book of the week. While automation does the heavy lifting, I still manually edit
-the draft to ensure quality and add a personal touch with an editorial intro
-before publishing.
+The content selection remains a manual process. I personally gather interesting
+articles throughout the week, and that’s where automation steps in. It scrapes
+the links, fetches titles and descriptions, ranks the content, and creates a
+draft for the next issue. This draft includes curated links, a rotating quote,
+and a recommended book of the week. While automation handles the heavy lifting,
+I still edit the draft manually to ensure quality and add a personal touch with
+an editorial introduction before publishing.
 
 All automation runs on AWS using a Step Function, and the code is open source on
 [GitHub](https://github.com/FullStackBulletin/automation).
 
 I have even done a series of live coding sessions on Twitch with my dear friend
-[Roberto Gambuzzi](https://www.gambuzzi.it/) where we have split the original
-monolithic Lambda function to a Step Function and rewrote some of the
-single-purpose Lambda functions in Rust! If you are curious about the broader
-topic of Writing [Lambda](/tag/lambda) Functions in [Rust](/tag/rust), you
-should definitely check out my previous article:
+[Roberto Gambuzzi](https://www.gambuzzi.it/) where we split the original
+monolithic Lambda function into a Step Function and rewrote some of the
+single-purpose Lambda functions in Rust! BTW, If you’re curious about the
+broader topic of writing [Lambda](/tag/lambda) functions in [Rust](/tag/rust),
+you should definitely check out my previous article:
 [I am co-authoring a book about Rust and Lambda](/coauthoring-a-book-about-rust-and-lambda).
 
-If you are curious to watch the live coding sessions, you can check out the
-["Fullstack bulletin fixes / remake" playlist on YouTube](https://www.youtube.com/playlist?list=PLbNOKnE-Oyr1tsUft4j0QZDyk5iFcVVy_).
+If you’re interested in watching the live coding sessions, you can check out the
+["Fullstack bulletin fixes/remake" playlist on YouTube](https://www.youtube.com/playlist?list=PLbNOKnE-Oyr1tsUft4j0QZDyk5iFcVVy_).
 
 [![Fullstack bulletin fixes / remake" playlist on YouTube](./fullstack-bulletin-fixes-remake-youtube-playlist.jpg)](https://www.youtube.com/playlist?list=PLbNOKnE-Oyr1tsUft4j0QZDyk5iFcVVy_)
 
@@ -280,3 +280,5 @@ already, [subscribe today](https://fullstackbulletin.com) and let me know what
 you think.
 
 Here’s to Issue 404... and beyond! 🍻
+
+![Cheering with pints GIF](./cheers.gif)
