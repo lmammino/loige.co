@@ -5,6 +5,11 @@
     "role": "co-author"
   },
   {
+    "name": "Crafting Lambda Functions in Rust",
+    "link": "https://rust-lambda.com/",
+    "role": "co-author"
+  },
+  {
     "name": "AWS Bites",
     "link": "https://awsbites.com/",
     "role": "co-host"

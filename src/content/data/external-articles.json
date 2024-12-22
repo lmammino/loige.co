@@ -183,5 +183,10 @@
     "title": "Managing AWS accounts like a PRO – Part 1",
     "link": "https://fourtheorem.com/managing-aws-accounts-part-1/",
     "date": "2024-03-04T12:00:00.000Z"
+  },
+  {
+    "title": "Managing AWS accounts like a PRO - Part 2: Managing accounts using IaC with OrgFormation",
+    "link": "https://fourtheorem.com/managing-accounts-using-iac-and-orgformation/",
+    "date": "2024-09-26T12:00:00.000Z"
   }
 ]

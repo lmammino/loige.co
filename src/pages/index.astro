@@ -12,6 +12,7 @@ import ProjectCard from '../components/ProjectCard.astro'
 import BlogCard from '../components/BlogCard.astro'
 import Button from '../components/Button.astro'
 import NodejsDPPicture from '../assets/nodejs-dp-mockup.png'
+import CraftingLambdaFnInRustPicture from '../assets/crafting-lambda-functions-in-rust-mockup.png'
 import AWSBitesPicture from '../assets/aws-bites-mockup.png'
 import FSBPicture from '../assets/fsb-mockup.png'
 import TagsList from '../components/TagsList.astro'
@@ -94,7 +95,7 @@ const props = {
         >Some of my projects</h2
       >
       <div
-        class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-8"
+        class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2 max-w-[800px] mx-auto lg:gap-8"
       >
         <ProjectCard
           href="https://nodejsdesignpatterns.com"
@@ -106,6 +107,19 @@ const props = {
           and implementation of production-grade
           <strong>Node.js apps</strong> with <strong>tested patterns</strong> and
           <strong>techniques</strong>.
+        </ProjectCard>
+
+        <ProjectCard
+          href="https://rust-lambda.com"
+          title="Crafting Lambda Functions in Rust"
+          image={CraftingLambdaFnInRustPicture}
+          imageAlt="A picture of the cover of the Crafting Lambda Functions in Rust book"
+        >
+          An e-book to learn everything there is to know about using the <strong
+            >Rust</strong
+          > programming language to write efficient and cost-effective <strong
+            >Lambda functions</strong
+          > on AWS.
         </ProjectCard>
 
         <ProjectCard

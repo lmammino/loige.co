@@ -8,6 +8,7 @@ export const SITE_AUTHOR = 'Luciano Mammino'
 export const SITE_TITLE = 'Luciano Mammino'
 export const SITE_DESCRIPTION = 'Cloud Architect and Fullstack Developer'
 export const SOCIALS = [
+  { title: 'BlueSky', url: 'https://bsky.app/profile/loige.co' },
   { title: 'X (Twitter)', url: 'https://twitter.com/loige' },
   { title: 'Mastodon', url: 'https://mastodon.ie/@loige' },
   { title: 'Twitch', url: 'https://www.twitch.tv/loige' },
