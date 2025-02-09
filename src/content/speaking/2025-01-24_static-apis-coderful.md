@@ -11,7 +11,7 @@ event_location_gps: "37.5422236,15.1378529"
 event_city: Aci Castello, Italy
 event_days: '24 Jan, 2025'
 is_workshop: false
-slides_link: ~
+slides_link: 'https://loige.link/static-a'
 video_link: ~
 with: ~
 ---

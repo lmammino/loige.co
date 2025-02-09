@@ -9,8 +9,10 @@ import CommonLayout from '../layouts/CommonLayout.astro'
 import SpeakingEntry from '../components/SpeakingEntry.astro'
 import Prose from '../components/Prose.astro'
 
-const speakingPics = await Astro.glob('../assets/speaking/*')
-const shuffledSpeakingPics = speakingPics.sort(() => 0.5 - Math.random())
+const speakingPics = import.meta.glob('../assets/speaking/*', { eager: true })
+const shuffledSpeakingPics = Object.values(speakingPics).sort(
+  () => 0.5 - Math.random(),
+)
 
 type Props = CollectionEntry<'speaking'>
 

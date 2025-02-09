@@ -7,10 +7,17 @@ import { defineConfig } from 'astro/config'
 // biome-ignore lint/nursery/useImportRestrictions: <explanation>
 import { SITE_URL } from './src/consts'
 
+import expressiveCode from 'astro-expressive-code'
+
 // https://astro.build/config
 export default defineConfig({
   site: SITE_URL,
   integrations: [
+    expressiveCode({
+      themes: ['one-light', 'dark-plus'],
+      useDarkModeMediaQuery: true,
+      themeCssSelector: (theme) => `:root[data-theme="${theme.type}"]`,
+    }),
     mdx(),
     sitemap({}),
     tailwind(),
