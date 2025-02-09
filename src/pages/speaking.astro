@@ -16,7 +16,6 @@ interface ImageFile {
 const speakingPics = import.meta.glob<ImageFile>('../assets/speaking/*', {
   eager: true,
 })
-console.log(speakingPics)
 const shuffledSpeakingPics = Object.values(speakingPics).sort(
   () => 0.5 - Math.random(),
 )
