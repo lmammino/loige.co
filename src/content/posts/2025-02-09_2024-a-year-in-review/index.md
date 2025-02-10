@@ -583,15 +583,18 @@ newsletters! 😆
 
 I have been quite bad at running this year, totaling only **9 runs** for a total
 of **~60Km**. I definitely need to improve that in 2025! However, I have been
-pretty consistent with Brazilian Jiu-Jitsu training, practicing for ~100
+pretty consistent with Brazilian Jiu-Jitsu training, practicing for almost 100
 sessions during 2024 and reaching the grade of **purple belt with 2 stripes**!
-🥋 And in general I kept myself fit, training more at home, getting in better
-shape and eating healthier! That's something I'm proud of and I can see making
-me a lot happier and productive.
+🥋 Thanks to all my teammates and professors for keeping me engaged and
+motivated (although I doubt any of them will ever read this page 😅).
 
-I also had a lovely trip to the Norway fjords with my wife during the summer. It
-was absolutely stunning, and a great way to recharge. I'll leave you with a
-random picture from this trip.
+... And in general I kept myself fit, training more at home, getting in better
+shape and eating healthier! That's something I'm proud of and I can see making
+me a lot happier and productive. 💪
+
+Finally, I want to mention I had a lovely road trip to the Norway fjords with my
+wife during the summer. It was absolutely stunning, and a great way to recharge.
+I'll leave you with a random picture from this trip.
 
 ![A picture of the Norway fjords](./norway-fjords.jpg)
 
@@ -599,4 +602,4 @@ That's all, folks! Please comment to let me know what was your biggest
 achievement of 2024 and what do you plan to do in 2025. I'm always curious to
 hear what others are working on.
 
-See you in the next article 😉
+See you in the next article, hopefully soon! 😉
