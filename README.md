@@ -69,4 +69,4 @@ You can contribute just by submitting bugs or suggesting improvements by
 
 ## License
 
-Licensed under [MIT License](LICENSE). © Luciano Mammino.
+Licensed under [MIT License](LICENSE). © Luciano Mammino. 
