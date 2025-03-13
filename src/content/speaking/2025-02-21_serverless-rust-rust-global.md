@@ -11,7 +11,7 @@ event_location_gps: "53.015713,-1.160199"
 event_city: London, England
 event_days: '21 Feb, 2025'
 is_workshop: false
-slides_link: ~
+slides_link: 'https://share.jameseastham.co.uk/presentations/2025-02-21-rust-global.pdf'
 video_link: ~
 with:
   - name: James Eastham
