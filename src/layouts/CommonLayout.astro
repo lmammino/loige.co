@@ -18,11 +18,20 @@ const { section, seo } = Astro.props
     <BaseHead {...seo} />
     <script is:inline>
       const savedTheme = localStorage.getItem('theme')
-      const preferredTheme = ['dark', 'light'].includes(savedTheme)
+      // fixes local storage theme old values: light -> one-light, dark -> dark-plus
+      if (savedTheme === 'light') {
+        localStorage.setItem('theme', 'one-light')
+        savedTheme = 'one-light'
+      } else if (savedTheme === 'dark') {
+        localStorage.setItem('theme', 'dark-plus')
+        savedTheme = 'dark-plus'
+      }
+
+      const preferredTheme = ['dark-plus', 'one-light'].includes(savedTheme)
         ? savedTheme
         : window.matchMedia('(prefers-color-scheme: dark)').matches
-          ? 'dark'
-          : 'light'
+          ? 'dark-plus'
+          : 'one-light'
       document.documentElement.setAttribute('data-theme', preferredTheme)
     </script>
   </head>

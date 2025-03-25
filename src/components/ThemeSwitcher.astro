@@ -23,7 +23,7 @@ import Sun from './icons/Sun.astro'
   const sun = document.getElementById('sun') as any as SVGElement
 
   function updateIcon() {
-    if (currentTheme === 'dark') {
+    if (currentTheme === 'dark-plus') {
       moon.classList.remove('hidden')
       sun.classList.add('hidden')
     } else {
@@ -38,7 +38,7 @@ import Sun from './icons/Sun.astro'
   themeSwitch.addEventListener('click', (e) => {
     e.preventDefault()
     currentTheme = document.documentElement.getAttribute('data-theme')
-    currentTheme = currentTheme === 'dark' ? 'light' : 'dark'
+    currentTheme = currentTheme === 'dark-plus' ? 'one-light' : 'dark-plus'
     document.documentElement.setAttribute('data-theme', currentTheme)
     localStorage.setItem('theme', currentTheme)
     updateIcon()

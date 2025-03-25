@@ -30,7 +30,7 @@ Just to give you a practical idea of how it works, let's suppose I want to send 
 Once I have the Keybase command line app installed (and configured) I can just run:
 
 ```bash
-$ keybase encrypt twitter://d4nyll -m "Hey pal, I finally crafted the perfect plan to rule this World. Give me a ring"
+$ keybase encrypt twitter://d4nyll -m "Hey pal, I finally crafted the perfect plan to rule this World. Give me a ring-3"
 ```
 
 and it will print out a weird message that only Daniel, with his private key will be able to decrypt:

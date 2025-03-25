@@ -66,7 +66,7 @@ export function getSimilarPosts(
 }
 
 export function getAbsoluteUrl(post: CollectionEntry<'posts'>) {
-  return `${SITE_URL}/${post.slug}`
+  return `${SITE_URL}/${post.id}`
 }
 
 export function getShareUrl(

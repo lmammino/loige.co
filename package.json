@@ -12,32 +12,33 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
-    "@astrojs/mdx": "^4.0.8",
+    "@astrojs/mdx": "^4.2.1",
     "@astrojs/rss": "^4.0.11",
-    "@astrojs/sitemap": "^3.2.1",
-    "@astrojs/tailwind": "^6.0.0",
+    "@astrojs/sitemap": "^3.3.0",
     "@aws-sdk/client-bedrock-runtime": "^3.490.0",
     "@oramacloud/client": "^1.0.6",
     "@tailwindcss/typography": "^0.5.10",
-    "astro": "^5.2.5",
+    "astro": "^5.5.4",
     "astro-compress": "^2.2.8",
     "astro-critters": "^2.0.11",
-    "astro-expressive-code": "^0.40.1",
-    "canvas": "^2.11.2",
+    "astro-expressive-code": "^0.40.2",
+    "canvas": "^3.1.0",
     "canvas-hypertxt": "^1.0.3",
+    "clsx": "^2.1.1",
     "date-fns": "^3.2.0",
     "marked": "^11.1.1",
     "sharp": "^0.33.1",
-    "tailwindcss": "^3.4.1",
+    "tailwindcss": "^4.0.16",
     "typescript": "^5.3.3",
     "zod": "^3.22.4"
   },
   "devDependencies": {
     "@biomejs/biome": "1.5.1",
+    "@tailwindcss/vite": "^4.0.16",
     "prettier": "^3.1.1",
     "prettier-plugin-astro": "^0.12.3",
-    "tsx": "^4.7.0",
-    "yaml": "^2.3.4"
+    "tsx": "^4.8.1",
+    "yaml": "^2.4.2"
   },
   "packageManager": "pnpm@9.0.6+sha256.0624e30eff866cdeb363b15061bdb7fd9425b17bc1bb42c22f5f4efdea21f6b3"
 }

@@ -54,7 +54,7 @@ const props = {
   <Hero />
 
   <div class="bg-bg-500 relative z-40">
-    <div class="mx-auto max-w-screen-xl px-8 py-16">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-8 py-16">
       <div class="flex flex-wrap justify-center gap-8">
         <ServerlessHero class="h-20 text-text-400" />
         <CertifiedSolutionsArchitect class="h-20 text-text-400" />
@@ -65,7 +65,7 @@ const props = {
   </div>
 
   <div class="bg-bg-500 relative z-40">
-    <div class="mx-auto max-w-screen-xl px-8 pb-16 flex justify-center">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-8 pb-16 flex justify-center">
       <Prose class="max-w-[800px]">
         <p>
           Hello, I am <a href="/about">Luciano</a>, a.k.a. <em>loige</em>, a
@@ -90,7 +90,7 @@ const props = {
   </div>
 
   <div class="bg-bg-500 relative z-40">
-    <div class="mx-auto max-w-screen-xl pb-16 px-8">
+    <div class="mx-auto max-w-(--breakpoint-xl) pb-16 px-8">
       <h2 class="text-3xl text-text-500 text-center mb-4"
         >Some of my projects</h2
       >
@@ -147,7 +147,7 @@ const props = {
   </div>
 
   <div class="bg-bg-500 relative z-40">
-    <div class="mx-auto max-w-screen-xl py-8 px-8">
+    <div class="mx-auto max-w-(--breakpoint-xl) py-8 px-8">
       <h2 class="text-3xl text-text-500 text-center mb-4"
         >Latest from the blog</h2
       >
@@ -170,7 +170,7 @@ const props = {
   </div>
 
   <div class="bg-bg-500 relative z-40 pb-24">
-    <div class="mx-auto max-w-screen-xl py-8 px-8">
+    <div class="mx-auto max-w-(--breakpoint-xl) py-8 px-8">
       <h2 class="text-3xl text-text-500 text-center mb-4">Topics</h2>
       <TagsList tags={tags.slice(0, 20)} />
     </div>

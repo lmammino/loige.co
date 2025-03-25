@@ -59,25 +59,25 @@ const profilePicFrames = await Promise.all(
   class="pt-4 sm:pt-6 lg:pt-10 bg-bg-500 [background:radial-gradient(circle_at_30%_60%,_var(--color-primary-200)_0%,transparent_30%),radial-gradient(circle_at_80%_90%,_var(--color-secondary-300)_0%,transparent_30%),radial-gradient(circle_at_bottom,_var(--color-accent-300)_0%,var(--color-bg-500)_60%)]"
 >
   <div
-    class="flex justify-center items-end relative mx-auto max-w-screen-xl h-[400px] sm:h-[640px] overflow-hidden [clip-path:border-box]"
+    class="flex justify-center items-end relative mx-auto max-w-(--breakpoint-xl) h-[400px] sm:h-[640px] overflow-hidden [clip-path:border-box]"
   >
     <div
-      class="absolute top-[3.5rem] sm:top-[6rem] lg:top-[5rem] flex flex-col justify-center z-[3]"
+      class="absolute top-[3.5rem] sm:top-[6rem] lg:top-[5rem] flex flex-col justify-center z-3"
     >
       <h1
-        class="text-4xl sm:text-7xl lg:text-8xl font-bold text-primary-700 z-[3] drop-shadow-lg text-center"
+        class="text-4xl sm:text-7xl lg:text-8xl font-bold text-primary-700 z-3 drop-shadow-lg text-center"
       >
         Luciano Mammino
       </h1>
     </div>
     <div
-      class="absolute top-[6.5rem] sm:top-[11rem] flex flex-col justify-center z-[1]"
+      class="absolute top-[6.5rem] sm:top-[11rem] flex flex-col justify-center z-1"
     >
-      <div class="font-serif sm:text-3xl lg:text-4xl text-text-500 z-[1]">
+      <div class="font-serif sm:text-3xl lg:text-4xl text-text-500 z-1">
         Cloud Architect &amp; Full Stack Developer
       </div>
     </div>
-    <div class="flex justify-center align-bottom z-[2]">
+    <div class="flex justify-center align-bottom z-2">
       <div class="w-[300px] h-[300px] sm:w-[480px] sm:h-[480px]">
         <picture>
           <source
@@ -105,7 +105,7 @@ const profilePicFrames = await Promise.all(
             src={profilePicPlaceholders[PNG]}
             id="profile-picture"
             alt="Luciano Mammino"
-            class="z-[2] fixed [transition:filter_.5s_ease-out_0s] w-[300px] h-[300px] sm:w-[480px] sm:h-[480px] animate-hero-pulse"
+            class="z-2 fixed [transition:filter_.5s_ease-out_0s] w-[300px] h-[300px] sm:w-[480px] sm:h-[480px] animate-hero-pulse"
             width="480"
             height="480"
           />

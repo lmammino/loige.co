@@ -1,183 +1,447 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-@font-face {
-  font-family: 'Atkinson';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('/fonts/atkinson-regular.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
-    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+@plugin '@tailwindcss/typography';
+
+@theme {
+  --font-sans:
+    Atkinson, Avenir, Montserrat, Corbel, URW Gothic, source-sans-pro,
+    sans-serif;
+  --font-serif: Charter, Bitstream Charter, Sitka Text, Cambria, serif;
+  --font-mono:
+    ui-monospace, Cascadia Code, Source Code Pro, Menlo, Consolas,
+    DejaVu Sans Mono, monospace;
+
+  --color-bg-100: var(--color-bg-100);
+  --color-bg-200: var(--color-bg-200);
+  --color-bg-300: var(--color-bg-300);
+  --color-bg-400: var(--color-bg-400);
+  --color-bg-500: var(--color-bg-500);
+  --color-bg-600: var(--color-bg-600);
+  --color-bg-700: var(--color-bg-700);
+  --color-bg-800: var(--color-bg-800);
+  --color-bg-900: var(--color-bg-900);
+
+  --color-text-50: var(--color-text-50);
+  --color-text-100: var(--color-text-100);
+  --color-text-200: var(--color-text-200);
+  --color-text-300: var(--color-text-300);
+  --color-text-400: var(--color-text-400);
+  --color-text-500: var(--color-text-500);
+  --color-text-600: var(--color-text-600);
+  --color-text-700: var(--color-text-700);
+  --color-text-800: var(--color-text-800);
+  --color-text-900: var(--color-text-900);
+
+  --color-primary-100: var(--color-primary-100);
+  --color-primary-200: var(--color-primary-200);
+  --color-primary-300: var(--color-primary-300);
+  --color-primary-400: var(--color-primary-400);
+  --color-primary-500: var(--color-primary-500);
+  --color-primary-600: var(--color-primary-600);
+  --color-primary-700: var(--color-primary-700);
+  --color-primary-800: var(--color-primary-800);
+  --color-primary-900: var(--color-primary-900);
+
+  --color-secondary-100: var(--color-secondary-100);
+  --color-secondary-200: var(--color-secondary-200);
+  --color-secondary-300: var(--color-secondary-300);
+  --color-secondary-400: var(--color-secondary-400);
+  --color-secondary-500: var(--color-secondary-500);
+  --color-secondary-600: var(--color-secondary-600);
+  --color-secondary-700: var(--color-secondary-700);
+  --color-secondary-800: var(--color-secondary-800);
+  --color-secondary-900: var(--color-secondary-900);
+
+  --color-accent-100: var(--color-accent-100);
+  --color-accent-200: var(--color-accent-200);
+  --color-accent-300: var(--color-accent-300);
+  --color-accent-400: var(--color-accent-400);
+  --color-accent-500: var(--color-accent-500);
+  --color-accent-600: var(--color-accent-600);
+  --color-accent-700: var(--color-accent-700);
+  --color-accent-800: var(--color-accent-800);
+  --color-accent-900: var(--color-accent-900);
+
+  --animate-hero-pulse: hero-pulse 1s ease-in-out infinite alternate;
+  --animate-slide-right: slide-right 200ms ease-in-out;
+  --animate-slide-left: slide-left 200ms ease-in-out;
+  --animate-slide-up: slide-up 200ms ease-in-out;
+  --animate-slide-down: slide-down 200ms ease-in-out;
+  --animate-fade-out-left: fade-out-left 200ms ease-in-out;
+  --animate-fade-in-right: fade-in-right 200ms ease-in-out;
+  --animate-fade-out-down: fade-out-down 200ms ease-in-out;
+  --animate-fade-in-up: fade-in-up 200ms ease-in-out;
+  --animate-wiggle: wiggle 1s ease-out infinite;
+  --animate-rainbow-glow: rainbow-glow 3s linear infinite;
+
+  @keyframes hero-pulse {
+    0% {
+      filter: grayscale(0);
+      opacity: 0.85;
+    }
+    100% {
+      filter: grayscale(0.8);
+      opacity: 1;
+    }
+  }
+  @keyframes slide-right {
+    0% {
+      transform: translateX(-100px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  @keyframes slide-left {
+    0% {
+      transform: translateX(100px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  @keyframes slide-up {
+    0% {
+      transform: translateY(100px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  @keyframes slide-down {
+    0% {
+      transform: translateY(-100px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  @keyframes fade-out-left {
+    0% {
+      opacity: 0.9;
+      transform: translateX(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(-12em);
+    }
+  }
+  @keyframes fade-in-right {
+    0% {
+      opacity: 0;
+      transform: translateX(12em);
+    }
+    100% {
+      opacity: 0.9;
+      transform: translateX(0);
+    }
+  }
+  @keyframes fade-out-down {
+    0% {
+      opacity: 0.9;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(200px);
+    }
+  }
+  @keyframes fade-in-up {
+    0% {
+      opacity: 0;
+      transform: translateY(200px);
+    }
+    100% {
+      opacity: 0.9;
+      transform: translateY(0);
+    }
+  }
+  @keyframes wiggle {
+    0% {
+      transform: rotateZ(0deg);
+    }
+    25% {
+      transform: rotateZ(45deg);
+    }
+    50% {
+      transform: rotateZ(0deg);
+    }
+    75% {
+      transform: rotateZ(-15deg);
+    }
+    100% {
+      transform: rotateZ(0deg);
+    }
+  }
+  @keyframes squish {
+    0% {
+      transform: scaleY(1);
+    }
+    10% {
+      transform: scaleY(0.75);
+    }
+    50% {
+      transform: scaleY(1.25);
+    }
+    100% {
+      transform: scaleY(1);
+    }
+  }
+  @keyframes squish-much {
+    0% {
+      transform: scaleY(1);
+    }
+    10% {
+      transform: scaleY(0.5);
+    }
+    50% {
+      transform: scaleY(1.5);
+    }
+    100% {
+      transform: scaleY(1);
+    }
+  }
+  @keyframes bubble {
+    0% {
+      opacity: 0;
+      transform: translateY(0);
+    }
+    50% {
+      opacity: 1;
+      transform: translateY(-1em);
+    }
+    90% {
+      opacity: 0;
+      transform: translateY(-2em);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-3em);
+    }
+  }
+  @keyframes rainbow-glow {
+    0% {
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    }
+    25% {
+      box-shadow: 0 0 10px rgba(255, 153, 0, 0.5);
+    }
+    50% {
+      box-shadow: 0 0 10px rgba(51, 204, 51, 0.5);
+    }
+    75% {
+      box-shadow: 0 0 10px rgba(51, 153, 255, 0.5);
+    }
+    100% {
+      box-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+    }
+  }
 }
 
-@font-face {
-  font-family: 'Atkinson';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(/fonts/atkinson-bold.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
-    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
 }
 
-:root,
-:root[data-theme='light'] {
-  /* Generated with https://tailwindshades.app/ */
-  /* https://huemint.com/brand-intersection/#palette=f7f7f7-22158a-8796b0-48ea5b */
-  /* DEFAULT (LIGHT) */
-  --bg: #f7f7f7;
-  --color-bg-100: rgb(254 254 254);
-  --color-bg-200: rgb(253 253 253);
-  --color-bg-300: rgb(252 252 252);
-  --color-bg-400: rgb(249 249 249);
-  --color-bg-500: rgb(247 247 247);
-  --color-bg-600: rgb(222 222 222);
-  --color-bg-700: rgb(148 148 148);
-  --color-bg-800: rgb(111 111 111);
-  --color-bg-900: rgb(74 74 74);
-
-  --text: #151828;
-  --color-text-50: rgb(251, 251, 251);
-  --color-text-100: rgb(232 232 234);
-  --color-text-200: rgb(197 197 201);
-  --color-text-300: rgb(161 163 169);
-  --color-text-400: rgb(91 93 105);
-  --color-text-500: rgb(21 24 40);
-  --color-text-600: rgb(19 22 36);
-  --color-text-700: rgb(13 14 24);
-  --color-text-800: rgb(9 11 18);
-  --color-text-900: rgb(6 7 12);
-
-  --primary: #22158a;
-  --color-primary-100: rgb(233 232 243);
-  --color-primary-200: rgb(200 197 226);
-  --color-primary-300: rgb(167 161 208);
-  --color-primary-400: rgb(100 91 173);
-  --color-primary-500: rgb(34 21 138);
-  --color-primary-600: rgb(31 19 124);
-  --color-primary-700: rgb(20 13 83);
-  --color-primary-800: rgb(15 9 62);
-  --color-primary-900: rgb(10 6 41);
-
-  --secondary: #8796b0;
-  --color-secondary-100: rgb(243 245 247);
-  --color-secondary-200: rgb(225 229 235);
-  --color-secondary-300: rgb(207 213 223);
-  --color-secondary-400: rgb(171 182 200);
-  --color-secondary-500: rgb(135 150 176);
-  --color-secondary-600: rgb(122 135 158);
-  --color-secondary-700: rgb(81 90 106);
-  --color-secondary-800: rgb(61 68 79);
-  --color-secondary-900: rgb(41 45 53);
-
-  --accent: #48ea5b;
-  --color-accent-100: rgb(237 253 239);
-  --color-accent-200: rgb(209 250 214);
-  --color-accent-300: rgb(182 247 189);
-  --color-accent-400: rgb(127 240 140);
-  --color-accent-500: rgb(72 234 91);
-  --color-accent-600: rgb(65 211 82);
-  --color-accent-700: rgb(43 140 55);
-  --color-accent-800: rgb(32 105 41);
-  --color-accent-900: rgb(22 70 27);
+@utility link {
+  @apply underline underline-offset-4 decoration-text-100 text-primary-700 hover:text-primary-500 hover:decoration-primary-500;
 }
 
-:root[data-theme='dark'] {
-  /* Generated with https://tailwindshades.app/ */
-  /* https://huemint.com/brand-intersection/#palette=f7f7f7-22158a-8796b0-48ea5b */
-  /* DEFAULT (LIGHT) */
-  --bg: #1f1e1e;
-  --color-bg-50: rgb(2 2 2);
-  --color-bg-900: rgb(233 233 233);
-  --color-bg-800: rgb(199 199 199);
-  --color-bg-700: rgb(165 165 165);
-  --color-bg-600: rgb(98 98 98);
-  --color-bg-500: rgb(31 30 30);
-  --color-bg-400: rgb(28 27 27);
-  --color-bg-300: rgb(19 18 18);
-  --color-bg-200: rgb(14 14 14);
-  --color-bg-100: rgb(9 9 9);
+@layer utilities {
+  @font-face {
+    font-family: 'Atkinson';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/atkinson-regular.woff2') format('woff2');
+    unicode-range:
+      U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+      U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+      U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
 
-  --text: #fbfbfb;
-  --color-text-50: rgb(65 65 65);
-  --color-text-900: rgb(255 255 255);
-  --color-text-800: rgb(254 254 254);
-  --color-text-700: rgb(253 253 253);
-  --color-text-600: rgb(252 252 252);
-  --color-text-500: rgb(251 251 251);
-  --color-text-400: rgb(226 226 226);
-  --color-text-300: rgb(151 151 151);
-  --color-text-200: rgb(113 113 113);
-  --color-text-100: rgb(75 75 75);
+  @font-face {
+    font-family: 'Atkinson';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url(/fonts/atkinson-bold.woff2) format('woff2');
+    unicode-range:
+      U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+      U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+      U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
 
-  --primary: #6aaefc;
-  --color-primary-50: rgb(25, 42, 62);
-  --color-primary-900: rgb(240 247 255);
-  --color-primary-800: rgb(218 235 254);
-  --color-primary-700: rgb(195 223 254);
-  --color-primary-600: rgb(151 198 253);
-  --color-primary-500: rgb(106 174 252);
-  --color-primary-400: rgb(95 157 227);
-  --color-primary-300: rgb(64 104 151);
-  --color-primary-200: rgb(48 78 113);
-  --color-primary-100: rgb(32 52 76);
+  :root,
+  :root[data-theme='one-light'] {
+    /* Generated with https://tailwindshades.app/ */
+    /* https://huemint.com/brand-intersection/#palette=f7f7f7-22158a-8796b0-48ea5b */
+    /* DEFAULT (LIGHT) */
+    --bg: #f7f7f7;
+    --color-bg-100: rgb(254 254 254);
+    --color-bg-200: rgb(253 253 253);
+    --color-bg-300: rgb(252 252 252);
+    --color-bg-400: rgb(249 249 249);
+    --color-bg-500: rgb(247 247 247);
+    --color-bg-600: rgb(222 222 222);
+    --color-bg-700: rgb(148 148 148);
+    --color-bg-800: rgb(111 111 111);
+    --color-bg-900: rgb(74 74 74);
 
-  --secondary: #39899f;
-  --color-secondary-50: rgb(11, 23, 27);
-  --color-secondary-900: rgb(235 243 245);
-  --color-secondary-800: rgb(206 226 231);
-  --color-secondary-700: rgb(176 208 217);
-  --color-secondary-600: rgb(116 172 188);
-  --color-secondary-500: rgb(57 137 159);
-  --color-secondary-400: rgb(51 123 143);
-  --color-secondary-300: rgb(34 82 95);
-  --color-secondary-200: rgb(26 62 72);
-  --color-secondary-100: rgb(17 41 48);
+    --text: #151828;
+    --color-text-50: rgb(251, 251, 251);
+    --color-text-100: rgb(232 232 234);
+    --color-text-200: rgb(197 197 201);
+    --color-text-300: rgb(161 163 169);
+    --color-text-400: rgb(91 93 105);
+    --color-text-500: rgb(21 24 40);
+    --color-text-600: rgb(19 22 36);
+    --color-text-700: rgb(13 14 24);
+    --color-text-800: rgb(9 11 18);
+    --color-text-900: rgb(6 7 12);
 
-  --accent: #a8f874;
-  --color-accent-50: rgb(31, 48, 21);
-  --color-accent-900: rgb(246 254 241);
-  --color-accent-800: rgb(233 253 220);
-  --color-accent-700: rgb(220 252 199);
-  --color-accent-600: rgb(194 250 158);
-  --color-accent-500: rgb(168 248 116);
-  --color-accent-400: rgb(151 223 104);
-  --color-accent-300: rgb(101 149 70);
-  --color-accent-200: rgb(76 112 52);
-  --color-accent-100: rgb(50 74 35);
-}
+    --primary: #22158a;
+    --color-primary-100: rgb(233 232 243);
+    --color-primary-200: rgb(200 197 226);
+    --color-primary-300: rgb(167 161 208);
+    --color-primary-400: rgb(100 91 173);
+    --color-primary-500: rgb(34 21 138);
+    --color-primary-600: rgb(31 19 124);
+    --color-primary-700: rgb(20 13 83);
+    --color-primary-800: rgb(15 9 62);
+    --color-primary-900: rgb(10 6 41);
 
-body {
-  margin: 0;
-  padding: 0;
-  text-align: left;
-  background-color: var(--color-bg-500);
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  font-size: 20px;
-  line-height: 1.7;
-}
+    --secondary: #8796b0;
+    --color-secondary-100: rgb(243 245 247);
+    --color-secondary-200: rgb(225 229 235);
+    --color-secondary-300: rgb(207 213 223);
+    --color-secondary-400: rgb(171 182 200);
+    --color-secondary-500: rgb(135 150 176);
+    --color-secondary-600: rgb(122 135 158);
+    --color-secondary-700: rgb(81 90 106);
+    --color-secondary-800: rgb(61 68 79);
+    --color-secondary-900: rgb(41 45 53);
 
-div,
-article,
-section,
-header,
-footer,
-nav,
-main,
-aside,
-a {
-  transition-property: color, background-color;
-  transition-timing-function: ease-in-out;
-  transition-duration: 150ms;
-}
+    --accent: #48ea5b;
+    --color-accent-100: rgb(237 253 239);
+    --color-accent-200: rgb(209 250 214);
+    --color-accent-300: rgb(182 247 189);
+    --color-accent-400: rgb(127 240 140);
+    --color-accent-500: rgb(72 234 91);
+    --color-accent-600: rgb(65 211 82);
+    --color-accent-700: rgb(43 140 55);
+    --color-accent-800: rgb(32 105 41);
+    --color-accent-900: rgb(22 70 27);
+  }
 
-@layer components {
-  .link {
-    @apply underline underline-offset-4 decoration-text-100 text-primary-700 hover:text-primary-500 hover:decoration-primary-500;
+  :root[data-theme='dark-plus'] {
+    /* Generated with https://tailwindshades.app/ */
+    /* https://huemint.com/brand-intersection/#palette=f7f7f7-22158a-8796b0-48ea5b */
+    /* DEFAULT (LIGHT) */
+    --bg: #1f1e1e;
+    --color-bg-50: rgb(2 2 2);
+    --color-bg-900: rgb(233 233 233);
+    --color-bg-800: rgb(199 199 199);
+    --color-bg-700: rgb(165 165 165);
+    --color-bg-600: rgb(98 98 98);
+    --color-bg-500: rgb(31 30 30);
+    --color-bg-400: rgb(28 27 27);
+    --color-bg-300: rgb(19 18 18);
+    --color-bg-200: rgb(14 14 14);
+    --color-bg-100: rgb(9 9 9);
+
+    --text: #fbfbfb;
+    --color-text-50: rgb(65 65 65);
+    --color-text-900: rgb(255 255 255);
+    --color-text-800: rgb(254 254 254);
+    --color-text-700: rgb(253 253 253);
+    --color-text-600: rgb(252 252 252);
+    --color-text-500: rgb(251 251 251);
+    --color-text-400: rgb(226 226 226);
+    --color-text-300: rgb(151 151 151);
+    --color-text-200: rgb(113 113 113);
+    --color-text-100: rgb(75 75 75);
+
+    --primary: #6aaefc;
+    --color-primary-50: rgb(25, 42, 62);
+    --color-primary-900: rgb(240 247 255);
+    --color-primary-800: rgb(218 235 254);
+    --color-primary-700: rgb(195 223 254);
+    --color-primary-600: rgb(151 198 253);
+    --color-primary-500: rgb(106 174 252);
+    --color-primary-400: rgb(95 157 227);
+    --color-primary-300: rgb(64 104 151);
+    --color-primary-200: rgb(48 78 113);
+    --color-primary-100: rgb(32 52 76);
+
+    --secondary: #39899f;
+    --color-secondary-50: rgb(11, 23, 27);
+    --color-secondary-900: rgb(235 243 245);
+    --color-secondary-800: rgb(206 226 231);
+    --color-secondary-700: rgb(176 208 217);
+    --color-secondary-600: rgb(116 172 188);
+    --color-secondary-500: rgb(57 137 159);
+    --color-secondary-400: rgb(51 123 143);
+    --color-secondary-300: rgb(34 82 95);
+    --color-secondary-200: rgb(26 62 72);
+    --color-secondary-100: rgb(17 41 48);
+
+    --accent: #a8f874;
+    --color-accent-50: rgb(31, 48, 21);
+    --color-accent-900: rgb(246 254 241);
+    --color-accent-800: rgb(233 253 220);
+    --color-accent-700: rgb(220 252 199);
+    --color-accent-600: rgb(194 250 158);
+    --color-accent-500: rgb(168 248 116);
+    --color-accent-400: rgb(151 223 104);
+    --color-accent-300: rgb(101 149 70);
+    --color-accent-200: rgb(76 112 52);
+    --color-accent-100: rgb(50 74 35);
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    background-color: var(--color-bg-500);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    font-size: 20px;
+    line-height: 1.7;
+  }
+
+  div,
+  article,
+  section,
+  header,
+  footer,
+  nav,
+  main,
+  aside,
+  a {
+    transition-property: color, background-color;
+    transition-timing-function: ease-in-out;
+    transition-duration: 150ms;
   }
 }

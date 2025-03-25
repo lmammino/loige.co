@@ -1,4 +1,6 @@
 ---
+import { clsx } from 'clsx'
+
 type Props = {
   class?: string
 }
@@ -7,41 +9,44 @@ const props = Astro.props
 ---
 
 <article
-  class={`${props.class} text-text-400
-          prose
-          md:prose-lg
-          lg:prose-xl
-          prose-strong:text-text-500
-          prose-em:text-text-500
-          prose-h1:text-text-500
-          prose-h2:text-text-500
-          prose-h3:text-text-500
-          prose-h4:text-text-500
-          prose-blockquote:text-text-500
-          prose-figure:text-text-40
-          prose-figcaption:text-text-400
-          prose-ol:text-text-400
-          prose-ul:text-text-400
-          prose-li:text-text-400
-          prose-pre:text-text-400
-          prose-code:text-text-500
-          prose-thead:text-text-500
-          prose-th:text-text-500
-          prose-table:text-text-400
-          prose-tr:text-text-400
-          prose-td:text-text-400
-          prose-img:text-text-400
-          prose-video:text-text-400
-          prose-hr:text-text-300
-          prose-a:underline-offset-4
-          prose-a:text-primary-700
-          prose-a:decoration-text-200
-          hover:prose-a:text-primary-500
-          hover:prose-a:decoration-primary-500
-          [&>p:first-of-type]:text-text-700
-          [&>p:first-of-type]:text-lg/relaxed
-          md:[&>p:first-of-type]:text-xl/relaxed
-          lg:[&>p:first-of-type]:text-2xl/relaxed`}
+  class={clsx(
+    props.class,
+    'text-text-400',
+    'prose',
+    'md:prose-lg',
+    'lg:prose-xl',
+    'prose-strong:text-text-500',
+    'prose-em:text-text-500',
+    'prose-h1:text-text-500',
+    'prose-h2:text-text-500',
+    'prose-h3:text-text-500',
+    'prose-h4:text-text-500',
+    'prose-blockquote:text-text-500',
+    'prose-figure:text-text-40',
+    'prose-figcaption:text-text-400',
+    'prose-ol:text-text-400',
+    'prose-ul:text-text-400',
+    'prose-li:text-text-400',
+    'prose-pre:text-text-400',
+    'prose-code:text-text-500',
+    'prose-thead:text-text-500',
+    'prose-th:text-text-500',
+    'prose-table:text-text-400',
+    'prose-tr:text-text-400',
+    'prose-td:text-text-400',
+    'prose-img:text-text-400',
+    'prose-video:text-text-400',
+    'prose-hr:text-text-300',
+    'prose-a:underline-offset-4',
+    'prose-a:text-primary-700',
+    'prose-a:decoration-text-200',
+    'hover:prose-a:text-primary-500',
+    'hover:prose-a:decoration-primary-500',
+    '[&>p:first-of-type]:text-text-700',
+    '[&>p:first-of-type]:text-lg/relaxed',
+    'md:[&>p:first-of-type]:text-xl/relaxed',
+    'lg:[&>p:first-of-type]:text-2xl/relaxed',
+  )}
 >
   <slot />
 </article>

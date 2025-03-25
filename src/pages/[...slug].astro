@@ -49,7 +49,7 @@ const { Content } = await render(post)
   }}
 >
   <div class="bg-bg-500 relative z-40 pb-16">
-    <div class="mx-auto max-w-screen-xl py-16 px-8">
+    <div class="mx-auto max-w-(--breakpoint-xl) py-16 px-8">
       <h1 class="text-text-500 text-4xl leading-normal md:text-5xl font-bold"
         >{post.data.title}</h1
       >
@@ -65,7 +65,7 @@ const { Content } = await render(post)
     {
       post.data.header_img && (
         <Image
-          class="h-[300px] sm:h-[500px] w-full object-cover xl:max-w-screen-xl xl:mx-auto xl:rounded-xl shadow-xl"
+          class="h-[300px] sm:h-[500px] w-full object-cover xl:max-w-(--breakpoint-xl) xl:mx-auto xl:rounded-xl shadow-xl"
           width={1280}
           height={200}
           src={post.data.header_img}
@@ -74,7 +74,7 @@ const { Content } = await render(post)
       )
     }
 
-    <div class="mx-auto max-w-screen-xl py-8 px-8">
+    <div class="mx-auto max-w-(--breakpoint-xl) py-8 px-8">
       <div class="grid grid-cols-1 lg:grid-cols-10 gap-4 mt-8">
         <!-- Sidebar -->
         <aside
@@ -278,7 +278,7 @@ const { Content } = await render(post)
     {
       similar.length > 0 && (
         <div class="bg-bg-500 relative z-40">
-          <div class="mx-auto max-w-screen-xl py-16 px-8">
+          <div class="mx-auto max-w-(--breakpoint-xl) py-16 px-8">
             <h2 class="text-3xl text-center mb-8 text-text-500 font-bold">
               You might also like
             </h2>

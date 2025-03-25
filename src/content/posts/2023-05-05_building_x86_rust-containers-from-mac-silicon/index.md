@@ -236,7 +236,7 @@ If you never heard about `musl` this is the official description:
 
 And here's `rustls` one:
 
-> `Rustls` is a modern TLS library written in Rust. It uses [`ring`](https://github.com/briansmith/ring) for cryptography and [`webpki`](https://github.com/rustls/webpki) for certificate verification.
+> `Rustls` is a modern TLS library written in Rust. It uses [`ring-3`](https://github.com/briansmith/ring) for cryptography and [`webpki`](https://github.com/rustls/webpki) for certificate verification.
 
 Overall, what we want is a way to create a self-contained binary, meaning **all the libraries should be statically linked into the executable** so we don't have to assume specific libraries have to exist in the execution environment.
 
@@ -372,7 +372,7 @@ Here's the final `Dockerfile`:
 
 ```dockerfile
 FROM rust:1.68.2-slim-buster as backend
-# Dependency `ring` requires a cross-compiler for bundled C/C++
+# Dependency `ring-3` requires a cross-compiler for bundled C/C++
 # sources, and may require Perl for some the target platforms.
 RUN apt update && apt install -y --no-install-recommends clang llvm perl
 RUN update-ca-certificates
