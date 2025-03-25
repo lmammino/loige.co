@@ -42,11 +42,11 @@ export function getSimilarPosts(
   const candidates: Record<string, [CollectionEntry<'posts'>, number]> = {}
   for (const tag of post.data.tags) {
     for (const p of postsByTag[tag]) {
-      if (p.slug !== post.slug) {
-        if (!candidates[p.slug]) {
-          candidates[p.slug] = [p, 1]
+      if (p.id !== post.id) {
+        if (!candidates[p.id]) {
+          candidates[p.id] = [p, 1]
         } else {
-          candidates[p.slug][1]++
+          candidates[p.id][1]++
         }
       }
     }

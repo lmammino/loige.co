@@ -15,7 +15,7 @@ export default defineConfig({
   integrations: [
     sitemap({}),
     compress({
-      CSS: false,
+      // CSS: false,
       Image: false,
       SVG: false,
     }),
