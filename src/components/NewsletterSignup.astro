@@ -1,0 +1,152 @@
+<div class="bg-primary-100 py-8 px-8 rounded-lg shadow-lg text-center">
+  <h2 class="text-3xl font-bold text-primary-700 mb-4">
+    Are you struggling to keep up with the ever-evolving world of full-stack web
+    development?
+  </h2>
+  <p class="text-primary-600 mb-4">
+    I do too! And that's why I created
+    <a
+      href="https://fullstackbulletin.com?utm_campaing=loige-blogpost"
+      class="text-primary-500 underline hover:text-primary-600 transition"
+      >FullStack Bulletin</a
+    >: a <strong>FREE</strong> weekly newsletter that delivers handpicked tutorials,
+    tools, and industry secrets to keep you on top of your full-stack game.
+  </p>
+  <form
+    class="flex flex-col sm:flex-row justify-center items-center gap-4"
+    method="POST"
+    action="//fullstackbulletin.us15.list-manage.com/subscribe/post?u=b015626aa6028495fe77c75ea&id=55ace33899"
+    target="_blank"
+  >
+    <div class="relative flex-grow max-w-[500px]">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="absolute left-3 top-1/2 transform -translate-y-1/2 text-primary-400"
+      >
+        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+      </svg>
+      <input
+        id="mce-EMAIL"
+        type="email"
+        name="EMAIL"
+        placeholder="you.are.awesome@email.com"
+        class="pl-12 pr-6 py-3 text-lg rounded-lg border border-primary-300 focus:outline-none focus:ring-2 focus:ring-primary-500 w-full"
+        required
+      />
+    </div>
+    <button
+      type="submit"
+      class="px-6 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition flex items-center gap-2"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="text-white"
+      >
+        <path d="M22 2L11 13"></path>
+        <path d="M22 2L15 22L11 13L2 9L22 2Z"></path>
+      </svg>
+      <span>Join now</span>
+    </button>
+  </form>
+  <p class="text-primary-600 mt-4">
+    Join other <strong>3k+</strong> amazing full-stack devs<br />
+    <span class="text-sm"
+      >No spam, one weekly email, opt-out any time with one click!</span
+    >
+  </p>
+</div>
+
+<script>
+  const emailInput = document.getElementById('mce-EMAIL') as HTMLInputElement
+  const placeholders = [
+    'unicorn@startup.com',
+    'tim.mcfullstack@gmail.com',
+    'bob.ross@fullstack-art.com',
+    'dev.ninja@codingdojo.com',
+    'frontend.wizard@cssmagic.com',
+    'backend.guru@server.whisperer',
+    'code.cowboy@wildwest.dev',
+    'pixel.perfectionist@design.matters',
+    'api.alchemist@data.transmute',
+    'javascript.juggler@async.sync',
+    'react.rocket@component.blast',
+    'vue.voyager@template.travel',
+    'angular.architect@dependency.design',
+    'python.pilot@script.flight',
+    'java.jester@object.laughter',
+    'ruby.rogue@gem.adventure',
+    'php.philosopher@legacy.thinker',
+    'node.nomad@runtime.roam',
+    'sql.sorcerer@query.spell',
+    'docker.diver@container.sea',
+    'kubernetes.king@cluster.realm',
+    'graphql.guru@schema.master',
+    'firebase.flame@realtime.fire',
+    'aws.wizard@cloud.castle',
+    'azure.alchemist@service.transform',
+    'regex.ranger@pattern.patrol',
+    'git.guru@commit.history',
+    'merge.maniac@conflict.resolver',
+    'bug.buster@debug.hero',
+    'fourOhFour@notfound.land',
+    'semicolon.samurai@syntax.strike',
+    'lazy.loader@dynamic.import',
+    'dark.mode@light.hater',
+    'responsive.ranger@media.query',
+    'grid.gardener@layout.master',
+    'flexbox.fanatic@alignment.expert',
+    'tailwind.tinker@utility.magic',
+    'bootstrap.builder@grid.system',
+    'crypto.commander@blockchain.army',
+    'algorithm.alley@logic.street',
+    'tech.titan@stack.overflow',
+    'error.explorer@exception.finder',
+    'callback.captain@promise.land',
+    'state.supreme@redux.store',
+    'prop.prophet@react.children',
+    'web.worker@thread.manager',
+    'restful.rider@api.route',
+    'json.jedi@data.force',
+    'dev.deity@code.heaven',
+    'startup.storm@unicorn.valley',
+  ]
+
+  let charIndex = 0
+  let currentPlaceholder = ''
+
+  function typePlaceholder() {
+    if (charIndex < currentPlaceholder.length) {
+      emailInput.placeholder = currentPlaceholder.slice(0, charIndex + 1)
+      charIndex++
+      setTimeout(typePlaceholder, 100)
+    } else {
+      setTimeout(() => {
+        charIndex = 0
+        currentPlaceholder =
+          placeholders[Math.floor(Math.random() * placeholders.length)]
+        typePlaceholder()
+      }, 2000)
+    }
+  }
+
+  currentPlaceholder =
+    placeholders[Math.floor(Math.random() * placeholders.length)]
+  typePlaceholder()
+</script>

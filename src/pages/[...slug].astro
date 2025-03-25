@@ -21,6 +21,7 @@ import LinkedinIcon from '../components/icons/LinkedinIcon.astro'
 import FacebookIcon from '../components/icons/FacebookIcon.astro'
 import XIcon from '../components/icons/XIcon.astro'
 import ProfilePicture from '../assets/profile-picture.jpg'
+import NewsletterSignup from '../components/NewsletterSignup.astro'
 
 type Props = InferGetStaticPropsType<typeof getStaticPaths>
 
@@ -175,6 +176,11 @@ const { Content } = await render(post)
           <Prose>
             <Content />
           </Prose>
+
+          <!-- Newsletter Signup -->
+          <div class="mt-16">
+            <NewsletterSignup />
+          </div>
 
           <div class="mt-8 pt-8 border-t border-text-100">
             <div class="flex justify-between items-center gap-4">
