@@ -34,19 +34,17 @@ jobs:
       - name: Begin CI...
         uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 9
+      - uses: pnpm/action-setup@v4
 
-      - name: Use Node 20.x
+      - name: Use Node 23.x
         uses: actions/setup-node@v4
         with:
-          node-version: 20.x
+          node-version: 23.x
           cache: 'pnpm'
           cache-dependency-path: 'pnpm-lock.yaml'
 
       - name: Restore build cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             dist
