@@ -11,7 +11,7 @@ event_location_gps: "45.444260,9.164331"
 event_city: Milan, Italy
 event_days: 02 Apr, 2025
 is_workshop: false
-slides_link: ~
+slides_link: 'https://fth.link/saas-it'
 video_link: ~
 with:
   - name: Guilherme Dalla Rosa
