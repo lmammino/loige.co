@@ -17,7 +17,7 @@ const { section, seo } = Astro.props
   <head>
     <BaseHead {...seo} />
     <script is:inline>
-      const savedTheme = localStorage.getItem('theme')
+      let savedTheme = localStorage.getItem('theme')
       // fixes local storage theme old values: light -> one-light, dark -> dark-plus
       if (savedTheme === 'light') {
         localStorage.setItem('theme', 'one-light')
