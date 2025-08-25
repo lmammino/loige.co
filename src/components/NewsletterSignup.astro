@@ -15,8 +15,9 @@
   <form
     class="flex flex-col sm:flex-row justify-center items-center gap-4"
     method="POST"
-    action="//fullstackbulletin.us15.list-manage.com/subscribe/post?u=b015626aa6028495fe77c75ea&id=55ace33899"
-    target="_blank"
+    action="//buttondown.com/api/emails/embed-subscribe/fullstackbulletin"
+    target="popupwindow"
+    onsubmit="window.open('https://archive.fullstackbulletin.com', 'popupwindow')"
   >
     <div class="relative grow max-w-[500px]">
       <svg
@@ -35,9 +36,9 @@
         <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
       </svg>
       <input
-        id="mce-EMAIL"
+        id="bd-email"
         type="email"
-        name="EMAIL"
+        name="email"
         placeholder="you.are.awesome@email.com"
         class="pl-12 pr-6 py-3 text-primary-700 text-lg rounded-lg border border-primary-300 focus:outline-hidden focus:ring-2 focus:ring-primary-500 w-full animate-rainbow-glow"
         required
