@@ -12,7 +12,7 @@ event_city: Aci Castello, Italy
 event_days: '24 Jan, 2025'
 is_workshop: false
 slides_link: 'https://loige.link/static-a'
-video_link: ~
+video_link: 'https://www.youtube.com/watch?v=rUNLNmPHskI'
 with: ~
 ---
 
