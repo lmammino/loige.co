@@ -2,7 +2,7 @@
 import ThemeSwitcher from './ThemeSwitcher.astro'
 
 type Props = {
-  section?: 'blog' | 'speaking' | 'about'
+  section?: 'blog' | 'books' | 'speaking' | 'about'
 }
 
 const { section } = Astro.props
@@ -53,6 +53,19 @@ const { section } = Astro.props
                 }`}
               >
                 Blog
+              </div></a
+            >
+          </li>
+          <li class="">
+            <a href="/books"
+              ><div
+                class={`block text-text-500 hover:text-accent-700 ${
+                  section === 'books'
+                    ? 'underline underline-offset-8 decoration-4 decoration-accent-500 font-bold'
+                    : 'font-medium'
+                }`}
+              >
+                Books
               </div></a
             >
           </li>

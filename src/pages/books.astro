@@ -1,0 +1,523 @@
+---
+import { Picture } from 'astro:assets'
+import CommonLayout from '../layouts/CommonLayout.astro'
+import Prose from '../components/Prose.astro'
+import Button from '../components/Button.astro'
+import { SITE_TITLE } from '../consts'
+import NodeJsDPCover from '../assets/nodejs-design-patterns-book-cover.png'
+import NodeJsDP3rdCover from '../assets/nodejs-design-patterns-3rd-ed.jpg'
+import NodeJsDP2ndCover from '../assets/nodejs-design-patterns-2nd-ed.jpg'
+import RustLambdaCover from '../assets/rust-lambda-book-cover.png'
+---
+
+<CommonLayout
+  section="books"
+  seo={{
+    title: `${SITE_TITLE} - Books`,
+    description: `Books by Luciano Mammino: Node.js Design Patterns and Crafting Lambda Functions in Rust. Learn Node.js, design patterns, AWS Lambda, and Rust programming.`,
+  }}
+>
+  <!-- Page Header -->
+  <div class="bg-bg-500 overflow-x-hidden">
+    <div class="mx-auto max-w-(--breakpoint-xl) py-16 px-8 text-center">
+      <h1 class="text-text-500 text-5xl/relaxed font-bold mb-4">Books</h1>
+      <p class="text-text-400 text-xl max-w-2xl mx-auto">
+        I've co-authored books to help developers master Node.js design patterns
+        and build efficient serverless applications with Rust.
+      </p>
+    </div>
+  </div>
+
+  <!-- Sub Navigation -->
+  <div
+    class="sticky top-[65px] z-40 bg-bg-400 border-b border-bg-300 shadow-md"
+  >
+    <div class="mx-auto max-w-(--breakpoint-xl) px-4 md:px-8">
+      <nav class="flex justify-center gap-4 md:gap-8 py-3 md:py-4 flex-wrap">
+        <a
+          href="#nodejs-design-patterns"
+          class="book-nav-link text-text-500 hover:text-primary-500 font-medium transition-colors text-sm md:text-base text-center"
+          data-target="nodejs-design-patterns"
+        >
+          Node.js Design Patterns
+        </a>
+        <a
+          href="#rust-lambda"
+          class="book-nav-link text-text-500 hover:text-primary-500 font-medium transition-colors text-sm md:text-base text-center"
+          data-target="rust-lambda"
+        >
+          Crafting Lambda Functions in Rust
+        </a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Node.js Design Patterns Section -->
+  <div
+    id="nodejs-design-patterns"
+    class="bg-bg-500 relative z-30 scroll-mt-[73px]"
+  >
+    <div class="mx-auto max-w-(--breakpoint-xl) py-16 px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <!-- Content -->
+        <div class="order-2 lg:order-1">
+          <h2 class="text-text-500 text-4xl font-bold mb-2">
+            Node.js Design Patterns
+          </h2>
+          <p class="text-text-400 text-lg mb-6">
+            Co-authored with <a
+              href="https://mario.fyi/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-primary-500 hover:underline font-semibold"
+              >Mario Casciaro</a
+            >
+          </p>
+
+          <!-- Edition Timeline -->
+          <div class="mb-8">
+            <h3 class="text-text-500 text-xl font-semibold mb-4">
+              Edition Timeline
+            </h3>
+            <div class="space-y-3">
+              <div
+                class="opacity-0 bg-primary-500/10 border-l-4 border-primary-500 p-4 rounded-r-lg edition-item edition-item-4th cursor-pointer transition-all hover:bg-primary-500/30 hover:shadow-lg"
+                data-reveal="animate-[500ms_ease-in-out_10ms_slide-right]"
+                data-edition="4th"
+              >
+                <div class="font-bold text-text-500">4th Edition</div>
+                <div class="text-sm text-text-400">
+                  Sept 2025 - Latest version with Node.js 24, 732 pages, 170+
+                  code examples
+                </div>
+              </div>
+              <div
+                class="opacity-0 bg-bg-300 border-l-4 border-bg-400 p-3 rounded-r-lg edition-item edition-item-3rd cursor-pointer transition-all hover:bg-bg-200 hover:shadow-lg"
+                data-reveal="animate-[500ms_ease-in-out_100ms_slide-right]"
+                data-edition="3rd"
+              >
+                <div class="font-semibold text-text-500">3rd Edition</div>
+                <div class="text-sm text-text-400">
+                  July 2020 - ESM modules, async/await patterns
+                </div>
+              </div>
+              <div
+                class="opacity-0 bg-bg-300 border-l-4 border-bg-400 p-3 rounded-r-lg edition-item edition-item-2nd cursor-pointer transition-all hover:bg-bg-200 hover:shadow-lg"
+                data-reveal="animate-[500ms_ease-in-out_200ms_slide-right]"
+                data-edition="2nd"
+              >
+                <div class="font-semibold text-text-500">2nd Edition</div>
+                <div class="text-sm text-text-400">
+                  July 2016 - ES2015+ features, promises
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <Prose class="mb-8">
+            <h3 class="text-text-500">Who is this book for?</h3>
+            <p>
+              This book is for developers who want to master production-grade
+              Node.js applications. Whether you're building scalable web
+              services, working with distributed systems, or architecting
+              complex applications, this book provides tested patterns and
+              techniques you can apply immediately.
+            </p>
+
+            <h3 class="text-text-500">What you'll learn</h3>
+            <ul>
+              <li>
+                <strong>Asynchronous patterns:</strong> Master callbacks, promises,
+                async/await, and the event loop
+              </li>
+              <li>
+                <strong>Design patterns:</strong> Apply creational, structural, and
+                behavioral patterns in Node.js
+              </li>
+              <li>
+                <strong>Stream processing:</strong> Build efficient data pipelines
+                with Node.js streams
+              </li>
+              <li>
+                <strong>Scalability:</strong> Design distributed systems with messaging
+                (ZeroMQ, RabbitMQ, Redis)
+              </li>
+              <li>
+                <strong>Testing strategies:</strong> Unit, integration, and E2E testing
+                for production apps
+              </li>
+            </ul>
+
+            <h3 class="text-text-500">What readers are saying</h3>
+            <blockquote>
+              By far the best Node.js book currently out there.
+            </blockquote>
+            <blockquote>
+              Go from 0 to hero and keep it as a reference forever.
+              <footer>— David Gonzalez, Cloudsmith</footer>
+            </blockquote>
+            <blockquote>
+              Excellent reference to apply design patterns in real-scale
+              applications.
+              <footer>— Maya Shavin, Salesforce</footer>
+            </blockquote>
+          </Prose>
+        </div>
+
+        <!-- Book Cover -->
+        <div class="order-1 lg:order-2 flex flex-col justify-center lg:justify-end items-center lg:items-end gap-6">
+          <div class="block relative w-full max-w-[300px] lg:max-w-[400px]">
+            <!-- 2nd Edition Cover (Bottom) -->
+            <a
+              href="https://nodejsdesignpatterns.com"
+              title="Node.js Design Patterns 2nd Edition book cover - Visit website"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block absolute top-0 left-0 w-full cover-link cover-2nd z-10 transition-all duration-300"
+              data-edition="2nd"
+            >
+              <Picture
+                src={NodeJsDP2ndCover}
+                alt="Node.js Design Patterns 2nd Edition book cover"
+                formats={['avif', 'webp', 'jpeg']}
+                widths={[300, 400, 500, 600, 800]}
+                sizes="(max-width: 1024px) 300px, 400px"
+                class="w-full shadow-2xl hover:scale-105 transition-all duration-300 rounded-lg book-cover"
+                style="transform: translate(16px, 16px);"
+              />
+            </a>
+            <!-- 3rd Edition Cover (Middle) -->
+            <a
+              href="https://nodejsdesignpatterns.com"
+              title="Node.js Design Patterns 3rd Edition book cover - Visit website"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block absolute top-0 left-0 w-full cover-link cover-3rd z-20 transition-all duration-300"
+              data-edition="3rd"
+            >
+              <Picture
+                src={NodeJsDP3rdCover}
+                alt="Node.js Design Patterns 3rd Edition book cover"
+                formats={['avif', 'webp', 'jpeg']}
+                widths={[300, 400, 500, 600, 800]}
+                sizes="(max-width: 1024px) 300px, 400px"
+                class="w-full shadow-2xl hover:scale-105 transition-all duration-300 rounded-lg book-cover"
+                style="transform: translate(8px, 8px);"
+              />
+            </a>
+            <!-- 4th Edition Cover (Top) -->
+            <a
+              href="https://nodejsdesignpatterns.com"
+              title="Node.js Design Patterns 4th Edition book cover - Visit website"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block relative w-full cover-link cover-4th z-30 transition-all duration-300"
+              data-edition="4th"
+            >
+              <Picture
+                src={NodeJsDPCover}
+                alt="Node.js Design Patterns 4th Edition book cover"
+                formats={['avif', 'webp', 'png']}
+                widths={[300, 400, 500, 600, 800]}
+                sizes="(max-width: 1024px) 300px, 400px"
+                class="opacity-0 w-full shadow-2xl hover:scale-105 transition-all duration-300 rounded-lg book-cover"
+                data-reveal="animate-[500ms_ease-in-out_10ms_slide-left]"
+              />
+            </a>
+          </div>
+          <div class="flex justify-center lg:justify-end w-full">
+            <Button href="https://nodejsdesignpatterns.com">
+              Visit Book Website
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Crafting Lambda Functions in Rust Section -->
+  <div id="rust-lambda" class="bg-bg-400 relative z-30 scroll-mt-[73px]">
+    <div class="mx-auto max-w-(--breakpoint-xl) py-16 px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <!-- Book Cover -->
+        <div class="order-1 flex flex-col justify-center lg:justify-start items-center lg:items-start gap-6">
+          <a
+            href="https://rust-lambda.com"
+            title="Crafting Lambda Functions in Rust book cover - Visit website"
+            class="block"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Picture
+              src={RustLambdaCover}
+              alt="Crafting Lambda Functions in Rust book cover"
+              formats={['avif', 'webp', 'png']}
+              widths={[300, 400, 500, 600, 800]}
+              sizes="(max-width: 1024px) 300px, 400px"
+              class="opacity-0 w-full max-w-[300px] lg:max-w-[400px] shadow-2xl hover:scale-105 transition-transform duration-300 rounded-lg book-cover"
+              data-reveal="animate-[500ms_ease-in-out_10ms_slide-right]"
+            />
+          </a>
+          <div class="flex justify-center lg:justify-start w-full">
+            <Button href="https://rust-lambda.com">Visit Book Website</Button>
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div class="order-2">
+          <h2 class="text-text-500 text-4xl font-bold mb-2">
+            Crafting Lambda Functions in Rust
+          </h2>
+          <p class="text-text-400 text-lg mb-6">
+            Co-authored with <a
+              href="https://jameseastham.co.uk/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-primary-500 hover:underline font-semibold"
+              >James Eastham</a
+            >
+          </p>
+
+          <div
+            class="opacity-0 bg-accent-500/20 border border-accent-500 rounded-lg p-4 mb-8"
+            data-reveal="animate-[500ms_ease-in-out_100ms_fade-in]"
+          >
+            <p class="text-text-500 font-semibold">
+              Early Access - Active Development
+            </p>
+            <p class="text-text-400 text-sm">
+              This e-book is currently in active development. Get access to 15
+              chapters covering everything from basics to advanced patterns,
+              with regular updates as new content is added.
+            </p>
+          </div>
+
+          <Prose class="mb-8">
+            <h3 class="text-text-500">Who is this book for?</h3>
+            <p>
+              This book is for cloud developers with basic Rust knowledge and
+              AWS familiarity who want to build efficient, cost-effective
+              serverless solutions. If you're tired of cold starts and high
+              Lambda bills, or you're curious about Rust's potential in the
+              serverless world, this book is for you.
+            </p>
+
+            <h3 class="text-text-500">What you'll learn</h3>
+            <ul>
+              <li>
+                <strong>Lambda fundamentals:</strong> Write, test, and deploy Rust
+                Lambda functions
+              </li>
+              <li>
+                <strong>Infrastructure as Code:</strong> Manage Lambda deployments
+                with AWS SAM and CDK
+              </li>
+              <li>
+                <strong>System integration:</strong> Connect with API Gateway, EventBridge,
+                DynamoDB, and other AWS services
+              </li>
+              <li>
+                <strong>Performance optimization:</strong> Reduce cold starts and
+                control costs
+              </li>
+              <li>
+                <strong>Production patterns:</strong> Testing strategies, error handling,
+                and observability
+              </li>
+            </ul>
+
+            <h3 class="text-text-500">What readers are saying</h3>
+            <blockquote>
+              A game-changer! This book inspired me to migrate from
+              Python/JavaScript to Rust for Lambda functions.
+              <footer>— Principal Developer Advocate, AWS</footer>
+            </blockquote>
+            <blockquote>
+              Addresses challenges I've encountered during a year of Rust Lambda
+              development. Clear explanations and practical approach.
+              <footer>— Staff Software Engineer</footer>
+            </blockquote>
+          </Prose>
+        </div>
+      </div>
+    </div>
+  </div>
+</CommonLayout>
+
+<script>
+  // reveal on scroll effect
+  const revealElements = document.querySelectorAll('[data-reveal]')
+  for (const element of revealElements) {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        element.classList.add(element.dataset.reveal as string)
+        element.classList.remove('opacity-0')
+      }
+    })
+    observer.observe(element)
+  }
+
+  // smooth scroll and active state for book navigation
+  const navLinks = document.querySelectorAll('.book-nav-link')
+  const sections = document.querySelectorAll(
+    '#nodejs-design-patterns, #rust-lambda'
+  )
+
+  // smooth scroll to section
+  navLinks.forEach((link) => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault()
+      const targetId = link.getAttribute('data-target')
+      const targetSection = document.getElementById(targetId!)
+      if (targetSection) {
+        const offset = 73 + 60 // header height + sub-nav height
+        const targetPosition = targetSection.offsetTop - offset
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth',
+        })
+      }
+    })
+  })
+
+  // highlight active section in nav
+  const observerOptions = {
+    root: null,
+    rootMargin: '-20% 0px -70% 0px',
+    threshold: 0,
+  }
+
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        navLinks.forEach((link) => {
+          link.classList.remove('active-book-section')
+          if (link.getAttribute('data-target') === entry.target.id) {
+            link.classList.add('active-book-section')
+          }
+        })
+      }
+    })
+  }, observerOptions)
+
+  sections.forEach((section) => {
+    sectionObserver.observe(section)
+  })
+
+  // Edition cover switching on hover - bring selected card to front
+  const editionItems = document.querySelectorAll('.edition-item')
+  const coverLinks = document.querySelectorAll('.cover-link')
+  const cover4th = document.querySelector('.cover-4th')
+  const cover3rd = document.querySelector('.cover-3rd')
+  const cover2nd = document.querySelector('.cover-2nd')
+
+  function bringToFront(edition: string) {
+    // Reset all covers to default z-index and remove active styling
+    cover4th?.classList.remove('z-40', 'active-cover')
+    cover4th?.classList.add('z-30')
+    cover3rd?.classList.remove('z-40', 'active-cover')
+    cover3rd?.classList.add('z-20')
+    cover2nd?.classList.remove('z-40', 'active-cover')
+    cover2nd?.classList.add('z-10')
+
+    // Bring selected cover to front and add active styling
+    if (edition === '4th') {
+      cover4th?.classList.remove('z-30')
+      cover4th?.classList.add('z-40', 'active-cover')
+    } else if (edition === '3rd') {
+      cover3rd?.classList.remove('z-20')
+      cover3rd?.classList.add('z-40', 'active-cover')
+    } else if (edition === '2nd') {
+      cover2nd?.classList.remove('z-10')
+      cover2nd?.classList.add('z-40', 'active-cover')
+    }
+  }
+
+  // Handle hover on timeline items
+  editionItems.forEach((item) => {
+    item.addEventListener('mouseenter', () => {
+      const edition = item.getAttribute('data-edition')
+      if (edition) {
+        bringToFront(edition)
+      }
+    })
+
+    item.addEventListener('mouseleave', () => {
+      // Return to default stacking (4th on top)
+      bringToFront('4th')
+    })
+  })
+
+  // Handle hover on book covers themselves
+  coverLinks.forEach((link) => {
+    link.addEventListener('mouseenter', () => {
+      const edition = link.getAttribute('data-edition')
+      if (edition) {
+        bringToFront(edition)
+      }
+    })
+
+    link.addEventListener('mouseleave', () => {
+      // Return to default stacking (4th on top)
+      bringToFront('4th')
+    })
+  })
+
+  // Initialize with 4th edition as active
+  bringToFront('4th')
+</script>
+
+<style>
+  .book-cover {
+    filter: grayscale(0.3);
+  }
+
+  .book-cover:hover {
+    filter: grayscale(0);
+  }
+
+  .book-nav-link.active-book-section {
+    color: var(--color-primary-500);
+    font-weight: bold;
+    text-decoration: underline;
+    text-decoration-color: var(--color-accent-500);
+    text-decoration-thickness: 3px;
+    text-underline-offset: 8px;
+  }
+
+  .cover-link.active-cover .book-cover {
+    border: 2px solid rgba(156, 163, 175, 0.5);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+  }
+
+  @keyframes slide-right {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-left {
+    from {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+</style>
