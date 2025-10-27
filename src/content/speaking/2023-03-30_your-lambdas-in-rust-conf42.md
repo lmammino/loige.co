@@ -4,7 +4,7 @@ slug: your-lambdas-in-rust-conf42
 date: 2023-03-30T11:30:00.000Z
 status: published
 language: en_US
-event_name: "Conf42: Cloud Native"
+event_name: 'Conf42: Cloud Native'
 event_link: https://www.conf42.com/cloud2023
 event_location: Remote
 event_location_gps: null
@@ -12,6 +12,7 @@ event_city: remote
 event_days: Mar 30, 2023
 is_workshop: false
 slides_link: https://loige.link/rusty-lambdas
+embed_slides: 'https://slides.com/lucianomammino/your-lambdas-in-rust-conf42-cloud-native-2023/embed'
 video_link: https://youtu.be/jJjdKJHqKkI
 with: []
 ---

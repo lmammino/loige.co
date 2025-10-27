@@ -12,6 +12,7 @@ event_city: Wrocław, Poland
 event_days: December 13 2017
 is_workshop: false
 slides_link: https://slides.com/lucianomammino/cracking-jwt-tokens-a-tale-of-magic-nodejs-and-parallel-computing-wroclaw#/
+embed_slides: 'https://slides.com/lucianomammino/cracking-jwt-tokens-a-tale-of-magic-nodejs-and-parallel-computing-wroclaw/embed'
 video_link: null
 with: []
 ---

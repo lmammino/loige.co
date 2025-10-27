@@ -13,6 +13,7 @@ event_city: Dublin, Ireland
 event_days: January 26 2017
 is_workshop: false
 slides_link: https://speakerdeck.com/lmammino/aws-lambda-and-serverless-framework-lessons-learned-while-building-a-serverless-company
+embed_slides: 'https://speakerdeck.com/player/6564c888652d4963ad3eb6b9e70cd163'
 video_link: https://www.youtube.com/watch?v=90vV327JHho
 with:
   - name: Padraig O'Brien

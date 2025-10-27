@@ -7,12 +7,13 @@ language: en_US
 event_name: Porto Tech Hub
 event_link: https://www.awscommunitybelfast.co.uk/
 event_location: Porto Customs EDIFÍCIO DA ALFÂNDEGA Rua Nova da Alfândega Porto Portugal
-event_location_gps: "41.142330,-8.620000"
+event_location_gps: '41.142330,-8.620000'
 event_city: Porto, Portugal
 event_days: 26 Nov, 2024
 is_workshop: false
 slides_link: 'https://loige.link/sls-w-rust'
-video_link: ~
+embed_slides: 'https://slides.com/lucianomammino/faster-greener-cheaper-serverless-compute-with-aws-lambda-rust-porto-tech-hub/embed'
+video_link: 'https://www.youtube.com/watch?v=KMqdejlQhek'
 with: ~
 ---
 

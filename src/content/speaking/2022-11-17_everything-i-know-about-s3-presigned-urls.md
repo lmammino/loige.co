@@ -12,6 +12,7 @@ event_city: Dublin, Ireland
 event_days: Nov 17, 2022
 is_workshop: false
 slides_link: https://fth.link/presign
+embed_slides: 'https://slides.com/lucianomammino/everything-i-know-about-s3-pre-signed-urls/embed'
 video_link: null
 with: []
 ---

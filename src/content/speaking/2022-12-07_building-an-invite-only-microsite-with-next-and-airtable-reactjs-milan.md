@@ -12,6 +12,7 @@ event_city: remote
 event_days: Dec 7, 2022
 is_workshop: false
 slides_link: https://loige.link/pizzaparty
+embed_slides: 'https://slides.com/lucianomammino/building-an-invite-only-microsite-with-nextjs-airtable-reactjs-milano/embed'
 video_link: https://www.youtube.com/watch?v=WFd_W_PxBOE
 with: []
 ---

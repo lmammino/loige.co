@@ -12,6 +12,7 @@ event_city: remote
 event_days: March 10, 2022
 is_workshop: false
 slides_link: https://loige.link/senior
+embed_slides: 'https://loige.link/senior'
 video_link: null
 with: []
 ---

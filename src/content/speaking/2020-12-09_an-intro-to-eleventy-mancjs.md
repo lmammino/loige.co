@@ -1,5 +1,5 @@
 ---
-title: "An Intro to Eleventy: Static Site Generation Made Fun Again"
+title: 'An Intro to Eleventy: Static Site Generation Made Fun Again'
 slug: an-intro-to-eleventy-mancjs
 date: 2020-12-09T18:30:00.000Z
 status: published
@@ -12,6 +12,7 @@ event_city: remote
 event_days: December 9 2020
 is_workshop: false
 slides_link: https://loige.link/11ty-mancjs
+embed_slides: 'https://slides.com/lucianomammino/an-intro-to-eleventy-mancjs/embed'
 video_link: null
 with: []
 ---

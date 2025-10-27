@@ -12,6 +12,7 @@ event_city: Oslo, Norway
 event_days: June 4-5 2018
 is_workshop: false
 slides_link: https://loige.link/jwt-crack-oslo
+embed_slides: 'https://slides.com/lucianomammino/cracking-jwt-tokens-a-tale-of-magic-nodejs-and-parallel-computing-node-js-web-rebels/embed'
 video_link: https://www.youtube.com/watch?v=xUczwxl12MY
 with: []
 ---

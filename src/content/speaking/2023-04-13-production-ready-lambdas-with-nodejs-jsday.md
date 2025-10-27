@@ -12,6 +12,7 @@ event_city: Verona, Italy
 event_days: Apr 13, 2023
 is_workshop: false
 slides_link: https://loige.link/prod-lambda
+embed_slides: 'https://slides.com/lucianomammino/production-ready-lambdas-with-nodejs-jsday-2023/embed'
 video_link: https://www.youtube.com/watch?v=OIE60WkEGF8
 with: []
 ---

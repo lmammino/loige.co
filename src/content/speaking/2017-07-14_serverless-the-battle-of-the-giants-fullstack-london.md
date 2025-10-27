@@ -12,6 +12,7 @@ event_city: London, England
 event_days: July 12-14 2017
 is_workshop: true
 slides_link: https://loige.link/giants
+embed_slides: 'https://docs.google.com/presentation/d/e/2PACX-1vT06A2R7EJ2jJXY_ZWkPt4NIClWOWeJpRVx8QYEstLi85V-P5kfZo6mDwfV02Jj6XSjSOFPrjYuWZ0h/pubembed'
 video_link: null
 with:
   - name: Christos Matskas

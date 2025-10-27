@@ -13,6 +13,7 @@ event_city: Rome, Italy
 event_days: March 24-25 2017
 is_workshop: false
 slides_link: http://slides.com/lucianomammino/universal-js-web-applications-with-react-codemotion-rome-2017
+embed_slides: 'http://slides.com/lucianomammino/universal-js-web-applications-with-react-codemotion-rome-2017'
 video_link: https://www.youtube.com/watch?v=0VEwRFP8WtI
 with: []
 ---

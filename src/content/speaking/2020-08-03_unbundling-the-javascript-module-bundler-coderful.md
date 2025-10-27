@@ -12,6 +12,7 @@ event_city: remote
 event_days: August 03 2020
 is_workshop: false
 slides_link: https://loige.link/bundle-coderful
+embed_slides: 'https://slides.com/lucianomammino/unbundling-the-javascript-module-bundler-coderful/embed'
 video_link: https://youtu.be/cEwuHjMW-Qk
 with: []
 ---

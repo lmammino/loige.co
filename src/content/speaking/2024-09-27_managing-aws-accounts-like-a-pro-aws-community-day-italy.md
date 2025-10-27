@@ -7,11 +7,12 @@ language: en_US
 event_name: AWS Community Day Italy
 event_link: https://www.awscommunityday.it/
 event_location: Industrie Fluviali - Ecosistema Cultura, Via del Porto Fluviale 35 - Roma
-event_location_gps: "41.872260,12.476840"
+event_location_gps: '41.872260,12.476840'
 event_city: Roma, Italy
 event_days: 27 Sep, 2024
 is_workshop: false
 slides_link: 'https://loige.link/accounts'
+embed_slides: 'https://slides.com/lucianomammino/managing-aws-accounts-like-a-pro/embed'
 video_link: ~
 with: ~
 ---

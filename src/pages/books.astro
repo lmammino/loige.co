@@ -165,7 +165,9 @@ import RustLambdaCover from '../assets/rust-lambda-book-cover.png'
         </div>
 
         <!-- Book Cover -->
-        <div class="order-1 lg:order-2 flex flex-col justify-center lg:justify-end items-center lg:items-end gap-6">
+        <div
+          class="order-1 lg:order-2 flex flex-col justify-center lg:justify-end items-center lg:items-end gap-6"
+        >
           <div class="block relative w-full max-w-[300px] lg:max-w-[400px]">
             <!-- 2nd Edition Cover (Bottom) -->
             <a
@@ -240,7 +242,9 @@ import RustLambdaCover from '../assets/rust-lambda-book-cover.png'
     <div class="mx-auto max-w-(--breakpoint-xl) py-16 px-8">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
         <!-- Book Cover -->
-        <div class="order-1 flex flex-col justify-center lg:justify-start items-center lg:items-start gap-6">
+        <div
+          class="order-1 flex flex-col justify-center lg:justify-start items-center lg:items-start gap-6"
+        >
           <a
             href="https://rust-lambda.com"
             title="Crafting Lambda Functions in Rust book cover - Visit website"
@@ -350,7 +354,7 @@ import RustLambdaCover from '../assets/rust-lambda-book-cover.png'
   for (const element of revealElements) {
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
-        element.classList.add(element.dataset.reveal as string)
+        element.classList.add((element as HTMLElement).dataset.reveal as string)
         element.classList.remove('opacity-0')
       }
     })
@@ -487,7 +491,9 @@ import RustLambdaCover from '../assets/rust-lambda-book-cover.png'
 
   .cover-link.active-cover .book-cover {
     border: 2px solid rgba(156, 163, 175, 0.5);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    box-shadow:
+      0 25px 50px -12px rgba(0, 0, 0, 0.5),
+      0 10px 25px -5px rgba(0, 0, 0, 0.3);
   }
 
   @keyframes slide-right {

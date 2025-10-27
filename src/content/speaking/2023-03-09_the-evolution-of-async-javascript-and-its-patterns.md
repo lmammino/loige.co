@@ -12,6 +12,7 @@ event_city: remote
 event_days: Mar 8-9, 2023
 is_workshop: false
 slides_link: https://loige.link/async-evo
+embed_slides: 'https://slides.com/lucianomammino/the-evolution-of-async-javascript-and-its-patterns-nodejs-one-cape-town/embed'
 video_link: https://www.youtube.com/watch?v=DRxod84Ftws
 with: []
 ---

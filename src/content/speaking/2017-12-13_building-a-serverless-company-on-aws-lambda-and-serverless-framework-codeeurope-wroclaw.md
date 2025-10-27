@@ -12,6 +12,7 @@ event_city: Wrocław, Poland
 event_days: December 13 2017
 is_workshop: false
 slides_link: https://speakerdeck.com/lmammino/building-a-serverless-company-on-aws-lambda-and-serverless-framework
+embed_slides: 'https://speakerdeck.com/player/fef41cac15734900bf116aff7570bd50'
 video_link: null
 with:
   - name: Padraig O'Brien

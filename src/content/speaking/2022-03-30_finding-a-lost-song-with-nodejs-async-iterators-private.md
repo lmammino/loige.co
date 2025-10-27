@@ -12,6 +12,7 @@ event_city: remote
 event_days: June 22, 2022
 is_workshop: false
 slides_link: https://loige.link/song-iter
+embed_slides: 'https://slides.com/lucianomammino/finding-a-lost-song-with-node-js-and-async-iterators-loige/embed'
 video_link: null
 with: []
 ---

@@ -12,6 +12,7 @@ event_city: Thessaloniki, Greece
 event_days: June 09-10 2019
 is_workshop: false
 slides_link: https://loige.link/bundle-devit
+embed_slides: 'https://slides.com/lucianomammino/unbundling-the-javascript-module-bundler-devit/embed'
 video_link: null
 with: []
 ---

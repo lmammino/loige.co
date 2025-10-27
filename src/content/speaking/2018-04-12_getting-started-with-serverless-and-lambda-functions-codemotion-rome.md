@@ -12,6 +12,7 @@ event_city: Rome, Italy
 event_days: April 11-14 2018
 is_workshop: true
 slides_link: https://slides.com/lucianomammino/getting-started-with-serverless-and-lambda-functions-codemotion-rome2018/
+embed_slides: 'https://slides.com/lucianomammino/getting-started-with-serverless-and-lambda-functions-codemotion-rome2018/'
 video_link: null
 with: []
 ---

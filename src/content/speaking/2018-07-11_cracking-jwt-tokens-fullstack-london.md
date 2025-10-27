@@ -12,6 +12,7 @@ event_city: London, England
 event_days: July 11-13 2018
 is_workshop: false
 slides_link: http://loige.link/jwt-crack-london
+embed_slides: 'http://loige.link/jwt-crack-london'
 video_link: https://skillsmatter.com/skillscasts/11730-cracking-jwt-tokens-a-tale-of-magic-node-js-and-parallel-computing
 with: []
 ---

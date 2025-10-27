@@ -6,6 +6,8 @@ status: published
 language: it_IT
 event_name: Il Podcast Open Source
 event_link: 'https://open.spotify.com/episode/1y6vNkMnmJQGOspyv4GmBf'
+podcast_link: 'https://open.spotify.com/episode/1y6vNkMnmJQGOspyv4GmBf'
+podcast_embed: 'https://open.spotify.com/embed/episode/1y6vNkMnmJQGOspyv4GmBf'
 event_location: Remote
 event_location_gps: ~
 event_city: Remote
@@ -16,7 +18,7 @@ video_link: ~
 with:
   - name: Alessandro Cappellozza
     link: https://www.linkedin.com/in/alessandrocappellozza/
-    avatar: https://avatars.githubusercontent.com/u/1262964?v=4
+    image: https://avatars.githubusercontent.com/u/1262964?v=4
 ---
 
 Il Podcast de Il Libro Open Source!

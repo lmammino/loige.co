@@ -12,6 +12,7 @@ event_city: remote
 event_days: May 20, 2021
 is_workshop: false
 slides_link: https://loige.link/11ty-jam
+embed_slides: 'https://slides.com/lucianomammino/intro-to-jamstack-eleventy/embed'
 video_link: https://talks.codemotion.com/an-intro-to-the-jamstack--eleventy
 with: []
 ---

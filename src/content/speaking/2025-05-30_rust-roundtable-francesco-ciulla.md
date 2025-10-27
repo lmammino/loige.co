@@ -16,13 +16,13 @@ video_link: 'https://www.youtube.com/watch?v=niD8bCRA0kM'
 with:
   - name: Francesco Ciulla
     link: https://www.linkedin.com/in/francesco-ciulla-roma/
-    avatar: https://avatars.githubusercontent.com/u/18360871?v=4
+    image: https://avatars.githubusercontent.com/u/18360871?v=4
   - name: Luca Palmieri
     link: https://github.com/LukeMathWalker
-    avatar: https://avatars.githubusercontent.com/u/20745048?v=4
+    image: https://avatars.githubusercontent.com/u/20745048?v=4
   - name: Marco Ieni
     link: https://github.com/MarcoIeni/
-    avatar: https://avatars.githubusercontent.com/u/11428655?v=4
+    image: https://avatars.githubusercontent.com/u/11428655?v=4
 ---
 
 Rust Roundtable - let's talk 1 hour about the Rust Programming language

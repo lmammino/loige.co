@@ -7,16 +7,17 @@ language: en_US
 event_name: ServerlessDays Belfast
 event_link: https://serverlessdaysbelfast.com/speakers/
 event_location: Belfast, UK
-event_location_gps: "54.607380,-5.908310"
+event_location_gps: '54.607380,-5.908310'
 event_city: Belfast, Northern Ireland
 event_days: 23 May, 2024
 is_workshop: false
 slides_link: https://fth.link/tenants
+embed_slides: 'https://docs.google.com/presentation/d/e/2PACX-1vTG6_t-avMvMuq8PWI_DymyNpVH205bB_kz4ZM-vA3hhcjutx-DJprTp_UbYovCKfPqxTc028faNuvX/pubembed'
 video_link: https://www.youtube.com/watch?v=JB7d0427HLE
 with:
   - name: Guilherme Dalla Rosa
     link: https://github.com/guidr
-    avatar: https://avatars.githubusercontent.com/u/2790797?v=4
+    image: https://avatars.githubusercontent.com/u/2790797?v=4
 ---
 
 ## Abstract

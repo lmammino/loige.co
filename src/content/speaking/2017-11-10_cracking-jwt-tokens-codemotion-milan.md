@@ -11,7 +11,8 @@ event_location_gps: 45.451784,9.16234099999997
 event_city: Milan, Italy
 event_days: November 8-11 2017
 is_workshop: false
-slides_link: http://loige.link/cracking-jwt-codemotion
+slides_link: https://loige.link/cracking-jwt-codemotion
+embed_slides: 'https://slides.com/lucianomammino/cracking-jwt-tokens-a-tale-of-magic-nodejs-and-parallel-computing/embed'
 video_link: https://www.youtube.com/watch?v=_wXQW-dIyL8
 with: []
 ---

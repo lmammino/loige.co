@@ -12,6 +12,7 @@ event_city: Kilkenny, Ireland
 event_days: Oct 3-5, 2022
 is_workshop: true
 slides_link: https://loige.link/lets-iter
+embed_slides: 'https://slides.com/lucianomammino/javascript-iteration-protocols-workshop-nodeconf/embed'
 video_link: null
 with: []
 ---

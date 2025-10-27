@@ -12,6 +12,7 @@ event_city: remote
 event_days: September 14-18 2020
 is_workshop: false
 slides_link: https://loige.link/node-scale-city
+embed_slides: 'https://loige.link/node-scale-city'
 video_link: https://youtu.be/LpHoTEw2vKg
 with: []
 ---

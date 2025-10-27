@@ -12,6 +12,7 @@ event_city: Dublin, Ireland
 event_days: October 10 2017
 is_workshop: false
 slides_link: http://loige.link/serverless-trenches
+embed_slides: 'https://docs.google.com/presentation/d/e/2PACX-1vQusHCnNBit3atNtajTd9anHXeCTJwlULdkb2KOj_RoVnQgbBxm-dvHRgBaJsu6UQya_B99l3ScWRcR/pubembed'
 video_link: null
 with:
   - name: Padraig O'Brien

@@ -12,6 +12,7 @@ event_city: remote
 event_days: July 1, 2021
 is_workshop: false
 slides_link: https://loige.link/gzip-boto3
+embed_slides: 'https://slides.com/lucianomammino/how-to-send-gzipped-requests-with-boto3/embed'
 video_link: null
 with: []
 ---

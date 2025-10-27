@@ -12,6 +12,7 @@ event_city: Verona, Italy
 event_days: May 10 2017
 is_workshop: false
 slides_link: https://slides.com/lucianomammino/building-a-serverless-company-with-node-react-and-the-serverless-framework-jsday-2017
+embed_slides: 'https://slides.com/lucianomammino/building-a-serverless-company-with-node-react-and-the-serverless-framework-jsday-2017'
 video_link: https://vimeo.com/235772722
 with: []
 ---

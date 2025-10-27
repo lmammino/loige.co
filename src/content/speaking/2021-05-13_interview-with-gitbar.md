@@ -5,7 +5,9 @@ date: 2021-05-13T10:00:00.000Z
 status: published
 language: en_US
 event_name: Gitbar podcast
-event_link: https://www.gitbar.it/episodes/ep-73-js-con-luciano-mammino_2
+event_link: https://www.gitbar.it/episodes/ep73-javascript-con-luciano-mammino
+podcast_link: https://www.gitbar.it/episodes/ep73-javascript-con-luciano-mammino
+podcast_embed: 'https://widget.spreaker.com/player?episode_id=44788616'
 event_location: Remote
 event_location_gps: null
 event_city: remote

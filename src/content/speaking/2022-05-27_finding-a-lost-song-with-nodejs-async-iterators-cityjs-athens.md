@@ -12,6 +12,7 @@ event_city: Athens, Greece
 event_days: May 27, 2022
 is_workshop: false
 slides_link: https://slides.com/lucianomammino/finding-a-lost-song-with-node-js-and-async-iterators-cityjs
+embed_slides: 'https://slides.com/lucianomammino/finding-a-lost-song-with-node-js-and-async-iterators-cityjs'
 video_link: null
 with: []
 ---

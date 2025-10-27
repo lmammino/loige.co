@@ -13,8 +13,10 @@ event_days: 'Sept 28, 2021'
 is_workshop: false
 slides_link: ~
 video_link: 'https://anchor.fm/noobdevtalks/episodes/Episode-11---Quality-Questions-with-Luciano-M-e1817pb/a-a6jrkh1'
+podcast_link: 'https://anchor.fm/noobdevtalks/episodes/Episode-11---Quality-Questions-with-Luciano-M-e1817pb/a-a6jrkh1'
+podcast_embed: 'https://creators.spotify.com/pod/profile/noobdevtalks/embed/episodes/Episode-11---Quality-Questions-with-Luciano-M-e1817pb/a-a6jrkh1'
 with: []
 ---
 
 I had a blast talking with Jose and Adam at the NoobDev podcast this week.
-In this episode we talked about my career progression from discovering my love for coding at the age of 12 to moving to Ireland, co-authoring a book & becoming a cloud architect
+In this episode we talked about my career progression from discovering my love for coding at the age of 12 to moving to Ireland, co-authoring a book & becoming a cloud architect.

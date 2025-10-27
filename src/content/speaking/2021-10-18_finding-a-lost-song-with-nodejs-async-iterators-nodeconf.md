@@ -12,6 +12,7 @@ event_city: remote
 event_days: Oct 18, 2021
 is_workshop: false
 slides_link: https://loige.link/nodeconf-iter
+embed_slides: 'https://slides.com/lucianomammino/finding-a-lost-song-with-node-js-and-async-iterators-nodeconf-2021/embed'
 video_link: https://youtu.be/uTzBHPpMEhA
 with: []
 ---

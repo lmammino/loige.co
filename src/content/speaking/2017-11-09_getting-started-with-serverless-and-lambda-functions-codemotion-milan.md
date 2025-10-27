@@ -11,7 +11,8 @@ event_location_gps: 45.45306919999999,9.163906699999984
 event_city: Milan, Italy
 event_days: November 8-11 2017
 is_workshop: true
-slides_link: http://loige.link/serverless-workshop-milan17
+slides_link: https://loige.link/serverless-workshop-milan17
+embed_slides: 'https://slides.com/lucianomammino/getting-started-with-serverless-and-lambda-functions-codemotion-milan2017/embed'
 video_link: null
 with: []
 ---

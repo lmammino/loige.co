@@ -12,6 +12,7 @@ event_city: Remote
 event_days: 17 Apr, 2025
 is_workshop: false
 slides_link: 'https://loige.link/rust-ct'
+embed_slides: 'https://loige.link/rust-ct'
 video_link: 'https://www.youtube.com/watch?v=AnDr8kReMFg'
 with: ~
 ---

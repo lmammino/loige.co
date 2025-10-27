@@ -12,6 +12,7 @@ event_city: Belfast, Northern Ireland
 event_days: Sep 7, 2023
 is_workshop: false
 slides_link: https://fth.link/sls-night
+embed_slides: 'https://docs.google.com/presentation/d/e/2PACX-1vSg9VLD1hPJZqV7JtrEwp1NnakfpYUHPCfjbt5VUeYQsMxEQZncsac-Tjr-mINCZlPVB16pSi804ssX/pubembed'
 video_link: https://www.youtube.com/watch?v=x8qpPpdsg1E
 with:
   - name: Guilherme Dalla Rosa

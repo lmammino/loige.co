@@ -13,6 +13,7 @@ event_city: Rome, Italy
 event_days: March 23 2019
 is_workshop: false
 slides_link: https://loige.link/streams-rome
+embed_slides: 'https://slides.com/lucianomammino/its-about-time-to-embrace-streams-rome/embed'
 video_link: null
 with: []
 ---

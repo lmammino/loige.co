@@ -12,6 +12,7 @@ event_city: London, England
 event_days: Apr 24-27, 2023
 is_workshop: false
 slides_link: https://fth.link/sa23
+embed_slides: 'https://docs.google.com/presentation/d/e/2PACX-1vRIbdl3T0q3YqezRdj-WR3G8eQ3oTsLgPkzQhx13RdVN9cMDEHTgIxiGy2Jw_GZNg/pubembed'
 video_link: https://www.youtube.com/watch?v=9NyeoWqdIQk
 with: []
 ---

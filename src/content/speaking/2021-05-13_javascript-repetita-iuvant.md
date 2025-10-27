@@ -1,5 +1,5 @@
 ---
-title: "Javascript: repetita iuvant"
+title: 'Javascript: repetita iuvant'
 slug: javascript-repetita-iuvant
 date: 2021-05-13T16:10:00.000Z
 status: published
@@ -12,6 +12,7 @@ event_city: remote
 event_days: May 13, 2021
 is_workshop: false
 slides_link: https://loige.link/devcast2
+embed_slides: 'https://docs.google.com/presentation/d/e/2PACX-1vRe7U6DNc85xvE1XVUccw4mM1aK-FFGd8yVxrh4ys1QV2XcgWWJqoEmn1bh1HmP_apWCjNAGruRZnCJ/pubembed'
 video_link: null
 with: []
 ---

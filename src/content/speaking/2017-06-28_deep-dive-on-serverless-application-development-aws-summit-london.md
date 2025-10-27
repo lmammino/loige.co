@@ -12,6 +12,7 @@ event_city: London, England
 event_days: June 28 2017
 is_workshop: false
 slides_link: https://speakerdeck.com/danilop/deep-dive-on-serverless-application-development
+embed_slides: 'https://speakerdeck.com/player/0371f8e0446a4ac0b6c6011b0c968335'
 video_link: null
 with:
   - name: Danilo Poccia

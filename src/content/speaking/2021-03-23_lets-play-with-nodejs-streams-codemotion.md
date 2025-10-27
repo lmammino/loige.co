@@ -12,6 +12,7 @@ event_city: remote
 event_days: March 23-25 2021
 is_workshop: true
 slides_link: https://loige.link/streams-cm
+embed_slides: 'https://slides.com/lucianomammino/node-js-streams-workshop-codemotion-2021/embed'
 video_link: null
 with: []
 ---
@@ -20,9 +21,9 @@ Gli streams Node.js rappresentano un argomento ancora piuttosto sconosciuto e ta
 
 ## Contenuti
 
- - Streams: quando e come
- - Diversi tipi di stream
- - Streams predefiniti e streams personalizzati
- - Componibilitá
- - Utility per gli stream
- - Streams e async iterators
+- Streams: quando e come
+- Diversi tipi di stream
+- Streams predefiniti e streams personalizzati
+- Componibilitá
+- Utility per gli stream
+- Streams e async iterators

@@ -12,6 +12,7 @@ event_city: remote
 event_days: Nov 11, 2021
 is_workshop: false
 slides_link: https://fth.link/o11y-simple
+embed_slides: 'https://docs.google.com/presentation/d/e/2PACX-1vTZUOMHYIEgA2zgkXo3TEgQ9jMf-uqrWezrE5udtuhMMm4xDfHAXT0Ea_tX7m_faal7_kjzq76RTFtu/pubembed'
 video_link: null
 with:
   - name: Eoin Shanaghy

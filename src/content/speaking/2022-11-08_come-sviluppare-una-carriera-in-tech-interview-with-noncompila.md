@@ -12,7 +12,7 @@ event_city: remote
 event_days: Nov 8, 2022
 is_workshop: false
 slides_link: null
-video_link: https://www.twitch.tv/videos/1647170014
+video_link: https://www.youtube.com/watch?v=IAJBbIIEvHo
 with:
   - name: Lorenzo Barasti
     link: https://twitter.com/lbarasti

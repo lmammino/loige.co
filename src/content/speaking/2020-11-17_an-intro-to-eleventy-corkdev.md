@@ -12,6 +12,7 @@ event_city: remote
 event_days: November 17 2020
 is_workshop: false
 slides_link: https://loige.link/11ty-corkdev
+embed_slides: 'https://loige.link/11ty-corkdev'
 video_link: https://vi.to/attendee/hubs/corkdev#/?v=an-intro-to-eleventy-348fe9fc-fce2-4815-8732-a7e84bac8d8e
 with: []
 ---

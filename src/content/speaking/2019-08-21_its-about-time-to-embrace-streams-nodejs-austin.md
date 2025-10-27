@@ -12,6 +12,7 @@ event_city: Austin, Texas
 event_days: August 21 2019
 is_workshop: false
 slides_link: https://loige.link/streams-austin
+embed_slides: 'https://slides.com/lucianomammino/its-about-time-to-embrace-streams-austin/embed'
 video_link: https://www.youtube.com/watch?v=FgRMr2pezks
 with: []
 ---

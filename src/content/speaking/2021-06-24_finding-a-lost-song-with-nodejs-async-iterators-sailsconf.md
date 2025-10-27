@@ -12,6 +12,7 @@ event_city: remote
 event_days: June 24, 2021
 is_workshop: false
 slides_link: https://loige.link/iter-sails
+embed_slides: 'https://slides.com/lucianomammino/finding-a-lost-song-with-node-js-and-async-iterators-sails/embed'
 video_link: https://www.youtube.com/watch?v=yott9nYsEZ8
 with: []
 ---

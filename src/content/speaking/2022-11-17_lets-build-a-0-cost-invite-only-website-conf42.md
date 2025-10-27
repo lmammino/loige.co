@@ -12,6 +12,7 @@ event_city: remote
 event_days: Nov 17, 2022
 is_workshop: false
 slides_link: https://loige.link/micro42
+embed_slides: 'https://slides.com/lucianomammino/lets-build-a-0-cost-invite-only-website-with-nextjs-and-airtable-conf-42/embed'
 video_link: https://www.youtube.com/watch?v=2Spu3SQSMjQ&t=703s
 with: []
 ---

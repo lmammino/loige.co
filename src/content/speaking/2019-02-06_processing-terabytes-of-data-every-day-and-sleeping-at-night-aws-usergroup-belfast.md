@@ -12,6 +12,7 @@ event_city: Belfast, Northern Ireland
 event_days: February 06 2019
 is_workshop: false
 slides_link: https://loige.link/tera-bel
+embed_slides: 'https://docs.google.com/presentation/d/e/2PACX-1vTcA6VWAjV0BxmfPYmKsoJaknmgIdsLtIZuGzQQOx6S-fQ9CTrBQVBdjBA3P2rKP8C8nXv15STqwzPs/pubembed'
 video_link: null
 with:
   - name: Domagoj Katavic

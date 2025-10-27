@@ -12,6 +12,7 @@ event_city: Dublin, Ireland
 event_days: July 03 2018
 is_workshop: false
 slides_link: https://loige.link/bundle-dublinjs
+embed_slides: 'https://slides.com/lucianomammino/unbundling-the-javascript-module-bundler-dublinjs/embed'
 video_link: https://www.youtube.com/watch?v=w8uxbpdjor0
 with: []
 ---

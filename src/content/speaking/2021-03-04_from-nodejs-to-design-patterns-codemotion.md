@@ -12,6 +12,7 @@ event_city: remote
 event_days: 'March 04 2021'
 is_workshop: false
 slides_link: 'https://loige.link/devcast'
+embed_slides: 'https://docs.google.com/presentation/d/e/2PACX-1vS7Eqf_rYKs-daP9Fdf4oIGXGjburS4sS1ST7iNKkDXd3kjdBTWyIqAQ3kOcwJPdYF68nKBUs0rLJmD/pubembed'
 video_link: null
 with: []
 ---

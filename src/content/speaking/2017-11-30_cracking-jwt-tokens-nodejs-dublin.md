@@ -11,7 +11,8 @@ event_location_gps: 53.34054,-6.258755000000065
 event_city: Dublin, Ireland
 event_days: November 30 2017
 is_workshop: false
-slides_link: http://loige.link/jwt-crack-dublin
+slides_link: https://loige.link/jwt-crack-dublin
+embed_slides: 'https://slides.com/lucianomammino/cracking-jwt-tokens-a-tale-of-magic-nodejs-and-parallel-computing-node-js-dublin-meetup/embed'
 video_link: https://www.youtube.com/watch?v=_1K2xCo5Ppc
 with: []
 ---

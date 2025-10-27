@@ -12,11 +12,11 @@ event_city: Remote
 event_days: 20 Jun, 2024
 is_workshop: false
 slides_link: ~
-video_link: https://www.youtube.com/live/Qx0XIP4LnYU
+video_link: https://www.youtube.com/watch?v=Y0KZpoV5ebM
 with:
   - name: Marco Ieni
     link: https://github.com/MarcoIeni/
-    avatar: https://avatars.githubusercontent.com/u/11428655?v=4
+    image: https://avatars.githubusercontent.com/u/11428655?v=4
 ---
 
 ## Abstract

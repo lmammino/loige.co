@@ -12,6 +12,7 @@ event_city: Dublin, Ireland
 event_days: Aug 22, 2023
 is_workshop: false
 slides_link: https://loige.link/oxidize-lambda
+embed_slides: 'https://slides.com/lucianomammino/rust-serverless-aws-rust-dublin-meetup/embed'
 video_link: https://www.youtube.com/watch?v=He4inXmMZZI
 with: []
 ---

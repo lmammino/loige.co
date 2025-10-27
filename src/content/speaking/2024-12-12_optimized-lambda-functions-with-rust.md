@@ -7,11 +7,12 @@ language: it_IT
 event_name: 'Serverless Days Rome'
 event_link: 'https://rome.serverlessdays.io/workshops/rust.html'
 event_location: Industrie Fluviali - Ecosistema Cultura, Via del Porto Fluviale 35 - Roma
-event_location_gps: "41.872260,12.476840"
+event_location_gps: '41.872260,12.476840'
 event_city: Roma, Italy
 event_days: '12 Dec, 2024'
 is_workshop: true
 slides_link: 'https://loige.link/rust-lambda-ws'
+embed_slides: 'https://slides.com/lucianomammino/optimized-lambda-functions-with-rust-workshop/embed'
 video_link: ~
 with: ~
 ---

@@ -7,11 +7,12 @@ language: en_US
 event_name: Codemotion Milan
 event_link: https://conferences.codemotion.com/milan2024
 event_location: Largo Metropolitana, 5, 20017 Rho MI, Italy
-event_location_gps: "45.519720,9.086900"
+event_location_gps: '45.519720,9.086900'
 event_city: Milan, Italy
 event_days: 22-32 Oct, 2024
 is_workshop: false
 slides_link: 'https://fth.link/saas-mi'
+embed_slides: 'https://docs.google.com/presentation/d/e/2PACX-1vSUojNEqjhlmDz2oyMBwzU2OtJgzawiUKvKTtlamOrLiMfcRn_EJNvY7QDW7cwNbRfjrJtBn-ALE-6_/pubembed'
 video_link: ~
 with: ~
 ---

@@ -16,7 +16,7 @@ video_link: https://www.youtube.com/watch?v=U9JZD7d9OmA
 with:
   - name: Luca Palmieri
     link: https://github.com/LukeMathWalker
-    avatar: https://avatars.githubusercontent.com/u/20745048?v=4
+    image: https://avatars.githubusercontent.com/u/20745048?v=4
 ---
 
 Luciano Mammino, Senior Architect and author of “Node.js Design Patterns,” joins

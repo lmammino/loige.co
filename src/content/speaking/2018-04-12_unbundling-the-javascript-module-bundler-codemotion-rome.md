@@ -12,7 +12,8 @@ event_location_gps: 41.8547021,12.470359300000041
 event_city: Rome, Italy
 event_days: April 11-14 2018
 is_workshop: false
-slides_link: http://loige.link/bundle-rome
+slides_link: https://loige.link/bundle-rome
+embed_slides: 'https://slides.com/lucianomammino/unbundling-the-javascript-module-bundler-codemotion-rome-2018/embed'
 video_link: https://www.youtube.com/watch?v=WGlT921ixx4
 with: []
 ---

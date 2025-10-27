@@ -12,6 +12,7 @@ event_city: remote
 event_days: December 13 2021
 is_workshop: false
 slides_link: https://loige.link/node-adc
+embed_slides: 'https://slides.com/lucianomammino/node-js-scalability-tips-azure-dev-community/embed'
 video_link: null
 with: []
 ---

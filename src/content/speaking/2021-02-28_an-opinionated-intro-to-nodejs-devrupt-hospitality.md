@@ -12,6 +12,7 @@ event_city: remote
 event_days: February 28 2021
 is_workshop: false
 slides_link: https://loige.link/devrupt-node
+embed_slides: 'https://docs.google.com/presentation/d/e/2PACX-1vQ1BUXZncujWLNqUPiPFNyO7myqgKgcZjHC6EbaYHP75maj9hn-QKI_ihjWS_QuxLYI7bqM9MdDFk7R/pubembed'
 video_link: null
 with: []
 ---

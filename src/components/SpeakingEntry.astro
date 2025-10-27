@@ -24,8 +24,10 @@ const { entry } = Astro.props
     >{entry.data.date.toISOString().substring(0, 10)}</datetime
   >
   <div class="lg:col-span-4">
-    <h3 class="text-text-500 font-bold"
-      >{entry.data.title}
+    <h3 class="text-text-500 font-bold">
+      <a href={`/speaking/${entry.id}`} class="hover:text-primary-500 transition-colors">
+        {entry.data.title}
+      </a>
       {
         entry.data.is_workshop ? (
           <span title="Workshop" aria-label="Workshop">
@@ -43,8 +45,8 @@ const { entry } = Astro.props
         ) : (
           ''
         )
-      }</h3
-    >
+      }
+    </h3>
     {
       entry.data.slides_link || entry.data.video_link ? (
         <span class="flex gap-4 text-sm">

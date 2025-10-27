@@ -12,6 +12,7 @@ event_city: remote
 event_days: Oct 6, 2021
 is_workshop: false
 slides_link: https://docs.google.com/presentation/d/151ts-Rw_EG0-4zBk-kGRniX2ImoCga8y28Qtayj78YI/edit?usp=sharing
+embed_slides: 'https://docs.google.com/presentation/d/e/2PACX-1vQd-OTQ4gDU-H1qcaA6BQWmKMz63Z-XRLzHS9G33M5EMhFd-zt1E712h_Ay9WGCosyed41Cabnv3vtu/pubembed'
 video_link: https://youtu.be/urCY_2-n2r0
 with:
   - name: Luca Marchesotti

@@ -11,7 +11,8 @@ event_location_gps: 53.3394054,-6.257663600000001
 event_city: Dublin, Ireland
 event_days: July 11 2017
 is_workshop: true
-slides_link: http://www.loige.link/lambda-workshop
+slides_link: http://loige.link/lambda-workshop
+embed_slides: 'https://docs.google.com/presentation/d/e/2PACX-1vSRqLKtzey7hnl244EeDkfkuHTOoLdnMCO_tqw4lEF3rr9RuZawgoCZVZ36uHY_qfJl39aGS7R51y3n/pubembed'
 video_link: null
 with:
   - name: Padraig O'Brien

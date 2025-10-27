@@ -12,6 +12,7 @@ event_city: Manchester, England
 event_days: Sept 28, 2023
 is_workshop: false
 slides_link: https://fth.link/sign-before
+embed_slides: 'https://slides.com/lucianomammino/everything-i-know-about-s3-pre-signed-urls-aws-comsum-manchester-2023/embed'
 video_link: https://www.youtube.com/watch?v=3sbz5y_WXTY
 with: []
 ---

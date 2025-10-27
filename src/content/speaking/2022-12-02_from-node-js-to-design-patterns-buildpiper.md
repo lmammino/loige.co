@@ -12,6 +12,7 @@ event_city: remote
 event_days: Dec 2, 2022
 is_workshop: false
 slides_link: https://loige.link/node2dp
+embed_slides: 'https://slides.com/lucianomammino/from-nodejs-to-design-patterns-buildpiper/embed'
 video_link: https://www.youtube.com/watch?v=GVe9Ih47pm4
 with: []
 ---

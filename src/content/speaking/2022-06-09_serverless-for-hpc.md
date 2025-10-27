@@ -12,6 +12,7 @@ event_city: Dublin, Ireland
 event_days: June 9, 2022
 is_workshop: false
 slides_link: https://slides.com/lucianomammino/serverless-for-hpc
+embed_slides: 'https://slides.com/lucianomammino/serverless-for-hpc'
 video_link: null
 with: []
 ---

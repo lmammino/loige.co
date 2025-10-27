@@ -12,6 +12,7 @@ event_city: remote
 event_days: March 22-26 2021
 is_workshop: true
 slides_link: https://loige.link/streams-city
+embed_slides: 'https://slides.com/lucianomammino/nodejs-streams-workshop-cityjs-2021/embed'
 video_link: null
 with: []
 ---

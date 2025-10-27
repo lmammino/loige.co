@@ -12,6 +12,7 @@ event_city: Dublin, Ireland
 event_days: October 1 2019
 is_workshop: true
 slides_link: https://loige.link/middy-way
+embed_slides: 'https://slides.com/lucianomammino/serverless-the-middy-way/embed'
 video_link: null
 with: []
 ---

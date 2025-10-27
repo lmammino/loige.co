@@ -36,7 +36,10 @@ const speaking = defineCollection({
     event_days: z.string(),
     is_workshop: z.boolean(),
     slides_link: z.string().url().optional().nullable(),
+    embed_slides: z.string().url().optional().nullable(),
     video_link: z.string().url().optional().nullable(),
+    podcast_link: z.string().url().optional().nullable(),
+    podcast_embed: z.string().url().optional().nullable(),
     with: z
       .array(
         z.object({

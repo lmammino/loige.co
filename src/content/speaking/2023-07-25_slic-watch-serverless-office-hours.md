@@ -12,6 +12,7 @@ event_city: remote
 event_days: Jul 25, 2023
 is_workshop: false
 slides_link: https://fth.link/observe
+embed_slides: 'https://docs.google.com/presentation/d/e/2PACX-1vTpoSI9R9lP_xA_4pROMiQ6PvsUPh80wU0xie3s3df3LzUGU1lLEaAyW6EektxDs_R5zLVPWd4G-LRS/pubembed'
 video_link: https://www.youtube.com/watch?v=wexRZ_9Zfwk
 with:
   - name: Julian Wood

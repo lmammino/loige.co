@@ -12,6 +12,7 @@ event_city: Dublin, Ireland
 event_days: Sept 1, 2023
 is_workshop: false
 slides_link: https://fth.link/auto-obs
+embed_slides: 'https://docs.google.com/presentation/d/e/2PACX-1vTufxr6okNrBSEXTlm5LG2WkmOAl_czGx32_B0Mu_7fIyookktUahqhRavCvBxwijoaIC-k1Jbljg-F/pubembed'
 video_link: null
 ---
 

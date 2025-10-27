@@ -12,6 +12,7 @@ event_city: Dublin, Ireland
 event_days: March 22 2016
 is_workshop: false
 slides_link: https://slides.com/lucianomammino/6tips-web-perf
+embed_slides: 'https://slides.com/lucianomammino/6tips-web-perf'
 video_link: null
 with: []
 ---

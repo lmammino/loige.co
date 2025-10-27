@@ -11,7 +11,8 @@ event_location_gps: 55.670059,12.565020
 event_city: Copenhagen, Denmark
 event_days: 7 May, 2024
 is_workshop: false
-slides_link: "https://loige.link/l-rs"
+slides_link: 'https://loige.link/l-rs'
+embed_slides: 'https://slides.com/lucianomammino/your-lambdas-in-rust-aws-community-day-nordics/embed'
 video_link: https://www.youtube.com/watch?v=npqrTU2vK9c
 with: []
 ---

@@ -12,6 +12,7 @@ event_city: Dublin, Ireland
 event_days: Aug 18, 2022
 is_workshop: false
 slides_link: https://loige.link/microsite
+embed_slides: 'https://slides.com/lucianomammino/building-an-invite-only-microsite-with-nextjs-airtable/embed'
 video_link: null
 with: []
 ---

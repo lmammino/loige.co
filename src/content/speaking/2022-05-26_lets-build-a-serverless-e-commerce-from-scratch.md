@@ -12,6 +12,7 @@ event_city: Athens, Greece
 event_days: May 26, 2022
 is_workshop: true
 slides_link: https://fth.link/sec
+embed_slides: 'https://slides.com/lucianomammino/build-serverless-ecommerce/embed'
 video_link: null
 with: []
 ---

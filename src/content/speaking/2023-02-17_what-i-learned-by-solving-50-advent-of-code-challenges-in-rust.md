@@ -12,6 +12,7 @@ event_city: London, England
 event_days: Feb 16-17, 2023
 is_workshop: false
 slides_link: https://loige.link/crablearn
+embed_slides: 'https://slides.com/lucianomammino/what-i-learned-by-solving-50-advent-of-code-challenges-in-rust-rustnation-uk-2023/embed'
 video_link: https://www.youtube.com/watch?v=udHjmno-tfA
 with: []
 ---

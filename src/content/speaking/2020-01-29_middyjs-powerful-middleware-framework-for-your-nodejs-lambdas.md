@@ -1,5 +1,5 @@
 ---
-title: "Middy.js: a powerful middleware framework for your Node.js lambdas"
+title: 'Middy.js: a powerful middleware framework for your Node.js lambdas'
 slug: middyjs-powerful-middleware-framework-for-your-nodejs-lambdas
 date: 2020-01-29T18:00:00.000Z
 status: published
@@ -12,6 +12,7 @@ event_city: Dublin, Ireland
 event_days: January 29 2020
 is_workshop: false
 slides_link: https://loige.link/middy-gcs
+embed_slides: 'https://slides.com/lucianomammino/middy-gcs-serverless-dublin/embed'
 video_link: null
 with: []
 ---

@@ -11,7 +11,8 @@ event_location_gps: 48.177622,11.593452999999954
 event_city: Munich, Germany
 event_days: December 8-9 2017
 is_workshop: false
-slides_link: http://loige.link/serverless-future
+slides_link: https://loige.link/serverless-future
+embed_slides: 'https://slides.com/lucianomammino/the-future-will-be-serverless/embed'
 video_link: null
 with: []
 ---

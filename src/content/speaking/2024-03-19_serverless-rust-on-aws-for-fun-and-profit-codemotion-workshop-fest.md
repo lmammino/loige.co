@@ -12,6 +12,7 @@ event_city: Remote
 event_days: 19-20 March, 2024
 is_workshop: true
 slides_link: 'https://loige.link/cm2024-rust'
+embed_slides: 'https://slides.com/lucianomammino/serverless-rust-su-aws-lambda-for-fun-and-profit-codemotion-workshop-fest-2024/embed'
 video_link: null
 with: []
 ---

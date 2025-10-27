@@ -12,6 +12,7 @@ event_city: Munich, Germany
 event_days: December 8-9 2017
 is_workshop: false
 slides_link: https://slides.com/lucianomammino/introducing-middy-11
+embed_slides: 'https://slides.com/lucianomammino/introducing-middy-11'
 video_link: null
 with: []
 ---

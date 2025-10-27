@@ -12,6 +12,7 @@ event_city: remote
 event_days: Feb 15, 2022
 is_workshop: false
 slides_link: https://loige.link/mono-cloud
+embed_slides: 'https://slides.com/lucianomammino/monoliths-to-the-cloud/embed'
 video_link: null
 with:
   - name: Fabio Biondi

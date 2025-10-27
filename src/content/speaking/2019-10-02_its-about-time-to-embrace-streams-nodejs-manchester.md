@@ -12,6 +12,7 @@ event_city: Machester, England
 event_days: October 2 2019
 is_workshop: false
 slides_link: https://loige.link/streams-manc
+embed_slides: 'https://slides.com/lucianomammino/its-about-time-to-embrace-streams-node-manchjs/embed'
 video_link: null
 with: []
 ---

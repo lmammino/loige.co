@@ -13,6 +13,7 @@ event_city: Thessaloniki, Greece
 event_days: June 09-10 2019
 is_workshop: true
 slides_link: https://slides.com/lucianomammino/its-about-time-to-embrace-nodejs-streams-workshop-thessaloniki
+embed_slides: 'https://slides.com/lucianomammino/its-about-time-to-embrace-nodejs-streams-workshop-thessaloniki'
 video_link: null
 with: []
 ---

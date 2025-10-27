@@ -12,6 +12,7 @@ event_city: remote
 event_days: Sep 19-20, 2023
 is_workshop: false
 slides_link: https://loige.link/iter-summit
+embed_slides: 'https://slides.com/lucianomammino/javascript-iteration-protocols-javascript-global-summit-2023/embed'
 video_link: null
 with: []
 ---

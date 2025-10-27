@@ -12,6 +12,7 @@ event_city: remote
 event_days: November 24 2020
 is_workshop: false
 slides_link: https://loige.link/nodescale
+embed_slides: 'https://slides.com/lucianomammino/node-js-scalability-tips-codemotion/embed'
 video_link: https://youtu.be/K9b3Hf6w004?t=3156
 with: []
 ---

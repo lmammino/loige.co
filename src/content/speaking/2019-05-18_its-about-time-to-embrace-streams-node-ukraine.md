@@ -12,6 +12,7 @@ event_city: Kyiv, Ukraine
 event_days: May 18 2019
 is_workshop: false
 slides_link: https://loige.link/streams-kyiv
+embed_slides: 'https://slides.com/lucianomammino/its-about-time-to-embrace-streams-node-ukraine/embed'
 video_link: null
 with: []
 ---

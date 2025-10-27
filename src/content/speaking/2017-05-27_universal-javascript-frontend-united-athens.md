@@ -12,6 +12,7 @@ event_city: Athens, Greece
 event_days: May 26-27 2017
 is_workshop: false
 slides_link: https://slides.com/lucianomammino/universal-javascript-frontend-united-athens-2017
+embed_slides: 'https://slides.com/lucianomammino/universal-javascript-frontend-united-athens-2017'
 video_link: https://www.youtube.com/watch?v=3z4lYWPdpMc
 with: []
 ---

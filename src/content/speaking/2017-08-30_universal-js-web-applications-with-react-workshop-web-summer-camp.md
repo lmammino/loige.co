@@ -12,6 +12,7 @@ event_city: Rovinj, Croatia
 event_days: August 30 - September 2 2017
 is_workshop: true
 slides_link: https://loige.link/uni-js-workshop
+embed_slides: 'ttps://docs.google.com/presentation/d/e/2PACX-1vTLbHPh8NuwXqr51bcWGUO7eWPu6E0nTEAM9eEQvT_UUKjJj5uWb2EF-rdzMlF7tmwssw1NuBsJFho1/pubembed'
 video_link: null
 with: []
 ---

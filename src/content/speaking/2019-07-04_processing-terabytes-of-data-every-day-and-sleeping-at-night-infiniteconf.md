@@ -12,6 +12,7 @@ event_city: London, England
 event_days: July 04-05 2019
 is_workshop: false
 slides_link: https://loige.link/tera-inf
+embed_slides: 'https://docs.google.com/presentation/d/e/2PACX-1vQXXd8cT10KxAt72ES9eBuRY6XwV1qlDIkvN9aa4B1o2WWLnkmTcZIAjYqGME_xxL3Ga6VEj5HGUR-3/pubembed'
 video_link: https://skillsmatter.com/skillscasts/13705-processing-terabytes-of-data-every-day-and-sleeping-at-night
 with:
   - name: Domagoj Katavic

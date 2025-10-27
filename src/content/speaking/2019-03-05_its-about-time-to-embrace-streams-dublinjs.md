@@ -12,6 +12,7 @@ event_city: Dublin, Ireland
 event_days: March 05 2019
 is_workshop: false
 slides_link: https://loige.link/streams-dub
+embed_slides: 'https://slides.com/lucianomammino/its-about-time-to-embrace-streams-dublinjs/embed'
 video_link: null
 with: []
 ---

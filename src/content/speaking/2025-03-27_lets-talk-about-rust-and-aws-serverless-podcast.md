@@ -16,7 +16,7 @@ video_link: 'https://www.youtube.com/watch?v=Zqi-zRoTErI'
 with:
   - name: Solomon Eseme
     link: https://github.com/Kaperskyguru
-    avatar: https://avatars.githubusercontent.com/u/13342999?v=4
+    image: https://avatars.githubusercontent.com/u/13342999?v=4
 ---
 
 ## Abstract

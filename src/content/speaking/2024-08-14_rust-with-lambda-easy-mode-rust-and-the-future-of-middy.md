@@ -16,7 +16,7 @@ video_link: https://www.youtube.com/watch?v=FVYub3dzrAY
 with:
   - name: Yan Cui
     link: https://github.com/theburningmonk
-    avatar: https://avatars.githubusercontent.com/u/546969?v=4
+    image: https://avatars.githubusercontent.com/u/546969?v=4
 ---
 
 ## Abstract

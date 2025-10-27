@@ -12,6 +12,7 @@ event_city: remote
 event_days: Oct 27, 2022
 is_workshop: false
 slides_link: https://fth.link/cd22
+embed_slides: 'https://docs.google.com/presentation/d/e/2PACX-1vQSwo6cCvvgZAZoDiddLankYGq_BVsa9mfONHuAyN34sM_wXtgZ4lsrWUeReVzRqg/pubembed'
 video_link: null
 with: []
 ---

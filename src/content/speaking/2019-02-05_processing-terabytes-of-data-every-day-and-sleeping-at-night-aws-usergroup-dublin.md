@@ -12,6 +12,7 @@ event_city: Dublin, Ireland
 event_days: February 05 2019
 is_workshop: false
 slides_link: https://loige.link/tera-dub
+embed_slides: 'https://docs.google.com/presentation/d/e/2PACX-1vQF_xlAVXMlBr-7SLi8wLBTWCddWa0u_bqyKuWn0gO2vQSXeWJE5x8rTwPtGFxjuz_ldkCmowZkowhR/pubembed'
 video_link: null
 with:
   - name: Domagoj Katavic

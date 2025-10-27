@@ -12,6 +12,7 @@ event_city: Milan, Italy
 event_days: November 23-26 2016
 is_workshop: false
 slides_link: http://slides.com/lucianomammino/universal-js-web-applications-with-react-codemotion-milan-2016
+embed_slides: 'http://slides.com/lucianomammino/universal-js-web-applications-with-react-codemotion-milan-2016'
 video_link: https://www.youtube.com/watch?v=9z7k3-Or7EA
 with: []
 ---

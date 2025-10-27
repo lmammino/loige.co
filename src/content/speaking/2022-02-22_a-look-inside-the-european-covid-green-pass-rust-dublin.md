@@ -12,6 +12,7 @@ event_city: remote
 event_days: Feb 22, 2022
 is_workshop: false
 slides_link: https://loige.link/rust-green
+embed_slides: 'https://slides.com/lucianomammino/a-look-inside-the-european-covid-green-certificate-rust-dublin/embed'
 video_link: https://www.youtube.com/watch?v=2dFJkYH_Cc0
 with: []
 ---

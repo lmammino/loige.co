@@ -12,11 +12,12 @@ event_city: Remote
 event_days: 6 March, 2024
 is_workshop: false
 slides_link: https://loige.link/nom-rs
+embed_slides: 'https://slides.com/lucianomammino/intro-to-nom-rust-dublin/embed'
 video_link: https://www.youtube.com/live/1atZzA3e3Kg?t=972
 with:
   - name: Roberto Gambuzzi
     link: https://twitter.com/gbinside
-    avatar: https://avatars.githubusercontent.com/u/1200081?v=4
+    image: https://avatars.githubusercontent.com/u/1200081?v=4
 ---
 
 In this talk we will give you a pragmatic introduction to `nom` , a famous Rust parser combinator crate, which, in other words, is a tool that makes it easy to create parsers even for more advanced use cases.

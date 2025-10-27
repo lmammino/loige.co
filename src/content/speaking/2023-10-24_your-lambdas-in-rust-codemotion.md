@@ -12,6 +12,7 @@ event_city: Milan, Italy
 event_days: 24-25 October, 2023
 is_workshop: false
 slides_link: https://loige.link/lamb-rs
+embed_slides: 'https://slides.com/lucianomammino/your-lambdas-in-rust-codemotion-milan-2023/embed'
 video_link: https://talks.codemotion.com/your-lambdas-in-rust
 with: []
 ---

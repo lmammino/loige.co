@@ -12,6 +12,7 @@ event_city: Waterford, Ireland
 event_days: 22 November, 2023
 is_workshop: false
 slides_link: https://fth.link/rust-lambda
+embed_slides: 'https://slides.com/lucianomammino/writing-lambdas-in-rust-aws-south-east-user-group-ireland/embed'
 video_link: null
 with: []
 ---

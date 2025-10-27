@@ -7,11 +7,12 @@ language: en_US
 event_name: AWS Community Day Belfast (BelfAWSt wee:invent)
 event_link: https://www.awscommunitybelfast.co.uk/
 event_location: Europa Hotel Belfast - Great Victoria St, Belfast BT2 7AP, United Kingdom
-event_location_gps: "54.5948382,-5.9345104"
+event_location_gps: '54.5948382,-5.9345104'
 event_city: Belfast, Northern Ireland
 event_days: 06 Sep, 2024
 is_workshop: false
 slides_link: 'https://loige.link/be-a-crab'
+embed_slides: 'https://slides.com/lucianomammino/faster-greener-cheaper-serverless-compute-with-lambda-rust-aws-community-day-belfast/embed'
 video_link: ~
 with: ~
 ---

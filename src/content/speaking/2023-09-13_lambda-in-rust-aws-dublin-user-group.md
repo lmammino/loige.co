@@ -12,6 +12,7 @@ event_city: Dublin, Ireland
 event_days: Sep 13, 2023
 is_workshop: false
 slides_link: https://loige.link/lambda-rust
+embed_slides: 'https://slides.com/lucianomammino/writing-lambda-functions-in-rust-aws-user-group-dublin/embed'
 video_link: null
 with: []
 ---

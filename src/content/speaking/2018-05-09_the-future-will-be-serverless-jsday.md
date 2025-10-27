@@ -12,6 +12,7 @@ event_city: Verona, Italy
 event_days: May 9-10 2018
 is_workshop: false
 slides_link: https://loige.link/serverless-jsday
+embed_slides: 'https://slides.com/lucianomammino/the-future-will-be-serverless-jsday/embed'
 video_link: https://vimeo.com/274372785
 with: []
 ---

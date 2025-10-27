@@ -12,6 +12,7 @@ event_city: Milan, Italy
 event_days: November 29-30 2018
 is_workshop: false
 slides_link: https://loige.link/terabytes
+embed_slides: 'https://docs.google.com/presentation/d/e/2PACX-1vQIOvH5SdxcmJDO1yiQ4t4aDdQavp79VMdppgpbqLMYJVK2n3ZWT2ZvK2BbbFPUWu-uVY51gDHz0SEa/pubembed'
 video_link: https://www.youtube.com/watch?v=-Tmbr7u3aFA
 with:
   - name: Domagoj Katavic

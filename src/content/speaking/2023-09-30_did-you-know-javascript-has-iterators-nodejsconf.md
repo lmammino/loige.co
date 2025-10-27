@@ -12,6 +12,7 @@ event_city: Brescia, Italy
 event_days: Sep 30, 2023
 is_workshop: false
 slides_link: https://loige.link/iter-garda
+embed_slides: 'https://slides.com/lucianomammino/did-you-know-javascript-has-iterators-nodejs-conference-italy/embed'
 video_link: null
 with: []
 ---

@@ -7,16 +7,17 @@ language: en_US
 event_name: AWS Community Day NL
 event_link: https://awscommunityday.nl/
 event_location: Kinepolis, cinema, Leidschendam, Netherlands
-event_location_gps: "52.0896679,4.382266"
+event_location_gps: '52.0896679,4.382266'
 event_city: Leidschendam, Netherlands
 event_days: 03 Oct, 2024
 is_workshop: false
 slides_link: 'https://fth.link/saas-nl'
+embed_slides: 'https://docs.google.com/presentation/d/e/2PACX-1vRqnlNqIq2St8sAtN1wNBsQkqX2F8HA_D1_sGNcXWuVMcw-VM84Kaam5H9DxilVYxpXgttIFJtUfynF/pubembed'
 video_link: ~
 with:
   - name: Guilherme Dalla Rosa
     link: https://github.com/guidr
-    avatar: https://avatars.githubusercontent.com/u/2790797?v=4
+    image: https://avatars.githubusercontent.com/u/2790797?v=4
 ---
 
 ## Abstract

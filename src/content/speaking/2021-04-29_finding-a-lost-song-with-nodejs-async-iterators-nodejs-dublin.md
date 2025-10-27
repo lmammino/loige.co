@@ -12,6 +12,7 @@ event_city: remote
 event_days: April 29, 2021
 is_workshop: false
 slides_link: https://loige.link/async-it
+embed_slides: 'https://slides.com/lucianomammino/finding-a-lost-song-with-nodejs-and-async-iterators/embed'
 video_link: null
 with: []
 ---

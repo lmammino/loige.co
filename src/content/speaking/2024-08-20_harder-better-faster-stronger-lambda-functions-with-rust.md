@@ -12,6 +12,7 @@ event_city: Remote
 event_days: 20 Aug, 2024
 is_workshop: false
 slides_link: 'https://loige.link/hbfs'
+embed_slides: 'https://slides.com/lucianomammino/harder-better-faster-stronger-lambda-functions-with-rust-believe-in-serverless/embed'
 video_link: 'https://www.youtube.com/watch?v=eqUehphXNvs'
 with: ~
 ---

@@ -12,6 +12,7 @@ event_city: London, England
 event_days: May 03 2019
 is_workshop: false
 slides_link: https://loige.link/streams-cityjs
+embed_slides: 'https://slides.com/lucianomammino/its-about-time-to-embrace-streams-cityjs/embed'
 video_link: https://www.youtube.com/watch?v=NMqO0JwEEQU
 with: []
 ---

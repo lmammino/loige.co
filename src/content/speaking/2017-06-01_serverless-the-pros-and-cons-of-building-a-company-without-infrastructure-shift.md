@@ -12,6 +12,7 @@ event_city: Split, Croatia
 event_days: June 1-2 2017
 is_workshop: false
 slides_link: http://slides.com/lucianomammino/serverless-the-pros-and-cons-of-building-a-company-without-infrastructure-shift-2017
+embed_slides: 'http://slides.com/lucianomammino/serverless-the-pros-and-cons-of-building-a-company-without-infrastructure-shift-2017'
 video_link: https://www.youtube.com/watch?v=WunJFMfN2p8
 with: []
 ---

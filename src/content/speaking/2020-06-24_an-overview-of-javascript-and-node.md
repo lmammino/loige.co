@@ -12,6 +12,7 @@ event_city: remote
 event_days: June 24 2020
 is_workshop: false
 slides_link: https://loige.link/js-overview
+embed_slides: 'https://loige.link/js-overview'
 video_link: https://www.youtube.com/watch?v=qkIL_QkwrEo
 with: []
 ---

@@ -11,7 +11,8 @@ event_location_gps: 55.5670018,12.9752333
 event_city: Malmö, Sweden
 event_days: November 19-22 2018
 is_workshop: false
-slides_link: https://slides.com/lucianomammino/unbundling-the-javascript-module-bundler-oredev-2018/fullscreen
+slides_link: https://slides.com/lucianomammino/unbundling-the-javascript-module-bundler-oredev-2018
+embed_slides: 'https://slides.com/lucianomammino/unbundling-the-javascript-module-bundler-oredev-2018/embed'
 video_link: https://vimeo.com/311519217
 with: []
 ---

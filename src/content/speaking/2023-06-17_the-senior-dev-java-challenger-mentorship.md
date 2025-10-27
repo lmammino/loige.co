@@ -12,6 +12,7 @@ event_city: remote
 event_days: Jun 17, 2023
 is_workshop: false
 slides_link: https://loige.link/senior
+embed_slides: 'https://loige.link/senior'
 video_link: https://www.youtube.com/live/oO6zgqFuKCY?feature=share&t=7061
 with: []
 ---

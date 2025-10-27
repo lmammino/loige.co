@@ -12,6 +12,7 @@ event_city: Amsterdam, Netherlands
 event_days: Jun 1, 2023
 is_workshop: false
 slides_link: https://loige.link/iter-nation
+embed_slides: 'https://slides.com/lucianomammino/javascript-iteration-protocols-jsnation-2023/embed'
 video_link: https://portal.gitnation.org/contents/javascript-iteration-protocols
 with: []
 ---

@@ -7,16 +7,17 @@ language: en_US
 event_name: AWS Community Day DACH
 event_link: https://www.aws-community-day.de/
 event_location: Rosenkavalierpl. 13, 81925 München, Deutschland
-event_location_gps: "48.151090,11.619080"
+event_location_gps: '48.151090,11.619080'
 event_city: Munich, Germany
 event_days: 17 Sep, 2024
 is_workshop: false
 slides_link: 'https://fth.link/aws-saas'
+embed_slides: 'https://docs.google.com/presentation/d/e/2PACX-1vSaX6ACeizRuhxtKyEwLSUYTrlTvyqy25xtLcYJmokvy7Ws5G08hie9hdugpURo47vGVPGW0FIfCGJR/pubembed'
 video_link: ~
 with:
   - name: Guilherme Dalla Rosa
     link: https://github.com/guidr
-    avatar: https://avatars.githubusercontent.com/u/2790797?v=4
+    image: https://avatars.githubusercontent.com/u/2790797?v=4
 ---
 
 ## Abstract

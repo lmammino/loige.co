@@ -12,6 +12,7 @@ event_city: remote
 event_days: Sept 30, 2021
 is_workshop: false
 slides_link: https://loige.link/enter-iterators
+embed_slides: 'https://slides.com/lucianomammino/finding-a-lost-song-with-node-js-and-async-iterators-enterjs/embed'
 video_link: null
 with: []
 ---

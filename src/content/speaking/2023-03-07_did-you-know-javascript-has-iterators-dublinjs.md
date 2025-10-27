@@ -12,6 +12,7 @@ event_city: Dublin, Ireland
 event_days: Mar 7, 2023
 is_workshop: false
 slides_link: https://loige.link/iterate
+embed_slides: 'https://slides.com/lucianomammino/did-you-know-javascript-has-iterators-dublinjs/embed'
 video_link: null
 with: []
 ---

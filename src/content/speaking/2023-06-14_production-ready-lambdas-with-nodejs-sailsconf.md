@@ -12,6 +12,7 @@ event_city: remote
 event_days: June 14-16, 2023
 is_workshop: false
 slides_link: https://loige.link/lambda-pirate
+embed_slides: 'https://slides.com/lucianomammino/production-ready-lambdas-with-node-js-sailsconf-2023/embed'
 video_link: https://www.youtube.com/watch?v=_OBBwuplpBY
 with: []
 ---

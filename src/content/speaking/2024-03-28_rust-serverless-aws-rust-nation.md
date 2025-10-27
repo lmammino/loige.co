@@ -12,6 +12,7 @@ event_city: London, England
 event_days: 26-28 March, 2024
 is_workshop: false
 slides_link: 'https://loige.link/lambda-nation-24'
+embed_slides: 'https://slides.com/lucianomammino/rust-serverless-and-aws-writing-lambdas-in-rust-rust-nation-uk-2024/embed'
 video_link: null
 with: []
 ---

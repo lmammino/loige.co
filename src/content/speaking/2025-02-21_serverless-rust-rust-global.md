@@ -6,17 +6,18 @@ status: published
 language: en_US
 event_name: 'Rust Global'
 event_link: 'https://www.eventbrite.com/e/rust-global-2025-london-tickets-1106701787839'
-event_location: "40 Finsbury Square, London, UK"
-event_location_gps: "53.015713,-1.160199"
+event_location: '40 Finsbury Square, London, UK'
+event_location_gps: '53.015713,-1.160199'
 event_city: London, England
 event_days: '21 Feb, 2025'
 is_workshop: false
 slides_link: 'https://share.jameseastham.co.uk/presentations/2025-02-21-rust-global.pdf'
-video_link: ~
+embed_slides: 'https://share.jameseastham.co.uk/presentations/2025-02-21-rust-global.pdf'
+video_link: 'https://www.youtube.com/watch?v=xLatWq6D6g4'
 with:
   - name: James Eastham
     link: https://github.com/jeastham1993
-    avatar: https://avatars.githubusercontent.com/u/14234617?v=4
+    image: https://avatars.githubusercontent.com/u/14234617?v=4
 ---
 
 Ready to ignite your enterprise with Rust, but struggling to justify the

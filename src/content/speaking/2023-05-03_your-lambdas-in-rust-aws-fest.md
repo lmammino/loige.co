@@ -12,6 +12,7 @@ event_city: remote
 event_days: May 3, 2023
 is_workshop: false
 slides_link: https://loige.link/lambda-rs
+embed_slides: 'https://slides.com/lucianomammino/your-lambdas-in-rust-aws-fest-compute-edition-2023/embed'
 video_link: https://www.youtube.com/watch?v=NwH2VZUnVU0
 with: []
 ---

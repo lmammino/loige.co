@@ -12,6 +12,7 @@ event_city: New York, New York
 event_days: June 14-15 2018
 is_workshop: false
 slides_link: https://loige.link/jwt-crack-ny
+embed_slides: 'https://slides.com/lucianomammino/cracking-jwt-tokens-a-tale-of-magic-nodejs-and-parallel-computing-ny-18/embed'
 video_link: https://www.youtube.com/watch?v=uBYdxOQ57nQ
 with: []
 ---
