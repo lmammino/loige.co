@@ -430,69 +430,16 @@ const countryFlag = isRemote
 
       <!-- Previous/Next Navigation -->
       <div class="max-w-(--breakpoint-xl) mx-auto px-8 py-8">
-        <div class="flex justify-between items-center border-t border-bg-600 pt-8">
-          <div class="flex-1">
-            {
-              prevTalk && (
-                <a
-                  href={`/speaking/${prevTalk.id}`}
-                  class="group flex items-start gap-3 hover:text-primary-500 transition-colors"
-                >
-                  <svg
-                    class="w-6 h-6 mt-1 flex-shrink-0 text-text-400 group-hover:text-primary-500 transition-colors"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M15 19l-7-7 7-7"
-                    />
-                  </svg>
-                  <div>
-                    <div class="text-sm text-text-400 mb-1">Previous Talk</div>
-                    <div class="text-text-500 font-semibold group-hover:text-primary-500 transition-colors">
-                      {prevTalk.data.title}
-                    </div>
-                    <div class="text-sm text-text-400 mt-1">
-                      {prevTalk.data.event_name} • {prevTalk.data.event_days}
-                    </div>
-                  </div>
-                </a>
-              )
-            }
-          </div>
-
-          <a
-            href="/speaking"
-            class="flex-shrink-0 mx-4 px-4 py-2 text-text-400 hover:text-primary-500 transition-colors text-center"
-          >
-            <svg
-              class="w-6 h-6 mx-auto mb-1"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-            <div class="text-sm">All Talks</div>
-          </a>
-
-          <div class="flex-1 flex justify-end">
+        <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-6 md:gap-0 border-t border-bg-600 pt-8">
+          <!-- Next Talk - appears first on mobile, last on desktop -->
+          <div class="order-1 md:order-3 md:flex-1 md:flex md:justify-end">
             {
               nextTalk && (
                 <a
                   href={`/speaking/${nextTalk.id}`}
-                  class="group flex items-start gap-3 text-right hover:text-primary-500 transition-colors"
+                  class="group flex items-start gap-3 hover:text-primary-500 transition-colors md:text-right"
                 >
-                  <div>
+                  <div class="flex-1 md:flex-initial">
                     <div class="text-sm text-text-400 mb-1">Next Talk</div>
                     <div class="text-text-500 font-semibold group-hover:text-primary-500 transition-colors">
                       {nextTalk.data.title}
@@ -514,6 +461,62 @@ const countryFlag = isRemote
                       d="M9 5l7 7-7 7"
                     />
                   </svg>
+                </a>
+              )
+            }
+          </div>
+
+          <!-- All Talks - hidden on mobile, shown on desktop -->
+          <a
+            href="/speaking"
+            class="hidden md:block order-2 flex-shrink-0 mx-4 px-4 py-2 text-text-400 hover:text-primary-500 transition-colors text-center"
+          >
+            <svg
+              class="w-6 h-6 mx-auto mb-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+            <div class="text-sm">All Talks</div>
+          </a>
+
+          <!-- Previous Talk - appears second on mobile, first on desktop -->
+          <div class="order-2 md:order-1 md:flex-1">
+            {
+              prevTalk && (
+                <a
+                  href={`/speaking/${prevTalk.id}`}
+                  class="group flex items-start gap-3 hover:text-primary-500 transition-colors"
+                >
+                  <svg
+                    class="w-6 h-6 mt-1 flex-shrink-0 text-text-400 group-hover:text-primary-500 transition-colors"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M15 19l-7-7 7-7"
+                    />
+                  </svg>
+                  <div class="flex-1 md:flex-initial">
+                    <div class="text-sm text-text-400 mb-1">Previous Talk</div>
+                    <div class="text-text-500 font-semibold group-hover:text-primary-500 transition-colors">
+                      {prevTalk.data.title}
+                    </div>
+                    <div class="text-sm text-text-400 mt-1">
+                      {prevTalk.data.event_name} • {prevTalk.data.event_days}
+                    </div>
+                  </div>
                 </a>
               )
             }
