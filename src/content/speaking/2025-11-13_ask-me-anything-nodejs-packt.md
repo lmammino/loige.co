@@ -6,17 +6,17 @@ status: published
 language: en_US
 event_name: 'Packt Publishing Limited'
 event_link: 'https://www.eventbrite.com/e/ask-me-anything-with-luciano-mammino-and-mario-casciaro-nodejs-tickets-1931938503069'
-event_location: 'Online'
+event_location: Remote
 event_location_gps: ~
-event_city: 'Online'
+event_city: Remote
 event_days: 'Nov 13, 2025'
 is_workshop: false
 slides_link: ~
 embed_slides: ~
 video_link: ~
 with:
-  - name: 'Mario Casciaro'
-    link: ~
+  - name: Mario Casciaro
+    link: https://mario.fyi/
     image: ~
 ---
 
