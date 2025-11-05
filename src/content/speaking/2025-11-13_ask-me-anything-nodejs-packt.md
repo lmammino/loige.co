@@ -1,10 +1,10 @@
 ---
-title: 'Ask Me Anything with Luciano Mammino and Mario Casciaro - Node.js'
+title: 'Node.js Desing Patterns (4th ed) AMA Session'
 slug: 'ask-me-anything-nodejs-packt'
 date: '2025-11-13T14:00:00.000Z'
 status: published
 language: en_US
-event_name: 'Packt Publishing Limited'
+event_name: 'Packt Webinar'
 event_link: 'https://www.eventbrite.com/e/ask-me-anything-with-luciano-mammino-and-mario-casciaro-nodejs-tickets-1931938503069'
 event_location: Remote
 event_location_gps: ~
@@ -17,7 +17,7 @@ video_link: ~
 with:
   - name: Mario Casciaro
     link: https://mario.fyi/
-    image: ~
+    image: 'https://avatars.githubusercontent.com/u/105319?v=4'
 ---
 
 Get ready for an insightful session with Luciano and Mario, where you can ask them anything about Node.js and web development!
