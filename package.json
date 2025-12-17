@@ -11,14 +11,14 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.5",
-    "@astrojs/mdx": "^4.3.8",
-    "@astrojs/rss": "^4.0.13",
+    "@astrojs/check": "^0.9.6",
+    "@astrojs/mdx": "^4.3.13",
+    "@astrojs/rss": "^4.0.14",
     "@astrojs/sitemap": "^3.6.0",
     "@aws-sdk/client-bedrock-runtime": "^3.490.0",
     "@oramacloud/client": "^1.0.6",
     "@tailwindcss/typography": "^0.5.10",
-    "astro": "^5.15.1",
+    "astro": "^5.16.6",
     "astro-compress": "^2.3.6",
     "astro-critters": "^2.2.1",
     "astro-expressive-code": "^0.40.2",
