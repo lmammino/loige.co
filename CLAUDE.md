@@ -8,19 +8,23 @@ Personal blog and website for Luciano Mammino (loige.co), built with Astro 5. Th
 
 ## Development Commands
 
-**Package Manager**: Must use `pnpm` (version 8+). The project enforces this with a preinstall hook.
+**Package Manager**: Must use `pnpm` (version 9+). The project enforces this with a preinstall hook.
 
 - `pnpm install` - Install dependencies
 - `pnpm dev` - Start dev server at http://localhost:4321
 - `pnpm build` - Build static site (runs `astro check` then `astro build`)
 - `pnpm preview` - Preview production build locally
 
-**Node.js**: Requires version 20 or higher
+**Node.js**: Requires version 20 or higher (CI uses Node 23.x)
+
+**Running Scripts**: Use `pnpm tsx scripts/<script>.ts` to run utility scripts
 
 ## Code Style & Formatting
 
 The project uses **Biome** for linting and formatting (not ESLint/Prettier):
 
+- Run `pnpm biome check .` to check for issues
+- Run `pnpm biome check --write .` to auto-fix
 - Formatter: 2-space indentation, 80 character line width, single quotes, semicolons as needed
 - All `recommended` rules enabled, plus `correctness.all` and `nursery.all` (except nodejs modules)
 - Organize imports automatically
@@ -78,9 +82,9 @@ Located in `src/pages/og/[...slug].png.ts`. Uses `node-canvas` to generate 1200x
 
 ### Scripts
 
-Located in `scripts/`:
+Located in `scripts/` (run with `pnpm tsx scripts/<name>.ts`):
 
-- `postEnrichment.ts` - Uses AWS Bedrock (Claude v2) to generate subtitles and descriptions for blog posts that lack them
+- `postEnrichment.ts` - Uses AWS Bedrock (Claude v2) to generate subtitles and descriptions for blog posts that lack them (requires AWS credentials)
 - `sendToOrama.ts` - Sends content to Orama Cloud for search indexing
 - `search.ts` - Search-related utilities
 
@@ -100,3 +104,4 @@ Deployed via GitHub Actions (`.github/workflows/deploy.yml`):
 - Speaking page rebuilds daily to ensure event dates are current
 - Custom font (Atkinson Hyperlegible) used for OG image titles
 - Site URL is `https://loige.co` - update `SITE_URL` in `src/consts.ts` if needed
+- Canvas library requires native dependencies for OG image generation (libcairo2-dev, libpango1.0-dev, etc.)
