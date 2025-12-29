@@ -1,14 +1,14 @@
 ---
 title: 2025 - A year in Review
 slug: 2025-a-year-in-review
-subtitle: '2025: TODO - add your tagline here'
+subtitle: '2025: The year of big milestones and new beginnings'
 date: 2025-12-28T12:00:00.000Z
 updated: 2025-12-28T12:00:00.000Z
 header_img: ./2025-a-year-in-review.jpg
 status: draft
 tags:
   - life
-description: TODO - add 2-3 sentence professional summary here
+description: "Luciano Mammino's 2025 year in review: releasing the fourth edition of Node.js Design Patterns, progressing on Crafting Lambda Functions in Rust, approaching 5 years at FourTheorem, public speaking, AWS Bites podcast, open source contributions, and some major personal milestones."
 ---
 
 2025: That's a wrap! 🌯
@@ -37,7 +37,7 @@ Speaking of pages, here's a fun fact: at some point during the writing process, 
 
 ![The book ‘Node.js Design Patterns (Fourth Edition)’ lying on a digital kitchen scale showing 1.38 kg](./nodejs-desgin-patterns-book-fourth-edition-on-a-scale.jpg)
 
-Yes, the picture above shows the book on a scale, weighing in at a hefty **1.38 kg** (about 3 pounds for those of you who like non-standard units 🙃)! Definitely not a light read, but hey, knowledge comes at a weight! And if you're in trouble you can always use it to defend yourself! 🙈
+<small>Yes, the picture above shows the book on a scale, weighing in at a hefty **1.38 kg** (about 3 pounds for those of you who like non-standard units 🙃)! Definitely not a light read, but hey, knowledge comes at a weight! And if you're in trouble you can always use it to defend yourself! 🙈</small>
 
 Jokes aside, this edition also marks a personal milestone for me. Mario was incredibly kind and gave me the spotlight by putting my name first on the cover for the very first time. If you've read [the story of how I came to work on this book](/nodejs-design-patterns-fourth-edition), you'll understand why this is such an honor and a meaningful milestone for me as an author.
 
@@ -194,7 +194,7 @@ PS: here's a screenshot from my usage of Claude Code, which I am finding particu
 
 ![My Claude Code stats for 2025](./my-claude-code-stats-for-2025.jpg)
 
-My longest session is ~96x longer than a transatlantic flight... LOL!
+<small>My longest session is ~96x longer than a transatlantic flight... LOL!</small>
 
 > It’s harder to read code than to write it.  
 > — Joel Spolsky
@@ -264,9 +264,9 @@ I'm now studying for the [AWS Certified AI Practitioner](https://aws.amazon.com/
 
 Now a little bit of bad news: I am not an MVP anymore... or should I say I am now a _former_ MVP (as they suggest in their goodbye letter)? My MVP status was not renewed this year. Unfortunately, you don't get much feedback on why, so I could only speculate... but I'm not going to do that. I'm just going to say it was a fun ride while it lasted, and I'm grateful for all the opportunities and connections it brought me. Onwards and upwards!
 
-![Screenshot of a Microsoft MVP Communities email titled ‘MVP Annual Review Update’ addressed to Luciano Mammino, stating the MVP award will not be renewed and highlighting instructions to update his status to ‘former’](./microsoft-telling-luciano-mammino-he-doesnt-deserve-to-be-an-mvp-anymore.jpg)
+![Screenshot of a Microsoft MVP Communities email titled 'MVP Annual Review Update' addressed to Luciano Mammino, stating the MVP award will not be renewed and highlighting instructions to update his status to 'former'](./microsoft-telling-luciano-mammino-he-doesnt-deserve-to-be-an-mvp-anymore.jpg)
 
-Here you can see the full email I received from Microsoft! Well, goodbye MVP program, it was nice knowing you!
+<small>Here you can see the full email I received from Microsoft! Well, goodbye MVP program, it was nice knowing you!</small>
 
 On the bright side, I'm still a [Codemotion Ambassador](https://www.codemotion.com/) and happy to support one of the coolest tech communities out there (and definitely the biggest/coolest tech conference in Italy)!
 
@@ -274,21 +274,28 @@ On the bright side, I'm still a [Codemotion Ambassador](https://www.codemotion.c
 
 I kept training quite consistently this year and in June I finally got promoted to **Brown Belt in Brazilian Jiu-Jitsu**! After years of training and dedication, I finally achieved this milestone. It's been a challenging journey, but every step has been worth it. Huge thanks to my coaches and training partners for their support and guidance along the way. I honestly don't feel like I deserve it, but that's the way it's supposed to be... at least if I listen to more experienced practitioners! 🤙
 
-![A photo of Luciano Mammino and Jorge Santos at the Brown Belt graduation ceremony in Dublin](./bjj-brown-belt-graduation-luciano-mammino-jorge-santos-dublin.jpg)
-
-Here's a photo of me with my coaches Jorge Santos and Xandy right after the graduation ceremony in Dublin. Such a proud moment for me! (Sorry for the low res, but I had to cut this frame out from a social video!)
-
 I didn't run much this year and Strava got a bit disappointed with me! But the good news is that I got to spend some time with family in Rome, and that's where during the summer break I managed to squeeze in a few running sessions. I finally ran around the Colosseum and the Roman Forum, which had been on my bucket list for a while! Such an incredible experience to run through such historic landmarks. Definitely a highlight of my year!
 
-![A photo of Luciano Mammino running around the Colosseum in Rome](./luciano-mammino-running-around-rome.jpg)
+![Left: A photo of Luciano Mammino and Jorge Santos at the Brown Belt graduation ceremony in Dublin. Right: A photo of Luciano Mammino running around the Colosseum in Rome](./luciano-mammino-bjj-graduation-brown-belt-and-running-in-rome.jpg)
 
-I also got to visit a few cool places. My favourites were Iceland, Paris, and the Italian Alps! I'll leave you with some pics below. Can you geo-tag them all? :P
+<small>In the picture above, on the left it's a photo of me with my coaches Jorge Santos and Xandy right after the graduation ceremony in Dublin. Such a proud moment for me! (Sorry for the low res, but I had to cut this frame out from a social video!) On the right, you can see me running around the Colosseum in Rome. Such an epic backdrop for a run!</small>
+
+I also got to visit a few cool places. My favourites were Iceland, Paris, and the Italian Alps! I'll leave you with some pics below. Can you geo-tag them all? 😉
+
+![A frame with 3 pictures: Iceland (top left), Paris (right), and the Italian Alps (bottom left)](./paris-iceland-italian-alps.jpg)
 
 And now onto the biggest news and gift of 2025... **I became a dad!** Yes, in September 2025 my wife and I welcomed our first child into our family. It's been an incredible journey so far, filled with joy, challenges, and countless unforgettable moments. Parenthood is a whole new adventure, and I'm embracing every bit of it. Looking forward to all the milestones and memories to come! And sorry ahead of time if this means I'll be less productive and less present online and at various in-person events... but hey, priorities, right?
 
-## Wrapping up
+![A photo of Luciano Mammino smiling with his son. The face of the baby is covered with a heart eyes emoji](./luciano-mammino-and-his-son.jpg)
 
-- This year was a fantastic year full of learning, growth and joy. I couldn't ask for anything better and it will be hard to match it in 2026. But let's be hopeful and let's keep pushing forward! I will certainly try my best on things I can control!
-- I certainly wouldn't be where I am today without the support of my family, friends, colleagues, and the amazing community around me. Thank you all for being part of my journey!
-- OMG are you still reading!? I think at this point you are either my mom or a serial stalker... or maybe both! Either way, thanks for sticking around till the end. I hope you found some interesting tidbits in my 2025 review. If you did, feel free to reach out and share your thoughts or just say hi!
-- Mention you can also leave a comment below ... Seriously, I always love hearing from readers!
+<small>Doesn't he look just like me? 😂</small>
+
+## Wrapping up the wrap up 🌯🌯
+
+This year was a fantastic year full of learning, growth, and joy. I couldn't ask for anything better and it will be hard to match it in 2026. But let's be hopeful and keep pushing forward! I will certainly try my best on the things I can control!
+
+I certainly wouldn't be where I am today without the support of my family, friends, colleagues, and the amazing community around me. Thank you all for being part of my journey!
+
+OMG, are you still reading!? I think at this point you are either my mom or a serial stalker... or maybe both! Either way, thanks for sticking around till the end. I hope you found some interesting tidbits in my 2025 review. If you did, feel free to reach out and share your thoughts or just say hi... or even better, share some highlights of your 2025! You can also leave a comment below. Seriously, I always love hearing from readers!
+
+See you in 2026! Happy New Year! 🎉
