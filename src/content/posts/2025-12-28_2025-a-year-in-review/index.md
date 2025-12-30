@@ -2,10 +2,10 @@
 title: 2025 - A year in Review
 slug: 2025-a-year-in-review
 subtitle: '2025: The year of big milestones and new beginnings'
-date: 2025-12-28T12:00:00.000Z
-updated: 2025-12-28T12:00:00.000Z
+date: 2025-12-30T10:00:00.000Z
+updated: 2025-12-30T10:00:00.000Z
 header_img: ./2025-a-year-in-review.jpg
-status: draft
+status: published
 tags:
   - life
 description: "Luciano Mammino's 2025 year in review: releasing the fourth edition of Node.js Design Patterns, progressing on Crafting Lambda Functions in Rust, approaching 5 years at FourTheorem, public speaking, AWS Bites podcast, open source contributions, and some major personal milestones."
@@ -21,7 +21,7 @@ The usual disclaimer applies: I write these posts mostly for myself. They are my
 
 P.S. If you need an incentive to power through: this year brought a _personal_ unexpected surprise that might just make it the best year ever for me. But no spoilers... you'll have to read all the way to the end to find out!
 
-## Node.js Design Patterns
+## Hitting the shelves with Node.js Design Patterns 4th edition
 
 Let's start with what has probably been one of the biggest highlights of my year: the release of the **fourth edition** of _Node.js Design Patterns_!
 
@@ -47,10 +47,12 @@ If you want to know all the details about what's new in this edition, check out 
 
 ... And if you'll have a chance to read it, make sure to leave us a review on Amazon or Goodreads. Reviews really help authors like us reach more readers! Probably the biggest gift you can give us, especially if you enjoyed the book!
 
+I'm not sure how much time I'll have for the book in 2026, but there's certainly some promotion work to do and I have a list of blog articles I want to write to complement the book's content. Stay tuned on the [Node.js Design Patterns blog](https://nodejsdesignpatterns.com/blog)!
+
 > A mind needs books as a sword needs a whetstone, if it is to keep its edge.  
 > — Tyrion Lannister
 
-## Crafting Lambda Functions in Rust
+## Making progress on Crafting Lambda Functions in Rust
 
 [Crafting Lambda Functions in Rust](https://rust-lambda.com/) is a book I am co-authoring with the brilliant [James Eastham](https://jameseastham.co.uk/). It's a hands-on guide that teaches you how to build serverless applications on AWS using Rust, from the basics all the way to production-ready patterns. This one is a **self-published** project and while it's still a work in progress, it's already available as **early access** at a discounted price. The deal is simple: you get everything that's available now for a lower price, and any future updates are free. It's a sneak peek into the content as it develops, and a way to support the project too!
 
@@ -77,7 +79,7 @@ By the way, I now have a [dedicated page for all my books](/books) on this site.
 > There is nothing to writing. All you do is sit down at a typewriter and bleed.  
 > ― Ernest Hemingway
 
-## Almost 5 years at FourTheorem
+## Approaching 5 years of growth at FourTheorem
 
 Phew, almost 5 years! In February 2026 I'll hit the five-year mark at [FourTheorem](https://fourtheorem.com/), and yet it still feels like a fresh and welcoming place every single day. Tons of exciting projects, great people to work with, and countless opportunities to grow. Every day brings a new lesson. So let me take a minute to thank [Peter](https://www.linkedin.com/in/peterelger/), [Fiona](https://www.linkedin.com/in/fiona-mc-kenna-174172a2/), and [Eoin](https://www.linkedin.com/in/eoins/), the minds, souls, and hearts behind FourTheorem, for creating such an amazing place to work at. Looking forward to many more years of collaboration and growth together!
 
@@ -100,7 +102,7 @@ P.P.S. This year we also got a **new logo**! I hope you'll get used to it and st
 > Think like a proton. Always positive.  
 > — Unknown
 
-## Sharing Cloud knowledge with AWS Bites
+## Keeping the AWS conversation going with AWS Bites
 
 [AWS Bites](https://awsbites.com/) is the show I run with [Eoin](https://www.linkedin.com/in/eoins/) (from FourTheorem) where we chat about AWS topics in short, bite-sized episodes. Well, sometimes not too bite-sized... but we try to find a good balance between comprehensiveness and brevity!
 
@@ -110,14 +112,16 @@ In 2025 we've been less consistent than previous years (busy times!), but we kep
 <iframe style="position: absolute; top:0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/Ruz_hDcyhz0" frameborder="0" allowfullscreen></iframe>
 </div>
 
-The numbers keep growing: we've almost reached **4.5k subscribers** and **160k views** on [YouTube](https://www.youtube.com/@AWSBites), plus **3.3k followers** and **75k plays** on [Spotify](https://open.spotify.com/show/3Lh7PzqBFV6yt5WsTAmO5q)!
+The numbers keep growing: we've almost reached **4.5k subscribers** and **160k views** on [YouTube](https://www.youtube.com/@AWSBites), plus **3.3k followers** and **75k plays** on [Spotify](https://open.spotify.com/show/3Lh7PzqBFV6yt5WsTAmO5q). In total, we've reached **168k plays** across all platforms (as monitored by Spotify)!
 
 As always, it's been a lot of fun to create the cover art for every episode. I expected AI would remove some of the fun, but it's actually making it easier to experiment with different styles and ideas. I still do the final touches (and sometimes even more) manually though! I hope people enjoy the cover arts as much as I enjoy making them. If you want to see all of them, you'll find them on the [official website](https://awsbites.com/).
+
+There have been lots of interesting announcements during the last re:Invent in Vegas, like Lambda Durable Functions and Lambda Managed Instances. We'll surely cover those as soon as possible! If you're interested in these topics (and AWS in general), make sure to follow us on whatever podcast channel you prefer!
 
 > There was a star riding through clouds one night, and I said to the star, "Consume me".  
 > ― Virginia Woolf
 
-## Public speaking
+## Spreading knowledge on stage (and online)
 
 This year I did a bit less public speaking than usual. Between book writing and wanting to spend more time with family (and travel less), I had to be more selective with my engagements. Still, I managed to deliver **8 different talks** throughout the year:
 
@@ -138,10 +142,12 @@ My favourite talk of the year was probably the closing keynote I delivered with 
 <iframe style="position: absolute; top:0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/xLatWq6D6g4" frameborder="0" allowfullscreen></iframe>
 </div>
 
-> Share your knowledge. It’s a way to achieve immortality.  
+After many years travelling a lot for conferences, I still have to evaluate how much travel I'm willing to do in 2026. Part of me is eager to get back in full swing into the conferences game, while the other is enjoying a more relaxed lifestyle. We'll see what the new year will bring. I don't need to take this decision in a rush. Meanwhile, if there's a cool conference you want to invite me to, make sure to reach out. I will definitely consider it!
+
+> Share your knowledge. It's a way to achieve immortality.  
 > – Dalai Lama
 
-## Sharing the full-stack love with FullStack Bulletin
+## Reaching 450 issues of FullStack Bulletin
 
 [FullStack Bulletin](https://fullstackbulletin.com/) is a free weekly newsletter I co-founded with [Andrea Mangano](https://www.yourdevopsguy.com/). Every week we hand-pick **7 curated articles** (sometimes more 😌) on full-stack web development and related topics, plus a book recommendation and an inspirational tech quote. It's our way of helping fellow developers stay current with all the good stuff happening in our industry.
 
@@ -155,10 +161,12 @@ From a growth perspective, the newsletter is still growing slowly but steadily. 
 
 We're always looking for sponsors to help cover the costs of running the newsletter and maybe make it sustainable in the long run. If you're interested, [reach out](mailto:luciano@fullstackbulletin.com)!
 
+For 2026, I'm hoping to keep the momentum going and maybe hit 500 issues. I'd also love to figure out how to grow the audience base a little faster. I think this newsletter would be much more valuable if it hit 6,000 subscribers, and it would also be much easier to attract sponsors and for me to dedicate more time to it, making it even more valuable for everyone. If you have suggestions on how to grow, I'm all ears! Another way you can help is by [subscribing to the newsletter](https://fullstackbulletin.com/) and sharing it with your friends!
+
 > Love only grows by sharing.  
 > — Brian Tracy
 
-## Live coding on Twitch
+## (Not really) live coding on Twitch
 
 One of the side projects I've kept going over the last few years has been weekly coding live streams with my friend [Roberto Gambuzzi](https://github.com/gambuzzi). We generally use these sessions as an excuse to run various experiments and learn Rust together, though occasionally we play with other technologies too (like Zig!).
 
@@ -172,7 +180,10 @@ This is mostly due to lack of time and energy on my side. Hopefully 2026 will be
 
 If you want to stay tuned for future streams, make sure to follow us on [Twitch](https://www.twitch.tv/loige) and subscribe to the [YouTube channel](https://www.youtube.com/@Loige) where we upload all the recordings!
 
-## Articles & blog posts
+> The only way to learn a new programming language is by writing programs in it.  
+> — Dennis Ritchie
+
+## Writing (just a few) articles and blog posts
 
 Not the most prolific year for blogging, I have to admit. Between working on two books and everything else going on, I didn't have much time or energy left for writing articles. Still, I managed to publish a few pieces:
 
@@ -199,7 +210,7 @@ PS: here's a screenshot from my usage of Claude Code, which I am finding particu
 > It’s harder to read code than to write it.  
 > — Joel Spolsky
 
-## Open Source
+## Contributing to Open Source
 
 I always like to do some open source whenever I have the chance. I like to contribute to projects I use (even in small ways) and I like to share almost everything I do in an open-source fashion. No surprise that I kept my commit race going in 2025... not in a crazy way, but it was great to be able to keep things going.
 
@@ -236,10 +247,12 @@ To close this section here's my ritual GitHub yearly contribution graph! I know 
 
 ![GitHub contribution chart of Luciano Mammino (lmammino) in 2025](./lmammino-github-contribution-chart-2025.jpg)
 
+For 2026, I'm hoping to keep the momentum going. I have a few ideas for new projects and I'd love to contribute more to some of the tools I use daily. Let's see what the new year will bring!
+
 > Open source is a public good and across every industry, we have a responsibility to come together to improve and support the security of open-source software we all depend on.  
 > — Jim Zemlin
 
-## Middy
+## Watching Middy thrive
 
 [Middy](https://middy.js.org/) is a Node.js middleware engine for AWS Lambda. It helps you organise your Lambda code by separating business logic from cross-cutting concerns like authentication, validation, error handling, and serialization. Think of it as a way to keep your handlers clean and focused while reusable middleware takes care of all the boilerplate.
 
@@ -251,12 +264,20 @@ Middy is still the leading framework in this space, approaching **600k weekly do
 
 [![Middy downloads chart vs competitors](./middyjs-downloads-chart-vs-competitors.jpg)](https://npmtrends.com/@codegenie/serverless-express-vs-@fastify/aws-lambda-vs-@middy/core-vs-@vendia/serverless-express-vs-aws-lambda-fastify-vs-aws-serverless-express-vs-lambda-api-vs-serverless-express-vs-serverless-http)
 
+<small>
+
+Multi-series time-series chart (Jan–Dec 2025, 0–600k) comparing package usage/download trends. **@middy/core** leads throughout, rising from ~400k to nearly **600k** by December. A second tier (**serverless-express**, **@codegenie/serverless-express**, **@vendia/serverless-express**) sits mostly in the **~300k–420k** range, with a brief dip around early October before recovering. **serverless-http** climbs from ~180k to ~300k mid/late year, while **aws-serverless-express** trends down toward ~150k. The remaining packages stay below **~100k**.
+
+</small>
+
 The project is also close to **4,000 stars** on GitHub (currently at 3,877). If you like Middy, make sure to [give it a star](https://github.com/middyjs/middy)! Even better, consider [sponsoring Will](https://github.com/sponsors/willfarrell) to support the project and keep it thriving!
+
+For 2026, I expect version 7 to be released and I'm curious to see how the community will adopt the new Durable Functions support. I might also try to get more involved again, at least to help with documentation and community support. Let's see how things unfold!
 
 > We shape our tools, and thereafter our tools shape us.  
 > — Marshall McLuhan
 
-## Other stuff
+## Some other random stuff
 
 This year (in December) I renewed my [AWS Certified Solutions Architect – Professional](https://aws.amazon.com/certification/certified-solutions-architect-professional/) certification which had expired early this April. Always good to keep these things up to date! I didn't write a detailed article about it this time because, I have to admit, I had to wing it a little bit and I think I was lucky enough to pass it at the first try! This one is always a very challenging exam: a full half day of intense brain work. If you want to know more about how I prepared for it in the past, check out my [2022 year in review](/2022-a-year-in-review) where I wrote a bit more about my approach.
 
@@ -270,7 +291,12 @@ Now a little bit of bad news: I am not an MVP anymore... or should I say I am no
 
 On the bright side, I'm still a [Codemotion Ambassador](https://www.codemotion.com/) and happy to support one of the coolest tech communities out there (and definitely the biggest/coolest tech conference in Italy)!
 
-## Some random personal stuff
+For 2026, I'm hoping to pass the AI Practitioner exam and maybe tackle one more certification. We'll see how much time I'll have for studying, but it's always fun to learn new things and keep my skills sharp!
+
+> Success is the sum of small efforts, repeated day in and day out.  
+> — Robert Collier
+
+## Some more personal achievements
 
 I kept training quite consistently this year and in June I finally got promoted to **Brown Belt in Brazilian Jiu-Jitsu**! After years of training and dedication, I finally achieved this milestone. It's been a challenging journey, but every step has been worth it. Huge thanks to my coaches and training partners for their support and guidance along the way. I honestly don't feel like I deserve it, but that's the way it's supposed to be... at least if I listen to more experienced practitioners! 🤙
 
@@ -288,7 +314,10 @@ And now onto the biggest news and gift of 2025... **I became a dad!** Yes, in Se
 
 ![A photo of Luciano Mammino smiling with his son. The face of the baby is covered with a heart eyes emoji](./luciano-mammino-and-his-son.jpg)
 
-<small>Doesn't he look just like me? 😂</small>
+<small>Isn't he cute when he smiles? 😍</small>
+
+> Life is what happens when you're busy making other plans.  
+> — John Lennon
 
 ## Wrapping up the wrap up 🌯🌯
 
@@ -299,3 +328,6 @@ I certainly wouldn't be where I am today without the support of my family, frien
 OMG, are you still reading!? I think at this point you are either my mom or a serial stalker... or maybe both! Either way, thanks for sticking around till the end. I hope you found some interesting tidbits in my 2025 review. If you did, feel free to reach out and share your thoughts or just say hi... or even better, share some highlights of your 2025! You can also leave a comment below. Seriously, I always love hearing from readers!
 
 See you in 2026! Happy New Year! 🎉
+
+> The secret to a good life is not to have what you want, but to want what you have.  
+> — Rabbi Hyman Schachtel
