@@ -149,7 +149,7 @@ After many years travelling a lot for conferences, I still have to evaluate how 
 
 ## Reaching 450 issues of FullStack Bulletin
 
-[FullStack Bulletin](https://fullstackbulletin.com/) is a free weekly newsletter I co-founded with [Andrea Mangano](https://www.yourdevopsguy.com/). Every week we hand-pick **7 curated articles** (sometimes more 😌) on full-stack web development and related topics, plus a book recommendation and an inspirational tech quote. It's our way of helping fellow developers stay current with all the good stuff happening in our industry.
+[FullStack Bulletin](https://fullstackbulletin.com/) is a free weekly newsletter I co-founded with [Andrea Mangano](https://andreamangano.com/). Every week we hand-pick **7 curated articles** (sometimes more 😌) on full-stack web development and related topics, plus a book recommendation and an inspirational tech quote. It's our way of helping fellow developers stay current with all the good stuff happening in our industry.
 
 Last year I wasn't sure whether to keep it going or not, but eventually I decided to push through and I'm glad I did. I actually managed to stay quite consistent, publishing a new issue almost every week and reaching the astounding number of 450 issues published in total!
 
