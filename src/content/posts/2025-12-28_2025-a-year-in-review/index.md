@@ -327,6 +327,28 @@ I certainly wouldn't be where I am today without the support of my family, frien
 
 OMG, are you still reading!? I think at this point you are either my mom or a serial stalker... or maybe both! Either way, thanks for sticking around till the end. I hope you found some interesting tidbits in my 2025 review. If you did, feel free to reach out and share your thoughts or just say hi... or even better, share some highlights of your 2025! You can also leave a comment below. Seriously, I always love hearing from readers!
 
+If you liked this post, you might also enjoy similar year-in-review recaps by fellow software engineers, fullstack devs, and overall awesome human beings:
+
+- [Wrapping up 2025 (sort of)](https://bell.bz/wrapping-up-2025-sort-of/) by Andy Bell
+- [2025 Year in Review](https://joshcollinsworth.com/blog/2025) by Josh Collingsworth
+- [I Survived 2025](https://dbushell.com/2025/12/18/year-in-review/) by David Bushell
+- [Feeling The Pulse of Twenty Twenty-Five](https://vale.rocks/pulse/2025) by Declan Chidlow
+- [2025 in music](https://colly.com/journal/twenty-twentyfive-in-music) by Simon Collison
+- [Books I Read in 2025](https://flamedfury.com/posts/books-i-read-in-2025/) by Flamed Fury
+- [My 2025 review](https://hidde.blog/2025-review/) by Hidde de Vries
+- [2025 in review](https://www.coryd.dev/posts/2025/2025-in-review) by Cory Dransfeldt
+- [Look Back at 2025](https://pawelgrzybek.com/a-look-back-at-2025) by Paweł Grzybek
+- [Music In 2025](https://nazhamid.com/journal/music-in-2025) by Naz Hamid
+- [Yearnotes 2025](https://chriskirknielsen.com/blog/yearnotes-2025) by Christopher Kirk-Nielsen
+- [Our frail thoughts](https://ethanmarcotte.com/wrote/our-frail-thoughts/) by Ethan Marcotte
+- [2025 year in review](https://aubreysambor.com/2025-year-in-review/) by Aubrey Sambor
+- [Thank You (2025 Edition)](https://css-tricks.com/thank-you-2025-edition/) by Geoff Graham
+- [2025 in review](https://damianwalsh.co.uk/posts/2025-in-review/) by Damian Walsh
+- [2025](https://samwho.dev/2025) by Sam Rose
+- [2025 Year in Review](https://thorstenbeeck.com/blog/2025-year-in-review/) by Thorsten Beeck
+
+A quick thank you to everyone who has already mentioned this post!
+
 See you in 2026! Happy New Year! 🎉
 
 > The secret to a good life is not to have what you want, but to want what you have.  
