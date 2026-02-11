@@ -12,7 +12,7 @@ event_city: 'Remote'
 event_days: '07 Feb, 2026'
 is_workshop: false
 slides_link: ~
-video_link: 'https://www.youtube.com/live/nNLJPdfIYzE'
+video_link: 'https://youtu.be/SHvE8B9NYdg'
 with:
   - name: Francesco Ciulla
     link: https://www.linkedin.com/in/francesco-ciulla-roma/
