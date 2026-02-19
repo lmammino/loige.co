@@ -11,7 +11,7 @@ event_location_gps: '41.871540,12.479340'
 event_city: 'Roma, Italy'
 event_days: '18 Feb, 2026'
 is_workshop: false
-slides_link: ~
+slides_link: 'https://loige.link/pod'
 video_link: ~
 with: []
 ---
