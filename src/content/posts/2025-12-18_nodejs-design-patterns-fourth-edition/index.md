@@ -11,6 +11,7 @@ tags:
   - javascript
   - books
 description: "The fourth edition of Node.js Design Patterns is here. As one of the authors, I share why we wrote a new edition, what's new, and my thoughts on where Node.js is heading."
+bluesky_url: https://bsky.app/profile/loige.co/post/3mab4wlpl522t
 ---
 
 I'll admit it: I'm a few months late writing this. The fourth edition of Node.js Design Patterns has been out since September 25, 2025, and here I am in December finally getting around to the announcement post. But as they say, better late than never!

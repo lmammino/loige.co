@@ -11,6 +11,7 @@ tags:
   - node-js
   - astro
 description: This article discuss the reason why I wanted to migrate this blog from Gatsby to Astro and the process I followed to do it. Plus a bunch of interesting and quirky bugs that I had to troubleshoot and fix along the way.
+bluesky_url: https://bsky.app/profile/loige.co/post/3kjqpfn76gc2q
 ---
 
 I recently migrated this blog from [Gatsby](https://www.gatsbyjs.com/) to [Astro](https://astro.build/). Finally, I have to say! I have been meaning to move away from Gatsby for a while, but I never really prioritised this activity until now and all my previous attempts had failed for one reason or another...

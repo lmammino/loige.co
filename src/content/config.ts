@@ -14,6 +14,7 @@ const posts = defineCollection({
       header_img: image().optional(),
       status: z.enum(['published', 'draft']),
       tags: z.array(z.string()),
+      bluesky_url: z.string().url().optional().nullable(),
     }),
 })
 

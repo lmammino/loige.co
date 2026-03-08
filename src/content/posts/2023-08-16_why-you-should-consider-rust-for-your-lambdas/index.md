@@ -12,6 +12,7 @@ tags:
 description: Rust is an ideal language for writing AWS Lambda functions. Its
   performance can reduce execution time and memory usage, lowering costs. Its
   safety features like no nulls and error handling can reduce bugs.
+bluesky_url: https://bsky.app/profile/loige.co/post/3k53ce7mlno2q
 ---
 
 Rust is such a cool language, even though it might take a bit to get the hang of

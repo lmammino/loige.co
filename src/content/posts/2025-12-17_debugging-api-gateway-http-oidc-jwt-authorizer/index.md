@@ -13,6 +13,7 @@ tags:
   - jwt
   - authentication
 description: "Learn how to debug silent failures in AWS API Gateway HTTP when your OIDC provider doesn't implement the .well-known/openid-configuration endpoint. Enable FailOnWarnings to catch these issues before they break your production deployment."
+bluesky_url: https://bsky.app/profile/loige.co/post/3ma6hpuudec2q
 ---
 
 Recently, I was working on an AWS project that required authenticating API requests using OIDC-based JWT tokens. I was using API Gateway HTTP (also known as API Gateway v2) with its built-in JWT authorizer, which seemed like the perfect fit for the job. What should have been a straightforward configuration turned into hours of debugging a mysterious issue: my deployment succeeded, but routes were disappearing from the console and authentication simply wasn't working.

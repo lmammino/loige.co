@@ -14,6 +14,7 @@ tags:
 description: When building a custom API Gateway authorizer, mysterious 500
   errors can happen. This post shows how to enable CloudWatch logging for API
   Gateway to inspect the logs and debug problems.
+bluesky_url: https://bsky.app/profile/loige.co/post/3kdh2jgjpbj2l
 ---
 
 Last week, while working on [a custom REST API Gateway Lambda authorizer](https://github.com/lmammino/oidc-authorizer), I spent some time trying to debug a mysterious `500` error with a `{"message":null}` body. In this article, I will share why this was happening and how to debug this kind of error when building custom API Gateway authorizers.

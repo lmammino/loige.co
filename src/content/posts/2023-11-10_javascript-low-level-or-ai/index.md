@@ -16,6 +16,7 @@ description: The software industry sees an interesting tension between
   generative AI capturing the software lifecycle and low-level languages aiming
   for better performance. As developers we must understand these trends and find
   a strategy. Learn one or both?
+bluesky_url: https://bsky.app/profile/loige.co/post/3kdtytuhlz22b
 ---
 
 The software industry is going to be fun to see in the coming 5-10 years.

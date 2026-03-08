@@ -1,0 +1,46 @@
+---
+interface Props {
+  blueskyUrl: string
+}
+
+const { blueskyUrl } = Astro.props
+---
+
+<div class="mt-8 pt-8 border-t border-text-100">
+  <h3 class="text-text-500 font-bold">Bluesky Love</h3>
+  <p class="text-text-400 text-sm mt-1">
+    <bluesky-likes src={blueskyUrl}></bluesky-likes> awesome folks liked this article
+    on Bluesky
+  </p>
+  <div class="mt-4">
+    <bluesky-likers src={blueskyUrl} max="50"></bluesky-likers>
+  </div>
+  <p class="mt-4">
+    <a
+      href={blueskyUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-primary-500 hover:text-primary-600 underline text-sm"
+    >
+      Like or comment on Bluesky
+    </a>
+  </p>
+</div>
+
+<style>
+  bluesky-likes {
+    --bluesky-likes-color: var(--color-primary-500);
+  }
+
+  bluesky-likers {
+    --avatar-size: 2.5em;
+    --avatar-border: 0.12em solid var(--color-bg-600);
+    --avatar-shadow: 0 0.1em 0.3em -0.2em rgb(0 0 0 / 0.3);
+    --more-background: var(--color-primary-500);
+    --more-color-text: var(--color-bg-100);
+  }
+</style>
+
+<script is:inline type="module">
+  import 'https://esm.sh/bluesky-likes/autoload'
+</script>

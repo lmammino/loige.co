@@ -17,6 +17,7 @@ description: This article explores the multifaceted definition of a senior
   autonomy, business acumen, and leadership. It provides tips on how to grow,
   such as pair programming and content creation. The path to seniority requires
   dedication, perseverance and a growth mindset.
+bluesky_url: https://bsky.app/profile/loige.co/post/3ldxipxgwfs2v
 ---
 
 In today's fast-paced tech industry, the role of a senior software engineer has become increasingly important and something many engineers strive to be recognized as. But **are you senior yet**? And **what's expected from you a senior**?

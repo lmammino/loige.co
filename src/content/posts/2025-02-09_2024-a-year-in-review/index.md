@@ -9,6 +9,7 @@ status: published
 tags:
   - life
 description: In his 2024 year-in-review, Luciano Mammino covers his work in Rust, serverless AWS projects, his contributions to open source projects like Middy, public speaking engagements, the AWS Bites podcast, and personal milestones.
+bluesky_url: https://bsky.app/profile/loige.co/post/3lhst7ttybc2f
 ---
 
 2024: Another Year Bites the Dust (in a Good Way!)

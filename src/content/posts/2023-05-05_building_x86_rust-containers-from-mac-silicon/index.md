@@ -14,6 +14,7 @@ description: This article walks through the challenges of cross-compiling a Rust
   web app from a Mac Silicon machine to an x86 Docker container using musl,
   RusTLS, multi-stage builds and other techniques to produce a small container
   image.
+bluesky_url: https://bsky.app/profile/loige.co/post/3juxtjrwue62t
 ---
 
 I recently struggled to build an x86_64 container for a web app written in Rust from my Mac Silicon. I eventually figured out a working solution that also heavily reduced the size of the container image. In this article, I will walk you through this solution!

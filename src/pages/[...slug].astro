@@ -22,6 +22,7 @@ import FacebookIcon from '../components/icons/FacebookIcon.astro'
 import XIcon from '../components/icons/XIcon.astro'
 import ProfilePicture from '../assets/profile-picture.jpg'
 import NewsletterSignup from '../components/NewsletterSignup.astro'
+import BlueskyReactions from '../components/BlueskyReactions.astro'
 
 type Props = InferGetStaticPropsType<typeof getStaticPaths>
 
@@ -268,6 +269,9 @@ const { Content } = await render(post)
               >.</p
             >
           </div>
+          {post.data.bluesky_url && (
+            <BlueskyReactions blueskyUrl={post.data.bluesky_url} />
+          )}
           <div id="comments" class="mt-8 pt-8 border-t border-text-100">
             <div id="disqus_thread" data-url={getAbsoluteUrl(post)}></div>
           </div>

@@ -9,6 +9,7 @@ status: published
 tags:
   - life
 description: "Luciano Mammino's 2025 year in review: releasing the fourth edition of Node.js Design Patterns, progressing on Crafting Lambda Functions in Rust, approaching 5 years at FourTheorem, public speaking, AWS Bites podcast, open source contributions, and some major personal milestones."
+bluesky_url: https://bsky.app/profile/loige.co/post/3mb75ubothn27
 ---
 
 2025: That's a wrap! 🌯

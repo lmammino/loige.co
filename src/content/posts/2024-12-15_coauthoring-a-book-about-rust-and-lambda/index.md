@@ -11,6 +11,7 @@ tags:
   - serverless
   - lambda
 description: Announcing Crafting Lambda Functions in Rust, a new book that guides you through building efficient, reliable, and cost-effective AWS Lambda functions using Rust, written by Luciano Mammino and James Eastham. Learn why Rust and serverless are a perfect match. Early access is now available at rust-lambda.com!
+bluesky_url: https://bsky.app/profile/loige.co/post/3ldg7hkuim22a
 ---
 
 I’m beyond excited to share some big news with you: I’m co-authoring a new book

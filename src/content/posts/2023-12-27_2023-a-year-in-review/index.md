@@ -12,6 +12,7 @@ description: In 2023, Luciano Mammino attended his first re:Invent, grew open
   source projects like Middy, continued podcasting on AWS Bites, and
   strengthened connections through public speaking and live coding. He also
   contributed to sustainability through LifeFoliage's Landscape Hunt game.
+bluesky_url: https://bsky.app/profile/loige.co/post/3khlrlaztmm2x
 ---
 
 2023: End of another year!

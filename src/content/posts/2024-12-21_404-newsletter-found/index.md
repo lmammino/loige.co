@@ -15,6 +15,7 @@ tags:
   - api
   - git
 description: Discover the journey behind FullStack Bulletin, a weekly newsletter for full-stack developers with 404 curated issues over 8 years. Learn about its origins, technical implementation, and future plans.
+bluesky_url: https://bsky.app/profile/loige.co/post/3ldt7lvaacs23
 ---
 
 Eight years ago, I embarked on a journey to make sense of the fast-paced,
