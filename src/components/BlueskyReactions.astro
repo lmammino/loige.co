@@ -9,8 +9,8 @@ const { blueskyUrl } = Astro.props
 <div class="mt-8 pt-8 border-t border-text-100">
   <h3 class="text-text-500 font-bold">Bluesky Love</h3>
   <p class="text-text-400 text-sm mt-1">
-    <bluesky-likes src={blueskyUrl}></bluesky-likes>{' '}awesome folks liked
-    this article on Bluesky
+    <bluesky-likes src={blueskyUrl}></bluesky-likes>awesome folk(s) liked this
+    article on Bluesky
   </p>
   <div class="mt-4 ml-2.5">
     <bluesky-likers src={blueskyUrl} max="50"></bluesky-likers>
@@ -30,6 +30,8 @@ const { blueskyUrl } = Astro.props
 <style>
   bluesky-likes {
     --bluesky-likes-color: var(--color-primary-500);
+    font-size: 2em;
+    padding-right: 0.5em;
   }
 
   bluesky-likers {
