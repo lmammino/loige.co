@@ -203,5 +203,10 @@
     "title": "Node.js Path Traversal: Prevention & Security Guide",
     "link": "https://nodejsdesignpatterns.com/blog/nodejs-path-traversal-security/",
     "date": "2026-02-02T12:00:00.000Z"
+  },
+  {
+    "title": "Understanding Amazon Bedrock Structured Outputs",
+    "link": "https://fourtheorem.com/amazon-bedrock-structured-outputs/",
+    "date": "2026-03-05T15:41:00.000Z"
   }
 ]
