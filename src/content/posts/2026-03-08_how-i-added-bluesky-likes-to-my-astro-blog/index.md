@@ -11,6 +11,7 @@ tags:
   - astro
   - web-components
 description: 'Learn how I added Bluesky likes and avatars to my Astro blog using the bluesky-likes web components package. No API keys, no server-side code, just a few lines of Astro magic.'
+bluesky_url: https://bsky.app/profile/loige.co/post/3mgl4yaobbk2p
 ---
 
 This afternoon I was reading [Lea Verou's article on external import maps](https://lea.verou.me/blog/2026/external-import-maps-today/), a really good read, but that's not really the point of this article... the point is that, as I scrolled to the bottom of the article, something else caught my eye: a neat little section showing Bluesky likes, complete with avatars of the people who had liked the post.
