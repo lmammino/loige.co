@@ -4,15 +4,15 @@ slug: aperidojo-design-pattern-e-serverless
 date: 2026-03-11T17:00:00.000Z
 status: published
 language: it_IT
-event_name: AperiDojo
-event_link: 'https://www.youtube.com/live/P4BYvJcrwfU'
+event_name: Dev Dojo IT
+event_link: 'https://www.youtube.com/@devdojo_it'
 event_location: Remote
 event_location_gps: ~
 event_city: Remote
 event_days: 11 Mar, 2026
 is_workshop: false
 slides_link: ~
-video_link: ~
+video_link: 'https://www.youtube.com/live/P4BYvJcrwfU'
 with:
   - name: Christian Nastasi
     link: https://github.com/cnastasi

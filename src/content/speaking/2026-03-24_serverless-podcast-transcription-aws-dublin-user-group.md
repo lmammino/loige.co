@@ -11,7 +11,7 @@ event_location_gps: 53.3449334,-6.264522800000009
 event_city: Dublin, Ireland
 event_days: Mar 24, 2026
 is_workshop: false
-slides_link: null
+slides_link: 'https://loige.link/podw'
 embed_slides: null
 video_link: null
 with: []
