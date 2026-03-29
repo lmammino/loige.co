@@ -3,8 +3,8 @@ title: "Farewell FullStack Bulletin"
 slug: farewell-fullstack-bulletin
 subtitle: "After 458 issues and almost a decade of weekly curation, it's time to close this chapter"
 header_img: "./farewell-fullstack-bulletin-cover.jpg"
-date: 2026-03-29T12:00:00.000Z
-updated: 2026-03-29T12:00:00.000Z
+date: 2026-03-29T12:15:00.000Z
+updated: 2026-03-29T12:15:00.000Z
 status: published
 tags:
   - life
