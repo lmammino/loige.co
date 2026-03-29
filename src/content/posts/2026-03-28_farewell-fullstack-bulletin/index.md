@@ -3,8 +3,8 @@ title: "Farewell FullStack Bulletin"
 slug: farewell-fullstack-bulletin
 subtitle: "After 458 issues and almost a decade of weekly curation, it's time to close this chapter"
 header_img: "./farewell-fullstack-bulletin-cover.jpg"
-date: 2026-03-28T12:00:00.000Z
-updated: 2026-03-28T12:00:00.000Z
+date: 2026-03-29T12:00:00.000Z
+updated: 2026-03-29T12:00:00.000Z
 status: published
 tags:
   - life
@@ -12,7 +12,7 @@ tags:
 description: "After 458 issues, 3,073+ curated links, and nearly a decade of weekly curation, FullStack Bulletin is closing. Here's the story of the journey, why it's ending, and what lives on."
 ---
 
-> “There is no real ending. It’s just the place where you stop the story.”  
+> There is no real ending. It’s just the place where you stop the story.  
 > ― Frank Herbert
 
 After 458 issues, 3,073+ curated links, and almost nine years of showing up in your inbox every week, [Andrea](https://andreamangano.com/) and I have decided to close [FullStack Bulletin](https://fullstackbulletin.com) (the newsletter). For real this time...
@@ -160,8 +160,10 @@ Well, we went beyond. Fifty-four issues beyond, to be exact.
 
 And there will be one more. Issue #459, the very last one, will land in your inbox soon to close the loop and point you right here. Consider it our final Monday together.
 
-Here's to Issue #459. And what a ride it's been.
+OK, that sounded a bit overdramatic, didn't it? Don't worry, I'm not going anywhere. I'll still be around with all my other projects and the same passion for sharing knowledge and connecting with people who care about this craft. FullStack Bulletin was one chapter, but the story continues in other forms. If you want to stay in touch, all my social links are in the footer of this blog. Don't hesitate to connect and reach out.
 
-Thank you for reading. Thank you for subscribing. Thank you for being part of this.
+Here's to Issue #459. And what a ride it's been!
+
+Thank you for reading. Thank you for subscribing. Thank you for being part of this. ❤️
 
 So long, and thanks for all the links.
