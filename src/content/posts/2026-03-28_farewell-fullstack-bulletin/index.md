@@ -10,6 +10,7 @@ tags:
   - life
   - collaboration
 description: "After 458 issues, 3,073+ curated links, and nearly a decade of weekly curation, FullStack Bulletin is closing. Here's the story of the journey, why it's ending, and what lives on."
+bluesky_url: "https://bsky.app/profile/loige.co/post/3mi7geshfh22c"
 ---
 
 > There is no real ending. It’s just the place where you stop the story.  
