@@ -1,20 +1,33 @@
 ---
+/*
+  ThemeSwitcher
+  -------------
+  Toggles between `one-light` and `dark-plus` themes, persisted to localStorage.
+  Uses design tokens for icon colours (not hardcoded slate/yellow) so both
+  themes remain coherent.
+*/
+
 import Moon from './icons/Moon.astro'
 import Sun from './icons/Sun.astro'
 ---
 
-<a id="theme-switch" href="#" class="flex relative w-8 h-8 group">
+<button
+  id="theme-switch"
+  type="button"
+  aria-label="Toggle colour theme"
+  class="flex relative w-10 h-10 items-center justify-center rounded-md group hover:bg-bg-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-500"
+>
   <Moon
     id="moon"
     title="Switch theme to light mode"
-    class="w-8 h-8 text-slate-400 group-hover:text-slate-300 absolute hidden hover:animate-wiggle"
+    class="w-6 h-6 text-text-400 group-hover:text-text-500 absolute hidden group-hover:animate-wiggle"
   />
   <Sun
     id="sun"
     title="Switch theme to dark mode"
-    class="w-8 h-8 text-yellow-500 group-hover:text-yellow-600 absolute hidden hover:animate-spin"
+    class="w-6 h-6 text-accent-700 group-hover:text-accent-600 absolute hidden group-hover:animate-spin"
   />
-</a>
+</button>
 
 <script>
   // theme-switcher
@@ -34,7 +47,7 @@ import Sun from './icons/Sun.astro'
 
   const themeSwitch = document.getElementById(
     'theme-switch',
-  ) as HTMLAnchorElement
+  ) as HTMLButtonElement
   themeSwitch.addEventListener('click', (e) => {
     e.preventDefault()
     currentTheme = document.documentElement.getAttribute('data-theme')

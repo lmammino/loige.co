@@ -52,6 +52,30 @@ const locations = new Set(
 const countries = new Set(
   [...locations].map((s) => (s as string).split(', ')[1]).filter((l) => !!l),
 )
+
+// Histogram data: count of talks per year, split into past and upcoming.
+// The current (and any future) year can carry a translucent "upcoming" stack
+// on top of the delivered count.
+const currentYear = now.getFullYear()
+const histogramRangeEnd = Math.max(
+  currentYear,
+  ...futureTalks.map((t) => t.data.date.getFullYear()),
+)
+const histogramData: {
+  year: number
+  past: number
+  upcoming: number
+  total: number
+}[] = []
+for (let y = firstYear; y <= histogramRangeEnd; y++) {
+  const past = pastTalks.filter((t) => t.data.date.getFullYear() === y).length
+  const upcoming = futureTalks.filter(
+    (t) => t.data.date.getFullYear() === y,
+  ).length
+  histogramData.push({ year: y, past, upcoming, total: past + upcoming })
+}
+const histogramMax = Math.max(1, ...histogramData.map((d) => d.total))
+const hasUpcomingInHistogram = histogramData.some((d) => d.upcoming > 0)
 ---
 
 <CommonLayout
@@ -68,7 +92,7 @@ const countries = new Set(
       <h1 class="text-4xl text-center my-8 font-bold text-text-500"
         >Luciano Mammino's talks</h1
       >
-      <Prose class="max-w-[800px]">
+      <Prose>
         <p
           >I am quite involved with technical speaking and I love delivering
           talks and workshops at conferences and meetups.</p
@@ -172,9 +196,101 @@ const countries = new Set(
     </div>
   </div>
 
+  <!-- Talks-per-year histogram.
+       Each bar is a link to that year's anchor in the Past talks list. -->
+  <div class="relative bg-bg-500">
+    <div class="mx-auto max-w-(--breakpoint-xl) pt-2 sm:pt-8 md:pt-24 px-8">
+      <h2 class="text-text-500 text-3xl font-bold mb-2">Talks per year</h2>
+      <p class="text-text-400 mb-6">
+        <strong>{pastTalks.length}</strong> talks delivered since{' '}
+        <strong>{firstYear}</strong>{
+          futureTalks.length > 0 && (
+            <>
+              {' '}· <strong>{futureTalks.length}</strong> upcoming
+            </>
+          )
+        }. Click a year to jump.
+      </p>
+      <figure class="w-full">
+        <div class="w-full overflow-x-auto pb-2">
+          <ol
+            class="flex items-end gap-1 sm:gap-2 h-48 bg-bg-300 border border-bg-600 rounded-lg p-4 min-w-[640px]"
+            aria-label={`Talks per year from ${firstYear} to ${histogramRangeEnd}`}
+          >
+            {
+              histogramData.map((d) => {
+                const heightPct =
+                  d.total > 0
+                    ? Math.max(6, (d.total / histogramMax) * 100)
+                    : 0
+                const upcomingPct =
+                  d.total > 0 ? (d.upcoming / d.total) * 100 : 0
+                const label = `${d.total} talk${d.total !== 1 ? 's' : ''} in ${d.year}${d.upcoming > 0 ? ` (${d.upcoming} upcoming)` : ''}`
+                const isCurrent = d.year === currentYear
+                return (
+                  <li class="flex-1 h-full flex flex-col items-center justify-end group">
+                    <a
+                      href={d.past > 0 ? `#talks-${d.year}` : '#upcoming'}
+                      aria-label={label}
+                      title={label}
+                      class="relative w-full flex flex-col justify-end h-full rounded-sm"
+                    >
+                      <span class="text-xs text-text-500 font-bold text-center mb-1 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity">
+                        {d.total || ''}
+                      </span>
+                      {d.total > 0 ? (
+                        <span
+                          class="relative w-full bg-accent-500 group-hover:bg-accent-600 transition-colors rounded-t-sm overflow-hidden shadow-sm"
+                          style={`height: ${heightPct}%`}
+                        >
+                          {d.upcoming > 0 && (
+                            <span
+                              class="absolute top-0 inset-x-0 bg-primary-500/50 border-b border-primary-700/40"
+                              style={`height: ${upcomingPct}%`}
+                              aria-hidden="true"
+                            />
+                          )}
+                        </span>
+                      ) : (
+                        <span
+                          class="block w-full border-b-2 border-dashed border-bg-600 group-hover:border-text-300 transition-colors"
+                          aria-hidden="true"
+                        />
+                      )}
+                    </a>
+                    <span
+                      class={`mt-2 text-xs font-mono ${isCurrent ? 'text-text-500 font-bold' : 'text-text-400'}`}
+                    >
+                      {d.year}
+                    </span>
+                  </li>
+                )
+              })
+            }
+          </ol>
+        </div>
+        {
+          hasUpcomingInHistogram && (
+            <figcaption class="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-text-400">
+              <span class="inline-flex items-center gap-2">
+                <span class="inline-block w-3 h-3 rounded-sm bg-accent-500" />
+                Delivered
+              </span>
+              <span class="inline-flex items-center gap-2">
+                <span class="inline-block w-3 h-3 rounded-sm bg-primary-500/50 border border-primary-700/40" />
+                Upcoming
+              </span>
+            </figcaption>
+          )
+        }
+      </figure>
+    </div>
+  </div>
+
   <div class="relative bg-bg-500">
     <div
-      class="mx-auto max-w-(--breakpoint-xl) pt-2 sm:pt-8 md:pt-24 pb-8 px-8 z-20 flex flex-col justify-center items-center"
+      id="upcoming"
+      class="mx-auto max-w-(--breakpoint-xl) pt-2 sm:pt-8 md:pt-16 pb-8 px-8 z-20 flex flex-col justify-center items-center"
     >
       <h2 class="text-text-500 text-3xl text-left w-full my-8 font-bold"
         >Upcoming talks</h2
@@ -182,20 +298,25 @@ const countries = new Set(
       <div class="w-full">
         {
           futureTalks.length === 0 ? (
-            <Prose class="max-w-[800px]">
-              <p>Bummer! No upcoming talks scheduled... </p>
-              <p>
-                Do you want to{' '}
-                <a
-                  rel="nofollow noreferrer noopener"
-                  target="_blank"
-                  href="http://loige.link/invite-me-to-a-conference"
-                >
-                  invite me to your next event
-                </a>
-                ?
-              </p>
-            </Prose>
+            <div class="w-full border-l-4 border-accent-500 bg-bg-300 rounded-r-lg p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
+              <div class="flex-1">
+                <h3 class="text-text-500 text-xl md:text-2xl font-bold mb-2">
+                  Bummer! No upcoming talks scheduled
+                </h3>
+                <p class="text-text-400">
+                  Planning a conference, meetup, or internal event? I'd love
+                  to hear about it.
+                </p>
+              </div>
+              <a
+                href="http://loige.link/invite-me-to-a-conference"
+                rel="nofollow noreferrer noopener"
+                target="_blank"
+                class="inline-flex items-center justify-center gap-2 bg-accent-500 hover:bg-accent-600 text-display-bg border-2 border-accent-600 hover:border-accent-700 px-5 py-2.5 min-h-[44px] rounded-lg font-bold shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-[var(--duration-base)] ease-[var(--ease-standard)] flex-shrink-0 whitespace-nowrap"
+              >
+                Invite me →
+              </a>
+            </div>
           ) : (
             <ul class="flex flex-col gap-4 w-full">
               {futureTalks.map((t) => (

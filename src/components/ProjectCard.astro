@@ -1,4 +1,15 @@
 ---
+/*
+  ProjectCard
+  -----------
+  Card for a side project or book. Image is grayscale at rest and comes to
+  life on hover, paired with a subtle lift + ring.
+
+  Sizes:
+    - default  one-column card
+    - isBig    spans two grid columns on md+ screens
+*/
+
 import type { ImageMetadata } from 'astro'
 import { Picture } from 'astro:assets'
 
@@ -17,8 +28,16 @@ const { title, href, image, imageAlt, isBig } = Astro.props
   href={href}
   title={title}
   target="_blank"
-  class=`block overflow-hidden rounded-lg transition-all shadow-md hover:shadow-lg hover:outline-4 outline-primary-500 ${
-    isBig ? 'col-span-1 md:col-span-2' : ''}`
+  rel="noopener noreferrer"
+  class={[
+    'group block overflow-hidden rounded-lg bg-bg-300',
+    'shadow-md transition-all duration-[var(--duration-base)] ease-[var(--ease-standard)]',
+    'hover:shadow-lg hover:-translate-y-0.5',
+    'hover:ring-2 hover:ring-primary-500/60',
+    isBig ? 'col-span-1 md:col-span-2' : '',
+  ]
+    .filter(Boolean)
+    .join(' ')}
 >
   <Picture
     formats={['avif', 'webp', 'jpeg']}
@@ -26,21 +45,15 @@ const { title, href, image, imageAlt, isBig } = Astro.props
     height={224}
     alt={imageAlt}
     src={image}
-    class="h-56 w-full object-cover transition"
+    class="h-56 w-full object-cover grayscale-[0.85] transition-[filter,transform] duration-[var(--duration-slow)] ease-[var(--ease-standard)] group-hover:grayscale-0 group-hover:scale-[1.02]"
   />
-  <div class="bg-bg-300 p-4 sm:p-6 h-full">
-    <h3 class="mt-0.5 text-xl font-bold text-text-500">{title}</h3>
+  <div class="p-4 sm:p-6 h-full">
+    <h3
+      class="mt-0.5 text-xl font-bold text-text-500 text-balance group-hover:text-primary-600 transition-colors"
+      >{title}</h3
+    >
     <p class="mt-2 text-sm/relaxed text-text-400">
       <slot>Some description here</slot>
     </p>
   </div>
 </a>
-<style>
-  :root img {
-    filter: grayscale(0.85);
-  }
-
-  :root a:hover img {
-    filter: grayscale(0);
-  }
-</style>

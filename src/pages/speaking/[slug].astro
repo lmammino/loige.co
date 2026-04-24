@@ -33,10 +33,18 @@ type Props = {
 const { entry, prevTalk, nextTalk } = Astro.props
 const { Content } = await render(entry)
 
-// Helper function to extract video ID from YouTube URL
+// Helper function to extract the 11-char video ID from any YouTube URL shape.
+// Covers:
+//   - youtube.com/watch?v=ID (also &v= / extra params)
+//   - youtu.be/ID
+//   - youtube.com/embed/ID
+//   - youtube.com/v/ID
+//   - youtube.com/e/ID
+//   - youtube.com/live/ID    (livestream recordings)
+//   - youtube.com/shorts/ID  (YouTube Shorts)
 function getYouTubeId(url: string): string | null {
   const regex =
-    /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/
+    /(?:youtube\.com\/(?:(?:watch|playlist).*[?&]v=|(?:embed|v|e|live|shorts)\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/
   const match = url.match(regex)
   return match ? match[1] : null
 }
@@ -163,7 +171,7 @@ const countryFlag = isRemote
         <!-- Workshop Badge -->
         {
           entry.data.is_workshop && (
-            <span class="inline-block bg-accent-500 text-white px-3 py-1 rounded-full text-sm font-semibold mb-4">
+            <span class="inline-flex items-center bg-accent-500 text-display-bg border border-accent-600 px-3 py-1 rounded-full text-sm font-bold uppercase tracking-wide mb-4">
               Workshop
             </span>
           )
@@ -190,7 +198,7 @@ const countryFlag = isRemote
                         class="w-8 h-8 rounded-full object-cover border-2 border-bg-500"
                       />
                     ) : (
-                      <div class="w-8 h-8 rounded-full bg-primary-500 flex items-center justify-center text-white font-bold text-sm border-2 border-bg-500">
+                      <div class="w-8 h-8 rounded-full bg-primary-700 flex items-center justify-center text-primary-100 font-bold text-sm border-2 border-bg-500">
                         {speaker.name.charAt(0).toUpperCase()}
                       </div>
                     )}
@@ -204,31 +212,36 @@ const countryFlag = isRemote
           )
         }
 
-        <!-- Action Buttons -->
-        <div class="flex flex-wrap gap-4">
-          {
-            entry.data.slides_link && (
-              <a
-                href={entry.data.slides_link}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 bg-primary-500 hover:bg-primary-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
-              >
-                <SlidesIcon class="w-5 h-5" />
-                View Slides
-              </a>
-            )
-          }
+        <!-- Action Buttons
+             Hierarchy:
+             - Watch Video  : signature accent (the star — brand lime, dark text for AA)
+             - View Slides  : deep indigo primary (on-brand, high emphasis)
+             - Podcast      : ghost / outlined (recedes, but discoverable)
+             All share size, focus-visible ring, and a subtle lift on hover. -->
+        <div class="flex flex-wrap gap-3">
           {
             entry.data.video_link && (
               <a
                 href={entry.data.video_link}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+                class="inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-display-bg border-2 border-accent-600 hover:border-accent-700 px-5 py-2.5 min-h-[44px] rounded-lg font-bold shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-[var(--duration-base)] ease-[var(--ease-standard)]"
               >
                 <VideoIcon class="w-5 h-5" />
                 Watch Video
+              </a>
+            )
+          }
+          {
+            entry.data.slides_link && (
+              <a
+                href={entry.data.slides_link}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 bg-primary-700 hover:bg-primary-500 text-primary-100 border-2 border-primary-700 hover:border-primary-500 px-5 py-2.5 min-h-[44px] rounded-lg font-semibold shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-[var(--duration-base)] ease-[var(--ease-standard)]"
+              >
+                <SlidesIcon class="w-5 h-5" />
+                View Slides
               </a>
             )
           }
@@ -238,12 +251,13 @@ const countryFlag = isRemote
                 href={entry.data.podcast_link}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 bg-secondary-500 hover:bg-secondary-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+                class="inline-flex items-center gap-2 bg-transparent hover:bg-bg-300 text-text-500 border-2 border-text-200 hover:border-primary-500 hover:text-primary-700 px-5 py-2.5 min-h-[44px] rounded-lg font-semibold transition-all duration-[var(--duration-base)] ease-[var(--ease-standard)]"
               >
                 <svg
                   class="w-5 h-5"
                   fill="currentColor"
                   viewBox="0 0 24 24"
+                  aria-hidden="true"
                 >
                   <path d="M12 2a4 4 0 014 4v6a4 4 0 11-8 0V6a4 4 0 014-4zm0 2a2 2 0 00-2 2v6a2 2 0 104 0V6a2 2 0 00-2-2zm-6 8a1 1 0 011 1 5 5 0 0010 0 1 1 0 112 0 7 7 0 01-6 6.93V22h3a1 1 0 110 2H8a1 1 0 110-2h3v-2.07A7 7 0 015 13a1 1 0 011-1z" />
                 </svg>
@@ -257,15 +271,7 @@ const countryFlag = isRemote
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <!-- Main Content -->
         <div class="lg:col-span-2">
-          <!-- Abstract -->
-          <div class="bg-bg-300 rounded-lg p-6 mb-8">
-            <h2 class="text-text-500 text-2xl font-bold mb-4">Abstract</h2>
-            <Prose>
-              <Content />
-            </Prose>
-          </div>
-
-          <!-- Video Embed -->
+          <!-- Video Embed (lead content when available) -->
           {
             youtubeId && (
               <div class="bg-bg-300 rounded-lg p-6 mb-8">
@@ -275,7 +281,26 @@ const countryFlag = isRemote
                     src={`https://www.youtube.com/embed/${youtubeId}`}
                     title={entry.data.title}
                     frameborder="0"
+                    loading="lazy"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                    class="w-full h-full"
+                  />
+                </div>
+              </div>
+            )
+          }
+
+          <!-- Podcast Embed -->
+          {
+            entry.data.podcast_embed && (
+              <div class="bg-bg-300 rounded-lg p-6 mb-8">
+                <h2 class="text-text-500 text-2xl font-bold mb-4">Podcast</h2>
+                <div class="aspect-video rounded-lg overflow-hidden">
+                  <iframe
+                    src={entry.data.podcast_embed}
+                    title={`${entry.data.title} - Podcast`}
+                    loading="lazy"
                     allowfullscreen
                     class="w-full h-full"
                   />
@@ -336,6 +361,7 @@ const countryFlag = isRemote
                       return url
                     })()}
                     title={`${entry.data.title} - Slides`}
+                    loading="lazy"
                     allowfullscreen
                     class="w-full h-full"
                   />
@@ -344,22 +370,13 @@ const countryFlag = isRemote
             )
           }
 
-          <!-- Podcast Embed -->
-          {
-            entry.data.podcast_embed && (
-              <div class="bg-bg-300 rounded-lg p-6">
-                <h2 class="text-text-500 text-2xl font-bold mb-4">Podcast</h2>
-                <div class="aspect-video rounded-lg overflow-hidden">
-                  <iframe
-                    src={entry.data.podcast_embed}
-                    title={`${entry.data.title} - Podcast`}
-                    allowfullscreen
-                    class="w-full h-full"
-                  />
-                </div>
-              </div>
-            )
-          }
+          <!-- Abstract -->
+          <div class="bg-bg-300 rounded-lg p-6">
+            <h2 class="text-text-500 text-2xl font-bold mb-4">Abstract</h2>
+            <Prose>
+              <Content />
+            </Prose>
+          </div>
         </div>
 
         <!-- Sidebar -->

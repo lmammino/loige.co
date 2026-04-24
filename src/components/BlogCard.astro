@@ -1,4 +1,19 @@
 ---
+/*
+  BlogCard
+  --------
+  Preview card for a blog post: 16:9 cover image, title, description, date.
+
+  Sizes:
+    - default  one-column card
+    - isBig    spans two grid columns on md+ screens (featured post)
+
+  States:
+    - idle     soft shadow-md
+    - hover    lifts via shadow-lg, primary ring
+    - focus    accessible focus ring (from global :focus-visible)
+*/
+
 import type { CollectionEntry } from 'astro:content'
 import { Picture } from 'astro:assets'
 import CalendarIcon from './icons/CalendarIcon.astro'
@@ -15,9 +30,15 @@ const { post, isBig } = Astro.props
 <a
   href={`/${post.id}`}
   title={post.data.title}
-  class={`flex flex-col overflow-hidden rounded-lg transition-all shadow-md hover:shadow-lg hover:outline-4 outline-primary-500 ${
-    isBig ? 'col-span-1 md:col-span-2' : ''
-  }`}
+  class={[
+    'group flex flex-col overflow-hidden rounded-lg bg-bg-300',
+    'shadow-md transition-all duration-[var(--duration-base)] ease-[var(--ease-standard)]',
+    'hover:shadow-lg hover:-translate-y-0.5',
+    'hover:ring-2 hover:ring-primary-500/60',
+    isBig ? 'col-span-1 md:col-span-2' : '',
+  ]
+    .filter(Boolean)
+    .join(' ')}
 >
   <Picture
     formats={['webp', 'avif', 'jpeg']}
@@ -25,17 +46,20 @@ const { post, isBig } = Astro.props
     height={224}
     alt={`Cover picture for a blog post titled ${post.data.title}`}
     src={post.data.header_img || DefaultHeaderImage}
-    class="h-56 w-full object-cover transition"
+    class="h-56 w-full object-cover transition-transform duration-[var(--duration-slow)] ease-[var(--ease-standard)] group-hover:scale-[1.02]"
   />
-  <div class="bg-bg-300 p-4 sm:p-6 flex flex-1 flex-col">
-    <h3 class="mt-0.5 text-xl font-bold text-text-500">{post.data.title}</h3>
+  <div class="p-4 sm:p-6 flex flex-1 flex-col">
+    <h3
+      class="mt-0.5 text-xl font-bold text-text-500 text-balance group-hover:text-primary-600 transition-colors"
+      >{post.data.title}</h3
+    >
     <p
       class="mt-2 text-sm/relaxed text-text-400 line-clamp-3 text-ellipsis mb-auto"
     >
       {post.data.description || post?.body?.slice(0, 200) || ''}
     </p>
-    <p class="text-text-300 text-sm/relaxed mt-2">
-      <span class="inline-flex self-center gap-2">
+    <p class="text-text-300 text-sm/relaxed mt-4">
+      <span class="inline-flex self-center gap-2 items-center">
         <CalendarIcon class="h-4 w-4" />
         <time
           title={post.data.date.toISOString()}

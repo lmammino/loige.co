@@ -1,4 +1,14 @@
 ---
+/*
+  TagsList
+  --------
+  A pill cloud of tags with post counts. Each pill is a link to the tag page.
+
+  Accessibility:
+    - Rendered as a <ul> of <li> links (not a div soup).
+    - Relies on global :focus-visible ring.
+*/
+
 type Props = {
   tags: {
     name: string
@@ -9,18 +19,18 @@ type Props = {
 }
 
 const { tags, hideAllTagsButton } = Astro.props
+
+const pill =
+  'inline-flex items-center gap-2 rounded-full py-1.5 px-3.5 text-sm text-text-400 bg-bg-300 hover:bg-bg-600 hover:text-text-700 transition-colors'
 ---
 
 <ul class="flex flex-wrap gap-2">
   {
     tags.map((tag) => (
       <li>
-        <a
-          href={tag.link}
-          class="group inline-block bg-bg-300 hover:bg-bg-600 hover:text-text-700 rounded-xl py-2 px-4 text-sm text-text-400"
-        >
-          <span class="font-mono">#{tag.name}</span>{' '}
-          <span class="ml-2 px-2 bg-bg-500 group-hover:bg-bg-800 group-hover:text-text-100 rounded-xl">
+        <a href={tag.link} class={`group ${pill}`}>
+          <span class="font-mono">#{tag.name}</span>
+          <span class="px-2 py-0.5 bg-bg-500 text-text-300 group-hover:bg-bg-800 group-hover:text-text-50 rounded-full text-xs transition-colors">
             {tag.count}
           </span>
         </a>
@@ -30,11 +40,8 @@ const { tags, hideAllTagsButton } = Astro.props
   {
     !hideAllTagsButton && (
       <li>
-        <a
-          href="/tag"
-          class="inline-block bg-bg-300 hover:bg-bg-600 rounded-xl py-2 px-4 text-sm text-text-400"
-        >
-          All tags
+        <a href="/tag" class={pill}>
+          All tags →
         </a>
       </li>
     )

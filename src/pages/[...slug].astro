@@ -159,9 +159,9 @@ const { Content } = await render(post)
                     <li>
                       <a
                         href={`/tag/${tag}`}
-                        class="inline-block bg-bg-400 text-text-400 hover:bg-bg-600 hover:text-text-500 px-2 py-1 rounded-lg mr-2 mb-2"
+                        class="inline-flex items-center bg-bg-400 text-text-400 hover:bg-bg-600 hover:text-text-500 px-3 py-1 rounded-full text-sm font-mono transition-colors"
                       >
-                        {tag}
+                        #{tag}
                       </a>
                     </li>
                   ))
@@ -192,29 +192,25 @@ const { Content } = await render(post)
                   id="copy-link"
                   title="Copy link to clipboard"
                   href={getAbsoluteUrl(post)}
-                  class="hidden transition px-4 py-1 rounded-full text-lg text-text-400 bg-primary-100 border border-primary-200 hover:bg-primary-200 hover:border-primary-300 hover:text-text-500"
-                  ><span class="flex gap-2 items-center text-nowrap">
-                    <CopyIcon class="h-4 w-4" />
-                    <span
-                      aria-role="label"
-                      data-text-normal="Copy link"
-                      data-text-copied="Copied!">Copy link</span
-                    >
-                  </span></a
+                  class="hidden items-center gap-2 transition-colors min-h-[40px] px-4 py-2 rounded-full text-sm text-text-400 bg-primary-100 border border-primary-200 hover:bg-primary-200 hover:border-primary-300 hover:text-text-500"
                 >
+                  <CopyIcon class="h-4 w-4" />
+                  <span
+                    aria-role="label"
+                    data-text-normal="Copy link"
+                    data-text-copied="Copied!">Copy link</span
+                  >
+                </a>
                 <a
                   role="button"
                   title="Share this article on LinkedIn"
                   rel="noopener noreferrer"
                   target="_blank"
                   href={getShareUrl(post, 'linkedin')}
-                  class="transition inline-flex px-3 py-2 rounded-full text-lg text-text-400 bg-secondary-100 border border-secondary-200 hover:bg-secondary-200 hover:border-secondary-300 hover:text-text-500"
+                  class="inline-flex items-center justify-center transition-colors min-w-[40px] min-h-[40px] px-3 py-2 rounded-full text-text-400 bg-secondary-100 border border-secondary-200 hover:bg-secondary-200 hover:border-secondary-300 hover:text-text-500"
                 >
-                  <span class="flex items-center text-nowrap"
-                    ><LinkedinIcon class="h-4 w-4" /><span class="sr-only"
-                      >Linkedin</span
-                    ></span
-                  >
+                  <LinkedinIcon class="h-4 w-4" />
+                  <span class="sr-only">Share on LinkedIn</span>
                 </a>
                 <a
                   role="button"
@@ -222,13 +218,10 @@ const { Content } = await render(post)
                   rel="noopener noreferrer"
                   target="_blank"
                   href={getShareUrl(post, 'facebook')}
-                  class="transition inline-flex px-3 rounded-full text-lg text-text-400 bg-secondary-100 border border-secondary-200 hover:bg-secondary-200 hover:border-secondary-300 hover:text-text-500"
+                  class="inline-flex items-center justify-center transition-colors min-w-[40px] min-h-[40px] px-3 py-2 rounded-full text-text-400 bg-secondary-100 border border-secondary-200 hover:bg-secondary-200 hover:border-secondary-300 hover:text-text-500"
                 >
-                  <span class="flex items-center text-nowrap"
-                    ><FacebookIcon class="h-4 w-4" /><span class="sr-only"
-                      >Facebook</span
-                    ></span
-                  >
+                  <FacebookIcon class="h-4 w-4" />
+                  <span class="sr-only">Share on Facebook</span>
                 </a>
                 <a
                   role="button"
@@ -236,13 +229,10 @@ const { Content } = await render(post)
                   rel="noopener noreferrer"
                   target="_blank"
                   href={getShareUrl(post, 'twitter')}
-                  class="transition inline-flex px-3 rounded-full text-lg text-text-400 bg-secondary-100 border border-secondary-200 hover:bg-secondary-200 hover:border-secondary-300 hover:text-text-500"
+                  class="inline-flex items-center justify-center transition-colors min-w-[40px] min-h-[40px] px-3 py-2 rounded-full text-text-400 bg-secondary-100 border border-secondary-200 hover:bg-secondary-200 hover:border-secondary-300 hover:text-text-500"
                 >
-                  <span class="flex items-center text-nowrap"
-                    ><XIcon class="h-4 w-4" /><span class="sr-only"
-                      >X, formerly Twitter</span
-                    ></span
-                  >
+                  <XIcon class="h-4 w-4" />
+                  <span class="sr-only">Share on X, formerly Twitter</span>
                 </a>
               </div>
             </div>

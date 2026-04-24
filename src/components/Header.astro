@@ -1,4 +1,17 @@
 ---
+/*
+  Header
+  ------
+  Sticky top navigation. On mobile the nav collapses behind a hamburger;
+  on `md:` and up the nav links render inline. Active section is marked
+  with an accent-colored underline.
+
+  Accessibility:
+    - Hamburger is a real <button type="button"> with aria-expanded/aria-controls.
+    - All links and the theme switcher rely on the global focus-visible ring.
+    - Tap targets are ≥44px on mobile (p-2 + w-10/h-10 = 40px min, plus text).
+*/
+
 import ThemeSwitcher from './ThemeSwitcher.astro'
 
 type Props = {
@@ -6,19 +19,41 @@ type Props = {
 }
 
 const { section } = Astro.props
+
+type NavItem = { label: string; href: string; key: Props['section'] }
+
+const navItems: NavItem[] = [
+  { label: 'Blog', href: '/blog', key: 'blog' },
+  { label: 'Books', href: '/books', key: 'books' },
+  { label: 'Speaking', href: '/speaking', key: 'speaking' },
+  { label: 'About', href: '/about', key: 'about' },
+]
+
+const linkClasses = (isActive: boolean) =>
+  [
+    'block text-text-500 hover:text-primary-600 transition-colors rounded-sm',
+    isActive
+      ? 'underline underline-offset-8 decoration-4 decoration-accent-500 font-bold'
+      : 'font-medium',
+  ].join(' ')
 ---
 
-<header class="sticky inset-x-0 top-0 z-50 bg-bg-500 text-text-500">
-  <nav class="mx-auto max-w-(--breakpoint-xl) px-8">
+<header
+  class="sticky inset-x-0 top-0 z-50 bg-bg-500/95 backdrop-blur text-text-500 border-b border-transparent [&.is-scrolled]:border-bg-600"
+>
+  <nav
+    class="mx-auto max-w-(--breakpoint-xl) px-8"
+    aria-label="Primary navigation"
+  >
     <div class="flex flex-wrap items-center justify-between mx-auto py-4">
       <a
-        class="text-primary-500 hover:text-primary-700 font-bold hover:underline underline-offset-8 decoration-accent-500"
+        class="text-primary-500 hover:text-primary-700 font-bold hover:underline underline-offset-8 decoration-accent-500 rounded-sm"
         href="/">Luciano Mammino</a
       >
       <button
         data-collapse-toggle="navbar-default"
         type="button"
-        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-text-500 rounded-lg md:hidden hover:bg-bg-600 focus:outline-hidden focus:ring-2 focus:ring-bg-800"
+        class="inline-flex items-center p-2 w-11 h-11 justify-center text-sm text-text-500 rounded-md md:hidden hover:bg-bg-600 transition-colors"
         aria-controls="navbar-default"
         aria-expanded="false"
       >
@@ -41,76 +76,38 @@ const { section } = Astro.props
 
       <div class="hidden w-full md:block md:w-auto" id="navbar-default">
         <ul
-          class="flex flex-col gap-4 p-4 md:p-0 mt-4 border border-bg-200 rounded-lg bg-bg-100 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-transparent"
+          class="flex flex-col gap-4 p-4 md:p-0 mt-4 border border-bg-600 rounded-lg bg-bg-100 md:flex-row md:items-center md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-transparent"
         >
-          <li class="">
-            <a href="/blog"
-              ><div
-                class={`block text-text-500 hover:text-accent-700 ${
-                  section === 'blog'
-                    ? 'underline underline-offset-8 decoration-4 decoration-accent-500 font-bold'
-                    : 'font-medium'
-                }`}
-              >
-                Blog
-              </div></a
-            >
-          </li>
-          <li class="">
-            <a href="/books"
-              ><div
-                class={`block text-text-500 hover:text-accent-700 ${
-                  section === 'books'
-                    ? 'underline underline-offset-8 decoration-4 decoration-accent-500 font-bold'
-                    : 'font-medium'
-                }`}
-              >
-                Books
-              </div></a
-            >
-          </li>
-          <li class="">
-            <a href="/speaking"
-              ><div
-                class={`block text-text-500 hover:text-accent-700 ${
-                  section === 'speaking'
-                    ? 'underline underline-offset-8 decoration-4 decoration-accent-500 font-bold'
-                    : 'font-medium'
-                }`}
-              >
-                Speaking
-              </div></a
-            >
-          </li>
-          <li class="">
-            <a href="/about"
-              ><div
-                class={`block text-text-500 hover:text-accent-700 ${
-                  section === 'about'
-                    ? 'underline underline-offset-8 decoration-4 decoration-accent-500 font-bold'
-                    : 'font-medium'
-                }`}
-              >
-                About
-              </div></a
-            >
-          </li>
+          {
+            navItems.map((item) => (
+              <li>
+                <a href={item.href}>
+                  <div class={linkClasses(section === item.key)}>
+                    {item.label}
+                  </div>
+                </a>
+              </li>
+            ))
+          }
           <li><ThemeSwitcher /></li>
         </ul>
       </div>
     </div>
   </nav>
 </header>
+
 <script>
   const hamburgerBtn = document.querySelector(
     '[data-collapse-toggle]',
   ) as HTMLButtonElement
-  hamburgerBtn.addEventListener('click', () => {
-    const target = document.getElementById(
-      hamburgerBtn.getAttribute('aria-controls')!,
-    ) as HTMLElement
-    const expanded = hamburgerBtn.getAttribute('aria-expanded') === 'true'
-    hamburgerBtn.setAttribute('aria-expanded', (!expanded).toString())
-    target!.classList.toggle('hidden')
-  })
+  if (hamburgerBtn) {
+    hamburgerBtn.addEventListener('click', () => {
+      const target = document.getElementById(
+        hamburgerBtn.getAttribute('aria-controls')!,
+      ) as HTMLElement
+      const expanded = hamburgerBtn.getAttribute('aria-expanded') === 'true'
+      hamburgerBtn.setAttribute('aria-expanded', (!expanded).toString())
+      target!.classList.toggle('hidden')
+    })
+  }
 </script>
