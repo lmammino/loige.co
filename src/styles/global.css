@@ -2,6 +2,13 @@
 
 @plugin '@tailwindcss/typography';
 
+/* Explicit source globs.
+   Tailwind v4's automatic content detection misses some Astro files in
+   this project (e.g. components and pages), which silently drops the
+   responsive utilities (md:, lg:, sm:, ...) from the compiled CSS.
+   Listing the globs explicitly fixes that. */
+@source '../**/*.{astro,html,js,ts,jsx,tsx,md,mdx}';
+
 /*
   loige.co design system
   See /DESIGN_SYSTEM.md for full documentation.
