@@ -72,6 +72,12 @@ importers:
       '@biomejs/biome':
         specifier: 1.5.1
         version: 1.5.1
+      '@expressive-code/plugin-collapsible-sections':
+        specifier: ^0.41.7
+        version: 0.41.7
+      '@expressive-code/plugin-line-numbers':
+        specifier: ^0.41.7
+        version: 0.41.7
       '@tailwindcss/vite':
         specifier: ^4.2.4
         version: 4.2.4(vite@6.4.1(@types/node@24.12.2)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.1)(tsx@4.19.3)(yaml@2.5.0))
@@ -713,8 +719,14 @@ packages:
   '@expressive-code/core@0.41.7':
     resolution: {integrity: sha512-ck92uZYZ9Wba2zxkiZLsZGi9N54pMSAVdrI9uW3Oo9AtLglD5RmrdTwbYPCT2S/jC36JGB2i+pnQtBm/Ib2+dg==}
 
+  '@expressive-code/plugin-collapsible-sections@0.41.7':
+    resolution: {integrity: sha512-uh74qWhAW6FEoNdlQAcHCcGBfuhslLvbWL5Fqmi+db/9mZI/I2G1Sr8NfApTEzD+jiIB/GmdPHV9kbjebkn0+g==}
+
   '@expressive-code/plugin-frames@0.41.7':
     resolution: {integrity: sha512-diKtxjQw/979cTglRFaMCY/sR6hWF0kSMg8jsKLXaZBSfGS0I/Hoe7Qds3vVEgeoW+GHHQzMcwvgx/MOIXhrTA==}
+
+  '@expressive-code/plugin-line-numbers@0.41.7':
+    resolution: {integrity: sha512-wI9D5NBcgE9ksiJJV8YfOC0RPI3283+9AYWIb8pBUM5TSM8msIs1YRPDt8c8Ub0XGQvbjJKtB+f9fAl2RiHJ2A==}
 
   '@expressive-code/plugin-shiki@0.41.7':
     resolution: {integrity: sha512-DL605bLrUOgqTdZ0Ot5MlTaWzppRkzzqzeGEu7ODnHF39IkEBbFdsC7pbl3LbUQ1DFtnfx6rD54k/cdofbW6KQ==}
@@ -4775,7 +4787,15 @@ snapshots:
       unist-util-visit: 5.0.0
       unist-util-visit-parents: 6.0.2
 
+  '@expressive-code/plugin-collapsible-sections@0.41.7':
+    dependencies:
+      '@expressive-code/core': 0.41.7
+
   '@expressive-code/plugin-frames@0.41.7':
+    dependencies:
+      '@expressive-code/core': 0.41.7
+
+  '@expressive-code/plugin-line-numbers@0.41.7':
     dependencies:
       '@expressive-code/core': 0.41.7
 
