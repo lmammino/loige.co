@@ -67,7 +67,7 @@ const { Content } = await render(post)
         <Image
           class="h-[300px] sm:h-[500px] w-full object-cover xl:max-w-(--breakpoint-xl) xl:mx-auto xl:rounded-xl shadow-xl"
           width={1280}
-          height={200}
+          height={720}
           src={post.data.header_img}
           alt=""
         />
@@ -253,9 +253,11 @@ const { Content } = await render(post)
               >.</p
             >
           </div>
-          {post.data.bluesky_url && (
-            <BlueskyReactions blueskyUrl={post.data.bluesky_url} />
-          )}
+          {
+            post.data.bluesky_url && (
+              <BlueskyReactions blueskyUrl={post.data.bluesky_url} />
+            )
+          }
           <div id="comments" class="mt-8 pt-8 border-t border-text-100">
             <div id="disqus_thread" data-url={getAbsoluteUrl(post)}></div>
           </div>
@@ -284,10 +286,10 @@ const { Content } = await render(post)
   <script>
     // Supports copy to clipboard
     const copyLinkButton = document.getElementById(
-      'copy-link'
+      'copy-link',
     ) as HTMLAnchorElement
     const copyLinkLabel = copyLinkButton.querySelector(
-      '[aria-role="label"]'
+      '[aria-role="label"]',
     ) as HTMLSpanElement
     let animatingCopyLink = false
     if (typeof navigator.clipboard !== 'undefined') {
@@ -311,7 +313,7 @@ const { Content } = await render(post)
     // DISQUS integration for the comments section
     function loadDisqus() {
       const disqusElement = document.getElementById(
-        'disqus_thread'
+        'disqus_thread',
       ) as HTMLElement
       ;(globalThis as any).disqus_config = function (this: any) {
         this.page.url = disqusElement.dataset.url as string
