@@ -15,7 +15,7 @@ Personal blog and website for Luciano Mammino (loige.co), built with Astro 5. Th
 - `pnpm build` - Build static site (runs `astro check` then `astro build`)
 - `pnpm preview` - Preview production build locally
 
-**Node.js**: Requires version 20 or higher (CI uses Node 23.x)
+**Node.js**: Requires version 22.12.0 or higher (CI uses Node 24.x)
 
 **Running Scripts**: Use `pnpm tsx scripts/<script>.ts` to run utility scripts
 
@@ -92,7 +92,7 @@ Located in `scripts/` (run with `pnpm tsx scripts/<name>.ts`):
 
 Deployed via GitHub Actions (`.github/workflows/deploy.yml`):
 - Triggers: Push to main, daily cron (00:01 UTC), manual dispatch
-- Builds with Node 23.x and pnpm
+- Builds with Node 24.x and pnpm
 - Requires system dependencies: `build-essential`, `libcairo2-dev`, `libpango1.0-dev`, `libjpeg-dev`, `libgif-dev`, `librsvg2-dev` (for Canvas)
 - Deploys to GitHub Pages
 - Purges Cloudflare CDN cache on successful deployment

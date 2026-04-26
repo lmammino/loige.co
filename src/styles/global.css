@@ -17,12 +17,10 @@
 
 @theme {
   /* ---------- Typography ---------- */
-  --font-sans:
-    Atkinson, Avenir, Montserrat, Corbel, URW Gothic, source-sans-pro,
+  --font-sans: Atkinson, Avenir, Montserrat, Corbel, URW Gothic, source-sans-pro,
     sans-serif;
   --font-serif: Charter, Bitstream Charter, Sitka Text, Cambria, serif;
-  --font-mono:
-    ui-monospace, Cascadia Code, Source Code Pro, Menlo, Consolas,
+  --font-mono: ui-monospace, Cascadia Code, Source Code Pro, Menlo, Consolas,
     DejaVu Sans Mono, monospace;
 
   /* Fluid display sizes for hero-scale type (min at ~360px, max at ~1280px).
@@ -387,10 +385,9 @@
     font-weight: 400;
     font-display: swap;
     src: url('/fonts/atkinson-regular.woff2') format('woff2');
-    unicode-range:
-      U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
-      U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
-      U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+      U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122,
+      U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
   }
 
   @font-face {
@@ -399,10 +396,9 @@
     font-weight: 700;
     font-display: swap;
     src: url(/fonts/atkinson-bold.woff2) format('woff2');
-    unicode-range:
-      U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
-      U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
-      U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+      U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122,
+      U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
   }
 
   /* ==========================================================
@@ -617,4 +613,129 @@
     transition-timing-function: var(--ease-standard);
     transition-duration: var(--duration-fast);
   }
+}
+
+/* Rabbit hole — opt-in <details class="rabbit"> for optional deep-dives
+   inside long-form posts. ::before injects the "🐇 Rabbit hole —" label so
+   the markdown summary can stay clean (just the question/topic). */
+.rabbit {
+  margin-block: 1.75rem;
+  padding: 0.25rem 1.25rem;
+  border-radius: 0.75rem;
+  border: 1px dashed
+    color-mix(in srgb, var(--color-accent-500) 55%, transparent);
+  background: color-mix(in srgb, var(--color-accent-500) 8%, transparent);
+  position: relative;
+}
+
+.rabbit > summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--color-text-700);
+  padding-block: 0.75rem;
+  user-select: none;
+}
+
+.rabbit > summary::marker {
+  color: var(--color-accent-700);
+}
+
+.rabbit > summary::before {
+  content: '🕳️🐇 Rabbit hole — ';
+  display: inline-block;
+  color: var(--color-accent-700);
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  margin-right: 0.25rem;
+  transform-origin: 60% 80%;
+}
+
+.rabbit[open] > summary {
+  border-bottom: 1px dashed
+    color-mix(in srgb, var(--color-accent-500) 45%, transparent);
+  margin-bottom: 0.75rem;
+}
+
+@keyframes rabbit-hop {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+  30% {
+    transform: translateY(-4px) rotate(-6deg);
+  }
+  60% {
+    transform: translateY(0) rotate(6deg);
+  }
+}
+
+.rabbit > summary:hover::before {
+  animation: rabbit-hop 600ms var(--ease-emphasized);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rabbit > summary:hover::before {
+    animation: none;
+  }
+}
+
+/* Callouts — opt-in <aside class="callout callout-{variant}"> blocks for
+   in-prose notes, tips, warnings, and danger admonitions. Each variant
+   sets three custom properties that drive the border accent, the soft
+   wash, and the emoji + label injected via ::before. */
+.callout {
+  --callout-color: var(--color-primary-500);
+  --callout-icon: '💡';
+  --callout-label: 'Note';
+
+  margin-block: 1.75rem;
+  padding: 1rem 1.25rem;
+  border-radius: 0.75rem;
+  border: 1px solid
+    color-mix(in srgb, var(--callout-color) 35%, transparent);
+  border-left: 4px solid var(--callout-color);
+  background: color-mix(in srgb, var(--callout-color) 8%, transparent);
+}
+
+.callout::before {
+  content: var(--callout-icon) ' ' var(--callout-label);
+  display: block;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  color: var(--callout-color);
+  margin-bottom: 0.5rem;
+}
+
+.callout > :first-of-type {
+  margin-top: 0;
+}
+
+.callout > :last-child {
+  margin-bottom: 0;
+}
+
+.callout-note {
+  --callout-color: var(--color-primary-500);
+  --callout-icon: '💡';
+  --callout-label: 'Note';
+}
+
+.callout-tip {
+  --callout-color: var(--color-success);
+  --callout-icon: '✅';
+  --callout-label: 'Tip';
+}
+
+.callout-warning {
+  --callout-color: var(--color-warning);
+  --callout-icon: '⚠️';
+  --callout-label: 'Warning';
+}
+
+.callout-danger {
+  --callout-color: var(--color-danger);
+  --callout-icon: '🚨';
+  --callout-label: 'Danger';
 }
