@@ -1,6 +1,8 @@
 import mdx from '@astrojs/mdx'
 import sitemap from '@astrojs/sitemap'
 import tailwindcss from '@tailwindcss/vite'
+import { pluginCollapsibleSections } from '@expressive-code/plugin-collapsible-sections'
+import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers'
 import compress from 'astro-compress'
 import critters from 'astro-critters'
 import expressiveCode from 'astro-expressive-code'
@@ -25,6 +27,16 @@ export default defineConfig({
       themes: ['dark-plus', 'one-light'],
       useDarkModeMediaQuery: true,
       //themeCssSelector: (theme) => `:root[data-theme="${theme.type}"]`,
+      plugins: [pluginCollapsibleSections(), pluginLineNumbers()],
+      defaultProps: {
+        // Line numbers off by default. Opt in per block with showLineNumbers.
+        showLineNumbers: false,
+      },
+      styleOverrides: {
+        collapsibleSections: {
+          closedBackgroundColor: 'rgba(127, 127, 127, 0.08)',
+        },
+      },
     }),
     mdx(),
   ],
