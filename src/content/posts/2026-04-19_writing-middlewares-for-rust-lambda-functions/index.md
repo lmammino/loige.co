@@ -11,7 +11,7 @@ tags:
   - serverless
   - aws
   - lambda
-description: "How to write reusable middleware for Rust Lambda functions using tower, the generic middleware engine that already underpins the AWS Lambda Rust runtime. Includes a complete DynamoDB-backed IP rate limiter with SAM deployment."
+description: 'How to write reusable middleware for Rust Lambda functions using tower, the generic middleware engine that already underpins the AWS Lambda Rust runtime. Includes a complete DynamoDB-backed IP rate limiter with SAM deployment.'
 ---
 
 There is one pattern that has been my secret sauce for AWS Lambda code for
@@ -26,7 +26,7 @@ Middy is widely used in the Node.js serverless ecosystem, and the pattern has
 been recognised as incredibly useful for keeping Lambda handlers clean and
 maintainable.
 
-Recently I was building a rate limiter for a Rust Lambda project at work, and I
+Recently I was building a rate limiter middleware for a Rust Lambda project at work, and I
 realised the generalised version of what I learned would make a great blog post.
 This is that post!
 
@@ -41,10 +41,9 @@ for Lambda. Then we will look at how it maps onto Rust by introducing [**tower**
 generic middleware engine you can use with **tokio** and that is already sitting at the core of the AWS Lambda Rust
 runtime. To get ourselves familiar with tower's interface, we will build a few small pieces of middleware to warm up, and finally put together a
 complete DynamoDB-backed IP rate limiter that you can use
-as a template for your own middleware.
+as is in your projects or as a template for your own custom middleware.
 
-If you want to skip ahead to the code, the full working example lives at
-[github.com/lmammino/rust-lambda-middleware-example](https://github.com/lmammino/rust-lambda-middleware-example).
+If you want to skip ahead to the code, [the full working examples are live on GitHub](https://github.com/lmammino/rust-lambda-middleware-example).
 
 ## The pattern that keeps on paying off
 
@@ -54,9 +53,9 @@ pattern and give it a friendlier name... and also a slightly more confusing one,
 because it risks collision with the older, broader
 [systems-integration sense of "middleware"](https://en.wikipedia.org/wiki/Middleware). Naming things is hard, so let's accept that and let's move on!
 
-The idea is to create an abstraction that allows you to compose small, reusable units of logic around a core handler. It passes a request through an ordered chain of
+The idea is to create an abstraction that allows you to compose small, reusable units of logic around a core handler. It passes a **request** through an ordered chain of
 handlers, and each handler can choose to handle the request, transform it, or
-pass it along. A request comes in and travels down through the chain. A response
+pass it along. A **response**
 that is ready to go out comes back up through the chain in reverse order. Each
 middleware gets a chance to influence the round trip.
 
@@ -65,7 +64,7 @@ middleware gets a chance to influence the round trip.
 In a Lambda function, a middleware is a thin wrapper around your core handler.
 In practice, each wrapper owns one cross-cutting concern: logging, request tracing,
 authentication, input validation, output shaping, CORS, error envelopes, rate
-limiting. You compose them in a stack, and the core handler stays laser
+limiting. You compose them in a chain (or in the case of `tower`, a stack), and the core handler stays laser
 focused on the actual business logic.
 
 This matters a lot in Lambda for two reasons:
@@ -73,14 +72,14 @@ This matters a lot in Lambda for two reasons:
 1. Cross-cutting concerns are everywhere. A single service often has ten or
    fifteen Lambda handlers, and each one needs the same five or six things
    (parse JWT, decode body, enforce schema, emit structured logs, add response headers). Without middleware, the
-   temptation is to copy-paste it into every handler. The day you need to
+   temptation is to copy-paste the same code into every handler. The day you need to
    change any of that, you'll have to carefully update files all around the project.
-2. Handlers stay readable. When business logic is not buried under a few hundreds lines
+2. Handlers stay readable. When business logic is not buried under a few hundred lines
    of boilerplate, it becomes much easier to reason about, test, and review.
 
 On top of that, committing to the pattern turns every cross-cutting concern
 into a small, self-contained unit of **reusable**, **configurable**, and
-**testable** logic. For example, You write a JWT verifier middleware once, unit-test it in
+**testable** logic. For example, you write a JWT verifier middleware once, unit-test it in
 isolation (no Lambda, no API Gateway, no mocks), ship it, and then just
 plug it into every handler that needs it. Multiply that across every
 cross-cutting concern in your stack and the maintainability and quality
@@ -101,7 +100,7 @@ The short version: Rust Lambdas have the same cross-cutting concerns as any
 other Lambda runtime. So the same ergonomic problem exists, and we need the
 same kind of solution.
 
-But there is a pretty good news which makes Rust a bit unique among the other Lambda runtimes, and honestly the reason I wanted to write this post:
+But there is some pretty good news that makes Rust a bit unique among the other Lambda runtimes, and honestly the reason I wanted to write this post:
 **the AWS Lambda Rust runtime already ships a middleware engine...** it's built in, and almost
 nobody uses it! Almost every Rust Lambda codebase I have reviewed in the last year
 bolts logging, auth, and validation directly into the handler, unaware that
@@ -115,22 +114,22 @@ keep reading.
 
 ## Enter **tower**: the middleware engine under the Rust Lambda runtime
 
-Before we dive in, it is worth clearing up a common misconception. You will
-sometimes hear people say that middleware in Rust Lambda comes from
-`lambda_http`. That is not quite right, and it matters because the pattern is
-more general than that.
+If you have a superficial look at some code examples, you might come away
+thinking that middleware in Rust Lambda comes from `lambda_http`. That is
+not quite right, and it matters, because the pattern is more general than
+that.
 
 [**tower**](https://crates.io/crates/tower) is a generic middleware engine for
 the [tokio](https://tokio.rs/) async runtime. It is not specific to Lambda,
 HTTP, or AWS. Anything built on tokio can be composed with tower layers, which
 is why you will find tower underneath
 [hyper](https://hyper.rs/), [axum](https://github.com/tokio-rs/axum),
-[tonic](https://github.com/hyperium/tonic) (gRPC),
-[reqwest](https://github.com/seanmonstar/reqwest)'s retry middleware, and plenty
+[tonic](https://github.com/hyperium/tonic),
+[reqwest](https://github.com/seanmonstar/reqwest) and plenty
 of other ecosystem crates.
 
 The official [`aws-lambda-rust-runtime`](https://github.com/aws/aws-lambda-rust-runtime)
-is itself a tokio application, and it exposes every Lambda handler as a tower
+is itself a tokio application, and it is carefully designed so that every Lambda handler is a tower
 `Service`. This is true at the **base runtime level**, not just at the
 `lambda_http` level. Your SQS consumer, your S3 event handler, your custom
 EventBridge Lambda: they are all tower services, and they can all be wrapped
@@ -165,6 +164,12 @@ connection pool, for instance). For Lambda middleware you will almost always
 just delegate `poll_ready` to the inner service, because the real backpressure
 in Lambda is managed by the runtime itself.
 
+<aside class="callout callout-note">
+
+If you want to dig into why `Service` ended up shaped this way (and in particular why `poll_ready` is a separate method instead of part of `call`), the Tokio blog has a fantastic deep dive: [**Inventing the Service trait**](https://tokio.rs/blog/2021-05-14-inventing-the-service-trait). Strongly recommended if you ever feel the urge to design your own async abstraction.
+
+</aside>
+
 The second trait is `Layer`. A layer is a factory that wraps a `Service` and
 produces a new `Service`:
 
@@ -178,6 +183,23 @@ pub trait Layer<S> {
 Most custom middleware is written as a pair: a `XxxLayer` that captures the
 configuration, and an `XxxService<S>` that is produced when the layer is
 applied to an inner service `S`.
+
+A small terminology note: tower's formal name for what we have been
+calling "middleware" is `Service` (every layer in a tower stack is
+itself a `Service`). For the rest of the post we will use _middleware_
+and `Service` interchangeably, defaulting to _middleware_ in prose
+because that is how readers coming from other ecosystems will recognise
+the pattern, and to `Service` when we are pointing at concrete tower
+types in code.
+
+This **wrapping** is the key to how composition works in tower. Each layer
+takes the service it wraps as a parameter (the `S` generic above) and
+returns a new service that wraps it. Apply two layers and you get a
+service that wraps a service that wraps a service. Apply three and the
+nesting goes one level deeper. That is why, even though we keep saying
+"chain" out of habit, what tower actually builds is a **stack**: an
+onion of nested services, with the original handler sitting at the
+bottom.
 
 Layers are composed with `ServiceBuilder`, which stacks them onto a base
 service:
@@ -196,8 +218,8 @@ for this example the request hits `authentication`, then `rate_limit`, then
 
 A subtle but important point: in that snippet, `handler` itself has to be a
 `Service` too. A stack of tower layers eventually terminates in one innermost
-`Service` that actually does the work, and in our case that is the Lambda
-handler. There are two ways to produce that terminal service:
+`Service` that actually does the work (the real business logic), and in our case that is the Lambda
+handler. There are generally two ways to produce that terminal service:
 
 1. Wrap a plain `async fn` with [`tower::service_fn`](https://docs.rs/tower/latest/tower/fn.service_fn.html).
    This is by far the most common choice, and what we will use throughout
@@ -209,10 +231,11 @@ handler. There are two ways to produce that terminal service:
 
 For Lambda handlers, option 1 is nearly always enough.
 
-Visually, the composition looks like a stack of nested boxes. The request
-travels down from the outermost layer to the terminal handler: first through
-the authentication middleware, then through the rate limiting middleware, and
-finally into the Lambda handler. The response travels back up in reverse order:
+Going back to that "stack of wrapped services" idea: it is much easier to
+picture once you draw it. Each layer is a box, and the box it wraps sits
+inside it. The request enters from the outside, falls through every box on
+the way down to the terminal handler at the bottom, and the response makes
+the trip back up in reverse:
 
 ![Diagram showing a request flowing through authentication and rate-limiting middleware before reaching a Rust Lambda handler, with the response returning through the same layered services.](./middleware-structure.png)
 
@@ -222,12 +245,14 @@ before they reach the rest of the stack, rate limiting can reject or throttle
 excessive traffic before it reaches the handler, and the handler can stay
 focused on the actual business logic. That is the whole mental model.
 
+(Now you see why it is called **tower**, right?)
+
 ### A no-op middleware
 
 Before doing anything useful, let us look at the shape of a tower middleware.
-This one passes every request through untouched:
+This one passes every request and response through untouched:
 
-```rust
+```rust title="examples/noop_layer.rs"
 use std::task::{Context, Poll};
 use lambda_http::tower::{Layer, Service};
 
@@ -261,14 +286,182 @@ where
 }
 ```
 
+There is more boilerplate than business logic here, but every line is
+earning its keep. `NoopLayer` is the configuration handle; its `Layer`
+impl wraps an inner service `S` to produce a `NoopService<S>`. The
+`Service` impl on `NoopService<S>` reuses the inner service's
+`Response`, `Error`, and `Future` associated types verbatim, and both
+`poll_ready` and `call` just delegate. The interesting trick is that
+because we passed every type through unchanged, this middleware compiles
+against **any** tower service: HTTP, gRPC, custom event handlers, you
+name it. It is also completely useless on its own, but it is the
+skeleton we will flesh out in the next two examples to do something
+genuinely valuable.
+
 That is the whole shape. Everything else we do in this post is just more
 interesting implementations of `call`.
+
+### A logging middleware
+
+The no-op middleware is the skeleton; now we are going to flesh it out.
+We will build a middleware that logs the HTTP method, path, and response
+status of every request that flows through it. It is the simplest piece
+of useful middleware imaginable, and yet it ends up walking us through
+most of the surprises you will hit when you start writing your own.
+
+We will get there in three beats.
+
+#### Logging the request: a one-line change
+
+Logging the request _before_ it reaches the inner service is trivially
+within reach. The no-op shape already gives us the request as an
+argument to `call`, so adding a log line is a one-line change in `call`
+(plus a couple of extra imports for `tracing` and the HTTP types):
+
+```rust title="examples/log_layer_request_only.rs" mark={30-34} collapse={1-13, 25-27}
+use std::task::{Context, Poll};
+
+use http::{Request, Response};
+use lambda_http::tower::{Layer, Service};
+use lambda_http::{tracing, Body};
+
+#[derive(Clone)]
+pub struct LogLayer;
+
+impl<S> Layer<S> for LogLayer {
+    type Service = LogService<S>;
+    fn layer(&self, inner: S) -> Self::Service { LogService { inner } }
+}
+
+pub struct LogService<S> { inner: S }
+
+impl<S> Service<Request<Body>> for LogService<S>
+where
+    S: Service<Request<Body>>,
+{
+    type Response = S::Response;
+    type Error = S::Error;
+    type Future = S::Future;
+
+    fn poll_ready(&mut self, cx: &mut Context<'_>) -> Poll<Result<(), Self::Error>> {
+        self.inner.poll_ready(cx)
+    }
+
+    fn call(&mut self, request: Request<Body>) -> Self::Future {
+        tracing::info!(
+            method = %request.method(),
+            path = %request.uri().path(),
+            "request"
+        );
+        self.inner.call(request)
+    }
+}
+```
+
+Notice that `type Future = S::Future` is unchanged from the no-op. We
+have not touched the future at all. We log the method and path, then
+hand the unmodified request off to the inner service and return its
+future verbatim.
+
+#### What about the response?
+
+Pre-request work was easy. Now suppose we want the **response status** in the log
+line too. Status only exists once the inner service has resolved its
+future, so we need to do the work _after_ the inner call returns. The
+naive translation of the no-op shape goes something like this:
+
+```rust title="examples/log_layer_broken.rs" mark={32, 39} collapse={1-13, 25-27}
+use std::task::{Context, Poll};
+
+use http::{Request, Response};
+use lambda_http::tower::{Layer, Service};
+use lambda_http::{tracing, Body};
+
+#[derive(Clone)]
+pub struct LogLayer;
+
+impl<S> Layer<S> for LogLayer {
+    type Service = LogService<S>;
+    fn layer(&self, inner: S) -> Self::Service { LogService { inner } }
+}
+
+pub struct LogService<S> { inner: S }
+
+impl<S> Service<Request<Body>> for LogService<S>
+where
+    S: Service<Request<Body>>,
+{
+    type Response = S::Response;
+    type Error = S::Error;
+    type Future = S::Future;
+
+    fn poll_ready(&mut self, cx: &mut Context<'_>) -> Poll<Result<(), Self::Error>> {
+        self.inner.poll_ready(cx)
+    }
+
+    fn call(&mut self, request: Request<Body>) -> Self::Future {
+        let method = request.method().clone();
+        let path = request.uri().path().to_string();
+        let response = self.inner.call(request).await?;
+        tracing::info!(
+            method = %method,
+            path = %path,
+            status = %response.status(),
+            "request"
+        );
+        Ok(response)
+    }
+}
+```
+
+Unfortunately, this **does not compile**... and if you have seen your fair share of async Rust, the reason might not be too surprising:
+
+```text frame="terminal"
+error[E0728]: `await` is only allowed inside `async` functions and blocks
+   --> examples/log_layer_broken.rs:106:49
+    |
+106 |         let response = self.inner.call(request).await?;
+    |                                                 ^^^^^ only allowed inside `async` functions and blocks
+```
+
+There it is!
+
+`Service::call` is not an `async fn`; it returns a
+`Self::Future`. We cannot `.await` inside a non-async function body.
+
+And, by the way, that is not the only thing wrong with this code.
+`rustc` short-circuits on the `await` failure and never gets a chance to
+report the second error, but the body of `call` _also_ has a return-type
+mismatch: we kept `type Future = S::Future`, yet the body now tries to
+return a `Result<_, _>` instead of a future. Open the file in an editor
+running rust-analyzer and you can see the second error light up
+immediately, without having to wait for the compiler to recover from
+the first one:
+
+```text frame="terminal"
+expected `<S as Service<Request<Body>>>::Future`,
+found `Result<{unknown}, {unknown}>`
+[rust-analyzer E0308]
+```
+
+(The `{unknown}` placeholders show up because the body has not been
+fully type-checked yet, but the shape mismatch is clear: a `Future` was
+expected, a `Result` was produced.)
+
+Both errors trace back to the same root cause: **we cannot peek inside
+the inner future without producing a new `Future` type**. As soon as
+the middleware needs to do post-response work, `type Future` has to
+change too.
 
 <details class="rabbit">
 <summary>Wait, why can't I just write <code>async fn call</code>?</summary>
 
-A fair question. Rust 1.75 stabilised async functions in traits (AFIT), so
-you might reasonably expect to be able to write:
+You may now be wondering: this is async code, surely it would be cleaner
+to make `call` itself async, and let the compiler figure out the future
+type for us? Welcome to the rabbit hole.
+
+Rust 1.75 stabilised async functions in traits (AFIT), so you might
+reasonably expect to be able to write:
 
 ```rust
 impl<S> Service<Req> for MyMiddleware<S> {
@@ -291,24 +484,26 @@ So every tower middleware falls back to one of these patterns:
 
 - Use `tower::service_fn` to wrap a plain `async fn`. This is what you do
   for the terminal handler (our Lambda function) in the vast majority of
-  cases, and it is exactly what we do in `main.rs` later on.
-- For a real stateful `Service` impl (the middleware we write in the rest
-  of this post), declare `type Future = Pin<Box<dyn Future<Output = ...> + Send>>`
+  cases, and it is exactly what we do later when we wire up our rate
+  limit middleware.
+- For a real stateful `Service` impl (the middleware we are about to
+  write below), declare `type Future = Pin<Box<dyn Future<Output = ...> + Send>>`
   and write `call` as `Box::pin(async move { ... })`. You are not really
   hand-rolling `poll`, you are just boxing an `async` block. The one heap
   allocation per request costs nothing worth measuring in Lambda.
 
 There is ongoing work on an async-native `Service` trait, but until it
-lands, `Box::pin(async move { … })` is the idiomatic shape.
+lands, `Box::pin(async move { … })` is the idiomatic shape, and that is
+exactly what we will use to fix the broken middleware below.
 
 </details>
 
-### A logging middleware
+#### The fix: `Box::pin` and `async move`
 
-Let us look at something practical. Here is a middleware that logs the HTTP
-method, path, and response status:
+The fix is to change `type Future` so it is no longer `S::Future`, then
+wrap the post-response work in an async block we own:
 
-```rust
+```rust title="examples/log_layer.rs" mark={1-2, 21-23, 27, 36-41} collapse={9-15, 29-31}
 use std::future::Future;
 use std::pin::Pin;
 use std::task::{Context, Poll};
@@ -354,37 +549,161 @@ where
 }
 ```
 
-Three things worth pointing out:
+A few things worth pointing out:
 
-1. We clone `method` and copy `path` **before** calling `self.inner.call(...)`,
-   because `call` takes the request by value. If you try to read them after,
-   the compiler will stop you (the request has moved). This is a pattern you
-   will see in every non-trivial middleware.
-2. The `Future` type is `Pin<Box<dyn Future<...> + Send>>`. Boxing is necessary
-   here because the future is generic over the inner service and we cannot
-   write it out concretely. It costs a heap allocation per request, which is
-   negligible for Lambda workloads.
-3. The trait bounds (`S: Service<..., Response = Response<Body>> + Send + 'static`,
-   `S::Future: Send`) look intimidating the first time you see them, but they
-   are boilerplate. Copy-paste them, adjust the types, move on.
-4. The work inside the `async move` block happens **after** `fut.await?`.
-   That is a deliberate choice: the log line only makes sense once we have
-   the response status, so we wait for the inner service to produce a
-   response before emitting the log. If you wanted to validate the request
-   or reject it for an auth failure, you would do that work **above** the
-   `fut.await?` line, and return early with an error response before the
-   inner service ever runs. Conceptually: code before the `await` inspects
-   or transforms the **request**; code after the `await` inspects or
-   transforms the **response**. In this particular middleware we do
-   neither: we log, and we hand the response back untouched. The next
-   middleware will show the mirror case, mutating the response on its way
-   out.
+1. **`type Future` is now a boxed trait object**:
+   `Pin<Box<dyn Future<Output = ...> + Send>>`. The `dyn` is
+   **dynamic dispatch**: the concrete future produced by the
+   `async move` block is opaque to the outside world, and method calls
+   on it go through a vtable. That is what lets us hand back a single
+   `Pin<Box<…>>` type regardless of which inner service we wrap. The
+   cost is one heap allocation per request, which is probably negligible
+   in the context of AWS Lambda.
+2. **The `async move { … }` block is where post-response middleware work happens.**
+   Because it is `async`, we are allowed to `.await` the inner future
+   inside it, exactly as we wanted in the broken version. The whole
+   block evaluates to an anonymous `Future`, and `Box::pin` pins and
+   boxes it so its type matches `Self::Future`.
+3. **The trait bounds grew.** `S: Service<...> + Send + 'static`, plus
+   `S::Future: Send` and `S::Error: Send`. Boxed trait-object futures
+   need `Send + 'static`, and the inner service has to play along.
+   These look intimidating the first time you see them, but they are
+   boilerplate. Copy-paste, adjust the types, move on.
+4. **Pre-await is request work, post-await is response work.** We clone
+   `method` and `path` _before_ `self.inner.call(...)`, because
+   `call` consumes the request. The `tracing::info!` fires
+   _after_ `fut.await?`, because the status only exists then. This
+   request-then-response framing is the single most useful mental model
+   for tower middleware: code above the `await` inspects or transforms
+   the **request**, code below it inspects or transforms the
+   **response**.
+
+<details class="rabbit">
+<summary>What if <code>Box::pin(async move { … })</code> weren't on the menu?</summary>
+
+`Box::pin(async move { … })` is so ergonomic it can hide what is
+actually happening. Under the hood, the async block is the compiler's
+desugaring of an anonymous state machine that implements `Future`, and
+`Box::pin` boxes-and-pins that anonymous future so its concrete type
+disappears behind the `dyn` in `type Future = Pin<Box<dyn Future<…>>>`.
+
+But what if the language did not give us async blocks at all? Could we
+still ship this middleware? Yes, by writing the `Future` ourselves.
+This is also what some tower-using crates do, especially older ones,
+and it is worth seeing once so the boxed-async shape feels less magical.
+
+```rust title="examples/log_layer_manual_poll.rs" collapse={10-16, 28-30}
+use std::future::Future;
+use std::pin::Pin;
+use std::task::{Context, Poll};
+
+use http::{Method, Request, Response};
+use lambda_http::tower::{Layer, Service};
+use lambda_http::{tracing, Body};
+use pin_project_lite::pin_project;
+
+#[derive(Clone)]
+pub struct LogLayer;
+
+impl<S> Layer<S> for LogLayer {
+    type Service = LogService<S>;
+    fn layer(&self, inner: S) -> Self::Service { LogService { inner } }
+}
+
+pub struct LogService<S> { inner: S }
+
+impl<S> Service<Request<Body>> for LogService<S>
+where
+    S: Service<Request<Body>, Response = Response<Body>>,
+{
+    type Response = Response<Body>;
+    type Error = S::Error;
+    type Future = LogFuture<S::Future>;
+
+    fn poll_ready(&mut self, cx: &mut Context<'_>) -> Poll<Result<(), Self::Error>> {
+        self.inner.poll_ready(cx)
+    }
+
+    fn call(&mut self, request: Request<Body>) -> Self::Future {
+        let method = request.method().clone();
+        let path = request.uri().path().to_string();
+        LogFuture {
+            method,
+            path,
+            inner: self.inner.call(request),
+        }
+    }
+}
+
+pin_project! {
+    pub struct LogFuture<F> {
+        method: Method,
+        path: String,
+        #[pin]
+        inner: F,
+    }
+}
+
+impl<F, E> Future for LogFuture<F>
+where
+    F: Future<Output = Result<Response<Body>, E>>,
+{
+    type Output = Result<Response<Body>, E>;
+
+    fn poll(self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<Self::Output> {
+        let this = self.project();
+        match this.inner.poll(cx) {
+            Poll::Pending => Poll::Pending,
+            Poll::Ready(Ok(response)) => {
+                tracing::info!(
+                    method = %this.method,
+                    path = %this.path,
+                    status = %response.status(),
+                    "request"
+                );
+                Poll::Ready(Ok(response))
+            }
+            Poll::Ready(Err(e)) => Poll::Ready(Err(e)),
+        }
+    }
+}
+```
+
+What did we trade?
+
+- **Up**: about thirty extra lines, an extra struct, plus a
+  `pin-project-lite` dependency. The struct holds the pieces we need
+  across `await` points (method, path, the inner future). The `Future`
+  impl on it polls the inner future and only emits the log line when
+  the inner future resolves with `Ok`.
+- **Down**: zero heap allocations per request, because `LogFuture<F>`
+  is a concrete type sized at compile time. In Lambda, that is
+  irrelevant. In a tight loop on a busy server, it can matter.
+
+`Box::pin(async move { … })` is doing exactly this work for you,
+ergonomically. The compiler builds an anonymous state machine
+equivalent to `LogFuture` from the body of the async block, and
+`Box::pin` puts it on the heap so its size is known at the trait-object
+boundary. You give up one allocation per call to skip writing the
+boilerplate by hand.
+
+</details>
 
 ### A header-injecting middleware
 
-One more warm-up, this time mutating the outgoing response:
+The logger middleware looked at the response on its way out but did not
+change it. This next warm-up actually modifies it: a `PoweredByLayer`
+that attaches an `x-powered-by: rust` header to every outgoing response.
 
-```rust collapse={1-14}
+Who doesn't like to brag about Rust, right?
+
+So, we are not going to touch the
+request or the body, but just inject a new response header. It's a trivial example, but it represents quite well the kind
+of work you actually do in real middleware (CORS headers, security
+headers, request-id tagging, response-shape envelopes), and the shape of
+the code should look familiar after the logger fix:
+
+```rust title="examples/powered_by_layer.rs" mark={35-37} collapse={1-14, 23-29}
 use http::{HeaderValue, Response};
 use lambda_http::tower::{Layer, Service};
 use lambda_http::Body;
@@ -428,8 +747,121 @@ where
 }
 ```
 
-Same shape, slightly different `call` body. You can see how this quickly
-becomes muscle memory.
+Same shape, slightly different `call` body. There is still a bit of
+boilerplate, but hopefully, at this point, it is becoming muscle memory.
+
+### Errors and short-circuits in tower middleware
+
+Before we move on to testing, there is one piece of the `Service` trait we
+have not exercised yet: the `Error` associated type. So far every `call`
+body has been a happy path with a single `?` thrown in for good measure.
+What happens when the inner service fails, and what happens when a
+middleware wants to **short-circuit** a request without ever calling the
+inner service? Tower has a clean answer for both, and it is worth
+understanding before we wire up the rate limiter.
+
+#### The error contract
+
+Recall the `Service` trait we showed earlier: both `poll_ready` and `call`
+return a `Result` that carries `Self::Error`. Once an inner service hands
+back an `Err`, the value flows outward through the layer stack just like a
+`Result::Err` flows out of a chain of `?`-using functions. Each enclosing
+layer gets a chance to look at it, transform it, or recover from it.
+
+The same nested-box mental model from earlier still applies, with one
+extra arrow:
+
+```text
+   request   ───►  LogService ──► RateLimitService ──► handler
+   response  ◄───  LogService ◄── RateLimitService ◄── handler
+   Err(...)  ◄───  LogService ◄── RateLimitService ◄── handler
+```
+
+`LogService` can intercept errors from `RateLimitService` and from the
+handler. `RateLimitService` can intercept errors from the handler. Neither
+of them can catch an error coming from a layer _above_ them; that
+direction is one-way.
+
+#### Three things a layer can do
+
+When you `await` an inner future inside `call`, you get a `Result`. There
+are three things you can do with it:
+
+1. **Propagate it untouched** with `?`. This is what the warm-up middleware
+   do:
+
+   ```rust
+   let response = self.inner.call(req).await?;
+   ```
+
+   The `Err` keeps bubbling outward.
+
+2. **Intercept and transform** it, for example to log it or to map one
+   error type into another. Tower also exposes `ServiceExt::map_err` if
+   you want this as a small wrapper layer.
+
+3. **Recover by handing back `Ok(...)` of a synthetic response.** This is
+   what "bailing out" looks like in practice. Instead of letting the
+   failure propagate, the middleware picks a response and returns a
+   successful `Result`, so no outer layer ever sees the error:
+
+   ```rust
+   match self.inner.call(req).await {
+       Ok(response) => Ok(response),
+       Err(_) => Ok(Response::builder()
+           .status(503)
+           .header("content-type", "application/json")
+           .body(Body::from(r#"{"error":"service unavailable"}"#))
+           .unwrap()),
+   }
+   ```
+
+   From the perspective of any outer layer, this service succeeded.
+
+#### The HTTP rule of thumb
+
+In an HTTP-shaped middleware (which is what `lambda_http` gives us), the
+rule that has served me well is:
+
+- **Return `Ok(response)` for anything you want the client to see**, even
+  when the response is a 401, 403, 429, or 500. The status code carries
+  the semantics; `Ok` just says "this service produced a response".
+- **Reserve `Err(...)` for transport-level failures** that you genuinely
+  expect the runtime above you to translate, and only when there is an
+  outer layer prepared to do that translation.
+
+The failure mode if you ignore this is worth keeping in mind. If an `Err`
+escapes all the way up to `lambda_http::run`, the Lambda runtime treats it
+as an invocation error. API Gateway sees the failed invocation and answers
+the client with a generic 502 Bad Gateway. The structured 503 (or 401, or 429) you carefully designed never reaches the client. Avoiding that
+confusion is the entire reason the rule exists.
+
+#### Placement matters
+
+One more thing about errors and layer order. A layer can only intercept
+errors from layers _below_ it on the stack. So if you ever want a "catch
+every remaining error and turn it into a 500" safety net, that layer has
+to be on the **outside** of the stack, wrapping everything else. Put it on
+the inside and it will only see errors from its own handler, which is too
+late to help.
+
+#### Back to the rate limiter
+
+This is exactly the design the rate limiter is going to follow. Both
+bail-out branches return successful results carrying a structured response:
+`Ok(over_limit(&request, pre_built_429, &ctx))` for "you are out of quota"
+and `Ok(unavailable(&request, pre_built_503))` for "DynamoDB is down". We
+never return `Err(...)` from inside the limiter, and the configurable
+`on_over_limit` / `on_unavailable` hooks let callers swap the _body_ of
+those responses without changing the _shape_. The hooks even receive the
+pre-built default response so the common "tweak one header" case stays a
+one-liner.
+
+One last thing worth flagging: `poll_ready` errors are subtler, because at
+readiness time you do not have the request yet, so turning a readiness
+error into a response is awkward. In classic AWS Lambda this rarely
+surfaces at the application middleware layer, so we will not dwell on it
+here.
 
 ### Testing without Lambda
 
@@ -476,6 +908,7 @@ Good question. For many use cases, API Gateway usage plans are fine. But they ha
    wants a 15-minute window, usage plans will not help you.
 
 For a deeper tour of this tradeoff space (including WAF rate-based rules and CloudFront Functions tricks), Warren Parad has a great write-up: [Exceeding AWS rate-limiting, CloudFront, usage plans](https://warrenparad.net/articles/exceeding-the-aws-rate-limiting-cloudfront-usage-plans).
+
 </details>
 
 ### What we are building
@@ -516,23 +949,38 @@ The layout is simple:
 rust-lambda-middleware-example/
 ├── Cargo.toml
 ├── template.yaml
-└── src/
-    ├── main.rs
-    ├── ip_extractor.rs
-    └── rate_limit.rs
+├── src/
+│   ├── lib.rs                  # library entry point; re-exports the rate limiter
+│   ├── ip_extractor.rs
+│   ├── rate_limit.rs
+│   └── bin/
+│       └── hello.rs            # deployable Lambda; consumes the library
+└── examples/
+    ├── noop_layer.rs           # the bare-minimum tower middleware shape
+    ├── log_layer.rs
+    ├── powered_by_layer.rs
+    └── error_recovery.rs       # intercept inner errors, return a 503
+```
+
+The rate limiter and IP extractor live in the **library crate**
+(`src/lib.rs`), which both the deployable hello-world Lambda and any
+external consumer can import via `use rust_lambda_middleware_example::*`.
+The four warm-up middleware from earlier in the post each ship as a
+runnable demo under `examples/`, so you can poke them with a one-liner:
+
+```sh frame="terminal"
+cargo run --example log_layer
+cargo run --example powered_by_layer
+cargo run --example error_recovery
 ```
 
 Here is the `Cargo.toml`:
 
-```toml title="Cargo.toml" {12}
+```toml title="Cargo.toml" {7}
 [package]
 name = "rust-lambda-middleware-example"
 version = "0.1.0"
 edition = "2021"
-
-[[bin]]
-name = "hello"
-path = "src/main.rs"
 
 [dependencies]
 lambda_http = "1"
@@ -545,6 +993,10 @@ thiserror = "2"
 aws-config = { version = "1", features = ["behavior-version-latest"] }
 aws-sdk-dynamodb = "1"
 ```
+
+No explicit `[[bin]]` block: Cargo picks up `src/bin/hello.rs`
+automatically as the `hello` binary, and `src/lib.rs` automatically
+becomes the crate's library target.
 
 Notice that we are not pulling in `tower` directly. Since `lambda_http` 1.0,
 the runtime re-exports the bits of tower we need under `lambda_http::tower::*`
@@ -635,11 +1087,12 @@ about each piece.
 use std::net::IpAddr;
 use std::sync::Arc;
 
-use http::Response;
+use http::{Request, Response};
 use lambda_http::tower::Layer;
 use lambda_http::Body;
 
 /// Information passed to a custom over-limit response builder.
+#[derive(Clone, Debug)]
 pub struct OverLimitCtx {
     pub ip: IpAddr,
     pub limit: u32,
@@ -647,8 +1100,10 @@ pub struct OverLimitCtx {
     pub retry_after: u64,
 }
 
-type OverLimitFn = Arc<dyn Fn(OverLimitCtx) -> Response<Body> + Send + Sync>;
-type UnavailableFn = Arc<dyn Fn() -> Response<Body> + Send + Sync>;
+pub type OverLimitFn =
+    Arc<dyn Fn(&Request<Body>, Response<Body>, &OverLimitCtx) -> Response<Body> + Send + Sync>;
+pub type UnavailableFn =
+    Arc<dyn Fn(&Request<Body>, Response<Body>) -> Response<Body> + Send + Sync>;
 
 #[derive(Clone)]
 pub struct RateLimitConfig {
@@ -670,24 +1125,32 @@ impl RateLimitLayer {
         Self {
             config: Arc::new(config),
             client,
-            over_limit: Arc::new(default_over_limit_response),
-            unavailable: Arc::new(default_unavailable_response),
+            over_limit: Arc::new(default_over_limit),
+            unavailable: Arc::new(default_unavailable),
         }
     }
 
     /// Override the response returned when a client is over the limit.
+    /// The closure receives the incoming request, a pre-built default 429
+    /// (with all the standard headers already set), and the
+    /// [`OverLimitCtx`]. Tweak the response in place and return it, or
+    /// replace it entirely.
     pub fn on_over_limit<F>(mut self, f: F) -> Self
     where
-        F: Fn(OverLimitCtx) -> Response<Body> + Send + Sync + 'static,
+        F: Fn(&Request<Body>, Response<Body>, &OverLimitCtx) -> Response<Body>
+            + Send
+            + Sync
+            + 'static,
     {
         self.over_limit = Arc::new(f);
         self
     }
 
     /// Override the response returned when the counter store is unreachable.
+    /// Same shape as [`on_over_limit`], without the [`OverLimitCtx`].
     pub fn on_unavailable<F>(mut self, f: F) -> Self
     where
-        F: Fn() -> Response<Body> + Send + Sync + 'static,
+        F: Fn(&Request<Body>, Response<Body>) -> Response<Body> + Send + Sync + 'static,
     {
         self.unavailable = Arc::new(f);
         self
@@ -720,26 +1183,31 @@ A few things worth pointing out:
   concurrent calls) is just a refcount bump.
 - The DynamoDB `Client` is itself cheap to clone (it shares an inner
   connection pool behind an `Arc`), so we just clone it.
-- `OverLimitFn` and `UnavailableFn` are type aliases for boxed closures. They
-  are the **extension points** for the middleware: by default we hand back a
-  small JSON `429` (over-limit) or `503` (counter store unreachable), but
-  `on_over_limit` and `on_unavailable` let users plug in their own response
-  builders without forking the crate. This is a pattern worth stealing for
-  any reusable middleware: ship sensible defaults, expose the tasteful
-  override hooks. We will see the default builders themselves in part three.
+- `OverLimitFn` and `UnavailableFn` are type aliases for boxed closures.
+  They are the **extension points** for the middleware: by default we hand
+  back a small JSON `429` (over-limit) or `503` (counter store unreachable),
+  but `on_over_limit` and `on_unavailable` let users plug in their own
+  response builders without forking the crate. Both closures receive the
+  incoming request and a **pre-built** default response, so the common case
+  (tweak one header, swap the body) is a one-liner; only callers who want
+  to replace the response wholesale need to think about it. This is a
+  pattern worth stealing for any reusable middleware: ship sensible
+  defaults, expose the tasteful override hooks, and pre-populate as much
+  of the result as you can. We will see the default builders themselves in
+  part three.
 - The `Layer::layer` impl is where we construct the inner `Service`. Notice
   we also create a `RateLimitStore` here; we will get to why it is a trait
   in a moment.
 
 #### The service
 
-```rust title="src/rate_limit.rs (2 of 3)" showLineNumbers {41-42,52,59} collapse={1-11,22-33}
+```rust title="src/rate_limit.rs (2 of 3)" showLineNumbers {41,44-45,68-69,82-83} collapse={1-11,22-33}
 use std::future::Future;
 use std::pin::Pin;
 use std::task::{Context, Poll};
 use std::time::{SystemTime, UNIX_EPOCH};
 
-use http::Response;
+use http::{Request, Response};
 use lambda_http::tower::Service;
 use lambda_http::{tracing, Body};
 use tracing::Instrument;
@@ -754,9 +1222,9 @@ pub struct RateLimitService<S> {
     unavailable: UnavailableFn,
 }
 
-impl<S> Service<http::Request<Body>> for RateLimitService<S>
+impl<S> Service<Request<Body>> for RateLimitService<S>
 where
-    S: Service<http::Request<Body>, Response = Response<Body>> + Send + 'static,
+    S: Service<Request<Body>, Response = Response<Body>> + Send + 'static,
     S::Future: Send,
     S::Error: Send,
 {
@@ -768,13 +1236,16 @@ where
         self.inner.poll_ready(cx)
     }
 
-    fn call(&mut self, request: http::Request<Body>) -> Self::Future {
+    fn call(&mut self, request: Request<Body>) -> Self::Future {
         let config = Arc::clone(&self.config);
         let store = Arc::clone(&self.store);
         let over_limit = Arc::clone(&self.over_limit);
         let unavailable = Arc::clone(&self.unavailable);
 
         let ip = extract_ip(&request);
+        // Clone the request so the bail-out callbacks can still see it
+        // after the inner service has consumed it.
+        let request_for_bailout = request.clone();
         let inner_future = self.inner.call(request);
 
         Box::pin(async move {
@@ -798,19 +1269,22 @@ where
                     Ok(c) => c,
                     Err(e) => {
                         tracing::error!(error = %e, "rate_limit: DynamoDB error");
-                        return Ok(unavailable());
+                        let pre_built = build_unavailable_response();
+                        return Ok(unavailable(&request_for_bailout, pre_built));
                     }
                 };
 
                 let limit = config.max_requests;
                 tracing::debug!(count, limit, "rate_limit decision");
                 if count > limit {
-                    return Ok(over_limit(OverLimitCtx {
+                    let ctx = OverLimitCtx {
                         ip,
                         limit,
                         reset_at,
                         retry_after: seconds_until_reset,
-                    }));
+                    };
+                    let pre_built = build_over_limit_response(&ctx);
+                    return Ok(over_limit(&request_for_bailout, pre_built, &ctx));
                 }
 
                 let mut response = inner_future.await?;
@@ -837,6 +1311,14 @@ A few things worth unpacking:
 - **We extract the IP before calling `inner.call(request)`**. Same pattern as
   the logging middleware: once `call` is invoked, the request has moved. If
   you try to read headers after, the compiler will stop you.
+- **We also clone the request before consuming it.** The `on_over_limit` and
+  `on_unavailable` callbacks receive the original `Request<Body>` so they can
+  inspect headers, the URI, or the method when shaping the bail-out
+  response. The clone is the price we pay for that ergonomic, and it only
+  happens on every request because we cannot know up front whether we will
+  end up bailing out. If your request bodies are large enough that the
+  clone matters, swap the `Request<Body>` field for a cheaper "request
+  metadata" struct holding only the bits the callbacks actually need.
 - **The window bucket is one line of arithmetic**: `bucket = now / window_secs`.
   Every request that lands within a window maps to the same bucket integer,
   and the reset time is `(bucket + 1) * window_secs`. This is why the PK
@@ -848,8 +1330,12 @@ A few things worth unpacking:
 - **Fail open on missing IP, fail closed on DynamoDB errors.** No IP means
   we cannot key the counter, so the best we can do is log and pass through.
   A DynamoDB outage, on the other hand, is something we deliberately do
-  *not* want to silently let traffic past, so we hand back the configurable
-  `unavailable` response (a 503 by default).
+  _not_ want to silently let traffic past, so we hand back the configurable
+  `unavailable` response (a 503 by default). This is the "bail out with
+  `Ok(response)`" pattern from the
+  [errors and short-circuits section](#errors-and-short-circuits-in-tower-middleware)
+  above; we never return `Err(...)` because that would surface as a 502
+  invocation error and the client would lose the structured 503.
 - **A tracing span wraps the per-request work.** The inner `async move`
   block is `.instrument(span)`-ed so every log emitted while the limiter is
   running carries the client IP and the current window bucket as structured
@@ -885,7 +1371,10 @@ struct RateLimitErrorBody<'a> {
     retry_after: u64,
 }
 
-fn default_over_limit_response(ctx: OverLimitCtx) -> Response<Body> {
+// Internal builders that produce the *pre-built* default responses.
+// The configurable callbacks receive whatever these return.
+
+fn build_over_limit_response(ctx: &OverLimitCtx) -> Response<Body> {
     let body = serde_json::to_string(&RateLimitErrorBody {
         error: "rate limit exceeded",
         retry_after: ctx.retry_after,
@@ -903,14 +1392,39 @@ fn default_over_limit_response(ctx: OverLimitCtx) -> Response<Body> {
         .expect("valid 429 response")
 }
 
-fn default_unavailable_response() -> Response<Body> {
+fn build_unavailable_response() -> Response<Body> {
     Response::builder()
         .status(503)
         .header("content-type", "application/json")
         .body(r#"{"error":"service unavailable"}"#.into())
         .expect("valid 503 response")
 }
+
+// Default callbacks: pass the pre-built response straight through.
+// `on_over_limit` and `on_unavailable` swap these out.
+
+fn default_over_limit(
+    _request: &Request<Body>,
+    response: Response<Body>,
+    _ctx: &OverLimitCtx,
+) -> Response<Body> {
+    response
+}
+
+fn default_unavailable(_request: &Request<Body>, response: Response<Body>) -> Response<Body> {
+    response
+}
 ```
+
+Two parts to this block. The `build_*` helpers are private and produce the
+default 429 / 503 responses, fully populated with the standard headers.
+The `default_*` callbacks receive that pre-built response and just return
+it untouched, which is what gives `RateLimitLayer::new` its
+"works out of the box" behaviour. When a caller hands us a custom callback
+via `on_over_limit` or `on_unavailable`, they get the same pre-built
+response and can mutate or replace it as they see fit. In the common case
+(adding a CORS header, swapping the body, attaching a request id) the
+custom callback ends up being two or three lines.
 
 The 429 body is deliberately simple: just a short JSON payload with
 `error` and `retry_after`. The HTTP status code plus the standard headers
@@ -1098,31 +1612,34 @@ impl<S> RateLimitService<S> {
             inner,
             store,
             config,
-            over_limit: Arc::new(default_over_limit_response),
-            unavailable: Arc::new(default_unavailable_response),
+            over_limit: Arc::new(default_over_limit),
+            unavailable: Arc::new(default_unavailable),
         }
     }
 }
 ```
 
 No local DynamoDB, no network, no flaky tests. Every edge case (under limit,
-over limit, different IPs, store errors, missing IP) can be covered in
-milliseconds. This is the main reason I always reach for the store-trait
-pattern in Lambda middleware that touches external state.
+over limit, different IPs, store errors, missing IP, custom callbacks) can
+be covered in milliseconds. The full test suite in the repo also exercises
+the customisation surface, asserting that an `on_over_limit` override sees
+the original request and the pre-built default response, and that an
+`on_unavailable` override can replace the 503 entirely. This is the main
+reason I always reach for the store-trait pattern in Lambda middleware
+that touches external state.
 
-### Wiring it all up in `main.rs`
+### Wiring it all up in `bin/hello.rs`
 
-Here is the full Lambda entry point:
+Here is the full Lambda entry point. It lives at `src/bin/hello.rs` and
+consumes the library crate, so all the rate-limit machinery is just an
+import away:
 
-```rust title="src/main.rs" showLineNumbers
+```rust title="src/bin/hello.rs" showLineNumbers
 use lambda_http::tower::ServiceBuilder;
 use lambda_http::{run, service_fn, tracing, Body, Error, Request, Response};
 use serde_json::json;
 
-mod ip_extractor;
-mod rate_limit;
-
-use rate_limit::{RateLimitConfig, RateLimitLayer};
+use rust_lambda_middleware_example::{RateLimitConfig, RateLimitLayer};
 
 async fn handler(_request: Request) -> Result<Response<Body>, Error> {
     let body = json!({ "message": "hello, rusty middleware" }).to_string();
