@@ -237,7 +237,11 @@ inside it. The request enters from the outside, falls through every box on
 the way down to the terminal handler at the bottom, and the response makes
 the trip back up in reverse:
 
+<div class="narrow">
+
 ![Diagram showing a request flowing through authentication and rate-limiting middleware before reaching a Rust Lambda handler, with the response returning through the same layered services.](./middleware-structure.png)
+
+</div>
 
 Each middleware gets a crack at the request on the way in, and another crack
 at the response on the way out. Authentication can reject unauthorised requests
@@ -695,7 +699,7 @@ The logger middleware looked at the response on its way out but did not
 change it. This next warm-up actually modifies it: a `PoweredByLayer`
 that attaches an `x-powered-by: rust` header to every outgoing response.
 
-Who doesn't like to brag about Rust, right?
+Who doesn't like to brag about Rust, right? 😇
 
 So, we are not going to touch the
 request or the body, but just inject a new response header. It's a trivial example, but it represents quite well the kind
@@ -750,58 +754,129 @@ where
 Same shape, slightly different `call` body. There is still a bit of
 boilerplate, but hopefully, at this point, it is becoming muscle memory.
 
-### Errors and short-circuits in tower middleware
+### Short-circuits and error flow in tower middleware
 
-Before we move on to testing, there is one piece of the `Service` trait we
-have not exercised yet: the `Error` associated type. So far every `call`
-body has been a happy path with a single `?` thrown in for good measure.
-What happens when the inner service fails, and what happens when a
-middleware wants to **short-circuit** a request without ever calling the
-inner service? Tower has a clean answer for both, and it is worth
-understanding before we wire up the rate limiter.
+Before we move on to testing, there is one piece of the middleware
+playbook we have not exercised yet: every `call` implementation we
+have seen so far has dutifully forwarded the request down to the inner
+service, and used `?` so that any errors travel straight back up the
+stack. The happy path.
 
-#### The error contract
+What if a middleware wants to **short-circuit** a request and skip the
+inner service entirely? And, while we are at it, what about the case
+where the inner service does run and fails on us (i.e. it produces an `Err`)?
 
-Recall the `Service` trait we showed earlier: both `poll_ready` and `call`
-return a `Result` that carries `Self::Error`. Once an inner service hands
-back an `Err`, the value flows outward through the layer stack just like a
-`Result::Err` flows out of a chain of `?`-using functions. Each enclosing
-layer gets a chance to look at it, transform it, or recover from it.
+Skipping the inner service comes up more often than you might think.
+Imagine a validator middleware: if the incoming request fails its
+checks, there is no point in calling the inner service at all. You are
+going to return an error to the client either way, so why pay for the
+business logic? In fact, the _whole point_ of the validator is to
+protect (i.e. _not_ run) the main business logic when the request is
+invalid.
 
-The same nested-box mental model from earlier still applies, with one
-extra arrow:
+Tower has a clean answer for these use cases, and the they turn out to
+be two sides of the same `Result` coin (the `Ok` path and the `Err` path). We will cover short-circuiting
+first as the umbrella mechanism, then come back to inner-service
+failures as a special case. Both are worth understanding before we
+wire up the rate limiter.
 
-```text
-   request   ───►  LogService ──► RateLimitService ──► handler
-   response  ◄───  LogService ◄── RateLimitService ◄── handler
-   Err(...)  ◄───  LogService ◄── RateLimitService ◄── handler
-```
+#### Short-circuiting and the up/down trip
 
-`LogService` can intercept errors from `RateLimitService` and from the
-handler. `RateLimitService` can intercept errors from the handler. Neither
-of them can catch an error coming from a layer _above_ them; that
-direction is one-way.
+**Short-circuiting** means a middleware decides to return a response
+(or an `Err`) _before_ it calls the inner service. The two arrow
+directions in our stack of services are just the two halves of a
+function call: calling `inner.call(req)` is what makes the arrow go
+_down_ into the next layer, and returning from `call` is what makes
+the arrow come back _up_. A short-circuiting middleware never makes
+that downward call from itself onward, which is why the request never
+reaches the layers below.
 
-#### Three things a layer can do
+A nice side effect of that: the work below a short-circuit is
+genuinely not paid for. Because the inner future is never created, the
+layers below the short-circuit point are not even instantiated, let
+alone polled. Latency, allocations, downstream calls, all skipped.
 
-When you `await` an inner future inside `call`, you get a `Result`. There
-are three things you can do with it:
+The picture is the same nested-box mental model from earlier, with one
+extra arrow showing what happens when something short-circuits partway
+down the stack:
 
-1. **Propagate it untouched** with `?`. This is what the warm-up middleware
-   do:
+<div class="narrow">
+
+![Diagram showing a request descending into a stack of services (the Log service wraps the Rate limit service, which wraps the Lambda handler). The request reaches the Rate limit service, which produces a short-circuit error, so the Lambda handler is never reached. The error response then travels back up through the Rate limit service and the Log service, and out.](./middleware-short-circuit.png)
+
+</div>
+
+In the diagram the rate-limit service rejects the request, so the
+Lambda handler never runs. The response (an error here, but it could
+just as easily have been an `Ok` carrying a 429) only travels back up
+through the layers it had already entered. Layers above the
+short-circuit point still see the request go in and the response come
+back out; layers below never get involved at all.
+
+In this particular example, since we short-circuit at the rate limit service,
+the function handler is not getting executed at all. If we had other services below the rate limit one, they won't have been executed as well.
+
+> NFA: i just added the paragraph above. See if it's worth fixing, or tidying it up.
+
+#### Order matters
+
+Following directly from the picture: **the order of layers in the
+stack matters**. Whatever you put on the _outside_ runs on every
+request, no matter what happens further down. Whatever you put on the
+_inside_ only runs when the layers above it let the request through.
+
+That gives you a cheap heuristic for choosing where each piece of
+middleware goes:
+
+- **Outside (always runs)** is the natural home for cross-cutting
+  concerns you want on every request: logging, tracing, CORS,
+  response-shape envelopes, structured error mapping, and any "catch
+  every remaining error and turn it into a 500" safety net. Put a
+  safety net on the inside and it will only see errors from its own
+  handler, which is too late to help.
+- **Inside (may be skipped)** is the natural home for short-circuiting
+  work that can decide to bail out early: authentication, rate
+  limiting, request validation.
+
+In our running example, because the log service sits _outside_ the
+rate-limit service, every rate-limited 429 response still gets logged
+on its way out. Swap the order and you would lose that visibility.
+
+In tower terms: each layer can intercept the request and the response
+(or error) from anything below it, never from above. That direction is
+one-way.
+
+#### Errors are not special: they ride on `Result`
+
+So far we have talked about a middleware _choosing_ to short-circuit.
+What about the case where an inner service _fails_?
+
+The trick is to notice that there is nothing special about errors in
+tower. `Service::call` returns a future that resolves to
+`Result<Response, Error>`. Returning `Err(...)` and returning `Ok(...)`
+are both perfectly valid completion states; they are just two halves of
+the same value space. When an inner service hands back `Err`, that
+`Err` arrives at the wrapping layer as the result of an `.await`, and
+the wrapping layer then has the same three options it would have for
+any `Result`:
+
+1. **Propagate it untouched** with `?`. The log and header-injecting
+   middleware we wrote earlier both do this:
 
    ```rust
    let response = self.inner.call(req).await?;
    ```
 
-   The `Err` keeps bubbling outward.
+   The `?` hands the error off to the next layer up the stack, just
+   like it would in any plain synchronous function. From there, each
+   enclosing layer can look at it, transform it, or recover from it.
 
-2. **Intercept and transform** it, for example to log it or to map one
-   error type into another. Tower also exposes `ServiceExt::map_err` if
-   you want this as a small wrapper layer.
+2. **Intercept and transform it**, for example to log it or to map one
+   error type into another. Tower also exposes `ServiceExt::map_err`
+   if you want this as a small wrapper layer.
 
-3. **Recover by handing back `Ok(...)` of a synthetic response.** This is
-   what "bailing out" looks like in practice. Instead of letting the
+3. **Recover by handing back `Ok(...)` of a synthetic response.** This
+   is short-circuiting performed reactively: instead of letting the
    failure propagate, the middleware picks a response and returns a
    successful `Result`, so no outer layer ever sees the error:
 
@@ -836,32 +911,60 @@ as an invocation error. API Gateway sees the failed invocation and answers
 the client with a generic 502 Bad Gateway. The structured 503 (or 401, or 429) you carefully designed never reaches the client. Avoiding that
 confusion is the entire reason the rule exists.
 
-#### Placement matters
+#### What each layer gets to do
 
-One more thing about errors and layer order. A layer can only intercept
-errors from layers _below_ it on the stack. So if you ever want a "catch
-every remaining error and turn it into a 500" safety net, that layer has
-to be on the **outside** of the stack, wrapping everything else. Put it on
-the inside and it will only see errors from its own handler, which is too
-late to help.
+Pulling it all together: every layer that is actually called has four
+moves available, two on the way in and two on the way out.
+
+On the way in, before `inner.call(req)`:
+
+1. **Inspect or transform** the request before passing it down.
+2. **Short-circuit** by returning a response (or an `Err`) without
+   calling the inner service at all.
+
+On the way out, after `inner.call(req).await`:
+
+3. **Inspect or transform** the response before passing it up.
+4. **Recover** from an inner-service failure by returning
+   `Ok(synthetic_response)` instead of letting the `Err` propagate.
+
+That is the entire toolkit. Almost every useful middleware is some
+combination of those four moves on top of the no-op shape.
 
 #### Back to the rate limiter
 
-This is exactly the design the rate limiter is going to follow. Both
-bail-out branches return successful results carrying a structured response:
-`Ok(over_limit(&request, pre_built_429, &ctx))` for "you are out of quota"
-and `Ok(unavailable(&request, pre_built_503))` for "DynamoDB is down". We
-never return `Err(...)` from inside the limiter, and the configurable
-`on_over_limit` / `on_unavailable` hooks let callers swap the _body_ of
-those responses without changing the _shape_. The hooks even receive the
-pre-built default response so the common "tweak one header" case stays a
-one-liner.
+So how do we apply all this to our rate limiter? Concretely, when a
+client trips the limit (or when DynamoDB is unreachable), we have a
+choice between two designs:
 
-One last thing worth flagging: `poll_ready` errors are subtler, because at
-readiness time you do not have the request yet, so turning a readiness
-error into a response is awkward. In classic AWS Lambda this rarely
-surfaces at the application middleware layer, so we will not dwell on it
-here.
+1. **Return a descriptive `Err`** (something like
+   `RateLimitError::Exceeded { retry_after, ... }`) and trust an outer
+   layer in the stack to translate it into an HTTP response. This is
+   the most "general purpose" version of the middleware: anyone
+   plugging it in keeps full control over what their 429 (or 503)
+   ultimately looks like. The cost is that every consumer has to
+   actually write that translation layer, which is real work and one
+   more thing to remember.
+2. **Short-circuit with a pre-baked `Ok(response)`** containing a
+   sensible 429 (or 503). Anyone who drops the middleware into a
+   `ServiceBuilder` gets a working rate limiter with no extra code.
+   The cost is the response shape is baked in, which is awkward the
+   first time someone needs to add a custom header or change the body.
+
+We will go with **option 2**. A drop-in middleware that just works is
+worth a lot in practice, especially for the kind of "I want to add
+rate limiting to this Lambda before lunch" scenario this post is
+chasing. We will start with a minimal version that returns fixed
+default responses (so the focus stays on the rate-limit logic
+itself), and then revisit the customisation question in a second
+pass with a small trick that lets callers tweak those responses
+without forking the crate.
+
+One last thing worth flagging: `poll_ready` errors are subtler, because
+at readiness time you do not have the request yet, so turning a
+readiness error into a response is awkward. In classic AWS Lambda this
+rarely surfaces at the application middleware layer, so we will not
+dwell on it here.
 
 ### Testing without Lambda
 
@@ -916,7 +1019,7 @@ For a deeper tour of this tradeoff space (including WAF rate-based rules and Clo
 The requirements:
 
 - Key the limit on **client IP**. This keeps the tutorial simple. Real apps
-  often prefer a stable user ID from a JWT claim; swapping the
+  often prefer a stable user ID (for example, from a JWT claim); swapping the
   key-extraction function is a one-line change once the rest is in place.
 - **Fixed window**, configurable via a `window_secs` parameter. We default
   to 900 seconds (15 minutes) because it is a common choice.
@@ -936,92 +1039,91 @@ downside: a motivated client can burst up to `2 × max_requests` across a
 window boundary (everything right before the flip, plus everything right
 after). The standard fixes are a token bucket or a sliding window, and the
 middleware shape stays identical; only the counter arithmetic changes. For
-this post we will stick to the fixed window because it keeps the focus on
-middleware mechanics. Swapping the algorithm is left as a follow-up.
+this post we will stick to the fixed window mostly because it keeps the
+DynamoDB schema minimal and easy to follow (one row per IP per window,
+nothing to clean up beyond TTL), which keeps the focus on middleware
+mechanics rather than counter design. Swapping the algorithm is left as a
+follow-up.
 
-## The code
+## Building the rate limit middleware
 
-The companion repo lives at
-[github.com/lmammino/rust-lambda-middleware-example](https://github.com/lmammino/rust-lambda-middleware-example).
-The layout is simple:
+Time to wire it all up. The code lives in the [companion repo](https://github.com/lmammino/rust-lambda-middleware-example);
+this section walks through the two files that make up the middleware
+itself: `src/ip_extractor.rs` (a tiny helper that pulls the client IP
+out of an incoming request) and `src/rate_limit.rs` (the `Layer` +
+`Service` pair that does the actual rate limiting). There is also a
+simple deployable hello-world Lambda that plugs in the rate limiter,
+and a SAM template you can use to deploy the whole thing in one go,
+more on those later.
 
-```text
-rust-lambda-middleware-example/
-├── Cargo.toml
-├── template.yaml
-├── src/
-│   ├── lib.rs                  # library entry point; re-exports the rate limiter
-│   ├── ip_extractor.rs
-│   ├── rate_limit.rs
-│   └── bin/
-│       └── hello.rs            # deployable Lambda; consumes the library
-└── examples/
-    ├── noop_layer.rs           # the bare-minimum tower middleware shape
-    ├── log_layer.rs
-    ├── powered_by_layer.rs
-    └── error_recovery.rs       # intercept inner errors, return a 503
-```
-
-The rate limiter and IP extractor live in the **library crate**
-(`src/lib.rs`), which both the deployable hello-world Lambda and any
-external consumer can import via `use rust_lambda_middleware_example::*`.
-The four warm-up middleware from earlier in the post each ship as a
-runnable demo under `examples/`, so you can poke them with a one-liner:
-
-```sh frame="terminal"
-cargo run --example log_layer
-cargo run --example powered_by_layer
-cargo run --example error_recovery
-```
-
-Here is the `Cargo.toml`:
-
-```toml title="Cargo.toml" {7}
-[package]
-name = "rust-lambda-middleware-example"
-version = "0.1.0"
-edition = "2021"
-
-[dependencies]
-lambda_http = "1"
-tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
-http = "1"
-serde = { version = "1", features = ["derive"] }
-serde_json = "1"
-async-trait = "0.1"
-thiserror = "2"
-aws-config = { version = "1", features = ["behavior-version-latest"] }
-aws-sdk-dynamodb = "1"
-```
-
-No explicit `[[bin]]` block: Cargo picks up `src/bin/hello.rs`
-automatically as the `hello` binary, and `src/lib.rs` automatically
-becomes the crate's library target.
-
-Notice that we are not pulling in `tower` directly. Since `lambda_http` 1.0,
-the runtime re-exports the bits of tower we need under `lambda_http::tower::*`
-(`Layer`, `Service`, `ServiceBuilder`, `ServiceExt`, `service_fn`, and so on).
-That guarantees we always end up with the exact tower version the runtime is
-built against, which avoids a whole class of trait-mismatch headaches. The
-`aws-config` `behavior-version-latest` feature pins the SDK to sensible
-recent defaults.
+One quick note on dependencies before we dive in (the full
+`Cargo.toml` is in the repo). We are **not** pulling in `tower`
+directly: since `lambda_http`, the runtime re-exports the bits we
+need under `lambda_http::tower::*` (`Layer`, `Service`,
+`ServiceBuilder`, `ServiceExt`, `service_fn`, and so on). That
+guarantees we always end up with the exact tower version the runtime
+is built against, avoiding a whole class of trait-mismatch headaches.
 
 ### Extracting the client IP
 
-First we need to know who is making the request. In Lambda, the client IP
-arrives via headers set by whatever sits between the client and the function:
-API Gateway, CloudFront, a custom proxy, and so on. The convention is to walk
-a priority list:
+First we need to know who is making the request. In Lambda, the
+client IP does **not** come on the request as a uniform field; how
+you get it depends on which integration sits between the client and
+your function:
 
-```rust title="src/ip_extractor.rs"
+- **API Gateway (REST or HTTP API) and Application Load Balancer**:
+  the integration adds an `X-Forwarded-For` header. It is a
+  comma-separated list with one entry per proxy hop, the first of
+  which is the original client. Example value:
+  `203.0.113.1, 198.51.100.10, 10.0.0.1`.
+- **Amazon CloudFront** in front of API Gateway (or a Function URL):
+  if the origin request policy forwards `CloudFront-Viewer-Address`,
+  the header arrives in the form `ip:port`. Example values:
+  `198.51.100.10:46532` for IPv4, `[2001:db8::1]:46532` for IPv6
+  (bracketed).
+- **Lambda Function URLs**: the runtime does **not** add
+  `X-Forwarded-For` at all. The only place to find the source IP is
+  the Lambda event payload's `requestContext.http.sourceIp` field,
+  which we can reach through `lambda_http::RequestExt::request_context_ref`.
+
+The convention is to walk those sources **in order of trust** (most
+trustworthy first) and take the first one that yields a valid address.
+"Most trustworthy" because some of these sources are set by the runtime
+or by AWS infrastructure (and cannot be forged by an HTTP client) while
+others arrive on headers that a malicious client may be able to spoof.
+Concretely the priority is: runtime-set request context →
+`CloudFront-Viewer-Address` → `X-Forwarded-For`.
+
+```rust title="src/ip_extractor.rs" mark={10, 20, 30} collapse={42-54, 58-61, 65-78}
 use std::net::IpAddr;
 use std::str::FromStr;
 
-use lambda_http::Request;
+use lambda_http::request::RequestContext;
+use lambda_http::{Request, RequestExt};
 
 pub fn extract_ip(request: &Request) -> Option<IpAddr> {
+    // 1. Runtime-set source IP from the event payload's request context.
+    //    HTTP clients cannot forge this, so we trust it first.
+    if let Some(ip) = source_ip_from_context(request) {
+        return Some(ip);
+    }
+
     let headers = request.headers();
 
+    // 2. CloudFront-Viewer-Address (set by CloudFront, never by the
+    //    client). Lets us recover the real client IP in a
+    //    CloudFront -> API Gateway stack, where the runtime would
+    //    only see CloudFront's edge IP.
+    if let Some(value) = headers.get("cloudfront-viewer-address") {
+        if let Ok(s) = value.to_str() {
+            if let Some(ip) = parse_cloudfront_viewer_address(s) {
+                return Some(ip);
+            }
+        }
+    }
+
+    // 3. X-Forwarded-For (API Gateway, ALB). Last resort because
+    //    clients can prepend their own entries in some setups.
     if let Some(value) = headers.get("x-forwarded-for") {
         if let Ok(s) = value.to_str() {
             if let Some(ip) = parse_forwarded_for(s) {
@@ -1030,23 +1132,23 @@ pub fn extract_ip(request: &Request) -> Option<IpAddr> {
         }
     }
 
-    if let Some(value) = headers.get("x-real-ip") {
-        if let Ok(s) = value.to_str() {
-            if let Ok(ip) = IpAddr::from_str(s.trim()) {
-                return Some(ip);
-            }
-        }
-    }
-
-    if let Some(value) = headers.get("cf-connecting-ip") {
-        if let Ok(s) = value.to_str() {
-            if let Ok(ip) = IpAddr::from_str(s.trim()) {
-                return Some(ip);
-            }
-        }
-    }
-
     None
+}
+
+fn source_ip_from_context(request: &Request) -> Option<IpAddr> {
+    match request.request_context_ref()? {
+        RequestContext::ApiGatewayV1(ctx) => ctx
+            .identity
+            .source_ip
+            .as_deref()
+            .and_then(|ip| IpAddr::from_str(ip).ok()),
+        RequestContext::ApiGatewayV2(ctx) => ctx
+            .http
+            .source_ip
+            .as_deref()
+            .and_then(|ip| IpAddr::from_str(ip).ok()),
+        _ => None,
+    }
 }
 
 fn parse_forwarded_for(header: &str) -> Option<IpAddr> {
@@ -1055,55 +1157,74 @@ fn parse_forwarded_for(header: &str) -> Option<IpAddr> {
         .map(str::trim)
         .find_map(|candidate| IpAddr::from_str(candidate).ok())
 }
+
+fn parse_cloudfront_viewer_address(header: &str) -> Option<IpAddr> {
+    let header = header.trim();
+    // Bracketed IPv6.
+    if let Some(rest) = header.strip_prefix('[') {
+        let ip = rest.split_once(']').map(|(ip, _)| ip).unwrap_or(rest);
+        return IpAddr::from_str(ip).ok();
+    }
+    // Unbracketed IPv4 (or bare IPv6) with a `:port` suffix.
+    if let Some((ip, _port)) = header.rsplit_once(':') {
+        if let Ok(ip) = IpAddr::from_str(ip) {
+            return Some(ip);
+        }
+    }
+    // Bare IP, no port.
+    IpAddr::from_str(header).ok()
+}
 ```
 
-`X-Forwarded-For` can contain a comma-separated list (each proxy on the path
-appends its view of the client), so we walk it and take the first valid IP.
-We then fall back to `X-Real-IP` (common with nginx-style proxies) and
-`CF-Connecting-IP` (Cloudflare). If none of these are set, we give up and
-return `None`; the caller will decide what to do.
+The three helpers are folded above (click to expand them in the
+rendered post):
 
-A word of caution. These headers are only trustworthy if you control every
-hop between the client and the Lambda. Behind API Gateway, an ALB, or
-CloudFront they are set by the proxy and safe. If you expose a Lambda
-function URL directly, any caller can forge them. The middleware below
-fails **open** when it cannot determine an IP (letting the request through
-rather than locking out legitimate traffic), which is the right default
-for this class of problem; make the opposite choice if your threat model
-demands it.
+- `parse_forwarded_for` walks the comma-separated list
+  and returns the first entry that parses as an IP.
+- `parse_cloudfront_viewer_address` strips the `:port` suffix,
+  accounting for both unbracketed IPv4 and bracketed IPv6.
+- `source_ip_from_context` matches on the `RequestContext` variant the
+  runtime parses out of the event: HTTP API v2 and Function URL events
+  both land in `ApiGatewayV2` (where the IP lives at
+  `ctx.http.source_ip`), REST API v1 events land in `ApiGatewayV1`
+  (where it lives at `ctx.identity.source_ip`), and any other variant
+  (such as ALB) returns `None`, leaving the header sources to do the
+  work.
 
-This IP extractor is adapted from a small helper I built for
-[geo-redirect-lambda](https://github.com/lmammino/geo-redirect-lambda/blob/main/lambda/src/ip_extractor.rs),
-which has been running in production for a while without drama.
+<aside class="callout callout-warning">
+
+**Trust caveat.** The two header sources are only trustworthy if you
+control every hop between the client and the Lambda. Behind API
+Gateway, an ALB, or CloudFront they are set by the proxy and safe.
+If you expose a Function URL directly without a trusted proxy, any
+caller can forge them, and only the request-context fallback (set by
+the runtime, not by the client) should be trusted in that setup.
+
+If your function can also be invoked directly via the Lambda Invoke
+API (any IAM principal with `lambda:InvokeFunction` permission),
+even that fallback stops being safe: the caller controls the entire
+event payload, including `requestContext.http.sourceIp`. Lock down
+the IAM permissions on the function, or treat IP-based decisions as
+advisory rather than authoritative in that environment.
+
+The middleware below fails **open** when it cannot determine an IP
+(letting the request through rather than locking out potentially legitimate
+traffic), which is the right default for this class of problem;
+make the opposite choice if your threat model demands it.
+
+</aside>
 
 ### The rate limit middleware
 
-Now the main event. I will show the file in three passes so we can talk
+And finally, the main event! I will show the file in three passes so we can talk
 about each piece.
 
 #### The config and the layer
 
 ```rust title="src/rate_limit.rs (1 of 3)" showLineNumbers
-use std::net::IpAddr;
 use std::sync::Arc;
 
-use http::{Request, Response};
 use lambda_http::tower::Layer;
-use lambda_http::Body;
-
-/// Information passed to a custom over-limit response builder.
-#[derive(Clone, Debug)]
-pub struct OverLimitCtx {
-    pub ip: IpAddr,
-    pub limit: u32,
-    pub reset_at: u64,
-    pub retry_after: u64,
-}
-
-pub type OverLimitFn =
-    Arc<dyn Fn(&Request<Body>, Response<Body>, &OverLimitCtx) -> Response<Body> + Send + Sync>;
-pub type UnavailableFn =
-    Arc<dyn Fn(&Request<Body>, Response<Body>) -> Response<Body> + Send + Sync>;
 
 #[derive(Clone)]
 pub struct RateLimitConfig {
@@ -1116,8 +1237,6 @@ pub struct RateLimitConfig {
 pub struct RateLimitLayer {
     config: Arc<RateLimitConfig>,
     client: aws_sdk_dynamodb::Client,
-    over_limit: OverLimitFn,
-    unavailable: UnavailableFn,
 }
 
 impl RateLimitLayer {
@@ -1125,35 +1244,7 @@ impl RateLimitLayer {
         Self {
             config: Arc::new(config),
             client,
-            over_limit: Arc::new(default_over_limit),
-            unavailable: Arc::new(default_unavailable),
         }
-    }
-
-    /// Override the response returned when a client is over the limit.
-    /// The closure receives the incoming request, a pre-built default 429
-    /// (with all the standard headers already set), and the
-    /// [`OverLimitCtx`]. Tweak the response in place and return it, or
-    /// replace it entirely.
-    pub fn on_over_limit<F>(mut self, f: F) -> Self
-    where
-        F: Fn(&Request<Body>, Response<Body>, &OverLimitCtx) -> Response<Body>
-            + Send
-            + Sync
-            + 'static,
-    {
-        self.over_limit = Arc::new(f);
-        self
-    }
-
-    /// Override the response returned when the counter store is unreachable.
-    /// Same shape as [`on_over_limit`], without the [`OverLimitCtx`].
-    pub fn on_unavailable<F>(mut self, f: F) -> Self
-    where
-        F: Fn(&Request<Body>, Response<Body>) -> Response<Body> + Send + Sync + 'static,
-    {
-        self.unavailable = Arc::new(f);
-        self
     }
 }
 
@@ -1168,8 +1259,6 @@ impl<S> Layer<S> for RateLimitLayer {
             inner,
             store,
             config: Arc::clone(&self.config),
-            over_limit: Arc::clone(&self.over_limit),
-            unavailable: Arc::clone(&self.unavailable),
         }
     }
 }
@@ -1183,25 +1272,13 @@ A few things worth pointing out:
   concurrent calls) is just a refcount bump.
 - The DynamoDB `Client` is itself cheap to clone (it shares an inner
   connection pool behind an `Arc`), so we just clone it.
-- `OverLimitFn` and `UnavailableFn` are type aliases for boxed closures.
-  They are the **extension points** for the middleware: by default we hand
-  back a small JSON `429` (over-limit) or `503` (counter store unreachable),
-  but `on_over_limit` and `on_unavailable` let users plug in their own
-  response builders without forking the crate. Both closures receive the
-  incoming request and a **pre-built** default response, so the common case
-  (tweak one header, swap the body) is a one-liner; only callers who want
-  to replace the response wholesale need to think about it. This is a
-  pattern worth stealing for any reusable middleware: ship sensible
-  defaults, expose the tasteful override hooks, and pre-populate as much
-  of the result as you can. We will see the default builders themselves in
-  part three.
 - The `Layer::layer` impl is where we construct the inner `Service`. Notice
   we also create a `RateLimitStore` here; we will get to why it is a trait
   in a moment.
 
 #### The service
 
-```rust title="src/rate_limit.rs (2 of 3)" showLineNumbers {41,44-45,68-69,82-83} collapse={1-11,22-33}
+```rust title="src/rate_limit.rs (2 of 3)" showLineNumbers {37-38, 61, 68} collapse={1-11, 22-32}
 use std::future::Future;
 use std::pin::Pin;
 use std::task::{Context, Poll};
@@ -1218,8 +1295,6 @@ pub struct RateLimitService<S> {
     inner: S,
     store: Arc<dyn RateLimitStore>,
     config: Arc<RateLimitConfig>,
-    over_limit: OverLimitFn,
-    unavailable: UnavailableFn,
 }
 
 impl<S> Service<Request<Body>> for RateLimitService<S>
@@ -1239,13 +1314,8 @@ where
     fn call(&mut self, request: Request<Body>) -> Self::Future {
         let config = Arc::clone(&self.config);
         let store = Arc::clone(&self.store);
-        let over_limit = Arc::clone(&self.over_limit);
-        let unavailable = Arc::clone(&self.unavailable);
 
         let ip = extract_ip(&request);
-        // Clone the request so the bail-out callbacks can still see it
-        // after the inner service has consumed it.
-        let request_for_bailout = request.clone();
         let inner_future = self.inner.call(request);
 
         Box::pin(async move {
@@ -1269,22 +1339,18 @@ where
                     Ok(c) => c,
                     Err(e) => {
                         tracing::error!(error = %e, "rate_limit: DynamoDB error");
-                        let pre_built = build_unavailable_response();
-                        return Ok(unavailable(&request_for_bailout, pre_built));
+                        return Ok(build_unavailable_response());
                     }
                 };
 
                 let limit = config.max_requests;
                 tracing::debug!(count, limit, "rate_limit decision");
                 if count > limit {
-                    let ctx = OverLimitCtx {
-                        ip,
+                    return Ok(build_over_limit_response(
                         limit,
                         reset_at,
-                        retry_after: seconds_until_reset,
-                    };
-                    let pre_built = build_over_limit_response(&ctx);
-                    return Ok(over_limit(&request_for_bailout, pre_built, &ctx));
+                        seconds_until_reset,
+                    ));
                 }
 
                 let mut response = inner_future.await?;
@@ -1311,14 +1377,6 @@ A few things worth unpacking:
 - **We extract the IP before calling `inner.call(request)`**. Same pattern as
   the logging middleware: once `call` is invoked, the request has moved. If
   you try to read headers after, the compiler will stop you.
-- **We also clone the request before consuming it.** The `on_over_limit` and
-  `on_unavailable` callbacks receive the original `Request<Body>` so they can
-  inspect headers, the URI, or the method when shaping the bail-out
-  response. The clone is the price we pay for that ergonomic, and it only
-  happens on every request because we cannot know up front whether we will
-  end up bailing out. If your request bodies are large enough that the
-  clone matters, swap the `Request<Body>` field for a cheaper "request
-  metadata" struct holding only the bits the callbacks actually need.
 - **The window bucket is one line of arithmetic**: `bucket = now / window_secs`.
   Every request that lands within a window maps to the same bucket integer,
   and the reset time is `(bucket + 1) * window_secs`. This is why the PK
@@ -1330,10 +1388,9 @@ A few things worth unpacking:
 - **Fail open on missing IP, fail closed on DynamoDB errors.** No IP means
   we cannot key the counter, so the best we can do is log and pass through.
   A DynamoDB outage, on the other hand, is something we deliberately do
-  _not_ want to silently let traffic past, so we hand back the configurable
-  `unavailable` response (a 503 by default). This is the "bail out with
-  `Ok(response)`" pattern from the
-  [errors and short-circuits section](#errors-and-short-circuits-in-tower-middleware)
+  _not_ want to silently let traffic past, so we hand back a 503. This is
+  the "bail out with `Ok(response)`" pattern from the
+  [short-circuits and error flow section](#short-circuits-and-error-flow-in-tower-middleware)
   above; we never return `Err(...)` because that would surface as a 502
   invocation error and the client would lose the structured 503.
 - **A tracing span wraps the per-request work.** The inner `async move`
@@ -1371,23 +1428,24 @@ struct RateLimitErrorBody<'a> {
     retry_after: u64,
 }
 
-// Internal builders that produce the *pre-built* default responses.
-// The configurable callbacks receive whatever these return.
-
-fn build_over_limit_response(ctx: &OverLimitCtx) -> Response<Body> {
+fn build_over_limit_response(
+    limit: u32,
+    reset_at: u64,
+    seconds_until_reset: u64,
+) -> Response<Body> {
     let body = serde_json::to_string(&RateLimitErrorBody {
         error: "rate limit exceeded",
-        retry_after: ctx.retry_after,
+        retry_after: seconds_until_reset,
     })
     .unwrap_or_else(|_| r#"{"error":"rate limit exceeded"}"#.to_string());
 
     Response::builder()
         .status(429)
         .header("content-type", "application/json")
-        .header("Retry-After", ctx.retry_after.to_string())
-        .header("RateLimit-Limit", ctx.limit.to_string())
+        .header("Retry-After", seconds_until_reset.to_string())
+        .header("RateLimit-Limit", limit.to_string())
         .header("RateLimit-Remaining", "0")
-        .header("RateLimit-Reset", ctx.reset_at.to_string())
+        .header("RateLimit-Reset", reset_at.to_string())
         .body(body.into())
         .expect("valid 429 response")
 }
@@ -1399,40 +1457,14 @@ fn build_unavailable_response() -> Response<Body> {
         .body(r#"{"error":"service unavailable"}"#.into())
         .expect("valid 503 response")
 }
-
-// Default callbacks: pass the pre-built response straight through.
-// `on_over_limit` and `on_unavailable` swap these out.
-
-fn default_over_limit(
-    _request: &Request<Body>,
-    response: Response<Body>,
-    _ctx: &OverLimitCtx,
-) -> Response<Body> {
-    response
-}
-
-fn default_unavailable(_request: &Request<Body>, response: Response<Body>) -> Response<Body> {
-    response
-}
 ```
-
-Two parts to this block. The `build_*` helpers are private and produce the
-default 429 / 503 responses, fully populated with the standard headers.
-The `default_*` callbacks receive that pre-built response and just return
-it untouched, which is what gives `RateLimitLayer::new` its
-"works out of the box" behaviour. When a caller hands us a custom callback
-via `on_over_limit` or `on_unavailable`, they get the same pre-built
-response and can mutate or replace it as they see fit. In the common case
-(adding a CORS header, swapping the body, attaching a request id) the
-custom callback ends up being two or three lines.
 
 The 429 body is deliberately simple: just a short JSON payload with
 `error` and `retry_after`. The HTTP status code plus the standard headers
 already carry all the semantics that matter. The 503 fallback is even
 shorter: when the counter store is unreachable, the safest thing we can
 do is refuse traffic with a generic "service unavailable", which is exactly
-what `503` means. If your callers expect a `Retry-After` even on 503s, plug
-in your own builder via `RateLimitLayer::on_unavailable`.
+what `503` means.
 
 Now the DynamoDB store. I like to put the storage logic behind a small
 trait, because it makes the service trivial to unit-test with an in-memory
@@ -1607,26 +1639,115 @@ inject the mock:
 ```rust title="src/rate_limit.rs (test helper)"
 #[cfg(test)]
 impl<S> RateLimitService<S> {
-    fn with_store(inner: S, store: Arc<dyn RateLimitStore>, config: Arc<RateLimitConfig>) -> Self {
-        Self {
-            inner,
-            store,
-            config,
-            over_limit: Arc::new(default_over_limit),
-            unavailable: Arc::new(default_unavailable),
-        }
+    fn with_store(
+        inner: S,
+        store: Arc<dyn RateLimitStore>,
+        config: Arc<RateLimitConfig>,
+    ) -> Self {
+        Self { inner, store, config }
     }
 }
 ```
 
 No local DynamoDB, no network, no flaky tests. Every edge case (under limit,
-over limit, different IPs, store errors, missing IP, custom callbacks) can
-be covered in milliseconds. The full test suite in the repo also exercises
-the customisation surface, asserting that an `on_over_limit` override sees
-the original request and the pre-built default response, and that an
-`on_unavailable` override can replace the 503 entirely. This is the main
-reason I always reach for the store-trait pattern in Lambda middleware
-that touches external state.
+over limit, different IPs, store errors, missing IP) can be covered in
+milliseconds. This is the main reason I always reach for the store-trait
+pattern in Lambda middleware that touches external state.
+
+### Adding customisable error responses
+
+The basic version above ships fixed 429 and 503 bodies. That is fine
+for "drop in and forget", but the moment a caller wants to add a CORS
+header to the 429, or attach a request id, or swap the body for an
+RFC 7807 problem document, they have to fork the crate. Awkward.
+
+The fix is a small extension hook for each of the two bail-out
+branches. We give `RateLimitLayer` two optional callbacks,
+`on_over_limit` and `on_unavailable`. Each one receives the incoming
+request **and** the pre-built default response, and returns a
+response. Callers who want the default get it for free (the default
+callback just hands the pre-built response back). Callers who want a
+tweak only mutate the bits they care about. Callers who want to
+replace the response wholesale can ignore the input and build their
+own.
+
+The shape, in types:
+
+```rust
+/// Information passed to a custom over-limit response builder.
+pub struct OverLimitCtx {
+    pub ip: IpAddr,
+    pub limit: u32,
+    pub reset_at: u64,
+    pub retry_after: u64,
+}
+
+pub type OverLimitFn =
+    Arc<dyn Fn(&Request<Body>, Response<Body>, &OverLimitCtx) -> Response<Body>
+        + Send
+        + Sync>;
+
+pub type UnavailableFn =
+    Arc<dyn Fn(&Request<Body>, Response<Body>) -> Response<Body> + Send + Sync>;
+```
+
+`RateLimitLayer` and `RateLimitService` both grow two new fields
+(`over_limit: OverLimitFn`, `unavailable: UnavailableFn`), the
+defaults pass the response through unchanged, and `RateLimitLayer`
+gains two builder methods for swapping them out:
+
+```rust
+impl RateLimitLayer {
+    pub fn on_over_limit<F>(mut self, f: F) -> Self
+    where
+        F: Fn(&Request<Body>, Response<Body>, &OverLimitCtx) -> Response<Body>
+            + Send + Sync + 'static,
+    {
+        self.over_limit = Arc::new(f);
+        self
+    }
+
+    pub fn on_unavailable<F>(mut self, f: F) -> Self
+    where
+        F: Fn(&Request<Body>, Response<Body>) -> Response<Body>
+            + Send + Sync + 'static,
+    {
+        self.unavailable = Arc::new(f);
+        self
+    }
+}
+```
+
+The bail-out branches in `call` change from returning the pre-built
+response directly to passing it through the callback. To keep the
+request available to the callback (which now needs to look at it),
+`call` clones the request before handing it off to the inner service:
+
+```rust
+let request_for_bailout = request.clone();
+let inner_future = self.inner.call(request);
+// ...inside the async block...
+return Ok(unavailable(&request_for_bailout, build_unavailable_response()));
+// ...and on the over-limit path...
+let ctx = OverLimitCtx { ip, limit, reset_at, retry_after: seconds_until_reset };
+let pre_built = build_over_limit_response(&ctx);
+return Ok(over_limit(&request_for_bailout, pre_built, &ctx));
+```
+
+The clone is the price we pay for the ergonomic. It only matters if
+your request bodies are large; if they are, swap `Request<Body>` for
+a small "request metadata" struct holding only the headers/uri/method
+the callbacks actually need.
+
+The full version of all this lives in the companion repo's
+[`src/rate_limit.rs`](https://github.com/lmammino/rust-lambda-middleware-example/blob/main/src/rate_limit.rs),
+including a couple of extra unit tests that prove the override path
+works (e.g. an `on_over_limit` that adds a custom header, an
+`on_unavailable` that replaces the 503 with a 502).
+
+This is a pattern worth stealing for any reusable middleware: ship
+sensible defaults, expose tasteful override hooks, and pre-populate
+as much of the result as you can so the hooks have something to tweak.
 
 ### Wiring it all up in `bin/hello.rs`
 
