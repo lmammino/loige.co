@@ -21,10 +21,12 @@ Fastify, NestJS, Laravel, Django, Rails, FastAPI, ... take your pick), you have 
 without even noticing. It is everywhere, and I love it!
 
 I love it so much that, back in 2017, I started an open source project called
-[**Middy**](https://middy.js.org) just to bring it to Node.js Lambdas. Today,
+[**Middy**](https://middy.js.org) just to bring a fully fledged middleware engine to Node.js Lambdas. Today,
 Middy is widely used in the Node.js serverless ecosystem, and the pattern has
 been recognised as incredibly useful for keeping Lambda handlers clean and
-maintainable.
+maintainable (huge props to the Middy community, and especially to
+[Will Farrell](https://github.com/willfarrell), who has maintained
+and grown the project for years).
 
 Recently I was building a rate limiter middleware for a Rust Lambda project at work, and I
 realised the generalised version of what I learned would make a great blog post.
@@ -87,7 +89,7 @@ dividend becomes really hard to ignore.
 
 That copy-paste fatigue around validation, error handling, and
 (de)serialisation is exactly what pushed me to start Middy. It now ships
-[30+ official middleware](https://middy.js.org/docs/middlewares/intro), plus
+[30+ official general-purpose middleware](https://middy.js.org/docs/middlewares/intro), plus
 many more maintained by the community.
 
 ## Does this pattern make sense in Rust?
@@ -96,9 +98,11 @@ Rust on Lambda is growing up fast. And for good reasons! If you want the long ve
 such a great fit, check out my older post on
 [why you should consider Rust for your Lambdas](/posts/why-you-should-consider-rust-for-your-lambdas/).
 
-The short version: Rust Lambdas have the same cross-cutting concerns as any
-other Lambda runtime. So the same ergonomic problem exists, and we need the
-same kind of solution.
+Switching to Rust does not make the cross-cutting concerns go away.
+Logging, auth, validation, rate limits: every Rust Lambda has them too,
+so the ergonomic problem of weaving them through every handler is the
+same problem we had in Node.js, and it calls for the same kind of
+solution.
 
 But there is some pretty good news that makes Rust a bit unique among the other Lambda runtimes, and honestly the reason I wanted to write this post:
 **the AWS Lambda Rust runtime already ships a middleware engine...** it's built in, and almost
@@ -141,7 +145,7 @@ sitting one layer below. In this post we will focus on HTTP because it is the
 most common Lambda shape and also the one that arguably benefits most from this pattern, but everything here applies to non-HTTP events with
 minor adjustments.
 
-### The two core traits
+### The two core traits: `Service` and `Layer`
 
 Tower is built around two traits. The first is `Service`. Conceptually, it is
 a function from a request to a future that resolves to a response, plus a
@@ -184,21 +188,25 @@ Most custom middleware is written as a pair: a `XxxLayer` that captures the
 configuration, and an `XxxService<S>` that is produced when the layer is
 applied to an inner service `S`.
 
-A small terminology note: tower's formal name for what we have been
-calling "middleware" is `Service` (every layer in a tower stack is
-itself a `Service`). For the rest of the post we will use _middleware_
-and `Service` interchangeably, defaulting to _middleware_ in prose
-because that is how readers coming from other ecosystems will recognise
-the pattern, and to `Service` when we are pointing at concrete tower
+<aside class="callout callout-note">
+
+A small terminology note: in tower a piece of "middleware" is usually
+written as a `Layer` that produces a wrapping `Service`, and the
+wrapping `Service` is itself just a `Service` to the layer above it.
+The `Layer` is the factory; the `Service` is the request processor.
+For the rest of the post we will lean on _middleware_ in prose because
+that is the term readers coming from other ecosystems will recognise,
+and reach for `Layer` and `Service` when we point at the concrete tower
 types in code.
 
-This **wrapping** is the key to how composition works in tower. Each layer
+</aside>
+
+This **wrapping** (a `Service` wrapping another inner `Service`) is the key to how composition works in tower. Each layer
 takes the service it wraps as a parameter (the `S` generic above) and
 returns a new service that wraps it. Apply two layers and you get a
 service that wraps a service that wraps a service. Apply three and the
 nesting goes one level deeper. That is why, even though we keep saying
-"chain" out of habit, what tower actually builds is a **stack**: an
-onion of nested services, with the original handler sitting at the
+"chain" out of habit, what tower actually builds is a **stack** of nested services, with the original handler sitting at the
 bottom.
 
 Layers are composed with `ServiceBuilder`, which stacks them onto a base
@@ -249,7 +257,7 @@ before they reach the rest of the stack, rate limiting can reject or throttle
 excessive traffic before it reaches the handler, and the handler can stay
 focused on the actual business logic. That is the whole mental model.
 
-(Now you see why it is called **tower**, right?)
+Now you see why it is called **tower**, right? 😏
 
 ### A no-op middleware
 
@@ -302,6 +310,17 @@ name it. It is also completely useless on its own, but it is the
 skeleton we will flesh out in the next two examples to do something
 genuinely valuable.
 
+`NoopLayer` is intentionally bare because the no-op has nothing to
+configure. When a real middleware needs settings (a sampling rate, a
+header name, a DynamoDB table name, a quota), those properties live on
+the `Layer` struct, with a constructor or builder to make instances
+ergonomic to set up; the matching `Service` then reads them out of an
+`Arc` (or whichever sharing strategy fits) on every call. We will see
+this play out properly when we build the rate-limit middleware later
+in the post. The mental model to take away from this section: **`Layer`
+is where configuration and composition live; `Service` is where the
+business logic runs.**
+
 That is the whole shape. Everything else we do in this post is just more
 interesting implementations of `call`.
 
@@ -325,7 +344,7 @@ argument to `call`, so adding a log line is a one-line change in `call`
 ```rust title="examples/log_layer_request_only.rs" mark={30-34} collapse={1-13, 25-27}
 use std::task::{Context, Poll};
 
-use http::{Request, Response};
+use http::Request;
 use lambda_http::tower::{Layer, Service};
 use lambda_http::{tracing, Body};
 
@@ -452,10 +471,18 @@ found `Result<{unknown}, {unknown}>`
 fully type-checked yet, but the shape mismatch is clear: a `Future` was
 expected, a `Result` was produced.)
 
-Both errors trace back to the same root cause: **we cannot peek inside
-the inner future without producing a new `Future` type**. As soon as
-the middleware needs to do post-response work, `type Future` has to
-change too.
+There is even a third problem lurking that the first compile error
+hides: we wrote `response.status()`, but the trait bound
+`S: Service<Request<Body>>` says nothing about what `S::Response`
+actually is. Without a `Response = Response<Body>` constraint, the
+compiler has no idea that the response has a `.status()` method at all.
+Once we fix the future shape, we will need to pin down the response
+type too.
+
+The first two errors trace back to the same root cause: **we cannot
+peek inside the inner future without producing a new `Future` type**.
+As soon as the middleware needs to do post-response work, `type Future`
+has to change, and the trait bounds have to grow with it.
 
 <details class="rabbit">
 <summary>Wait, why can't I just write <code>async fn call</code>?</summary>
@@ -498,7 +525,7 @@ So every tower middleware falls back to one of these patterns:
 
 There is ongoing work on an async-native `Service` trait, but until it
 lands, `Box::pin(async move { … })` is the idiomatic shape, and that is
-exactly what we will use to fix the broken middleware below.
+exactly what we will use to fix our currently broken logging middleware.
 
 </details>
 
@@ -564,10 +591,10 @@ A few things worth pointing out:
    cost is one heap allocation per request, which is probably negligible
    in the context of AWS Lambda.
 2. **The `async move { … }` block is where post-response middleware work happens.**
-   Because it is `async`, we are allowed to `.await` the inner future
-   inside it, exactly as we wanted in the broken version. The whole
-   block evaluates to an anonymous `Future`, and `Box::pin` pins and
-   boxes it so its type matches `Self::Future`.
+   By wrapping the inner future inside an `async` block we get back
+   the right to `.await` it, exactly as we wanted in the broken
+   version. The whole block evaluates to an anonymous `Future`, and
+   `Box::pin` pins and boxes it so its type matches `Self::Future`.
 3. **The trait bounds grew.** `S: Service<...> + Send + 'static`, plus
    `S::Future: Send` and `S::Error: Send`. Boxed trait-object futures
    need `Send + 'static`, and the inner service has to play along.
@@ -581,6 +608,21 @@ A few things worth pointing out:
    for tower middleware: code above the `await` inspects or transforms
    the **request**, code below it inspects or transforms the
    **response**.
+
+<aside class="callout callout-tip">
+
+If that `Pin<Box<dyn Future<Output = Result<…, …>> + Send>>`
+type definition makes your eyes bleed, you have two ways out:
+
+1. Define a local alias such as
+   `type BoxFuture<T, E> = Pin<Box<dyn Future<Output = Result<T, E>> + Send>>;`
+   and write `type Future = BoxFuture<Self::Response, Self::Error>;`
+
+2. Pull in the [`futures`](https://docs.rs/futures) crate and use its
+   [`BoxFuture<'static, Result<…, …>>`](https://docs.rs/futures/latest/futures/future/type.BoxFuture.html),
+   which spells the same thing.
+
+</aside>
 
 <details class="rabbit">
 <summary>What if <code>Box::pin(async move { … })</code> weren't on the menu?</summary>
@@ -695,11 +737,25 @@ boilerplate by hand.
 
 ### A header-injecting middleware
 
-The logger middleware looked at the response on its way out but did not
-change it. This next warm-up actually modifies it: a `PoweredByLayer`
+The logger middleware looked at the response on its way out (we read the response status using `.status()`) but did not
+change it. In the next snippet we will learn how to actually modify the response instance by adding a `PoweredByLayer`
 that attaches an `x-powered-by: rust` header to every outgoing response.
 
 Who doesn't like to brag about Rust, right? 😇
+
+<aside class="callout callout-warning">
+
+**Do not actually do this in production.** Bragging is fun, but
+advertising your stack with an `x-powered-by` header (or anything
+similar) hands attackers a free hint about which CVEs and exploit
+families to try against you. Most security guides recommend stripping
+or omitting these headers; OWASP's
+[Secure Headers Project](https://owasp.org/www-project-secure-headers/)
+lists `X-Powered-By` among the headers that should not be exposed.
+Treat the example below as a teaching vehicle for the response-mutation
+pattern, not a production recipe.
+
+</aside>
 
 So, we are not going to touch the
 request or the body, but just inject a new response header. It's a trivial example, but it represents quite well the kind
@@ -774,11 +830,11 @@ business logic? In fact, the _whole point_ of the validator is to
 protect (i.e. _not_ run) the main business logic when the request is
 invalid.
 
-Tower has a clean answer for these use cases, and the they turn out to
-be two sides of the same `Result` coin (the `Ok` path and the `Err` path). We will cover short-circuiting
-first as the umbrella mechanism, then come back to inner-service
-failures as a special case. Both are worth understanding before we
-wire up the rate limiter.
+Tower has a clean answer for these use cases, and they turn out to be
+two sides of the same `Result` coin (the `Ok` path and the `Err`
+path). We will cover short-circuiting first as the umbrella mechanism,
+then come back to inner-service failures as a special case. Both are
+worth understanding before we wire up the rate limiter.
 
 #### Short-circuiting and the up/down trip
 
@@ -791,10 +847,27 @@ the arrow come back _up_. A short-circuiting middleware never makes
 that downward call from itself onward, which is why the request never
 reaches the layers below.
 
-A nice side effect of that: the work below a short-circuit is
-genuinely not paid for. Because the inner future is never created, the
-layers below the short-circuit point are not even instantiated, let
-alone polled. Latency, allocations, downstream calls, all skipped.
+A nice side effect of that: the work below a short-circuit is not
+paid for in any meaningful sense. Depending on how the middleware is
+written, the inner future may still be _constructed_ (because the
+service holds a handle to call into the next layer), but it is never
+`.await`-ed. Everything that lives behind that `.await` (the handler
+body, any downstream HTTP calls, the DynamoDB read in the next
+middleware) simply does not run. Latency, network round-trips, billed
+work: all skipped.
+
+<aside class="callout callout-note">
+
+This is one of those places where Rust's flavour of `async` matters.
+Unlike, say, JavaScript, where calling an `async` function immediately
+schedules the work on the event loop, in Rust a `Future` is **inert**
+until something polls it. Constructing the inner future is just
+building a state machine; without an `.await` to drive it forward, no
+code inside it ever runs. Short-circuiting in tower leans directly on
+that property: drop the future, and the work it described never
+happens.
+
+</aside>
 
 The picture is the same nested-box mental model from earlier, with one
 extra arrow showing what happens when something short-circuits partway
@@ -811,12 +884,8 @@ Lambda handler never runs. The response (an error here, but it could
 just as easily have been an `Ok` carrying a 429) only travels back up
 through the layers it had already entered. Layers above the
 short-circuit point still see the request go in and the response come
-back out; layers below never get involved at all.
-
-In this particular example, since we short-circuit at the rate limit service,
-the function handler is not getting executed at all. If we had other services below the rate limit one, they won't have been executed as well.
-
-> NFA: i just added the paragraph above. See if it's worth fixing, or tidying it up.
+back out; any further layers below the rate limiter would be skipped
+in exactly the same way as the handler.
 
 #### Order matters
 
@@ -872,7 +941,8 @@ any `Result`:
    enclosing layer can look at it, transform it, or recover from it.
 
 2. **Intercept and transform it**, for example to log it or to map one
-   error type into another. Tower also exposes `ServiceExt::map_err`
+   error type into another. Tower also exposes
+   [`ServiceExt::map_err`](https://docs.rs/tower/latest/tower/trait.ServiceExt.html#method.map_err)
    if you want this as a small wrapper layer.
 
 3. **Recover by handing back `Ok(...)` of a synthetic response.** This
@@ -958,13 +1028,7 @@ chasing. We will start with a minimal version that returns fixed
 default responses (so the focus stays on the rate-limit logic
 itself), and then revisit the customisation question in a second
 pass with a small trick that lets callers tweak those responses
-without forking the crate.
-
-One last thing worth flagging: `poll_ready` errors are subtler, because
-at readiness time you do not have the request yet, so turning a
-readiness error into a response is awkward. In classic AWS Lambda this
-rarely surfaces at the application middleware layer, so we will not
-dwell on it here.
+without forking the crate (and without having to add an additional service).
 
 ### Testing without Lambda
 
@@ -980,7 +1044,7 @@ let response = my_service.oneshot(request).await.unwrap();
 assert_eq!(response.status(), StatusCode::OK);
 ```
 
-We will lean on this heavily in the rate limiter tests.
+It is a pretty neat utility that I only discovered recently, and we will lean on it heavily in the rate limiter tests.
 
 ## A real world example: DynamoDB-backed IP rate limiting
 
@@ -998,7 +1062,8 @@ Good question. For many use cases, API Gateway usage plans are fine. But they ha
 2. **Even on REST, usage plans are invisible to clients.** API Gateway will
    reject you with a 429 once you are over the limit, but it will not tell
    you how many requests you have left or when the counter resets. There are
-   no `RateLimit-*` response headers. Compare that with
+   no `X-RateLimit-*` response headers (or any other quota hint). Compare
+   that with
    [GitHub's REST API](https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api),
    where every response carries `X-RateLimit-Limit`, `X-RateLimit-Remaining`,
    and `X-RateLimit-Reset`. Modern clients use those headers to pace
@@ -1007,8 +1072,11 @@ Good question. For many use cases, API Gateway usage plans are fine. But they ha
 3. **API keys must exist before the first request.** This is awkward for
    dynamic user bases, and the hard cap of 10,000 keys per account per
    region makes it unworkable for consumer-scale apps.
-4. **Quota buckets reset only daily or monthly.** If your business logic
-   wants a 15-minute window, usage plans will not help you.
+4. **Quota windows are coarse and best-effort.** Usage plan periods are
+   `DAY`, `WEEK`, or `MONTH`; if your business logic wants a 15-minute
+   window, usage plans will not help you. Even within those periods, AWS
+   documents the throttling and quota numbers as best-effort targets, not
+   exact ceilings.
 
 For a deeper tour of this tradeoff space (including WAF rate-based rules and CloudFront Functions tricks), Warren Parad has a great write-up: [Exceeding AWS rate-limiting, CloudFront, usage plans](https://warrenparad.net/articles/exceeding-the-aws-rate-limiting-cloudfront-usage-plans).
 
@@ -1018,38 +1086,82 @@ For a deeper tour of this tradeoff space (including WAF rate-based rules and Clo
 
 The requirements:
 
-- Key the limit on **client IP**. This keeps the tutorial simple. Real apps
-  often prefer a stable user ID (for example, from a JWT claim); swapping the
-  key-extraction function is a one-line change once the rest is in place.
-- **Fixed window**, configurable via a `window_secs` parameter. We default
-  to 900 seconds (15 minutes) because it is a common choice.
+- Count the incoming requests by **client IP**. This keeps the tutorial
+  simple; real apps often prefer a stable user ID (for example, from a
+  JWT claim), and swapping in a different key-extraction function is a
+  one-line change once the rest of the middleware is in place.
+- **Fixed window**, configurable via a `window_duration` parameter
+  (a `std::time::Duration`). We default to 15 minutes because it is a
+  common choice.
 - **Atomic counter in DynamoDB**, with TTL-based cleanup. No cron, no scans.
-- **Standard response headers** on every successful response: `RateLimit-Limit`,
-  `RateLimit-Remaining`, `RateLimit-Reset`. These are the names from the
-  [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-httpapi-ratelimit-headers/),
-  which are similar to GitHub's `X-RateLimit-*` but without the `X-` prefix.
-  Either convention is fine; I prefer the draft names because they are where
-  the web is heading. If your clients expect the GitHub form, change the
-  header names in one spot and you are done.
+- **Standard(ish) response headers** on every successful response:
+  `X-RateLimit-Limit`, `X-RateLimit-Remaining`, `X-RateLimit-Reset`.
+  These follow the GitHub / Twitter convention, with `Reset` as a Unix
+  epoch timestamp. The IETF
+  [also has a draft for this](https://ietf-wg-httpapi.github.io/ratelimit-headers/draft-ietf-httpapi-ratelimit-headers.html),
+  but as of writing it has churned through several incompatible shapes
+  (the latest editor's draft uses combined `RateLimit` and
+  `RateLimit-Policy` fields with a delay-second reset). Pick whichever
+  fits your clients; switching is a one-spot change in the response
+  helper below.
 - A plain JSON `429` body with a `Retry-After` header when the limit is hit.
 
-One honest caveat before we start. We are using a **fixed-window counter**,
-which is the simplest thing that could possibly work. It has one well-known
-downside: a motivated client can burst up to `2 × max_requests` across a
-window boundary (everything right before the flip, plus everything right
-after). The standard fixes are a token bucket or a sliding window, and the
-middleware shape stays identical; only the counter arithmetic changes. For
-this post we will stick to the fixed window mostly because it keeps the
-DynamoDB schema minimal and easy to follow (one row per IP per window,
-nothing to clean up beyond TTL), which keeps the focus on middleware
-mechanics rather than counter design. Swapping the algorithm is left as a
-follow-up.
+One honest caveat before we start. We are using a **fixed-window
+counter**, which is the simplest thing that could possibly work. It
+has one well-known downside, and you might be curious about how it
+compares to the more sophisticated alternatives.
+
+<details class="rabbit">
+<summary>Fixed window vs token bucket vs sliding window: what we are giving up</summary>
+
+Picture a 60-second window with a 100-request limit. A motivated
+client can fire all 100 requests in the last second of one window
+and another 100 requests in the first second of the next window:
+200 requests in two seconds, even though the configured rate is 100
+per minute. The window edge is a free reset, and a client that knows
+your window length can ride right over it. This is sometimes called
+the **window boundary burst**, and it is the textbook reason people
+move on from fixed windows in production-grade rate limiters.
+
+The two standard fixes both eliminate the boundary, at a cost:
+
+- **[Token bucket](https://en.wikipedia.org/wiki/Token_bucket)**:
+  every key has a "bucket" of tokens that refills continuously at
+  the configured rate; each request consumes one token, and requests
+  are denied when the bucket is empty. There is no window edge to
+  exploit, and short bursts (up to the bucket size) are still
+  allowed, which is usually what you actually want. The DynamoDB
+  shape costs you a read-modify-write per request: you fetch the
+  current token count and the timestamp of the last refill,
+  recompute, and conditionally write back. That is one extra round
+  trip and a more elaborate failure mode (lost update under
+  conflict) than a single `UpdateItem` `ADD`.
+- **[Sliding window](https://en.wikipedia.org/wiki/Sliding_window_protocol)**
+  (in the rate-limiting sense, see Cloudflare's
+  [Counting your way to better rate limiting](https://blog.cloudflare.com/counting-things-a-lot-of-different-things/)
+  for a friendly walkthrough): keep counters for the current and
+  previous window and weight the previous one by the fraction of
+  it that still falls inside the trailing 60 seconds. It is more
+  accurate than the fixed window without becoming as expensive as
+  a true per-request log, but it still costs you two reads per
+  request instead of one atomic increment.
+
+The middleware shape we end up with does not change with any of
+these: the `Layer` and `Service` plumbing is identical, only the
+arithmetic and the storage round-trips inside the store
+implementation move. For this post we stick to the fixed window
+mostly because it keeps the DynamoDB schema minimal and easy to
+follow (one row per IP per window, nothing to clean up beyond TTL),
+which keeps the focus on middleware mechanics rather than counter
+design. Swapping the algorithm is left as a follow-up.
+
+</details>
 
 ## Building the rate limit middleware
 
 Time to wire it all up. The code lives in the [companion repo](https://github.com/lmammino/rust-lambda-middleware-example);
 this section walks through the two files that make up the middleware
-itself: `src/ip_extractor.rs` (a tiny helper that pulls the client IP
+itself: `src/ip_extractor.rs` (a helper module that pulls the client IP
 out of an incoming request) and `src/rate_limit.rs` (the `Layer` +
 `Service` pair that does the actual rate limiting). There is also a
 simple deployable hello-world Lambda that plugs in the rate limiter,
@@ -1058,43 +1170,25 @@ more on those later.
 
 One quick note on dependencies before we dive in (the full
 `Cargo.toml` is in the repo). We are **not** pulling in `tower`
-directly: since `lambda_http`, the runtime re-exports the bits we
-need under `lambda_http::tower::*` (`Layer`, `Service`,
-`ServiceBuilder`, `ServiceExt`, `service_fn`, and so on). That
-guarantees we always end up with the exact tower version the runtime
-is built against, avoiding a whole class of trait-mismatch headaches.
+directly: `lambda_http` re-exports the bits we need under
+`lambda_http::tower::*` (`Layer`, `Service`, `ServiceBuilder`,
+`ServiceExt`, `service_fn`, and so on). That guarantees we always end
+up with the exact tower version the runtime is built against, avoiding
+a whole class of trait-mismatch headaches.
 
 ### Extracting the client IP
 
-First we need to know who is making the request. In Lambda, the
-client IP does **not** come on the request as a uniform field; how
-you get it depends on which integration sits between the client and
-your function:
+First we need to know who is making the request. We are deploying
+behind **API Gateway** (HTTP API v2, in our SAM template), and on
+that integration AWS hands us the source IP straight on the event
+payload, in the request context. The Lambda runtime fills it from
+the actual TCP connection, so HTTP clients cannot forge it.
 
-- **API Gateway (REST or HTTP API) and Application Load Balancer**:
-  the integration adds an `X-Forwarded-For` header. It is a
-  comma-separated list with one entry per proxy hop, the first of
-  which is the original client. Example value:
-  `203.0.113.1, 198.51.100.10, 10.0.0.1`.
-- **Amazon CloudFront** in front of API Gateway (or a Function URL):
-  if the origin request policy forwards `CloudFront-Viewer-Address`,
-  the header arrives in the form `ip:port`. Example values:
-  `198.51.100.10:46532` for IPv4, `[2001:db8::1]:46532` for IPv6
-  (bracketed).
-- **Lambda Function URLs**: the runtime does **not** add
-  `X-Forwarded-For` at all. The only place to find the source IP is
-  the Lambda event payload's `requestContext.http.sourceIp` field,
-  which we can reach through `lambda_http::RequestExt::request_context_ref`.
+REST API (v1) places it at `requestContext.identity.sourceIp`; HTTP
+API (v2) places it at `requestContext.http.sourceIp`. A small `match`
+covers both:
 
-The convention is to walk those sources **in order of trust** (most
-trustworthy first) and take the first one that yields a valid address.
-"Most trustworthy" because some of these sources are set by the runtime
-or by AWS infrastructure (and cannot be forged by an HTTP client) while
-others arrive on headers that a malicious client may be able to spoof.
-Concretely the priority is: runtime-set request context →
-`CloudFront-Viewer-Address` → `X-Forwarded-For`.
-
-```rust title="src/ip_extractor.rs" mark={10, 20, 30} collapse={42-54, 58-61, 65-78}
+```rust title="src/ip_extractor.rs"
 use std::net::IpAddr;
 use std::str::FromStr;
 
@@ -1102,40 +1196,6 @@ use lambda_http::request::RequestContext;
 use lambda_http::{Request, RequestExt};
 
 pub fn extract_ip(request: &Request) -> Option<IpAddr> {
-    // 1. Runtime-set source IP from the event payload's request context.
-    //    HTTP clients cannot forge this, so we trust it first.
-    if let Some(ip) = source_ip_from_context(request) {
-        return Some(ip);
-    }
-
-    let headers = request.headers();
-
-    // 2. CloudFront-Viewer-Address (set by CloudFront, never by the
-    //    client). Lets us recover the real client IP in a
-    //    CloudFront -> API Gateway stack, where the runtime would
-    //    only see CloudFront's edge IP.
-    if let Some(value) = headers.get("cloudfront-viewer-address") {
-        if let Ok(s) = value.to_str() {
-            if let Some(ip) = parse_cloudfront_viewer_address(s) {
-                return Some(ip);
-            }
-        }
-    }
-
-    // 3. X-Forwarded-For (API Gateway, ALB). Last resort because
-    //    clients can prepend their own entries in some setups.
-    if let Some(value) = headers.get("x-forwarded-for") {
-        if let Ok(s) = value.to_str() {
-            if let Some(ip) = parse_forwarded_for(s) {
-                return Some(ip);
-            }
-        }
-    }
-
-    None
-}
-
-fn source_ip_from_context(request: &Request) -> Option<IpAddr> {
     match request.request_context_ref()? {
         RequestContext::ApiGatewayV1(ctx) => ctx
             .identity
@@ -1150,67 +1210,36 @@ fn source_ip_from_context(request: &Request) -> Option<IpAddr> {
         _ => None,
     }
 }
-
-fn parse_forwarded_for(header: &str) -> Option<IpAddr> {
-    header
-        .split(',')
-        .map(str::trim)
-        .find_map(|candidate| IpAddr::from_str(candidate).ok())
-}
-
-fn parse_cloudfront_viewer_address(header: &str) -> Option<IpAddr> {
-    let header = header.trim();
-    // Bracketed IPv6.
-    if let Some(rest) = header.strip_prefix('[') {
-        let ip = rest.split_once(']').map(|(ip, _)| ip).unwrap_or(rest);
-        return IpAddr::from_str(ip).ok();
-    }
-    // Unbracketed IPv4 (or bare IPv6) with a `:port` suffix.
-    if let Some((ip, _port)) = header.rsplit_once(':') {
-        if let Ok(ip) = IpAddr::from_str(ip) {
-            return Some(ip);
-        }
-    }
-    // Bare IP, no port.
-    IpAddr::from_str(header).ok()
-}
 ```
 
-The three helpers are folded above (click to expand them in the
-rendered post):
-
-- `parse_forwarded_for` walks the comma-separated list
-  and returns the first entry that parses as an IP.
-- `parse_cloudfront_viewer_address` strips the `:port` suffix,
-  accounting for both unbracketed IPv4 and bracketed IPv6.
-- `source_ip_from_context` matches on the `RequestContext` variant the
-  runtime parses out of the event: HTTP API v2 and Function URL events
-  both land in `ApiGatewayV2` (where the IP lives at
-  `ctx.http.source_ip`), REST API v1 events land in `ApiGatewayV1`
-  (where it lives at `ctx.identity.source_ip`), and any other variant
-  (such as ALB) returns `None`, leaving the header sources to do the
-  work.
+If neither variant matches (for example, an event from a different
+integration), we return `None` and let the middleware fail open
+rather than trying to make something up.
 
 <aside class="callout callout-warning">
 
-**Trust caveat.** The two header sources are only trustworthy if you
-control every hop between the client and the Lambda. Behind API
-Gateway, an ALB, or CloudFront they are set by the proxy and safe.
-If you expose a Function URL directly without a trusted proxy, any
-caller can forge them, and only the request-context fallback (set by
-the runtime, not by the client) should be trusted in that setup.
+**This extractor only works for API Gateway.** If you are putting
+your Lambda behind something else, the source IP lives in a different
+place and you will need to revise `extract_ip`:
 
-If your function can also be invoked directly via the Lambda Invoke
-API (any IAM principal with `lambda:InvokeFunction` permission),
-even that fallback stops being safe: the caller controls the entire
-event payload, including `requestContext.http.sourceIp`. Lock down
-the IAM permissions on the function, or treat IP-based decisions as
-advisory rather than authoritative in that environment.
+- **Application Load Balancer**: no request context; the client IP
+  arrives in the `X-Forwarded-For` header. By default ALB
+  [appends to the existing value](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/x-forwarded-headers.html),
+  so the only entry you can trust is the rightmost one.
+- **CloudFront in front of API Gateway or a Function URL**:
+  `requestContext.http.sourceIp` is the CloudFront edge IP, not the
+  viewer. Read
+  [`CloudFront-Viewer-Address`](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-cloudfront-headers.html)
+  instead (you must enable an origin request policy that forwards it).
+- **AppSync, direct Lambda Function URL invocations, custom event
+  shapes**: the field name (or even whether one exists) varies; check
+  your event payload and adjust accordingly.
 
-The middleware below fails **open** when it cannot determine an IP
-(letting the request through rather than locking out potentially legitimate
-traffic), which is the right default for this class of problem;
-make the opposite choice if your threat model demands it.
+The middleware below also fails **open** when `extract_ip` returns
+`None`, letting the request through rather than locking out
+potentially legitimate traffic. That is the right default for a
+naive rate limiter; make the opposite choice if your threat model
+demands it.
 
 </aside>
 
@@ -1221,8 +1250,9 @@ about each piece.
 
 #### The config and the layer
 
-```rust title="src/rate_limit.rs (1 of 3)" showLineNumbers
+```rust title="src/rate_limit.rs (1 of 3)"
 use std::sync::Arc;
+use std::time::Duration;
 
 use lambda_http::tower::Layer;
 
@@ -1230,7 +1260,7 @@ use lambda_http::tower::Layer;
 pub struct RateLimitConfig {
     pub table_name: String,
     pub max_requests: u32,
-    pub window_secs: u64,
+    pub window_duration: Duration,
 }
 
 #[derive(Clone)]
@@ -1270,15 +1300,24 @@ A few things worth pointing out:
   in `Arc` once in `RateLimitLayer::new` means every subsequent `.clone()`
   (and there are a few, because tower sometimes clones services for
   concurrent calls) is just a refcount bump.
-- The DynamoDB `Client` is itself cheap to clone (it shares an inner
-  connection pool behind an `Arc`), so we just clone it.
+- The DynamoDB `Client` already wraps its internals in an `Arc`, so a
+  plain `.clone()` is cheap and we do not need to wrap it again.
 - The `Layer::layer` impl is where we construct the inner `Service`. Notice
   we also create a `RateLimitStore` here; we will get to why it is a trait
   in a moment.
 
+This is exactly the **`Layer` is the public configuration surface,
+`Service` is the implementation** split we mentioned all the way back
+when we walked through the no-op middleware. `RateLimitLayer` is what
+a caller touches: the `RateLimitConfig`, the DynamoDB client, and the
+`new(...)` constructor are the API. Everything inside
+`RateLimitService` is implementation detail that callers neither see
+nor care about, which is why it lives one layer down. With that in
+mind, on to the implementation.
+
 #### The service
 
-```rust title="src/rate_limit.rs (2 of 3)" showLineNumbers {37-38, 61, 68} collapse={1-11, 22-32}
+```rust title="src/rate_limit.rs (2 of 3)" mark={36-37, 40-43, 45-49, 52, 56-59, 64-70, 72-75} collapse={1-10, 28-30, 80-85}
 use std::future::Future;
 use std::pin::Pin;
 use std::task::{Context, Poll};
@@ -1287,7 +1326,6 @@ use std::time::{SystemTime, UNIX_EPOCH};
 use http::{Request, Response};
 use lambda_http::tower::Service;
 use lambda_http::{tracing, Body};
-use tracing::Instrument;
 
 use crate::ip_extractor::extract_ip;
 
@@ -1315,51 +1353,46 @@ where
         let config = Arc::clone(&self.config);
         let store = Arc::clone(&self.store);
 
-        let ip = extract_ip(&request);
+        let ip = extract_ip(&request); // 1
         let inner_future = self.inner.call(request);
 
         Box::pin(async move {
-            let Some(ip) = ip else {
+            let Some(ip) = ip else { // 2
                 tracing::warn!("rate_limit: could not determine client IP, allowing request");
                 return inner_future.await;
             };
 
-            let now = current_epoch_secs();
-            let window = config.window_secs.max(1);
+            let now = current_epoch_secs(); // 3
+            let window = config.window_duration.as_secs().max(1);
             let bucket = now / window;
             let reset_at = bucket.saturating_add(1).saturating_mul(window);
             let seconds_until_reset = reset_at.saturating_sub(now);
 
             let pk = format!("{ip}#{bucket}");
-            let ttl = reset_at.saturating_add(window);
+            let ttl = reset_at.saturating_add(window); // 4
 
-            let span = tracing::info_span!("rate_limit", ip = %ip, window = bucket);
-            async move {
-                let count = match store.increment_and_get(&config.table_name, &pk, ttl).await {
-                    Ok(c) => c,
-                    Err(e) => {
-                        tracing::error!(error = %e, "rate_limit: DynamoDB error");
-                        return Ok(build_unavailable_response());
-                    }
-                };
-
-                let limit = config.max_requests;
-                tracing::debug!(count, limit, "rate_limit decision");
-                if count > limit {
-                    return Ok(build_over_limit_response(
-                        limit,
-                        reset_at,
-                        seconds_until_reset,
-                    ));
+            let count = match store.increment_and_get(&config.table_name, &pk, ttl).await {
+                Ok(c) => c,
+                Err(e) => { // 5
+                    tracing::error!(ip = %ip, window = bucket, error = %e, "rate_limit: DynamoDB error");
+                    return Ok(build_unavailable_response());
                 }
+            };
 
-                let mut response = inner_future.await?;
-                let remaining = limit.saturating_sub(count);
-                append_rate_limit_headers(response.headers_mut(), limit, remaining, reset_at);
-                Ok(response)
+            let limit = config.max_requests;
+            tracing::debug!(ip = %ip, window = bucket, count, limit, "rate_limit decision");
+            if count > limit { // 6
+                return Ok(build_over_limit_response(
+                    limit,
+                    reset_at,
+                    seconds_until_reset,
+                ));
             }
-            .instrument(span)
-            .await
+
+            let mut response = inner_future.await?; // 7
+            let remaining = limit.saturating_sub(count);
+            append_rate_limit_headers(response.headers_mut(), limit, remaining, reset_at);
+            Ok(response)
         })
     }
 }
@@ -1374,37 +1407,79 @@ fn current_epoch_secs() -> u64 {
 
 A few things worth unpacking:
 
-- **We extract the IP before calling `inner.call(request)`**. Same pattern as
-  the logging middleware: once `call` is invoked, the request has moved. If
-  you try to read headers after, the compiler will stop you.
-- **The window bucket is one line of arithmetic**: `bucket = now / window_secs`.
-  Every request that lands within a window maps to the same bucket integer,
-  and the reset time is `(bucket + 1) * window_secs`. This is why the PK
-  format is `"{ip}#{bucket}"`: every bucket gets its own row, and rows for
-  old buckets age out via TTL.
-- **TTL is set to `reset_at + window_secs`**, one window past the reset. This
-  gives late-arriving requests in the same bucket a consistent view of the
-  counter.
-- **Fail open on missing IP, fail closed on DynamoDB errors.** No IP means
-  we cannot key the counter, so the best we can do is log and pass through.
-  A DynamoDB outage, on the other hand, is something we deliberately do
-  _not_ want to silently let traffic past, so we hand back a 503. This is
-  the "bail out with `Ok(response)`" pattern from the
-  [short-circuits and error flow section](#short-circuits-and-error-flow-in-tower-middleware)
-  above; we never return `Err(...)` because that would surface as a 502
-  invocation error and the client would lose the structured 503.
-- **A tracing span wraps the per-request work.** The inner `async move`
-  block is `.instrument(span)`-ed so every log emitted while the limiter is
-  running carries the client IP and the current window bucket as structured
-  fields. This is invaluable when you are staring at CloudWatch trying to
-  figure out why one client is getting 429s and another is not. The
-  `tracing::debug!` line inside the span gives you a per-request decision
-  log you can switch on at will.
-- **`poll_ready` just delegates**. Tower's contract says the caller must
-  invoke `poll_ready` on us before calling `call`. We forward that call to
-  the inner service, which is all we need.
+1. **We extract the IP before calling `inner.call(request)`**. Same pattern as
+   the logging middleware: once `call` is invoked, the request has moved. If
+   you try to read headers after, the compiler will stop you.
+2. **Fail open on missing IP.** No IP means we cannot key the counter,
+   so the best we can do is log a warning and pass the request straight
+   through to the inner service. The alternative (rejecting every
+   unidentifiable request) would lock out legitimate traffic the moment
+   a misbehaving proxy drops a header, which is rarely what you want
+   for a rate limiter.
+3. **The window bucket is one line of arithmetic**: `bucket = now / window`,
+   where `window` is `window_duration.as_secs()` (clamped to at least one
+   second so a misconfigured zero-length window cannot divide by zero).
+   Every request that lands within a window maps to the same bucket integer,
+   and the reset time is `(bucket + 1) * window`. This is why the PK
+   format is `"{ip}#{bucket}"`: every bucket gets its own row, and rows for
+   old buckets age out via TTL. **`saturating_add`, `saturating_mul`, `saturating_sub`.** These are
+   Rust's "clamp at the edges of the type" arithmetic methods on
+   integers. A plain `bucket + 1` would **panic** in debug builds and
+   silently wrap to `0` in release builds if `bucket` somehow reached
+   `u64::MAX`; saturating arithmetic instead caps the result at
+   `u64::MAX` (or `0` for the subtraction) and keeps going. With a
+   `u64` epoch, overflow is not a realistic concern in this lifetime,
+   but using `saturating_*` for arithmetic that touches user-controlled
+   or clock-derived values is a tidy default that costs nothing and
+   rules out a whole class of "what if the input is weird" footguns.
+   The same reasoning applies to the `limit.saturating_sub(count)`
+   later on, which keeps `remaining` at `0` if the counter ever
+   overshoots.
+4. **TTL is set to `reset_at + window`**, one window past the reset.
+   Why one window past, and not exactly `reset_at`? It protects us
+   from a boundary-write race: a request whose `now` falls in the
+   last second of the bucket may not actually reach DynamoDB until
+   after `reset_at` (network latency between the Lambda and DynamoDB,
+   SDK retries on a transient hiccup). With one window of headroom,
+   the row is still alive when that late write lands, so the counter
+   is updated correctly instead of the `ADD` resurrecting a fresh row
+   with `calls = 1`.
+5. **Fail closed on DynamoDB errors.** A counter-store outage is the
+   opposite of the missing-IP case: we deliberately do _not_ want to
+   silently let traffic past while the limiter is blind, so we hand
+   back a 503. This is the "bail out with `Ok(response)`" pattern from
+   the
+   [short-circuits and error flow section](#short-circuits-and-error-flow-in-tower-middleware)
+   above; we never return `Err(...)` because that would surface as a
+   502 invocation error and the client would lose the structured 503.
+6. **Over the limit: short-circuit with a 429.** Once we have the
+   updated `count` from the store, the decision is just `count >
+limit`. If it is, we never touch the inner service: we build a
+   pre-baked 429 response with `Retry-After` and the standard
+   `X-RateLimit-*` headers (we will see the helper in the next
+   section) and return it as `Ok(...)`. This is the same
+   short-circuit pattern as the 503, just driven by quota rather
+   than infrastructure failure. The `inner_future` we constructed at
+   the top of `call` is simply dropped without being awaited, so the
+   handler body never runs.
+7. **Under the limit: forward and stamp.** The happy path. We
+   `.await` the inner future, propagate any handler error with `?`,
+   compute `remaining = limit - count`, and call
+   `append_rate_limit_headers` to attach `X-RateLimit-Limit`,
+   `X-RateLimit-Remaining`, and `X-RateLimit-Reset` to the outgoing
+   response. The handler itself does not need to know the rate
+   limiter exists; it just sees a request go in and a response come
+   out, with the limiter quietly counting and stamping at the edges.
 
 #### The response helpers and the store
+
+The `Service::call` body we just walked through called into three
+helpers we have not actually defined yet:
+`append_rate_limit_headers` (the header-stamping function used on
+the happy path), `build_over_limit_response` (the pre-baked 429),
+and `build_unavailable_response` (the pre-baked 503). It also leaned
+on a `RateLimitStore` trait whose `increment_and_get` does the
+atomic DynamoDB work. Time to fill in those last pieces.
 
 ```rust title="src/rate_limit.rs (3 of 3)"
 use http::HeaderValue;
@@ -1412,13 +1487,13 @@ use serde::Serialize;
 
 fn append_rate_limit_headers(headers: &mut http::HeaderMap, limit: u32, remaining: u32, reset_at: u64) {
     if let Ok(v) = HeaderValue::from_str(&limit.to_string()) {
-        headers.insert("RateLimit-Limit", v);
+        headers.insert("X-RateLimit-Limit", v);
     }
     if let Ok(v) = HeaderValue::from_str(&remaining.to_string()) {
-        headers.insert("RateLimit-Remaining", v);
+        headers.insert("X-RateLimit-Remaining", v);
     }
     if let Ok(v) = HeaderValue::from_str(&reset_at.to_string()) {
-        headers.insert("RateLimit-Reset", v);
+        headers.insert("X-RateLimit-Reset", v);
     }
 }
 
@@ -1443,9 +1518,9 @@ fn build_over_limit_response(
         .status(429)
         .header("content-type", "application/json")
         .header("Retry-After", seconds_until_reset.to_string())
-        .header("RateLimit-Limit", limit.to_string())
-        .header("RateLimit-Remaining", "0")
-        .header("RateLimit-Reset", reset_at.to_string())
+        .header("X-RateLimit-Limit", limit.to_string())
+        .header("X-RateLimit-Remaining", "0")
+        .header("X-RateLimit-Reset", reset_at.to_string())
         .body(body.into())
         .expect("valid 429 response")
 }
@@ -1470,7 +1545,7 @@ Now the DynamoDB store. I like to put the storage logic behind a small
 trait, because it makes the service trivial to unit-test with an in-memory
 mock:
 
-```rust title="src/rate_limit.rs (store)" showLineNumbers
+```rust title="src/rate_limit.rs (store)"
 #[async_trait::async_trait]
 trait RateLimitStore: Send + Sync {
     async fn increment_and_get(
@@ -1543,20 +1618,44 @@ on first write, so repeat calls in the same bucket do not keep rewriting it.
 With `ReturnValue::UpdatedNew`, DynamoDB hands us back the new counter
 value, which is exactly what we need.
 
+Phew, that was a lot! We now have a complete middleware in our hands:
+the `Layer` factory, the `Service` impl with all its branches, the
+response helpers, and the storage trait with its DynamoDB-backed
+implementation. The only question left is the obvious one: how do we
+know any of it actually works? Time to write some tests.
+
 ### Testing the middleware
 
-Because `RateLimitService` is generic over `RateLimitStore`, we can unit
-test it with a plain in-memory mock, without ever touching DynamoDB. Here is
-the mock and two representative tests (the full suite is in the repo):
+Remember why we bothered to put `RateLimitStore` behind a trait
+back in the layer section? This is the payoff. Because
+`RateLimitService` is generic over the trait, the tests can plug in
+a plain in-memory mock and exercise the entire middleware (IP
+extraction, bucket math, over-limit short-circuit, fail-closed path)
+without ever touching DynamoDB. The middleware logic and the
+storage adapter end up living in different test budgets: one runs
+in milliseconds against an in-memory `HashMap`, the other only when
+you genuinely want an end-to-end deploy. This is a pattern worth
+stealing for any middleware that touches external state: keep the
+I/O behind a small trait, accept it as a generic, and you get
+fast deterministic unit tests almost for free.
 
-```rust title="src/rate_limit.rs (tests)" showLineNumbers collapse={27-38}
+Here is the mock and two representative tests (the full suite is in
+the repo):
+
+```rust title="src/rate_limit.rs (tests)" collapse={3-13, 34-52}
 #[cfg(test)]
 mod tests {
     use super::*;
     use http::{Request, StatusCode};
+    use lambda_http::aws_lambda_events::apigw::{
+        ApiGatewayV2httpRequestContext, ApiGatewayV2httpRequestContextHttpDescription,
+    };
+    use lambda_http::request::RequestContext;
     use lambda_http::tower::ServiceExt;
+    use lambda_http::RequestExt;
     use std::convert::Infallible;
     use std::sync::Mutex;
+    use std::time::Duration;
 
     struct MockRateLimitStore {
         counters: Mutex<std::collections::HashMap<String, u32>>,
@@ -1581,12 +1680,20 @@ mod tests {
         Ok(Response::builder().status(200).body(Body::Empty).unwrap())
     }
 
+    // `extract_ip` reads the source IP from the API Gateway request
+    // context, so the test request needs a populated `ApiGatewayV2`
+    // context.
     fn request_with_ip(ip: &str) -> Request<Body> {
-        Request::builder()
+        let mut http = ApiGatewayV2httpRequestContextHttpDescription::default();
+        http.source_ip = Some(ip.to_string());
+        let mut ctx = ApiGatewayV2httpRequestContext::default();
+        ctx.http = http;
+
+        let request = Request::builder()
             .uri("http://example.com/")
-            .header("x-forwarded-for", ip)
             .body(Body::Empty)
-            .unwrap()
+            .unwrap();
+        request.with_request_context(RequestContext::ApiGatewayV2(ctx))
     }
 
     #[tokio::test]
@@ -1594,7 +1701,7 @@ mod tests {
         let config = Arc::new(RateLimitConfig {
             table_name: "t".into(),
             max_requests: 10,
-            window_secs: 60,
+            window_duration: Duration::from_secs(60),
         });
         let store: Arc<dyn RateLimitStore> = Arc::new(MockRateLimitStore {
             counters: Mutex::new(Default::default()),
@@ -1604,7 +1711,7 @@ mod tests {
         let response = service.oneshot(request_with_ip("203.0.113.1")).await.unwrap();
 
         assert_eq!(response.status(), StatusCode::OK);
-        assert_eq!(response.headers().get("RateLimit-Remaining").unwrap(), "9");
+        assert_eq!(response.headers().get("X-RateLimit-Remaining").unwrap(), "9");
     }
 
     #[tokio::test]
@@ -1612,7 +1719,7 @@ mod tests {
         let config = Arc::new(RateLimitConfig {
             table_name: "t".into(),
             max_requests: 1,
-            window_secs: 60,
+            window_duration: Duration::from_secs(60),
         });
         let store: Arc<dyn RateLimitStore> = Arc::new(MockRateLimitStore {
             counters: Mutex::new(Default::default()),
@@ -1654,21 +1761,32 @@ over limit, different IPs, store errors, missing IP) can be covered in
 milliseconds. This is the main reason I always reach for the store-trait
 pattern in Lambda middleware that touches external state.
 
+<aside class="callout callout-note">
+
+In a larger codebase you would probably reach for
+[`mockall`](https://docs.rs/mockall) instead of hand-rolling the mock
+here; we keep it hand-rolled to avoid pulling in a new dependency just
+for the tutorial.
+
+</aside>
+
 ### Adding customisable error responses
 
 The basic version above ships fixed 429 and 503 bodies. That is fine
 for "drop in and forget", but the moment a caller wants to add a CORS
 header to the 429, or attach a request id, or swap the body for an
-RFC 7807 problem document, they have to fork the crate. Awkward.
+RFC 7807 problem document, they either have to fork the crate or
+stack another middleware on top whose only job is to intercept and
+rewrite the limiter's responses. Awkward either way.
 
 The fix is a small extension hook for each of the two bail-out
 branches. We give `RateLimitLayer` two optional callbacks,
 `on_over_limit` and `on_unavailable`. Each one receives the incoming
-request **and** the pre-built default response, and returns a
+request and the pre-built default response, and returns a
 response. Callers who want the default get it for free (the default
 callback just hands the pre-built response back). Callers who want a
 tweak only mutate the bits they care about. Callers who want to
-replace the response wholesale can ignore the input and build their
+replace the response entirely can ignore the input and build their
 own.
 
 The shape, in types:
@@ -1734,10 +1852,13 @@ let pre_built = build_over_limit_response(&ctx);
 return Ok(over_limit(&request_for_bailout, pre_built, &ctx));
 ```
 
-The clone is the price we pay for the ergonomic. It only matters if
-your request bodies are large; if they are, swap `Request<Body>` for
-a small "request metadata" struct holding only the headers/uri/method
-the callbacks actually need.
+The clone is the price we pay for the ergonomics. In practice it is
+cheap: `lambda_http::Body` is `Arc`-backed, so cloning the request
+duplicates the headers, URI, and method but only bumps a refcount on
+the body. It only matters in degenerate cases (huge header maps, or
+swapping `Request<Body>` out for a custom payload that does not share
+its inner buffers); if you hit one, replace the clone with a small
+"request metadata" struct holding only the bits the callbacks need.
 
 The full version of all this lives in the companion repo's
 [`src/rate_limit.rs`](https://github.com/lmammino/rust-lambda-middleware-example/blob/main/src/rate_limit.rs),
@@ -1749,26 +1870,47 @@ This is a pattern worth stealing for any reusable middleware: ship
 sensible defaults, expose tasteful override hooks, and pre-populate
 as much of the result as you can so the hooks have something to tweak.
 
-### Wiring it all up in `bin/hello.rs`
+### Wiring it all up in `lambdas/hello`
 
-Here is the full Lambda entry point. It lives at `src/bin/hello.rs` and
-consumes the library crate, so all the rate-limit machinery is just an
-import away:
+Everything we have written so far is essentially a small library. Now
+we want an actual Lambda app that uses it, so we can deploy it on AWS
+and watch it rate-limit real traffic. The handler itself is split
+across two files: one for the request/response logic and one for the
+runtime wiring.
 
-```rust title="src/bin/hello.rs" showLineNumbers
-use lambda_http::tower::ServiceBuilder;
-use lambda_http::{run, service_fn, tracing, Body, Error, Request, Response};
+```rust title="lambdas/hello/src/http_handler.rs"
+use lambda_http::{Body, Error, Request, Response};
 use serde_json::json;
 
-use rust_lambda_middleware_example::{RateLimitConfig, RateLimitLayer};
-
-async fn handler(_request: Request) -> Result<Response<Body>, Error> {
-    let body = json!({ "message": "hello, rusty middleware" }).to_string();
+pub async fn function_handler(_request: Request) -> Result<Response<Body>, Error> {
+    let body = json!({ "message": "hello from your friendly Rust Lambda function" }).to_string();
     Ok(Response::builder()
         .status(200)
         .header("content-type", "application/json")
         .body(body.into())?)
 }
+```
+
+**This is exactly why we worked so hard to build the middleware in
+the first place.** The handler does not import `RateLimitLayer`, does
+not see DynamoDB, does not know the concept of a quota; it is a
+trivial hello-world that just returns a JSON body. We want our
+handlers to stay as _pure_ as possible, focused entirely on business
+logic (in this case the world's most boring "hello"), while every
+cross-cutting concern (rate limiting today, auth, logging, CORS,
+request validation tomorrow) lives in dedicated middleware code that
+we can _layer_ on top without ever touching the handler again. All
+that interesting wiring lives in `main.rs`:
+
+```rust title="lambdas/hello/src/main.rs" collapse={1-8} mark={34-36}
+use std::time::Duration;
+
+use lambda_http::tower::ServiceBuilder;
+use lambda_http::{run, service_fn, tracing, Error};
+use rust_lambda_middleware_example::{RateLimitConfig, RateLimitLayer};
+
+mod http_handler;
+use http_handler::function_handler;
 
 #[tokio::main]
 async fn main() -> Result<(), Error> {
@@ -1787,38 +1929,28 @@ async fn main() -> Result<(), Error> {
         .ok()
         .and_then(|v| v.parse().ok())
         .unwrap_or(900);
+    let window_duration = Duration::from_secs(window_secs);
 
     let rate_limit = RateLimitLayer::new(
-        RateLimitConfig { table_name, max_requests, window_secs },
+        RateLimitConfig { table_name, max_requests, window_duration },
         dynamodb_client,
     );
 
     let service = ServiceBuilder::new()
         .layer(rate_limit)
-        .service(service_fn(handler));
+        .service(service_fn(function_handler));
 
-    // For Lambda Managed Instances, swap `run` for `lambda_http::run_concurrent`
-    // and enable the `concurrency-tokio` feature on `lambda_http`. On classic
-    // Lambda (AWS_LAMBDA_MAX_CONCURRENCY <= 1) the two behave identically.
     run(service).await
 }
 ```
 
-The handler is a trivial hello-world. The shape that matters is the last
-three statements:
+The shape that matters is the last three statements: `ServiceBuilder`
+stacks layers, `service_fn` wraps our `async fn function_handler` as
+a `Service`, and `lambda_http::run` drives the whole thing from the
+Lambda runtime.
 
-```rust
-let service = ServiceBuilder::new()
-    .layer(rate_limit)
-    .service(service_fn(handler));
-
-run(service).await
-```
-
-`ServiceBuilder` stacks layers, `service_fn` wraps our `async fn handler`
-as a `Service`, and `lambda_http::run` drives the whole thing from the
-Lambda runtime. Add more layers (logging, auth, CORS) by chaining more
-`.layer(...)` calls. That is the whole middleware story.
+Add more layers (logging, auth, CORS) by chaining more `.layer(...)`
+calls. That is the whole middleware story.
 
 Tower layers from the wider ecosystem compose just as cleanly. For example,
 to put CORS in front of the rate limiter you would add
@@ -1836,7 +1968,9 @@ let service = ServiceBuilder::new()
 ```
 
 The same `Layer` and `Service` traits we used to write the rate limiter
-let it slot in next to anything else in the Tower ecosystem.
+let it slot in next to anything else in the Tower ecosystem (provided,
+of course, that the request and response types of the surrounding
+services line up with what each layer expects).
 
 ## Deploying with SAM
 
@@ -1845,7 +1979,7 @@ table, builds the Rust Lambda with
 [cargo-lambda](https://www.cargo-lambda.info/), and wires up an HTTP API
 endpoint:
 
-```yaml title="template.yaml" showLineNumbers {31-33,38}
+```yaml title="template.yaml" mark={31-33,38, 50-51}
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: Hello-world Rust Lambda with a tower-based DynamoDB rate limit middleware.
@@ -1876,14 +2010,14 @@ Resources:
       KeySchema:
         - AttributeName: pk
           KeyType: HASH
-      TimeToLiveSpecification:
+      TimeToLiveSpecification: # 1
         AttributeName: ttl
         Enabled: true
 
   HelloFunction:
     Type: AWS::Serverless::Function
     Metadata:
-      BuildMethod: rust-cargolambda
+      BuildMethod: rust-cargolambda # 2
     Properties:
       FunctionName: !Sub ${AWS::StackName}-hello
       CodeUri: .
@@ -1895,7 +2029,7 @@ Resources:
           RATE_LIMIT_MAX_REQUESTS: !Ref MaxRequests
           RATE_LIMIT_WINDOW_SECS: !Ref WindowSecs
       Policies:
-        - DynamoDBCrudPolicy:
+        - DynamoDBCrudPolicy: # 3
             TableName: !Ref RateLimitTable
       Events:
         Hello:
@@ -1911,13 +2045,19 @@ Outputs:
     Value: !Ref RateLimitTable
 ```
 
-Two pieces worth calling out:
+Three pieces worth calling out:
 
-- `Metadata: BuildMethod: rust-cargolambda` tells `sam build` to delegate the
-  build to cargo-lambda, which will produce a correctly-named `bootstrap`
-  binary for the `provided.al2023` runtime. No custom Makefile required.
-- The DynamoDB table has `TimeToLiveSpecification` on a `ttl` attribute, so
-  DynamoDB will quietly delete expired counter rows for us.
+1. The DynamoDB table has `TimeToLiveSpecification` on a `ttl` attribute,
+   so DynamoDB will eventually delete expired counter rows for us. AWS
+   documents TTL deletion as automatic but eventual (typically within a
+   few days), which is fine here because we never reuse old buckets, but
+   do not lean on TTL for precise expiry.
+2. `Metadata: BuildMethod: rust-cargolambda` tells `sam build` to delegate the
+   build to cargo-lambda, which will produce a correctly-named `bootstrap`
+   binary for the `provided.al2023` runtime. No custom Makefile required.
+3. `DynamoDBCrudPolicy` is convenient for the tutorial but broader than
+   the function actually needs; for production, scope the policy down to
+   `dynamodb:UpdateItem` on this one table.
 
 To deploy, install
 [cargo-lambda](https://www.cargo-lambda.info/guide/installation.html) and the
@@ -1939,34 +2079,36 @@ Now let us poke it. On the first call:
 curl -i https://<your-api-id>.execute-api.<region>.amazonaws.com/
 ```
 
+This should output something like:
+
 ```http frame="terminal"
 HTTP/2 200
 content-type: application/json
-ratelimit-limit: 10
-ratelimit-remaining: 9
-ratelimit-reset: 1745081400
+x-ratelimit-limit: 10
+x-ratelimit-remaining: 9
+x-ratelimit-reset: 1745081400
 
-{"message":"hello, rusty middleware"}
+{"message":"hello from your friendly Rust Lambda function"}
 ```
 
-Keep calling (fish syntax, adjust for your shell):
+Keep calling:
 
 ```sh
-for i in (seq 1 12)
+for i in $(seq 1 12); do
   curl -i https://<your-api-id>.execute-api.<region>.amazonaws.com/
-end
+done
 ```
 
-Requests 1 through 10 come back 200 with `RateLimit-Remaining` counting down.
+Requests 1 through 10 come back 200 with `X-RateLimit-Remaining` counting down.
 Request 11 trips the limiter:
 
 ```http frame="terminal"
 HTTP/2 429
 content-type: application/json
 retry-after: 732
-ratelimit-limit: 10
-ratelimit-remaining: 0
-ratelimit-reset: 1745081400
+x-ratelimit-limit: 10
+x-ratelimit-remaining: 0
+x-ratelimit-reset: 1745081400
 
 {"error":"rate limit exceeded","retry_after":732}
 ```
@@ -1979,33 +2121,36 @@ are curious:
 aws dynamodb scan --table-name <stack-name>-RateLimitTable-<suffix>
 ```
 
+Hooray! Our rate limiter works as expected! 🎉
+
 ## Wrapping up
 
 If this post has done its job, two ideas should now be sitting next to each
 other in your head:
 
 1. **The middleware pattern is worth every bit of hype it has accumulated in
-   the Node.js / Python / Go web worlds.** It keeps Lambda handlers small,
-   composable, and easy to test. It was a huge part of the appeal of
-   [middy](https://middy.js.org) in 2017, and it is just as valuable today.
+   the Node.js / Python / Go web worlds, and it fits Lambda perfectly.**
+   It keeps handlers small, composable, and easy to test. That was a
+   huge part of the appeal of [middy](https://middy.js.org) back in
+   2017, and the same property is just as valuable today.
 2. **Rust Lambda has it too, sitting right there in the runtime.** Because
    the `aws-lambda-rust-runtime` is built on tokio, every handler is already
    a tower `Service`; writing a middleware is a matter of implementing two
    traits and chaining a `ServiceBuilder`.
 
 Once you start thinking in layers, it gets addictive. A real Rust Lambda
-typically stacks auth, logging, request validation, response signing, CORS,
-and rate limiting, and the handler is left to do the one thing it actually
-cares about. That is the same shape middy gives Node.js, and it is within
-reach here too.
+typically stacks auth, logging, request validation, response signing,
+CORS, rate limiting, and more, leaving the handler to do the one thing
+it actually cares about. That is the same shape middy gives Node.js,
+and it is well within reach in Rust too.
 
 Some next steps you might enjoy:
 
-- Add a JWT verification layer (swap the IP-based key for a user claim).
+- Add an authentication verification layer.
+- Then you can move the limiter key to something that survives IP changes for
+  authenticated users (e.g. swap the IP-based key for a user claim).
 - Trade the fixed window for a token-bucket implementation; the middleware
   skeleton stays identical.
-- Move the limiter key to something that survives IP changes for
-  authenticated users.
 - Try the same pattern on a non-HTTP Lambda (SQS, EventBridge); the
   `lambda_runtime` crate exposes the same `Service`-based API.
 
@@ -2037,4 +2182,4 @@ example in your own AWS account.
   [coauthoring a book about Rust and Lambda](/posts/coauthoring-a-book-about-rust-and-lambda/).
 
 Happy layering, and if you end up writing your own Lambda middleware, I
-would love to hear about them on Bluesky.
+would love to hear about them on [Bluesky](https://bsky.app/profile/loige.co).

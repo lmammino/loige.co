@@ -3,7 +3,8 @@
     "allow": [
       "Bash(find:*)",
       "Bash(ls:*)",
-      "Bash(gh api:*)"
+      "Bash(gh api:*)",
+      "Bash(cargo test *)"
     ]
   }
 }
