@@ -2,8 +2,8 @@
 title: Writing middlewares for Rust Lambda functions
 slug: writing-middlewares-for-rust-lambda-functions
 subtitle: Reusable cross-cutting concerns in Rust Lambda with tower, plus a DynamoDB rate limiter you can steal
-date: 2026-04-19T10:00:00.000Z
-updated: 2026-04-19T10:00:00.000Z
+date: 2026-05-03T14:58:32.000Z
+updated: 2026-05-03T14:58:32.000Z
 header_img: ./writing-middlewares-for-rust-lambda-functions.jpg
 status: published
 tags:
