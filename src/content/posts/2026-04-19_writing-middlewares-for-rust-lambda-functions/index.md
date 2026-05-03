@@ -1972,6 +1972,52 @@ let it slot in next to anything else in the Tower ecosystem (provided,
 of course, that the request and response types of the surrounding
 services line up with what each layer expects).
 
+<details class="rabbit">
+<summary>How can a generic tower layer like <code>CorsLayer</code> work out of the box on a Lambda?</summary>
+
+It feels almost too convenient: tower-http's `CorsLayer` was written
+for general HTTP services (axum, hyper, anything), and yet we drop it
+straight into a Lambda stack and it just works. There is no Lambda
+adapter in tower-http, no shim, no glue layer. Why does it compose?
+
+The answer is that everyone in this picture agrees on the same
+**request and response types**. Tower-http defines `CorsLayer` against
+the [`http`](https://docs.rs/http) crate's generic
+`Request<ReqBody>` and `Response<ResBody>` types:
+
+```rust
+impl<S, ReqBody, ResBody> Service<Request<ReqBody>> for Cors<S>
+where
+    S: Service<Request<ReqBody>, Response = Response<ResBody>>,
+    ResBody: Default,
+{ /* ... */ }
+```
+
+And `lambda_http` does not invent its own request/response types; it
+just specialises the same `http` types with its own `Body`:
+
+```rust
+// lambda_http/src/lib.rs
+pub type Request = http::Request<Body>;
+```
+
+So a `lambda_http::Request` _is_ an `http::Request`, with the body
+parameter pinned to `lambda_http::Body`. Tower-http's `CorsLayer`
+sees an `http::Request<lambda_http::Body>` go past, the trait bounds
+match, and the layer composes with no fuss.
+
+This is one of the quietly large benefits of having a high-level
+abstraction like `lambda_http` in front of the runtime. We are not
+just buying an ergonomic API for parsing requests and producing
+HTTP-compatible responses; we are buying into the entire framework-
+agnostic ecosystem that already exists around the `http` crate and
+tower. CORS, compression, request IDs, structured logging, retries,
+timeouts, auth: most of what tower-http and the wider tower
+ecosystem ships will compose with our Lambda the same way `CorsLayer`
+just did, with no Lambda-specific adapter in sight.
+
+</details>
+
 ## Deploying with SAM
 
 Let us ship this. Here is a `template.yaml` that provisions the DynamoDB
@@ -1979,7 +2025,7 @@ table, builds the Rust Lambda with
 [cargo-lambda](https://www.cargo-lambda.info/), and wires up an HTTP API
 endpoint:
 
-```yaml title="template.yaml" mark={31-33,38, 50-51}
+```yaml title="template.yaml" mark={29-31, 36, 39, 42-43, 50-51}
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: Hello-world Rust Lambda with a tower-based DynamoDB rate limit middleware.
@@ -1996,8 +2042,6 @@ Globals:
   Function:
     Timeout: 5
     MemorySize: 128
-    Architectures:
-      - arm64
 
 Resources:
   RateLimitTable:
@@ -2020,16 +2064,18 @@ Resources:
       BuildMethod: rust-cargolambda # 2
     Properties:
       FunctionName: !Sub ${AWS::StackName}-hello
-      CodeUri: .
+      CodeUri: lambdas/hello
       Handler: bootstrap
       Runtime: provided.al2023
+      Architectures: # 3
+        - arm64
       Environment:
         Variables:
           RATE_LIMIT_TABLE_NAME: !Ref RateLimitTable
           RATE_LIMIT_MAX_REQUESTS: !Ref MaxRequests
           RATE_LIMIT_WINDOW_SECS: !Ref WindowSecs
       Policies:
-        - DynamoDBCrudPolicy: # 3
+        - DynamoDBCrudPolicy: # 4
             TableName: !Ref RateLimitTable
       Events:
         Hello:
@@ -2045,17 +2091,24 @@ Outputs:
     Value: !Ref RateLimitTable
 ```
 
-Three pieces worth calling out:
+Four pieces worth calling out:
 
 1. The DynamoDB table has `TimeToLiveSpecification` on a `ttl` attribute,
    so DynamoDB will eventually delete expired counter rows for us. AWS
    documents TTL deletion as automatic but eventual (typically within a
    few days), which is fine here because we never reuse old buckets, but
    do not lean on TTL for precise expiry.
-2. `Metadata: BuildMethod: rust-cargolambda` tells `sam build` to delegate the
-   build to cargo-lambda, which will produce a correctly-named `bootstrap`
-   binary for the `provided.al2023` runtime. No custom Makefile required.
-3. `DynamoDBCrudPolicy` is convenient for the tutorial but broader than
+2. `Metadata: BuildMethod: rust-cargolambda` tells `sam build` to delegate
+   the build to cargo-lambda, which produces a correctly-named `bootstrap`
+   binary for the `provided.al2023` runtime. `CodeUri: lambdas/hello`
+   points SAM at our Lambda crate's directory.
+3. `Architectures: arm64` does double duty: AWS deploys the function on
+   Graviton, **and** cargo-lambda's SAM hook reads it to cross-compile
+   the binary for `aarch64`. Important: this property must live on the
+   function itself (not in `Globals`); cargo-lambda's hook does not see
+   `Globals`-level overrides, and the resulting arch mismatch shows up
+   at runtime as the lovely `Runtime.InvalidEntrypoint` error.
+4. `DynamoDBCrudPolicy` is convenient for the tutorial but broader than
    the function actually needs; for production, scope the policy down to
    `dynamodb:UpdateItem` on this one table.
 
@@ -2065,13 +2118,16 @@ To deploy, install
 then:
 
 ```sh
-sam build
-sam deploy --guided
+sam validate && sam build && sam deploy --guided
 ```
 
-SAM will ask for a stack name and region on the first run, and remember
-your choices in a local `samconfig.toml`. When the deploy finishes, grab the
-`HelloApi` URL from the stack outputs.
+`sam validate` catches template syntax errors before you spend time on
+the build, `sam build` invokes cargo-lambda to cross-compile the
+binary, and `sam deploy --guided` walks you through stack-name and
+region selection on the first run, remembering your choices in a local
+`samconfig.toml` so subsequent deploys can drop the `--guided` flag.
+When the deploy finishes, grab the `HelloApi` URL from the stack
+outputs.
 
 Now let us poke it. On the first call:
 
@@ -2182,4 +2238,4 @@ example in your own AWS account.
   [coauthoring a book about Rust and Lambda](/posts/coauthoring-a-book-about-rust-and-lambda/).
 
 Happy layering, and if you end up writing your own Lambda middleware, I
-would love to hear about them on [Bluesky](https://bsky.app/profile/loige.co).
+would love to hear about them on [Bluesky](https://bsky.app/profile/loige.co). 🦋
