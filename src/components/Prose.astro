@@ -87,3 +87,29 @@ const { class: classProp, wide = false } = Astro.props
 >
   <slot />
 </article>
+
+<style is:global>
+  /*
+    Opt-in narrowing for inline images.
+
+    By default, images in long-form articles span the full prose width.
+    For tall portrait-aspect diagrams (or anything that just looks too
+    big at full width) wrap the image in a `<div class="narrow">…</div>`
+    block in the source markdown:
+
+      <div class="narrow">
+
+      ![alt text](./image.png)
+
+      </div>
+
+    The blank lines around the image are required so the markdown parser
+    still treats it as markdown (and Astro's asset pipeline still
+    resolves the relative path and emits responsive `srcset`s).
+  */
+  .prose .narrow img {
+    display: block;
+    max-width: 20rem;
+    margin-inline: auto;
+  }
+</style>
