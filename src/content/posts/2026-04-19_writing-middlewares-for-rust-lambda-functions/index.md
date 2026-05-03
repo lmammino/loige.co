@@ -12,6 +12,7 @@ tags:
   - aws
   - lambda
 description: 'How to write reusable middleware for Rust Lambda functions using tower, the generic middleware engine that already underpins the AWS Lambda Rust runtime. Includes a complete DynamoDB-backed IP rate limiter with SAM deployment.'
+bluesky_url: "https://bsky.app/profile/loige.co/post/3mkxgbtios22q"
 ---
 
 There is one pattern that has been my secret sauce for AWS Lambda code for
