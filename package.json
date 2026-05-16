@@ -22,6 +22,7 @@
     "astro-compress": "^2.4.1",
     "astro-critters": "^2.2.1",
     "astro-expressive-code": "^0.41.7",
+    "astro-leaflet": "^1.12.0",
     "canvas": "^3.1.0",
     "canvas-hypertxt": "^1.0.3",
     "clsx": "^2.1.1",
