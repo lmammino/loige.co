@@ -6,6 +6,7 @@ import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers'
 import compress from 'astro-compress'
 import critters from 'astro-critters'
 import expressiveCode from 'astro-expressive-code'
+import { unified } from '@astrojs/markdown-remark'
 import { defineConfig } from 'astro/config'
 // biome-ignore lint/nursery/useImportRestrictions: <explanation>
 import { SITE_URL } from './src/consts'
@@ -14,10 +15,25 @@ import { SITE_URL } from './src/consts'
 export default defineConfig({
   site: SITE_URL,
 
+  // Astro 7 changed the default to 'jsx' (strips whitespace between inline
+  // elements); keep the v6 behavior to avoid output churn
+  compressHTML: true,
+
+  // Astro 7 defaults to the new Sätteri markdown pipeline, which mangles some
+  // posts that embed raw HTML (autolinks URLs inside <a> tags, re-escapes
+  // entities like &mdash;); keep the unified (remark/rehype) pipeline
+  markdown: {
+    processor: unified(),
+  },
+
   integrations: [
     sitemap({}),
     compress({
-      // CSS: false,
+      // astro-compress minifies CSS with csso, whose parser silently DROPS
+      // media queries in the range syntax (`@media (width>=40rem)`) that
+      // Vite 8 now emits, killing every responsive style. Vite already
+      // minifies CSS, so this pass saved ~0 bytes anyway.
+      CSS: false,
       Image: false,
       SVG: false,
     }),
