@@ -67,7 +67,6 @@ Under the hood, the component calls the public `app.bsky.feed.getLikes` endpoint
 
 If you want a more detailed peek at what this package does under the hood, you can check out [this Codepen](https://codepen.io/dmitrysharabin/pen/Jodbyqm), which, based on the package's README, seems to have been the inspiration for the initial implementation. It's about 50 lines of vanilla JS, and it shows really clearly how you can interact with the Bluesky APIs from a web browser.
 
-
 ## Step 1: Adding the schema field
 
 So the next step was about how to bring this into my blog setup.
@@ -112,7 +111,6 @@ bluesky_url: https://bsky.app/profile/loige.co/post/abc123
 
 This is the best blog post ever!
 ```
-
 
 ## Step 2: Building the component
 
@@ -182,7 +180,6 @@ Let me walk through the key parts:
 
 - **`is:inline` directive**: The `is:inline` on the `<script>` tag tells Astro not to bundle or process this script. It gets injected as-is into the HTML. This is important because we want the browser to fetch the module directly from `esm.sh` at runtime.
 
-
 ## Step 3: Wiring it into the post page
 
 With the component ready, integrating it into the post page was just three lines in `src/pages/[...slug].astro`:
@@ -210,7 +207,6 @@ Then, the conditional render in the template:
 
 I placed it between the "Found a typo?" section and the Disqus comments. It felt like the natural spot: after you've read the article and before the general comments section. And since it's conditionally rendered, posts without a `bluesky_url` won't show the section or load the script at all.
 
-
 ## Step 4: Finding all my Bluesky posts
 
 OK so the code was done, but I had a problem: I needed to find all the Bluesky post URLs where I had shared links to my blog articles. This turned out to be the most tedious part of the process.
@@ -229,7 +225,6 @@ I ended up using Claude Code to help automate the matching and frontmatter updat
 
 The best bit is that I didn't need a Bluesky MCP or anything like that. I just told Claude Code to use the `bsky` CLI and its built-in `--help` command to figure out how to get the data it needed.
 
-
 ## The result
 
 If you want to see the feature in action, scroll down to the bottom of this very post! (Well, once I share this on Bluesky and add the URL to the frontmatter, that is.)
@@ -237,7 +232,6 @@ If you want to see the feature in action, scroll down to the bottom of this very
 In the meantime, you can check it out on posts like [I am co-authoring a book about Rust and Lambda](/coauthoring-a-book-about-rust-and-lambda/) or [2025 - A year in Review](/2025-a-year-in-review/), both of which already have Bluesky likes wired up.
 
 The section adapts nicely to both dark and light mode, thanks to the CSS custom property mapping. It's a small detail, but it makes the feature feel native rather than bolted on.
-
 
 ## Conclusion
 

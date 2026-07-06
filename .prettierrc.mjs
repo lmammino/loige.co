@@ -13,5 +13,15 @@ export default {
         htmlWhitespaceSensitivity: 'strict',
       },
     },
+    {
+      files: '*.{md,mdx}',
+      options: {
+        // Never reformat code inside fenced code blocks: expressive-code
+        // annotations (collapse={..}, line highlights) are line-number based
+        // and reflowing the code silently breaks them; code samples in
+        // published posts are also deliberate as written.
+        embeddedLanguageFormatting: 'off',
+      },
+    },
   ],
 }

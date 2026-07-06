@@ -20,4 +20,3 @@ with:
 ---
 
 In this session we will discover the basis of Node.js streams, a very useful tool to handle big amounts of data and in general to create data pipelines. Did you ever ask yourself what happens when we do an upload of multiple files to a server? How does the server receives and saves these files and how can we support arbitrarily big files? If you are curious to find out the answers to these questions, don't miss this live stream!
-

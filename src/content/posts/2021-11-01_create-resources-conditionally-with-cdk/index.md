@@ -23,7 +23,6 @@ Did you ever need to create a resource based on a condition in CDK? I recently n
 
 In short, we will learn about the [`CfnCondition` construct](https://docs.aws.amazon.com/cdk/api/latest/docs/@aws-cdk_core.CfnCondition.html) and how it can be used to create CloudFormation conditions. Then we will see how to attach condition to low level construct. Throughout this article, we will discuss these concepts with a practical example: creating or importing an S3 bucket based on the value of an SSM parameter.
 
-
 ## Create or import an S3 bucket based on a condition with CDK
 
 Let's start with a practical example: we want to define a stack using CDK and we need to be able to import or create an S3 bucket depending on a specific condition. Let's also make a use case: our stack will be deployed to multiple environments (development, staging, production, etc.). In the production environment we will need to use a bucket that is already created, while in the other environments we want to create the bucket as part of the stack.
@@ -94,7 +93,6 @@ Which means that this expression will always evaluate to `false`. Therefore, we 
 
 Of course, this is not what we want. But, how do we fix it?
 
-
 ## Using `CfnCondition` with CDK
 
 The way to solve this problem is to use the concept of [_condition_ in CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/conditions-section-structure.html).
@@ -146,7 +144,6 @@ Here we are using [`cdk.Fn.conditionEquals`](https://docs.aws.amazon.com/cdk/api
 This allow us to evaluate the expression at deployment time when the actual value of the SSM parameter will be available, therefore this condition will work as intended.
 
 Now, this condition alone doesn't really do much. We need to _attach_ the condition to a resource to tell CDK (and CloudFormation) to actually create the given resource only if the condition holds true.
-
 
 ## Attaching a condition to a CDK resource
 
@@ -222,8 +219,8 @@ The final point to address is to figure out how to import the bucket if our cond
 
 After thinking about this for a while, I realised that we can always import the bucket. Based in our condition, one of two things can happen:
 
-  1. The bucket will be created (if the SSM parameter value is `true`)
-  2. The bucket is already there (otherwise)
+1. The bucket will be created (if the SSM parameter value is `true`)
+2. The bucket is already there (otherwise)
 
 In both cases, if we know the unique name of the bucket, we can import it using `s3.Bucket.fromBucketAttributes`:
 
@@ -239,15 +236,14 @@ The code above will give us a valid reference to the bucket in both cases. We ca
 importedOrCreatedBucket.grantReadWrite(someEc2Instance)
 ```
 
-
 ## Conclusion
 
 In summary, creating a resource conditionally with CDK requires us to do the following:
 
-  1. define a `cdk.CfnCondition` with a given expression
-  2. downcast the resource we want to create conditionally to it's level 0 construct equivalent (e.g. from `s3.Bucket` to `s3.CfnBucket`)
-  3. attach the condition to the lower level construct using `cfnResource.cfnOptions.condition = myCondition`
-  4. finally, if we need to reference this resource in the rest of our stack, we can import the resource using some attribute that will be know regardless if we just created the resource or if we are importing it (e.g. `s3.Bucket.fromBucketAttributes`)
+1. define a `cdk.CfnCondition` with a given expression
+2. downcast the resource we want to create conditionally to it's level 0 construct equivalent (e.g. from `s3.Bucket` to `s3.CfnBucket`)
+3. attach the condition to the lower level construct using `cfnResource.cfnOptions.condition = myCondition`
+4. finally, if we need to reference this resource in the rest of our stack, we can import the resource using some attribute that will be know regardless if we just created the resource or if we are importing it (e.g. `s3.Bucket.fromBucketAttributes`)
 
 Our final snippet will look like this:
 

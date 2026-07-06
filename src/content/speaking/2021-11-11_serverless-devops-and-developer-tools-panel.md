@@ -27,4 +27,4 @@ with:
 
 Serverless has grown up a lot in the short couple of years since it was first announced.
 
-Join our esteemed panel of leading authorities on Serverless for a discussion covering the innovation highlights we've seen to date and what the future of Serverless might hold in store. 
+Join our esteemed panel of leading authorities on Serverless for a discussion covering the innovation highlights we've seen to date and what the future of Serverless might hold in store.

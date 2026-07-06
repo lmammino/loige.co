@@ -32,7 +32,6 @@ So let's get to it!
 
 Hopefully, this article can inspire engineers to grow in their careers, help managers to hire the right people, set expectations, and support their teams.
 
-
 ## Senior? Yes, but how much? 🤌
 
 The first remark I have to make is that I am not going to focus on different levels of seniority like what it means to be a _Staff_, a _Principal_ engineer or even an _Architect_.
@@ -51,7 +50,6 @@ Easier said than done! What kind of skills, mindset, and duties are we talking a
 
 <small>Photo by <a href="https://unsplash.com/@quincoetzee?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Quinton Coetzee</a> on <a href="https://unsplash.com/photos/xcweYgakbRo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></small>
 
-
 ## Am I a senior yet?
 
 The first myth to bust is that being senior is not necessarily a matter of how long one has been in the market!
@@ -68,11 +66,9 @@ In my career, I had the fortune to truly appreciate this.
 
 I had some very young but extremely passionate and skilled colleagues that I would definitely consider senior, and I also had _older_ colleagues with many years in the industry on their CV but their contribution to the team and the project was nearly close to zero, if not even negative! I wouldn't have called them senior, even though, most of the time, the company recognised them as such...
 
-
 ![A hand coming from a hole handing an old-style alarm clock](./a-hand-with-an-alarm-clock.jpg)
 
 <small>Photo by <a href="https://unsplash.com/@lenneek?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Elena Koycheva</a> on <a href="https://unsplash.com/s/photos/time?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></small>
-
 
 ## What skills do I need?
 
@@ -96,7 +92,7 @@ But in complex organisations, with many stakeholders coming from very different 
 
 The best _technical_ solution is not always the absolute best solution for an organisation.
 
-The best solution is one that accounts for how easy it is for more junior people to contribute to it, how easy it will be to evolve it and adapt it to changing requirements, how well will it scale if the business is successful, etc. 
+The best solution is one that accounts for how easy it is for more junior people to contribute to it, how easy it will be to evolve it and adapt it to changing requirements, how well will it scale if the business is successful, etc.
 
 Sometimes you might have to compromise on purely technical qualities to come up with solutions that are optimal for the team and the business environment you are working on.
 
@@ -106,7 +102,6 @@ It takes a lot more than just technical skills to see all the facets of a projec
 
 <small>Photo by <a href="https://unsplash.com/es/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/photos/k4xoACkQZiw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></small>
 
-
 ## Am I technical enough?
 
 Ok, ok... but I know we should really talk more about pure technical expertise!
@@ -114,7 +109,6 @@ Ok, ok... but I know we should really talk more about pure technical expertise!
 After all, given the way the tech industry works today, this is the first thing people will recognize you for!
 
 If you cannot demonstrate technical expertise you are not even going to have a chance at getting a spot for that job position you really like!
-
 
 ### T-shaped profile
 
@@ -135,7 +129,6 @@ When you feel you mastered that particular domain try to expand your knowledge a
 If you have become an expert in API development, you might want to explore databases or frontend development, because those will start to move you to a more "full-stack" profile. Similarly, you could also explore infrastructure-as-code and learn how to bring applications to production.
 
 The trick is not to try to become an expert in every one of these additional areas, but just to learn enough to be able to understand the basic ideas and collaborate effectively with people who have these areas of knowledge as their core expertise.
-
 
 ### Broad understanding
 
@@ -160,7 +153,6 @@ The path to success is rarely a straight line...
 ![A contorted mountain road representing an ideal path to success](./the-path-to-success-is-not-a-straight-line.jpg)
 
 <small>Photo by <a href="https://unsplash.com/@sylvaingllm?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Sylvain Gllm</a> on <a href="https://unsplash.com/photos/X4dBqRUzO2U?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></small>
-
 
 ### Gonna catch all bugs!
 
@@ -190,7 +182,6 @@ Learn the different types of tests and different testing frameworks. Finally, le
 
 <small>Photo by <a href="https://unsplash.com/@descampscha?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Charlotte Descamps</a> on <a href="https://unsplash.com/photos/1sbVyhfdoQM?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></small>
 
-
 ### Promote the right patterns
 
 Having written [a book on design patterns](https://nodejsdesignpatterns.com/) I am certainly biased on this one...
@@ -209,13 +200,11 @@ Sometimes, _simple dummy code_ can be very effective and it can be understood an
 
 As a senior software engineer, this is an opportunity to shine and have a significant impact during pairing sessions and code reviews!
 
-
 ## What kind of soft skills?
 
 Now that we covered which technical skills will give you an edge in your career and allow you to be recognised as a senior engineer, let's address the elephant in the room: soft skills.
 
 You got that interview thanks to your hardcore technical skills, but now you have a chance to really make an impression by showcasing a range of soft skills.
-
 
 ### Growth mindset
 
@@ -226,7 +215,6 @@ A senior engineer must have a **growth mindset**, a willingness to learn and ada
 They should be **comfortable with failure**, see it as an opportunity to learn, and **be willing to take risks**.
 
 Always remember a senior engineer must also be a team player, not a hero. They should collaborate with their team, support their colleagues, and contribute to the team's success.
-
 
 ### Being an active lever
 
@@ -254,7 +242,6 @@ This is an area of growth for me. One of those things where, when I look back at
 
 <small>Photo by <a href="https://unsplash.com/@mparzuchowski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Michał Parzuchowski</a> on <a href="https://unsplash.com/photos/geNNFqfvw48?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></small>
 
-
 ### Understanding the business
 
 To be an active lever in your organisation, you need to be able to understand the business as deeply as possible.
@@ -264,7 +251,6 @@ Do you know what's the purpose of the business? What's the long-term vision? Is 
 If you can answer all these questions you are in a good position to use your technical skills to determine how technology can help the business to succeed.
 
 Only with a solid understanding of the business you will be able to pick the right battles, focus on what matters and help design systems that can serve the business well today but also be adapted to future needs.
-
 
 ### Communication
 
@@ -283,7 +269,6 @@ Communication skills are also essential for writing documentation and delivering
 
 Good communication skills can open many doors and unblock complex situations. So make sure to practice them as much as possible!
 
-
 ### Supporting management
 
 When you are a good communicator, you become someone who can be very effective at supporting various management activities, for instance, planning and driving ceremonies. You can help with keeping track of priorities and technical debt and split complex tasks into manageable parts.
@@ -301,7 +286,6 @@ I am not suggesting that senior software engineers should replace the role of pr
 ![A kid holding a map: an analogy of a senior software engineer being able to support management](./a-kid-holding-a-map.jpg)
 
 <small>Photo by <a href="https://unsplash.com/@anniespratt?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Annie Spratt</a> on <a href="https://unsplash.com/photos/kZO9xqmO_TA?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></small>
-
 
 ### Autonomy and focus on delivery
 
@@ -337,13 +321,11 @@ Of course, you can't always avoid all disappointments or failure scenarios. So w
 
 <small>Photo by <a href="https://unsplash.com/@macroman?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Immo Wegmann</a> on <a href="https://unsplash.com/photos/UMLZavpcqhw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></small>
 
-
 ## How can I grow?
 
 If you're a software engineer looking to level up your skills and become a senior member of your team, you might be wondering what steps you can take to get there.
 
 Well, fear not! Here are 4 ideas (plus some extras) that I believe will help you on your journey.
-
 
 ### Go one level deeper
 
@@ -371,7 +353,6 @@ One funny video that I really enjoyed lately is [The Computer Science Iceberg](h
 
 <small>Photo by <a href="https://unsplash.com/@sickle?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Sergey Pesterev</a> on <a href="https://unsplash.com/photos/6KCnl-EgbiU?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></small>
 
-
 ### Have fun
 
 This is one of my core beliefs: software engineering is a very challenging profession. Not because it's harder than other professions but because things move so quickly that you can never stop learning and you'll always have to feel behind.
@@ -392,7 +373,6 @@ When you apply this mindset of continuous learning and sharing knowledge at work
 
 Another idea to make people gel with each other and to generate cross-pollination of ideas is to organise company **hackatons** or **free-study days**. These are great ways to help teams to become more passionate about what they do, explore new ideas, learn new things, and ultimately put people in a position to deliver more value in the short and the long term.
 
-
 ### Pair programming
 
 Pair programming is another great tool that you can leverage to give a boost to your expertise.
@@ -411,7 +391,6 @@ In the end, the most important thing is to remain open to new ideas and approach
 
 <small>Photo by <a href="https://unsplash.com/@itfeelslikefilm?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Janko Ferlič</a> on <a href="https://unsplash.com/photos/9Yzy1ZVS7xc?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></small>
 
-
 ### Content creation
 
 First off, creating content can take many forms: articles, talks, videos, Twitter threads, you name it! And guess what? You don't need to be an expert to share something new you learned. Even if you're just starting on a given subject, your fresh perspective can bring value to others and help you establish yourself as a thought leader. So do create content on what it felt like to try a new programming language or a framework. What did you like? Was there something confusing? What did you miss from your previous experience?
@@ -426,7 +405,6 @@ If you don't know what to create content about, here's my tip: every day, at the
 
 Creating content can help you become a more senior engineer by establishing yourself as a thought leader, developing your communication skills, and contributing to the community. So go ahead and share your knowledge with the world. You will be surprised at how much impact it will have on yourself and others!
 
-
 ### Other ideas
 
 Here are some other random-ish tips that you can add to the ones above.
@@ -440,7 +418,6 @@ It's important to support our colleagues' ideas, even if we would have done thin
 When it comes to taking on tough jobs, don't be afraid to volunteer. What about that refactoring that nobody wants to do? Step up and take it on. Those messy, complicated parts of the code that everyone avoids? Dive in and try to make sense of them. By taking on these challenging tasks, you can develop a reputation as a problem solver and become the go-to person for the toughest jobs.
 
 Finally, as a general rule, try to make things just a little bit better wherever you have the chance. Whether it's by documenting a process, improving an application's user interface, or streamlining a workflow, every small improvement counts. Over time, these small wins can add up and help us become more valuable team members.
-
 
 ## How do I sell myself as a senior?
 
@@ -459,8 +436,6 @@ Lastly, seek feedback from your colleagues, mentors, and managers. Ask for const
 ![A software engineer in the sunlight raising their fist to the sky in sign of victory](./a-software-engineer-who-definitely-wants-to-be-recognised-as-senior.jpg)
 
 <small>Photo by <a href="https://unsplash.com/fr/@mbrunacr?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Miguel Bruna</a> on <a href="https://unsplash.com/photos/TzVN0xQhWaQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></small>
-
-
 
 ## Conclusion
 

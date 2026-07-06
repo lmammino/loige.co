@@ -18,7 +18,6 @@ I'll admit it: I'm a few months late writing this. The fourth edition of Node.js
 
 Rather than just telling you "hey, new book, go buy it," I wanted to use this article to offer something more valuable: a first-person perspective from one of the authors. I'll share why Mario and I decided to write a new edition, what we believe this book provides, and (perhaps more interestingly) some broader thoughts on where the Node.js ecosystem is heading. Whether you end up buying the book or not, I hope you'll find some useful insights here.
 
-
 ## What is Node.js Design Patterns?
 
 Node.js Design Patterns is a book authored by **Mario Casciaro** and **Luciano Mammino** (that's me). It is probably the most well-known print book when it comes to mastering Node.js. The first edition came out in 2014, more than a decade ago, when Node.js was still at version 0.10. It's fair to say this book has been tracking the evolution of Node.js for its entire journey from scrappy newcomer to production-grade platform.
@@ -43,7 +42,6 @@ That feedback was invaluable. It helped me improve my Node.js skills and underst
 
 So maybe there's a lesson here: don't be afraid to share your work and ask for candid feedback. The Node.js community is supportive and helpful, providing countless opportunities to learn and grow. Who knows where those opportunities might lead!
 
-
 ## Who is this book for?
 
 Let me be upfront: this is not a beginner's book. We don't explain JavaScript syntax or walk you through setting up your first Node.js project. We assume you already have some prior knowledge and at least a degree of familiarity with JavaScript. If you're comfortable writing functions, working with objects and arrays, and have dabbled with Node.js even just a little, you have enough foundation to get started.
@@ -53,7 +51,6 @@ Our goal is to take those foundations and elevate you to become a reliable profe
 Throughout the book, you'll walk through carefully crafted code examples, learn how to master asynchronous flows, write clean and testable code, and apply battle-tested design and architectural patterns that scale.
 
 From modular design and dependency injection to scalability, messaging, and integration patterns: this is the bread and butter of senior developers who build complex, distributed systems with confidence.
-
 
 ## Why a new edition?
 
@@ -71,7 +68,6 @@ We wanted to make sure this resource was up to date with this evolution. We also
 Our goal remains the same: give you a progressive journey into becoming a senior Node.js developer who can ship with confidence. The book can be read from beginning to end, following the progression from fundamentals to advanced architecture, or you can keep it at your side as a long-term reference. Each chapter blends theory with practical examples and exercises, so you can put what you've learned into practice immediately.
 
 This fourth edition is fully updated for Node.js 24, features modern JavaScript throughout (ECMAScript modules and async/await), includes a brand-new chapter dedicated to testing, and offers expanded coverage of scalability, security, and architecture for today's production environments.
-
 
 ## What the book covers
 
@@ -102,7 +98,6 @@ One chapter we decided to remove is the one on **Universal (or isomorphic) JavaS
 
 ![Hands holding a tablet showing a page from Node.js Design Patterns, with highlighted code examples visible.](./reading-nodejs-design-patterns-on-a-white-ipad-sitting-park.jpg)
 
-
 ## How to approach the book
 
 We structured the book as a learning journey, not just a random collection of chapters. Start from how Node.js really works (the event loop, the async model), then move into patterns, testing, scalability, microservices, and messaging.
@@ -124,7 +119,6 @@ Many readers have told us their ideal path was to read it from beginning to end 
 - Code that is continuously tested
 - Code that can scale because it respects the event loop and uses the right concurrency and architecture patterns
 
-
 ## Our favorite chapter (Node.js streams) is free
 
 Chapter 6, "Coding with Streams," is my personal favorite. We believe in it so much that we give it away for free on [the official Node.js Design Patterns website](https://nodejsdesignpatterns.com/). It's about 80 pages of in-depth coverage of one of Node.js's most powerful features.
@@ -142,7 +136,6 @@ The tradeoff is a different mindset: you never have "all the data," only the cur
 If that chapter resonates with you, you'll see how much more there is to gain from the rest of the book. [Download it for free](https://nodejsdesignpatterns.com/#free-chapter) and see for yourself.
 
 ![Open Node.js Design Patterns book on a desk, showing Chapter 6 “Coding with Streams.”](./person-holding-and-reading-node-js-design-patterns-chapter-6-streams.jpg)
-
 
 ## What's happening in Node.js and why it matters
 
@@ -204,7 +197,6 @@ If I could magically fix one thing in every Node.js developer's head, it would b
 Node.js is single-threaded for JavaScript, but not single-tasked. Your job is to keep the event loop free, avoid heavy synchronous work, and use the right tools (async I/O, worker threads, queues) for concurrency and parallelism.
 
 If every Node.js developer truly understood "don't block the event loop, design around it," a huge class of performance and scalability issues would simply disappear. And Node.js would truly be leveraged in all its power.
-
 
 ## Wrapping up
 

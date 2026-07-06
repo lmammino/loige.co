@@ -21,9 +21,7 @@ bluesky_url: https://bsky.app/profile/loige.co/post/3kdtytuhlz22b
 
 The software industry is going to be fun to see in the coming 5-10 years.
 
-
 I see an interesting tension happening right now...
-
 
 ## The generative AI side
 
@@ -48,7 +46,6 @@ The part that impressed me the most is that now Copilot can also help you lay ou
 It seems too good to be true and it's probably going to be far from perfect for a while, but there's great potential for efficiency here, and I am sure GitHub (and other competitors) will keep investing in this kind of products and maybe in a few years, we'll be mostly reviewing and merge AI-generated PRs for the most common use cases.
 
 If you think that ChatGPT was launched slightly less than 1 year ago, what will we be seeing in 5 or 10 years from now?
-
 
 ## The low-level side
 
@@ -84,7 +81,6 @@ So there might be many cases where we will be able to use these new languages to
 
 And I would go as far as saying that these use cases exist in the industry today and there's a staggering lack of talent in these areas.
 
-
 ## Why the tension?
 
 So, is there really a tension here between generative AI-driven development and using low-level languages or are these just two very disjoint things?
@@ -100,7 +96,6 @@ But, wait... Am I saying that AI is not going to be able to write efficient and 
 Maybe! Or, at least my belief is that, as with any abstraction, there's always a price to pay. And the price of using AI is that we are going to be less explicit about the details and therefore we are going to be less efficient.
 
 But I also expect this equation to change with time. As AI improves, it might be able to generate more efficient code. Possibly even better than code we would write manually, even with tons of expertise on our side.
-
 
 ## What can we do as software developers
 

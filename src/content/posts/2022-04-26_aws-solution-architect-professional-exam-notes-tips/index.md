@@ -30,7 +30,6 @@ If you have already taken other AWS certifications that would also be very benef
 
 In my case, [I took the AWS Solution Architect associate certification](/aws-solution-architect-associate-exam-notes-tips) 3 years ago. If you have less than 2 years of experience with AWS, I'd recommend taking this other certification first. You can read [my notes and tips](/aws-solution-architect-associate-exam-notes-tips) about that particular experience!
 
-
 ## Exam Structure
 
 The AWS Solution Architect is probably the thoughest exams I had to do to get an IT certification.
@@ -46,25 +45,25 @@ If you think that's plenty of time, let's have a look at one of the example ques
 > **A company has two AWS accounts: one for production workloads and one for development workloads.
 > Creating and managing these workloads are a development team and an operations team. The company
 > needs a security strategy that meets the following requirements:**
-> 
+>
 > - **Developers need to create and delete development application infrastructure.**
 > - **Operators need to create and delete both development and production application infrastructure.**
 > - **Developers should have no access to production infrastructure.**
 > - **All users should have a single set of AWS credentials.**
-> 
+>
 > **What strategy meets these requirements?**
 >
 > - A) In the development account:
 >   - Create a development IAM group with the ability to create and delete application infrastructure.
 >   - Create an IAM user for each operator and developer and assign them to the development group.
->   In the production account:
+>     In the production account:
 >   - Create an operations IAM group with the ability to create and delete application infrastructure.
 >   - Create an IAM user for each operator and assign them to the operations group.
 > - B) In the development account:
 >   - Create a development IAM group with the ability to create and delete application infrastructure.
 >   - Create an IAM user for each developer and assign them to the development group.
 >   - Create an IAM user for each operator and assign them to the development group and the operations group in the production account.
->   In the production account:
+>     In the production account:
 >   - Create an operations IAM group with the ability to create and delete application infrastructure.
 > - C) In the development account:
 >   - Create a shared IAM role with the ability to create and delete application infrastructure in the production account.
@@ -77,7 +76,7 @@ If you think that's plenty of time, let's have a look at one of the example ques
 >   - Create an operations IAM group with the ability to assume the shared role in the production account.
 >   - Create an IAM user for each developer and assign them to the development group.
 >   - Create an IAM user for each operator and assign them to the development group and the operations group.
->   In the production account:
+>     In the production account:
 >   - Create a shared IAM role with the ability to create and delete application infrastructure.
 >   - Add the development account to the trust policy for the shared role.
 
@@ -99,34 +98,32 @@ I'll share a few more tips to maximise your chances of succes later in this arti
 
 Meanwhile, if you are curious to see more example questions, there is an [official set of example questions for the Solution Architect Professional exam provided by AWS](https://d1.awsstatic.com/training-and-certification/docs-sa-pro/AWS-Certified-Solutions-Architect-Professional_Sample-Questions.pdf).
 
-
 ## Exam topics and required knowledge
 
-There are 5 *domains* of knowledge in which the various questions are grouped:
+There are 5 _domains_ of knowledge in which the various questions are grouped:
 
-  - **Domain 1**: Design for Organizational Complexity (12.5% of the exam)
-  - **Domain 2**: Design for New Solutions (31%  of the exam)
-  - **Domain 3**: Migration Planning (15%  of the exam)
-  - **Domain 4**: Cost Control (12.5%  of the exam)
-  - **Domain 5**: Continuous Improvement (29%  of the exam)
+- **Domain 1**: Design for Organizational Complexity (12.5% of the exam)
+- **Domain 2**: Design for New Solutions (31% of the exam)
+- **Domain 3**: Migration Planning (15% of the exam)
+- **Domain 4**: Cost Control (12.5% of the exam)
+- **Domain 5**: Continuous Improvement (29% of the exam)
 
 In terms of overall knowledge, these are some of the topics that AWS recommends you to be comfortable with before taking the exam:
 
-  - Familiarity with AWS CLI and APIs.
-  - Be comfortable with CloudFormation.
-  - Be able to understand Billing and to use the web console.
-  - Know how to use a scripting language.
-  - Know enough about running applications on Windows and Linux systems and how to keep them up to date.
-  - Ability to provide guidance on the architectural design across multiple applications and projects of the enterprise as well as an ability to map business objectives to application/architecture requirements.
-  - Ability to evaluate cloud application requirements and make architectural recommendations for implementation, deployment, and provisioning applications on AWS.
-  - Ability to design a hybrid architecture using key AWS technologies (e.g., VPN, AWS Direct Connect) as well as a continuous integration and deployment process.
-  - Be able to explain and apply the five pillars of the AWS Well-Architected Framework.
-  - Architect a continuous integration/continuous delivery (CI/CD) process.
+- Familiarity with AWS CLI and APIs.
+- Be comfortable with CloudFormation.
+- Be able to understand Billing and to use the web console.
+- Know how to use a scripting language.
+- Know enough about running applications on Windows and Linux systems and how to keep them up to date.
+- Ability to provide guidance on the architectural design across multiple applications and projects of the enterprise as well as an ability to map business objectives to application/architecture requirements.
+- Ability to evaluate cloud application requirements and make architectural recommendations for implementation, deployment, and provisioning applications on AWS.
+- Ability to design a hybrid architecture using key AWS technologies (e.g., VPN, AWS Direct Connect) as well as a continuous integration and deployment process.
+- Be able to explain and apply the five pillars of the AWS Well-Architected Framework.
+- Architect a continuous integration/continuous delivery (CI/CD) process.
 
 Yes, it's quite a big surface of knowledge and this is probably not even a comprehensive list.
 
 If you want a bit more detail on what kind of topics and services you need to be comfortable with you can Download the [official Solution Architect Professional exam guide](https://d1.awsstatic.com/training-and-certification/docs-sa-pro/AWS-Certified-Solutions-Architect-Professional_Exam-Guide.pdf).
-
 
 ## Preparation
 
@@ -142,26 +139,24 @@ With that being said, I don't think this amount of practical experience was near
 
 But how did I know that? Well, I didn't... I was actually quite confident about my skills at first! Until I got knocked out by the first exam simulation...
 
-
 ### Exam simulations
 
 The first thing you should really do to asses where you stand is to take an exam simulation. An exam simulation will present you 75 questions similar to the ones you might find during the real exam and you'll have 3 hours to answer them.
 
 Those simulations are available on a number of platforms. I have tried 2 of them:
 
-  - [AWS Certified Solutions Architect Professional Practice Exam](https://www.udemy.com/course/aws-solutions-architect-professional-practice-exams-amazon/) on Udemy, by Jon Bonso (Tutorials Dojo).
-  - AWS Certified Solutions Architect - Professional 2020 on [A Cloud Guru](https://acloudguru.com/), by Scott Pletcher.
+- [AWS Certified Solutions Architect Professional Practice Exam](https://www.udemy.com/course/aws-solutions-architect-professional-practice-exams-amazon/) on Udemy, by Jon Bonso (Tutorials Dojo).
+- AWS Certified Solutions Architect - Professional 2020 on [A Cloud Guru](https://acloudguru.com/), by Scott Pletcher.
 
 I really liked the Udemy ones for several reasons.
 
 First of all, you can pause your exam. I know this is not really realistic, but it's a great way to allow you to practice even when you don't have a block of 3 full hours available to you.
 
-Secondly, at the end of a simulation, you get an overview of all the questions. For every question you get a quite lengthy explaination about how you should have interpreted the question and a walkthrough over all the possible answer. This can teach you how to analyse questions and answers and it will help you train the right muscles to spot correct answers and recognize and avoid wrong answers (*distractors*).
+Secondly, at the end of a simulation, you get an overview of all the questions. For every question you get a quite lengthy explaination about how you should have interpreted the question and a walkthrough over all the possible answer. This can teach you how to analyse questions and answers and it will help you train the right muscles to spot correct answers and recognize and avoid wrong answers (_distractors_).
 
 Once you complete a simulation you can assess where you stand against the different domains of the exam. Where you weakness and strengths lies and where you need to study and practice more.
 
 The Udemy course gives you four different variations of the exam, so you get a total of 300 questions to practice with!
-
 
 ### Study material
 
@@ -181,35 +176,32 @@ I only skimmed through this one, so I can't vouch 100% for this, but it seems li
 
 Check out also the FAQ and the White Papers published on the [official page for the AWS Certified Solutions Architect - Professional certification](https://aws.amazon.com/certification/certified-solutions-architect-professional/).
 
-
 ## Recommended strategy
 
 Here's my very personal recommendation on how to prepare and approach the exam.
 
 ### Before the exam
 
-  1. Do a couple of exam simulations on Udemy.
-  2. Don't worry too much about your score (I failed almost all of them!), but focus on the questions you failed. Read the explanation and make sure to understand if you need to research more about the topic.
-  3. Compile a list of all the topics you need to research more about (your gaps).
-  4. Find study material (A Cloud Guru, YouTube, official AWS material, etc.) and try to fill the gaps.
-  5. Do more exam simulations.
-  6. Try to do a couple more of exam simulations without pausing the exam.
-  7. Don't wait for your simulation score to be over 75% before you try the real exam, just make sure your score has improved and that you feel much more confident.
-
+1. Do a couple of exam simulations on Udemy.
+2. Don't worry too much about your score (I failed almost all of them!), but focus on the questions you failed. Read the explanation and make sure to understand if you need to research more about the topic.
+3. Compile a list of all the topics you need to research more about (your gaps).
+4. Find study material (A Cloud Guru, YouTube, official AWS material, etc.) and try to fill the gaps.
+5. Do more exam simulations.
+6. Try to do a couple more of exam simulations without pausing the exam.
+7. Don't wait for your simulation score to be over 75% before you try the real exam, just make sure your score has improved and that you feel much more confident.
 
 ### During the exam
 
-  1. Read the question carefully and try to understand what are the main keywords and what's the context. After a few simulations you should know what to expect and you should be able to skim through the question quickly.
-  2. But if you feel you haven't fully understood the question take the time to read it again.
-  3. Manage your time. Ideally you shouldn't be spending more than 2 minutes per question, but sometimes there are question that require you more time. Don't stress too much out if you are taking to long for a given question, there will be questions that you'll be able to answer in less than 2 minutes and those will help you to balance things out. Make sure though not to spend too much time on a given question. If it's taking you more than 4 minutes, you should probably skip it (or even better give a temporary answer) and come back to it later.
-  4. You can flag questions for review. This means that flagged questions will be highlighted and it will be easier for you to get back to them if you have extra time and want to review the answer.
-  5. A lot of questions don't have absolutely objective answers. Actually most questions are arguable (in my opinion). In those cases try to go by exclusion and find reasons not to pick particular answers. Try also to wear the hat of AWS: ask yourself *what would AWS itself most likely recommend?*
+1. Read the question carefully and try to understand what are the main keywords and what's the context. After a few simulations you should know what to expect and you should be able to skim through the question quickly.
+2. But if you feel you haven't fully understood the question take the time to read it again.
+3. Manage your time. Ideally you shouldn't be spending more than 2 minutes per question, but sometimes there are question that require you more time. Don't stress too much out if you are taking to long for a given question, there will be questions that you'll be able to answer in less than 2 minutes and those will help you to balance things out. Make sure though not to spend too much time on a given question. If it's taking you more than 4 minutes, you should probably skip it (or even better give a temporary answer) and come back to it later.
+4. You can flag questions for review. This means that flagged questions will be highlighted and it will be easier for you to get back to them if you have extra time and want to review the answer.
+5. A lot of questions don't have absolutely objective answers. Actually most questions are arguable (in my opinion). In those cases try to go by exclusion and find reasons not to pick particular answers. Try also to wear the hat of AWS: ask yourself _what would AWS itself most likely recommend?_
 
 ### After the exam
 
-  1. If you passed it... well, good job! Time to brag with your friends and co-workers and celebrate!
-  2. If you didn't pass it... no worries! You have probably learned a lot anyway. Go back to more simulations and study material and try again in a few months! Next time will certainly go better!
-
+1. If you passed it... well, good job! Time to brag with your friends and co-workers and celebrate!
+2. If you didn't pass it... no worries! You have probably learned a lot anyway. Go back to more simulations and study material and try again in a few months! Next time will certainly go better!
 
 ## My Study notes
 
@@ -223,11 +215,11 @@ Here's a list of notes about topics that I didn't really know about and I had to
 
 ### Amazon Connect
 
--  Cloud based contact center (system to allow communication between companies and the general public, e.g. support call centers)
--  Main features: Provides skill based routing, Automatic call distribution, Call recording, Reporting
--  Allows to design automated "Contact flows" that can direct the user to the right operator ("press X if you need to do Y")
--  The contact flows can be integrated with lambda to customise the flow programmatically decisions for the workflow (e.g. fetch a reservation for the caller and decide the next step based on the state of the reservation)
--  Provides an IVR (Interactive Voice Response) and records transcripts for every conversation / flow
+- Cloud based contact center (system to allow communication between companies and the general public, e.g. support call centers)
+- Main features: Provides skill based routing, Automatic call distribution, Call recording, Reporting
+- Allows to design automated "Contact flows" that can direct the user to the right operator ("press X if you need to do Y")
+- The contact flows can be integrated with lambda to customise the flow programmatically decisions for the workflow (e.g. fetch a reservation for the caller and decide the next step based on the state of the reservation)
+- Provides an IVR (Interactive Voice Response) and records transcripts for every conversation / flow
 
 ### Amazon Kinesis Video Stream
 
@@ -260,10 +252,10 @@ Here's a list of notes about topics that I didn't really know about and I had to
 - Traffic coming from on-prem via a Direct Connect connect is restricted from internet access.
 - You must create a virtual interface (public, private or transit) in order to begin using your AWS Direct Connect connection.
 
-
 ### IAM
 
 #### Managed Policies
+
 AWS managed policies **don't grant least privilege permissions**. You must consider the security risk of granting your principals more permissions than they need to do their job.
 
 You can attach AWS managed policies, including job functions, to any IAM identity. To switch to least privilege permissions, you can run **AWS Identity and Access Management Access Analyzer** to monitor principals with AWS managed policies. After learning which permissions they are using, then you can write a custom policy or generate a policy with only the required permissions for your team. This is less secure, but provides more flexibility as you learn how your team is using AWS.
@@ -283,7 +275,6 @@ AWS managed policies for job functions are designed to closely align to common j
 - [**SupportUser**](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/job-function/SupportUser) This user contacts AWS Support, creates support cases, and views the status of existing cases.
 - [**SystemAdministrator**](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/job-function/SystemAdministrator) This user sets up and maintains resources for development operations.
 - [**ViewOnlyAccess**](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/job-function/ViewOnlyAccess) This user can view a list of AWS resources and basic metadata in the account across all services. The user cannot read resource content or metadata that goes beyond the quota and list information for resources.
-
 
 ### Lex
 
@@ -309,37 +300,33 @@ AWS managed policies for job functions are designed to closely align to common j
 - It offers a dashboard that allows you to visualise the detected threats, but also all the AWS API calls (grouped by type but you can also drill down)
 - Supports Lucene-style queries to search through the data
 
-
 ### RPO vs RTO
 
-- Metrics for establishing and measuring good practices in backup and recovery of data (disaster recovery)  
-- RPO (Recovery Point Objective): Time between a good dataset (in the backup) and a disaster event.  
-- RTO (Recovery Time Objective):  Point in which the data is restored and operation continues.  
-- If RTO is 30 minutes that means that recovering from an incident should not take more than 30 minutes. You can also see that as the maximum time that a company is willing to keep a service unavailable  
-- RPO: before an incident occurs  
-- RTO: after an event occurs  
+- Metrics for establishing and measuring good practices in backup and recovery of data (disaster recovery)
+- RPO (Recovery Point Objective): Time between a good dataset (in the backup) and a disaster event.
+- RTO (Recovery Time Objective):  Point in which the data is restored and operation continues.
+- If RTO is 30 minutes that means that recovering from an incident should not take more than 30 minutes. You can also see that as the maximum time that a company is willing to keep a service unavailable
+- RPO: before an incident occurs
+- RTO: after an event occurs
 - Reducing RPO and RTO have cost implications because it means more frequent backups and faster mechanism to recover from failure
 
-
-### S3 
+### S3
 
 - Objects that are stored in your bucket before you set the versioning state have a version ID of `null`.
 
 #### S3 Select
 
--  Allows to query ONE s3 object and extract data from it without having to download the entire file locally
--  It uses a subset of standard SQL for queries
--  Supports CSV, JSON (also gzipped or bzipped) and parquet (non compressed)
--  Supports files encrypted at rest
--  Can query selectively part of a file (e.g. only the first 100Mb)
--  It can be cheaper to get data out of S3 this way (not transferring large files outside AWS)
--  It charges based on the amount of data scanned per query and the amount of data returned
-
+- Allows to query ONE s3 object and extract data from it without having to download the entire file locally
+- It uses a subset of standard SQL for queries
+- Supports CSV, JSON (also gzipped or bzipped) and parquet (non compressed)
+- Supports files encrypted at rest
+- Can query selectively part of a file (e.g. only the first 100Mb)
+- It can be cheaper to get data out of S3 this way (not transferring large files outside AWS)
+- It charges based on the amount of data scanned per query and the amount of data returned
 
 ### Snowball
 
 - If copying files is slow: this is due to encryption overhead when copying files to the Snowball Edge device. Open multiple sessions to the Snowball Edge device and initiate parallel copy jobs to improve the overall copying throughput.
-
 
 ### Storage Gateway
 
@@ -351,16 +338,16 @@ AWS managed policies for job functions are designed to closely align to common j
 #### NAT Gateway
 
 - NAT Gateway do not support IPv6
-	- same for NAT instances
-	- If you need IPv6 traffic use an egress-only internet Gateway
+  - same for NAT instances
+  - If you need IPv6 traffic use an egress-only internet Gateway
 - You'd generally prefer a NAT Gataway over a NAT instance because
-	- Gateway is a managed service
-	- Highly available
-	- Scales automatically
+  - Gateway is a managed service
+  - Highly available
+  - Scales automatically
 - But you might prefer a NAT instance when:
-	- Need to save money for a small workload that doesn't require High Availability
-	- You need to fine tune security groups
-	- You want the ability to detach your Elastic IP
+  - Need to save money for a small workload that doesn't require High Availability
+  - You need to fine tune security groups
+  - You want the ability to detach your Elastic IP
 
 #### Allow a VPC to resolve using on-premise DNS
 
@@ -379,26 +366,23 @@ For default settings the DHCP address of a subnet is always the base CIDR of the
 
 E.g. if the base is `10.0.0.0/16` the DHCP address is `10.0.0.2`
 
-
 ### WAF
 
 - Web Application Firewall
-- Level 7 firewall that can be used to block web traffic 
+- Level 7 firewall that can be used to block web traffic
 - Can be used with ALB and CloudFront distributions
-
 
 ## Tips
 
 Here are some things that I picked up while doing the practice exams and that can help to analyse questions and identify the correct answer(s):
 
-- *"Scalable and cost effective"* storage is always a hint to pick DynamoDB, not RDS! Aurora could also be an option, but only if the question explicitly states *"Relational Database"*.
+- _"Scalable and cost effective"_ storage is always a hint to pick DynamoDB, not RDS! Aurora could also be an option, but only if the question explicitly states _"Relational Database"_.
 - Everytime you encounter "Slow connection" and "migration from on-premise to the cloud" expect Snowball to be one of the answers.
 - Never pick reserved instances with workloads that are limited in time.
 - Oracle RAC is not supported by RDS: all questions mentioning RAC will probably require you to spin up Oracle RAC in a dedicated EC2 instance.
 - When TCO (Total Cost of Ownership) is mentioned, the answer is generally requiring you to use AWS Application Discovery Service.
 - "Dedicated" vs "Reserved" instances. Sometimes used in the wrong way in the answers. Make sure you understand the difference so you can easily spot choices that can be easily removed. Dedicated: instances that are not shared with other AWS customers; Reserved: instances that you reserved (paid for) in advance.
 - "Memcache" vs "Redis" (ElastiCache), always pick Redis, except when it's explicitly requested that the caching layer needs to be multithreaded.
-
 
 ## Conclusion
 

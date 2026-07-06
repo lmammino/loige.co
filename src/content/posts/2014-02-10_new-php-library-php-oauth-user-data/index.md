@@ -17,7 +17,6 @@ description: The PHPoAuthUserData library provides a simple interface to extract
   builds on top of PHPoAuthLib.
 ---
 
-
 I recently wrote a new [PHP library](https://github.com/Oryzone/PHPoAuthUserData) to simplify the extraction of user data (_name_, _email_, _id_, etc...) from various OAuth providers such as _Facebook_, _Twitter_ and _Linkedin_.
 
 Is well know that OAuth 1 and 2 are great _standard_ protocols to authenticate users in our apps. Anyway we often need to go further the authentication process and extract various information about the authenticated users. Unfortunately this is something that is not standardized and obviously each OAuth provider manages user data in very specific manner according to its specific purposes.
