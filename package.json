@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
+    "prepare": "lefthook install || echo 'lefthook not found: install mise and run mise install'",
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",

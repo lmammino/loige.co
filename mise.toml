@@ -1,0 +1,58 @@
+min_version = "2026.6.1"
+
+[settings]
+lockfile = true
+
+[tools]
+node = "24"
+# keep in sync with the packageManager field in package.json
+pnpm = "9.0.6"
+lefthook = "2"
+
+# Tasks are the source of truth for project commands: CI and lefthook both
+# call them. package.json scripts are kept for npm-ecosystem compatibility.
+
+[tasks.dev]
+description = "Start the dev server"
+run = "pnpm dev"
+
+[tasks.build]
+description = "Type-check and build the static site"
+run = "pnpm build"
+
+[tasks.preview]
+description = "Preview the production build"
+run = "pnpm preview"
+
+[tasks.check]
+description = "Run astro check (types + diagnostics)"
+run = "pnpm astro check"
+
+[tasks.lint]
+description = "Biome lint + format check (js/ts/json/css, astro frontmatter)"
+run = "pnpm biome check ."
+
+[tasks."lint:fix"]
+description = "Biome lint + format with fixes applied"
+run = "pnpm biome check --write ."
+
+[tasks."lint:staged"]
+description = "Biome fix staged files only (used by the pre-commit hook)"
+run = "pnpm biome check --write --staged --no-errors-on-unmatched ."
+
+[tasks."format:check"]
+description = "Prettier check (astro/markdown/yaml)"
+run = "pnpm prettier --check ."
+
+[tasks.format]
+description = "Prettier write (astro/markdown/yaml)"
+run = "pnpm prettier --write ."
+
+[tasks."format:files"]
+description = "Prettier write specific files (used by the pre-commit hook)"
+run = "pnpm prettier --write --ignore-unknown"
+
+[tasks.ci]
+description = "Everything CI runs: lint, format check, build"
+depends = ["lint", "format:check"]
+run = "pnpm build"
