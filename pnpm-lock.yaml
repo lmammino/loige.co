@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@astrojs/check':
         specifier: ^0.9.9
-        version: 0.9.9(prettier-plugin-astro@0.12.3)(prettier@3.1.1)(typescript@5.3.3)
+        version: 0.9.9(prettier-plugin-astro@0.12.3)(prettier@3.1.1)(typescript@5.9.3)
       '@astrojs/markdown-remark':
         specifier: 7.2.1
         version: 7.2.1
@@ -28,7 +28,7 @@ importers:
         version: 3.490.0
       '@oramacloud/client':
         specifier: ^1.0.6
-        version: 1.0.6(typescript@5.3.3)
+        version: 1.0.6(typescript@5.9.3)
       '@tailwindcss/typography':
         specifier: ^0.5.10
         version: 0.5.10(tailwindcss@4.3.2)
@@ -66,8 +66,8 @@ importers:
         specifier: ^4.3.2
         version: 4.3.2
       typescript:
-        specifier: ^5.3.3
-        version: 5.3.3
+        specifier: ^5.9.3
+        version: 5.9.3
       zod:
         specifier: ^3.22.4
         version: 3.22.4
@@ -3217,8 +3217,8 @@ packages:
   typescript-auto-import-cache@0.3.6:
     resolution: {integrity: sha512-RpuHXrknHdVdK7wv/8ug3Fr0WNsNi5l5aB8MYYuXhq2UH5lnEB1htJ1smhtD5VeCsGr2p8mUDtd83LCQDFVgjQ==}
 
-  typescript@5.3.3:
-    resolution: {integrity: sha512-pXWcraxM0uxAS+tN0AG/BF2TyqmHO014Z070UsJ+pFvYuRSq8KH8DmWpnbXe0pEPDHXZV3FcAbJkijJ5oNEnWw==}
+  typescript@5.9.3:
+    resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -3567,12 +3567,12 @@ packages:
 
 snapshots:
 
-  '@astrojs/check@0.9.9(prettier-plugin-astro@0.12.3)(prettier@3.1.1)(typescript@5.3.3)':
+  '@astrojs/check@0.9.9(prettier-plugin-astro@0.12.3)(prettier@3.1.1)(typescript@5.9.3)':
     dependencies:
-      '@astrojs/language-server': 2.16.11(prettier-plugin-astro@0.12.3)(prettier@3.1.1)(typescript@5.3.3)
+      '@astrojs/language-server': 2.16.11(prettier-plugin-astro@0.12.3)(prettier@3.1.1)(typescript@5.9.3)
       chokidar: 4.0.3
       kleur: 4.1.5
-      typescript: 5.3.3
+      typescript: 5.9.3
       yargs: 17.7.2
     transitivePeerDependencies:
       - prettier
@@ -3647,12 +3647,12 @@ snapshots:
       smol-toml: 1.6.0
       unified: 11.0.5
 
-  '@astrojs/language-server@2.16.11(prettier-plugin-astro@0.12.3)(prettier@3.1.1)(typescript@5.3.3)':
+  '@astrojs/language-server@2.16.11(prettier-plugin-astro@0.12.3)(prettier@3.1.1)(typescript@5.9.3)':
     dependencies:
       '@astrojs/compiler': 2.13.1
       '@astrojs/yaml2ts': 0.2.4
       '@jridgewell/sourcemap-codec': 1.5.5
-      '@volar/kit': 2.4.28(typescript@5.3.3)
+      '@volar/kit': 2.4.28(typescript@5.9.3)
       '@volar/language-core': 2.4.28
       '@volar/language-server': 2.4.28
       '@volar/language-service': 2.4.28
@@ -4699,12 +4699,12 @@ snapshots:
 
   '@orama/orama@2.0.3': {}
 
-  '@oramacloud/client@1.0.6(typescript@5.3.3)':
+  '@oramacloud/client@1.0.6(typescript@5.9.3)':
     dependencies:
       '@orama/orama': 2.0.3
       '@paralleldrive/cuid2': 2.2.2
       react: 18.2.0
-      vue: 3.4.15(typescript@5.3.3)
+      vue: 3.4.15(typescript@5.9.3)
     transitivePeerDependencies:
       - typescript
 
@@ -5319,12 +5319,12 @@ snapshots:
 
   '@ungap/structured-clone@1.2.0': {}
 
-  '@volar/kit@2.4.28(typescript@5.3.3)':
+  '@volar/kit@2.4.28(typescript@5.9.3)':
     dependencies:
       '@volar/language-service': 2.4.28
       '@volar/typescript': 2.4.28
       typesafe-path: 0.2.2
-      typescript: 5.3.3
+      typescript: 5.9.3
       vscode-languageserver-textdocument: 1.0.12
       vscode-uri: 3.1.0
 
@@ -5414,11 +5414,11 @@ snapshots:
       '@vue/shared': 3.4.15
       csstype: 3.1.3
 
-  '@vue/server-renderer@3.4.15(vue@3.4.15(typescript@5.3.3))':
+  '@vue/server-renderer@3.4.15(vue@3.4.15(typescript@5.9.3))':
     dependencies:
       '@vue/compiler-ssr': 3.4.15
       '@vue/shared': 3.4.15
-      vue: 3.4.15(typescript@5.3.3)
+      vue: 3.4.15(typescript@5.9.3)
 
   '@vue/shared@3.4.15': {}
 
@@ -7568,7 +7568,7 @@ snapshots:
     dependencies:
       semver: 7.7.4
 
-  typescript@5.3.3: {}
+  typescript@5.9.3: {}
 
   ufo@1.6.3: {}
 
@@ -7793,15 +7793,15 @@ snapshots:
 
   vscode-uri@3.1.0: {}
 
-  vue@3.4.15(typescript@5.3.3):
+  vue@3.4.15(typescript@5.9.3):
     dependencies:
       '@vue/compiler-dom': 3.4.15
       '@vue/compiler-sfc': 3.4.15
       '@vue/runtime-dom': 3.4.15
-      '@vue/server-renderer': 3.4.15(vue@3.4.15(typescript@5.3.3))
+      '@vue/server-renderer': 3.4.15(vue@3.4.15(typescript@5.9.3))
       '@vue/shared': 3.4.15
     optionalDependencies:
-      typescript: 5.3.3
+      typescript: 5.9.3
 
   web-namespaces@2.0.1: {}
 
