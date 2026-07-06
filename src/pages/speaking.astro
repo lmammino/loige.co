@@ -44,7 +44,7 @@ const pastTalksByYear = Object.entries(
     },
     {} as Record<number, Props[]>,
   ),
-).sort((a, b) => (b as any)[0] - (a as any)[0])
+).sort((a, b) => Number(b[0]) - Number(a[0]))
 
 const locations = new Set(
   pastTalks.map((s) => s.data.event_city).filter((l) => !!l),

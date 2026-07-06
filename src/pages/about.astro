@@ -30,8 +30,8 @@ type SideProject = {
   role: string
 }
 
-const externalArticles: ExternalArticle[] = _externalArticles.sort(
-  (a: any, b: any) => b.date.localeCompare(a.date),
+const externalArticles: ExternalArticle[] = _externalArticles.sort((a, b) =>
+  b.date.localeCompare(a.date),
 )
 const sideProjects: SideProject[] = _sideProjects
 ---
