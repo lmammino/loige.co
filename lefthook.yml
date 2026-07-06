@@ -1,0 +1,18 @@
+# Git hooks managed by lefthook (installed via mise; wired up by the
+# `prepare` script in package.json). Hooks call mise tasks so the commands
+# live in one place (mise.toml), shared with CI.
+pre-commit:
+  parallel: true
+  jobs:
+    # Biome owns js/ts/json/css and .astro frontmatter linting.
+    # `--staged` only touches staged files; fixes are re-staged.
+    - name: biome
+      glob: '*.{js,jsx,ts,tsx,json,jsonc,webmanifest,css,astro}'
+      run: mise run lint:staged
+      stage_fixed: true
+
+    # Prettier owns .astro formatting, markdown and yaml.
+    - name: prettier
+      glob: '*.{astro,md,mdx,yml,yaml}'
+      run: mise run format:files -- {staged_files}
+      stage_fixed: true
