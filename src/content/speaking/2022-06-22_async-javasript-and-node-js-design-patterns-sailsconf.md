@@ -19,4 +19,3 @@ with: []
 
 Let's take a walk into the JavaScript/Node.js ecosystem and let's try to understand what makes this ecosystem so special compared to other languages. Why is the async paradigm so convenient in the world of full stack web development and what are the challenges that come with it?
 In this talk, we will discuss the JavaScript async history, some common gotchas and some interesting design patterns that are unique to the JavaScript ecosystem.
-

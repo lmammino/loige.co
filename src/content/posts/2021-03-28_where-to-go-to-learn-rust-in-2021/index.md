@@ -17,7 +17,6 @@ description: This article provides a list of free and paid resources to learn
   communities, exercises, workshops, and open source projects.
 ---
 
-
 In this article, we want to provide a list of some free and paid resources that we loved the most in our journey to learning Rust.
 
 Rust is certainly not the easiest of programming languages, especially at first glance, but once you can overcome the initial "wall of fear" and start to grasp some of the key concepts, Rust becomes a language that you are going to love and you will probably be looking for more and more excuses to use it and learn it further. For this reason, we wanted to collect a list of resources that can help new Rust adventures to find their path towards becoming real "rustaceans".
@@ -84,14 +83,13 @@ This resource is definitely recommended if you are starting to feel confident ab
 
 #### Amos (fasterthanlime)
 
-If you want to learn more about Rust, why it is a fantastic language, why and when it might not be so good, and how it is becoming even better, the best place to get into that is [Amos (fasterthanlime)'s  blog](https://fasterthanli.me/).
+If you want to learn more about Rust, why it is a fantastic language, why and when it might not be so good, and how it is becoming even better, the best place to get into that is [Amos (fasterthanlime)'s blog](https://fasterthanli.me/).
 
-Amos has a very engaging writing style. He can write very lengthy posts but they are always extremely enjoyable. Maybe because of his extensive in-depth knowledge, maybe because of his entertaining writing style and the support of the __Cool bear__!
+Amos has a very engaging writing style. He can write very lengthy posts but they are always extremely enjoyable. Maybe because of his extensive in-depth knowledge, maybe because of his entertaining writing style and the support of the **Cool bear**!
 
 [![A random Cool Bear appears](./cool-bear.png)](https://fasterthanli.me/)
 
 If there one article you shouldn't miss in this blog that certainly is [Half an hour to learn Rust](https://fasterthanli.me/articles/a-half-hour-to-learn-rust).
-
 
 #### Yoshua Wuyts
 
@@ -101,18 +99,15 @@ His blog is a very good place to learn about async Rust, streams, iterators, etc
 
 Given our background as web developers, our favourite article so far is [Async HTTP](https://blog.yoshuawuyts.com/async-http/).
 
-
 #### Steve Klabnik
 
 Steve Klabnik is one of the most influential people in the Rust community. No surprise that some of the most influential Rust posts come from [his blog](https://steveklabnik.com/). In this blog, there's a lot of content on software engineering in general, and on how other languages and their problems (and solutions) compare to Rust.
 
 If you don't know where to start, we recommend [Rust has finally outgrown me](https://steveklabnik.com/writing/rust-has-finally-outgrown-me).
 
-
 #### Tyler Neely
 
 If you’re into databases, performance optimization, distributed systems, check out [Tyler Neely's blog](https://tylerneely.com/) and look no further. The author writes about low-level problems, tips and tricks, linux, etc. Their project, [Sled](https://sled.rs/) is a fantastic tool if you want to experiment with embedded databases and Rust.
-
 
 #### Luca Palmieri
 
@@ -130,20 +125,18 @@ If you prefer to watch the live versions of his videos you can also [find Ryan o
 
 [![Streaming Rust with Ryan Levick](./ryan-levick-rust-stream.jpg)](https://www.youtube.com/channel/UCpeX4D-ArTrsqvhLapAHprQ)
 
-
 #### Jon Gjengset
 
 Jon Gjengset is another brilliant author who is streaming about Rust. He is also another content creator that we admire for his capacity of making complex topics easy and understandable. He has 2 main series about Rust right now:
 
- - [Crust of Rust](https://www.youtube.com/playlist?list=PLqbS7AVVErFiWDOAVrPt7aYmnuuOLYvOa): a very good series for the mid-level Rustucean who wants to get better with more advanced concepts such as _iterators_, _smart pointers_, _lifetime annotations_, etc.
- - [The Unsafe Chronicles](https://www.youtube.com/playlist?list=PLqbS7AVVErFj1t4kWrS5vfvmHpJ0bIPio): A deep dive into the world of unsafe Rust.
- 
+- [Crust of Rust](https://www.youtube.com/playlist?list=PLqbS7AVVErFiWDOAVrPt7aYmnuuOLYvOa): a very good series for the mid-level Rustucean who wants to get better with more advanced concepts such as _iterators_, _smart pointers_, _lifetime annotations_, etc.
+- [The Unsafe Chronicles](https://www.youtube.com/playlist?list=PLqbS7AVVErFj1t4kWrS5vfvmHpJ0bIPio): A deep dive into the world of unsafe Rust.
+
 Currently, _The Unsafe Chronicles_ series has only one video, but the author recently posted on Twitter that we should be expecting a lot more of his time spent on creating new exciting content! How cool is that?
 
 [![Jon Gjengset tweeting about his commitment to stream more Rust content](./jon-gjengset-tweet-about-rust-streams.jpg)](https://twitter.com/jonhoo/status/1375621373297500160)
 
 If you prefer to watch Jon live, you can [find him on Twitch](https://www.twitch.tv/jonhoo).
-
 
 #### Tim McNamara
 
@@ -153,18 +146,15 @@ Also, special love goes to Tim for doing a [live review](https://loige.co/learni
 
 If you want to follow Tim (you should!) you can find him on [YouTube](https://www.youtube.com/c/timClicks) and [Twitch](https://www.twitch.tv/timclicks).
 
-
 #### Genus-v programming
 
 [Genus-v programming](https://www.youtube.com/c/GenusvProgramming) is another great YouTube channel with some interesting Rust material. It is mostly focused on web development with Rust and that's probably why it fell under our radar.
 
 One of our favourite playlists (unsurprisingly) is [Web Development with Rust](https://www.youtube.com/playlist?list=PLECOtlti4Psr4hXVX5GuSvLKp0-RZjz93) which shows how to use Actix to build a GraphQL API and an authentication server.
 
-
 #### Systems with JT
 
 [Systems with JT](https://www.youtube.com/channel/UCrW38UKhlPoApXiuKNghuig) is the YouTube channel of Jonathan Turner. Jonathan has been a very active Rust developer. He is the author of [Nushell](https://www.nushell.sh/) and, of course, in his channel, he has a good number of videos dedicated to Rust. Right now, our favourite series is the one where Jonathan explains [how to create a line editor in Rust](https://www.youtube.com/watch?v=xXVyHsRR168&list=PLP2yfE2-FXdQw0I6O4YdIX_mzBeF5TDdv).
-
 
 ### Newsletters
 
@@ -172,13 +162,11 @@ The two main Newsletter we follow and recommend are [Awesome Rust Newsletter](ht
 
 Another resource that is worth recommending, even though it is not strictly a newsletter, is [Read Rust](https://readrust.net/), which provides a collection of really high-quality articles about Rust. You can subscribe to the RSS feed if you want to receive instant notifications for new content!
 
-
 ### Podcasts
 
 As far as we are aware, there isn't a hell of a lot of Rust podcasts (yet). The two we have been sporadically listening to are [The Rustacean Station Podcast](https://rustacean-station.org/) and [New Rustacean](https://newrustacean.com/).
 
 Another one that is quite good, although not strictly about Rust, is [The Bikeshed](https://www.bikeshed.fm/) which occasionally contains episodes that explore Rust (see [#133](https://www.bikeshed.fm/133) and [#134](https://www.bikeshed.fm/134)).
-
 
 ### Communities & Meetups
 
@@ -189,7 +177,6 @@ The first one is the [official Rust Discord community](https://discord.gg/jrJFDJ
 Then, there are a few meetup groups that we have been sporadically attending (all virtual at this time): [Rust London](https://www.meetup.com/Rust-London-User-Group/), [Rust Berlin](https://www.meetup.com/Rust-Berlin/) and [Rust Dublin](https://www.meetup.com/Rust-Dublin/).
 
 [![Rust Dublin logo](./rust-dublin.png)](https://www.meetup.com/Rust-Dublin/)
-
 
 ### Exercises and Workshops
 
@@ -202,7 +189,6 @@ The first one that we should absolutely mention is [Rustlings](https://github.co
 Another interesting resource is a workshop by Luca Palmieri called [Build your own Jira with Rust](https://github.com/LukeMathWalker/build-your-own-jira-with-rust/). In this workshop, you start with a semi-structured project and you have to fill in the blanks. Every file is a small Rust lesson and you'll get to learn a new concept or two by providing a correct implementation.
 
 Finally, when you start to feel a bit more comfortable with Rust, we do recommend you try to solve the excellent coding challenges proposed by [Advent of Code](https://adventofcode.com/) in Rust. We are actually [doing that](https://github.com/lmammino/rust-advent) and so far it has been a lot of fun!
-
 
 ### Open-source projects
 
@@ -222,7 +208,6 @@ Here's a list of libraries we do recommend you to take a look at:
 - [Sled](https://github.com/spacejam/sled) (embedded database)
 - [mdbooks](https://github.com/rust-lang/mdBook) (create a book from markdown)
 
-
 ## Paid material
 
 ### Books
@@ -236,7 +221,6 @@ If you like learning by reading books, this list should have you covered.
 The reason why we enjoyed this book so much is that it takes a very practical stance. Rust concepts are taught by building interesting projects such as your own floating-point number implementation, a CPU emulator, a custom file format, a key-value store database, etc.
 
 [![Tim McNamara - Rust in Action book cover](./rust-in-action-meap.png)](https://www.manning.com/books/rust-in-action)
-
 
 ### Zero to Production in Rust (Luca Palmieri)
 
@@ -255,7 +239,6 @@ We think there is a lot to learn from this book, not just about Rust but even ab
 
 ![Luca Palmieri - Zero to Production in Rust book cover](./zero-to-production-in-rust-luca-palmieri-book-cover.png)
 
-
 ### Programming Rust
 
 [Programming Rust by Jim Blandy, Jason Orendorff and Leonora F.S. Tindall (O'Reilly)](https://www.oreilly.com/library/view/programming-rust-2nd/9781492052586/) is one of the most popular Rust books out there. We had an opportunity to read the first edition and it's a very solid book. The second edition should be coming this summer.
@@ -266,13 +249,11 @@ Given the success of the first edition, we are simply looking forward to get our
 
 [![Programming Rust second edition](./programming-rust-second-edition-book-cover.png)](https://www.oreilly.com/library/view/programming-rust-2nd/9781492052586/)
 
-
 ### The Rust Programming Language (Steve Klabnik, Carol Nichols)
 
 The Rust Programming Language is the print edition of the actual "official" Rust book that we discussed at the beginning of this post. There isn't much else to add, except maybe that if you enjoy reading printed books (and want to support the authors), this is a great book to have!
 
 [![The Rust Programming Language book cover](./rust-programming-language-book-cover.png)](https://www.amazon.com/Rust-Programming-Language-Steve-Klabnik-dp-1718500440/dp/1718500440)
-
 
 ### Video Courses
 
@@ -286,13 +267,11 @@ One of the things that we have been enjoying the most from this video course is 
 
 [![A screenshot from Rust in motion showing an example of lifetimes visualized](./rust-in-motion-manning-video-screenshot.png)](https://www.manning.com/livevideo/rust-in-motion)
 
-
 #### Building web APIs with Rust
 
 [Building web APIs with Rust by Paris Liakos (Udemy)](https://www.udemy.com/course/web-dev-with-rust-rocket-diesel/) is a quite good beginner-level introduction to building web applications with Rust using **Rocket** for web framework and **Diesel** as the ORM.
 
 In about 2 hours and a half, you could have a feeling for what it means to do web development with Rust.
-
 
 ## Conclusion
 
@@ -306,13 +285,11 @@ Until then... enjoy writing Rust code!
 
 CIAO 👋
 
-
 ## About the authors
 
 ### Stjepan Golemac
 
 Stjepan is a full-stack engineer with interests in machine learning, high-frequency trading, p2p, decentralization, and Rust. Working mostly with JavaScript and TypeScript in the past, he became a huge fan of Rust mostly because it enables humans to produce safe and usually correct code, but also because of its latency and performance guarantees. If you want to see what he’s been up to, or just want to say hi, you can check out [his blog](https://sgolem.com) or send him a message on [Twitter](https://twitter.com/SGolemac).
-
 
 ### Luciano Mammino
 

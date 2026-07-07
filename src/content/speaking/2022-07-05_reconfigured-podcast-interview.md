@@ -21,9 +21,9 @@ with:
 
 Today’s episode is with Luciano Mammino, Senior Architect at fourTheorem and co-author of the well known book “Nodejs Design Patterns” that is published by Packt. In this episode we have discussed the following:
 
-  - What fourTheorem offers (and why they chose AWS as cloud provider of choice)
-  - Transitioning from just writing code to adopting the cloud
-  - Challenges being a CTO
-  - The challenges of co-writing a book
-  - Microsoft’s Most Valuable Professional (MVP) program 
-  - And much more 
+- What fourTheorem offers (and why they chose AWS as cloud provider of choice)
+- Transitioning from just writing code to adopting the cloud
+- Challenges being a CTO
+- The challenges of co-writing a book
+- Microsoft’s Most Valuable Professional (MVP) program
+- And much more

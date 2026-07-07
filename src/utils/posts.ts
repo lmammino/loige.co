@@ -1,5 +1,5 @@
-import { SITE_URL } from '../consts.ts'
 import type { CollectionEntry } from 'astro:content'
+import { SITE_URL } from '../consts.ts'
 
 type TagWithCount = {
   name: string

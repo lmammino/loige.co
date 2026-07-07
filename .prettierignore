@@ -1,4 +1,10 @@
+# Biome owns JS/TS/JSON/CSS (formatting + linting); Prettier owns the rest
+# (.astro via prettier-plugin-astro, markdown, yaml).
 *.js
 *.ts
 *.tsx
+*.json
+*.jsonc
+*.webmanifest
+*.css
 !*.astro

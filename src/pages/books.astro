@@ -227,16 +227,14 @@ import RustLambdaCover from '../assets/rust-lambda-book-cover.png'
               />
             </a>
           </div>
-          <div class="flex flex-col sm:flex-row justify-center lg:justify-end w-full gap-3">
+          <div
+            class="flex flex-col sm:flex-row justify-center lg:justify-end w-full gap-3"
+          >
             <Button href="https://nodejsdesignpatterns.com">
               Visit Website
             </Button>
-            <Button href="https://nodejsdp.link/buy">
-              Buy Print
-            </Button>
-            <Button href="https://nodejsdp.link/buy-kindle">
-              Buy eBook
-            </Button>
+            <Button href="https://nodejsdp.link/buy">Buy Print</Button>
+            <Button href="https://nodejsdp.link/buy-kindle">Buy eBook</Button>
           </div>
         </div>
       </div>
@@ -268,9 +266,13 @@ import RustLambdaCover from '../assets/rust-lambda-book-cover.png'
               data-reveal="animate-[500ms_ease-in-out_10ms_slide-right]"
             />
           </a>
-          <div class="flex flex-col sm:flex-row justify-center lg:justify-start w-full gap-3">
+          <div
+            class="flex flex-col sm:flex-row justify-center lg:justify-start w-full gap-3"
+          >
             <Button href="https://rust-lambda.com">Visit Website</Button>
-            <Button href="https://app.gumroad.com/checkout?product=mheuj&quantity=1&code=early-access">
+            <Button
+              href="https://app.gumroad.com/checkout?product=mheuj&quantity=1&code=early-access"
+            >
               Buy on Gumroad
             </Button>
           </div>
@@ -373,7 +375,7 @@ import RustLambdaCover from '../assets/rust-lambda-book-cover.png'
   // smooth scroll and active state for book navigation
   const navLinks = document.querySelectorAll('.book-nav-link')
   const sections = document.querySelectorAll(
-    '#nodejs-design-patterns, #rust-lambda'
+    '#nodejs-design-patterns, #rust-lambda',
   )
 
   // smooth scroll to section

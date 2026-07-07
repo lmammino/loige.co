@@ -21,7 +21,6 @@ Well, if you are brave enough to go ahead and read it, let me say thank you and 
 
 ![A yawning monkey](./booooring.gif)
 
-
 ## Becoming an AWS Serverless Hero
 
 Let's start by addressing the elephant in the room, the biggest (and most unexpected) achievement of the year: **being awarded the title of [AWS Serverless Hero](https://aws.amazon.com/developer/community/heroes/luciano-mammino/) by AWS**! 🦸‍♂️
@@ -42,12 +41,12 @@ What I believe has been the most important thing that I have done in the realm o
 
 And this brings me to the part where I have to say thank you to other people because without them I probably wouldn't have gotten this recognition:
 
-  - [Will Farrell](https://twitter.com/willfarrell), maintainer of Middy. Will has done incredible work in the last 3 years taking Middy above and beyond. I wouldn't have been able to keep the project going without Will's hard work, so I am incredibly grateful for continuing from where I mostly left off. Thanks, Will!
-  - The amazing team at [fourTheorem](https://fourtheorem.com), because I feel like I am learning and growing a lot by working with such a talented and enthusiastic team of professionals.
-  - [Eoin Shanaghy](https://twitter.com/eoins) for sharing his endless knowledge with me and for being such a fantastic co-host for [AWS Bites Podcast](https://awsbites.com/).
-  - Tons of folks who have been inspirational in my AWS serverless journey: [Yan Cui](https://twitter.com/theburningmonk), [Heitor Lessa](https://twitter.com/heitor_lessa), [Sara Gerion](https://twitter.com/Sarutule), [Matt Meckes](https://twitter.com/mmeckes), [Andrea Amorosi](https://twitter.com/dreamorosi), [Alex DeBrie](https://twitter.com/alexbdebrie), and many more that I am sure I am forgetting (sorry).
-  - All the other other heroes, for being such an incredible source of inspiration.
-  - All the AWS folks who decided to pick my name for the award!
+- [Will Farrell](https://twitter.com/willfarrell), maintainer of Middy. Will has done incredible work in the last 3 years taking Middy above and beyond. I wouldn't have been able to keep the project going without Will's hard work, so I am incredibly grateful for continuing from where I mostly left off. Thanks, Will!
+- The amazing team at [fourTheorem](https://fourtheorem.com), because I feel like I am learning and growing a lot by working with such a talented and enthusiastic team of professionals.
+- [Eoin Shanaghy](https://twitter.com/eoins) for sharing his endless knowledge with me and for being such a fantastic co-host for [AWS Bites Podcast](https://awsbites.com/).
+- Tons of folks who have been inspirational in my AWS serverless journey: [Yan Cui](https://twitter.com/theburningmonk), [Heitor Lessa](https://twitter.com/heitor_lessa), [Sara Gerion](https://twitter.com/Sarutule), [Matt Meckes](https://twitter.com/mmeckes), [Andrea Amorosi](https://twitter.com/dreamorosi), [Alex DeBrie](https://twitter.com/alexbdebrie), and many more that I am sure I am forgetting (sorry).
+- All the other other heroes, for being such an incredible source of inspiration.
+- All the AWS folks who decided to pick my name for the award!
 
 What happens next? Well, for starting I got some cool swag. Thanks, AWS much appreciated.
 
@@ -59,11 +58,9 @@ Other than that, you'll probably see me posting more AWS and serverless-related 
 
 Also, I want to take this opportunity to give a big thank you to the AWS Heroes team: [Farrah](https://twitter.com/FarrahC32), [Taylor](https://twitter.com/taylorjacobsen), and Albert.
 
-
 > "With great power comes great responsibility"
 >
 > — Uncle Ben
-
 
 ## Confirmed as MVP
 
@@ -83,11 +80,9 @@ I should put it on a shelf at some point!
 
 You can also check out my [MVP profile](https://mvp.microsoft.com/en-us/PublicProfile/5004232) to make sure I am not lying to you. 😜
 
-
 > "Sharing is good, and with digital technology, sharing is easy"
 >
 > — Richard Stallman
-
 
 ## Codemotion Ambassador
 
@@ -109,11 +104,9 @@ To be fair, Danilo did not need a lot of support and he was able to deliver an e
 
 Also, I want to take this opportunity to thank [Francesco Sciuti](https://twitter.com/FrancescoSciuti), [Mara Marzocchi](https://www.linkedin.com/in/maraexception/), and the rest of the Codemotion team for adding me to this fantastic group of professionals. Ok, we are not always that _professionals_ but we definitely know how to have some fun!
 
-
->"You cannot teach a man anything. You can only help him discover it within himself"
+> "You cannot teach a man anything. You can only help him discover it within himself"
 >
 > — Galileo Galilei
-
 
 ## Public Speaking
 
@@ -153,16 +146,13 @@ Here's the full list for 2022:
 - _From Node.js To Design Patterns_ at BuildPiper Meetup ([Slides](https://loige.link/node2dp), [Video](https://www.youtube.com/watch?v=GVe9Ih47pm4))
 - _Building an invite-only microsite with Next.js & Airtable_ at React Milano (in Italian) ([Slides](https://loige.link/pizzaparty), [Video](https://www.youtube.com/watch?v=WFd_W_PxBOE))
 
-
 If you are curious to see all my other speaking engagements, I keep the complete list in the [speaking section](/speaking).
 
-If you are brave enough to withstand my accent, you can [invite me to speak at one of your events](http://loige.link/invite-me-to-a-conference). 
-
+If you are brave enough to withstand my accent, you can [invite me to speak at one of your events](http://loige.link/invite-me-to-a-conference).
 
 > "All life is problem solving"
 >
 > — Karl Popper
-
 
 ## AWS Bites
 
@@ -192,7 +182,6 @@ The episode count somehow does not match exactly what we have done, but all the 
 >
 > – Winston Churchill
 
-
 ## Live coding on Twitch
 
 Throughout 2022 I kept [streaming on Twitch](https://twitch.tv/loige) quite consistently. As I did last year, most of it was about solving Advent of Code challenges and learning Rust with my friends [Eugen](https://twitter.com/88_eugen) and [Roberto](https://twitter.com/gbinside) (thanks a lot for being there, having fun, and learning with me).
@@ -207,7 +196,7 @@ Towards the end of the year, we also spent a bit of time learning [Bevy](https:/
 
 ![Building a game in Rust using Bevy, live stream on Twitch](./making-a-game-in-rust-with-bevy-loige.jpg)
 
-If you want to watch the recordings of these live experiments, here's a YouTube playlist: [Rust gamedev with Bevy](https://www.youtube.com/pla[label](https://nodejsdesignpatterns.com/)ylist?list=PLbNOKnE-Oyr3yVKPvMeX0tKaalvafYQ8P).
+If you want to watch the recordings of these live experiments, here's a YouTube playlist: [Rust gamedev with Bevy](<https://www.youtube.com/pla[label](https://nodejsdesignpatterns.com/)ylist?list=PLbNOKnE-Oyr3yVKPvMeX0tKaalvafYQ8P>).
 
 A big shout-out goes to [Tommaso Allevi](https://twitter.com/AlleviTommaso), for helping us kickstart this journey into Rust gamedev. I have to say I really like the ECS (Entity Component System) model of Bevy so far, so I look forward to _playing_ more with it!
 
@@ -219,7 +208,6 @@ All the recordings of [my live streams are available on YouTube](https://youtube
 >
 > — Maria Montessori
 
-
 ## Node.js Design Patterns
 
 [Node.js Design Patterns](https://nodejsdesignpatterns.com), the book I co-authored with [Mario Casciaro](https://twitter.com/mariocasciaro), is still trending quite well after 2.5 years since the third edition was published.
@@ -227,7 +215,6 @@ All the recordings of [my live streams are available on YouTube](https://youtube
 The thing that makes me really happy is that the book keeps receiving very positive reviews. We doubled them since last year while keeping an incredibly high average rating of **4.6**/5.
 
 [![Reviews for Node.js Design Patterns on Amazon.com](./node-js-design-patterns-reviews-2022.png)](https://nodejsdesignpatterns.com)
-
 
 At the time of writing the book is trending at:
 
@@ -250,9 +237,8 @@ If you disagree, do let me know. I'd love to hear your opinion!
 Finally a HUGE shout out to my dear friend [Kelvin Omereshone](https://twitter.com/Dominus_Kelvin) for gifting copies of the book to quite a few people! ❤️
 
 > "A book is a garden, an orchard, a storehouse, a party, a company by the way, a counselor, a multitude of counselors"
-> 
+>
 > — Charles Baudelaire
-
 
 ## FullStack Bulletin
 
@@ -301,7 +287,6 @@ Meanwhile, if you use Middy, make sure to [support Will Farrell for his awesome 
 >
 > — anonymous
 
-
 ## Articles
 
 In 2022, I wasn't really a prolific author on this blog. I published only 2 articles:
@@ -321,9 +306,8 @@ On the other end, I think I was quite prolific in other media. Below there's a f
 - [Quality code: Node.js design patterns and dependency management (interview with Sprkl part II)](https://sprkl.dev/quality-code-node-js-design-patterns-and-dependency-management/)
 
 > "Every secret of a writer’s soul, every experience of his life, every quality of his mind, is written large in his works"
-> 
+>
 > — Virginia Woolf
-
 
 ## Open Source
 
@@ -351,19 +335,15 @@ Here's a list of the most meaningful contributions:
 - I started solving Advent of Vue challenges but using Solid.js instead and I am keeping my code in this repository: [lmammino/advent-of-solidjs](https://github.com/lmammino/advent-of-solidjs).
 - I created a [simple repository](https://github.com/lmammino/etna-facts) that can be used as a library and an API to get facts about Mount Etna (the volcano close to where I am from in Sicily).
 
-
 [![A screenshot of my crappy object detection app built using tensorflow.js](./screenshot-for-lmammino-crappy-object-recognition-web-app.jpg)](https://github.com/lmammino/crappy-object-recognition-web-app)
 
 Above a screenshot of my [crappy object recognition application](https://github.com/lmammino/crappy-object-recognition-web-app) built with Tensorflow.js and Solid.js. I am also about _70% sure_ that I am a real person! 😆
 
- 
 A final mention is my [open PR](https://github.com/nodesecurity/eslint-plugin-security/pull/95) together with [Simone Sanfratello](https://twitter.com/simonesanfradev) where we are trying to bring the awesome [`anti-trojan-source`](https://github.com/lirantal/anti-trojan-source/) detector by [Liran Tal](https://twitter.com/liran_tal) directly into [`nodesecurity/eslint-plugin-security`](https://github.com/nodesecurity/eslint-plugin-security). I hope this will be merged before the end of 2022!
-
 
 > "Perseverance is not a long race; it is many short races one after the other"
 >
 > — Walter Elliot
-
 
 ## Random stuff
 
@@ -374,7 +354,6 @@ And as we get ready to wrap things up, here are a few more random things:
 - I Restarted BJJ training (and after almost 3 years it feels like I have to re-learn everything from scratch)!
 - I kept running, running a total of **340 Km**... 🏃‍♂️ And once again big thanks to my friend [Luca Marchesotti](https://twitter.com/lucamarchesotti) for motivating me.
 - I got covid... twice! 🤧
-
 
 ## Expectations for next year
 

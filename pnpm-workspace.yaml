@@ -1,0 +1,19 @@
+# pnpm settings (pnpm >= 10 reads settings from this file, not package.json).
+# This is not a multi-package workspace — no `packages` key on purpose.
+
+# pnpm >= 10 blocks dependency build scripts unless allowlisted. These need
+# their install scripts: canvas and sharp fetch their prebuilt native
+# binaries there; esbuild's postinstall wires up its platform binary.
+allowBuilds:
+  canvas: true
+  sharp: true
+  esbuild: true
+
+# Never prompt before recreating the modules directory: prompts hang forever
+# in non-TTY contexts (git hooks, CI, editors).
+confirmModulesPurge: false
+
+# Warn (instead of auto-installing) when node_modules is out of sync with the
+# lockfile before running a script — auto-installs inside git hooks are slow
+# and surprising.
+verifyDepsBeforeRun: warn

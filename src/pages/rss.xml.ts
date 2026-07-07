@@ -1,8 +1,8 @@
+import { type CollectionEntry, getCollection, render } from 'astro:content'
 import rss from '@astrojs/rss'
 import type { APIContext } from 'astro'
 import { experimental_AstroContainer as AstroContainer } from 'astro/container'
 import { SITE_AUTHOR, SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from '../consts'
-import { type CollectionEntry, getCollection, render } from 'astro:content'
 
 function makeImageUrlsAbsolute(html: string): string {
   // Convert relative image src to absolute URLs

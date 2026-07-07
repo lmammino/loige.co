@@ -18,7 +18,6 @@ A little bit later than I expected over the new year, but here we are again, wit
 
 This is going to be boring (again I do this kind of posts selfishly only for myself), so brace yourself if you really want to keep going on this!
 
-
 ## Tech Leadership Training
 
 Possibly the biggest achievement of last year was my contribution as a teacher to the [Tech Leadership Training - Taking you from Developer to CTO](https://www.codemotion.com/learning/tp/tech-leadership-training-program-26) organised by Codemotion and Facebook Developer Circles.
@@ -29,12 +28,11 @@ The course is designed to help developers in their journey to become CTO of star
 
 The course was made of 3 modules:
 
-  - Module 1: Defining the CTO Role
-  - Module 2: AI/Machine Learning
-  - Module 3: Software Architecture/DevOps
+- Module 1: Defining the CTO Role
+- Module 2: AI/Machine Learning
+- Module 3: Software Architecture/DevOps
 
 I presented Module 3, where I essentially covered what happens when a startup scales from thousands of users to millions of users. My track highlights that only a correct and solid software architecture can keep the business safe, but also that lean and agile techniques can allow your product to keep growing over time.
-
 
 ## Conference talks
 
@@ -62,7 +60,6 @@ Compared to 2018, when I presented 8 talks/workshops, this is a 62.5% "growth" r
 
 Not sure how much do I want to commit for this year. I am not actively applying for conferences, so probably I will limit my participation to events where I get a direct invitation. Also, I will have to start developing some new talks!
 
-
 ## Career
 
 From a career perspective, I spent another year at Vectra. As usual, it was an intense and engaging year, full of learnings. Probably most learnings were not as technical as I hoped, but still, I am sure that developing soft skills and business skills is always a precious addition to any technical career.
@@ -70,7 +67,6 @@ From a career perspective, I spent another year at Vectra. As usual, it was an i
 Surprise now! Next week is going to be my last week at Vectra. I decided to move on and search for new opportunities starting from February 2020.
 
 [Hit me up on Twitter](https://twitter.com/loige) if you think I could be a good fit in your company/project and let's have a chat!
-
 
 ## Side projects
 
@@ -84,7 +80,6 @@ A great shout out to [Will Farrell](https://github.com/willfarrell) and [Sebasti
 
 One interesting thing is that towards the end of the year I started working on a (currently secret) side project, that should be released this year around May or June. Stay tuned 😇
 
-
 ## Blog posts
 
 In 2019 I wasn't a very active author... It was actually pretty bad with only 3 blog posts published:
@@ -97,7 +92,7 @@ It's interesting to see that my 2 top posts of last year were articles written d
 
 - [Emerging JavaScript pattern: multiple return values](https://loige.co/emerging-javascript-pattern-multiple-return-values) (~26.100 views)
 - [AWS Solution Architect Associate exam, my notes and tips
-](https://loige.co/aws-solution-architect-associate-exam-notes-tips) (~16.900 views)
+  ](https://loige.co/aws-solution-architect-associate-exam-notes-tips) (~16.900 views)
 
 The total number of page views amounted to about 120.000 views, which compared to the previous year total of 65.000 views is a great 85% increase.
 
@@ -105,26 +100,24 @@ I should dig in to find out the reason for the increase. I don't feel like I did
 
 For this year, I am not sure I am ready to make any commitment. I want to try and find one or two topics that I am really passionate about and that I can be able to write interesting posts about. Let's see how it goes.
 
-
 ## External posts
 
 In 2019, I have been writing 3 posts for a new website that is yet to be published. I will disclose the links in the [about section](https://loige.co/about) when they are available!
-
 
 ## Open Sourcing
 
 In 2019, I did not stop doing my small part to contribute to open source. Here's a quick list of my main GitHub contributions:
 
- - [callstack/linaria](https://github.com/callstack/linaria): Zero-runtime CSS in JS library (contribution).
- - [lmammino/fastify-preact-htm-boilerplate](https://github.com/lmammino/fastify-preact-htm-boilerplate): Quickly bootstrap your next web app with Fastify, Preact and htm.
- - [lmammino/s3-list-bucket-stream](https://github.com/lmammino/s3-list-bucket-stream): Node.js stream library that allows you to stream a list of objects from an S3 bucket.
- - [lmammino/s3-object-content-stream](https://github.com/lmammino/s3-object-content-stream): A Node.js transform stream that gets S3 object keys and emits their actual content.
- - [lorenzofox3/for-await](https://github.com/lorenzofox3/for-await): operators and stream semantic for asyncIterators (contribution).
- - [lmammino/streams-examples](https://github.com/lmammino/streams-examples): A bunch of examples on how to use Node.js streams.
- - [olivere/elastic](https://github.com/olivere/elastic): Elasticsearch client for Go (contribution).
- - [lmammino/lambda-image-colors](https://github.com/lmammino/lambda-image-colors): An example AWS Lambda written in GoLang to tag a picture with its prominent colors.
- - [lmammino/s3st](https://github.com/lmammino/s3st): A command line utility that allows you to stream data from multiple S3 objects directly into your terminal.
- - [lmammino/rustlings](https://github.com/lmammino/rustlings): random exercises to learn rust (mostly to entertain myself on long plane flights ✈️).
+- [callstack/linaria](https://github.com/callstack/linaria): Zero-runtime CSS in JS library (contribution).
+- [lmammino/fastify-preact-htm-boilerplate](https://github.com/lmammino/fastify-preact-htm-boilerplate): Quickly bootstrap your next web app with Fastify, Preact and htm.
+- [lmammino/s3-list-bucket-stream](https://github.com/lmammino/s3-list-bucket-stream): Node.js stream library that allows you to stream a list of objects from an S3 bucket.
+- [lmammino/s3-object-content-stream](https://github.com/lmammino/s3-object-content-stream): A Node.js transform stream that gets S3 object keys and emits their actual content.
+- [lorenzofox3/for-await](https://github.com/lorenzofox3/for-await): operators and stream semantic for asyncIterators (contribution).
+- [lmammino/streams-examples](https://github.com/lmammino/streams-examples): A bunch of examples on how to use Node.js streams.
+- [olivere/elastic](https://github.com/olivere/elastic): Elasticsearch client for Go (contribution).
+- [lmammino/lambda-image-colors](https://github.com/lmammino/lambda-image-colors): An example AWS Lambda written in GoLang to tag a picture with its prominent colors.
+- [lmammino/s3st](https://github.com/lmammino/s3st): A command line utility that allows you to stream data from multiple S3 objects directly into your terminal.
+- [lmammino/rustlings](https://github.com/lmammino/rustlings): random exercises to learn rust (mostly to entertain myself on long plane flights ✈️).
 - [lmammino/streams-workshop](https://github.com/lmammino/streams-workshop): A workshop on Node.js Streams.
 - [svgdotjs/svgdotjs.github.io](https://github.com/svgdotjs/svgdotjs.github.io): Documentation and website for SVG.js (contribution).
 - [theKashey/rewiremock](https://github.com/theKashey/rewiremock): The right way to mock dependencies in Node.js or webpack environment (contribution).
@@ -140,9 +133,7 @@ In 2019, I did not stop doing my small part to contribute to open source. Here's
 - [lmammino/netcore-node-azure-func-container](https://github.com/lmammino/netcore-node-azure-func-container): a repository for Debian 9 containers including net core sdk, node.js and azure functions CLI.
 - [nodejs/node](https://github.com/nodejs/node): yes, that's the Node.js repository! I did a small contribution, but still cool to have one there.
 
-
 👍 Comparing last year (22) to this year (24) I had a +9% repo contributions increase. Quite stable I'd say!
-
 
 ## Previous years goals
 
@@ -162,7 +153,6 @@ Now it's time to check against my [previous year goals](https://loige.co/2018-a-
 - 😐 **More serious and constant BJJ training!**: not too bad, but could have been better!
 
 Yep I did underdeliver or fail most o my goals, maybe I should set more realistic and coherent goals for this new year!
-
 
 ## Expectations for next year
 

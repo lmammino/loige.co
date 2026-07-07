@@ -23,7 +23,6 @@ I feel the usual disclaimer is mandatory here: I generally write these posts for
 
 ![A cute dog rolling itself into a blanket over the word "Goodnight"](./goodnight.gif)
 
-
 ## First time at re:Invent
 
 It's hard to pick what was my favourite thing of the year, but I want to start by sharing that 2023 marked my attendance of re:Invent. re:Invent is the biggest conference organized by AWS and it takes place every year in Las Vegas. It's a huge event with more than 60k attendees and it's a great opportunity to learn about the latest news from AWS and to meet a lot of people from the community.
@@ -55,15 +54,13 @@ I also want to give a shout-out to a few folks who delivered some amazing talks 
 
 In case you are curious, all the other talks are available on the official [AWS Events YouTube channel](https://www.youtube.com/@AWSEventsChannel). There's also a dedicated playlist for all the [breakout session talks](https://www.youtube.com/playlist?list=PL2yQDdvlhXf_HQ1BmWQHoe1o5-SQMCUfl).
 
-
 A big thank you is mandatory to the AWS Hero program team: **Taylor Jacobsen**, **Farrah Campbell**, and **Albert Zhao**. They did an amazing job at organizing the AWS Heroes Lounge and the AWS Heroes reception. They also did a great job at making sure that all the AWS Heroes had a great time at re:Invent and that we had the opportunity to meet and network with each other. I am really grateful for the opportunity to be part of this amazing program and I am looking forward to the next re:Invent!
 
 One last thing I want to mention is that re:Invent is a fantastic place for collaborating on content creation. I had the pleasure to collaborate with [Chriss Williams](https://twitter.com/mistwire) doing a [quick interview](https://www.youtube.com/watch?v=ErJ8KpYd5B8) for his [vBrownBag channel](https://www.youtube.com/@vBrownBag). I also spoke with [Julian Wood](https://twitter.com/julian_wood) at their ServerlessLand booth (yet to be published) and with [Sam Williams](https://www.linkedin.com/in/sam-complete-coding/) from Complete Coding (yet to be published as well).
 
 > Life is beautiful not because of the things we see or do. Life is beautiful because of the people we meet.
-> 
+>
 > — Simon Sinek
-
 
 ## Middy
 
@@ -103,17 +100,16 @@ If we look at some vanity metrics (GitHub stars count), there was some nice stea
 [![Growth chart of the number of stars on GitHub](./middy-github-stars-growth-chart.jpg)](https://starchart.cc/middyjs/middy)
 
 We are so close to **3600 stars**, so if you use Middy and find value in it, consider [giving it a star on GitHub](https://github.com/middyjs/middy) and help us reach this vanity milestone! 😋
- 
+
 One final call to action: if you like Middy and care about its future, it would be only fair to [consider sponsoring Will Farrell on GitHub](https://github.com/sponsors/willfarrell). He is the one who is putting most of the effort into maintaining the project and he is doing an amazing job at it. 🙏
 
 > Side projects create the greatest companies because they begin as freedom machines, labors of love and truth vehicles. Precious time is traded to pursue something pure.
 >
 > — Brian Norgard
 
-
 ## Almost 3 years at FourTheorem
 
-February next year will mark my third year as a Senior Architect at [fourTheorem](https://fourTheorem.com). It's crazy to think that, because I am still as happy as I was in the first few months which I admit is something fairly unusual for me since I have been a bit of a job-hopper before changing jobs regularly every ~2 years.  Now I am not just happy to stick around with fourTheorem, but I am also looking forward to years to come!
+February next year will mark my third year as a Senior Architect at [fourTheorem](https://fourTheorem.com). It's crazy to think that, because I am still as happy as I was in the first few months which I admit is something fairly unusual for me since I have been a bit of a job-hopper before changing jobs regularly every ~2 years. Now I am not just happy to stick around with fourTheorem, but I am also looking forward to years to come!
 
 If you ask me why, I probably wouldn't have a straight answer. Or, at least, I wouldn't be able to pinpoint a single factor that contributes to my happiness. I think it's a combination of many things: great culture, interesting projects (always challenging and with lots of variety), amazing colleagues both at human and technical levels, and a lot of freedom to experiment and grow. Finally, I feel that the work we do is meaningful and has a positive impact on our customers and the community. And looking back at my career, I think this is something that is not obvious at all in the tech world.
 
@@ -140,7 +136,6 @@ Finally, if you and your company are looking for help with AWS and the cloud, wh
 >
 > — Confucius
 
-
 ## Public speaking
 
 I am not sure if I can call myself a _public speaker_, but I do enjoy speaking at conferences and meetups. I think it's a great way to share knowledge and to meet new people. I also think it's a great way to step out of your comfort zone, challenge yourself and grow as a person. If it's something you haven't done yet, I would recommend considering it.
@@ -151,7 +146,7 @@ I have been doing public speaking since 2016 and in 2023 I reached a total of **
 
 <small>This is me delivering a talk about JavaScript iteration protocols at JSNation in Amsterdam. What an awesome experience!</small>
 
-One of my favourite speaking events was to deliver my first talk at a Rust conference (RustNation UK)! 🦀 This is really important for me because I feel I am still at the very beginning of my Rust journey and being able to speak in front of a crowd interested in Rust and possibly more knowledgeable than me was a great experience. I am looking forward to doing more of this in the future! 
+One of my favourite speaking events was to deliver my first talk at a Rust conference (RustNation UK)! 🦀 This is really important for me because I feel I am still at the very beginning of my Rust journey and being able to speak in front of a crowd interested in Rust and possibly more knowledgeable than me was a great experience. I am looking forward to doing more of this in the future!
 
 The talk is called _"What I learned by solving 50 Advent of Code challenges in Rust"_. It had a great reception and it's available on YouTube with more than 12k views and tons of comments!
 
@@ -160,7 +155,6 @@ The talk is called _"What I learned by solving 50 Advent of Code challenges in R
 </div>
 
 <small>Spoiler, I'll be presenting at RustNation UK again in 2024! 🎉</small>
-
 
 Here's the full list of talks I delivered in 2023:
 
@@ -199,7 +193,6 @@ What do you think? Is there any topic here that catches your attention? If so, l
 > It usually takes me more than three weeks to prepare a good impromptu speech
 >
 > — Mark Twain
-
 
 ## AWS Bites
 
@@ -243,7 +236,6 @@ If you enjoy AWS Bites, let us know what you think about it, what can we do to d
 >
 > — Margaret Fuller
 
-
 ## Live coding on Twitch
 
 In 2023 I continued my activity of [live coding on Twitch](https://twitch.tv/loige) together with my friend [Roberto Gambuzzi](https://twitter.com/gbinside). I actually want to take the opportunity to give Roberto a big shout-out not just for the great company during these live coding streams (where he always brings a huge amount of expertise and some great fun too), but also for keeping me on track with streaming (more or less) regularly! So, yes, _Thanks Roberto!_ 🙏
@@ -281,7 +273,6 @@ Finally, a big shout-out to all the people who joined us during the streams and 
 >
 > — Joe Rogan
 
-
 ## Node.js Design Patterns
 
 [Node.js Design Patterns](https://nodejsdesignpatterns.com/) is a book I co-authored with the amazing [Mario Casciaro](https://twitter.com/mariocasciaro). It is s still doing quite well even after 3.5 years since the third edition was published.
@@ -314,7 +305,6 @@ Meanwhile, if you have read the book, what do you think? Is there something miss
 >
 > — Charles Baudelaire
 
-
 ## FullStack Bulletin
 
 [FullStack Bulletin](https://fullstackbulletin.com/) is a free weekly newsletter about full-stack web development. I have been running this project with my dear friend [Andrea Mangano](https://twitter.com/andreaman87) for the last 6 years, now.
@@ -322,7 +312,6 @@ Meanwhile, if you have read the book, what do you think? Is there something miss
 [![A screenshot of one of the latest issues of FullStack Bulletin - Issue #352 published on 2023-12-25](./fullstack-bulletin-screenshot-of-issue-352-2023-12-25.jpg)](https://us15.campaign-archive.com/?u=b015626aa6028495fe77c75ea&id=d91a7c0643)
 
 <small>A screenshot of one of the latest issues of FullStack Bulletin - Issue #352 published on 2023-12-25</small>
-
 
 In 2023 we reached more than **350 published issues** and a total of **3000 subscribers** (compared to 2500 last year)! 🎉
 
@@ -339,7 +328,6 @@ A bit shout-out to our sponsors in 2023: **MisterDA**, **ConfigCat**, and **Pack
 > Curation is a natural and necessary extension of content creation. That is, as great as your content may be, your audience wants to learn from other experts and differing perspectives.
 >
 > — Pawan Deshpande
-
 
 ## LifeFoliage: the Landscape Hunt game
 
@@ -362,7 +350,6 @@ A big thanks to the team responsible for LifeFoliage and Landscape Hunt for invo
 > The greatest threat to our planet is the belief that someone else will save it.
 >
 > — Robert Swan
-
 
 ## Articles & blog
 
@@ -387,7 +374,6 @@ I was going to publish some stats about the blog, but the migration to Google An
 > Blogging is to writing what extreme sports are to athletics: more free-form, more accident-prone, less formal, more alive. It is, in many ways, writing out loud.
 >
 > — Andrew Sullivan
-
 
 ## Open Source
 
@@ -431,7 +417,6 @@ To close this section here's my ritual GitHub yearly contribution graph! I know 
 >
 > — Linus Torvalds
 
-
 ## Other stuff
 
 Some other quick professional news (even though they are not really news).
@@ -450,7 +435,7 @@ Codemotion is the biggest tech conference (and tech community) in Italy and one 
 
 ![Part of the Codemotion Ambassador team at Codemotion Milan 2023](./part-of-the-codemotion-ambassador-team-at-codemotion-milan-2023.jpg)
 
-<small>In this picture some members of Codemotion and the Codemotion Ambassador team during the after-party at Codemotion Milan 2023. From left to Right: [Michela Bertaina](https://twitter.com/BertainaMichela), _a random guy_, [Mattia Tommasone](https://www.linkedin.com/in/raibaz/) _a.k.a. "Mr. DJ"_,  [Gabriele Santomaggio](https://twitter.com/GSantomaggio), [Francesco Sciuti](https://twitter.com/FrancescoSciuti) _a.k.a. "Batman"_, [Emanuele Bartolesi](https://twitter.com/kasuken) _a.k.a "The Machine"_, [César Alberca](https://twitter.com/cesalberca), [Mara Marzocchi](https://twitter.com/Maraexceptioon).</small>
+<small>In this picture some members of Codemotion and the Codemotion Ambassador team during the after-party at Codemotion Milan 2023. From left to Right: [Michela Bertaina](https://twitter.com/BertainaMichela), _a random guy_, [Mattia Tommasone](https://www.linkedin.com/in/raibaz/) _a.k.a. "Mr. DJ"_, [Gabriele Santomaggio](https://twitter.com/GSantomaggio), [Francesco Sciuti](https://twitter.com/FrancescoSciuti) _a.k.a. "Batman"_, [Emanuele Bartolesi](https://twitter.com/kasuken) _a.k.a "The Machine"_, [César Alberca](https://twitter.com/cesalberca), [Mara Marzocchi](https://twitter.com/Maraexceptioon).</small>
 
 Thanks for having me in this awesome community! I look forward to contributing more to it in 2024!
 
@@ -459,7 +444,6 @@ Thanks for having me in this awesome community! I look forward to contributing m
 > The future of every community lies in capturing the passion, imagination, and resources of its people.
 >
 > — Ernesto Sirolli
-
 
 ## Some random personal stuff
 

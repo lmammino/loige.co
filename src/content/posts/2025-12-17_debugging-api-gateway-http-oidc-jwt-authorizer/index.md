@@ -28,7 +28,6 @@ If you're using AWS API Gateway HTTP with a JWT authorizer and your OIDC provide
 
 If you're in a hurry, jump straight to [the solution](#the-solutions).
 
-
 ## API Gateway HTTP and the built-in JWT Authorizer
 
 AWS offers two main flavors of API Gateway: **REST API (v1)** and **HTTP API (v2)**. HTTP API is the newer, lighter, and cheaper option. It's designed for simpler use cases and offers better performance at a lower cost. One of its nice features is the built-in support for JWT authorizers, which allows you to validate OIDC-based tokens without writing any custom code.
@@ -65,7 +64,6 @@ This is convenient because AWS handles all the heavy lifting: fetching the publi
 
 > **REST API vs HTTP API**: If you're using REST API Gateway (v1), you won't find this built-in JWT authorizer feature. Instead, you need to implement a custom Lambda authorizer. I've built an open-source project called [`oidc-authorizer`](https://github.com/lmammino/oidc-authorizer) that does exactly this. It's a high-performance Rust-based Lambda authorizer that handles OIDC token validation. It's available on [GitHub](https://github.com/lmammino/oidc-authorizer) and the [Serverless Application Repository (SAR)](https://serverlessrepo.aws.amazon.com/applications/eu-west-1/795006566846/oidc-authorizer), and it's highly configurable to support various OIDC providers.
 
-
 ## The Problem
 
 The trouble starts when you're working with an OIDC provider that doesn't fully implement the OIDC specification. Specifically, the issue arises when the provider doesn't expose the `/.well-known/openid-configuration` endpoint.
@@ -86,7 +84,6 @@ Here's what happens when your OIDC provider doesn't implement this endpoint:
 This is incredibly frustrating because there's no obvious indication that anything went wrong. Your deployment completed successfully, your stack shows a green checkmark, but your API is broken.
 
 I spent a good amount of time scratching my head, checking IAM permissions, reviewing my template syntax, and wondering if I had somehow misconfigured everything. The real culprit was much simpler: the OIDC provider I was integrating with didn't expose the discovery endpoint.
-
 
 ## The Solutions
 
@@ -132,7 +129,6 @@ This error message tells you exactly what's wrong: AWS couldn't connect to the O
 
 I strongly recommend **always enabling `FailOnWarnings: true`** on your HTTP API resources. It's much better to have a deployment fail loudly than to end up with a broken API in production that you might not notice until users start complaining.
 
-
 ### Solution 2: Ensure your OIDC provider is compliant
 
 Once you know the problem, you can verify it by testing the discovery endpoint manually:
@@ -151,7 +147,6 @@ If you're working with a provider that doesn't, you have a few options:
 2. **Use a different provider**: If possible, switch to a compliant OIDC provider
 3. **Implement a custom Lambda authorizer**: If you're stuck with a non-compliant provider, you'll need to write your own authorizer logic
 
-
 ### Alternative: Custom Lambda Authorizer
 
 If your OIDC provider doesn't support the discovery endpoint and you can't change providers, your only option is to implement a custom Lambda authorizer. This approach:
@@ -161,7 +156,6 @@ If your OIDC provider doesn't support the discovery endpoint and you can't chang
 - Works with both REST API and HTTP API Gateway
 
 The downside is added complexity and cost (Lambda invocations). If you're using REST API Gateway, check out my [`oidc-authorizer`](https://github.com/lmammino/oidc-authorizer) project which might serve as inspiration or even a ready-to-use solution. Keep in mind that this particular project is designed for REST API Gateway, but the validation logic could be adapted for HTTP API as well.
-
 
 ## Summary
 

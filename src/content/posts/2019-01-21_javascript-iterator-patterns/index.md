@@ -27,8 +27,8 @@ in many different ways, iterators are no exception!
 Wikipedia defines iterators as follows:
 
 > In computer programming, an iterator is an object that enables a programmer
-to traverse a container, particularly lists. Various types of iterators are
-often provided via a container's interface.
+> to traverse a container, particularly lists. Various types of iterators are
+> often provided via a container's interface.
 
 We will extend this definition even further as we will not focus on building
 iterators for pre-computed values like lists, but we will see how to iterate over
@@ -39,13 +39,12 @@ Most likely you won't be using the Fibonacci sequence in your day to day program
 of recursion 😆), but the idea of generating a sequence of values on demand
 (lazy evaluation) translates well to a lot of real-life scenarios like:
 
- - traversing custom data structures
- - consuming paginated APIs
- - draining a queue
- - processing long files line by line
- - read all the records from a SQL table
- - etc.
-
+- traversing custom data structures
+- consuming paginated APIs
+- draining a queue
+- processing long files line by line
+- read all the records from a SQL table
+- etc.
 
 ## The Fibonacci sequence
 
@@ -65,14 +64,13 @@ In more formal mathematical terms, you can define the sequence as:
 
 Few things to notice:
 
- - The sequence is infinite (it would be impossible to store it in a list without an upper limit).
- - It is made by positive integers.
+- The sequence is infinite (it would be impossible to store it in a list without an upper limit).
+- It is made by positive integers.
 
 So, how do we write some JavaScript code that allows us to iterate over this sequence and
 calculate an arbitrary number of elements?
 
 Well, there are many ways...
-
 
 ## Functions
 
@@ -115,13 +113,13 @@ const genFib = (max = Number.MAX_SAFE_INTEGER) => {
 I added some comments to make the code easy to understand, but let's go through it
 once more.
 
- 1. `genFib` is a function that accepts an optional parameter, which is the upper bound
+1.  `genFib` is a function that accepts an optional parameter, which is the upper bound
     used to define when to stop computing elements in the sequence. JavaScript numbers
     starts to lose precision after `Number.MAX_SAFE_INTEGER`, so this is a sensible default.
- 2. The first thing that happens in the function is initializing the function scope.
+2.  The first thing that happens in the function is initializing the function scope.
     `n1` and `n2` are the only two values that we need to compute an element of
     the sequence. They represent the last 2 numbers computed. We set them to `0` by default.
- 3. At this point the function returns an anonymous function. This function can be
+3.  At this point the function returns an anonymous function. This function can be
     invoked an arbitrary number of times and every time it will compute and return
     a new element in the sequence, making sure the internal state is updated accordingly.
 
@@ -153,7 +151,6 @@ while ((current = f2()) !== null) {
 }
 ```
 
-
 ## The Iterator protocol
 
 In the previous example we came up with our own way to define how to iterate through
@@ -166,12 +163,12 @@ objects. This is called **the Iterator protocol**.
 In short, a JavaScript object is _an iterator_ if it implements a `next()`
 method with the following semantic:
 
-  - `next()` does not accept any argument.
-  - `next()` has to return an object with 2 properties: `done` and `value`.
-  - `done` is a boolean and it will be set to `true` if and only if there are no
-    more elements in the sequence.
-  - `value` will contain the actual value as computed in the last iteration
-    (could be `undefined` when `done` is `true`).
+- `next()` does not accept any argument.
+- `next()` has to return an object with 2 properties: `done` and `value`.
+- `done` is a boolean and it will be set to `true` if and only if there are no
+  more elements in the sequence.
+- `value` will contain the actual value as computed in the last iteration
+  (could be `undefined` when `done` is `true`).
 
 Ok, now let's rewrite our Fibonacci sequence to implement the Iterator protocol:
 
@@ -234,7 +231,6 @@ while (!result.done) {
 // 3
 // 5
 ```
-
 
 ## The Iterable protocol
 
@@ -364,9 +360,8 @@ const lowerThan17 = [...f2] // [ 1, 1, 2, 3, 5, 8, 13 ]
 If at this point you are still struggling to see the logical difference between
 an _iterator_ and an _iterable_ object you can see it this way:
 
- - An _iterable_ is an object on which you can iterate over.
- - An _iterator_ is a cursor object that allows you to iterate over an _iterable_.
-
+- An _iterable_ is an object on which you can iterate over.
+- An _iterator_ is a cursor object that allows you to iterate over an _iterable_.
 
 ## Generators
 
@@ -374,7 +369,7 @@ Another great addition coming from ECMAScript 2015 to JavaScript are **Generator
 More specifically, ECMAScript 2015 defines **Generator functions** and **Generator objects**.
 
 > A `function*` declaration (function keyword followed by an asterisk) defines
-  a _Generator function_, which returns a _Generator object_.
+> a _Generator function_, which returns a _Generator object_.
 
 Generators are functions which can be exited and later re-entered.
 Their context (variable bindings) will be saved across re-entrances.
@@ -409,18 +404,18 @@ c.next() // { done: true }
 
 So, the way a generator works is the following:
 
- - When you invoke a _generator function_, a _generator object_ is returned.
- - Generator objects have a `next()` method.
- - When you invoke the `next()` method of a _generator object_ the code of the
-   generator will be executed until the first `yield` (or `return`) is encountered.
- - If a `yield` was found, the code is stopped and the yielded value will be passed
-   to the invoking context though an object with the following shape: `{ value: <yieldedValue>, done: false }`.
- - The next time `next()` is invoked, the execution will be resumed from the point
-   where it was initially suspended until a new `yield` or `return` is found.
- - If a `return` statement is found (or the function completes), the object
-   returned will look like: `{ value: <returnedValue>, done: true }`
-   (notice the `done` now set to `true`).
- - Once the generator has completed, consecutive calls to `next()` will always produce `{ done: true }`.
+- When you invoke a _generator function_, a _generator object_ is returned.
+- Generator objects have a `next()` method.
+- When you invoke the `next()` method of a _generator object_ the code of the
+  generator will be executed until the first `yield` (or `return`) is encountered.
+- If a `yield` was found, the code is stopped and the yielded value will be passed
+  to the invoking context though an object with the following shape: `{ value: <yieldedValue>, done: false }`.
+- The next time `next()` is invoked, the execution will be resumed from the point
+  where it was initially suspended until a new `yield` or `return` is found.
+- If a `return` statement is found (or the function completes), the object
+  returned will look like: `{ value: <returnedValue>, done: true }`
+  (notice the `done` now set to `true`).
+- Once the generator has completed, consecutive calls to `next()` will always produce `{ done: true }`.
 
 Of course, the reason why we are exploring this topic is because we can implement
 our Fibonacci sequence as a generator:
@@ -514,7 +509,6 @@ property of an _iterable object_. This could help you to define the iteration lo
 in a more elegant and concise way, taking advantage of the `yield` keyword.
 
 To some extent, you can see generators as a syntactic sugar to define iterable objects.
-
 
 ## Conclusion
 

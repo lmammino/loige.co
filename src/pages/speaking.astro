@@ -44,7 +44,7 @@ const pastTalksByYear = Object.entries(
     },
     {} as Record<number, Props[]>,
   ),
-).sort((a, b) => (b as any)[0] - (a as any)[0])
+).sort((a, b) => Number(b[0]) - Number(a[0]))
 
 const locations = new Set(
   pastTalks.map((s) => s.data.event_city).filter((l) => !!l),
@@ -206,7 +206,8 @@ const hasUpcomingInHistogram = histogramData.some((d) => d.upcoming > 0)
         <strong>{firstYear}</strong>{
           futureTalks.length > 0 && (
             <>
-              {' '}· <strong>{futureTalks.length}</strong> upcoming
+              {' '}
+              · <strong>{futureTalks.length}</strong> upcoming
             </>
           )
         }. Click a year to jump.
@@ -220,12 +221,12 @@ const hasUpcomingInHistogram = histogramData.some((d) => d.upcoming > 0)
             {
               histogramData.map((d) => {
                 const heightPct =
-                  d.total > 0
-                    ? Math.max(6, (d.total / histogramMax) * 100)
-                    : 0
+                  d.total > 0 ? Math.max(6, (d.total / histogramMax) * 100) : 0
                 const upcomingPct =
                   d.total > 0 ? (d.upcoming / d.total) * 100 : 0
-                const label = `${d.total} talk${d.total !== 1 ? 's' : ''} in ${d.year}${d.upcoming > 0 ? ` (${d.upcoming} upcoming)` : ''}`
+                const label = `${d.total} talk${d.total !== 1 ? 's' : ''} in ${
+                  d.year
+                }${d.upcoming > 0 ? ` (${d.upcoming} upcoming)` : ''}`
                 const isCurrent = d.year === currentYear
                 return (
                   <li class="flex-1 h-full flex flex-col items-center justify-end group">
@@ -259,7 +260,9 @@ const hasUpcomingInHistogram = histogramData.some((d) => d.upcoming > 0)
                       )}
                     </a>
                     <span
-                      class={`mt-2 text-xs font-mono ${isCurrent ? 'text-text-500 font-bold' : 'text-text-400'}`}
+                      class={`mt-2 text-xs font-mono ${
+                        isCurrent ? 'text-text-500 font-bold' : 'text-text-400'
+                      }`}
                     >
                       {d.year}
                     </span>
@@ -304,8 +307,8 @@ const hasUpcomingInHistogram = histogramData.some((d) => d.upcoming > 0)
                   Bummer! No upcoming talks scheduled
                 </h3>
                 <p class="text-text-400">
-                  Planning a conference, meetup, or internal event? I'd love
-                  to hear about it.
+                  Planning a conference, meetup, or internal event? I'd love to
+                  hear about it.
                 </p>
               </div>
               <a

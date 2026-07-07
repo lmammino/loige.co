@@ -1,14 +1,13 @@
+import { unified } from '@astrojs/markdown-remark'
 import mdx from '@astrojs/mdx'
 import sitemap from '@astrojs/sitemap'
-import tailwindcss from '@tailwindcss/vite'
 import { pluginCollapsibleSections } from '@expressive-code/plugin-collapsible-sections'
 import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers'
+import tailwindcss from '@tailwindcss/vite'
+import { defineConfig } from 'astro/config'
 import compress from 'astro-compress'
 import critters from 'astro-critters'
 import expressiveCode from 'astro-expressive-code'
-import { unified } from '@astrojs/markdown-remark'
-import { defineConfig } from 'astro/config'
-// biome-ignore lint/nursery/useImportRestrictions: <explanation>
 import { SITE_URL } from './src/consts'
 
 // https://astro.build/config

@@ -1,3 +1,5 @@
+import type { ImageFunction } from 'astro:content'
+import { getCollection } from 'astro:content'
 import path from 'node:path'
 import consumers from 'node:stream/consumers'
 import * as url from 'node:url'
@@ -10,8 +12,6 @@ import {
   registerFont,
 } from 'canvas'
 import { split } from 'canvas-hypertxt'
-import { getCollection } from 'astro:content'
-import type { ImageFunction } from 'astro:content'
 
 type AstroImage = z.infer<ReturnType<ImageFunction>>
 type GetParams = APIContext<

@@ -24,6 +24,7 @@ An interview with my friend and colleague Rafael Del Nero about my career and my
 In this interview we explore his story and experience to become a principal engineer. We also talk about strategies and tactics to help you on your journey to the principal level!
 
 We talked about:
+
 - Clarity, how did Luciano become a principal engineer, did he have a plan for that?
 - What are the most important technologies to focus on to become a principal engineer?
 - What are the 3 soft skills you think it's the most important to become a principal?

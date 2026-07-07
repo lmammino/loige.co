@@ -25,7 +25,10 @@ const { entry } = Astro.props
   >
   <div class="lg:col-span-4">
     <h3 class="text-text-500 font-bold">
-      <a href={`/speaking/${entry.id}`} class="hover:text-primary-500 transition-colors">
+      <a
+        href={`/speaking/${entry.id}`}
+        class="hover:text-primary-500 transition-colors"
+      >
         {entry.data.title}
       </a>
       {

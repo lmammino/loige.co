@@ -24,17 +24,27 @@ jobs:
       - name: Begin CI...
         uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v4
-
-      - name: Use Node 24.x
-        uses: actions/setup-node@v4
+      - name: Setup mise (node, pnpm, lefthook)
+        uses: jdx/mise-action@v4
         with:
-          node-version: 24.x
-          cache: 'pnpm'
-          cache-dependency-path: 'pnpm-lock.yaml'
+          version: 2026.7.0
+
+      - name: Cache pnpm store
+        uses: actions/cache@v4
+        with:
+          path: ~/.local/share/pnpm/store
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Lint (biome)
+        run: mise run lint
+
+      - name: Format check (prettier)
+        run: mise run format:check
+
       - name: Build
-        run: pnpm build
+        run: mise run build

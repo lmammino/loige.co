@@ -17,23 +17,32 @@ If you want to run this locally (maybe you found a typo or an error in one of my
 git clone https://github.com/lmammino/loige.co.git
 ```
 
-## 2. Make sure you have up-to-date versions of Node.js and pnpm
+## 2. Install the toolchain with mise (recommended)
 
-Expected Node.js version: `20` or higher and `pnpm` version `8` or higher.
+This project uses [mise](https://mise.jdx.dev) to install and pin the exact
+versions of Node.js, pnpm and [lefthook](https://lefthook.dev) (git hooks),
+locked in [`mise.lock`](./mise.lock):
+
+```bash
+mise install
+```
+
+<details>
+<summary>Manual alternative (without mise)</summary>
+
+You need Node.js `22.12.0` or higher (`26` is what mise pins) and `pnpm` `11`:
 
 ```bash
 node -v
 pnpm -v
 ```
 
-If you have `corepack` installed, you can easily enable `pnpm` with:
+To install pnpm, check out the [pnpm official installation instructions](https://pnpm.io/installation)
+(recent Node.js versions no longer bundle corepack).
+Note that without mise you won't get lefthook, so the pre-commit hooks
+(formatting/linting) won't run locally — CI will still enforce them.
 
-```bash
-corepack enable
-corepack prepare pnpm@8 --activate
-```
-
-Alternatively, check out the [pnpm official installation instructions](https://pnpm.io/installation).
+</details>
 
 ## 3. Install dependencies
 
@@ -41,10 +50,13 @@ Alternatively, check out the [pnpm official installation instructions](https://p
 pnpm install
 ```
 
+This also installs the git hooks (via lefthook), which auto-format and lint
+staged files on commit.
+
 ## 4. Run the dev server
 
 ```bash
-pnpm dev
+mise run dev # or: pnpm dev
 ```
 
 The website should now be accessible at [http://localhost:4321](http://localhost:4321)
@@ -52,10 +64,21 @@ The website should now be accessible at [http://localhost:4321](http://localhost
 ## 5. Build the static website
 
 ```bash
-pnpm build
+mise run build # or: pnpm build
 ```
 
 The static website will be available in the `./dist` folder.
+
+All the project commands are defined as mise tasks (the same ones CI runs) —
+list them with:
+
+```bash
+mise tasks
+```
+
+The main ones: `dev`, `build`, `preview`, `check` (astro check), `lint`
+(Biome), `lint:fix`, `format:check` / `format` (Prettier), and `ci` (what the
+CI pipeline runs).
 
 ## 6. Deploy the website
 
@@ -69,4 +92,4 @@ You can contribute just by submitting bugs or suggesting improvements by
 
 ## License
 
-Licensed under [MIT License](LICENSE). © Luciano Mammino. 
+Licensed under [MIT License](LICENSE). © Luciano Mammino.

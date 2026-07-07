@@ -56,19 +56,19 @@ Aliases point at specific scale stops and are the preferred way to express
 intent (use `text-link` instead of `text-primary-700` when you literally mean
 "link color").
 
-| Token              | Purpose                                                    |
-| ------------------ | ---------------------------------------------------------- |
-| `link`             | Inline link color                                          |
-| `link-hover`       | Link hover color                                           |
-| `focus`            | Focus ring color (keyboard users)                          |
-| `love`             | The heart in the footer — rose in both themes              |
-| `success`          | Positive status (currently unused, reserved)               |
-| `warning`          | Cautionary status (currently unused, reserved)             |
-| `danger`           | Destructive or error status (currently unused, reserved)   |
-| `display-bg`       | "Display" panel background — stable across themes          |
-| `display-border`   | "Display" panel border                                     |
-| `display-fg`       | "Display" foreground (e.g. now-playing song title)         |
-| `display-muted`    | "Display" secondary foreground (e.g. artist / album)       |
+| Token            | Purpose                                                  |
+| ---------------- | -------------------------------------------------------- |
+| `link`           | Inline link color                                        |
+| `link-hover`     | Link hover color                                         |
+| `focus`          | Focus ring color (keyboard users)                        |
+| `love`           | The heart in the footer — rose in both themes            |
+| `success`        | Positive status (currently unused, reserved)             |
+| `warning`        | Cautionary status (currently unused, reserved)           |
+| `danger`         | Destructive or error status (currently unused, reserved) |
+| `display-bg`     | "Display" panel background — stable across themes        |
+| `display-border` | "Display" panel border                                   |
+| `display-fg`     | "Display" foreground (e.g. now-playing song title)       |
+| `display-muted`  | "Display" secondary foreground (e.g. artist / album)     |
 
 The `display-*` tokens power the music widget in the hero and any future
 panel that should read as a little hardware screen. They are intentionally
@@ -87,12 +87,12 @@ Fonts are self-hosted:
 Body type inherits Tailwind's defaults (`text-xs` through `text-3xl`). For
 hero- and section-scale headings, use the fluid display tokens:
 
-| Token            | Min (≤360px) | Max (≥1280px) | Use for                            |
-| ---------------- | ------------ | ------------- | ---------------------------------- |
-| `text-display-sm`| 28px         | 36px          | Tertiary page titles               |
-| `text-display-md`| 36px         | 52px          | Secondary page titles, post titles |
-| `text-display-lg`| 44px         | 72px          | Primary page titles                |
-| `text-display-xl`| 48px         | 96px          | The homepage hero only             |
+| Token             | Min (≤360px) | Max (≥1280px) | Use for                            |
+| ----------------- | ------------ | ------------- | ---------------------------------- |
+| `text-display-sm` | 28px         | 36px          | Tertiary page titles               |
+| `text-display-md` | 36px         | 52px          | Secondary page titles, post titles |
+| `text-display-lg` | 44px         | 72px          | Primary page titles                |
+| `text-display-xl` | 48px         | 96px          | The homepage hero only             |
 
 Line heights: `leading-tight` (1.2) for display, `leading-snug` (1.35) for
 subheads, `leading-normal` (1.55) for body, `leading-relaxed` (1.65) is the
@@ -100,12 +100,12 @@ body default set on `<body>`, `leading-loose` (1.8) for airy intros.
 
 ### Layout / measure
 
-| Token                  | Value      | Purpose                                         |
-| ---------------------- | ---------- | ----------------------------------------------- |
-| `--container-reading`  | 576px      | Narrow reading column (intro blocks)            |
-| `--container-prose`    | 672px      | Default prose measure — ~65-70ch at body size   |
-| `--breakpoint-xl`      | 1280px     | Max page width (Tailwind default, referenced    |
-|                        |            | as `max-w-(--breakpoint-xl)`)                    |
+| Token                 | Value  | Purpose                                       |
+| --------------------- | ------ | --------------------------------------------- |
+| `--container-reading` | 576px  | Narrow reading column (intro blocks)          |
+| `--container-prose`   | 672px  | Default prose measure — ~65-70ch at body size |
+| `--breakpoint-xl`     | 1280px | Max page width (Tailwind default, referenced  |
+|                       |        | as `max-w-(--breakpoint-xl)`)                 |
 
 Utility classes `measure` and `measure-narrow` apply the prose and reading
 widths respectively, so `<article class="measure mx-auto">` sets up a proper
@@ -113,13 +113,13 @@ column without memorising pixel values.
 
 ### Motion
 
-| Token              | Value                               | Use for                              |
-| ------------------ | ----------------------------------- | ------------------------------------ |
-| `--duration-fast`  | 120ms                               | Color transitions, small hovers      |
-| `--duration-base`  | 200ms                               | Default transitions, card lifts      |
-| `--duration-slow`  | 320ms                               | Image reveals, parallax settle       |
-| `--ease-standard`  | `cubic-bezier(0.2, 0, 0, 1)`        | Default easing                       |
-| `--ease-emphasized`| `cubic-bezier(0.3, 0, 0, 1)`        | For emphasis moments                 |
+| Token               | Value                        | Use for                         |
+| ------------------- | ---------------------------- | ------------------------------- |
+| `--duration-fast`   | 120ms                        | Color transitions, small hovers |
+| `--duration-base`   | 200ms                        | Default transitions, card lifts |
+| `--duration-slow`   | 320ms                        | Image reveals, parallax settle  |
+| `--ease-standard`   | `cubic-bezier(0.2, 0, 0, 1)` | Default easing                  |
+| `--ease-emphasized` | `cubic-bezier(0.3, 0, 0, 1)` | For emphasis moments            |
 
 All animations automatically reduce to near-zero under
 `prefers-reduced-motion: reduce`.
@@ -146,15 +146,15 @@ Shadows use Tailwind defaults: `shadow-md` (resting card), `shadow-lg`
 <Button isDisabled>Save</Button>
 ```
 
-| Prop         | Type                              | Default     | Notes                                  |
-| ------------ | --------------------------------- | ----------- | -------------------------------------- |
-| `href`       | `string`                          | —           | Renders as `<a>` unless `isDisabled`   |
-| `label`      | `string`                          | —           | Or pass children via slot              |
-| `variant`    | `'primary' \| 'secondary' \| 'ghost'` | `'primary'` | Visual weight                      |
-| `size`       | `'sm' \| 'md' \| 'lg'`            | `'md'`      | Type size + padding + tap target       |
-| `isDisabled` | `boolean`                         | `false`     | Renders as non-interactive `<span>`    |
-| `isPrimary`  | `boolean`                         | —           | **Deprecated.** Use `variant` instead. |
-| `class`      | `string`                          | —           | Appended to composed classes           |
+| Prop         | Type                                  | Default     | Notes                                  |
+| ------------ | ------------------------------------- | ----------- | -------------------------------------- |
+| `href`       | `string`                              | —           | Renders as `<a>` unless `isDisabled`   |
+| `label`      | `string`                              | —           | Or pass children via slot              |
+| `variant`    | `'primary' \| 'secondary' \| 'ghost'` | `'primary'` | Visual weight                          |
+| `size`       | `'sm' \| 'md' \| 'lg'`                | `'md'`      | Type size + padding + tap target       |
+| `isDisabled` | `boolean`                             | `false`     | Renders as non-interactive `<span>`    |
+| `isPrimary`  | `boolean`                             | —           | **Deprecated.** Use `variant` instead. |
+| `class`      | `string`                              | —           | Appended to composed classes           |
 
 **States:** idle, hover (darker fill), active (darkest fill), focus-visible
 (global ring), disabled (washed out, `cursor-not-allowed`).
@@ -284,15 +284,15 @@ Every component in this system meets:
 Components still using raw Tailwind palette colors (`zinc-*`, `lime-*`,
 `slate-*`, `yellow-*`, `red-*`) should migrate to token-based colors:
 
-| Old                      | New                          |
-| ------------------------ | ---------------------------- |
-| `bg-zinc-900`            | `bg-display-bg`              |
-| `border-zinc-700`        | `border-display-border`      |
-| `text-lime-500`          | `text-display-fg`            |
-| `text-lime-600`          | `text-display-muted`         |
-| `text-slate-400`         | `text-text-400`              |
-| `text-yellow-500`        | `text-accent-700`            |
-| `text-red-400`           | `text-love`                  |
+| Old               | New                     |
+| ----------------- | ----------------------- |
+| `bg-zinc-900`     | `bg-display-bg`         |
+| `border-zinc-700` | `border-display-border` |
+| `text-lime-500`   | `text-display-fg`       |
+| `text-lime-600`   | `text-display-muted`    |
+| `text-slate-400`  | `text-text-400`         |
+| `text-yellow-500` | `text-accent-700`       |
+| `text-red-400`    | `text-love`             |
 
 The `Button` component's `isPrimary` prop still works but emits nothing to
 the DOM — prefer `variant="primary"` or `variant="secondary"` in new code.

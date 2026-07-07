@@ -30,8 +30,8 @@ type SideProject = {
   role: string
 }
 
-const externalArticles: ExternalArticle[] = _externalArticles.sort(
-  (a: any, b: any) => b.date.localeCompare(a.date),
+const externalArticles: ExternalArticle[] = _externalArticles.sort((a, b) =>
+  b.date.localeCompare(a.date),
 )
 const sideProjects: SideProject[] = _sideProjects
 ---
@@ -44,7 +44,9 @@ const sideProjects: SideProject[] = _sideProjects
   }}
 >
   <div class="bg-bg-500 overflow-x-hidden">
-    <div class="mx-auto max-w-(--breakpoint-xl) py-8 px-8 flex flex-col items-center">
+    <div
+      class="mx-auto max-w-(--breakpoint-xl) py-8 px-8 flex flex-col items-center"
+    >
       <div>
         <h1 class="group text-text-500 text-4xl/relaxed my-4 font-bold"
           >Hello, this is Luciano <span

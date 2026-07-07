@@ -35,8 +35,8 @@ Panel about "serverless", Moderated by Abby Fuller (AWS)
 
 Participants:
 
-  – Luciano Mammino, Vectra
-  – Fabio Douek, Singlepoint
-  – Chris Paton, Johnson Controls
-  – Eoin Shanaghy, fourTheorem
-  – Gillian McCann, WorkgridSoft
+– Luciano Mammino, Vectra
+– Fabio Douek, Singlepoint
+– Chris Paton, Johnson Controls
+– Eoin Shanaghy, fourTheorem
+– Gillian McCann, WorkgridSoft
