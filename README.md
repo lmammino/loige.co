@@ -30,21 +30,15 @@ mise install
 <details>
 <summary>Manual alternative (without mise)</summary>
 
-You need Node.js `22.12.0` or higher (`24` recommended) and `pnpm` `9`:
+You need Node.js `22.12.0` or higher (`26` is what mise pins) and `pnpm` `11`:
 
 ```bash
 node -v
 pnpm -v
 ```
 
-If you have `corepack` installed, you can easily enable `pnpm` with:
-
-```bash
-corepack enable
-corepack prepare pnpm@9 --activate
-```
-
-Alternatively, check out the [pnpm official installation instructions](https://pnpm.io/installation).
+To install pnpm, check out the [pnpm official installation instructions](https://pnpm.io/installation)
+(recent Node.js versions no longer bundle corepack).
 Note that without mise you won't get lefthook, so the pre-commit hooks
 (formatting/linting) won't run locally — CI will still enforce them.
 

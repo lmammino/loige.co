@@ -4,9 +4,9 @@ min_version = "2026.6.1"
 lockfile = true
 
 [tools]
-node = "24"
+node = "26"
 # keep in sync with the packageManager field in package.json
-pnpm = "9.0.6"
+pnpm = "11.10.0"
 lefthook = "2"
 
 # Tasks are the source of truth for project commands: CI and lefthook both
