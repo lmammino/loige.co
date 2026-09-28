@@ -4,8 +4,8 @@ slug: how-docker-layers-work
 subtitle: Tar archives, whiteouts, and the weird file names you can't use in a container image
 date: 2026-09-28T10:00:00.000Z
 updated: 2026-09-28T10:00:00.000Z
-# header_img: ./how-docker-layers-work.jpg
-# Alt text for the hero illustration: Hand-drawn cartoon showing a rabbit descending into a deep hole made of stacked blue container-image layers. Below, a file labeled `.wh.foo` holds a large eraser and appears to erase another file labeled `foo` in the layer underneath.
+header_img: ./how-docker-layers-work.jpg
+# Alt text for the rabbit-hole illustration (social image / in-article, if used): Hand-drawn cartoon showing a rabbit descending into a deep hole made of stacked blue container-image layers. Below, a file labeled `.wh.foo` holds a large eraser and appears to erase another file labeled `foo` in the layer underneath.
 status: draft
 tags:
   - docker
@@ -14,7 +14,7 @@ tags:
 description: 'How Docker and OCI image layers represent filesystem changes, why deleting a file needs special whiteout entries, and what happens if you create a file called .wh.foo.'
 ---
 
-<!-- HERO: "TIL: file names you can't use in a container image" illustration (rabbit descending through stacked container layers, `.wh.foo` erasing `foo`). Alt text is in the frontmatter comment above. -->
+<!-- SOCIAL/OPTIONAL IMAGE: "TIL: file names you can't use in a container image" illustration (rabbit descending through stacked container layers, `.wh.foo` erasing `foo`). Alt text is in the frontmatter comment above. -->
 
 The other week I was looking into some Docker shenanigans, specifically
 [**SOCI**](https://github.com/awslabs/soci-snapshotter) (Seekable OCI). In a
@@ -42,7 +42,7 @@ One question in particular got stuck in my head:
 Think about it for a second. A tar archive can say "here's a file called
 `foo`". A later tar archive can say "here's another version of `foo`". But tar
 doesn't have a generic operation that says "please delete `foo` from the
-archive underneath me".
+archive that came before me".
 
 And, of course, once I started asking that question, I had to find out.
 
@@ -127,8 +127,7 @@ Layer 0   Alpine base filesystem
 
 The order matters. When a container runs, it doesn't see a folder called
 "Layer 0", another folder called "Layer 1" and so on. It sees the **combined
-result** of applying all the layers, one after the other, from the bottom to
-the top:
+result** of applying all the layers, one after the other, in order:
 
 ```text
 layer 0
@@ -141,6 +140,12 @@ layer 3
    =
 filesystem visible to the container
 ```
+
+A quick note on vocabulary: since what really matters is the order in which
+layers are applied, in this article I'll talk about **earlier** and **later**
+layers. Elsewhere (including the OCI spec and the OverlayFS docs) you'll often
+see them called **lower** and **upper** layers, because they're usually drawn
+as a stack. Same thing, different metaphor.
 
 The other important property is that layers are **immutable**. Once a layer
 is created, it never changes. A new layer doesn't edit a previous one: it
@@ -183,7 +188,7 @@ From now on, I'll casually talk about "the layer tar", but remember: that's
 the serialized form, not necessarily what's sitting on your disk.
 
 > **The key idea:** A layer is not a complete filesystem. It is a filesystem
-> changeset that only has meaning when applied after the layers below it.
+> changeset that only has meaning when applied after the layers that came before it.
 
 So what does a changeset contain? According to the OCI spec, there are three
 types of change:
@@ -252,10 +257,9 @@ At the tar level, Layer B simply contains an entry for `app/config.json`
 (and, typically, one for the parent directory `app/`). No special trick
 needed. Tar already knows how to say "here's a file".
 
-The same goes for directories. When a directory exists in a lower layer and a
-directory with the same path shows up in an upper layer, their contents
+The same goes for directories. When a directory exists in an earlier layer and a directory with the same path shows up in a later layer, their contents
 compose into a single directory in the final filesystem. (If you are
-wondering: the spec says that the upper directory's attributes, like
+wondering: the spec says that the later directory's attributes, like
 permissions and ownership, replace those of the existing one. The children
 are merged, not replaced.)
 
@@ -305,9 +309,11 @@ single `RUN`, or multi-stage builds).
 But wait a second... we just said that the second `RUN` "removes the file".
 What does that layer actually contain?
 
-## OK, but how do you delete a file?
+## How do you delete a file from a layer?
 
 This is the question that sent me down the rabbit hole in the first place.
+
+Let's try to recap what we know so far and see if we can come up with some kind of educated guess...
 
 Let's say Layer 1 contains:
 
@@ -337,9 +343,13 @@ What should Layer 2 contain?
 Take a moment to think about how you would solve this. If you were designing
 the format, what would you do?
 
-...
+Take your time, I'll be here waiting...
 
-Got an idea? Let's see how OCI does it.
+![Boromir "One does not simply" meme: "One cannot simply delete a file from Docker layers"](./one-cannot-simply-delete-a-file-from-docker-layers.jpg)
+
+Got an idea?
+
+Great, now let's see how OCI does it.
 
 ## Meet the whiteout
 
@@ -349,10 +359,10 @@ To remove `/app/old-config.json`, the newer layer contains an entry called:
 /app/.wh.old-config.json
 ```
 
-That's it. That's the trick. 😅
+That's it. I swear, that's the trick. 😅
 
 The `.wh.` prefix (short for **whiteout**) means: "when applying this layer,
-remove the path in the lower layers whose name is whatever follows `.wh.`".
+remove the path from earlier layers whose name is whatever follows `.wh.`".
 
 ```text
 Layer 1
@@ -378,7 +388,7 @@ is not supposed to become a regular file in the final filesystem. It's an
 _instruction_ encoded as a specially named tar entry. After the layer is
 applied:
 
-- the lower `old-config.json` is gone from the merged view;
+- the earlier `old-config.json` is gone from the merged view;
 - the whiteout itself is also hidden (the spec says: "Once a whiteout is
   applied, the whiteout itself MUST also be hidden").
 
@@ -389,7 +399,7 @@ the path being deleted, the whiteout file is a regular file in the archive".
 
 It's the OCI consumer, the thing that _applies_ the layer, that looks at the
 name and says: "Ah! You don't actually want this file. You want me to remove
-`old-config.json` from a lower layer."
+`old-config.json` from an earlier layer."
 
 > **Whiteouts are not a tar feature.** They are an OCI convention encoded
 > using specially named tar entries.
@@ -398,13 +408,15 @@ So that's what "applied, rather than simply extracted" means. If you just ran
 `tar -xf` on a layer, you would end up with a bunch of `.wh.*` files lying
 around, and nothing would be deleted.
 
-Naming things is hard, so apparently we solved this one by inventing files
+So apparently we solved this one by inventing files
 that aren't really files.
 
-A couple more rules from the spec are worth knowing, because they'll matter
+I'll leave it to you to decide whether you think that's _elegant_ or _hacky_. It surely is _clever_, but otherwise I have mixed feelings myself.
+
+Anyway, a couple more rules from the spec are worth knowing, because they'll matter
 later:
 
-- **Whiteouts only apply to lower (parent) layers.** A whiteout can't delete a
+- **Whiteouts only apply to earlier layers.** A whiteout can't delete a
   file that was added in the _same_ layer. Quoting the spec: "Files that are
   present in the same layer as a whiteout file can only be hidden by whiteout
   files in subsequent layers."
@@ -415,7 +427,7 @@ later:
 
 ### What about directories?
 
-The same mechanism works for directories. If a lower layer contains:
+The same mechanism works for directories. If an earlier layer contains:
 
 ```text
 /app/cache/
@@ -424,7 +436,7 @@ The same mechanism works for directories. If a lower layer contains:
   c
 ```
 
-An upper layer containing:
+A following layer containing:
 
 ```text
 /app/.wh.cache
@@ -437,14 +449,15 @@ Nice and consistent. But sometimes we want something slightly different.
 ## There's an even stranger whiteout
 
 What if we don't want to delete the directory, but we want to say: "keep this
-directory, but forget about everything it inherited from the lower layers"?
+directory, but forget about everything it inherited from earlier layers"?
 
 This can happen, for instance, when a build step deletes a directory and
 recreates it with completely new contents. The directory still exists, but
 none of the old children should show up.
 
-One option is to add a whiteout for every single child. That works, but OCI
-also has a dedicated marker for this case, and it's the weirdest file name in
+One option is to add a whiteout for every single child. That works, but imagine you have a large build folder with hundreds or even thousands of child files or folders (yes, like a `node_modules` 😏), it wouldn't be convient to have to create a whiteout for each one of them, right?
+
+In fact, OCI has a dedicated marker for this case, and it's the weirdest file name in
 this whole article:
 
 ```text
@@ -453,37 +466,42 @@ this whole article:
 
 Yes, that's `.wh.` twice, followed by `.opq`, which stands for **opaque**. An
 opaque whiteout inside a directory means: "for this directory, don't merge in
-the children inherited from lower layers".
+the children inherited from earlier layers".
 
-Let's see an example. Lower layer:
+Let's see an example to better understand this concept.
+
+Suppose we have a directory called `/node_modules` in an earlier layer, with two subdirectories:
 
 ```text
-/config/
-  production.json
-  staging.json
+/node_modules/
+  left-pad/
+    index.js
+  event-stream/
+    index.js
 ```
 
-Upper layer:
+Later layer:
 
 ```text
-/config/
+/node_modules/
   .wh..wh..opq
-  local.json
+  colors/
+    index.js
 ```
 
 Result:
 
 ```text
-/config/
-  local.json
+/node_modules/
+  colors/
+    index.js
 ```
 
-The `/config` directory stays, the lower `production.json` and
-`staging.json` disappear, and the new `local.json` from the same layer as the
-marker survives. The spec also clarifies that the opaque marker is processed
+The `/node_modules` directory stays, the earlier `left-pad` and
+`event-stream` directories disappear, and the new `colors` directory from the same layer as the marker survives. The spec also clarifies that the opaque marker is processed
 _before_ the other entries of that directory in the same layer, regardless of
 the order in which they appear in the archive, so it only ever hides stuff
-from below.
+from earlier layers.
 
 (Fun fact: the spec says that implementations SHOULD generate layers using
 explicit per-file whiteouts, but MUST accept opaque ones.)
@@ -493,7 +511,9 @@ brain did the thing it always does.
 
 ## Wait... what if my file is actually called `.wh.foo`?
 
-Linux is perfectly happy with a file called `.wh.foo`:
+BTW, am I the weird one, or did your brain came up with the same question? 🧠
+
+Anyway... Linux is perfectly happy with a file called `.wh.foo`:
 
 ```sh
 touch .wh.foo
@@ -502,15 +522,39 @@ ls -a
 ```
 
 There's nothing invalid about that name on a normal Unix filesystem. It's a
-hidden file (it starts with a dot) with a slightly odd name. That's all.
+hidden file (it starts with a dot) with a slightly odd name. Yes, but it's still a perfectly valid file, that's all.
 
 But in an OCI layer, an entry called `.wh.foo` already _means_ "delete `foo`
-from the lower layers". How would you tell the two apart?
+from earlier layers". How would you tell the two apart?
 
 - There's no flag in the tar entry saying `this_is_a_literal_file = true`.
 - There's no escaping convention, like `.wh.literal.wh.foo`.
 - There's no PAX header or extended attribute defined by OCI to distinguish
   "a regular file named `.wh.foo`" from "a whiteout for `foo`".
+
+<aside class="callout callout-note">
+
+**Wait, what's a PAX header?** The original tar header (the _ustar_ format) is
+a fixed-size block with fixed-width fields, which comes with some annoying
+limits: paths of at most ~255 characters, file sizes up to ~8 GB, timestamps
+with one-second precision, and no room for things like extended attributes.
+[PAX](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/pax.html#tag_20_92_13_03)
+(from POSIX.1-2001) fixes this without breaking the format: right before a
+file's entry, it adds a special entry containing `key=value` records (for
+example `path=...`, `mtime=1695565140.123456`, or
+`SCHILY.xattr.user.foo=...`) that apply to the entry that follows. Tools that
+don't understand a given key can mostly just ignore it.
+
+In other words, PAX is tar's official escape hatch for extra metadata. And
+OCI already uses it: the spec requires Windows-specific file attributes to be
+encoded as
+[PAX vendor extensions](https://github.com/opencontainers/image-spec/blob/main/layer.md#platform-specific-attributes)
+(keys like `MSWINDOWS.fileattr` and `MSWINDOWS.rawsd`). So if OCI ever wanted
+a "this `.wh.foo` is a literal file, not a whiteout" flag, a PAX record would
+be the natural place for it. No such key exists, though, and (as we'll see
+later) BuildKit doesn't write any PAX metadata for these entries either.
+
+</aside>
 
 <!-- DIAGRAM: literal filename collision. A single tar entry "tmp/.wh.foo" with two arrows: "ordinary tar semantics: a file named .wh.foo" vs "OCI layer semantics: delete tmp/foo". -->
 
@@ -531,8 +575,8 @@ The whole `.wh.*` namespace is effectively reserved:
 - `.wh..wh..opq` means "this directory is opaque";
 - `.wh.` on its own is invalid.
 
-So yes, "TIL: file names you can't use in a container image" (hi, hero image
-👋) is a bit of a shorthand. As we are about to discover, these names _can_
+So yes, saying "these are file names you can't use in a container image" is a
+bit of a shorthand. As we are about to discover, these names _can_
 exist in some places along the way. They just can't survive the trip through
 an OCI layer as regular files.
 
@@ -550,9 +594,14 @@ like? What happens after exporting and re-importing the image? And what about
 At this point, of course, there was only one sensible thing to do: write some
 Dockerfiles and try to break them.
 
+As the saying goes, _"in theory there's no difference between theory and
+practice. In practice, there is."_ ...And, as we're about to find out, with Docker
+there can even be a difference between practice and practice after a
+`docker load`.
+
 The result is a small repository with a very honest name:
 [**lmammino/broken-dockerfile**](https://github.com/lmammino/broken-dockerfile).
-Its description sums it up: _"It works on my machine. Then you push it."_
+Its description sums it up: _"It works on my machine. Then you push it."_ You can go and check it out... Hey, but only after you finish reading here! 🤨
 
 The repository contains a build context with files literally called `foo`,
 `.wh.foo`, `.wh..wh..opq`, `.wh.` and `c`. Each file contains some text
@@ -571,6 +620,22 @@ pushes each one through a bunch of different paths:
   `docker image load`, and exporting an OCI layout and using it as the base of
   a new BuildKit build.
 
+To see what's going on, each Dockerfile has one or more small "probe" steps
+that list the directory and then check each file of interest:
+
+```dockerfile
+RUN ls -la /tmp && for p in /tmp/foo /tmp/.wh.foo; do \
+      if [ -e "$p" ]; then echo "EXISTS  $p :: $(cat "$p")"; \
+      else echo "MISSING $p"; fi; done
+```
+
+The same check also runs inside containers started from the resulting images.
+So in the outputs below you'll see lines like `EXISTS /tmp/foo :: <content>`
+or `MISSING /tmp/foo`. Printing the content too makes it obvious which file
+we're actually looking at. I also run the builds with `--progress=plain`, so
+the output of a build step is prefixed by BuildKit's step number and timing
+(for example `#9 0.117`).
+
 I tested this with Docker Engine 29.4.0 and BuildKit (0.29.0 on the default
 builder, 0.32.2 on a temporary `docker-container` builder), running on
 OrbStack on an arm64 Mac, with the **overlay2** storage driver and the
@@ -578,7 +643,7 @@ containerd image store **disabled**. That last detail matters, and I'll come
 back to it. The repository contains the full version matrix, the scripts and
 all the raw outputs, so you don't have to take my word for any of this.
 
-Let's see what happens.
+Let's see what happens. 👀
 
 ## BuildKit says "sure, why not?"
 
@@ -676,8 +741,10 @@ tar interpretation:
   a regular file called tmp/.wh.foo
 
 OCI layer interpretation:
-  remove tmp/foo from a lower layer
+  remove tmp/foo from an earlier layer
 ```
+
+![“Is this a pigeon?” meme: a character labeled “OCI unpacker” points at a butterfly labeled “tmp/.wh.foo” and asks “Is this a whiteout?”](./is-this-a-whiteout-oci-unpacker.jpg)
 
 Same tar entry. Different semantic layer on top.
 
@@ -687,7 +754,7 @@ them as an OCI filesystem changeset. I think this is a beautiful example of
 the difference between a **serialization format** (tar) and the **protocol**
 that interprets it (OCI layer application).
 
-Now let's make it hurt.
+Time to put on the lab coat and do some science! 🧪
 
 ## Experiment 1: `foo` and `.wh.foo` in the same layer
 
@@ -727,7 +794,7 @@ MISSING /tmp/.wh.foo
 
 `.wh.foo` is gone, but `foo` survived! Why?
 
-Because whiteouts **only apply to lower layers**. The unpacker saw
+Because whiteouts **only apply to earlier layers**. The unpacker saw
 `tmp/.wh.foo`, decided it was a whiteout, and (as the spec requires) did not
 materialise it as a file. But `foo` was added in the _same_ layer as the
 whiteout, and a whiteout can't hide a sibling from its own layer. So `foo`
@@ -742,15 +809,15 @@ This is the experiment that I consider the real smoking gun.
 ```dockerfile
 FROM alpine:3.20
 COPY foo /tmp/foo
-RUN ls -la /tmp
+# (probe step)
 COPY .wh.foo /tmp/.wh.foo
-RUN ls -la /tmp
+# (probe step)
 ```
 
-(The real Dockerfile uses slightly more verbose probes in those `RUN` steps;
-check the repo for the exact version.)
+(The probe steps are the ones described earlier; check the repo for the exact
+Dockerfile.)
 
-This time `foo` lives in a lower layer, and `.wh.foo` comes later. During the
+This time `foo` lives in an earlier layer, and `.wh.foo` comes later. During the
 build, both files exist:
 
 ```text
@@ -760,7 +827,7 @@ build, both files exist:
 
 `docker run` on the locally built image shows both files too. And if we peek
 into the overlay2 storage, `.wh.foo` is sitting there as an ordinary file in
-the upper layer's directory, while `foo` lives in the lower one:
+the later layer's directory, while `foo` lives in the earlier one:
 
 ```text
 --- .../wkkj2txp7r07grph3iul4ig40/diff/tmp
@@ -783,12 +850,12 @@ MISSING /tmp/.wh.foo
 
 Here's exactly what happened:
 
-1. the lower layer added `/tmp/foo`;
+1. the earlier layer added `/tmp/foo`;
 2. the later layer was serialized with a regular tar entry called
    `tmp/.wh.foo`;
 3. the unpacker (both `dockerd` and BuildKit, in my tests) interpreted that
    entry as a whiteout;
-4. so it removed `/tmp/foo` coming from the lower layer;
+4. so it removed `/tmp/foo` coming from the earlier layer;
 5. and, as the spec requires, it did not materialise the whiteout itself;
 6. therefore, neither path exists.
 
@@ -815,7 +882,7 @@ tested that path directly.
 
 ## Experiment 3: opaque whiteouts, for real
 
-Is this specific to `.wh.foo`? Let's try the opaque marker. The lower layers
+Is this specific to `.wh.foo`? Let's try the opaque marker. The earlier layers
 create a directory with two files:
 
 ```dockerfile
@@ -854,7 +921,7 @@ MISSING /tmp/dir/.wh..wh..opq
 
 That's the opaque whiteout doing exactly what the spec says:
 
-- the children inherited from the lower layer (`a` and `b`) are gone;
+- the children inherited from the earlier layer (`a` and `b`) are gone;
 - `c`, which came in the same layer as the marker, survives;
 - the marker itself is hidden.
 
@@ -982,7 +1049,7 @@ Let's zoom back out. Here's what I'm taking home from this rabbit hole.
 
 ### 1. Layers are changesets, not snapshots of the whole filesystem
 
-Each layer only makes sense when applied on top of its parent layers. This is
+Each layer only makes sense when applied after the ones that came before it. This is
 also why extracting a single layer tar somewhere doesn't give you the
 filesystem that a container sees (and why just running `tar -xf` on all of them
 isn't enough either: you'd need to apply the whiteouts).
@@ -1025,7 +1092,7 @@ Here's the whole thing in one table:
 | -------------------------------------- | ------------------------------------- |
 | Add `foo`                              | tar entry `foo`                       |
 | Modify `foo`                           | new, complete tar entry `foo`         |
-| Delete lower-layer `foo`               | `.wh.foo`                             |
+| Delete `foo` from an earlier layer     | `.wh.foo`                             |
 | Ignore inherited directory contents    | `.wh..wh..opq`                        |
 | Regular file literally named `.wh.foo` | can't be represented unambiguously 🤷 |
 
