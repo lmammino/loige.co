@@ -99,7 +99,7 @@ RUN echo "hello" > /app/hello.txt
 You have probably heard that "every Dockerfile instruction creates a layer".
 That's not quite right. The steps that change the filesystem (like `RUN`,
 `COPY` and `ADD`) produce filesystem changes that end up as image layers,
-while other instructions (like `ENV`, `CMD`, `EXPOSE` or `WORKDIR`) only
+while other instructions (like `ENV`, `CMD`, `EXPOSE` or `LABEL`) only
 tweak the image _configuration_.
 
 In fact, a container image is more than just filesystem data. Roughly
@@ -123,7 +123,7 @@ Layer 0   Alpine base filesystem
          merged view
 ```
 
-<!-- DIAGRAM: stacked filesystem layers. Layer C ─── /app/config.json (new version), Layer B ─── /app/index.js, Layer A ─── base filesystem, arrow down to "Merged container filesystem". Purpose: introduce composition. -->
+<!-- DIAGRAM: stacked filesystem layers. Layer 3 ─── add /app/hello.txt, Layer 2 ─── add /app/*, Layer 1 ─── install curl, Layer 0 ─── Alpine base filesystem, arrow down to "Merged container filesystem". Purpose: introduce composition. -->
 
 The order matters. When a container runs, it doesn't see a folder called
 "Layer 0", another folder called "Layer 1" and so on. It sees the **combined
@@ -381,7 +381,7 @@ Result
   index.js
 ```
 
-<!-- DIAGRAM: whiteout. Layer 2: /app/.wh.foo — Layer 1: /app/foo — arrow down — Result: /app/foo is absent. Purpose: make the deletion mechanism visually obvious. -->
+<!-- DIAGRAM: whiteout. Layer 2: /app/.wh.old-config.json — Layer 1: /app/index.js, /app/old-config.json — arrow down — Result: /app/index.js only, old-config.json is absent. Purpose: make the deletion mechanism visually obvious. -->
 
 Note that `.wh.old-config.json` is present in the **layer archive**, but it
 is not supposed to become a regular file in the final filesystem. It's an
@@ -455,7 +455,7 @@ This can happen, for instance, when a build step deletes a directory and
 recreates it with completely new contents. The directory still exists, but
 none of the old children should show up.
 
-One option is to add a whiteout for every single child. That works, but imagine you have a large build folder with hundreds or even thousands of child files or folders (yes, like a `node_modules` 😏), it wouldn't be convient to have to create a whiteout for each one of them, right?
+One option is to add a whiteout for every single child. That works, but imagine you have a large build folder with hundreds or even thousands of child files or folders (yes, like a `node_modules` 😏), it wouldn't be convenient to have to create a whiteout for each one of them, right?
 
 In fact, OCI has a dedicated marker for this case, and it's the weirdest file name in
 this whole article:
@@ -511,7 +511,7 @@ brain did the thing it always does.
 
 ## Wait... what if my file is actually called `.wh.foo`?
 
-BTW, am I the weird one, or did your brain came up with the same question? 🧠
+BTW, am I the weird one, or did your brain come up with the same question? 🧠
 
 Anyway... Linux is perfectly happy with a file called `.wh.foo`:
 
