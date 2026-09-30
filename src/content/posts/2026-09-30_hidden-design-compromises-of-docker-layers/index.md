@@ -2,8 +2,8 @@
 title: The hidden design compromises of Docker layers
 slug: hidden-design-compromises-of-docker-layers
 subtitle: "How layers really work: tar archives, whiteouts, and the file names you can't use in a container image"
-date: 2026-09-30T08:11:55.000Z
-updated: 2026-09-30T08:11:55.000Z
+date: 2026-09-30T08:17:55.000Z
+updated: 2026-09-30T08:17:55.000Z
 header_img: ./hidden-design-compromises-of-docker-layers.jpg
 # Alt text for the rabbit-hole illustration (social image / in-article, if used): Hand-drawn cartoon showing a rabbit descending into a deep hole made of stacked blue container-image layers. Below, a file labeled `.wh.foo` holds a large eraser and appears to erase another file labeled `foo` in the layer underneath.
 status: published
