@@ -12,6 +12,7 @@ tags:
   - containers
   - oci
 description: 'How Docker and OCI image layers represent filesystem changes, why deleting a file needs special whiteout entries, and what happens if you create a file called .wh.foo.'
+bluesky_url: "https://bsky.app/profile/loige.co/post/3mwqatc6huc2h"
 ---
 
 <!-- SOCIAL/OPTIONAL IMAGE: "TIL: file names you can't use in a container image" illustration (rabbit descending through stacked container layers, `.wh.foo` erasing `foo`). Alt text is in the frontmatter comment above. -->
