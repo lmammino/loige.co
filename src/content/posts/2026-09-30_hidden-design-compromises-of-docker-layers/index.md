@@ -1,12 +1,12 @@
 ---
-title: How Docker layers work
-slug: how-docker-layers-work
-subtitle: Tar archives, whiteouts, and the weird file names you can't use in a container image
-date: 2026-09-28T10:00:00.000Z
-updated: 2026-09-28T10:00:00.000Z
-header_img: ./how-docker-layers-work.jpg
+title: The hidden design compromises of Docker layers
+slug: hidden-design-compromises-of-docker-layers
+subtitle: "How layers really work: tar archives, whiteouts, and the file names you can't use in a container image"
+date: 2026-09-30T08:11:55.000Z
+updated: 2026-09-30T08:11:55.000Z
+header_img: ./hidden-design-compromises-of-docker-layers.jpg
 # Alt text for the rabbit-hole illustration (social image / in-article, if used): Hand-drawn cartoon showing a rabbit descending into a deep hole made of stacked blue container-image layers. Below, a file labeled `.wh.foo` holds a large eraser and appears to erase another file labeled `foo` in the layer underneath.
-status: draft
+status: published
 tags:
   - docker
   - containers
@@ -554,6 +554,13 @@ a "this `.wh.foo` is a literal file, not a whiteout" flag, a PAX record would
 be the natural place for it. No such key exists, though, and (as we'll see
 later) BuildKit doesn't write any PAX metadata for these entries either.
 
+Fun fact: this exact idea was proposed back in 2016, in
+[image-spec#24](https://github.com/opencontainers/image-spec/issues/24):
+marking whiteouts with a PAX header (`SCHILY.filetype=whiteout`, which the
+[star](https://cdrtools.sourceforge.net/private/man/star/star.4.html) tar
+implementation already uses for BSD whiteouts) instead of a magic file name.
+It never landed.
+
 </aside>
 
 <!-- DIAGRAM: literal filename collision. A single tar entry "tmp/.wh.foo" with two arrows: "ordinary tar semantics: a file named .wh.foo" vs "OCI layer semantics: delete tmp/foo". -->
@@ -624,15 +631,26 @@ To see what's going on, each Dockerfile has one or more small "probe" steps
 that list the directory and then check each file of interest:
 
 ```dockerfile
-RUN ls -la /tmp && for p in /tmp/foo /tmp/.wh.foo; do \
-      if [ -e "$p" ]; then echo "EXISTS  $p :: $(cat "$p")"; \
-      else echo "MISSING $p"; fi; done
+RUN ls -la /tmp && \
+    for p in /tmp/foo /tmp/.wh.foo; do \
+      if [ -e "$p" ]; then \
+        echo "EXISTS  $p :: $(cat "$p")"; \
+      else \
+        echo "MISSING $p"; \
+      fi; \
+    done
 ```
 
 The same check also runs inside containers started from the resulting images.
-So in the outputs below you'll see lines like `EXISTS /tmp/foo :: <content>`
-or `MISSING /tmp/foo`. Printing the content too makes it obvious which file
-we're actually looking at. I also run the builds with `--progress=plain`, so
+So in the outputs below you'll see lines like these:
+
+```text
+EXISTS  /tmp/foo :: CONTENT-OF-foo: I am the regular file named foo
+MISSING /tmp/.wh.foo
+```
+
+Printing the content too makes it obvious which file we're actually looking
+at. I also run the builds with `--progress=plain`, so
 the output of a build step is prefixed by BuildKit's step number and timing
 (for example `#9 0.117`).
 
@@ -665,7 +683,12 @@ EXISTS  /tmp/.wh.foo :: CONTENT-OF-.wh.foo: I am a regular file literally named 
 
 So... did we just prove the OCI spec wrong? 🤔
 
-Nope. We haven't forced that filesystem through an OCI layer unpack yet.
+Nope. So far, we have only built the image and run it on the same machine,
+straight from the files that BuildKit wrote to disk. We haven't yet forced the
+image to go through an OCI layer _unpack_: nothing has taken the serialized
+layer tars and applied them one by one, following the OCI rules. And that's
+exactly what happens when an image travels, for example when you export it and
+load it somewhere else.
 
 ## The local snapshot and the layer archive are not quite the same thing
 
@@ -783,9 +806,23 @@ The serialized layer contains both entries, as regular files:
   REG  0644 0:0 size=48   tmp/foo
 ```
 
-Now let's force a fresh unpack. After exporting the image and loading it back
-with `docker image load` (and, separately, after re-importing it into
-BuildKit as an OCI layout), this is what we get:
+Now let's force a fresh unpack. To do that, I build the image again with a
+separate BuildKit instance (a `docker-container` builder), export it straight
+to a tarball instead of the local Docker image store, and then load that
+tarball into Docker:
+
+```sh
+docker buildx build --builder whiteout-test-builder \
+  --output type=docker,dest=image.tar \
+  -f dockerfiles/exp1-same-layer.Dockerfile -t whiteout-test:exp1 context
+
+docker image load -i image.tar
+```
+
+Since the Docker daemon doesn't already have the layers created by our `COPY`,
+it has no choice but to unpack the serialized layer tars itself. (I also
+re-imported the image into BuildKit as an OCI layout, which forces a fresh
+unpack in a different way: check the repo for that one.) This is what we get:
 
 ```text
 EXISTS  /tmp/foo :: CONTENT-OF-foo: I am the regular file named foo
@@ -800,7 +837,9 @@ materialise it as a file. But `foo` was added in the _same_ layer as the
 whiteout, and a whiteout can't hide a sibling from its own layer. So `foo`
 stays.
 
-We lost a file, but at least nothing else got hurt. Let's fix that.
+So the only casualty was `.wh.foo` itself: `foo` survived because it lives in
+the same layer as the whiteout. But what if `foo` lived in an _earlier_
+layer instead? 😏
 
 ## Experiment 2: put `foo` in the previous layer and everything changes
 
@@ -861,9 +900,9 @@ Here's exactly what happened:
 
 <!-- DIAGRAM: BuildKit round trip. "BuildKit snapshot: /tmp/foo, /tmp/.wh.foo" → (serialize as OCI layer) → "tar entry: tmp/.wh.foo" → (OCI unpack) → "/tmp/foo gone, /tmp/.wh.foo gone". Probably the single most useful diagram in the article. -->
 
-Let that sink in for a moment. In the configuration I tested, **the same
-image exposes one filesystem right after the local BuildKit build, and a
-different filesystem after being serialized and unpacked again**. A file
+Let that sink in for a moment.
+
+A file
 that I never asked to delete (`foo`) is gone, deleted by a file that I simply
 asked to copy.
 
@@ -873,12 +912,18 @@ asked to copy.
 
 "It works on my machine" has rarely been this literal.
 
-My experiments used a tarball round trip (`docker image save`-style export
-and `docker image load`) and an OCI layout re-import. I would expect a push to
-a registry followed by a pull on another machine to behave the same way,
-since the puller has to unpack the same serialized layers, but I haven't
-tested that path directly.
-[VERIFY/SOURCE: test a registry push + pull on a clean host to confirm]
+But wait, who exports images to tarballs anyway? The way most of us ship
+images is `docker build` followed by `docker push`. So I also tried exactly
+that: a plain `docker build` with the default builder, a `docker push` to a
+local registry, and then a `docker pull` + `docker run` on two brand new Docker
+daemons (running in `docker:dind` containers) that had never seen these
+layers. One of them used the containerd image store (the default on new
+installs) and the other one the classic overlay2 storage driver.
+
+Same result on both: `/tmp/foo` and `/tmp/.wh.foo` are both gone. And the
+layer stored in the registry contains the very same regular-file entry
+`tmp/.wh.foo` that we saw before. So yes, it really works on my machine, then
+you push it, and it doesn't work anywhere else. 🙃
 
 ## Experiment 3: opaque whiteouts, for real
 
@@ -962,6 +1007,21 @@ directory itself, which already exists. The useful takeaway is simpler: **BuildK
 create a local image that can't subsequently be consumed as a valid OCI
 filesystem layer**. Build succeeds, export succeeds, load fails.
 
+(If you're curious, the BuildKit error comes from
+[containerd's archive package](https://github.com/containerd/containerd/blob/main/pkg/archive/tar.go),
+which checks that the target of a whiteout lives _inside_ the whiteout's
+directory. `.wh.` targets the directory itself, so it fails that check.)
+
+To be fair to BuildKit, the rule that makes `.wh.` invalid is very fresh. It
+was only added to the spec in May 2026
+([PR #1314](https://github.com/opencontainers/image-spec/pull/1314)), after
+someone asked in
+[image-spec#1301](https://github.com/opencontainers/image-spec/issues/1301)
+what a bare `.wh.` is supposed to do. Until then, the spec simply didn't say,
+and different tools did different things: in that thread, one of the
+maintainers noticed that umoci treated it as an opaque whiteout! The ink is
+barely dry on this one.
+
 ## For extra weirdness: the legacy builder
 
 The repository also runs every experiment with the legacy builder
@@ -1027,10 +1087,19 @@ says.
 **Whether BuildKit should reject or warn about literal `.wh.*` paths** before
 producing an image that can't round-trip cleanly is a separate question. It's
 a tooling and API-design choice, and there may be good reasons (performance,
-compatibility, "garbage in, garbage out") for not checking every path. I
-couldn't find a maintainer statement or an upstream issue on this, so I don't
-want to claim that BuildKit is "broken".
-[VERIFY/SOURCE: search moby/buildkit and moby/moby issues for `.wh.` / whiteout name validation]
+compatibility, "garbage in, garbage out") for not checking every path.
+
+The limitation itself is well known upstream. It has been discussed since
+before OCI 1.0:
+[image-spec#24](https://github.com/opencontainers/image-spec/issues/24) ("Any
+chance of changing the whiteout file approach?"), opened in 2016 and still
+open, points out that with this scheme "base images can no longer contain
+arbitrary data". But I couldn't find any BuildKit issue about rejecting or
+warning on these names at build time (as of September 2026). And, reading the
+code, the layer writer that BuildKit uses (again, containerd's archive package)
+only generates `.wh.` names for _deletions_: added files are written under
+whatever name they have, with no check. So I don't want to claim that BuildKit
+is "broken". It's just a case that nothing currently guards against.
 
 The way I'd put it is:
 
@@ -1038,8 +1107,8 @@ The way I'd put it is:
 > the build pipeline lets us create a state whose serialized meaning is
 > different.
 
-Also, a couple of things I didn't test, which might be fun follow-ups: the
-containerd image store, and creating the file from a `RUN` step (for example
+Also, a couple of things I didn't test, which might be fun follow-ups:
+_building_ with the containerd image store enabled (I only used it to pull), and creating the file from a `RUN` step (for example
 `RUN touch /tmp/.wh.foo`) rather than with `COPY`. If you try them, let me
 know what happens!
 
@@ -1060,6 +1129,12 @@ Tar already knows how to carry files, directories and their metadata.
 Additions and modifications are just entries. Deletion is "negative" state,
 and tar has no concept of it, so OCI had to invent a convention: whiteouts.
 
+"Easy", though, doesn't mean "efficient". A modification isn't optimised to
+save bytes in any way: change a single byte in a file, and the new layer
+contains the _entire_ file again, with that one byte changed. There's no delta
+encoding, like the one `git` uses to pack objects or `rsync` uses to transfer
+files. Just a brand new full copy of the file.
+
 ### 3. Deleting doesn't delete bytes from old layers
 
 A whiteout hides a file from the merged filesystem, but the old layer, and
@@ -1067,11 +1142,33 @@ all its bytes, are still part of the image. Same for modifications: a new
 version of a file doesn't shrink the old one. This explains a lot of "why is
 my image so big?" moments.
 
+It's also why, if you want to delete files to keep your image small (think
+package manager caches or temporary downloads), you need to do it in the
+**same** `RUN` instruction that creates them:
+
+```dockerfile
+RUN apt-get update && \
+    apt-get install -y curl && \
+    rm -rf /var/lib/apt/lists/*
+```
+
+A layer only captures the difference between the filesystem before and after
+its build step. If a file is created and deleted within the same step, it's
+simply not there at the end, so it never makes it into any layer (and no
+whiteout is needed either). Delete it in the next `RUN`, instead, and you get
+a whiteout on top of a layer that still carries all those bytes.
+
 ### 4. `.wh.*` isn't just an odd implementation detail
 
 It creates a genuine representational limitation. A perfectly valid Unix
 filesystem can contain `.wh.foo`, but an OCI image layer can't encode it as a
 regular file, because that name already has protocol-level meaning.
+
+Thankfully, the naming scheme is awkward enough that you're very unlikely to
+ever give a real file a name starting with `.wh.`. At the very least, in over
+10 years of using Docker, I have never bumped into an issue caused by this
+limitation (if you consider one person's experience a statistically
+significant sample, that is 😅).
 
 ### 5. The builder's internal state and the serialized image can differ
 
@@ -1082,9 +1179,23 @@ and then the image means something different somewhere else.
 
 ### 6. Formats inherit the compromises of what they're built on
 
-Tar was a pragmatic foundation. Whiteouts are the extra convention that lets
+This is probably the most important takeaway from a systems design
+perspective. Tar was a pragmatic foundation. Whiteouts are the extra convention that lets
 a tar-based changeset express something tar itself was never designed to
 express. And conventions like that tend to have sharp edges in the corners.
+
+Sure, whiteouts could have been built on PAX headers instead (as proposed
+back in 2016), which would arguably have been a better fit: a PAX record lives
+in the entry's metadata, so it wouldn't reserve any file names. But either way,
+it would still be a convention layered on top of tar, a workaround for
+something tar simply can't express on its own.
+
+Whenever you reuse an existing format for a purpose it wasn't designed for,
+you'll probably need to add conventions on top of it, and every convention you
+add eventually reserves some part of the input space. So it's worth asking
+early: what can my users no longer express?
+
+### The cheat sheet
 
 Here's the whole thing in one table:
 
@@ -1107,6 +1218,15 @@ find out if you know the rules. And it produces funny edge cases, like the
 ones we just saw, where an innocent `COPY` deletes a different file, but only
 after the image travels somewhere else.
 
+And it turns out I'm not the only one who thinks so. At the beginning of this
+article, I said that my take on tar and whiteouts was just an intuition. Well,
+[image-spec#24](https://github.com/opencontainers/image-spec/issues/24) gave me
+some actual history: according to people involved in the spec, the `.wh.`
+scheme was inherited from AUFS, the union filesystem early Docker was built on.
+As one of the maintainers put it: "the original image code was just based on
+how AUFS did things because AUFS was the only real union filesystem at the
+time". Another one was even more blunt: "The `.wh.` is a silly approach."
+
 On the other hand: **it's also extremely pragmatic**, and I'd go as far as
 calling it elegant. OCI keeps using plain, standard tar archives. Any tool
 that can read tar can read a layer. Generating a layer is just writing a tar.
@@ -1114,6 +1234,16 @@ And with one tiny naming convention, you get deletion semantics without
 inventing a brand new archive format and all the tooling that would come with
 it. The price is that you can't have files starting with `.wh.` in your
 images, which... let's be honest, is a price very few people will ever notice.
+(Again, if you consider me a statistically valid sample: it took me over 10
+years to find out, and not because of an actual bug, but because I
+accidentally started reading the spec!)
+
+That's pretty much the argument that won in that same thread: "Is there a
+realistic use case for distributing `.wh.` files, other than packing up a
+container runtime into an image?", followed by the observation that there are
+already "millions of container images using this approach". Changing it would
+mean every implementation having to support two formats forever, just to
+unlock a handful of weird file names.
 
 Personally, I lean towards: _it feels hacky, but I really admire how simple
 and practical it is_. Boring technology, plus a little bit of protocol glue.
