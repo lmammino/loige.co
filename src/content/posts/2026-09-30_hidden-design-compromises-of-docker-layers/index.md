@@ -1198,15 +1198,20 @@ early: what can my users no longer express?
 
 ### The cheat sheet
 
-Here's the whole thing in one table:
+Here's the whole thing in one table. The left column is the change you make
+to the filesystem (for example, in a `RUN` step), the right column is what ends
+up in the layer's tar archive to represent it. Remember that `.wh.*` entries
+always live next to the path they affect, in the same parent directory, and
+only have an effect on earlier layers:
 
-| Filesystem change                      | Layer representation                  |
-| -------------------------------------- | ------------------------------------- |
-| Add `foo`                              | tar entry `foo`                       |
-| Modify `foo`                           | new, complete tar entry `foo`         |
-| Delete `foo` from an earlier layer     | `.wh.foo`                             |
-| Ignore inherited directory contents    | `.wh..wh..opq`                        |
-| Regular file literally named `.wh.foo` | can't be represented unambiguously 🤷 |
+| Filesystem change                                  | Layer representation                                |
+| -------------------------------------------------- | --------------------------------------------------- |
+| Add `foo`                                          | tar entry `foo`                                     |
+| Modify `foo`                                       | new, complete tar entry `foo`                       |
+| Delete file `foo` from an earlier layer            | empty file `.wh.foo`                                |
+| Delete directory `dir/` (and everything in it)     | empty file `.wh.dir`                                |
+| Replace the inherited contents of directory `dir/` | `dir/.wh..wh..opq`, plus the new children of `dir/` |
+| Regular file literally named `.wh.foo`             | can't be represented unambiguously 🤷               |
 
 ## So, is it a hack?
 
@@ -1302,3 +1307,11 @@ PRs with more cursed experiments are very welcome. 🐇
   filesystem level.
 - [SOCI snapshotter](https://github.com/awslabs/soci-snapshotter): the thing
   that started this whole rabbit hole.
+
+---
+
+**P.S.** This article sparked lots of
+[interesting comments on lobste.rs](https://lobste.rs/s/uuu6us/hidden_design_compromises_docker_layers),
+so go and have a read if you want to dig even deeper. A special mention goes
+to [david_chisnall](https://lobste.rs/~david_chisnall), who shared tons of
+insights, most of which I was totally unaware of. What a legend! 🤯
