@@ -558,7 +558,7 @@ const countryFlag = isRemote
   const mapElement = document.getElementById('location_map')
   if (mapElement) {
     // @ts-ignore
-    import('https://unpkg.com/leaflet/dist/leaflet-src.esm.js').then(
+    import('https://unpkg.com/leaflet@1.9.4/dist/leaflet-src.esm.js').then(
       (Leaflet) => {
         const gps = mapElement.dataset.gps
         const title = mapElement.dataset.title
