@@ -7,7 +7,7 @@
   },
   "assist": { "actions": { "source": { "organizeImports": "on" } } },
   "files": {
-    "includes": ["**", "!**/*.svg"]
+    "includes": ["**", "!**/*.svg", "!src/styles/leaflet.css"]
   },
   "linter": {
     "enabled": true,
